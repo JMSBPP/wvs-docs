@@ -23,7 +23,7 @@
 
 
 ## Volatility Market
-- individual who thinks current volatility is low given current prices might wnant to take a position that profits if volatility increases
+- An individual who thinks current volatility is low given current prices might want to take a position that profits if volatility increases.
 
 ### Use Cases
 - Directional trading on $\sigma$
@@ -81,9 +81,6 @@ $\Pi^{\text{\text{\texttt{VS}}}} \big (\hat{\sigma}^*\big ) = 0$
 
 ### Valuation Method
 
-
-
-
 ## Volatility Swap (Realized Volaitility forward contracts)
 
 
@@ -91,3 +88,6 @@ $\Pi^{\text{\text{\texttt{VS}}}} \big (\hat{\sigma}^*\big ) = 0$
 
 wvs_AMM -- > pg 6
 wvs --> pg 11
+
+
+
