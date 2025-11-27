@@ -31,7 +31,6 @@ abstract contract Option is ERC4626{
 
 }
 ```
-## Op-Hook Analysis
 
 ### buy option
 
