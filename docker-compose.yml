@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  dex-db:
+    image: pgduckdb/pgduckdb:18-v1.1.1
+    container_name: dex-research-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: researcher
+      POSTGRES_PASSWORD: dex_research_2024
+      POSTGRES_DB: dex_amm
+    volumes:
+      - dex_data:/var/lib/postgresql/data
+      - ./agents/out:/data/exports
+      - ./refs/agents:/data/papers
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U researcher -d dex_amm"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  dex_data:
+    driver: local
