@@ -35,7 +35,7 @@ remappings = [
 
   "@liquidity-lab/=lib/Liquidity-Distributions-Lab/src/",
 
-  "forge-std/=lib/panoptic-v1-core/lib/forge-std/src/",
+  "forge-std/=lib/forge-std/src/",
   "@openzeppelin/=lib/panoptic-v1-core/lib/openzeppelin-contracts/",
   "solmate/=lib/panoptic-v1-core/lib/solmate/src/",
   "solady/=lib/solady/src/",
