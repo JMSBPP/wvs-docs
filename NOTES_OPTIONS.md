@@ -51,7 +51,6 @@ option pricing method --->  option value --> what was the volatility entered for
 
 
 
-
 When I enter the parameters to obtain an option value using an option pricing model, I am not forecasting returns.
 
 
@@ -130,10 +129,22 @@ Realized volatility is harvested tomorrow.
 The volatility smile is the demand curve for uncertainty.
 Stochastic volatility exists because uncertainty itself is scarce and fluctuates. --> Fear and greed fluctuate, so the price of insurance fluctuates.
 
+Options 
+
+ - Are the market where convexity is priced and traded.
+ - turn uncertainty into a price you can trade.
+ - vol: uncertaintty ---> price(uncertainty)
+
+ - price the total amount of uncertainty accumulated between now and expiration (future volatility)
+
+ 
 
 
-Options are the market where convexity is priced and traded.
-Every great product is secretly an options market on user behavior.
+
+
+
+
+
 
 
 

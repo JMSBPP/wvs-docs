@@ -1,9 +1,4 @@
-
-
-
-
-
-   Abstraction
+Abstraction
         |
         |
 derivative payoff
