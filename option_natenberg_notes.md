@@ -45,3 +45,8 @@
 - extrinsic: p at any time during the contract liveness
 
 
+
+
+pg 14
+
+pg 67 --> volatility
