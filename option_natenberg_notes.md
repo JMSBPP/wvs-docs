@@ -49,4 +49,26 @@
 
 pg 14
 
+At a current price $P$:
+
+- "call buyer:" We are long volatility (upwards) ($P+\sigma$);
+we buy an option that confers the right to buy $X$ at $\psi_{\text{bid}} = P+ \varepsilon < P+\sigma$. 
+
+The option is OTM, then, it does not have intrinsic value, but time value at $\int \phi^E$
+
+We then expect to profit from $\sigma - \varepsilon$—
+realized volatility minus forecasted volatility. This is the intrinsic value, thus the intrinsic premium of the option.
+
+$$
+\psi_{\text{bid}} - P
+$$
+
+If our forecasted volatility matches realized volatility, then
+
+$$
+\Pi_{\text{trader}} \big (P \big ) = \big (\psi_{\text{bid}} - P \big ) - \int \phi^E
+$$
+
+
+
 pg 67 --> volatility

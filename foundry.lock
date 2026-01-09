@@ -1,1 +1,32 @@
-{}
+{
+  "lib/Compose": {
+    "rev": "c7c64b792cccdf8ca6ddc9584ac64ba9007d64ea"
+  },
+  "lib/Liquidity-Distributions-Lab": {
+    "rev": "2b2e53f82280ed2955feb5b116261b2feb8f3a27"
+  },
+  "lib/foundational-hooks": {
+    "rev": "0c62b3fb35aaaa91296df78026f221b7ffc644de"
+  },
+  "lib/mento-core": {
+    "tag": {
+      "name": "v2.6.5",
+      "rev": "4ce201f85b3230b1db0afa45296f3b3d6ce9e2d2"
+    }
+  },
+  "lib/openzeppelin-contracts": {
+    "tag": {
+      "name": "v5.5.0",
+      "rev": "fcbae5394ae8ad52d8e580a3477db99814b9d565"
+    }
+  },
+  "lib/panoptic-v1-core": {
+    "rev": "df4dc38dee4fe29fd889cffaa8097dccc561e572"
+  },
+  "lib/solady": {
+    "tag": {
+      "name": "v0.1.26",
+      "rev": "acd959aa4bd04720d640bf4e6a5c71037510cc4b"
+    }
+  }
+}

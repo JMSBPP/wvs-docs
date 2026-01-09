@@ -1,0 +1,79 @@
+{
+  "protocol": "Panoptic",
+  "version": "v1.0",
+  "description": "Perpetual, oracle-free options protocol on Uniswap V3",
+  "website": "https://panoptic.xyz",
+  "github": "https://github.com/panoptic-labs/panoptic-v1-core",
+  "documentation": "https://docs.panoptic.xyz",
+  "deployments": {
+    "ethereum": {
+      "chainName": "Ethereum Mainnet",
+      "chainId": 1,
+      "launchDate": "December 2024",
+      "deployer": "vault.panoptic.eth",
+      "deployerAddress": "0x82BF455e9ebd6a541EF10b683dE1edCaf05cE7A1",
+      "create3Factory": "0x000000000000b361194cfe6312EE3210d53C15AA",
+      "contracts": {
+        "core": {
+          "PanopticFactory": {
+            "address": "0x000000000000010a1DEc6c46371A28A071F8bb01",
+            "description": "Handles deployment of new Panoptic instances on top of Uniswap pools"
+          },
+          "SemiFungiblePositionManager": {
+            "address": "0x0000000000000DEdEDdD16227aA3D836C5753194",
+            "description": "Manages LP positions as ERC1155 tokens, tracks liquidity and premium"
+          },
+          "PanopticPool": {
+            "address": "0x0000000000001B1A7fe31692d107cAA42fb06862",
+            "description": "Reference implementation - cloned for each new pool"
+          },
+          "CollateralTracker": {
+            "address": "0x000000000001931ac40ff8b16F08E47D2A7CD650",
+            "description": "Reference implementation - handles collateral for each token"
+          }
+        },
+        "libraries": {
+          "PanopticMath": {
+            "address": "0x000000000001CD07e625A9e225C37BEA50b3F441",
+            "description": "Math utilities for Panoptic calculations"
+          },
+          "FeesCalc": {
+            "address": "0x0000000000019851AabFf4cd57DFC3e739F59757",
+            "description": "AMM swap fees calculation library"
+          },
+          "InteractionHelper": {
+            "address": "0x000000000001a911bE5b2C386CC5807219f10eBe",
+            "description": "Helper functions for protocol interactions"
+          },
+          "PositionBalanceLibrary": {
+            "address": "0x000000000001D1d59E8fCe3945E7086eF4d80CBe",
+            "description": "Position balance tracking utilities"
+          }
+        },
+        "dataContracts": [
+          "0x00000000000142658e41964CBD294a7f731712fD",
+          "0x0000000000014BE53913184E1B4585A059Ab0841",
+          "0x000000000001621A6649E38465B127693fFC5db8",
+          "0x000000000001653c672601086c5135A8A8920CA8",
+          "0x00000000000172Ea491d6b28ae9BC1c1468b6Abb",
+          "0x0000000000017e67ED55A9b29e103C2f164Bff71",
+          "0x000000000001866C0708DA6574069c9D5D58b7c8"
+        ]
+      },
+      "dependencies": {
+        "UniswapV3Factory": "0x1F98431c8aD98523631AE4a59f267346ea31F984"
+      }
+    }
+  },
+  "keyFeatures": [
+    "Perpetual options (no expiration)",
+    "Oracle-free pricing via Uniswap V3 LP positions",
+    "Streamia (streaming premium) instead of upfront premium",
+    "Permissionless pool deployment",
+    "Multi-leg positions supported"
+  ],
+  "auditReports": [
+    "https://code4rena.com/reports/2024-04-panoptic",
+    "https://cantina.xyz/bounties/01da0370-eacb-48a2-a2df-3aa44f7bc838"
+  ]
+}

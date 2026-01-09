@@ -14,3 +14,4 @@ directional convexity still exists and must be managed, especially in volatile m
 - short gamma (sell volatility),
 - long theta (rate of value decay with respect to time, ceteris-paribus)
 and earn fees over time
+
