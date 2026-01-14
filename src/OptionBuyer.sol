@@ -48,8 +48,6 @@ function exchange(ReplicationEngine memory replicationEngine) returns(bytes memo
     return replicationEngine.exchange;
 }
 
-
-
 function cash(address _asset) pure returns(Cash){
     return cash(IERC20(_asset));        
 }

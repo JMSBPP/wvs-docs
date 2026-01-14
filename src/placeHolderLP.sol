@@ -56,7 +56,7 @@ function il() returns(int256){
     uint160 sqrtPrice = placeHolderMod.SqrtPriceLibrary.divX96(sqrtPriceX96,uint160(1e18));
     int256 valueLP = LiquidityAmounts.getAmount1ForLiquidity() + int256(sqrtprice*LiquidityAmounts.getAmount0ForLiquidity());
     
-    int256 valueBenchmark = int256(initialMargin()) + int256(initialNominal()*price());
+     int256 valueBenchmark = int256(initialMargin()) + int256(initialNominal()*price());
     return int256(valueBenchmark - valueLP);
 
 

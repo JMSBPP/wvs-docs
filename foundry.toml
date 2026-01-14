@@ -3,11 +3,11 @@ src = "src"
 lib = ["lib"]
 test = "test"
 script = "script"
-optimizer = true
-optimizer_runs = 200
 solc_version = "0.8.30"
 verbosity = 1
-via_ir = true
+
+optimizer = true
+optimizer_runs = 9_999_999
 
 # File system permissions for FFI
 fs_permissions = [
@@ -18,7 +18,7 @@ remappings = [
   "@mento/=lib/mento-core/contracts/",
   "@uniswap/v3-core/=lib/panoptic-v1-core/lib/v3-core/contracts/",
   "@uniswap/v3-periphery/=lib/panoptic-v1-core/lib/v3-periphery/contracts/",
-  "@openzeppelin/=lib/openzeppelin-contracts/contracts/",
+  "@openzeppelin/=lib/openzeppelin-contracts/",
 
   "@uniswap/v4-core/=lib/bunni-v2/lib/v4-core/",
   "@uniswap/v4-utils/=lib/foundational-hooks/",
@@ -37,7 +37,7 @@ remappings = [
 
   "forge-std/=lib/panoptic-v1-core/lib/forge-std/src/",
   "@openzeppelin/=lib/panoptic-v1-core/lib/openzeppelin-contracts/",
-  "solmate/=lib/bunni-v2/lib/solmate/src/",
+  "solmate/=lib/panoptic-v1-core/lib/solmate/src/",
   "solady/=lib/solady/src/",
 ]
 
