@@ -11,8 +11,10 @@ import qualified SigV4Spec
 import qualified RemoteStubSpec
 import qualified RemoteCliSpec
 import qualified RemoteSpec
+import qualified CleanupSpec
 main :: IO ()
 main = defaultMain (testGroup "shelf"
   [ AtomicSpec.tests, TypesSpec.tests, ManifestSpec.tests, MigrateSpec.tests
   , ExtractSpec.tests, ScanSpec.tests, IndexSpec.tests, ApplySpec.tests
-  , SigV4Spec.tests, RemoteStubSpec.tests, RemoteCliSpec.tests, RemoteSpec.tests ])
+  , SigV4Spec.tests, RemoteStubSpec.tests, RemoteCliSpec.tests, RemoteSpec.tests
+  , CleanupSpec.tests ])

@@ -1,0 +1,11 @@
+cfmm-refs/test/fixtures/headers.pdf: SKIP shelf-checkout
+fakeshelf/dup.pdf: SKIP other-shelf
+loose/loose.pdf: DELETE
+loose/unsourced.pdf: SKIP provenance-excluded
+outer/inner/nested.pdf: SKIP tracked-in outer/inner
+papers/hardlink.pdf: SKIP mirror-inode
+papers/link.pdf: SKIP not-regular
+repoDirty/dirty.pdf: SKIP repo-index-dirty
+repoOther/other.pdf: SKIP tracked-in repoOther
+repoTracked/tracked.pdf: GIT-RM repoTracked
+repoTracked/untracked.pdf: DELETE
