@@ -1,0 +1,31 @@
+name: shelf
+version: 0.1.0
+language: GHC2021
+default-extensions: [OverloadedStrings, StrictData, DerivingStrategies, LambdaCase]
+ghc-options: [-Wall, -Wcompat, -Wincomplete-uni-patterns, -Wincomplete-record-updates, -Werror]
+dependencies:
+  - base >= 4.20 && < 5
+  - aeson
+  - binary
+  - bytestring
+  - containers
+  - crypton
+  - directory
+  - filepath
+  - memory
+  - text
+  - time
+  - typed-process
+  - yaml
+library:
+  source-dirs: src
+executables:
+  shelf:
+    main: Main.hs
+    source-dirs: app
+    dependencies: [shelf, optparse-applicative]
+tests:
+  shelf-test:
+    main: Main.hs
+    source-dirs: test
+    dependencies: [shelf, hedgehog, tasty, tasty-hedgehog, tasty-hunit, tasty-golden, temporary]

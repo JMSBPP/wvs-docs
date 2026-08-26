@@ -3,6 +3,7 @@ pdfs/
 index/
 manifest/scan.yaml
 shelf/.stack-work/
+shelf/*.cabal
 *.pdf
 *.PDF
 !shelf/test/fixtures/*.pdf
