@@ -3,6 +3,7 @@ module ApplySpec (tests) where
 import Control.Monad (forM)
 import qualified Data.ByteString as BS
 import Data.Text (Text)
+import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import Data.Time.Clock (UTCTime)
 import System.Directory (copyFile, createDirectoryIfMissing, doesDirectoryExist, doesFileExist, getModificationTime, listDirectory)
@@ -116,6 +117,29 @@ tests = testGroup "Shelf.Apply"
         arApplied rep @?= 0
         assertBool "preflight reported an error" (not (null (arErrors rep)))
         assertBool "no pdf written" . null =<< listDirectory (rpPdfs rp)
+        assertBool "no manifest written" . not =<< doesFileExist (rpManifest rp)
+
+  , testCase "two included rows sharing a sha256 abort before any write" $
+      withRepo $ \home rp sha -> do
+        -- upsert is keyed on sha256, so applying both would have the second
+        -- row's manifest entry replace the first's, orphaning its pdf/text/card.
+        saveScan (rpScan rp) [mkRow sha "small-a-2020" ["options"], mkRow sha "small-b-2020" ["options"]]
+        rep <- applyWith home rp
+        arApplied rep @?= 0
+        assertBool "dup sha reported"
+          (any (T.isInfixOf "duplicate sha256 among included rows") (arErrors rep))
+        assertBool "no pdf written" . null =<< listDirectory (rpPdfs rp)
+        assertBool "no text written" . null =<< listDirectory (rpText rp)
+        assertBool "no manifest written" . not =<< doesFileExist (rpManifest rp)
+
+  , testCase "a row with no topics aborts before any write" $
+      withRepo $ \home rp sha -> do
+        saveScan (rpScan rp) [mkRow sha "small-a-2020" []]
+        rep <- applyWith home rp
+        arApplied rep @?= 0
+        arErrors rep @?= ["row small-a-2020 has no topics"]
+        assertBool "no pdf written" . null =<< listDirectory (rpPdfs rp)
+        assertBool "no text written" . null =<< listDirectory (rpText rp)
         assertBool "no manifest written" . not =<< doesFileExist (rpManifest rp)
 
   , testCase "existingTopics lists topic subdirectories only" $

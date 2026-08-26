@@ -21,7 +21,7 @@ module Shelf.Apply
 
 import Control.Monad (filterM, forM, unless, when)
 import qualified Data.ByteString as BS
-import Data.List (sortOn)
+import Data.List (sort, sortOn)
 import qualified Data.Map.Strict as M
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
@@ -49,16 +49,31 @@ import Shelf.Types
 -- The manifest checks are deliberately asymmetric: a citekey may not migrate
 -- to different bytes, and a sha may not be renamed to a different citekey.
 -- Together they pin the citekey/sha pairing of anything already recorded.
+--
+-- Two of the checks defend downstream invariants rather than the rows
+-- themselves. 'Shelf.Manifest.upsert' is keyed on sha256, so two included rows
+-- sharing a sha under different citekeys would see the second row's upsert
+-- silently replace the first's manifest entry, orphaning the first citekey's
+-- pdf, text and card; @dupShas@ refuses that batch outright. And a row with no
+-- topics would apply cleanly but then fail @shelf manifest check@ with
+-- 'Shelf.Manifest.EmptyTopics', so @noTopics@ catches it before the write
+-- rather than after.
 preflight :: [Topic] -> Manifest -> [ScanRow] -> [Text]
-preflight known mf rows = badKeys <> dupKeys <> badTopics <> keyMoved <> shaRenamed
+preflight known mf rows =
+  badKeys <> dupKeys <> dupShas <> badTopics <> noTopics <> keyMoved <> shaRenamed
   where
     badKeys = [ "row " <> sha256Text (srSha256 r) <> ": " <> e
               | r <- rows, Left e <- [mkCitekey (srCitekey r)] ]
     counts = M.fromListWith (+) [(srCitekey r, 1 :: Int) | r <- rows]
     dupKeys = [ "citekey " <> k <> " claimed by " <> T.pack (show n) <> " included rows"
               | (k, n) <- M.toList counts, n > 1 ]
+    shaKeys = M.fromListWith (<>) [(srSha256 r, [srCitekey r]) | r <- rows]
+    dupShas = [ "duplicate sha256 among included rows: " <> sha256Text sha
+                  <> " (" <> T.intercalate ", " (sort ks) <> ")"
+              | (sha, ks) <- M.toList shaKeys, length ks > 1 ]
     badTopics = [ "row " <> srCitekey r <> ": unknown topic " <> t
                 | r <- rows, t <- srTopics r, Topic t `notElem` known ]
+    noTopics = [ "row " <> srCitekey r <> " has no topics" | r <- rows, null (srTopics r) ]
     byKey = M.fromList [(citekeyText (srcCitekey s), srcSha256 s) | s <- mfSources mf]
     bySha = M.fromList [(srcSha256 s, citekeyText (srcCitekey s)) | s <- mfSources mf]
     keyMoved = [ "citekey " <> srCitekey r <> " already in the manifest under sha " <> sha256Text old
