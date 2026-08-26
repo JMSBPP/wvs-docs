@@ -1,6 +1,6 @@
 -- | String-level helpers behind 'Shelf.Scan.proposeCitekey'. Split out of
 -- "Shelf.Scan" to keep that module focused on filesystem and row logic.
-module Shelf.Scan.Slug (slug, stopWords, firstSurname, readInt, stripCitekeyVersion) where
+module Shelf.Scan.Slug (slug, stopWords, firstSurname, readInt, stripCitekeyVersion, citekeyVersion) where
 
 import Data.Char (isAsciiLower, isDigit)
 import Data.List (find)
@@ -44,3 +44,10 @@ stripCitekeyVersion :: Text -> Text
 stripCitekeyVersion k = case T.breakOnEnd "-v" k of
   (pre, suf) | not (T.null pre), not (T.null suf), T.all isDigit suf -> T.dropEnd 2 pre
   _ -> k
+
+-- | The @N@ of a trailing @-vN@, if there is one. Lets the duplicate flagger
+-- keep a number it already assigned instead of renumbering on every scan.
+citekeyVersion :: Text -> Maybe Int
+citekeyVersion k = case T.breakOnEnd "-v" k of
+  (pre, suf) | not (T.null pre), not (T.null suf), T.all isDigit suf -> readInt suf
+  _ -> Nothing

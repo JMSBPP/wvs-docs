@@ -9,7 +9,9 @@ import qualified Hedgehog.Range as Range
 import qualified Data.Set as S
 import Data.Maybe (isJust, isNothing)
 import Data.Text (Text)
-import System.Directory (createDirectory, createDirectoryLink)
+import qualified Data.ByteString as BS
+import Data.List (find)
+import System.Directory (copyFile, createDirectory, createDirectoryIfMissing, createDirectoryLink)
 import System.FilePath ((</>), takeFileName)
 import System.IO.Temp (withSystemTempDirectory)
 import Fixture
@@ -27,6 +29,13 @@ row c k prov y = ScanRow
 
 info :: Maybe Text -> Maybe Text -> Maybe Text -> Maybe Int -> Int -> PdfInfo
 info = PdfInfo
+
+gateRoots :: [FilePath]
+gateRoots = ["/h/wvs-docs"]
+
+realPaper, junkPdf :: PdfInfo
+realPaper = info (Just "T") Nothing (Just "pdfTeX") Nothing 22
+junkPdf = info Nothing Nothing Nothing Nothing 1
 
 tests :: TestTree
 tests = testGroup "Scan"
@@ -85,6 +94,44 @@ tests = testGroup "Scan"
       writeFile (d </> "a.PDF") "a"; writeFile (d </> "notes.txt") "t"
       ps <- walkPdfs (defaultConfig d) { scIncludeRoots = ["."] }
       map takeFileName ps @?= ["a.PDF"]
+  , testGroup "proposeInclude"
+    [ testCase "under an include root and not junk" $
+        proposeInclude gateRoots ["/h/wvs-docs/a.pdf"] realPaper "/h/wvs-docs/a.pdf" @?= True
+    , testCase "outside every include root" $
+        proposeInclude gateRoots ["/h/Downloads/a.pdf"] realPaper "/h/Downloads/a.pdf" @?= False
+    , testCase "under a root but junk" $
+        proposeInclude gateRoots ["/h/wvs-docs/a.pdf"] junkPdf "/h/wvs-docs/a.pdf" @?= False
+    , testCase "reachable from a root via any of its paths" $
+        proposeInclude gateRoots ["/h/Downloads/b.pdf", "/h/wvs-docs/a.pdf"] realPaper "/h/Downloads/b.pdf" @?= True
+    , testCase "root match is by path component, not string prefix" $
+        proposeInclude gateRoots ["/h/wvs-docs-other/a.pdf"] realPaper "/h/wvs-docs-other/a.pdf" @?= False
+    ]
+  , testCase "scanRows groups by sha, relativises paths, and gates include" $ withSystemTempDirectory "scan" $ \home -> do
+      createDirectoryIfMissing True (home </> "wvs-docs" </> "refs")
+      createDirectory (home </> "other"); createDirectory (home </> "Downloads")
+      -- headers.pdf twice under two different names: one row, two paths. The
+      -- Downloads copy gets a trailing comment so it is a *different* sha but
+      -- still a real 13-page paper, i.e. not junk -- so its include=False can
+      -- only come from the root gate.
+      copyFile "test/fixtures/headers.pdf" (home </> "wvs-docs" </> "refs" </> "a.pdf")
+      copyFile "test/fixtures/headers.pdf" (home </> "other" </> "b.pdf")
+      bs <- BS.readFile "test/fixtures/headers.pdf"
+      BS.writeFile (home </> "Downloads" </> "c.pdf") (bs <> "% shelf-test variant\n")
+      -- "." widens the walk so Downloads/ and other/ are seen at all; it must
+      -- not thereby confer inclusion on them.
+      rows <- scanRows (defaultConfig home) { scIncludeRoots = ["wvs-docs", "."] } home
+      length rows @?= 2
+      let at p = find (\r -> p `elem` srPaths r) rows
+      case (at "wvs-docs/refs/a.pdf", at "Downloads/c.pdf") of
+        (Just ra, Just rc) -> do
+          srPaths ra @?= ["other/b.pdf", "wvs-docs/refs/a.pdf"]
+          srInclude ra @?= True
+          srHumanEdited ra @?= False
+          assertBool "bytes recorded" (srBytes ra > 0)
+          srInclude rc @?= False
+          srNote rc @?= ""
+          srHumanEdited rc @?= False
+        _ -> assertFailure ("expected both rows, got paths " <> show (map srPaths rows))
   , testGroup "srHumanEdited"
     [ testCase "untouched row is not edited" $ srHumanEdited (row '1' "a-2020" Unsourced (Year 2020)) @?= False
     , testCase "changed citekey is edited" $
@@ -105,6 +152,33 @@ tests = testGroup "Scan"
         let a = row '1' "x-2022" (ArXiv "1") (Year 2022)
             b = row '2' "x-2023" (ArXiv "2") (Year 2023)
         map srCitekey (flagProvenanceDuplicates [a, b]) @?= ["x-2022", "x-2023"]
+    , testCase "a human-edited citekey is preserved; only the proposal and note move" $ do
+        let a = (row '1' "x-2022" (ArXiv "1") (Year 2022)) { srCitekey = "mine-2022" }
+            b = row '2' "x-2023" (ArXiv "1") (Year 2023)
+            out = flagProvenanceDuplicates [a, b]
+        map srCitekey out @?= ["mine-2022", "x-2023"]
+        map (prCitekey . srProposal) out @?= ["x-2022-v1", "x-2023"]
+        map srNote out @?= ["duplicate provenance of x-2023", ""]
+    , testCase "the keeper loses a stale -vN and its note" $ do
+        let a = row '1' "x-2022" (ArXiv "1") (Year 2022)
+            b0 = row '2' "x-2023" (ArXiv "1") (Year 2023)
+            b = b0 { srCitekey = "x-2023-v1", srNote = "stale"
+                   , srProposal = (srProposal b0) { prCitekey = "x-2023-v1" } }
+        let out = flagProvenanceDuplicates [a, b]
+        map srCitekey out @?= ["x-2022-v1", "x-2023"]
+        map srNote out @?= ["duplicate provenance of x-2023", ""]
+    , testCase "numbering is stable: an added older duplicate does not renumber the rest" $ do
+        let a = row '1' "x-2022" (ArXiv "1") (Year 2022)
+            b = row '2' "x-2023" (ArXiv "1") (Year 2023)
+            c = row '3' "z-2020" (ArXiv "1") (Year 2020)
+            once = flagProvenanceDuplicates [a, b]
+            grown = flagProvenanceDuplicates (once <> [c])
+        map srCitekey grown @?= ["x-2022-v1", "x-2023", "z-2020-v2"]
+    , testCase "re-running on its own output is the identity" $ do
+        let rs = [ row '1' "x-2022" (ArXiv "1") (Year 2022), row '2' "x-2023" (ArXiv "1") (Year 2023)
+                 , row '3' "y-2021" (ArXiv "1") (Year 2021) ]
+            once = flagProvenanceDuplicates rs
+        flagProvenanceDuplicates once @?= once
     , testCase "non-arXiv provenance is ignored" $ do
         let a = row '1' "x-2022" (Doi "10.1/a") (Year 2022)
             b = row '2' "x-2023" (Doi "10.1/a") (Year 2023)

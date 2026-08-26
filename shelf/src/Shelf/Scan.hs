@@ -1,24 +1,27 @@
--- | Filesystem scan: walk PDF roots, hash and group by content, propose a
--- citekey/topics/year for each distinct file, and merge the proposals with
--- whatever a human already decided in @manifest/scan.yaml@.
+-- | Filesystem scan: walk the PDF roots, hash and group by content, propose a
+-- citekey/topics/year/include decision for each distinct file, and merge those
+-- proposals with whatever a human already decided in @manifest/scan.yaml@.
 --
--- The scan is idempotent and non-destructive: 'mergeRows' never overwrites a
--- row a human has touched, and 'saveScan' writes through 'writeAtomic'.
+-- The scan is idempotent and non-destructive: 'scanRows' run twice over an
+-- unchanged tree produces the same rows, 'mergeRows' never overwrites a row a
+-- human has touched, and 'saveScan' writes through 'writeAtomic'.
 module Shelf.Scan
-  ( Proposal (..), ScanRow (..), srHumanEdited, ScanConfig (..), defaultConfig
-  , walkPdfs, sha256File, proposeCitekey, detectArxiv, isJunk, proposeTopics
+  ( module Shelf.Scan.Types
+  , walkPdfs, scanRows, proposeInclude, sha256File, proposeCitekey, detectArxiv, isJunk, proposeTopics
   , flagProvenanceDuplicates, mergeRows, loadScan, saveScan
   ) where
 
 import Control.Applicative ((<|>))
-import Control.Monad (filterM, foldM)
+import Control.Monad (filterM, void)
 import Crypto.Hash (Digest, SHA256, hashlazy)
-import Data.Aeson (FromJSON (..), ToJSON (..), object, withObject, (.!=), (.:), (.:?), (.=))
 import Data.ByteArray.Encoding (Base (Base16), convertToBase)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as BL
-import Data.Char (isDigit, toLower)
-import Data.List (sortOn, unsnoc)
+import Data.Char (isDigit)
+import Data.Either (fromRight, lefts)
+import Data.List (isPrefixOf, sortOn, unsnoc)
+import Data.List.NonEmpty (NonEmpty (..))
+import qualified Data.List.NonEmpty as NE
 import qualified Data.Map.Strict as M
 import Data.Maybe (fromMaybe, isNothing, listToMaybe)
 import qualified Data.Set as S
@@ -26,106 +29,14 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.Yaml as Y
-import System.Directory (canonicalizePath, doesDirectoryExist, doesFileExist, listDirectory, pathIsSymbolicLink)
-import System.FilePath (splitDirectories, takeBaseName, takeDirectory, takeExtension, takeFileName, (</>))
+import System.Directory (canonicalizePath, doesDirectoryExist, doesFileExist, getFileSize)
+import System.FilePath (makeRelative, splitDirectories, takeBaseName, takeDirectory, (</>))
 import Shelf.Atomic (writeAtomic)
-import Shelf.Extract (PdfInfo (..))
-import Shelf.Scan.Slug (firstSurname, readInt, slug, stopWords, stripCitekeyVersion)
+import Shelf.Extract (PdfInfo (..), firstPage, pdfInfo)
+import Shelf.Scan.Slug (citekeyVersion, firstSurname, readInt, slug, stopWords, stripCitekeyVersion)
+import Shelf.Scan.Types
+import Shelf.Scan.Walk (walkPdfs)
 import Shelf.Types
-
--- | What the tool last proposed for a row. Kept alongside the live fields so
--- 'srHumanEdited' can tell a human decision from a stale machine guess.
-data Proposal = Proposal
-  { prCitekey :: Text, prTopics :: [Text], prYear :: Year, prProvenance :: Provenance, prInclude :: Bool }
-  deriving stock (Eq, Show)
-
-data ScanRow = ScanRow
-  { srSha256 :: Sha256, srBytes :: Int, srPaths :: [FilePath], srTitle :: Text, srAuthors :: [Text]
-  , srInclude :: Bool, srCitekey :: Text, srTopics :: [Text], srYear :: Year, srProvenance :: Provenance
-  , srProposal :: Proposal, srNote :: Text }
-  deriving stock (Eq, Show)
-
-instance ToJSON Proposal where
-  toJSON p = object
-    [ "citekey" .= prCitekey p, "topics" .= prTopics p, "year" .= prYear p
-    , "provenance" .= prProvenance p, "include" .= prInclude p ]
-instance FromJSON Proposal where
-  parseJSON = withObject "proposal" $ \o -> Proposal
-    <$> o .: "citekey" <*> o .:? "topics" .!= [] <*> o .: "year" <*> o .: "provenance" <*> o .: "include"
-
-instance ToJSON ScanRow where
-  toJSON r = object
-    [ "sha256" .= srSha256 r, "bytes" .= srBytes r, "paths" .= srPaths r, "title" .= srTitle r
-    , "authors" .= srAuthors r, "include" .= srInclude r, "citekey" .= srCitekey r, "topics" .= srTopics r
-    , "year" .= srYear r, "provenance" .= srProvenance r, "proposal" .= srProposal r, "note" .= srNote r ]
--- A hand-written row may omit @proposal@; defaulting it to the row's own
--- fields makes such a row read back as not-human-edited rather than failing.
-instance FromJSON ScanRow where
-  parseJSON = withObject "scan row" $ \o -> do
-    sha <- o .: "sha256"; bytes <- o .:? "bytes" .!= 0; paths <- o .:? "paths" .!= []
-    title <- o .:? "title" .!= ""; authors <- o .:? "authors" .!= []
-    include <- o .: "include"; key <- o .: "citekey"; topics <- o .:? "topics" .!= []
-    year <- o .: "year"; prov <- o .: "provenance"; note <- o .:? "note" .!= ""
-    prop <- o .:? "proposal" .!= Proposal key topics year prov include
-    pure (ScanRow sha bytes paths title authors include key topics year prov prop note)
-
-srHumanEdited :: ScanRow -> Bool
-srHumanEdited r = (srInclude r, srCitekey r, srTopics r, srYear r) /= (prInclude p, prCitekey p, prTopics p, prYear p)
-  where p = srProposal r
-
-data ScanConfig = ScanConfig { scRoot :: FilePath, scIncludeRoots :: [FilePath], scExcludeDirs :: [Text] }
-  deriving stock (Eq, Show)
-
-defaultConfig :: FilePath -> ScanConfig
-defaultConfig home = ScanConfig home roots excludes
-  where
-    roots = [ "wvs-docs", "cfmm/cfmm-theory", "cfmms-playground", "apps/d2p", "learning/convex-analysis"
-            , "learning/formal-methods", "learning/mechanism-design", "learning/structural-econometrics"
-            , "learning/discrete", ".local/share/wvs-shelf/legacy-refs" ]
-    excludes = [ ".git", ".cache", ".TinyTeX", "site-packages", ".venv", "node_modules", "_work", ".stack"
-               , ".stack-work", ".cabal", ".ghcup", ".cargo", "go-build", "builds", ".claude" ]
-
--- (canonical dirs already visited, PDFs found so far)
-type Walk = (S.Set FilePath, [FilePath])
-
--- | Depth-first walk of the include roots. Symlinks are never followed (so a
--- @loop -> .@ cannot trap the walk); the visited set additionally makes
--- overlapping include roots cheap and hardlink cycles harmless.
-walkPdfs :: ScanConfig -> IO [FilePath]
-walkPdfs cfg = do
-  roots <- filterM doesDirectoryExist [scRoot cfg </> r | r <- scIncludeRoots cfg]
-  (_, pdfs) <- foldM (descend cfg) (S.empty, []) roots
-  pure (S.toAscList (S.fromList pdfs))
-
-descend :: ScanConfig -> Walk -> FilePath -> IO Walk
-descend cfg st@(seen, pdfs) raw = do
-  dir <- canonicalizePath raw
-  if dir `S.member` seen
-    then pure st
-    else listDirectory dir >>= foldM (visit cfg dir) (S.insert dir seen, pdfs)
-
-visit :: ScanConfig -> FilePath -> Walk -> FilePath -> IO Walk
-visit cfg dir st@(seen, pdfs) name = do
-  let full = dir </> name
-  link <- pathIsSymbolicLink full
-  if link then pure st else do
-    isDir <- doesDirectoryExist full
-    if not isDir
-      then pure (seen, if isPdfName name then full : pdfs else pdfs)
-      else do
-        ok <- dirAllowed cfg dir name
-        if ok then descend cfg st full else pure st
-
-dirAllowed :: ScanConfig -> FilePath -> FilePath -> IO Bool
-dirAllowed cfg parent name
-  | T.pack name `elem` scExcludeDirs cfg = pure False
-  -- A `lib` beside a foundry.toml is vendored Solidity, not a document tree.
-  | name == "lib" = not <$> doesFileExist (parent </> "foundry.toml")
-  | takeFileName parent == "share" && takeFileName (takeDirectory parent) == ".local" = pure (name == "wvs-shelf")
-  | otherwise = pure True
-
-isPdfName :: FilePath -> Bool
-isPdfName n = map toLower (takeExtension n) == ".pdf"
 
 sha256File :: FilePath -> IO Sha256
 sha256File p = do
@@ -190,36 +101,115 @@ proposeCitekey info page path = either (const fallback) (const candidate) (mkCit
     title | not (null titleWords) = T.intercalate "-" titleWords
           | not (T.null stem) = stem
           | otherwise = "untitled"
-    year = maybe "nd" (T.pack . show) (arxivYear <|> piCreationYear info)
-    -- A new-style arXiv id encodes YYMM, which beats a PDF CreationDate that
-    -- is often the date the file was downloaded or re-rendered.
-    arxivYear = do
-      i <- detectArxiv page <|> detectArxiv (T.pack path)
-      yy <- readInt (T.take 2 i)
-      pure (2000 + yy)
+    year = maybe "nd" (T.pack . show) (arxivYear (detectArxiv page <|> detectArxiv (T.pack path)) <|> piCreationYear info)
+
+-- | A new-style arXiv id encodes YYMM, which beats a PDF CreationDate that is
+-- often just the date the file was downloaded or re-rendered.
+arxivYear :: Maybe Text -> Maybe Int
+arxivYear i = (2000 +) <$> (i >>= readInt . T.take 2)
+
+-- | The include gate. Content is proposed for import only when it is reachable
+-- from an include root /and/ does not look like generated output. Reachability
+-- is checked over every path the content was found at, so a file that also
+-- lives outside the roots is not penalised for it.
+proposeInclude :: [FilePath] -> [FilePath] -> PdfInfo -> FilePath -> Bool
+proposeInclude roots paths info rep = any under paths && isNothing (isJunk info rep)
+  where under p = any (\r -> splitDirectories r `isPrefixOf` splitDirectories p) roots
+
+-- | Include roots that actually confer inclusion: the existing ones,
+-- canonicalised, minus any that resolve to @home@ itself. A catch-all root
+-- (@"."@, for a one-off sweep) widens the walk but must never make the whole
+-- of @$HOME@ importable.
+includeRoots :: ScanConfig -> FilePath -> IO [FilePath]
+includeRoots cfg homeAbs = do
+  existing <- filterM doesDirectoryExist [homeAbs </> r | r <- scIncludeRoots cfg]
+  filter (/= homeAbs) <$> mapM canonicalizePath existing
+
+-- | Walk, hash, group identical content, and propose one row per distinct
+-- file. Live fields are set equal to the proposal, so every row comes back
+-- with 'srHumanEdited' False; 'mergeRows' is what folds in existing decisions.
+scanRows :: ScanConfig -> FilePath -> IO [ScanRow]
+scanRows cfg home = do
+  homeAbs <- canonicalizePath home
+  roots <- includeRoots cfg homeAbs
+  measured <- mapM measure =<< walkPdfs cfg
+  let groups = M.fromListWith (<>) [(sha, (p, n) :| []) | (p, sha, n) <- measured]
+  flagProvenanceDuplicates <$> mapM (buildRow homeAbs roots) (M.toAscList groups)
+  where
+    measure p = do
+      sha <- sha256File p
+      n <- getFileSize p
+      pure (p, sha, fromIntegral n :: Int)
+
+buildRow :: FilePath -> [FilePath] -> (Sha256, NonEmpty (FilePath, Int)) -> IO ScanRow
+buildRow homeAbs roots (sha, found) = do
+  ei <- pdfInfo rep
+  ep <- firstPage rep
+  let info = fromRight noInfo ei
+      page = fromRight "" ep
+      errs = lefts [void ei, void ep]
+      arxiv = detectArxiv page <|> detectArxiv (T.pack rep)
+      prov = maybe Unsourced ArXiv arxiv
+      year = maybe NoDate Year (arxivYear arxiv <|> piCreationYear info)
+      topics = proposeTopics rep
+      key = proposeCitekey info page rep
+      include = proposeInclude roots paths info rep
+      note = T.intercalate "; " (errs <> maybe [] pure (isJunk info rep))
+  pure ScanRow
+    { srSha256 = sha, srBytes = bytes, srPaths = map (makeRelative homeAbs) paths
+    , srTitle = fromMaybe "" (piTitle info)
+    , srAuthors = filter (not . T.null) (map T.strip (T.splitOn ";" (fromMaybe "" (piAuthor info))))
+    , srInclude = include, srCitekey = key, srTopics = topics, srYear = year, srProvenance = prov
+    , srProposal = Proposal key topics year prov include, srNote = note }
+  where
+    sorted = NE.sortWith fst found
+    (rep, bytes) = NE.head sorted
+    paths = map fst (NE.toList sorted)
+    noInfo = PdfInfo Nothing Nothing Nothing Nothing 0
 
 yearOrd :: Year -> Maybe Int
 yearOrd (Year y) = Just y
 yearOrd NoDate = Nothing
 
+data DupRole = DupKeeper | DupLoser Int Text
+
+-- | Same arXiv id, different bytes: the newest (ties broken by size) keeps its
+-- citekey, older ones become @<base>-vN@ and carry a note naming the keeper.
+--
+-- Numbering is stable, not positional: a loser whose proposal already carries a
+-- @-vN@ keeps that N, and only genuinely new losers take the lowest N still
+-- free in the group. Re-running over an unchanged set is therefore the
+-- identity. A human-edited citekey is left alone (only the proposal and the
+-- note move), so the flagger can never silently undo a rename.
 flagProvenanceDuplicates :: [ScanRow] -> [ScanRow]
 flagProvenanceDuplicates rows = map apply rows
   where
     groups = M.elems (M.fromListWith (<>) [(i, [r]) | r <- rows, ArXiv i <- [srProvenance r]])
-    renames = M.fromList (concatMap rename groups)
-    rename rs
+    roles = M.fromList (concatMap plan groups)
+    plan rs
       | S.size (S.fromList (map srSha256 rs)) < 2 = []
-      -- ascending by (year, bytes): the last row is the keeper, the rest
-      -- take -v1.. in that same ascending order.
       | otherwise = case unsnoc (sortOn rank rs) of
-          Just (losers, keeper) -> zip (map srSha256 losers) [(n, srCitekey keeper) | n <- [1 :: Int ..]]
           Nothing -> []
+          Just (losers, keeper) ->
+            let key = stripCitekeyVersion (srCitekey keeper)
+                held = M.fromList [(srSha256 l, n) | l <- losers, Just n <- [citekeyVersion (prCitekey (srProposal l))]]
+                free = [n | n <- [1 :: Int ..], n `notElem` M.elems held]
+            in (srSha256 keeper, DupKeeper) : assign key held free losers
+    assign _ _ _ [] = []
+    assign key held free (l : ls) = case M.lookup (srSha256 l) held of
+      Just n -> (srSha256 l, DupLoser n key) : assign key held free ls
+      Nothing -> case free of
+        (n : rest) -> (srSha256 l, DupLoser n key) : assign key held rest ls
+        [] -> []
     rank r = (yearOrd (srYear r), srBytes r)
-    apply r = case M.lookup (srSha256 r) renames of
+    apply r = case M.lookup (srSha256 r) roles of
       Nothing -> r
-      Just (n, keeper) -> r
-        { srCitekey = versioned n (srCitekey r)
-        , srNote = "duplicate provenance of " <> keeper
+      Just DupKeeper -> r
+        { srCitekey = stripCitekeyVersion (srCitekey r), srNote = ""
+        , srProposal = (srProposal r) { prCitekey = stripCitekeyVersion (prCitekey (srProposal r)) } }
+      Just (DupLoser n key) -> r
+        { srCitekey = if srHumanEdited r then srCitekey r else versioned n (srCitekey r)
+        , srNote = "duplicate provenance of " <> key
         , srProposal = (srProposal r) { prCitekey = versioned n (prCitekey (srProposal r)) } }
     versioned n k = stripCitekeyVersion k <> "-v" <> T.pack (show n)
 
