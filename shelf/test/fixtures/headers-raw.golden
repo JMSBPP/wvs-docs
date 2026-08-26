@@ -1,0 +1,164 @@
+Greek.fi Options Protocol
+Mahmoud Lababidi
+ml@greek.fi
+(Dated: June 26, 2025)
+Greek.fi is a protocol that enables decentralized American-style exercisable (American) options
+that are fully collateralized. It is designed for composability, exercisability, and universal use on
+any EVM-compatible chain and allows any ERC20 token to be used as collateral and consideration,
+including wBTC, wETH, stETH, USDC, and USDT.
+This new level of composability enables new options ecosystem that allows and goes beyond tra-
+ditional financial options strategies. Greek achieves capital eﬀiciency through decentralized lending.
+INTRODUCTION
+Crypto Derivatives have exploded; across 24-hour av-
+erages, over $6B of trading volume occurs in perpetual
+markets and Deribit was sold for $3B. This ramp-up to
+catch the traditional finance options market ($2.7T USD
+in daily notional) points us that it’s up only.
+The DeFi space is held back from options growth: early
+exercisable (American) options do not exist in a liquid,
+decentralized, tokenized manner which will allow options
+to be as common as are yield generating tokens. Early
+exercise is an added benefit in options because it gives
+in-the-money option holders to capitalize on their invest-
+ment.
+To solve this, we introduce the Greek.fi protocol, the
+first fully decentralized, collateralized, tokenized, exercis-
+able, expirable options protocol in the Ethereum ecosys-
+tem. The protocol achieves the following, which fulfill
+the requirements for American options:
+• ERC20 compatible - allowing full composability
+• Exercisable and collateralized protocol so that every
+option can be exercised to swap for the collateral
+• The option writer can redeem consideration (Cash)
+prior to expiration and collateral post expiration
+• The option writer can redeem collateral prior to ex-
+piration if they also own the option
+• Dual token system (OPTION and REDEMPTION)
+similar to yield platforms
+• Oracle-free and lending capable for capital eﬀiciency
+This protocol will unlock a trove of possibilities to
+DeFi, for example:
+• Hedge short-term and long-term risk
+• Use leverage without getting margin called
+• Earn yield against volatility
+• Create unique underlying swap pairs
+(wBTC/wETH, ETH/AAVE, USDe/USDC)
+• Transfer options across ecosystems and chains
+• Trade options in both OTC and other markets
+• Cash Settlement through flash-loans
+PROTOCOL OVERVIEW
+Protocol Summary - The protocol uses two coupled
+ERC20 tokens to represent an option position: an Option
+Token and a Redemption Token. As an American option,
+the Option Token can be exercised at any time before ex-
+piration and Redemption Tokens allow redemption after
+expiration.
+Protocol Details
+Options are represented by ERC20 Option Tokens
+(OT) that allow a user to excercise at specific strike price
+of N units of consideration for a specific underlying to-
+ken, before an expiration date (Consideration is typically
+a cash asset like USDC, and Collateral is typically an as-
+set like wETH). This OT is unique, and temporary as it
+has an expiration date, after which it is worthless.
+To write an Option, we mint an OT by collateralizing
+assets which also results in a Redemption Token (RT)
+with the OT. The RT, also an ERC20, represents the
+short option position and redeemability of the asset that
+was collateralized, which can happen after expiration.
+Also, the reverse of minting, combining the OT with the
+RT, also redeems Collateral. Both tokens can be swap
+and delivered through DEXs/AMMs and RFQs on-chain.
+The creation of the contract pair (OT + RT) is done
+throught a factory contract, which allows for upgradabil-
+ity of the protocol. This also helps in managing all the
+contracts created as a source of truth. Each OT+RT pair
+is represented by a tuple of the following parameters:
+Collateral
+Consideration
+Strike
+Expiration
+Other than standard ERC20 functionality, the OT per-
+mits a user to exercise the option and redeem the un-
+derlying collateral if and only if they hold the RT as well.2
+Option Token
+exercise() Exercise option:
+swap consideration
+for collateral
+redeem() Redeem collateral
+pre expiration
+while holding OPTION
+Redemption Token
+redeem() Redeems collateral
+after expiration
+redeemConsideration() Redeems consideration
+if available
+TABLE I: Available functions for Option and
+Redemption Tokens
+Capital Eﬀiciency
+To achieve capital eﬀiciency, we need to use less collat-
+eral to achieve the same exposure. In traditional finance,
+the options clearing houses use margining to achieve this.
+In DeFi, we can use lending protocols to achieve this.
+Let’s say we need 1 wETH as collateral to mint an
+option. We borrow 0.7 wETH from a lending protocol,
+combined with 0.3 wETH of our own, we can mint the
+option. In return for the loan, we return the RT back to
+the lender as collateral for the loan and sell the OT to
+earn premium.
+To retrieve our collateral, we need to repay the loan,
+which can be done by buying back the OT from the mar-
+ket. The OT is combined with the RT to redeem the col-
+lateral, and we return the borrowed wETH to the lender.
+Lastly, if the lender needs to margin call against the
+RT, they buy the coupled OT, unlock the collateral and
+return the remainder back to the borrower. The LTV
+limit is determined by the Strike and the spot price of
+the collateral.
+APPLICATIONS AND FUTURE
+CONSIDERATIONS
+Trading The composability of the protocol allows for
+multiple trading venues for the options on-chain. Tradi-
+tional DEX AMMs, such as Uniswap, cannot handle the
+low volume and low liquidity and atypical (xy = k) pric-
+ing that options could have. The obvious solution is to
+use RFQs, such as 0x, Bebop, UniswapX etc. enabling
+market makers (MMs) to provide liquidity and pricing
+for the options. OTs can be minted within the transfer()
+function to allow for seamless OTC trading
+Default Swaps The protocol is able to provide default
+swaps as insurance for risk management in debt markets.
+An Oracle or Third party can unlock the OT to allow
+exercise.
+FIG. 1: Price of the RT in the two regimes. The orange
+solid line shows the realistic price incorporating OT
+value, while the green dot-dashed line shows an extreme
+fair price for low-volume assets.
+Cash Settlement Through a Flash Loan (via a swap
+protocol, ie Uniswap), one can borrow Consideration, ex-
+ercise, repay via collateral, and be settled in one trans-
+action.
+Crosschain interoperability With protocols such as
+LayerZero, Hop Protocol, and others, crosschain inter-
+operability is becoming more common. This system can
+be designed to be interoperable across chains, with care-
+ful design as there are +3 additional moving parts: Col-
+lateral, Consideration, and Option/Redemption tokens
+across chains. We can upgrade the factory contract to
+support crosschain options.
+Option Drops instead of Token drops In TradFi, op-
+tions are vested by startup employees and exercised for
+tax purposes. A similar use case can be made here to
+provide option drops instead of token drops.
+Compound Options A compound option is an option
+on an option. Yes, this is a thing. It’s basically a second
+derivative. And yes, this protocol can handle it.
+Covered Call Vaults Other protocols have created
+covered call vaults, such as Rysk Finance. This approach
+can be easily implemented using the Greek.fi protocol.
+PropAMMs and RFQ market makers can price options
+for the vaults. This strategy is nearly identical to ETF
+strategies (i.e., XYLD). This simplifies the user experi-
+ence and reduces the amount of work required to earn
+yield. The same strategy can be applied to covered put
+vaults as well.
