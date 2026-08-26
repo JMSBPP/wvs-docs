@@ -48,9 +48,17 @@ pdfInfo p = fmap parse <$> runTool "pdfinfo" [p]
           year = get "CreationDate" >>= \d -> case [y | w <- T.words d, T.length w == 4, Just y <- [decimal w]] of (y : _) -> Just y; _ -> Nothing
       in PdfInfo (get "Title") (get "Author") (get "Producer") year (fromMaybe 0 (get "Pages" >>= decimal))
 
+-- Layout-mode (`-layout`) output uses runs of spaces for column alignment
+-- (e.g. "1   Introduction"), while raw-mode (`-raw`) output collapses those
+-- to single spaces (e.g. "1 Introduction"). `T.strip` alone only trims the
+-- ends, so it would never match a layout-derived header line against its
+-- raw-mode occurrence; normalize internal whitespace too.
+normalizeWs :: Text -> Text
+normalizeWs = T.unwords . T.words
+
 -- ^\d+(\.\d+)*\s+[A-Z][a-z]
 headerLines :: Text -> [Text]
-headerLines = filter isHeader . map T.strip . T.lines
+headerLines = filter isHeader . map normalizeWs . T.lines
   where
     isHeader l = case T.words l of
       (n : w : _) -> numbered n && T.length w >= 2 && isUpper (T.head w) && isLower (T.index w 1)
@@ -60,7 +68,7 @@ headerLines = filter isHeader . map T.strip . T.lines
 applyHeaders :: [Text] -> Text -> Text
 applyHeaders hs = T.intercalate "\n" . map mark . T.lines
   where set = S.fromList hs
-        mark l = if T.strip l `S.member` set then "## " <> l else l
+        mark l = if normalizeWs l `S.member` set then "## " <> l else l
 
 data Stamp = Stamp { stSha256 :: Text, stPdftotext :: Text, stExtractor :: Text, stBodyBytes :: Int } deriving stock (Eq, Show)
 
