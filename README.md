@@ -59,3 +59,10 @@ Never hand-edit `sources.yaml` except for metadata fixes, then run
 
 - [Design spec](docs/superpowers/specs/2026-08-26-wvs-shelf-design.md)
 - [Phase 1 plan](docs/superpowers/plans/2026-08-26-wvs-shelf-phase1.md)
+
+## Reading PDFs from Emacs
+
+`tools/emacs/cfmm-refs.el` opens any shelf PDF straight from the public Hippius bucket
+(no credentials): `(load "~/cfmm-refs/tools/emacs/cfmm-refs.el")`, then
+`M-x cfmm-refs-open-pdf` (completion over citekeys; cached in `~/.cache/cfmm-refs/`,
+prefix arg re-downloads), `M-x cfmm-refs-copy-url`, or `[[shelf:CITEKEY]]` links in org.
