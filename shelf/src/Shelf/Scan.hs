@@ -26,17 +26,17 @@ import qualified Data.Text as T
 import qualified Data.Yaml as Y
 import System.Directory (canonicalizePath, doesDirectoryExist, doesFileExist, getFileSize)
 import System.FilePath (makeRelative, splitDirectories, takeBaseName, takeDirectory, (</>))
-import Shelf.Atomic (writeAtomic)
+import Shelf.Atomic (sha256OfFile, writeAtomic)
 import Shelf.Extract (PdfInfo (..), firstPage, pdfInfo)
-import Shelf.Remote.Http (sha256OfFile)
+
 import Shelf.Scan.Slug (citekeyVersion, firstSurname, readInt, slug, stopWords, stripCitekeyVersion)
 import Shelf.Scan.Types
 import Shelf.Scan.Walk (walkPdfs)
 import Shelf.Types
 
--- | The digest of a file on disk. One incremental pass over a 1 MiB buffer,
--- shared with the remote client, so hashing a 300 MB PDF never puts it in
--- memory the way the lazy @readFile@ this replaced did.
+-- | The digest of a file on disk, from "Shelf.Atomic": one incremental pass
+-- over a 1 MiB buffer, so hashing a 300 MB PDF never puts it in memory the way
+-- the lazy @readFile@ this replaced did.
 sha256File :: FilePath -> IO Sha256
 sha256File = sha256OfFile
 

@@ -9,6 +9,7 @@
 -- and the object store.
 module RemoteCliSpec (tests) where
 
+import Control.Exception (try)
 import qualified Data.ByteString as BS
 import Data.IORef (IORef, readIORef)
 import Data.List (sort)
@@ -43,8 +44,15 @@ endpointFor :: Int -> Text
 endpointFor port = "http://127.0.0.1:" <> T.pack (show port)
 
 cfgFor :: Int -> IO RemoteConfig
-cfgFor port =
-  mkRemoteConfig (endpointFor port) "cfmm-refs" "decentralized" fakeCreds [0, 0, 0]
+cfgFor port = configFor port fakeCreds
+
+-- | What a fresh clone has: the endpoint and the bucket, no keys.
+anonCfgFor :: Int -> IO RemoteConfig
+anonCfgFor port = configFor port anonymousCredentials
+
+configFor :: Int -> Credentials -> IO RemoteConfig
+configFor port creds =
+  mkRemoteConfig (endpointFor port) "cfmm-refs" "decentralized" creds [0, 0, 0]
     (30 * 1000000) ObjectAcl
 
 -- | @alpha-2020@ carries two topics and @beta-2021@ one, so a full push is
@@ -164,6 +172,24 @@ tests = testGroup "Shelf.Remote.Cli"
         fetchAll rp cfg False >>= (@?= ExitSuccess)
         sha <- sha256OfFile (mirror rp "alpha-2020")
         sha @?= srcSha256 alpha
+
+  , testCase "fetch works with no credentials at all" $
+      withStub fakeCreds $ \port _ _ _ -> withRepo $ \rp -> do
+        cfg <- cfgFor port
+        pushAll rp cfg 1 >>= (@?= ExitSuccess)
+        alpha <- sourceNamed rp "alpha-2020"
+        removeFile (mirror rp "alpha-2020")
+        anon <- anonCfgFor port
+        assertBool "the clone cannot sign" (isAnonymous anon)
+        fetchAll rp anon False >>= (@?= ExitSuccess)
+        sha256OfFile (mirror rp "alpha-2020") >>= (@?= srcSha256 alpha)
+
+  , testCase "push refuses to run without credentials" $
+      withStub fakeCreds $ \port objects _ _ -> withRepo $ \rp -> do
+        anon <- anonCfgFor port
+        code <- try @ExitCode (pushAll rp anon 1)
+        code @?= Left (ExitFailure 1)
+        readIORef objects >>= \m -> M.keys m @?= []
 
   , testCase "fetch recreates pdfs/ when the whole mirror is gone" $
       withStub fakeCreds $ \port _ _ _ -> withRepo $ \rp -> do

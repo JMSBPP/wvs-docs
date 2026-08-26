@@ -18,6 +18,7 @@ module Shelf.Remote.Http
   , finalizeSha256
   , endpointHost
   , signedRequest
+  , plainRequest
   , sendWith
   , sendExpect
   , send
@@ -25,8 +26,6 @@ module Shelf.Remote.Http
 
 import Control.Concurrent (threadDelay)
 import Control.Exception (try)
-import Crypto.Hash (Context, SHA256 (..), hashFinalize, hashInitWith, hashUpdate)
-import Data.ByteArray.Encoding (Base (Base16), convertToBase)
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BC
@@ -38,10 +37,12 @@ import qualified Data.Text.Encoding.Error as TEE
 import Data.Time (getCurrentTime)
 import Network.HTTP.Client
 import Network.HTTP.Types.Status (statusCode)
+-- Re-exported: the digest of a file on disk belongs to the write primitive's
+-- module, but every caller of this one reaches for it, so the name stays here.
+import Shelf.Atomic (finalizeSha256, sha256OfFile)
 import Shelf.Remote.Config
 import Shelf.Remote.SigV4
-import Shelf.Types (Sha256, mkSha256, sha256Text)
-import System.IO (IOMode (ReadMode), withBinaryFile)
+import Shelf.Types (Sha256, sha256Text)
 import System.Timeout (timeout)
 
 -- | Everything a remote operation can fail with. @HttpFailure@ carries the
@@ -76,24 +77,6 @@ retriable = \case
 -- errors are XML and the useful part is at the front.
 decodePrefix :: ByteString -> Text
 decodePrefix = T.strip . TE.decodeUtf8With TEE.lenientDecode . BS.take 512
-
--- | One mebibyte per 'hashUpdate': the digest of a 3 MB PDF never needs the
--- whole file resident, which is why this exists rather than @hashlazy@ over
--- a @readFile@.
-sha256OfFile :: FilePath -> IO Sha256
-sha256OfFile p = withBinaryFile p ReadMode (go (hashInitWith SHA256))
-  where
-    go ctx h = do
-      chunk <- BS.hGet h (1024 * 1024)
-      if BS.null chunk then finalizeSha256 ctx else go (hashUpdate ctx chunk) h
-
--- | Close an incremental digest into the manifest's validated newtype. The
--- rendering is 64 lowercase hex characters, so the 'mkSha256' check cannot
--- fail; it is threaded through anyway rather than asserted away.
-finalizeSha256 :: Context SHA256 -> IO Sha256
-finalizeSha256 ctx =
-  either (fail . T.unpack) pure
-    (mkSha256 (TE.decodeUtf8 (convertToBase Base16 (hashFinalize ctx) :: ByteString)))
 
 baseRequest :: RemoteConfig -> IO Request
 baseRequest cfg = parseRequest (T.unpack (T.dropWhileEnd (== '/') (rcEndpoint cfg)))
@@ -135,6 +118,24 @@ signedRequest cfg verb rawPath query extra payloadHash body = do
     -- a PDF arrives as the bytes that were hashed. It is stripped before the
     -- request is written, which is why it is added after signing.
     , requestHeaders = ("accept-encoding", "") : signed
+    , requestBody = body
+    , checkResponse = \_ _ -> pure ()
+    , responseTimeout = responseTimeoutMicro 300000000
+    }
+
+-- | The same wire shape as 'signedRequest' minus the signature: no
+-- @Authorization@ and no @x-amz-*@ headers at all. This is the request a
+-- clone with no credentials makes against a public-read object, and it is the
+-- only unsigned request this client ever sends — writes are always signed, so
+-- an anonymous PUT cannot be built by accident.
+plainRequest :: RemoteConfig -> ByteString -> ByteString -> RequestBody -> IO Request
+plainRequest cfg verb rawPath body = do
+  base <- baseRequest cfg
+  pure base
+    { method = verb
+    , path = uriEncode False rawPath
+    , queryString = ""
+    , requestHeaders = [("accept-encoding", "")]
     , requestBody = body
     , checkResponse = \_ _ -> pure ()
     , responseTimeout = responseTimeoutMicro 300000000

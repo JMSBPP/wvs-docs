@@ -109,8 +109,15 @@ putObject cfg key file sha = do
         (("content-type", "application/pdf") : aclHeaders cfg)
         (TE.encodeUtf8 (sha256Text sha)) body
 
+-- | A read is the one operation a configuration without credentials can still
+-- perform: the bucket is public-read, so an anonymous GET carries no
+-- @Authorization@ header at all rather than an empty signature. Everything
+-- else in this module signs, and 'Shelf.Remote.Cli.runPush' refuses to start
+-- anonymously, so no write can reach the wire unsigned.
 getRequest :: RemoteConfig -> Text -> IO Request
-getRequest cfg key = signedRequest cfg "GET" (objectPath cfg key) [] [] unsignedPayload emptyBody
+getRequest cfg key
+  | isAnonymous cfg = plainRequest cfg "GET" (objectPath cfg key) emptyBody
+  | otherwise = signedRequest cfg "GET" (objectPath cfg key) [] [] unsignedPayload emptyBody
 
 -- | Stream @key@ into @dest@, hashing as it goes, and return the digest of
 -- what arrived — the caller compares it against the manifest rather than

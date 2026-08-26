@@ -10,7 +10,7 @@ import Shelf.Apply
 import Shelf.Remote.Cli
   (PushOpts (..), VerifyMode (..), clampExpires, parseDuration, runPush, runUrl)
 import Shelf.Remote.Cli.Fetch (FetchOpts (..), runFetch)
-import Shelf.Remote.Config (RemoteConfig, loadRemoteConfig)
+import Shelf.Remote.Config (RemoteConfig, loadRemoteConfig, loadRemoteConfigOptional)
 import Shelf.Types (Citekey, Topic, mkCitekey, mkTopic)
 import System.Exit (exitWith)
 
@@ -43,7 +43,7 @@ cmdP = hsubparser
        (progDesc "Rebuild the BM25 index, refresh card headers, re-render the topic indexes"))
   <> command "migrate" (info (pure Migrate)
        (progDesc "Rewrite manifest/sources.yaml from schema 1 to schema 2"))
-  <> command "push" (info (Push <$> ckSelP <*> verifyP <*> dryRunP <*> jobsP)
+  <> command "push" (info (Push <$> pushSelP <*> verifyP <*> dryRunP <*> jobsP)
        (progDesc "Upload every (source, topic) with no verified object, verifying each by download"))
   <> command "fetch" (info (Fetch <$> ckSelP <*> dryRunP <*> forceP)
        (progDesc "Rebuild pdfs/ from the remote, falling back to arXiv where provenance allows"))
@@ -64,9 +64,11 @@ cmdP = hsubparser
     requireRemoteP = switch (long "require-remote"
       <> help "Also fail on warnings: every source must be backed by a verified \
               \remote object for every topic it carries")
-    ckSelP = flag' Nothing (long "all" <> help "Every source in the manifest")
-         <|> (Just <$> some (argument citekeyR (metavar "CITEKEY")))
-         <|> pure Nothing
+    -- fetch defaults to everything because it only ever adds missing files;
+    -- push writes to a paid remote, so it makes the operator say which.
+    ckSelP = pushSelP <|> pure Nothing
+    pushSelP = flag' Nothing (long "all" <> help "Every source in the manifest")
+           <|> (Just <$> some (argument citekeyR (metavar "CITEKEY")))
     verifyP = option verifyR (long "verify" <> metavar "get|head" <> value VerifyGet
       <> help "How an upload is proved: download and compare digests (get, the \
               \default), or compare the ETag and length (head)")
@@ -100,11 +102,17 @@ verifyR = eitherReader $ \case
 expiresR :: ReadM Int
 expiresR = eitherReader (either (Left . T.unpack) Right . parseDuration . T.pack)
 
--- | The remote commands are the only ones that need credentials, so the
--- environment is read here rather than in 'main': @shelf apply@ must keep
+-- | The remote commands are the only ones that read credentials at all, so the
+-- environment is consulted here rather than in 'main': @shelf apply@ must keep
 -- working on a machine that has never seen a Hippius key.
 withRemote :: (RemoteConfig -> IO a) -> IO a
 withRemote k = loadRemoteConfig >>= either die k
+
+-- | For the read-only commands. The bucket is public-read, so @fetch@ and a
+-- plain @url@ work on a fresh clone with no credentials at all — which is the
+-- whole promise that any clone can rebuild @pdfs\/@.
+withRemoteAnon :: (RemoteConfig -> IO a) -> IO a
+withRemoteAnon k = loadRemoteConfigOptional >>= either die k
 
 main :: IO ()
 main = do
@@ -119,5 +127,6 @@ main = do
     Migrate -> runMigrate rp
     ManifestCheck require requireRemote -> runManifestCheck require requireRemote rp
     Push sel mode dry jobs -> withRemote (\cfg -> runPush rp cfg (PushOpts sel mode dry jobs)) >>= exitWith
-    Fetch sel dry force -> withRemote (\cfg -> runFetch rp cfg (FetchOpts sel dry force)) >>= exitWith
-    Url c topic signed expires -> withRemote (\cfg -> runUrl rp cfg c topic signed (clampExpires expires))
+    Fetch sel dry force -> withRemoteAnon (\cfg -> runFetch rp cfg (FetchOpts sel dry force)) >>= exitWith
+    Url c topic signed expires -> (if signed then withRemote else withRemoteAnon)
+      (\cfg -> runUrl rp cfg c topic signed (clampExpires expires))

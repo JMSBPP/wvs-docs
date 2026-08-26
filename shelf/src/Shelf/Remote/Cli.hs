@@ -90,6 +90,9 @@ verifyDir rp = rpPdfs rp </> ".verify"
 
 runPush :: RepoPaths -> RemoteConfig -> PushOpts -> IO ExitCode
 runPush rp cfg opts = do
+  -- Uploading is the one thing the public-read bucket does not give away, so
+  -- this refuses up front rather than letting every object earn its own 403.
+  when (isAnonymous cfg) (die "shelf push needs HIPPIUS_ACCESS_KEY_ID and HIPPIUS_SECRET_ACCESS_KEY")
   manifest <- loadOrDie (rpManifest rp)
   srcs <- either die pure (selectSources (poSel opts) manifest)
   present <- forM srcs $ \s -> (,) s <$> doesFileExist (mirrorPath rp (srcCitekey s))
@@ -229,6 +232,8 @@ runUrl rp cfg c topic signed expires = do
       [] -> die ("no verified remote object for " <> citekeyText c
                    <> maybe "" (\t -> " under topic " <> topicText t) topic)
       (o : _)
+        | signed && isAnonymous cfg ->
+            die "shelf url --signed needs HIPPIUS_ACCESS_KEY_ID and HIPPIUS_SECRET_ACCESS_KEY"
         | signed -> presignGet cfg (roKey o) (clampExpires expires) >>= say
         | otherwise -> say (roUrl o)
 

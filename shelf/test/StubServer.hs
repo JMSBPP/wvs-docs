@@ -2,7 +2,14 @@
 -- on the bucket and @HEAD\/GET\/PUT\/DELETE@ on an object, with a 404 path for
 -- anything not yet created.
 --
--- Every request has its SigV4 signature recomputed from what actually arrived
+-- An unsigned @GET@ — no @Authorization@ header at all — is served as a
+-- public-read object would be, which is what decision P2-2 makes true of the
+-- real bucket and what @shelf fetch@ relies on when a clone has no
+-- credentials. The stub is more permissive than S3 here: it grants that to
+-- every object rather than consulting an ACL, because nothing in the client
+-- can express a private object.
+--
+-- Every other request has its SigV4 signature recomputed from what actually arrived
 -- on the wire — the decoded raw path, the raw query, the @Host@ header, the
 -- header set named in @SignedHeaders@ and the received
 -- @x-amz-content-sha256@ — and a mismatch is a 403. A @PUT@ additionally
@@ -28,7 +35,7 @@ import qualified Data.CaseInsensitive as CI
 import Data.IORef (IORef, atomicModifyIORef', newIORef, readIORef)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
-import Data.Maybe (fromMaybe)
+import Data.Maybe (fromMaybe, isNothing)
 import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Time (defaultTimeLocale, parseTimeM)
@@ -115,7 +122,8 @@ stubApp creds objects failures stalls requests legacy req respond = do
       entry = StubRequest (requestMethod req) (rawPathInfo req) (rawQueryString req) stamp headers
   atomicModifyIORef' requests (\l -> (entry : l, ()))
   atomicModifyIORef' legacy (\l -> ((requestMethod req, rawPathInfo req, stamp) : l, ()))
-  if not (verifySignature creds req payloadHash)
+  let anonymousRead = requestMethod req == "GET" && isNothing (lookup "authorization" headers)
+  if not anonymousRead && not (verifySignature creds req payloadHash)
     then respond (plain status403 "SignatureDoesNotMatch")
     else do
       stalling <- atomicModifyIORef' stalls (\n -> (max 0 (n - 1), n))

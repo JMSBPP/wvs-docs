@@ -14,11 +14,15 @@ module Shelf.Remote.Config
   , defaultBucket
   , defaultRegion
   , loadRemoteConfig
+  , loadRemoteConfigOptional
+  , anonymousCredentials
+  , isAnonymous
   , mkRemoteConfig
   , scopeOf
   ) where
 
 import Data.ByteString (ByteString)
+import qualified Data.ByteString as BS
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
@@ -58,26 +62,55 @@ defaultRegion = "decentralized"
 scopeOf :: RemoteConfig -> Scope
 scopeOf cfg = Scope { region = rcRegion cfg, service = "s3" }
 
--- | Read the environment. The key and the secret have no default: a missing
--- one is a 'Left' naming the variable, never a silent anonymous request.
+-- | The credential pair that signs nothing. The bucket is public-read
+-- (decision P2-2), so a clone with no keys can still read every object; an
+-- empty access key is how the rest of the client recognises that mode.
+anonymousCredentials :: Credentials
+anonymousCredentials = Credentials "" ""
+
+-- | True when this configuration cannot sign. Reads fall back to an unsigned
+-- request; writes and presigned URLs must refuse before they are attempted,
+-- since an anonymous signature would be a 403 dressed up as a bug report.
+isAnonymous :: RemoteConfig -> Bool
+isAnonymous = BS.null . accessKey . rcCreds
+
+-- | Read the environment, requiring credentials: a missing key or secret is a
+-- 'Left' naming the variable. This is what @push@ and @url --signed@ use.
 -- @HIPPIUS_ACL_MODE@ is @object@ (default), @bucket@ or @none@.
 loadRemoteConfig :: IO (Either Text RemoteConfig)
-loadRemoteConfig = do
+loadRemoteConfig = loadWith required
+  where
+    required Nothing _ = Left "HIPPIUS_ACCESS_KEY_ID is not set"
+    required _ Nothing = Left "HIPPIUS_SECRET_ACCESS_KEY is not set"
+    required (Just k) (Just s) = Right (Credentials (encode k) (encode s))
+
+-- | The same, but a missing key or secret yields 'anonymousCredentials'
+-- rather than an error — what @fetch@ and a plain @url@ use, so that "any
+-- clone can rebuild @pdfs\/@" does not quietly mean "any clone that has
+-- credentials". A half-set pair (key without secret) is anonymous too: it
+-- cannot sign, and failing on it would strand a clone whose environment is
+-- merely untidy.
+loadRemoteConfigOptional :: IO (Either Text RemoteConfig)
+loadRemoteConfigOptional = loadWith optionalCreds
+  where
+    optionalCreds (Just k) (Just s) = Right (Credentials (encode k) (encode s))
+    optionalCreds _ _ = Right anonymousCredentials
+
+loadWith :: (Maybe String -> Maybe String -> Either Text Credentials) -> IO (Either Text RemoteConfig)
+loadWith pick = do
   endpoint <- envOr "HIPPIUS_ENDPOINT" defaultEndpoint
   bucket <- envOr "HIPPIUS_BUCKET" defaultBucket
   region' <- TE.encodeUtf8 <$> envOr "HIPPIUS_REGION" (TE.decodeUtf8 defaultRegion)
   acl <- lookupEnv "HIPPIUS_ACL_MODE"
   key <- lookupEnv "HIPPIUS_ACCESS_KEY_ID"
   secret <- lookupEnv "HIPPIUS_SECRET_ACCESS_KEY"
-  case (key, secret, aclMode acl) of
-    (Nothing, _, _) -> pure (Left "HIPPIUS_ACCESS_KEY_ID is not set")
-    (_, Nothing, _) -> pure (Left "HIPPIUS_SECRET_ACCESS_KEY is not set")
-    (_, _, Nothing) -> pure (Left "HIPPIUS_ACL_MODE must be one of object, bucket, none")
-    (Just k, Just s, Just mode) ->
-      Right <$> mkRemoteConfig endpoint bucket region'
-        (Credentials (encode k) (encode s)) [2000000, 8000000, 30000000] (10 * 60 * 1000000) mode
+  case (pick key secret, aclMode acl) of
+    (Left e, _) -> pure (Left e)
+    (_, Nothing) -> pure (Left "HIPPIUS_ACL_MODE must be one of object, bucket, none")
+    (Right creds, Just mode) ->
+      Right <$> mkRemoteConfig endpoint bucket region' creds
+        [2000000, 8000000, 30000000] (10 * 60 * 1000000) mode
   where
-    encode = TE.encodeUtf8 . T.pack
     envOr name fallback = maybe fallback T.pack <$> lookupEnv name
     aclMode = \case
       Nothing -> Just ObjectAcl
@@ -85,6 +118,9 @@ loadRemoteConfig = do
       Just "bucket" -> Just BucketAcl
       Just "none" -> Just NoAcl
       Just _ -> Nothing
+
+encode :: String -> ByteString
+encode = TE.encodeUtf8 . T.pack
 
 -- | The injectable constructor: same fields, no environment, one new 'Manager'.
 mkRemoteConfig
