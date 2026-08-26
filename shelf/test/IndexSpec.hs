@@ -75,6 +75,14 @@ tests = testGroup "Index"
       assertBool "note listed" ("notes/a.md" `T.isInfixOf` out)
       assertBool "exercises heading" ("## Exercises" `T.isInfixOf` out)
       assertBool "exercises empty" ("_none_" `T.isInfixOf` out)
+  , testCase "a title with a pipe or a newline still renders as one table row" $ do
+      let hostile = Source (ck "p-2020") (sh 'a') 10 "Fees | Rebates\nand more" []
+                      (Year 2020) Unsourced [Topic "options"] [] Nothing
+          out = renderTopicIndex (Topic "options") [hostile] [] []
+          rows = [l | l <- T.lines out, "| [@p-2020]" `T.isPrefixOf` l]
+      length rows @?= 1
+      assertBool ("escaped cell in " <> show rows)
+        ("Fees \\| Rebates and more" `T.isInfixOf` out)
   , testCase "renderTopicsReadme lists every topic" $ do
       let out = renderTopicsReadme [(Topic "options", 3), (Topic "amm-design", 1)]
       assertBool "options row" ("[options](options/INDEX.md) | 3" `T.isInfixOf` out)

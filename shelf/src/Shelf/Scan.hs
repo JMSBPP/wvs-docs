@@ -117,13 +117,19 @@ proposeInclude roots paths info rep = any under paths && isNothing (isJunk info 
   where under p = any (\r -> splitDirectories r `isPrefixOf` splitDirectories p) roots
 
 -- | Include roots that actually confer inclusion: the existing ones,
--- canonicalised, minus any that resolve to @home@ itself. A catch-all root
--- (@"."@, for a one-off sweep) widens the walk but must never make the whole
--- of @$HOME@ importable.
-includeRoots :: ScanConfig -> FilePath -> IO [FilePath]
-includeRoots cfg homeAbs = do
-  existing <- filterM doesDirectoryExist [homeAbs </> r | r <- scIncludeRoots cfg]
-  filter (/= homeAbs) <$> mapM canonicalizePath existing
+-- canonicalised, minus any that resolve to the walk root itself. A catch-all
+-- root (@"."@, for a one-off sweep) widens the walk but must never make the
+-- whole of the swept tree importable.
+--
+-- The base is 'scRoot', not @$HOME@, because that is what "Shelf.Scan.Walk"
+-- resolves the same names against: computing the gate from a different base
+-- than the walk is what made @--root DIR@ mark every row @include: false@.
+-- With @--root@ omitted @scRoot@ /is/ @$HOME@, so the default is unchanged.
+includeRoots :: ScanConfig -> IO [FilePath]
+includeRoots cfg = do
+  rootAbs <- canonicalizePath (scRoot cfg)
+  existing <- filterM doesDirectoryExist [rootAbs </> r | r <- scIncludeRoots cfg]
+  filter (/= rootAbs) <$> mapM canonicalizePath existing
 
 -- | Walk, hash, group identical content, and propose one row per distinct
 -- file. Live fields are set equal to the proposal, so every row comes back
@@ -131,18 +137,28 @@ includeRoots cfg homeAbs = do
 scanRows :: ScanConfig -> FilePath -> IO [ScanRow]
 scanRows cfg home = do
   homeAbs <- canonicalizePath home
-  roots <- includeRoots cfg homeAbs
+  rootAbs <- canonicalizePath (scRoot cfg)
+  roots <- includeRoots cfg
   measured <- mapM measure =<< walkPdfs cfg
   let groups = M.fromListWith (<>) [(sha, (p, n) :| []) | (p, sha, n) <- measured]
-  flagProvenanceDuplicates <$> mapM (buildRow homeAbs roots) (M.toAscList groups)
+  flagProvenanceDuplicates <$> mapM (buildRow (relocate homeAbs rootAbs) roots) (M.toAscList groups)
   where
     measure p = do
       sha <- sha256File p
       n <- getFileSize p
       pure (p, sha, fromIntegral n :: Int)
 
-buildRow :: FilePath -> [FilePath] -> (Sha256, NonEmpty (FilePath, Int)) -> IO ScanRow
-buildRow homeAbs roots (sha, found) = do
+-- | How an absolute found path is recorded in @srPaths@: relative to @$HOME@
+-- when it lives under it (so @shelf apply@ can resolve it the usual way), and
+-- otherwise relative to the walk root, which is the only other base a
+-- @--root DIR@ sweep has. When @scRoot@ is @$HOME@ the two agree.
+relocate :: FilePath -> FilePath -> FilePath -> FilePath
+relocate homeAbs rootAbs p
+  | splitDirectories homeAbs `isPrefixOf` splitDirectories p = makeRelative homeAbs p
+  | otherwise = makeRelative rootAbs p
+
+buildRow :: (FilePath -> FilePath) -> [FilePath] -> (Sha256, NonEmpty (FilePath, Int)) -> IO ScanRow
+buildRow rel roots (sha, found) = do
   ei <- pdfInfo rep
   ep <- firstPage rep
   let info = fromRight noInfo ei
@@ -156,7 +172,7 @@ buildRow homeAbs roots (sha, found) = do
       include = proposeInclude roots paths info rep
       note = T.intercalate "; " (errs <> maybe [] pure (isJunk info rep))
   pure ScanRow
-    { srSha256 = sha, srBytes = bytes, srPaths = map (makeRelative homeAbs) paths
+    { srSha256 = sha, srBytes = bytes, srPaths = map rel paths
     , srTitle = fromMaybe "" (piTitle info)
     , srAuthors = filter (not . T.null) (map T.strip (T.splitOn ";" (fromMaybe "" (piAuthor info))))
     , srInclude = include, srCitekey = key, srTopics = topics, srYear = year, srProvenance = prov

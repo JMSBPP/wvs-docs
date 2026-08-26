@@ -112,7 +112,10 @@ renderTopicIndex (Topic t) srcs notes exercises = T.unlines $
   ++ [ "", "## Notes" ] ++ listOrNone notes
   ++ [ "", "## Exercises" ] ++ listOrNone exercises
   where
-    sourceRow s = "| [@" <> citekeyText (srcCitekey s) <> "] | " <> srcTitle s <> " | " <> yearText (srcYear s) <> " |"
+    sourceRow s = "| [@" <> citekeyText (srcCitekey s) <> "] | " <> cell (srcTitle s) <> " | " <> yearText (srcYear s) <> " |"
+    -- A GFM table cell is one line and cannot hold a raw @|@: an unescaped
+    -- pipe or newline in a title would split it across columns or rows.
+    cell = T.unwords . T.lines . T.replace "\r" "\n" . T.replace "|" "\\|"
     yearText (Year y) = T.pack (show y)
     yearText NoDate = "nd"
     listOrNone xs = if null xs then ["- _none_"] else map (("- " <>) . T.pack) xs

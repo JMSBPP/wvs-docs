@@ -142,6 +142,20 @@ tests = testGroup "Shelf.Apply"
         assertBool "no text written" . null =<< listDirectory (rpText rp)
         assertBool "no manifest written" . not =<< doesFileExist (rpManifest rp)
 
+  , testCase "an excluded row sharing the applied sha stays in scan.yaml" $
+      withRepo $ \home rp sha -> do
+        -- A second copy of the same bytes that a human deliberately parked at
+        -- include: false must survive the apply, not be swept out with the
+        -- row that was applied.
+        let parked = (mkRow sha "parked-copy-2020" ["options"]) { srInclude = False }
+        saveScan (rpScan rp) [mkRow sha "small-a-2020" ["options"], parked]
+        rep <- applyWith home rp
+        arErrors rep @?= []
+        arApplied rep @?= 1
+        rows <- right <$> loadScan (rpScan rp)
+        map srCitekey rows @?= ["parked-copy-2020"]
+        map srInclude rows @?= [False]
+
   , testCase "existingTopics lists topic subdirectories only" $
       withRepo $ \_ rp _ -> do
         writeFile (rpTopics rp </> "README.md") "x"

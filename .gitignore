@@ -7,5 +7,7 @@ shelf/*.cabal
 *.pdf
 *.PDF
 !shelf/test/fixtures/*.pdf
+# writeAtomic temp files: .<name>NNNN.tmp beside their destination
+.*.tmp*
 __pycache__/
 .ipynb_checkpoints/

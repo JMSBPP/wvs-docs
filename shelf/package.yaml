@@ -16,6 +16,7 @@ dependencies:
   - text
   - time
   - typed-process
+  - unix
   - yaml
 library:
   source-dirs: src

@@ -180,7 +180,10 @@ applyWith home rp = do
       Left e -> runIndex rp >> pure (ApplyReport n (length rows) [e])
       Right src -> do
         let mf' = upsert src mf
-            rows' = [x | x <- rows, srSha256 x /= srSha256 r]
+            -- Only the *included* row is consumed. A row parked at
+            -- @include: false@ that happens to share the sha (a second copy a
+            -- human deliberately declined) stays in scan.yaml.
+            rows' = [x | x <- rows, not (srSha256 x == srSha256 r && srInclude x)]
         saveManifest (rpManifest rp) mf'
         saveScan (rpScan rp) rows'
         go ver mf' rows' rest (n + 1)

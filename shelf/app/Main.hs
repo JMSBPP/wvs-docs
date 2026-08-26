@@ -22,7 +22,7 @@ repoOpt = optional (strOption
 
 cmdP :: Parser Cmd
 cmdP = hsubparser
-  (  command "scan" (info (Scan <$> optional (strOption (long "root" <> metavar "DIR" <> help "Directory to walk (default: $HOME)")))
+  (  command "scan" (info (Scan <$> optional (strOption rootHelp))
        (progDesc "Walk for PDFs and merge proposals into manifest/scan.yaml"))
   <> command "apply" (info (pure Apply)
        (progDesc "Apply included scan rows: pdfs, text, cards, manifest, indexes"))
@@ -35,6 +35,10 @@ cmdP = hsubparser
        (progDesc "Manifest subcommands"))
   )
   where
+    rootHelp = long "root" <> metavar "DIR"
+      <> help "Base that both the walk and the include-root gate resolve against \
+              \(default: $HOME). Paths under $HOME stay relative to it; anything \
+              \else is recorded relative to DIR."
     selP = flag' Nothing (long "all" <> help "Every source in the manifest")
        <|> (Just . T.pack <$> argument str (metavar "CITEKEY"))
     requireP = switch (long "require" <> help "Fail if manifest/sources.yaml or topics/ is missing")

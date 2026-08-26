@@ -132,8 +132,10 @@ Invariants (enforced by `Shelf.Manifest` types + `shelf manifest check`):
    body text and `-layout` only transiently for header detection. Header rule
    `^\d+(\.\d+)*\s+[A-Z][a-z]` → `## `; known to false-positive on equation
    numbers; golden tests include one known-bad fixture. Front-matter stamps
-   `sha256`, `pdftotext_version`, `extractor_version`; any stamp mismatch
-   re-extracts.
+   `sha256`, `pdftotext_version`, `extractor_version`; `sha256`,
+   `extractor_version` and `body_bytes` are the freshness key;
+   `pdftotext_version` is recorded but informational — run
+   `shelf extract --all` after a poppler upgrade to re-extract.
 5. `shelf index` — regenerate `topics/*/INDEX.md`, `topics/README.md`, and the
    BM25 index in `index/` (rebuilt when manifest hash changes).
 6. `shelf manifest check` — all §5 invariants; CI gate.

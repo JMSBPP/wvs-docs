@@ -132,6 +132,21 @@ tests = testGroup "Scan"
           srNote rc @?= ""
           srHumanEdited rc @?= False
         _ -> assertFailure ("expected both rows, got paths " <> show (map srPaths rows))
+  , testCase "scanRows gates include against --root, not $HOME" $
+      withSystemTempDirectory "scan-home" $ \home ->
+      withSystemTempDirectory "scan-root" $ \root -> do
+        -- The regression: include roots used to be resolved under $HOME while
+        -- the walk resolved them under scRoot, so with --root every row came
+        -- back include: false.
+        createDirectoryIfMissing True (root </> "wvs-docs" </> "refs")
+        copyFile "test/fixtures/headers.pdf" (root </> "wvs-docs" </> "refs" </> "x.pdf")
+        rows <- scanRows (defaultConfig home) { scRoot = root } home
+        case rows of
+          [r] -> do
+            srInclude r @?= True
+            -- Outside $HOME, so recorded relative to the walk root.
+            srPaths r @?= ["wvs-docs/refs/x.pdf"]
+          _ -> assertFailure ("expected one row, got paths " <> show (map srPaths rows))
   , testGroup "srHumanEdited"
     [ testCase "untouched row is not edited" $ srHumanEdited (row '1' "a-2020" Unsourced (Year 2020)) @?= False
     , testCase "changed citekey is edited" $
