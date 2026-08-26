@@ -1,0 +1,30 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  shelf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - uses: haskell-actions/setup@v2
+        with:
+          enable-stack: true
+          stack-no-global: true
+          stack-setup-ghc: true
+          stack-version: latest
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.stack
+            shelf/.stack-work
+          key: stack-ghc9.10.3-${{ runner.os }}-${{ hashFiles('shelf/stack.yaml', 'shelf/package.yaml') }}
+          restore-keys: stack-ghc9.10.3-${{ runner.os }}-
+      - run: stack test --no-terminal
+        working-directory: shelf
+      - run: stack install --no-terminal --local-bin-path "$HOME/.local/bin"
+        working-directory: shelf
+      - run: "$HOME/.local/bin/shelf" manifest check --require
+      - name: no binaries in git
+        run: |
+          bad=$(git ls-files | grep -iE '\.pdf$' | grep -v '^shelf/test/fixtures/' || true)
+          if [ -n "$bad" ]; then echo "$bad"; exit 1; fi
