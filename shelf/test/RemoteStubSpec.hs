@@ -5,6 +5,7 @@ module RemoteStubSpec (tests) where
 
 import Control.Exception (IOException, throwIO, try)
 import Data.Bits ((.&.))
+import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import Data.IORef (IORef, readIORef, writeIORef)
 import qualified Data.Map.Strict as M
@@ -14,7 +15,7 @@ import Data.Word (Word8)
 import Shelf.Atomic (withAtomicOutput)
 import Shelf.Remote
 import Shelf.Remote.SigV4 (Credentials (..))
-import StubServer (LogEntry, withStub)
+import StubServer (LogEntry, Stub (..), StubRequest (..), withStub, withStubDetail)
 import System.Directory (listDirectory)
 import System.FilePath ((</>))
 import System.IO.Temp (withSystemTempDirectory)
@@ -30,10 +31,12 @@ fakeCreds = Credentials "hip_stubaccesskeyid" "stub-secret-not-a-real-key-000000
 key :: Text
 key = "topics/options/carr-madan-1998.pdf"
 
-cfgFor :: Int -> Credentials -> [Int] -> IO RemoteConfig
-cfgFor port creds backoff =
+cfgWith :: Int -> Credentials -> [Int] -> Int -> AclMode -> IO RemoteConfig
+cfgWith port =
   mkRemoteConfig ("http://127.0.0.1:" <> T.pack (show port)) "cfmm-refs" "decentralized"
-    creds backoff (30 * 1000000) ObjectAcl
+
+cfgFor :: Int -> Credentials -> [Int] -> IO RemoteConfig
+cfgFor port creds backoff = cfgWith port creds backoff (30 * 1000000) ObjectAcl
 
 -- | A deterministic non-uniform payload, so a truncated or reordered transfer
 -- cannot pass a byte comparison by accident.
@@ -45,6 +48,23 @@ blob n = fst (BS.unfoldrN n step (0x5eed :: Int))
 
 expectRight :: Show e => Either e a -> IO a
 expectRight = either (assertFailure . show) pure
+
+-- | Upload a small object so the request it produced can be inspected.
+putSmall :: RemoteConfig -> FilePath -> IO ()
+putSmall cfg dir = do
+  let src = dir </> "src.pdf"
+  BS.writeFile src (blob 1024)
+  sha <- sha256OfFile src
+  _ <- expectRight =<< putObject cfg key src sha
+  pure ()
+
+-- | The most recent request the stub saw with this method.
+lastOf :: IORef [StubRequest] -> ByteString -> IO StubRequest
+lastOf ref verb = do
+  seen <- readIORef ref
+  case [r | r <- seen, srMethod r == verb] of
+    (r : _) -> pure r
+    [] -> assertFailure ("the stub saw no " <> show verb <> " request")
 
 -- | Requests the stub saw for @key@, oldest first.
 objectRequests :: IORef [LogEntry] -> IO [LogEntry]
@@ -179,4 +199,54 @@ tests = testGroup "Shelf.Remote (stub)"
       url <- presignGet cfg key 86400
       assertBool "expiry" ("X-Amz-Expires=86400" `T.isInfixOf` url)
       assertBool "signature" ("X-Amz-Signature=" `T.isInfixOf` url)
+
+  , testCase "a PUT signs and sends the object ACL and the PDF content type" $
+      withStubDetail fakeCreds $ \stub -> withSystemTempDirectory "shelf-acl" $ \dir -> do
+        cfg <- cfgFor (stubPort stub) fakeCreds [0, 0, 0]
+        _ <- expectRight =<< ensureBucket cfg
+        putSmall cfg dir
+        sent <- lastOf (stubRequests stub) "PUT"
+        lookup "x-amz-acl" (srHeaders sent) @?= Just "public-read"
+        lookup "content-type" (srHeaders sent) @?= Just "application/pdf"
+        -- Present is not enough. An unsigned header is one a proxy could add
+        -- or drop without the request failing, so both must appear in
+        -- SignedHeaders -- and the stub 403s if their values were altered.
+        auth <- maybe (assertFailure "no authorization header") pure
+          (lookup "authorization" (srHeaders sent))
+        assertBool "x-amz-acl is signed" ("x-amz-acl" `BS.isInfixOf` auth)
+        assertBool "content-type is signed" ("content-type" `BS.isInfixOf` auth)
+
+  , testCase "under NoAcl a PUT carries no ACL header at all" $
+      withStubDetail fakeCreds $ \stub -> withSystemTempDirectory "shelf-noacl" $ \dir -> do
+        cfg <- cfgWith (stubPort stub) fakeCreds [0, 0, 0] (30 * 1000000) NoAcl
+        _ <- expectRight =<< ensureBucket cfg
+        putSmall cfg dir
+        sent <- lastOf (stubRequests stub) "PUT"
+        lookup "x-amz-acl" (srHeaders sent) @?= Nothing
+        lookup "content-type" (srHeaders sent) @?= Just "application/pdf"
+
+  , testCase "under BucketAcl ensureBucket follows the create with PUT /bucket?acl" $
+      withStubDetail fakeCreds $ \stub -> do
+        cfg <- cfgWith (stubPort stub) fakeCreds [0, 0, 0] (30 * 1000000) BucketAcl
+        ensureBucket cfg >>= (@?= Right ())
+        seen <- reverse <$> readIORef (stubRequests stub)
+        -- "?acl=", not "?acl": SigV4 makes an empty value emit its "=" in the
+        -- canonical query, and the wire carries exactly what was signed rather
+        -- than a shorter spelling the server would have to normalise back.
+        [(srMethod r, srPath r, srQuery r) | r <- seen] @?=
+          [("HEAD", "/cfmm-refs", ""), ("PUT", "/cfmm-refs", ""), ("PUT", "/cfmm-refs", "?acl=")]
+        acl <- lastOf (stubRequests stub) "PUT"
+        lookup "x-amz-acl" (srHeaders acl) @?= Just "public-read"
+
+  , testCase "an attempt that outruns rcAttemptCap is retried, or fails as AttemptTimeout" $
+      withStubDetail fakeCreds $ \stub -> do
+        -- 150 ms is orders of magnitude more than a loopback HEAD needs and a
+        -- third of the stub's stall, so only the stalled attempt trips it.
+        cfg <- cfgWith (stubPort stub) fakeCreds [0, 0, 0] 150000 ObjectAcl
+        _ <- expectRight =<< ensureBucket cfg
+        writeIORef (stubStalls stub) 1
+        ensureBucket cfg >>= (@?= Right ())
+        writeIORef (stubStalls stub) 1
+        exhausted <- cfgWith (stubPort stub) fakeCreds [] 150000 ObjectAcl
+        ensureBucket exhausted >>= (@?= Left AttemptTimeout)
   ]

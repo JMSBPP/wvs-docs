@@ -74,6 +74,14 @@ ensureBucket cfg = do
       | statusCode (responseStatus resp) == 200 -> pure (Right ())
       | otherwise -> createBucket cfg
 
+-- | The HEAD and this PUT are not one atomic operation, so two pushes racing
+-- on a fresh bucket can both see the 404 and both create it. That is benign
+-- here: S3 CreateBucket is idempotent for the owner (the probe's plain PUT
+-- returns 200 on a bucket that already exists), and the loser's ACL PUT is
+-- idempotent too. It would stop being benign against a provider that answers
+-- @BucketAlreadyOwnedByYou@ with a 409 — that status is not retriable and
+-- would surface as an 'UnexpectedStatus'; add it to the accepted set here
+-- rather than retrying if Hippius ever starts doing so.
 createBucket :: RemoteConfig -> IO (Either RemoteError ())
 createBucket cfg = do
   created <- send cfg (signedRequest cfg "PUT" (bucketPath cfg) [] [] emptyHash emptyBody)

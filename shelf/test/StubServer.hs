@@ -14,8 +14,10 @@
 -- What this catches is the /wiring/ — host header, raw path, query, which
 -- headers get signed, payload hash, and re-signing across retries.
 -- Canonicalisation itself is pinned by the AWS vectors in "SigV4Spec".
-module StubServer (LogEntry, withStub) where
+module StubServer (LogEntry, StubRequest (..), Stub (..), withStub, withStubDetail) where
 
+import Control.Concurrent (threadDelay)
+import Control.Monad (when)
 import Crypto.Hash (MD5 (..), SHA256 (..), hashWith)
 import Data.ByteArray.Encoding (Base (Base16), convertToBase)
 import Data.ByteString (ByteString)
@@ -40,6 +42,32 @@ import Shelf.Remote.SigV4
 -- than replaying the first attempt's headers.
 type LogEntry = (ByteString, ByteString, ByteString)
 
+-- | The whole of one received request. 'LogEntry' is the narrower view of the
+-- same log and is kept alongside because another spec already reads it.
+data StubRequest = StubRequest
+  { srMethod :: ByteString
+  , srPath :: ByteString     -- ^ raw, still percent-encoded
+  , srQuery :: ByteString    -- ^ raw, the @?@ included
+  , srDate :: ByteString     -- ^ @x-amz-date@
+  , srHeaders :: [Header]    -- ^ exactly what arrived, @authorization@ included
+  } deriving stock (Eq, Show)
+
+-- | Everything a test may reach into. 'stubFailures' counts requests to answer
+-- with a 503; 'stubStalls' counts requests to hold for 'stallMicros' first,
+-- which is how an attempt is made to outrun @rcAttemptCap@.
+data Stub = Stub
+  { stubPort :: Int
+  , stubObjects :: IORef (Map Text ByteString)
+  , stubFailures :: IORef Int
+  , stubStalls :: IORef Int
+  , stubRequests :: IORef [StubRequest]
+  }
+
+-- | Comfortably longer than any cap a test sets, short enough that a stalled
+-- handler finishing in the background does not hold up the suite.
+stallMicros :: Int
+stallMicros = 500000
+
 -- | The bucket itself is an entry under the empty key, so one 'IORef' carries
 -- both "does the bucket exist" and "what objects does it hold".
 bucketMarker :: Text
@@ -48,31 +76,50 @@ bucketMarker = ""
 -- | Run @k@ against a stub bound to an ephemeral port on the loopback
 -- interface, given the credentials it should accept. The refs are, in order,
 -- the object store, a countdown of requests to answer with 503, and the
--- request log.
+-- request log. Kept at this shape because other specs call it.
 withStub
   :: Credentials
   -> (Int -> IORef (Map Text ByteString) -> IORef Int -> IORef [LogEntry] -> IO a)
   -> IO a
-withStub creds k = do
+withStub creds k =
+  withStubOn creds (\stub legacy -> k (stubPort stub) (stubObjects stub) (stubFailures stub) legacy)
+
+-- | The same stub, handing over the whole control surface: the stall counter
+-- and the full request records, which is what pins the headers a PUT must
+-- carry.
+withStubDetail :: Credentials -> (Stub -> IO a) -> IO a
+withStubDetail creds k = withStubOn creds (\stub _legacy -> k stub)
+
+withStubOn :: Credentials -> (Stub -> IORef [LogEntry] -> IO a) -> IO a
+withStubOn creds k = do
   objects <- newIORef M.empty
   failures <- newIORef 0
+  stalls <- newIORef 0
   requests <- newIORef []
-  -- The abort test deliberately drops a response mid-body; warp's default
-  -- handler would print that to stderr as if it were a defect.
+  legacy <- newIORef []
+  -- The abort test deliberately drops a response mid-body, and the timeout
+  -- test deliberately abandons one; warp's default handler would print both to
+  -- stderr as if they were defects.
   let settings = setOnException (\_ _ -> pure ()) (setHost "127.0.0.1" defaultSettings)
   testWithApplicationSettings settings
-    (pure (stubApp creds objects failures requests))
-    (\port -> k port objects failures requests)
+    (pure (stubApp creds objects failures stalls requests legacy))
+    (\port -> k (Stub port objects failures stalls requests) legacy)
 
-stubApp :: Credentials -> IORef (Map Text ByteString) -> IORef Int -> IORef [LogEntry] -> Application
-stubApp creds objects failures requests req respond = do
-  let header n = lookup n (requestHeaders req)
-      payloadHash = fromMaybe "" (header "x-amz-content-sha256")
-  atomicModifyIORef' requests $ \l ->
-    ((requestMethod req, rawPathInfo req, fromMaybe "" (header "x-amz-date")) : l, ())
+stubApp
+  :: Credentials -> IORef (Map Text ByteString) -> IORef Int -> IORef Int
+  -> IORef [StubRequest] -> IORef [LogEntry] -> Application
+stubApp creds objects failures stalls requests legacy req respond = do
+  let headers = requestHeaders req
+      payloadHash = fromMaybe "" (lookup "x-amz-content-sha256" headers)
+      stamp = fromMaybe "" (lookup "x-amz-date" headers)
+      entry = StubRequest (requestMethod req) (rawPathInfo req) (rawQueryString req) stamp headers
+  atomicModifyIORef' requests (\l -> (entry : l, ()))
+  atomicModifyIORef' legacy (\l -> ((requestMethod req, rawPathInfo req, stamp) : l, ()))
   if not (verifySignature creds req payloadHash)
     then respond (plain status403 "SignatureDoesNotMatch")
     else do
+      stalling <- atomicModifyIORef' stalls (\n -> (max 0 (n - 1), n))
+      when (stalling > 0) (threadDelay stallMicros)
       failing <- atomicModifyIORef' failures (\n -> (max 0 (n - 1), n))
       if failing > 0
         then consumeRequestBodyStrict req >> respond (plain status503 "SlowDown")
