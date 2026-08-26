@@ -59,3 +59,13 @@ Never hand-edit `sources.yaml` except for metadata fixes, then run
 
 - [Design spec](docs/superpowers/specs/2026-08-26-wvs-shelf-design.md)
 - [Phase 1 plan](docs/superpowers/plans/2026-08-26-wvs-shelf-phase1.md)
+
+## Contributing / Workflow
+
+Fork → PR workflow (d2p-finance canonical): the `d2p-finance` org owns the CANONICAL/upstream
+repos; the `JMSBPP/*` repos are the develop FORKS. ALL changes are made on the `JMSBPP/*` forks
+and reach the `d2p-finance/*` canonical repos ONLY through pull requests (fork → upstream).
+Never commit or push directly to a `d2p-finance` canonical repo — open a PR from the JMSBPP fork.
+
+For this repo: canonical `d2p-finance/cfmm-refs`, fork `JMSBPP/cfmm-refs`; local remotes
+`origin` = fork, `upstream` = canonical.
