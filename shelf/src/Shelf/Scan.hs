@@ -13,10 +13,6 @@ module Shelf.Scan
 
 import Control.Applicative ((<|>))
 import Control.Monad (filterM, void)
-import Crypto.Hash (Digest, SHA256, hashlazy)
-import Data.ByteArray.Encoding (Base (Base16), convertToBase)
-import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as BL
 import Data.Char (isDigit)
 import Data.Either (fromRight, lefts)
 import Data.List (isPrefixOf, sortOn, unsnoc)
@@ -27,22 +23,22 @@ import Data.Maybe (fromMaybe, isNothing, listToMaybe)
 import qualified Data.Set as S
 import Data.Text (Text)
 import qualified Data.Text as T
-import qualified Data.Text.Encoding as TE
 import qualified Data.Yaml as Y
 import System.Directory (canonicalizePath, doesDirectoryExist, doesFileExist, getFileSize)
 import System.FilePath (makeRelative, splitDirectories, takeBaseName, takeDirectory, (</>))
 import Shelf.Atomic (writeAtomic)
 import Shelf.Extract (PdfInfo (..), firstPage, pdfInfo)
+import Shelf.Remote.Http (sha256OfFile)
 import Shelf.Scan.Slug (citekeyVersion, firstSurname, readInt, slug, stopWords, stripCitekeyVersion)
 import Shelf.Scan.Types
 import Shelf.Scan.Walk (walkPdfs)
 import Shelf.Types
 
+-- | The digest of a file on disk. One incremental pass over a 1 MiB buffer,
+-- shared with the remote client, so hashing a 300 MB PDF never puts it in
+-- memory the way the lazy @readFile@ this replaced did.
 sha256File :: FilePath -> IO Sha256
-sha256File p = do
-  bytes <- BL.readFile p
-  let digest = hashlazy bytes :: Digest SHA256
-  either (fail . T.unpack) pure (mkSha256 (TE.decodeUtf8 (convertToBase Base16 digest :: BS.ByteString)))
+sha256File = sha256OfFile
 
 -- | First @\\d{4}\\.\\d{4,5}@ not embedded in a longer digit run. Any @vN@
 -- suffix falls outside the digit runs and is therefore never captured.

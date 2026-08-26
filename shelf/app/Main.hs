@@ -1,11 +1,18 @@
--- | Argument parsing and dispatch only; every command body lives in
--- "Shelf.Apply".
+-- | Argument parsing and dispatch only; every command body lives beside its
+-- module — "Shelf.Apply" for the local pipeline, "Shelf.Remote.Cli" and
+-- "Shelf.Remote.Cli.Fetch" for the remote commands.
 module Main (main) where
 
 import Data.Text (Text)
 import qualified Data.Text as T
 import Options.Applicative
 import Shelf.Apply
+import Shelf.Remote.Cli
+  (PushOpts (..), VerifyMode (..), clampExpires, parseDuration, runPush, runUrl)
+import Shelf.Remote.Cli.Fetch (FetchOpts (..), runFetch)
+import Shelf.Remote.Config (RemoteConfig, loadRemoteConfig)
+import Shelf.Types (Citekey, Topic, mkCitekey, mkTopic)
+import System.Exit (exitWith)
 
 data Cmd
   = Scan (Maybe FilePath)
@@ -14,6 +21,9 @@ data Cmd
   | Index
   | Migrate
   | ManifestCheck Bool Bool   -- ^ @--require@, @--require-remote@.
+  | Push (Maybe [Citekey]) VerifyMode Bool Int  -- ^ Selection, @--verify@, @--dry-run@, @--jobs@.
+  | Fetch (Maybe [Citekey]) Bool Bool           -- ^ Selection, @--dry-run@, @--force@.
+  | Url Citekey (Maybe Topic) Bool Int          -- ^ Citekey, @--topic@, @--signed@, @--expires@.
 
 data Opts = Opts { optRepo :: Maybe FilePath, optCmd :: Cmd }
 
@@ -33,6 +43,12 @@ cmdP = hsubparser
        (progDesc "Rebuild the BM25 index, refresh card headers, re-render the topic indexes"))
   <> command "migrate" (info (pure Migrate)
        (progDesc "Rewrite manifest/sources.yaml from schema 1 to schema 2"))
+  <> command "push" (info (Push <$> ckSelP <*> verifyP <*> dryRunP <*> jobsP)
+       (progDesc "Upload every (source, topic) with no verified object, verifying each by download"))
+  <> command "fetch" (info (Fetch <$> ckSelP <*> dryRunP <*> forceP)
+       (progDesc "Rebuild pdfs/ from the remote, falling back to arXiv where provenance allows"))
+  <> command "url" (info (Url <$> argument citekeyR (metavar "CITEKEY") <*> topicP <*> signedP <*> expiresP)
+       (progDesc "Print a source's object URL, public or presigned"))
   <> command "manifest" (info (hsubparser (command "check" (info (ManifestCheck <$> requireP <*> requireRemoteP)
        (progDesc "Validate manifest/sources.yaml against the topics on disk"))))
        (progDesc "Manifest subcommands"))
@@ -48,6 +64,47 @@ cmdP = hsubparser
     requireRemoteP = switch (long "require-remote"
       <> help "Also fail on warnings: every source must be backed by a verified \
               \remote object for every topic it carries")
+    ckSelP = flag' Nothing (long "all" <> help "Every source in the manifest")
+         <|> (Just <$> some (argument citekeyR (metavar "CITEKEY")))
+         <|> pure Nothing
+    verifyP = option verifyR (long "verify" <> metavar "get|head" <> value VerifyGet
+      <> help "How an upload is proved: download and compare digests (get, the \
+              \default), or compare the ETag and length (head)")
+    dryRunP = switch (long "dry-run" <> help "Print what would happen and change nothing")
+    forceP = switch (long "force"
+      <> help "Move a mirror file whose digest does not match the manifest to \
+              \pdfs/.displaced/ and fetch a fresh copy")
+    jobsP = option auto (long "jobs" <> metavar "N" <> value 1
+      <> help "Upload with N worker threads (default 1)")
+    topicP = optional (option topicR (long "topic" <> metavar "T"
+      <> help "Which topic's object to name (default: the alphabetically first verified one)"))
+    signedP = switch (long "signed"
+      <> help "Emit a presigned URL. On a public-read object this is not a \
+              \privacy control — the plain URL already serves the bytes — it is \
+              \a link that stops working")
+    expiresP = option expiresR (long "expires" <> metavar "DURATION" <> value 3600
+      <> help "Lifetime of a --signed URL as Ns, Nm, Nh or Nd; clamped to 7d")
+
+citekeyR :: ReadM Citekey
+citekeyR = eitherReader (either (Left . T.unpack) Right . mkCitekey . T.pack)
+
+topicR :: ReadM Topic
+topicR = eitherReader (either (Left . T.unpack) Right . mkTopic . T.pack)
+
+verifyR :: ReadM VerifyMode
+verifyR = eitherReader $ \case
+  "get" -> Right VerifyGet
+  "head" -> Right VerifyHead
+  other -> Left ("--verify must be get or head, got: " <> other)
+
+expiresR :: ReadM Int
+expiresR = eitherReader (either (Left . T.unpack) Right . parseDuration . T.pack)
+
+-- | The remote commands are the only ones that need credentials, so the
+-- environment is read here rather than in 'main': @shelf apply@ must keep
+-- working on a machine that has never seen a Hippius key.
+withRemote :: (RemoteConfig -> IO a) -> IO a
+withRemote k = loadRemoteConfig >>= either die k
 
 main :: IO ()
 main = do
@@ -61,3 +118,6 @@ main = do
     Index -> runIndex rp
     Migrate -> runMigrate rp
     ManifestCheck require requireRemote -> runManifestCheck require requireRemote rp
+    Push sel mode dry jobs -> withRemote (\cfg -> runPush rp cfg (PushOpts sel mode dry jobs)) >>= exitWith
+    Fetch sel dry force -> withRemote (\cfg -> runFetch rp cfg (FetchOpts sel dry force)) >>= exitWith
+    Url c topic signed expires -> withRemote (\cfg -> runUrl rp cfg c topic signed (clampExpires expires))

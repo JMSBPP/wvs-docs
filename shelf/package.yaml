@@ -35,6 +35,7 @@ tests:
       - shelf
       - case-insensitive
       - hedgehog
+      - http-client
       - http-types
       - tasty
       - tasty-hedgehog

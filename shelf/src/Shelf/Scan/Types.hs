@@ -62,5 +62,9 @@ defaultConfig home = ScanConfig home roots excludes
     roots = [ "cfmm-refs", "cfmm/cfmm-theory", "cfmms-playground", "apps/d2p", "learning/convex-analysis"
             , "learning/formal-methods", "learning/mechanism-design", "learning/structural-econometrics"
             , "learning/discrete", ".local/share/wvs-shelf/legacy-refs" ]
+    -- The last three are the shelf's own working directories under @pdfs/@:
+    -- a displaced mirror file, an arXiv download kept for inspection and a
+    -- push's verify copy are all PDFs, and none of them is a new source.
     excludes = [ ".git", ".cache", ".TinyTeX", "site-packages", ".venv", "node_modules", "_work", ".stack"
-               , ".stack-work", ".cabal", ".ghcup", ".cargo", "go-build", "builds", ".claude" ]
+               , ".stack-work", ".cabal", ".ghcup", ".cargo", "go-build", "builds", ".claude"
+               , ".displaced", ".arxiv", ".verify" ]
