@@ -1,0 +1,116 @@
+{
+  "image": "cfmm/sympy-mcp-stdio:latest",
+  "image_digest": "sha256:615982a1f4ef32159d90deb22d9f3aba2e191922dc76b7b2f5930a88e1a2033e",
+  "run_timestamp_utc": "2026-06-13T16:30:06Z",
+  "server_info": {
+    "name": "sympy-mcp",
+    "version": "1.27.2"
+  },
+  "responses": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "protocolVersion": "2024-11-05",
+        "capabilities": {
+          "experimental": {},
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "serverInfo": {
+          "name": "sympy-mcp",
+          "version": "1.27.2"
+        },
+        "instructions": "Provides access to the Sympy computer algebra system, which can perform symbolic manipulation of mathematical expressions."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "State reset successfully. All variables, functions, expressions, and other objects have been cleared."
+          }
+        ],
+        "structuredContent": {
+          "result": "State reset successfully. All variables, functions, expressions, and other objects have been cleared."
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{'w1': 'w1', 'w2': 'w2', 'w3': 'w3'}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{'w1': 'w1', 'w2': 'w2', 'w3': 'w3'}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "expr_0"
+          }
+        ],
+        "structuredContent": {
+          "result": "expr_0"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "expr_1"
+          }
+        ],
+        "structuredContent": {
+          "result": "expr_1"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "1"
+          }
+        ],
+        "structuredContent": {
+          "result": "1"
+        },
+        "isError": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "image": "cfmm/sympy-mcp-stdio:latest",
+  "image_digest": "sha256:615982a1f4ef32159d90deb22d9f3aba2e191922dc76b7b2f5930a88e1a2033e",
+  "run_timestamp_utc": "2026-06-13T16:33:16Z",
+  "server_info": {
+    "name": "sympy-mcp",
+    "version": "1.27.2"
+  },
+  "responses": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "protocolVersion": "2024-11-05",
+        "capabilities": {
+          "experimental": {},
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "serverInfo": {
+          "name": "sympy-mcp",
+          "version": "1.27.2"
+        },
+        "instructions": "Provides access to the Sympy computer algebra system, which can perform symbolic manipulation of mathematical expressions."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "State reset successfully. All variables, functions, expressions, and other objects have been cleared."
+          }
+        ],
+        "structuredContent": {
+          "result": "State reset successfully. All variables, functions, expressions, and other objects have been cleared."
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{'phibar': 'phibar', 'Sw': 'Sw', 'Gw': 'Gw', 'IL': 'IL', 'PItar': 'PItar'}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{'phibar': 'phibar', 'Sw': 'Sw', 'Gw': 'Gw', 'IL': 'IL', 'PItar': 'PItar'}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "expr_0"
+          }
+        ],
+        "structuredContent": {
+          "result": "expr_0"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "expr_1"
+          }
+        ],
+        "structuredContent": {
+          "result": "expr_1"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "2 Sw \\left(Gw - IL - PItar + Sw \\bar{\\phi}\\right) (where PItar is commutative, complex, extended_real, finite, hermitian, real; Gw is commutative, complex, extended_real, finite, hermitian, real; IL is commutative, complex, extended_real, finite, hermitian, real; Sw is commutative, complex, extended_real, finite, hermitian, real; phibar is commutative, complex, extended_real, finite, hermitian, real)"
+          }
+        ],
+        "structuredContent": {
+          "result": "2 Sw \\left(Gw - IL - PItar + Sw \\bar{\\phi}\\right) (where PItar is commutative, complex, extended_real, finite, hermitian, real; Gw is commutative, complex, extended_real, finite, hermitian, real; IL is commutative, complex, extended_real, finite, hermitian, real; Sw is commutative, complex, extended_real, finite, hermitian, real; phibar is commutative, complex, extended_real, finite, hermitian, real)"
+        },
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\\left\\{\\frac{- Gw + IL + PItar}{Sw}\\right\\}"
+          }
+        ],
+        "structuredContent": {
+          "result": "\\left\\{\\frac{- Gw + IL + PItar}{Sw}\\right\\}"
+        },
+        "isError": false
+      }
+    }
+  ]
+}

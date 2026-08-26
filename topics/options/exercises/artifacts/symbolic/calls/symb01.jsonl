@@ -1,0 +1,6 @@
+{"params":{"name":"reset_state","arguments":{}}}
+{"params":{"name":"intro_many","arguments":{"variables":[{"var_name":"phibar","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"Sw","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"Gw","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"IL","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"PItar","pos_assumptions":["real"],"neg_assumptions":[]}]}}}
+{"params":{"name":"introduce_expression","arguments":{"expr_str":"(phibar*Sw + Gw - IL - PItar)**2"}}}
+{"params":{"name":"differentiate_expression","arguments":{"expr_key":"expr_0","var_name":"phibar"}}}
+{"params":{"name":"print_latex_expression","arguments":{"expr_key":"expr_1"}}}
+{"params":{"name":"solve_algebraically","arguments":{"expr_key":"expr_1","solve_for_var_name":"phibar"}}}

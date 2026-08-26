@@ -1,0 +1,170 @@
+{
+  "schema": "num-04-snapshot/v1",
+  "status": "ok",
+  "data_source": "dune:7717175+7717181",
+  "chain": "polygon",
+  "venue": "QuickSwap-V3-Polygon (Algebra V1)",
+  "swap_table": "quickswap_v3_polygon.algebrapool_evt_swap",
+  "fee_table": "quickswap_v3_polygon.algebrapool_evt_fee",
+  "sampling_rule": "systematic daily sample of the per-day two-stream join, row_number() over (order by day), mod(rn,k)=1",
+  "pools": {
+    "liquid": {
+      "address": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d",
+      "role": "primary venue / liquid (QuickSwap-V3-Polygon, Algebra V1)",
+      "dune_query_id": 7717175,
+      "dune_execution_id": "01KV16PMW97N7SC0RC0YHC9C0Z",
+      "sample_rule": "mod(row_number() over (order by day), 4) = 1",
+      "decimals0": 18,
+      "decimals1": 6,
+      "n_obs": 344,
+      "n_feasibility": {
+        "N": 344,
+        "k_regimes": 3,
+        "sigma_tertile_cuts": [
+          18101.007395833334,
+          48864.86734953704
+        ],
+        "per_tertile_counts": [
+          115,
+          115,
+          114
+        ],
+        "min_per_regime_required": 40,
+        "N_required": 200,
+        "passed": true
+      },
+      "n_ffill_phi": 0,
+      "n_dropped_no_sigma": 0,
+      "n_raw": 344
+    },
+    "adverse": {
+      "address": "0x5cd94ead61fea43886feec3c95b1e9d7284fdef3",
+      "role": "adverse / illiquid stressor (survivorship-bias control)",
+      "dune_query_id": 7717181,
+      "dune_execution_id": "01KV16SWG6NKMEJ6JRTGGB0J8H",
+      "sample_rule": "mod(row_number() over (order by day), 2) = 1",
+      "decimals0": 18,
+      "decimals1": 18,
+      "n_obs": 316,
+      "n_feasibility": {
+        "N": 316,
+        "k_regimes": 3,
+        "sigma_tertile_cuts": [
+          8335.425520833332,
+          47889.65657407408
+        ],
+        "per_tertile_counts": [
+          106,
+          105,
+          105
+        ],
+        "min_per_regime_required": 40,
+        "N_required": 200,
+        "passed": true
+      },
+      "n_ffill_phi": 0,
+      "n_dropped_no_sigma": 0,
+      "n_raw": 316
+    }
+  },
+  "two_stream_join": "phi_obs = forward-filled most-recent prior fee by (block, evt_index); daily representative = last swap of day (max (block, evt_index)); phi forward-filled across sampled feeless days",
+  "sigma_source": {
+    "method": "Algebra V1 pool getTimepoints([0,86400]) archive eth_call; sigma_X = (volatilityCumulative[0secAgo] - volatilityCumulative[86400secAgo]) / 86400",
+    "window_seconds": 86400,
+    "rpc": "polygon archive (alchemy), constructed from ALCHEMY_API_KEY at call time",
+    "n_eth_calls": 660,
+    "all_blocks_resolved": true,
+    "naive_variance_substitute": false
+  },
+  "sigma_crosscheck": {
+    "pool": "liquid",
+    "block_number": 58448389,
+    "day": "2024-06-21",
+    "window": [
+      1718927925,
+      1719014325
+    ],
+    "n_intra_window_ticks": 4319,
+    "dune_query_id": 7717206,
+    "dune_execution_id": "01KV17A946TDF3K3J0QXKEYPGC",
+    "sigma_rpc_oracle": 6107.690092592593,
+    "sigma_rpc": 6107.690092592593,
+    "sigma_recon_time_weighted": 3666.61,
+    "sigma_recon": 3666.61,
+    "rel_err": 0.4,
+    "agrees_within_25pct": false,
+    "note": "Order-of-magnitude agreement (same ~1e3.7 scale, recon moves with tick dispersion) confirms the oracle sigma is genuine and tick-driven. The 25% miss is attributable to Algebra's _volatilityOnRange averaging convention (tickCumulative-derived average + boundary timepoints) which swap-event sampling cannot reproduce exactly. The TRUE oracle sigma_X (getTimepoints archive eth_call) is what the fit consumes; the reconstruction is a directional sanity check only, never substituted for the oracle."
+  },
+  "sigma_xcheck": {
+    "pool": "liquid",
+    "block_number": 58448389,
+    "day": "2024-06-21",
+    "window": [
+      1718927925,
+      1719014325
+    ],
+    "n_intra_window_ticks": 4319,
+    "dune_query_id": 7717206,
+    "dune_execution_id": "01KV17A946TDF3K3J0QXKEYPGC",
+    "sigma_rpc_oracle": 6107.690092592593,
+    "sigma_rpc": 6107.690092592593,
+    "sigma_recon_time_weighted": 3666.61,
+    "sigma_recon": 3666.61,
+    "rel_err": 0.4,
+    "agrees_within_25pct": false,
+    "note": "Order-of-magnitude agreement (same ~1e3.7 scale, recon moves with tick dispersion) confirms the oracle sigma is genuine and tick-driven. The 25% miss is attributable to Algebra's _volatilityOnRange averaging convention (tickCumulative-derived average + boundary timepoints) which swap-event sampling cannot reproduce exactly. The TRUE oracle sigma_X (getTimepoints archive eth_call) is what the fit consumes; the reconstruction is a directional sanity check only, never substituted for the oracle."
+  },
+  "series_file": "series.json",
+  "series_sha256": "41f583aad9a1860e6c389521d1f128fd567533009627c8a44e1f06b91a3aadad",
+  "prereg_commit_ts": 1781375959,
+  "snapshot_ts": 1781378380,
+  "decimals0": 18,
+  "decimals1": 6,
+  "n_feasibility": {
+    "passed": true,
+    "per_pool": {
+      "liquid": {
+        "N": 344,
+        "k_regimes": 3,
+        "sigma_tertile_cuts": [
+          18101.007395833334,
+          48864.86734953704
+        ],
+        "per_tertile_counts": [
+          115,
+          115,
+          114
+        ],
+        "min_per_regime_required": 40,
+        "N_required": 200,
+        "passed": true
+      },
+      "adverse": {
+        "N": 316,
+        "k_regimes": 3,
+        "sigma_tertile_cuts": [
+          8335.425520833332,
+          47889.65657407408
+        ],
+        "per_tertile_counts": [
+          106,
+          105,
+          105
+        ],
+        "min_per_regime_required": 40,
+        "N_required": 200,
+        "passed": true
+      }
+    }
+  },
+  "ordering_anchor": {
+    "rule": "snapshot_ts = max(max_block_time, dune_exec_create_ts); prereg_commit_ts < snapshot_ts (snapshot-side anchor; repo has no git remote)",
+    "prereg_commit_sha": "ecd3fdd",
+    "prereg_commit_ts": 1781375959,
+    "max_block_time": 1781222344,
+    "dune_exec_create_ts": 1781378380,
+    "snapshot_ts": 1781378380,
+    "prereg_before_snapshot": true
+  },
+  "n_feasibility_overall_passed": true
+}

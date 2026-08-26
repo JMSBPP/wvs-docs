@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "requirement": "NUM-02",
+    "plan": "02-01",
+    "description": "tick -> sqrtPriceX96 -> price_raw known-answer vectors, minted from clamm-automaton/src/PriceFromTick.sol TickMath.getSqrtPriceAtTick (Q64.96). The Python reconstruction (tools/compute/tests/test_tick_price.py) must reproduce these byte-for-byte on the integer sqrtPriceX96 and within float tolerance on price_raw.",
+    "source": "forge test --match-test testTickMathMintVectors -vv (clamm-automaton/test/TickMathKAT.t.sol)",
+    "q64_96_semantics": "price_raw (token1/token0) = sqrtPriceX96^2 / 2^192 = (sqrtPriceX96 / 2^96)^2",
+    "minted_utc": "2026-06-13T18:00:00Z"
+  },
+  "vectors": [
+    {
+      "tick": -887272,
+      "note": "MIN_TICK -> MIN_SQRT_PRICE",
+      "sqrtPriceX96": "4295128739",
+      "price_raw": 2.9389568087743114e-39
+    },
+    {
+      "tick": 0,
+      "note": "tick=0 -> 2^96 exactly -> price_raw == 1.0",
+      "sqrtPriceX96": "79228162514264337593543950336",
+      "price_raw": 1.0
+    },
+    {
+      "tick": 1,
+      "note": "tick=1 -> price_raw ~= 1.0001 (rel-err < 1e-12)",
+      "sqrtPriceX96": "79232123823359799118286999568",
+      "price_raw": 1.0001
+    }
+  ],
+  "round_trip_ticks": [-887272, -100, 0, 1, 100, 887271],
+  "round_trip_note": "getTickAtSqrtPrice(getSqrtPriceAtTick(t)) == t. MAX_TICK (887272) is excluded: getSqrtPriceAtTick(MAX_TICK) == MAX_SQRT_PRICE, which getTickAtSqrtPrice rejects by design (price never reaches the max-tick price); 887271 is the upper round-trippable representative.",
+  "literals": {
+    "Q96": "79228162514264337593543950336",
+    "MIN_SQRT_PRICE": "4295128739",
+    "MAX_SQRT_PRICE": "1461446703485210103287273052203988822378723970342"
+  }
+}

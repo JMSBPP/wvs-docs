@@ -1,0 +1,169 @@
+{
+  "data_source": "dune:7717175+7717181",
+  "gate": "residual_over_target = |Upsilon_T - Pi^target - r_f*P_LBC(0)| / |Pi^target| <= tau_B on HELD-OUT real-path segments (NUM-03 sec.2.1); NOT a curve-fit to Pi^target \u2014 Upsilon_T accrues the REALIZED phi_obs, not phi_bar*.",
+  "harness": "sim_replicate.replicate / lookback_target / accrue_upsilon (built + self-tested in Plan 02-03); this driver imports and runs them on the REAL path (no re-derivation).",
+  "headline": {
+    "gate_pass": false,
+    "tau_B": 0.25,
+    "worst_residual_over_target": 108164.08811398761
+  },
+  "layer": "B",
+  "oos_design": "Layer-B held-out real-path segments disjoint from the chronological 70% tuning segment (NUM-03 sec.10); residual_over_target reported per held-out segment, worst-case aggregated per pool, then over pools.",
+  "per_pool": {
+    "adverse": {
+      "address": "0x5cd94ead61fea43886feec3c95b1e9d7284fdef3",
+      "held_out_segment_ids": [
+        0,
+        1,
+        2
+      ],
+      "n_obs": 316,
+      "pool_status": "fail",
+      "role": "adverse",
+      "segments": [
+        {
+          "T_seconds": 15445409.0,
+          "degenerate": false,
+          "n_steps": 32,
+          "p0_raw": 994.9278221490663,
+          "p_lbc_0": 1.0,
+          "phibar_star_benchmark": 0.02723366959909063,
+          "pi_target": 0.7262749454772726,
+          "r_f_period": 0.019590828259766616,
+          "residual_over_target": 0.964281506495098,
+          "risk_free_residual": 0.019590828259766616,
+          "row_range": [
+            221,
+            253
+          ],
+          "segment_id": 0,
+          "sw": 26.66827336047008,
+          "upsilon_T": 0.045532275182569595
+        },
+        {
+          "T_seconds": 14892096.0,
+          "degenerate": false,
+          "n_steps": 31,
+          "p0_raw": 928.3249696502631,
+          "p_lbc_0": 1.0,
+          "phibar_star_benchmark": 0.0015348498510188234,
+          "pi_target": 0.9065081962556802,
+          "r_f_period": 0.018889010654490106,
+          "residual_over_target": 0.9344135341058744,
+          "risk_free_residual": 0.018889010654490106,
+          "row_range": [
+            253,
+            284
+          ],
+          "segment_id": 1,
+          "sw": 590.6168578339738,
+          "upsilon_T": 1.772450734269382
+        },
+        {
+          "T_seconds": 21636386.0,
+          "degenerate": false,
+          "n_steps": 32,
+          "p0_raw": 1037.8540932699352,
+          "p_lbc_0": 1.0,
+          "phibar_star_benchmark": 0.0003398134059164546,
+          "pi_target": 0.8374070230268581,
+          "r_f_period": 0.02744341197361745,
+          "residual_over_target": 1.1602725892948105,
+          "risk_free_residual": 0.02744341197361745,
+          "row_range": [
+            284,
+            316
+          ],
+          "segment_id": 2,
+          "sw": 2464.314263201082,
+          "upsilon_T": 1.8364708499015072
+        }
+      ],
+      "tuning_split_index": 221,
+      "worst_residual_over_target": 1.1602725892948105
+    },
+    "liquid": {
+      "address": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d",
+      "held_out_segment_ids": [
+        0,
+        1,
+        2
+      ],
+      "n_obs": 344,
+      "pool_status": "fail",
+      "role": "liquid",
+      "segments": [
+        {
+          "T_seconds": 11750398.0,
+          "degenerate": false,
+          "n_steps": 35,
+          "p0_raw": 2.493424341461437e-13,
+          "p_lbc_0": 1.0,
+          "phibar_star_benchmark": 7.776186000592618e-09,
+          "pi_target": 0.9895570528417046,
+          "r_f_period": 0.014904107052257738,
+          "residual_over_target": 108164.08811398761,
+          "risk_free_residual": 0.014904107052257738,
+          "row_range": [
+            240,
+            275
+          ],
+          "segment_id": 0,
+          "sw": 127254807.53241898,
+          "upsilon_T": 107035.54071854793
+        },
+        {
+          "T_seconds": 11404601.0,
+          "degenerate": false,
+          "n_steps": 34,
+          "p0_raw": 2.7322216569452034e-13,
+          "p_lbc_0": 1.0,
+          "phibar_star_benchmark": 1.0221658593054721e-08,
+          "pi_target": 0.49978250407040903,
+          "r_f_period": 0.014465501014713346,
+          "residual_over_target": 85305.11132359008,
+          "risk_free_residual": 0.014465501014713346,
+          "row_range": [
+            275,
+            309
+          ],
+          "segment_id": 1,
+          "sw": 48894462.62762041,
+          "upsilon_T": 42634.51639531394
+        },
+        {
+          "T_seconds": 11750399.0,
+          "degenerate": false,
+          "n_steps": 35,
+          "p0_raw": 1.1907566388707047e-13,
+          "p_lbc_0": 1.0,
+          "phibar_star_benchmark": 2.8294450350149735e-08,
+          "pi_target": 0.6448775598531555,
+          "r_f_period": 0.014904108320649416,
+          "residual_over_target": 29329.550245533635,
+          "risk_free_residual": 0.014904108320649416,
+          "row_range": [
+            309,
+            344
+          ],
+          "segment_id": 2,
+          "sw": 22791662.388654348,
+          "upsilon_T": 18914.628575598425
+        }
+      ],
+      "tuning_split_index": 240,
+      "worst_residual_over_target": 108164.08811398761
+    }
+  },
+  "prereg_commit": "ecd3fdd",
+  "r_f": 0.04,
+  "residual_over_target": 108164.08811398761,
+  "schema": "num-04-fitB/v1",
+  "seed": 0,
+  "series_file": "series.json",
+  "series_sha256": "41f583aad9a1860e6c389521d1f128fd567533009627c8a44e1f06b91a3aadad",
+  "sim_path": false,
+  "status": "fail",
+  "tau_B": 0.25,
+  "uv_lock_sha256": "b4f8ac96c98801469246d1b376fd6a3e4df45baeea03786a7224a155e9a088c7"
+}

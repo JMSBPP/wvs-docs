@@ -1,0 +1,24 @@
+{
+  "schema": "base-01-snapshot/v1",
+  "status": "ok",
+  "data_source": "dune:7718736+7718740 (L_K mint/burn) + dune:7717175+7717181 (\u03c3/price reuse) + alchemy-archive-rpc",
+  "venue": "QuickSwap-V3-Polygon (Algebra V1)",
+  "extraction_ts": 1781407000,
+  "n_snapshot_blocks_per_pool": 12,
+  "sigma_regimes": "12 blocks/pool spanning low/mid/high \u03c3-tertiles (reused NUM-04 oracle \u03c3)",
+  "L_K_cross_check": {
+    "method": "full-history Mint/Burn signed-liquidityNet cumsum; active_liquidity at current tick == pool.liquidity() archive eth_call",
+    "passed": 24,
+    "total": 24,
+    "all_exact": true
+  },
+  "referents": {
+    "upsilon": "totalFeeGrowth{0,1}Token day-delta (+ Collect corroboration) \u2014 INDEPENDENT of \u03a3\u03c6_X\u00b7\u0394_X\u00b7\u27e8L_K,\u03bc\u27e9",
+    "il": "token{0,1}.balanceOf(pool) reserves \u2014 INDEPENDENT of the L_K-integral IL formula",
+    "disjointness": "referents read raw chain state only; base/referents.py imports nothing from base/apparatus.py (test_referents_disjoint)"
+  },
+  "series_file": "BASE-series.json",
+  "series_sha256": "c74e23545f1078b572bb2d9d0a43932cabfbc665614e2163e89b8c6036ab1bf0",
+  "lock_note": "Thresholds \u03c4_\u03a5/\u03c4_IL/\u03b8_G are NOT in this file \u2014 derived from THIS data's noise floor (outcome-blind, Plan 03) then sha256-LOCKED before the single confirmatory run (Plan 05). The two-step review (Plan 04) gates that run.",
+  "pending_for_confirmatory_run": "per-interval swap stream (tick/price/amount/liquidity/\u03c6_obs) for the \u03a3\u03c6_X\u00b7\u0394_X\u00b7\u27e8L_K,\u03bc\u27e9 \u03a5 replay is pulled in Plan 05 (drives apparatus.upsilon on these frozen L_K profiles)."
+}

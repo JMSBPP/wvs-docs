@@ -1,0 +1,478 @@
+{
+  "schema": "base-01-noise-floor/v2",
+  "status": "ok",
+  "_what": "OUTCOME-BLIND noise-floor thresholds tau_Upsilon/tau_IL/theta_G for the BASE-01 E-tier + A-tier gate, derived on the TUNING split (chronological first ~70%) of BASE-series.json. REVISED (Plan 04): tau_Upsilon is now a WITHIN-DAY two-referent measurement floor (BLOCKER-1 fix), tau_IL carries a price-snapshot-timing term (M3), the held-out split is re-cut for E1 referent positivity (B2). Held-out tail UNTOUCHED until the Plan-05 confirmatory run.",
+  "revision": "Plan 04 re-open: B1 within-day tau_Upsilon (was cross-DAY revenue dispersion, a type error); B2 split re-cut (liquid E1 runnable, adverse E1 inconclusive); M1 A2b blocked + mu gate A3-only; M2 theta_G = measurement-sanity floor, A1 = beats-constant-G-OOS; M3 tau_IL += price-slip + decimals-asymmetry; M4 zero-fee-excluded sensitivity reported.",
+  "outcome_blind": true,
+  "derivation_signature": "derive_thresholds(tuning_split, decimals0, decimals1) - NO faithfulness-residual arg",
+  "source_series": "base/BASE-series.json",
+  "source_series_sha256": "c74e23545f1078b572bb2d9d0a43932cabfbc665614e2163e89b8c6036ab1bf0",
+  "tuning_fraction": 0.7,
+  "split": {
+    "liquid": {
+      "address": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d",
+      "n_total_blocks": 12,
+      "n_tuning_blocks": 8,
+      "tuning_block_numbers": [
+        38249614,
+        44889611,
+        47749305,
+        47907317,
+        48687444,
+        57507697,
+        64213867,
+        67065956
+      ],
+      "tuning_days": [
+        "2023-01-18",
+        "2023-07-09",
+        "2023-09-19",
+        "2023-09-23",
+        "2023-10-13",
+        "2024-05-28",
+        "2024-11-12",
+        "2025-01-23"
+      ],
+      "heldout_block_numbers": [
+        77690811,
+        79418609,
+        85631713,
+        87884141
+      ],
+      "heldout_positive_upsilon_referent_blocks": [
+        77690811,
+        79418609,
+        85631713,
+        87884141
+      ],
+      "heldout_detail": [
+        {
+          "block": 77690811,
+          "day": "2025-10-14",
+          "sigma_X": 95155.77,
+          "positive_f1": true
+        },
+        {
+          "block": 79418609,
+          "day": "2025-11-23",
+          "sigma_X": 22188.41,
+          "positive_f1": true
+        },
+        {
+          "block": 85631713,
+          "day": "2026-04-16",
+          "sigma_X": 48402.96,
+          "positive_f1": true
+        },
+        {
+          "block": 87884141,
+          "day": "2026-06-03",
+          "sigma_X": 35522.11,
+          "positive_f1": true
+        }
+      ],
+      "n_heldout_positive": 4,
+      "e1_status": "runnable"
+    },
+    "adverse": {
+      "address": "0x5cd94ead61fea43886feec3c95b1e9d7284fdef3",
+      "n_total_blocks": 12,
+      "n_tuning_blocks": 8,
+      "tuning_block_numbers": [
+        33164031,
+        34918716,
+        36139721,
+        43835961,
+        48171169,
+        53120701,
+        58150534,
+        62334042
+      ],
+      "tuning_days": [
+        "2022-09-16",
+        "2022-10-28",
+        "2022-11-27",
+        "2023-06-12",
+        "2023-09-30",
+        "2024-02-04",
+        "2024-06-14",
+        "2024-09-27"
+      ],
+      "heldout_block_numbers": [
+        65309661,
+        78550946,
+        79373468,
+        82205689
+      ],
+      "heldout_positive_upsilon_referent_blocks": [
+        79373468
+      ],
+      "heldout_detail": [
+        {
+          "block": 65309661,
+          "day": "2024-12-10",
+          "sigma_X": 32860.52,
+          "positive_f1": false
+        },
+        {
+          "block": 78550946,
+          "day": "2025-11-03",
+          "sigma_X": 8335.43,
+          "positive_f1": false
+        },
+        {
+          "block": 79373468,
+          "day": "2025-11-22",
+          "sigma_X": 1959.92,
+          "positive_f1": true
+        },
+        {
+          "block": 82205689,
+          "day": "2026-01-27",
+          "sigma_X": 253669.93,
+          "positive_f1": false
+        }
+      ],
+      "n_heldout_positive": 1,
+      "e1_status": "inconclusive: insufficient held-out referent"
+    }
+  },
+  "thresholds": {
+    "tau_upsilon": 1.726918197701557,
+    "tau_il": 0.00010293145290735122,
+    "theta_G": 2.439024392014759e-05
+  },
+  "components": {
+    "within_day_upsilon": {
+      "value": 1.7269181975293184,
+      "status": "ok",
+      "is_within_day": true,
+      "dominant_pool": "liquid",
+      "max_rel_disagreement": 1.7269181975293184,
+      "exclude_zero_fee": false,
+      "per_pool": {
+        "adverse": {
+          "value": 1.4150811501747356,
+          "status": "ok",
+          "n_days": 4,
+          "max_rel_disagreement": 1.4150811501747356,
+          "iqr_rel_disagreement": 0.6304202660282078,
+          "median_rel_disagreement": 0.44461800341015445,
+          "per_day": [
+            {
+              "block": 36139721,
+              "swap": 0.6425133455351494,
+              "acct": 0.2660421350597939,
+              "rel": 1.4150811501747356
+            },
+            {
+              "block": 43835961,
+              "swap": 0.05879796614875987,
+              "acct": 0.1590941297480551,
+              "rel": 0.6304202660282086
+            },
+            {
+              "block": 53120701,
+              "swap": 0.0017108100089781293,
+              "acct": 0.002308211470662456,
+              "rel": 0.2588157407921003
+            },
+            {
+              "block": 58150534,
+              "swap": 0.00010967319445664591,
+              "acct": 0.000109673194456646,
+              "rel": 7.414315169652221e-16
+            }
+          ]
+        },
+        "liquid": {
+          "value": 1.7269181975293184,
+          "status": "ok",
+          "n_days": 8,
+          "max_rel_disagreement": 1.7269181975293184,
+          "iqr_rel_disagreement": 0.7093612966044872,
+          "median_rel_disagreement": 1.2765845159319462,
+          "per_day": [
+            {
+              "block": 38249614,
+              "swap": 2744.0010127108276,
+              "acct": 1174.5769203128916,
+              "rel": 1.3361611872808317
+            },
+            {
+              "block": 44889611,
+              "swap": 2080.8114276624206,
+              "acct": 875.7309690878329,
+              "rel": 1.3760852374900105
+            },
+            {
+              "block": 47749305,
+              "swap": 4215.502988931295,
+              "acct": 1764.700822414505,
+              "rel": 1.388791876440305
+            },
+            {
+              "block": 47907317,
+              "swap": 791.0588243462339,
+              "acct": 290.09261262877646,
+              "rel": 1.7269181975293184
+            },
+            {
+              "block": 48687444,
+              "swap": 2989.0543059824445,
+              "acct": 1348.2380377163609,
+              "rel": 1.2170078445830608
+            },
+            {
+              "block": 57507697,
+              "swap": 3613.3050890894924,
+              "acct": 2561.0879718901847,
+              "rel": 0.41084770564235235
+            },
+            {
+              "block": 64213867,
+              "swap": 21305.465927017027,
+              "acct": 12782.840279895136,
+              "rel": 0.6667239408855233
+            },
+            {
+              "block": 67065956,
+              "swap": 6020.159142908348,
+              "acct": 2824.7120647781253,
+              "rel": 1.1312470102616345
+            }
+          ]
+        }
+      },
+      "note": "WITHIN-DAY two same-day referents (swap-side \u03c6_obs\u00b7dW vs decimals-normalized accounting-side \u0394fg0\u00b7L/2^128), max relative disagreement over tuning days, per pool, max across pools (conservative). Fixes the BLOCKER-1 type error (prior \u03c4_\u03a5 was cross-DAY revenue dispersion). Lands ~1.7 \u2014 the honest floor of daily-aggregate free-tier data; E1 down-scoped to an order-of-magnitude collapse detector, A3 the primary \u03bc discriminator (A2b blocked)."
+    },
+    "within_day_upsilon_zero_fee_excluded": {
+      "value": 1.7269181975293184,
+      "status": "ok",
+      "is_within_day": true,
+      "dominant_pool": "liquid",
+      "max_rel_disagreement": 1.7269181975293184,
+      "exclude_zero_fee": true,
+      "per_pool": {
+        "adverse": {
+          "value": 1.4150811501747356,
+          "status": "ok",
+          "n_days": 4,
+          "max_rel_disagreement": 1.4150811501747356,
+          "iqr_rel_disagreement": 0.6304202660282078,
+          "median_rel_disagreement": 0.44461800341015445,
+          "per_day": [
+            {
+              "block": 36139721,
+              "swap": 0.6425133455351494,
+              "acct": 0.2660421350597939,
+              "rel": 1.4150811501747356
+            },
+            {
+              "block": 43835961,
+              "swap": 0.05879796614875987,
+              "acct": 0.1590941297480551,
+              "rel": 0.6304202660282086
+            },
+            {
+              "block": 53120701,
+              "swap": 0.0017108100089781293,
+              "acct": 0.002308211470662456,
+              "rel": 0.2588157407921003
+            },
+            {
+              "block": 58150534,
+              "swap": 0.00010967319445664591,
+              "acct": 0.000109673194456646,
+              "rel": 7.414315169652221e-16
+            }
+          ]
+        },
+        "liquid": {
+          "value": 1.7269181975293184,
+          "status": "ok",
+          "n_days": 8,
+          "max_rel_disagreement": 1.7269181975293184,
+          "iqr_rel_disagreement": 0.7093612966044872,
+          "median_rel_disagreement": 1.2765845159319462,
+          "per_day": [
+            {
+              "block": 38249614,
+              "swap": 2744.0010127108276,
+              "acct": 1174.5769203128916,
+              "rel": 1.3361611872808317
+            },
+            {
+              "block": 44889611,
+              "swap": 2080.8114276624206,
+              "acct": 875.7309690878329,
+              "rel": 1.3760852374900105
+            },
+            {
+              "block": 47749305,
+              "swap": 4215.502988931295,
+              "acct": 1764.700822414505,
+              "rel": 1.388791876440305
+            },
+            {
+              "block": 47907317,
+              "swap": 791.0588243462339,
+              "acct": 290.09261262877646,
+              "rel": 1.7269181975293184
+            },
+            {
+              "block": 48687444,
+              "swap": 2989.0543059824445,
+              "acct": 1348.2380377163609,
+              "rel": 1.2170078445830608
+            },
+            {
+              "block": 57507697,
+              "swap": 3613.3050890894924,
+              "acct": 2561.0879718901847,
+              "rel": 0.41084770564235235
+            },
+            {
+              "block": 64213867,
+              "swap": 21305.465927017027,
+              "acct": 12782.840279895136,
+              "rel": 0.6667239408855233
+            },
+            {
+              "block": 67065956,
+              "swap": 6020.159142908348,
+              "acct": 2824.7120647781253,
+              "rel": 1.1312470102616345
+            }
+          ]
+        }
+      },
+      "note": "WITHIN-DAY two same-day referents (swap-side \u03c6_obs\u00b7dW vs decimals-normalized accounting-side \u0394fg0\u00b7L/2^128), max relative disagreement over tuning days, per pool, max across pools (conservative). Fixes the BLOCKER-1 type error (prior \u03c4_\u03a5 was cross-DAY revenue dispersion). Lands ~1.7 \u2014 the honest floor of daily-aggregate free-tier data; E1 down-scoped to an order-of-magnitude collapse detector, A3 the primary \u03bc discriminator (A2b blocked)."
+    },
+    "decimals_quant": {
+      "value": 9.294258794859302e-10,
+      "status": "ok",
+      "dominant_pool": "liquid",
+      "per_pool": {
+        "adverse": {
+          "value": 1.3510983831083828e-17,
+          "token1_floor": 1.1195898469669273e-18,
+          "token0_floor": 1.23913939841169e-17
+        },
+        "liquid": {
+          "value": 9.294258794859302e-10,
+          "token1_floor": 9.294258794852877e-10,
+          "token0_floor": 6.424796919769639e-22
+        }
+      },
+      "decimals0": 18,
+      "decimals1": 6,
+      "note": "PER-POOL 1 raw unit / median interval fee, then max across pools (conservative). The 6-dec token1 floor dominates the liquid pool; the 18-dec token0 floor the adverse."
+    },
+    "block_timing": {
+      "value": 2.4390243902439026e-05,
+      "status": "ok",
+      "window_blocks": 41000.0,
+      "note": "analytic \u00b11-block slip over the ~1-day fee-growth window (1/window_blocks)"
+    },
+    "il_price_timing": {
+      "value": 9.999999999998899e-05,
+      "status": "ok",
+      "price_slip": 9.999999999998899e-05,
+      "decimals_asym": 1.2863837805395993e-12,
+      "decimals_asym_pool": "liquid",
+      "decimals1": 6,
+      "per_pool": {
+        "adverse": {
+          "decimals_asym": 2.1256604573525374e-23,
+          "status": "ok"
+        },
+        "liquid": {
+          "decimals_asym": 1.2863837805395993e-12,
+          "status": "ok"
+        }
+      },
+      "note": "M3: \u00b11-tick sqrtPriceX96 slip (1.0001\u22121\u22481e-4, dominates) + decimals-asymmetry valuation (1 raw 6-dec token1 / typical reserve1), max across pools. E2 is an instantaneous reserve revaluation, so it needs a PRICE-timing term the fee-window floor lacked \u2014 prevents the false E2 HALT."
+    }
+  },
+  "compose": {
+    "tau_upsilon": "RSS(within_day_upsilon, decimals_quant, block_timing)  # within-day two-referent disagreement dominates",
+    "tau_il": "RSS(il_price_timing.price_slip, il_price_timing.decimals_asym, block_timing)  # \u00b11-tick price slip dominates (M3)",
+    "theta_G": "RSS(decimals_quant, block_timing)  # MEASUREMENT-SANITY FLOOR (M2), not a fit bar; A1 gate = beats constant-G OOS",
+    "direction": "conservative \u2014 a LARGER \u03c4 is the anti-fishing-safe direction; never shrunk"
+  },
+  "A_Theta": {
+    "source": "SHREVE:838-859 (logistic positivity + monotonicity bounds), theory-derived",
+    "params": [
+      "phi_bar",
+      "alpha1",
+      "alpha2",
+      "beta1",
+      "beta2",
+      "betaR",
+      "gamma1",
+      "gamma2",
+      "gammaR"
+    ],
+    "bounds": {
+      "phi_bar": [
+        0.0,
+        null
+      ],
+      "alpha1": [
+        0.0,
+        null
+      ],
+      "alpha2": [
+        0.0,
+        null
+      ],
+      "beta1": [
+        0.0,
+        null
+      ],
+      "beta2": [
+        0.0,
+        null
+      ],
+      "betaR": [
+        null,
+        null
+      ],
+      "gamma1": [
+        0.0,
+        null
+      ],
+      "gamma2": [
+        0.0,
+        null
+      ],
+      "gammaR": [
+        0.0,
+        null
+      ]
+    },
+    "monotone_in_sigma": "+",
+    "A_t_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "gate_scope_decisions": {
+    "E1": "ORDER-OF-MAGNITUDE / <L_K,mu>-collapse detector (tau_Upsilon ~1.7 is the honest within-day floor of daily-aggregate free-tier data). A3 (the <L_K,mu> ~ Swap.liquidity pairing) is the PRIMARY mu-defect discriminator. E1 runnable on the LIQUID pool (4 held-out blocks with positive Upsilon-referent across distinct sigma-regimes); ADVERSE E1 pre-declared 'inconclusive: insufficient held-out referent' (only 1 of 4 held-out blocks has a positive token1 Upsilon-referent).",
+    "A2b": "BLOCKED (per-tick fee-growth / outerFeeGrowth NOT in the free-tier snapshot - only GLOBAL day-delta totalFeeGrowth). The per-tick-shape mu test is DEFERRED. The mu gate is demoted to A3-ONLY (the <L_K,mu> ~ in-range Swap.liquidity pairing).",
+    "A1": "theta_G=2.44e-5 is a MEASUREMENT-SANITY FLOOR (a fit worse than it = broken pipeline, not a model verdict). The LOAD-BEARING A1 gate is 'beats a constant-G OOS baseline'.",
+    "E2": "tau_IL=1.03e-4 carries the M3 price-snapshot-timing term (+-1-tick sqrtPriceX96 slip ~1e-4, dominant) + decimals-asymmetry valuation; sign/directional agreement also required."
+  },
+  "rule": "NUM-03 4.3: noise_floor > tau => inconclusive/fail; tau NEVER raised.",
+  "honest_notes": [
+    "tau_Upsilon is a WITHIN-DAY two same-day-referent disagreement (swap-side phi_obs*dW vs decimals-normalized accounting-side d(fg0)*L/2^128), max over tuning days, per pool, max across pools = liquid 1.72692.",
+    "It lands LARGE (~1.7): the swap-side dW is a daily-AGGREGATE volume proxy while the accounting-side is the exact fee-growth delta; their ~order-of-magnitude disagreement is the honest measurement reality of free-tier daily data. E1 is therefore an order-of-magnitude collapse detector, NOT a graded faithfulness gate; A3 is the primary mu discriminator.",
+    "M4 sensitivity: excluding zero-fee tuning days changes nothing (no tuning day has day_fee==0 in either pool); within-day max = 1.72692 unchanged.",
+    "tau_IL = RSS(price_slip=0.0001, decimals_asym=1.28638e-12, timing=2.44e-5) = 0.000102931; the +-1-tick price slip dominates (M3). The prior 2.44e-5 was the fee-WINDOW timing only and would false-HALT the instantaneous E2 reserve revaluation.",
+    "theta_G = RSS(decimals_fee, timing) = 2.44e-5 RELABELLED a measurement-sanity floor (M2); the A1 model gate is 'beats a constant-G OOS baseline'.",
+    "B2 split: LIQUID held-out [77690811,79418609,85631713,87884141] all have positive token1 Upsilon-referent (E1 runnable across distinct sigma-regimes); ADVERSE held-out has only 1 positive of 4 (79373468) => adverse E1 pre-declared inconclusive.",
+    "A2b BLOCKED: the snapshot carries only GLOBAL day-delta fee-growth, no per-tick/outerFeeGrowth - the per-tick mu-share test cannot run; mu gate demoted to A3-only.",
+    "A_Theta is THEORY-derived (SHREVE:838-859 logistic positivity/monotonicity), not data-derived."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "_what": "NON-BINDING diagnostic \u2014 does not touch NUM-04-fitB.json or the prereg gate.",
+  "hypothesis": "official Layer-B residual \u2248 \u03a5_T/|\u03a0^target| \u221d Sw is a num\u00e9raire artifact",
+  "fix": "\u03a5_T_norm = \u03a3\u03c6_obs\u00b7dW / W_0(token0 reserves at segment start); commensurable with \u03a0^target",
+  "tau_B_context": 0.25,
+  "worst_official_residual": 108164.08811398761,
+  "worst_numeraire_fixed_residual": 1.0211200969746688,
+  "collapse_factor": 105926.9016783154,
+  "pool_consistency_ratio_after_fix": 1.0027634062610902,
+  "verdict": "CONFIRMED num\u00e9raire artifact: residual collapses ~105927x and becomes pool-consistent (ratio 1.00). Still > \u03c4_B=0.25 due to a SECOND spec issue (P_LBC(0)=spot vs option premium); NOT a clean economic fail. Re-specification needed for a binding verdict.",
+  "segments": [
+    {
+      "pool": "liquid",
+      "segment_id": 0,
+      "upsilon_T": 107035.54071854793,
+      "W0_token0": 1017362.4226154215,
+      "fee_yield_U_over_W0": 0.10520886002785754,
+      "pi_target": 0.9895570528417046,
+      "risk_free_residual": 0.014904107052257738,
+      "official_residual_over_target": 108164.08811398761,
+      "numeraire_fixed_residual": 0.9087422471334298
+    },
+    {
+      "pool": "liquid",
+      "segment_id": 1,
+      "upsilon_T": 42634.51639531394,
+      "W0_token0": 427652.06830262823,
+      "fee_yield_U_over_W0": 0.09969440008680983,
+      "pi_target": 0.49978250407040903,
+      "risk_free_residual": 0.014465501014713346,
+      "official_residual_over_target": 85305.11132359008,
+      "numeraire_fixed_residual": 0.8294680218335744
+    },
+    {
+      "pool": "liquid",
+      "segment_id": 2,
+      "upsilon_T": 18914.628575598425,
+      "W0_token0": 476998.95533278625,
+      "fee_yield_U_over_W0": 0.039653396226837265,
+      "pi_target": 0.6448775598531555,
+      "risk_free_residual": 0.014904108320649416,
+      "official_residual_over_target": 29329.550245533635,
+      "numeraire_fixed_residual": 0.9616217256624288
+    },
+    {
+      "pool": "adverse",
+      "segment_id": 0,
+      "upsilon_T": 0.045532275182569595,
+      "W0_token0": 10.70886293126064,
+      "fee_yield_U_over_W0": 0.0042518309810143,
+      "pi_target": 0.7262749454772726,
+      "risk_free_residual": 0.019590828259766616,
+      "official_residual_over_target": 0.964281506495098,
+      "numeraire_fixed_residual": 1.0211200969746688
+    },
+    {
+      "pool": "adverse",
+      "segment_id": 1,
+      "upsilon_T": 1.772450734269382,
+      "W0_token0": 12.342294479438676,
+      "fee_yield_U_over_W0": 0.14360787916883283,
+      "pi_target": 0.9065081962556802,
+      "risk_free_residual": 0.018889010654490106,
+      "official_residual_over_target": 0.9344135341058744,
+      "numeraire_fixed_residual": 0.8624183774294679
+    },
+    {
+      "pool": "adverse",
+      "segment_id": 2,
+      "upsilon_T": 1.8364708499015072,
+      "W0_token0": 10.492150310994926,
+      "fee_yield_U_over_W0": 0.17503283840463418,
+      "pi_target": 0.8374070230268581,
+      "risk_free_residual": 0.02744341197361745,
+      "official_residual_over_target": 1.1602725892948105,
+      "numeraire_fixed_residual": 0.8237542528631467
+    }
+  ]
+}

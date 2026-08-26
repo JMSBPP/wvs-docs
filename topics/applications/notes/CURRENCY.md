@@ -1,0 +1,3 @@
+Currency{
+	interestRate : InterestRate	
+}

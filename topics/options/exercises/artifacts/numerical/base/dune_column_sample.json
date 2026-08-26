@@ -1,0 +1,37 @@
+{
+  "_what": "BASE-01 Plan 02.1-01 Task 1 — exact decoded column casing of quickswap_v3_polygon.algebrapool_evt_{mint,burn,collect}, pinned from a LIVE Dune LIMIT-2 sample (orchestrator-side via the Dune MCP) BEFORE the L_K query text is sha256-locked (RESEARCH Open Question 1 / Pitfall 5).",
+  "status": "ok",
+  "casing_verified": true,
+  "chain": "polygon",
+  "pool_sampled": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d",
+  "sampled_at_block": 88454652,
+  "note_casing": "Decoded columns are camelCase (bottomTick, topTick, liquidityAmount) — NOT the lowercase the RESEARCH assumed. DuneSQL identifiers are case-insensitive unquoted, but record the true casing. collect has NO liquidityAmount: its amount0/amount1 are the WITHDRAWN FEES (the independent Υ referent).",
+  "mint": {
+    "dune_query_id": 7717846,
+    "dune_execution_id": "01KV1K6Z521Y4JYNK1TQREB6FE",
+    "columns": ["contract_address", "evt_tx_hash", "evt_index", "evt_block_time", "evt_block_number", "evt_block_date", "amount0", "amount1", "bottomTick", "liquidityAmount", "owner", "sender", "topTick"],
+    "liquidity_delta_column": "liquidityAmount",
+    "tick_columns": ["bottomTick", "topTick"],
+    "sample_row_types": {"bottomTick": "integer", "topTick": "integer", "liquidityAmount": "uint256", "amount0": "uint256", "amount1": "uint256", "evt_block_number": "bigint", "evt_index": "integer"}
+  },
+  "burn": {
+    "dune_query_id": 7717851,
+    "dune_execution_id": "01KV1K9CG8RHFW3C4T3BF2T68E",
+    "columns": ["contract_address", "evt_tx_hash", "evt_index", "evt_block_time", "evt_block_number", "evt_block_date", "amount0", "amount1", "bottomTick", "liquidityAmount", "owner", "topTick"],
+    "liquidity_delta_column": "liquidityAmount",
+    "tick_columns": ["bottomTick", "topTick"],
+    "sign_convention": "burn REMOVES liquidity: liquidityNet contribution is -liquidityAmount at bottomTick, +liquidityAmount at topTick (mirror of mint)"
+  },
+  "collect": {
+    "dune_query_id": 7717855,
+    "dune_execution_id": "01KV1KBC2DSZ1KJZJ6WQY1AN8Q",
+    "columns": ["contract_address", "evt_tx_hash", "evt_index", "evt_block_time", "evt_block_number", "evt_block_date", "amount0", "amount1", "bottomTick", "owner", "recipient", "topTick"],
+    "has_liquidityAmount": false,
+    "fee_amount_columns": ["amount0", "amount1"],
+    "note": "Collect = LP fee/principal withdrawal. amount0/amount1 are the realized withdrawn amounts — usable as part of the INDEPENDENT Υ referent (disjoint from the swap-side Σ φ_X·Δ_X·⟨L_K,μ⟩)."
+  },
+  "L_K_reconstruction_casing": {
+    "net_liquidity_per_tick": "SUM over mint(+liquidityAmount@bottomTick, -liquidityAmount@topTick) UNION burn(-liquidityAmount@bottomTick, +liquidityAmount@topTick) ... then cumsum(liquidityNet) OVER (ORDER BY tick) = active liquidity L_K(i)",
+    "cross_check": "cumsum at the pool's current tick MUST equal pool.liquidity() at the snapshot block (archive eth_call)"
+  }
+}

@@ -1,0 +1,5 @@
+reset_state {} -> State reset successfully. All variables, functions, expressions, and other objects have been cleared.
+intro_many {w1,w2,w3} -> {'w1': 'w1', 'w2': 'w2', 'w3': 'w3'}
+introduce_expression "w1/(w1+w2+w3) + w2/(w1+w2+w3) + w3/(w1+w2+w3)" -> expr_0
+simplify_expression expr_0 -> expr_1
+print_latex_expression expr_1 -> 1

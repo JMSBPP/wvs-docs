@@ -1,0 +1,302 @@
+{
+  "schema": "base-01-verify/v1",
+  "status": "fail",
+  "halt": true,
+  "halt_gates": [
+    "A3",
+    "E1"
+  ],
+  "halt_disposition": "diagnostics/BASE-01-E1-A3-HALT-disposition.md",
+  "data_source": "dune:7718736+7718740 (L_K) + dune:7717175+7717181 (\u03c3) + alchemy-archive-rpc (totalFeeGrowth/balanceOf) + frozen held-out swap streams",
+  "criteria": {
+    "C3": {
+      "passed": true,
+      "metric": {
+        "passed": 24,
+        "total": 24,
+        "all_exact": true
+      },
+      "note": "L_K cumsum == pool.liquidity() 24/24 EXACT \u2014 ALREADY-PASSED from the frozen Plan-02 snapshot (not re-derived here); the known-answer C-tier gate."
+    },
+    "C4": {
+      "passed": true,
+      "metric": {
+        "intervals_checked": 7392
+      },
+      "note": "A_t \u2260 \u2205 whenever the price crossed \u22651 grid tick (DEP-02 zero-locus is Sw=0)."
+    },
+    "C2": {
+      "passed": true,
+      "metric": {
+        "n_swaps": 9348
+      },
+      "note": "\u0394_X = per-swap trade-flow increment; |amount0| finite/derivable on 100% sampled."
+    },
+    "A3": {
+      "passed": false,
+      "metric": {
+        "n_samples": 8,
+        "n_within_oom": 7,
+        "pairing_not_collapsed_to_1": true,
+        "samples": [
+          {
+            "block": 65309661,
+            "tick": 69389,
+            "pairing": 1.3333821798078957e+21,
+            "reported_liquidity": 1.4123262481872747e+21,
+            "rel": 0.055896481765954534,
+            "within_oom": true
+          },
+          {
+            "block": 78542132,
+            "tick": 68338,
+            "pairing": 1.3333821798078957e+21,
+            "reported_liquidity": 1.3335352386858404e+21,
+            "rel": 0.0001147767779241156,
+            "within_oom": true
+          },
+          {
+            "block": 79340046,
+            "tick": 67402,
+            "pairing": 8.58274911198065e+23,
+            "reported_liquidity": 1.3335352386858404e+21,
+            "rel": 642.6087223640747,
+            "within_oom": false
+          },
+          {
+            "block": 79368492,
+            "tick": 67447,
+            "pairing": 8.64881375131664e+23,
+            "reported_liquidity": 8.64881375131664e+23,
+            "rel": 0.0,
+            "within_oom": true
+          },
+          {
+            "block": 79368707,
+            "tick": 67451,
+            "pairing": 8.64881375131664e+23,
+            "reported_liquidity": 8.64881375131664e+23,
+            "rel": 0.0,
+            "within_oom": true
+          },
+          {
+            "block": 79369634,
+            "tick": 67443,
+            "pairing": 8.64881375131664e+23,
+            "reported_liquidity": 8.64881375131664e+23,
+            "rel": 0.0,
+            "within_oom": true
+          },
+          {
+            "block": 79373468,
+            "tick": 67456,
+            "pairing": 8.64881375131664e+23,
+            "reported_liquidity": 8.64881375131664e+23,
+            "rel": 0.0,
+            "within_oom": true
+          },
+          {
+            "block": 82205689,
+            "tick": 67604,
+            "pairing": 1.3335352386858404e+21,
+            "reported_liquidity": 1.3335352386858404e+21,
+            "rel": 0.0,
+            "within_oom": true
+          }
+        ]
+      },
+      "note": "A3-only \u03bc gate: \u27e8L_K,\u03bc\u27e9 matches reported Swap.liquidity to order-of-magnitude and is NOT collapsed to 1 (the NUM-04 defect). Aggregate pairing only \u2014 per-tick \u03bc-SHAPE is UNTESTED/DEFERRED (A2b blocked). Not '\u03bc faithful'."
+    },
+    "A2b": {
+      "passed": null,
+      "status": "blocked",
+      "note": "A2b BLOCKED (M1): snapshot carries only GLOBAL day-delta totalFeeGrowth, no per-tick/outerFeeGrowth. Per-tick \u03bc-shape test DEFERRED; \u03bc gate is A3-only."
+    },
+    "A1": {
+      "passed": null,
+      "status": "inconclusive",
+      "note": "A1 inconclusive (honest): the frozen snapshot carries NO per-block \u03c6_obs to form a G referent, so the beats-constant-G OOS gate cannot be sized. The calibration machinery is instantiated (g_calib) but has no \u03c6\u0304-response data; \u03b8_G is a sanity floor only (M2). NOT a model pass and NOT a fail.",
+      "theta_G": 2.439024392014759e-05
+    },
+    "E1": {
+      "passed": false,
+      "metric": {
+        "tau_upsilon": 1.726918197701557,
+        "worst_rel": 4.321454408047367,
+        "n_intervals": 4,
+        "n_within_tau": 3,
+        "samples": [
+          {
+            "endpoint_block": 77690811,
+            "formula_fee_token0": 2876.593351832315,
+            "referent_fee_token0": 1839.2148605804114,
+            "rel": 0.5640333348136021,
+            "within_tau": true,
+            "n_swaps": 5347
+          },
+          {
+            "endpoint_block": 79418609,
+            "formula_fee_token0": 345.7868244419271,
+            "referent_fee_token0": 293.5617492752607,
+            "rel": 0.177901498732715,
+            "within_tau": true,
+            "n_swaps": 1670
+          },
+          {
+            "endpoint_block": 85631713,
+            "formula_fee_token0": 397.6663948971149,
+            "referent_fee_token0": 74.72889259292424,
+            "rel": 4.321454408047367,
+            "within_tau": false,
+            "n_swaps": 1058
+          },
+          {
+            "endpoint_block": 87884141,
+            "formula_fee_token0": 208.47684868761422,
+            "referent_fee_token0": 169.5445043149495,
+            "rel": 0.22962905539151632,
+            "within_tau": true,
+            "n_swaps": 1273
+          }
+        ]
+      },
+      "note": "E1-liquid ORDER-OF-MAGNITUDE / \u27e8L_K,\u03bc\u27e9-collapse detector at \u03c4_\u03a5=1.727 (NOT graded). A collapse to \u27e8L_K,\u03bc\u27e9=1 would miss by ~L_reported (gross OOM). Both sides on the token0 num\u00e9raire via the pinned \u0394fg\u00b7L/2^128/10^d0 conversion BEFORE the ratio."
+    },
+    "E1_adverse": {
+      "passed": null,
+      "status": "inconclusive",
+      "note": "adverse E1 pre-declared 'inconclusive: insufficient held-out referent' (only 1 of 4 held-out blocks has a positive token1 \u03a5-referent). Per prereg \u00a74.E B2."
+    },
+    "E2": {
+      "passed": true,
+      "metric": {
+        "tau_il": 0.00010293145290735122,
+        "n_blocks": 4,
+        "samples": [
+          {
+            "block": 65309661,
+            "reserve0": 9.936304643754985e+18,
+            "reserve1": 2.2663660333576586e+23,
+            "directional_only": false,
+            "il_sign_nonpositive": true
+          },
+          {
+            "block": 78550946,
+            "reserve0": 1.3073847338352097e+19,
+            "reserve1": 2.253684333784174e+23,
+            "directional_only": false,
+            "il_sign_nonpositive": true
+          },
+          {
+            "block": 79373468,
+            "reserve0": 1.6853641772999927e+20,
+            "reserve1": 9.28923899611335e+22,
+            "directional_only": false,
+            "il_sign_nonpositive": true
+          },
+          {
+            "block": 82205689,
+            "reserve0": 1.5251126946329668e+19,
+            "reserve1": 2.2487704661745605e+23,
+            "directional_only": true,
+            "il_sign_nonpositive": true
+          }
+        ]
+      },
+      "note": "E2 IL sign/directional agreement (IL non-positive vs hold). At the top-\u03c3 adverse block 82205689 (\u03c3\u2248253670) E2 is SIGN/directional-only \u2014 the \u00b11-tick price-snapshot slip makes the graded \u03c4_IL band uninformative there (Plan-05 minor 3)."
+    },
+    "I1": {
+      "passed": true,
+      "metric": {
+        "residual": 1.7763568394002505e-15
+      }
+    },
+    "I2": {
+      "passed": true,
+      "metric": {
+        "residual": 0.0
+      },
+      "note": "ALGEBRA-ONLY, FREE symbolic \u03a0^target (deferred lookback NOT re-introduced)."
+    },
+    "DEP01": {
+      "passed": true,
+      "metric": {
+        "residual": 1.7763568394002505e-15
+      }
+    },
+    "A2norm": {
+      "passed": true,
+      "metric": {
+        "residual": 0.0
+      },
+      "note": "code-correctness \u03a3\u03bc=1, NOT the \u03bc faithfulness test (that is A2b)."
+    }
+  },
+  "thresholds_locked": {
+    "tau_upsilon": 1.726918197701557,
+    "tau_il": 0.00010293145290735122,
+    "theta_G": 2.439024392014759e-05
+  },
+  "A_Theta": {
+    "source": "SHREVE:838-859 (logistic positivity + monotonicity bounds), theory-derived",
+    "params": [
+      "phi_bar",
+      "alpha1",
+      "alpha2",
+      "beta1",
+      "beta2",
+      "betaR",
+      "gamma1",
+      "gamma2",
+      "gammaR"
+    ],
+    "bounds": {
+      "phi_bar": [
+        0.0,
+        null
+      ],
+      "alpha1": [
+        0.0,
+        null
+      ],
+      "alpha2": [
+        0.0,
+        null
+      ],
+      "beta1": [
+        0.0,
+        null
+      ],
+      "beta2": [
+        0.0,
+        null
+      ],
+      "betaR": [
+        null,
+        null
+      ],
+      "gamma1": [
+        0.0,
+        null
+      ],
+      "gamma2": [
+        0.0,
+        null
+      ],
+      "gammaR": [
+        0.0,
+        null
+      ]
+    },
+    "monotone_in_sigma": "+",
+    "A_t_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "prereg_sha256": "065a8ccc72b3e6589d9d47f7b8bf472f49794c32767aeb8a8e8e9a34b95fe269",
+  "series_sha256": "c74e23545f1078b572bb2d9d0a43932cabfbc665614e2163e89b8c6036ab1bf0",
+  "uv_lock_sha256": "b4f8ac96c98801469246d1b376fd6a3e4df45baeea03786a7224a155e9a088c7",
+  "seed": 0,
+  "honest_bound": "Certifies the apparatus base is INSTANTIABLE and NOT catastrophically broken (\u27e8L_K,\u03bc\u27e9 not collapsed to 1; pairing matches AMM in-range liquidity; identities code-correct). Does NOT certify graded \u03a5-faithfulness, per-tick \u03bc-shape (A2b blocked), adverse-\u03a5 (inconclusive), or the lookback (deferred)."
+}

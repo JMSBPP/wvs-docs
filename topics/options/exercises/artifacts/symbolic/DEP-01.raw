@@ -1,0 +1,9 @@
+reset_state {} -> State reset successfully. All variables, functions, expressions, and other objects have been cleared.
+intro_many {phibar,G1,G2,W1,W2} -> {'phibar': 'phibar', 'G1': 'G1', 'G2': 'G2', 'W1': 'W1', 'W2': 'W2'}
+introduce_expression "((phibar + G1)*W1 + (phibar + G2)*W2) - (phibar*(W1 + W2) + (G1*W1 + G2*W2))" -> expr_0
+simplify_expression expr_0 -> expr_1
+print_latex_expression expr_1 -> 0
+intro_many {p0,p1,p2,p3} -> {'p0': 'p0', 'p1': 'p1', 'p2': 'p2', 'p3': 'p3'}
+introduce_expression "((p1 - p0) + (p2 - p1) + (p3 - p2)) - (p3 - p0)" -> expr_2
+simplify_expression expr_2 -> expr_3
+print_latex_expression expr_3 -> 0

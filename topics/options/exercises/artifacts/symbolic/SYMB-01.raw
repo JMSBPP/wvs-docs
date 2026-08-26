@@ -1,0 +1,6 @@
+reset_state {} -> State reset successfully. All variables, functions, expressions, and other objects have been cleared.
+intro_many {phibar,Sw,Gw,IL,PItar} -> {'phibar': 'phibar', 'Sw': 'Sw', 'Gw': 'Gw', 'IL': 'IL', 'PItar': 'PItar'}
+introduce_expression "(phibar*Sw + Gw - IL - PItar)**2" -> expr_0
+differentiate_expression expr_0 var_name=phibar -> expr_1
+print_latex_expression expr_1 -> 2 Sw \left(Gw - IL - PItar + Sw \bar{\phi}\right) (where Gw is commutative, complex, extended_real, finite, hermitian, real; IL is commutative, complex, extended_real, finite, hermitian, real; PItar is commutative, complex, extended_real, finite, hermitian, real; Sw is commutative, complex, extended_real, finite, hermitian, real; phibar is commutative, complex, extended_real, finite, hermitian, real)
+solve_algebraically expr_1 solve_for_var_name=phibar -> \left\{\frac{- Gw + IL + PItar}{Sw}\right\}

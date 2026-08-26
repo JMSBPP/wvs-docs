@@ -1,0 +1,9 @@
+{"params":{"name":"reset_state","arguments":{}}}
+{"params":{"name":"intro_many","arguments":{"variables":[{"var_name":"phibar","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"G1","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"G2","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"W1","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"W2","pos_assumptions":["real"],"neg_assumptions":[]}]}}}
+{"params":{"name":"introduce_expression","arguments":{"expr_str":"((phibar + G1)*W1 + (phibar + G2)*W2) - (phibar*(W1 + W2) + (G1*W1 + G2*W2))"}}}
+{"params":{"name":"simplify_expression","arguments":{"expr_key":"expr_0"}}}
+{"params":{"name":"print_latex_expression","arguments":{"expr_key":"expr_1"}}}
+{"params":{"name":"intro_many","arguments":{"variables":[{"var_name":"p0","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"p1","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"p2","pos_assumptions":["real"],"neg_assumptions":[]},{"var_name":"p3","pos_assumptions":["real"],"neg_assumptions":[]}]}}}
+{"params":{"name":"introduce_expression","arguments":{"expr_str":"((p1 - p0) + (p2 - p1) + (p3 - p2)) - (p3 - p0)"}}}
+{"params":{"name":"simplify_expression","arguments":{"expr_key":"expr_2"}}}
+{"params":{"name":"print_latex_expression","arguments":{"expr_key":"expr_3"}}}

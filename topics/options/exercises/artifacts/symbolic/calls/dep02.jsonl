@@ -1,0 +1,5 @@
+{"params":{"name":"reset_state","arguments":{}}}
+{"params":{"name":"intro_many","arguments":{"variables":[{"var_name":"w1","pos_assumptions":["real","positive"],"neg_assumptions":[]},{"var_name":"w2","pos_assumptions":["real","positive"],"neg_assumptions":[]},{"var_name":"w3","pos_assumptions":["real","positive"],"neg_assumptions":[]}]}}}
+{"params":{"name":"introduce_expression","arguments":{"expr_str":"w1/(w1+w2+w3) + w2/(w1+w2+w3) + w3/(w1+w2+w3)"}}}
+{"params":{"name":"simplify_expression","arguments":{"expr_key":"expr_0"}}}
+{"params":{"name":"print_latex_expression","arguments":{"expr_key":"expr_1"}}}

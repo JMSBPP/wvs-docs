@@ -1,0 +1,14 @@
+{
+  "_what": "DIAGNOSTIC provenance (NON-BINDING) — the token0 (WMATIC) reserve base W_0 of each pool at each Layer-B held-out segment's START block, used to express realized fee revenue Upsilon_T = sum phi_obs*dW as a dimensionless YIELD on the reserve base (Upsilon_T / W_0) so it is commensurable with the per-unit normalized lookback target Pi^target. This is the common-numeraire bridge the official run_fitB.py LACKED (it normalized price -> Pi^target ~ O(1) but left Upsilon_T in raw token0-volume units ~ Sw, producing the spurious ~1e5 residual).",
+  "_method": "cast call WMATIC.balanceOf(pool) --block <segment-start block> against the Polygon archive RPC (alchemy). token0 = WMATIC (0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270) for BOTH pools. Values are token0 balance / 1e18.",
+  "_not_binding": "This file and the diagnostic that consumes it do NOT modify NUM-04-fitB.json, the pre-registered Layer-B gate, or the claim's verification.numerical.status. It is a root-cause diagnostic only.",
+  "token0": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+  "segments": {
+    "liquid:0":  {"pool": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d", "start_row": 240, "start_block": 70755733, "day": "2025-04-25", "W0_token0": 1017362.4226154215},
+    "liquid:1":  {"pool": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d", "start_row": 275, "start_block": 76377763, "day": "2025-09-12", "W0_token0": 427652.06830262823},
+    "liquid:2":  {"pool": "0xae81fac689a1b4b1e06e7ef4a2ab4cd8ac0a087d", "start_row": 309, "start_block": 82175986, "day": "2026-01-26", "W0_token0": 476998.95533278625},
+    "adverse:0": {"pool": "0x5cd94ead61fea43886feec3c95b1e9d7284fdef3", "start_row": 221, "start_block": 62468863, "day": "2024-09-30", "W0_token0": 10.70886293126064},
+    "adverse:1": {"pool": "0x5cd94ead61fea43886feec3c95b1e9d7284fdef3", "start_row": 253, "start_block": 69820273, "day": "2025-04-02", "W0_token0": 12.342294479438676},
+    "adverse:2": {"pool": "0x5cd94ead61fea43886feec3c95b1e9d7284fdef3", "start_row": 284, "start_block": 77149116, "day": "2025-10-02", "W0_token0": 10.492150310994926}
+  }
+}

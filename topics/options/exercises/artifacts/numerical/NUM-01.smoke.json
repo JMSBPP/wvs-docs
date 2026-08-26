@@ -1,0 +1,13 @@
+{
+  "status": "optimal",
+  "solver": "CLARABEL",
+  "objective": 1.414213562373092,
+  "versions": {
+    "cvxpy": "1.9.1",
+    "clarabel": "0.11.1",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "run_timestamp_utc": "2026-06-13T18:37:04Z",
+  "uv_lock_sha256": "b4f8ac96c98801469246d1b376fd6a3e4df45baeea03786a7224a155e9a088c7"
+}
