@@ -181,8 +181,8 @@ on `srcBytes` before hashing; any path containing a `.git` segment is refused.
 4. `pdfs/<ck>.pdf` exists and hashes to the same sha;
 5. not under any git checkout whose `origin`/`upstream` URL ends in `/cfmm-refs(.git)?`
    (secondary guard for other shelf checkouts/submodules);
-7. provenance of the source ∈ the allowed set (default `{arxiv}`; O-B);
-6. git, via the nearest enclosing toplevel (`git -C <dir> rev-parse --show-toplevel`,
+6. provenance of the source ∈ the allowed set (default `{arxiv}`; O-B);
+7. git, via the nearest enclosing toplevel (`git -C <dir> rev-parse --show-toplevel`,
    canonicalised; git run with `--literal-pathspecs` and `GIT_DIR/GIT_WORK_TREE/GIT_INDEX_FILE`
    unset; one batched `ls-files -z` / `check-ignore` / `status --porcelain -z` per repo,
    memoised): not in a repo, or `ls-files --error-unmatch` ≠ 0 (untracked/ignored) ⇒ `DELETE`;
@@ -241,7 +241,7 @@ CI shape unchanged (one cold cache rebuild expected).
   in exactly two places: Hippius (unproven durability) and the gitignored local mirror. Options:
   (a) accept the 2-copy design; (b) restrict cleanup to the 54 arXiv sources until a second
   remote exists; (c) add a second cheap remote (e.g. a private bucket elsewhere) before cleanup.
-  **Chosen: (b).** Cleanup gates on provenance `arxiv`; §6 adds conjunct 7: provenance ∈ allowed set (default `{arxiv}`).
+  **Chosen: (b).** Cleanup gates on provenance `arxiv`; §6 adds conjunct 6: provenance ∈ allowed set (default `{arxiv}`).
 
 ## 10. Risks
 
