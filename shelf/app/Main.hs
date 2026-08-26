@@ -7,6 +7,7 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import Options.Applicative
 import Shelf.Apply
+import Shelf.Cleanup.Cli (CleanupOpts (..), cleanupOptsP, runCleanup)
 import Shelf.Remote.Cli
   (PushOpts (..), VerifyMode (..), clampExpires, parseDuration, runPush, runUrl)
 import Shelf.Remote.Cli.Fetch (FetchOpts (..), runFetch)
@@ -24,6 +25,7 @@ data Cmd
   | Push (Maybe [Citekey]) VerifyMode Bool Int  -- ^ Selection, @--verify@, @--dry-run@, @--jobs@.
   | Fetch (Maybe [Citekey]) Bool Bool           -- ^ Selection, @--dry-run@, @--force@.
   | Url Citekey (Maybe Topic) Bool Int          -- ^ Citekey, @--topic@, @--signed@, @--expires@.
+  | Cleanup CleanupOpts
 
 data Opts = Opts { optRepo :: Maybe FilePath, optCmd :: Cmd }
 
@@ -52,6 +54,8 @@ cmdP = hsubparser
   <> command "manifest" (info (hsubparser (command "check" (info (ManifestCheck <$> requireP <*> requireRemoteP)
        (progDesc "Validate manifest/sources.yaml against the topics on disk"))))
        (progDesc "Manifest subcommands"))
+  <> command "cleanup" (info (Cleanup <$> cleanupOptsP)
+       (progDesc "Remove duplicate PDFs the shelf can prove are safe to delete"))
   )
   where
     rootHelp = long "root" <> metavar "DIR"
@@ -130,3 +134,4 @@ main = do
     Fetch sel dry force -> withRemoteAnon (\cfg -> runFetch rp cfg (FetchOpts sel dry force)) >>= exitWith
     Url c topic signed expires -> (if signed then withRemote else withRemoteAnon)
       (\cfg -> runUrl rp cfg c topic signed (clampExpires expires))
+    Cleanup copts -> runCleanup rp copts >>= exitWith

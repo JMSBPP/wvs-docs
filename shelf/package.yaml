@@ -21,7 +21,7 @@ dependencies:
   - yaml
 library:
   source-dirs: src
-  dependencies: [http-client, http-client-tls, http-types]
+  dependencies: [http-client, http-client-tls, http-types, optparse-applicative]
 executables:
   shelf:
     main: Main.hs
@@ -37,6 +37,7 @@ tests:
       - hedgehog
       - http-client
       - http-types
+      - optparse-applicative
       - tasty
       - tasty-hedgehog
       - tasty-hunit
