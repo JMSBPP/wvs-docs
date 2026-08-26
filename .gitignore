@@ -1,1 +1,10 @@
 .superpowers/
+pdfs/
+index/
+manifest/scan.yaml
+shelf/.stack-work/
+*.pdf
+*.PDF
+!shelf/test/fixtures/*.pdf
+__pycache__/
+.ipynb_checkpoints/
