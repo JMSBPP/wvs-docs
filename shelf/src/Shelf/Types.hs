@@ -153,14 +153,26 @@ upsertObject endpoint bucket o s = s { srcRemote = Just (Remote endpoint bucket 
     objects = sortOn roTopic (o : filter ((/= roTopic o) . roTopic) old)
 
 -- | The object recorded for @t@, provided it is verified: its key is the one
--- this source's topic implies and its digest is the source's own.
+-- this source's topic implies, its digest is the source's own, and its url is
+-- that key under this source's own endpoint and bucket.
+--
+-- The url conjunct is not redundant with the key one. @roUrl@ is what a card
+-- renders and what a reader clicks, and it is stored rather than derived, so
+-- without this an object whose url was corrupted — by a hand edit, by a
+-- half-finished endpoint change — would still count as verified and the link
+-- would be published. It is the same test 'Shelf.Manifest.check' applies as
+-- @RemoteBadKey@, so the two agree on every object.
 verifiedObject :: Topic -> Source -> Maybe RemoteObject
-verifiedObject t s = case [o | o <- objects, roTopic o == t, verified o] of
-  (o : _) -> Just o
-  [] -> Nothing
+verifiedObject t s = case srcRemote s of
+  Nothing -> Nothing
+  Just r -> case [o | o <- rmObjects r, roTopic o == t, verified r o] of
+    (o : _) -> Just o
+    [] -> Nothing
   where
-    objects = maybe [] rmObjects (srcRemote s)
-    verified o = roVerifiedSha256 o == srcSha256 s && roKey o == objectKey (roTopic o) (srcCitekey s)
+    verified r o =
+      roVerifiedSha256 o == srcSha256 s
+        && roKey o == objectKey (roTopic o) (srcCitekey s)
+        && roUrl o == objectUrl (rmEndpoint r) (rmBucket r) (roKey o)
 
 -- | Carried topics with no verified object. A source with no @remote@ block at
 -- all is simply missing all of them.

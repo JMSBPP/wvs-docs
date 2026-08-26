@@ -37,7 +37,7 @@ import Network.HTTP.Types.Status (statusCode)
 import Shelf.Atomic (withAtomicOutput)
 import Shelf.Remote.Config
 import Shelf.Remote.Http
-import Shelf.Remote.SigV4 (HeaderName, canonicalQuery, hashHex, presignQuery, unsignedPayload)
+import Shelf.Remote.SigV4 (HeaderName, hashHex, presignUrl, unsignedPayload)
 import Shelf.Types (Sha256, objectUrl, sha256Text)
 import System.IO (Handle)
 
@@ -177,9 +177,15 @@ publicUrl cfg = objectUrl (rcEndpoint cfg) (rcBucket cfg)
 -- | A query-signed GET URL valid for @expires@ seconds. On a public-read
 -- object this is not a privacy control — anyone with the plain URL already
 -- has the bytes — it is a way to hand out a link that stops working.
+--
+-- The whole URL comes from 'presignUrl' rather than being assembled here:
+-- that renderer encodes the path once, in the same pass that signs it, so a
+-- key containing a space or a @$@ cannot end up with a wire path the
+-- signature does not cover. A hand-rolled @publicUrl <> "?" <> query@ did
+-- exactly that, and the test vectors that pin the encoding never saw it.
 presignGet :: RemoteConfig -> Text -> Int -> IO Text
 presignGet cfg key expires = do
-  hostValue <- endpointHost cfg
   now <- getCurrentTime
-  let query = presignQuery (rcCreds cfg) now (scopeOf cfg) hostValue (objectPath cfg key) expires
-  pure (publicUrl cfg key <> "?" <> TE.decodeUtf8 (canonicalQuery query))
+  pure . TE.decodeUtf8 $
+    presignUrl (rcCreds cfg) now (scopeOf cfg)
+      (TE.encodeUtf8 (rcEndpoint cfg)) (objectPath cfg key) expires

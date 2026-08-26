@@ -33,7 +33,6 @@ tests:
     source-dirs: test
     dependencies:
       - shelf
-      - case-insensitive
       - hedgehog
       - http-client
       - http-types

@@ -60,6 +60,11 @@ gitTop = \case
 -- a search repeated inside the classifier.
 data Facts = Facts
   { fPath :: FilePath
+  , fInsideGitDir :: Bool
+  -- ^ Conjunct 0's third half, asked again of the /canonical/ path: an origin
+  -- with no @.git@ segment of its own can still resolve into a @.git@
+  -- directory through a symlinked parent, and 'Shelf.Cleanup.candidates'
+  -- judges the lexical form before any link is followed.
   , fInShelfCheckout :: Bool
   , fUnderHome :: Bool
   , fSameInodeAsMirror :: Bool
@@ -79,7 +84,9 @@ data Facts = Facts
 -- | The conjunct that refused, in the numbering of §6. 'GitInternal' and
 -- 'UnresolvableBase' are the two 'candidates' can raise before any file is
 -- looked at: an origin with a @.git@ segment, and an origin that does not
--- resolve under @$HOME@.
+-- resolve under @$HOME@. Both are raised a second time by 'classify', on the
+-- canonical path, since a symlink can put a file inside @.git@ or outside
+-- @$HOME@ without saying so lexically.
 data SkipReason
   = ShelfCheckout
   | MirrorInode
@@ -110,6 +117,7 @@ isAction = \case
 -- it is never staged for removal, however clean the repository is.
 classify :: [FilePath] -> Facts -> Decision
 classify allowed f
+  | fInsideGitDir f = Skip GitInternal
   | fInShelfCheckout f = Skip ShelfCheckout
   | fSameInodeAsMirror f = Skip MirrorInode
   | not (fUnderHome f) = Skip UnresolvableBase

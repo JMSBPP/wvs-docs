@@ -209,6 +209,17 @@ tests = testGroup "Shelf.Apply"
         assertBool "no verified object yet" ("pdf: ~" `T.isInfixOf` out)
         assertBool "stale field dropped" (not ("garbage" `T.isInfixOf` out))
 
+  , testCase "refreshCardHeader leaves an unterminated front matter alone" $
+      withRepo $ \_ rp sha -> do
+        -- Opening --- with no closing --- is malformed, not "no front
+        -- matter": prepending a second header would bury the whole file
+        -- inside a block the first header already opened.
+        let src = srcOf sha
+            broken = "---\ncitekey: half-written\ntitle: no closing fence\n\n## Notes\n"
+        BS.writeFile (cardPath rp) (TE.encodeUtf8 broken)
+        refreshCardHeader rp src (Topic "options")
+        readText (cardPath rp) >>= (@?= broken)
+
   , testCase "refreshCardHeader shows the verified url for its own topic only" $
       withRepo $ \_ rp sha -> do
         let key = objectKey (Topic "options") (ck (T.pack ckA))

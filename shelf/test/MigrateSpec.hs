@@ -3,7 +3,9 @@ module MigrateSpec (tests) where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.KeyMap as KM
 import qualified Data.Text as T
+import qualified Data.ByteString as BS
 import qualified Data.Yaml as Y
+import System.Directory (createDirectoryIfMissing)
 import System.Exit (ExitCode (..))
 import System.FilePath ((</>))
 import System.IO.Temp (withSystemTempDirectory)
@@ -11,6 +13,7 @@ import System.Process.Typed (proc, readProcess, setWorkingDir)
 import Test.Tasty
 import Test.Tasty.HUnit
 
+import Shelf.Cleanup.Git (probeEnvironment)
 import Shelf.Migrate
 
 -- | A v1 manifest carrying the Phase-1 @hippius@ block, plus a second source
@@ -100,6 +103,47 @@ tests = testGroup "Migrate"
         case r of
           Left e -> assertBool ("mentions git: " <> T.unpack e)
                       (any (`T.isInfixOf` e) ["git", "uncommitted", "changes"])
+          Right x -> assertFailure ("expected a refusal, got " <> show x)
+        still <- readFile p
+        still @?= v1Yaml
+  , testCase "a file outside any git repository is migrated as asked" $
+      withSystemTempDirectory "mig" $ \d -> do
+        -- rev-parse exits 128 with "not a git repository"; that is an answer,
+        -- and the answer is that there is nothing to lose.
+        let p = d </> "sources.yaml"
+        writeFile p v1Yaml
+        r <- migrateFile p
+        r @?= Right Migrated
+  , testCase "a git that cannot be run refuses the migration" $
+      withSystemTempDirectory "mig" $ \d -> do
+        -- Not "no git, so nothing to lose": with no git on PATH the question
+        -- of what an in-place rewrite would destroy is simply unanswered.
+        let p = d </> "sources.yaml"
+        createDirectoryIfMissing True (d </> "emptybin")
+        git d ["init", "--quiet"]
+        writeFile p v1Yaml
+        r <- migrateFileWith [("PATH", d </> "emptybin")] p
+        case r of
+          Left e -> assertBool ("says it could not determine the status: " <> T.unpack e)
+                      ("cannot determine git status" `T.isInfixOf` e)
+          Right x -> assertFailure ("expected a refusal, got " <> show x)
+        still <- readFile p
+        still @?= v1Yaml
+  , testCase "a git status that exits non-zero refuses the migration" $
+      withSystemTempDirectory "mig" $ \d -> do
+        -- An index git cannot parse is the deterministic way to make a
+        -- read-only probe fail while rev-parse still answers.
+        let p = d </> "sources.yaml"
+        git d ["init", "--quiet"]
+        writeFile p v1Yaml
+        git d ["add", "sources.yaml"]
+        git d ["-c", "user.email=t@e.invalid", "-c", "user.name=t", "commit", "-q", "-m", "seed"]
+        BS.writeFile (d </> ".git" </> "index") "garbage"
+        env <- probeEnvironment
+        r <- migrateFileWith env p
+        case r of
+          Left e -> assertBool ("says it could not determine the status: " <> T.unpack e)
+                      ("cannot determine git status" `T.isInfixOf` e)
           Right x -> assertFailure ("expected a refusal, got " <> show x)
         still <- readFile p
         still @?= v1Yaml

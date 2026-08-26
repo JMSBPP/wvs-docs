@@ -10,36 +10,43 @@
 -- The file is rewritten in place, so the migration first asks git whether it
 -- has anything to lose: if @git status --porcelain@ reports the path as
 -- changed, the run is refused and the user can diff the result of the
--- migration alone. A file outside any git repo has no such safety net and is
--- migrated as asked.
-module Shelf.Migrate (MigrateResult (..), migrateFile) where
+-- migration alone. A file outside any git repo — @rev-parse@ answering 128
+-- with @not a git repository@ — has no such safety net and is migrated as
+-- asked. Every other way of not getting an answer, git missing from @PATH@
+-- included, refuses: an unanswered question about what an in-place rewrite
+-- would destroy is not the same as "nothing to lose", and reading it as one
+-- is how an unversioned manifest gets overwritten.
+module Shelf.Migrate (MigrateResult (..), migrateFile, migrateFileWith, gitDirty) where
 
 import Data.Aeson (Value (..))
 import qualified Data.Aeson.KeyMap as KM
-import qualified Data.ByteString.Lazy as BSL
 import Data.Text (Text)
 import qualified Data.Text as T
-import qualified Data.Text.Encoding as TE
 import qualified Data.Yaml as Y
 import System.Directory (doesFileExist)
 import System.Exit (ExitCode (..))
 import System.FilePath (takeDirectory, takeFileName)
-import System.IO.Error (tryIOError)
-import System.Process.Typed (proc, readProcess, setWorkingDir)
 
 import Shelf.Atomic (writeAtomic)
+import Shelf.Cleanup.Git (probeEnvironment, runGit)
 
 data MigrateResult = Migrated | AlreadyV2 deriving stock (Eq, Show)
 
 migrateFile :: FilePath -> IO (Either Text MigrateResult)
-migrateFile p = do
+migrateFile p = probeEnvironment >>= \env -> migrateFileWith env p
+
+-- | 'migrateFile' against an explicit environment, so a test can hand it a
+-- @PATH@ with no git on it and watch the migration refuse.
+migrateFileWith :: [(String, String)] -> FilePath -> IO (Either Text MigrateResult)
+migrateFileWith env p = do
   there <- doesFileExist p
-  if not there then pure (Left ("manifest not found: " <> T.pack p)) else do
-    dirty <- gitDirty p
-    if dirty
-      then pure (Left (T.pack p <> " has uncommitted changes in git; \
-                       \commit or stash them so the migration lands in a diff of its own"))
-      else do
+  if not there then pure (Left ("manifest not found: " <> T.pack p)) else
+    gitDirtyWith env p >>= \case
+      Left why -> pure (Left why)
+      Right True ->
+        pure (Left (T.pack p <> " has uncommitted changes in git; \
+                    \commit or stash them so the migration lands in a diff of its own"))
+      Right False -> do
         parsed <- Y.decodeFileEither p
         case parsed of
           Left e -> pure (Left (T.pack (Y.prettyPrintParseException e)))
@@ -66,11 +73,23 @@ dropHippius o = maybe o (\v -> KM.insert "sources" (overSources v) o) (KM.lookup
     strip (Object s) = Object (KM.delete "hippius" s)
     strip v = v
 
--- | Whether git reports the path as changed. A path outside a repo — or a
--- machine with no git at all — is not dirty, since there is nothing to lose.
-gitDirty :: FilePath -> IO Bool
-gitDirty p = either (const False) reading <$> tryIOError run
+-- | Whether git reports the path as changed. 'Right' 'False' is the positive
+-- answer that there is nothing to lose — the path is clean, or it lies
+-- outside every repository — and 'Left' is the absence of an answer, which
+-- 'migrateFileWith' turns into a refusal.
+gitDirty :: FilePath -> IO (Either Text Bool)
+gitDirty p = probeEnvironment >>= \env -> gitDirtyWith env p
+
+gitDirtyWith :: [(String, String)] -> FilePath -> IO (Either Text Bool)
+gitDirtyWith env p = runGit env dir ["rev-parse", "--show-toplevel"] >>= \case
+  (ExitFailure 128, _, err) | "not a git repository" `T.isInfixOf` err -> pure (Right False)
+  (ExitFailure n, _, err) -> pure (Left (unanswered "rev-parse" n err))
+  (ExitSuccess, _, _) ->
+    runGit env dir ["status", "--porcelain", "--", takeFileName p] >>= \case
+      (ExitSuccess, out, _) -> pure (Right (not (T.null (T.strip out))))
+      (ExitFailure n, _, err) -> pure (Left (unanswered "status" n err))
   where
-    run = readProcess (setWorkingDir (takeDirectory p) (proc "git" ["status", "--porcelain", "--", takeFileName p]))
-    reading (ExitSuccess, out, _) = not (T.null (T.strip (TE.decodeUtf8Lenient (BSL.toStrict out))))
-    reading (ExitFailure _, _, _) = False
+    dir = takeDirectory p
+    unanswered what n err = T.unwords
+      [ "cannot determine git status:", "git", what, "in", T.pack dir, "exited"
+      , T.pack (show n), T.unwords (T.words (T.take 200 err)) ]

@@ -56,10 +56,13 @@ mkSrc key hash bytes origin = Source
   { srcCitekey = ck key, srcSha256 = hash, srcBytes = bytes, srcTitle = "T"
   , srcAuthors = ["A"], srcYear = Year 2020, srcProvenance = ArXiv "1"
   , srcTopics = [options], srcOrigin = [origin]
-  , srcRemote = Just (Remote "https://s3.example" "buck" [obj]) }
+  , srcRemote = Just (Remote ep bu [obj]) }
   where
+    ep = "https://s3.example"
+    bu = "buck"
+    objKey = objectKey options (ck key)
     obj = RemoteObject
-      { roTopic = options, roKey = objectKey options (ck key), roUrl = "u"
+      { roTopic = options, roKey = objKey, roUrl = objectUrl ep bu objKey
       , roEtag = "e", roVerifiedSha256 = hash, roVerifiedAt = t0 }
 
 -- | What a call prints to stdout, restoring the original handle whether or

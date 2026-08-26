@@ -28,7 +28,6 @@ import System.Directory (canonicalizePath, doesDirectoryExist, doesFileExist, ge
 import System.FilePath (makeRelative, splitDirectories, takeBaseName, takeDirectory, (</>))
 import Shelf.Atomic (sha256OfFile, writeAtomic)
 import Shelf.Extract (PdfInfo (..), firstPage, pdfInfo)
-
 import Shelf.Scan.Slug (citekeyVersion, firstSurname, readInt, slug, stopWords, stripCitekeyVersion)
 import Shelf.Scan.Types
 import Shelf.Scan.Walk (walkPdfs)

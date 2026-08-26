@@ -31,6 +31,8 @@ module Shelf.Cleanup
   , cleanupLogPath
   , lexicalNormalise
   , candidates
+  , insideGitDir
+  , probeVerdict
   , gatherFacts
   , planCleanup
   , executeCleanup
@@ -105,6 +107,12 @@ lexicalNormalise p = joinPath (reverse (foldl step [] (splitDirectories (normali
 under :: FilePath -> FilePath -> Bool
 under base p = splitDirectories base `isPrefixOf` splitDirectories p
 
+-- | Does any segment of @p@ name a @.git@ directory? Git's own object store
+-- is never a duplicate PDF, and unlinking out of it corrupts a repository
+-- rather than tidying a shelf.
+insideGitDir :: FilePath -> Bool
+insideGitDir p = ".git" `elem` splitDirectories p
+
 -- | Every origin the manifest remembers, resolved against @home@ and
 -- deduplicated by path — an origin recorded twice, or shared by two sources,
 -- is one candidate. The second component is what was refused before any file
@@ -120,7 +128,7 @@ candidates mf home = (reverse keeps, reverse skips)
     resolve o = lexicalNormalise (if isAbsolute o then o else home </> o)
     step acc@(seen, ks, ss) (p, s)
       | p `S.member` seen = acc
-      | ".git" `elem` splitDirectories p = (S.insert p seen, ks, (p, GitInternal) : ss)
+      | insideGitDir p = (S.insert p seen, ks, (p, GitInternal) : ss)
       | not (under (lexicalNormalise home) p) = (S.insert p seen, ks, (p, UnresolvableBase) : ss)
       | otherwise = (S.insert p seen, (p, s) : ks, ss)
 
@@ -141,8 +149,17 @@ gatherFacts rp mf cfg provs live rawPath src = do
   git <- repoTop (takeDirectory path) >>= \case
     NoRepo -> pure NotInRepo
     RepoUnknown why -> pure (GitUnknown why)
-    RepoRoot top -> M.findWithDefault (UntrackedOrIgnored top) path <$> batchProbe top [path]
+    RepoRoot top -> probeVerdict path <$> batchProbe top [path]
   factsWith rp home mf cfg provs live git path src
+
+-- | The verdict a batch returned for a path it was asked about. A batch that
+-- did not answer for the path is a probe that did not answer, not a licence to
+-- delete: the absent default is 'GitUnknown', which conjunct 7 refuses.
+-- @findWithDefault (UntrackedOrIgnored top)@ was the opposite — any future
+-- change that let a path fall out of the batch would have deleted it.
+probeVerdict :: FilePath -> Map FilePath GitFacts -> GitFacts
+probeVerdict path =
+  M.findWithDefault (GitUnknown ("no batch verdict for " <> T.pack path)) path
 
 -- | The directory canonicalised, the final component left as written. The
 -- whole point of conjunct 1 is to tell a symlink from a regular file, which a
@@ -179,6 +196,10 @@ factsWith rp home mf cfg provs live git path src = do
   liveness <- liveCheck live cfg subject
   pure Facts
     { fPath = path
+    -- Both forms: 'canonicalCandidate' resolved the directory but left the
+    -- final component, so a symlinked *file* whose target sits in a @.git@
+    -- store is only visible in @canon@.
+    , fInsideGitDir = insideGitDir path || insideGitDir canon
     , fInShelfCheckout = under root canon
     , fUnderHome = under canonHome path && under canonHome canon
     , fSameInodeAsMirror = sameFile self mirrorStat
@@ -238,8 +259,14 @@ planCleanup rp home mf cfg provs allowed live = do
   present <- mapM (\(p, s) -> do { c <- canonicalCandidate p; pure (c, s) }) existing
   tops <- mapM (\(p, _) -> (,) p <$> repoTop (takeDirectory p)) present
   probes <- M.unions <$> mapM (uncurry batchProbe) (M.toList (groupTops tops))
-  let broken = M.fromList [(p, GitUnknown why) | (p, RepoUnknown why) <- tops]
-      verdict p = M.findWithDefault NotInRepo p (M.union broken probes)
+  let -- Only a path 'repoTop' placed outside every repository is NotInRepo.
+      -- A path that has a toplevel must have been answered by its batch, and
+      -- 'probeVerdict' refuses rather than assumes when it was not.
+      verdict p = case lookup p tops of
+        Just NoRepo -> NotInRepo
+        Just (RepoUnknown why) -> GitUnknown why
+        Just (RepoRoot _) -> probeVerdict p probes
+        Nothing -> GitUnknown ("no repository probe for " <> T.pack p)
   canonical <- mapM canonicalOrSelf allowed
   rows <- mapM (\(p, s) -> factsWith rp home mf cfg provs live (verdict p) p s) present
   pure [(f, classify canonical f) | f <- rows]

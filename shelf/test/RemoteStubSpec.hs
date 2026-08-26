@@ -11,10 +11,12 @@ import Data.IORef (IORef, readIORef, writeIORef)
 import qualified Data.Map.Strict as M
 import Data.Text (Text)
 import qualified Data.Text as T
+import qualified Data.Text.Encoding as TE
 import Data.Word (Word8)
 import Shelf.Atomic (withAtomicOutput)
+import Data.Time (UTCTime, defaultTimeLocale, parseTimeM)
 import Shelf.Remote
-import Shelf.Remote.SigV4 (Credentials (..))
+import Shelf.Remote.SigV4 (Credentials (..), presignUrl)
 import StubServer (LogEntry, Stub (..), StubRequest (..), withStub, withStubDetail)
 import System.Directory (listDirectory)
 import System.FilePath ((</>))
@@ -57,6 +59,14 @@ putSmall cfg dir = do
   sha <- sha256OfFile src
   _ <- expectRight =<< putObject cfg key src sha
   pure ()
+
+-- | The @X-Amz-Date@ a presigned query carries, read back as the instant that
+-- signed it, so a clock-reading function can be compared with a pure one.
+signedAt :: Text -> IO UTCTime
+signedAt query = case [v | p <- T.splitOn "&" (T.drop 1 query), Just v <- [T.stripPrefix "X-Amz-Date=" p]] of
+  (v : _) -> maybe (assertFailure ("X-Amz-Date not a timestamp: " <> show v)) pure
+    (parseTimeM False defaultTimeLocale "%Y%m%dT%H%M%SZ" (T.unpack v))
+  [] -> assertFailure ("no X-Amz-Date in " <> show query)
 
 -- | The most recent request the stub saw with this method.
 lastOf :: IORef [StubRequest] -> ByteString -> IO StubRequest
@@ -199,6 +209,26 @@ tests = testGroup "Shelf.Remote (stub)"
       url <- presignGet cfg key 86400
       assertBool "expiry" ("X-Amz-Expires=86400" `T.isInfixOf` url)
       assertBool "signature" ("X-Amz-Signature=" `T.isInfixOf` url)
+
+  , testCase "presignGet encodes the key through the renderer that signed it" $ do
+      -- The tested path must be the shipped path. Assembling the URL by hand
+      -- put the raw key on the wire while the signature covered the encoded
+      -- one, and no test vector saw it because every key in the manifest is
+      -- already URL-safe.
+      cfg <- cfgFor 9999 fakeCreds [0, 0, 0]
+      let awkward = "topics/options/de $ vries 2020.pdf"
+      url <- presignGet cfg awkward 86400
+      let (path, query) = T.breakOn "?" url
+      assertBool ("$ encoded in " <> show path) ("%24" `T.isInfixOf` path)
+      assertBool ("space encoded in " <> show path) ("%20" `T.isInfixOf` path)
+      assertBool ("no raw $ in " <> show path) (not ("$" `T.isInfixOf` path))
+      assertBool ("no raw space in " <> show path) (not (" " `T.isInfixOf` path))
+      -- Byte-for-byte what presignUrl produces at the instant presignGet
+      -- signed: same path encoding, same parameter order, same signature.
+      at <- signedAt query
+      let expected = presignUrl fakeCreds at (scopeOf cfg)
+            "http://127.0.0.1:9999" (objectPath cfg awkward) 86400
+      url @?= TE.decodeUtf8 expected
 
   , testCase "a PUT signs and sends the object ACL and the PDF content type" $
       withStubDetail fakeCreds $ \stub -> withSystemTempDirectory "shelf-acl" $ \dir -> do

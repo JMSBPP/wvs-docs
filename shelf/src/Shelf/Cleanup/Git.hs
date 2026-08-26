@@ -23,6 +23,7 @@
 module Shelf.Cleanup.Git
   ( RepoRoot (..)
   , probeEnvironment
+  , runGit
   , repoTop
   , repoTopWith
   , isShelfRemote
@@ -63,6 +64,8 @@ probeEnvironment = filter ((`notElem` inherited) . fst) <$> getEnvironment
   where inherited = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE"]
 
 -- | Run git in @dir@ and hand back its exit code, stdout and stderr as text.
+-- Exposed so "Shelf.Migrate" can ask its own question of git under the same
+-- four rules, rather than growing a second, laxer way to spawn one.
 -- The binary is resolved against @env@'s own @PATH@ rather than the parent's
 -- — @System.Process@ would otherwise search the parent's, which makes the
 -- environment this claims to run under a fiction. A git that cannot be found,

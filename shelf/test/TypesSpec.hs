@@ -1,5 +1,5 @@
 module TypesSpec (tests) where
-import Hedgehog
+import Hedgehog hiding (check)
 import qualified Hedgehog.Gen as Gen
 import qualified Hedgehog.Range as Range
 import Test.Tasty
@@ -13,6 +13,7 @@ import qualified Data.ByteString.Lazy as BSL
 import Data.Either (isLeft, isRight)
 import Data.Time (UTCTime (..), fromGregorian)
 import Fixture
+import Shelf.Manifest (Manifest (..), Severity (..), Violation (..), check, schemaVersion)
 import Shelf.Types
 
 genSlug :: Gen T.Text
@@ -104,6 +105,42 @@ tests = testGroup "Types"
       missingTopics partial @?= [Topic "dgp"]
       missingTopics full @?= []
       missingTopics drifted @?= [Topic "dgp"]
+
+  , testCase "an object whose url is not its key under this remote is not verified" $ do
+      -- roUrl is stored, not derived, and it is what a card renders and a
+      -- reader clicks. If a corrupted url still counted as verified, the card
+      -- would publish the bad link and cleanup's conjunct 3 would call the
+      -- source remote-backed on the strength of it.
+      let good = upsertObject ep bu (objOf "options" (sh 'b')) (srcOf ["options"])
+          badUrl = upsertObject ep bu
+            ((objOf "options" (sh 'b')) { roUrl = "https://elsewhere.example/x.pdf" })
+            (srcOf ["options"])
+          otherBucket = upsertObject ep bu
+            ((objOf "options" (sh 'b')) { roUrl = objectUrl ep "someone-elses" k })
+            (srcOf ["options"])
+          k = objectKey (Topic "options") (ck "x-2020")
+      verifiedObject (Topic "options") good @?= Just (objOf "options" (sh 'b'))
+      verifiedObject (Topic "options") badUrl @?= Nothing
+      verifiedObject (Topic "options") otherBucket @?= Nothing
+      isRemoteBacked good @?= True
+      isRemoteBacked badUrl @?= False
+      missingTopics badUrl @?= [Topic "options"]
+
+  , testCase "check and isRemoteBacked agree about a bad url" $ do
+      -- The two must never disagree: `manifest check --require-remote` is the
+      -- CI gate, and isRemoteBacked is what licenses a local delete. One
+      -- flagging what the other blesses is how a bad url gets a file removed.
+      let badUrl = upsertObject ep bu
+            ((objOf "options" (sh 'b')) { roUrl = "https://elsewhere.example/x.pdf" })
+            (srcOf ["options"])
+          found = check [Topic "options"] (Manifest schemaVersion [badUrl])
+      assertBool ("RemoteBadKey reported in " <> show found)
+        ((Err, RemoteBadKey (ck "x-2020") (objectKey (Topic "options") (ck "x-2020"))) `elem` found)
+      isRemoteBacked badUrl @?= False
+      -- and neither complains about the well-formed one.
+      let good = upsertObject ep bu (objOf "options" (sh 'b')) (srcOf ["options"])
+      check [Topic "options"] (Manifest schemaVersion [good]) @?= []
+      isRemoteBacked good @?= True
 
   , testCase "staleObjects are the objects for topics no longer carried" $ do
       let s = upsertObject ep bu (objOf "dgp" (sh 'b')) (srcOf ["options"])

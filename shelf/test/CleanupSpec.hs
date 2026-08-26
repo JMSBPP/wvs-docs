@@ -55,11 +55,17 @@ mkSrc key hash bytes prov origins = Source
   { srcCitekey = ck key, srcSha256 = hash, srcBytes = bytes, srcTitle = "T"
   , srcAuthors = ["A"], srcYear = Year 2020, srcProvenance = prov
   , srcTopics = [options], srcOrigin = origins
-  , srcRemote = Just (Remote "https://s3.example" "buck" [obj]) }
+  , srcRemote = Just (Remote remoteEndpoint remoteBucket [obj]) }
   where
+    objKey = objectKey options (ck key)
     obj = RemoteObject
-      { roTopic = options, roKey = objectKey options (ck key), roUrl = "u"
+      { roTopic = options, roKey = objKey
+      , roUrl = objectUrl remoteEndpoint remoteBucket objKey
       , roEtag = "e", roVerifiedSha256 = hash, roVerifiedAt = t0 }
+
+remoteEndpoint, remoteBucket :: Text
+remoteEndpoint = "https://s3.example"
+remoteBucket = "buck"
 
 srcA :: Source
 srcA = mkSrc "alpha-2020" (sh 'a') 9 (ArXiv "1") ["papers/a.pdf"]
@@ -70,7 +76,8 @@ allowedRepos = ["/r/one", "/r/two"]
 -- | Every conjunct satisfied, git says untracked: the row that must DELETE.
 passing :: Facts
 passing = Facts
-  { fPath = "/h/papers/a.pdf", fInShelfCheckout = False, fUnderHome = True
+  { fPath = "/h/papers/a.pdf", fInsideGitDir = False
+  , fInShelfCheckout = False, fUnderHome = True
   , fSameInodeAsMirror = False
   , fIsRegular = True, fIsSymlink = False, fSha = Just (sh 'a'), fSource = Just srcA
   , fRemoteBacked = True, fLive = NotRequired, fMirrorMatches = True
@@ -83,6 +90,7 @@ passing = Facts
 -- the acting branches would never be sampled at all (see the 'cover' below).
 genFacts :: Gen Facts
 genFacts = do
+  gitDir <- fails
   inShelf <- fails; inode <- fails; regular <- passes; symlink <- fails
   hash <- Gen.frequency [(9, pure (Just (sh 'a'))), (1, pure Nothing)]
   source <- Gen.frequency [(9, pure (Just srcA)), (1, pure Nothing)]
@@ -95,7 +103,8 @@ genFacts = do
     , (1, pure NotInRepo)
     , (1, GitUnknown <$> Gen.element ["ls-files exited 128", "git absent"]) ]
   pure passing
-    { fInShelfCheckout = inShelf, fSameInodeAsMirror = inode, fIsRegular = regular
+    { fInsideGitDir = gitDir
+    , fInShelfCheckout = inShelf, fSameInodeAsMirror = inode, fIsRegular = regular
     , fIsSymlink = symlink, fSha = hash, fSource = source, fRemoteBacked = backed
     , fLive = live, fMirrorMatches = mirror, fUnderOtherShelf = other
     , fProvenanceAllowed = prov, fGit = gitFacts }
@@ -107,7 +116,8 @@ genFacts = do
 -- | The eight conjuncts of spec §6, restated independently of 'classify'.
 conjuncts :: [FilePath] -> Facts -> [Bool]
 conjuncts allowed f =
-  [ not (fInShelfCheckout f) && not (fSameInodeAsMirror f) && fUnderHome f
+  [ not (fInsideGitDir f) && not (fInShelfCheckout f)
+      && not (fSameInodeAsMirror f) && fUnderHome f
   , fIsRegular f && not (fIsSymlink f)
   , isJust (fSha f) && isJust (fSource f)
   , fRemoteBacked f && liveOk (fLive f)
@@ -269,7 +279,9 @@ tests = testGroup "Cleanup"
     , testGroup "one broken conjunct at a time"
       [ testCase name (classify allowedRepos f @?= Skip reason)
       | (name, f, reason) <-
-        [ ("0 inside the shelf checkout", passing { fInShelfCheckout = True }, ShelfCheckout)
+        [ ("0 canonical path lands inside a .git directory"
+          , passing { fInsideGitDir = True }, GitInternal)
+        , ("0 inside the shelf checkout", passing { fInShelfCheckout = True }, ShelfCheckout)
         , ("0 same inode as the mirror", passing { fSameInodeAsMirror = True }, MirrorInode)
         , ("0 outside $HOME once canonical", passing { fUnderHome = False }, UnresolvableBase)
         , ("1 not a regular file", passing { fIsRegular = False }, NotRegular)
@@ -415,6 +427,47 @@ tests = testGroup "Cleanup"
         map (fPath . fst) plan @?=
           [realHome </> "loose" </> "gone.pdf", realHome </> "repo" </> "tracked.pdf"]
         map snd plan @?= [Delete, GitRm (realHome </> "repo")]
+  , testCase "a batch that did not answer for a path refuses it" $ do
+      -- The absent case is unreachable through 'batchProbe' today, which is
+      -- exactly why the default has to be the refusing one: nothing but this
+      -- test would notice if a future change let a path fall out of a batch.
+      let verdict = probeVerdict "/h/papers/a.pdf" M.empty
+      case verdict of
+        GitUnknown why -> do
+          assertBool ("names the path: " <> T.unpack why)
+            ("/h/papers/a.pdf" `T.isInfixOf` why)
+          classify allowedRepos passing { fGit = verdict } @?= Skip (GitProbeFailed why)
+        found -> assertFailure ("expected GitUnknown, got " <> show found)
+      -- and a batch that did answer is still believed.
+      probeVerdict "/h/papers/a.pdf" (M.singleton "/h/papers/a.pdf" (UntrackedOrIgnored "/r/one"))
+        @?= UntrackedOrIgnored "/r/one"
+  , testCase "an origin that reaches a .git directory through a symlink is refused" $
+      withSystemTempDirectory "shelf-gitlink" $ \tmp -> do
+        root <- canonicalizePath tmp
+        -- 'candidates' sees "store/dup.pdf", which has no .git segment; only
+        -- canonicalising the directory reveals that store/ is a symlink into
+        -- one. The file is a real duplicate of a remote-backed source, so
+        -- every other conjunct passes and .git is the only thing refusing it.
+        initRepo (root </> "repo")
+        let mirror = root </> "cfmm-refs" </> "pdfs" </> "alpha-2020.pdf"
+            hidden = root </> "repo" </> ".git" </> "shelf"
+            origin = root </> "store" </> "dup.pdf"
+        (hash, n) <- place mirror "alpha-2020"
+        createDirectoryIfMissing True hidden
+        _ <- place (hidden </> "dup.pdf") "alpha-2020"
+        createSymbolicLink hidden (root </> "store")
+        let src = mkSrc "alpha-2020" hash n (ArXiv "1") ["store/dup.pdf"]
+            rp = repoPaths (root </> "cfmm-refs")
+            manifest = Manifest schemaVersion [src]
+        -- The lexical guard lets it through: this is the gap being closed.
+        map fst (fst (candidates manifest root)) @?= [root </> "store" </> "dup.pdf"]
+        facts <- gatherFacts rp manifest Nothing defaultProvSet False origin src
+        fInsideGitDir facts @?= True
+        classify [] facts @?= Skip GitInternal
+        plan <- planCleanup rp root manifest Nothing defaultProvSet [] False
+        map snd plan @?= [Skip GitInternal]
+        survived <- doesFileExist (hidden </> "dup.pdf")
+        survived @?= True
   , testCase "homeRelative strips the home prefix and leaves anything else alone" $ do
       homeRelative "/home/u" "/home/u/papers/a.pdf" @?= "papers/a.pdf"
       homeRelative "/home/u" "/srv/a.pdf" @?= "/srv/a.pdf"
