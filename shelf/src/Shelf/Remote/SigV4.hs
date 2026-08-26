@@ -16,12 +16,14 @@ module Shelf.Remote.SigV4
   , hashHex
   , uriEncode
   , canonicalQuery
+  , renderQuery
   , canonicalRequest
   , stringToSign
   , signingKey
   , signature
   , signHeaders
   , presignQuery
+  , presignUrl
   , amzDate
   , credentialScope
   ) where
@@ -36,7 +38,7 @@ import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BC
 import Data.CaseInsensitive (CI)
 import qualified Data.CaseInsensitive as CI
-import Data.List (sort, sortOn)
+import Data.List (sort)
 import qualified Data.Map.Strict as M
 import Data.Time (UTCTime, defaultTimeLocale, formatTime)
 import Data.Word (Word8)
@@ -96,12 +98,24 @@ uriEncode encodeSlash = BS.concatMap enc
     hexDigit :: Word8 -> Word8
     hexDigit d = if d < 10 then 0x30 + d else 0x41 + (d - 10)
 
+encodePair :: (ByteString, ByteString) -> (ByteString, ByteString)
+encodePair = bimap (uriEncode True) (uriEncode True)
+
+joinEncoded :: [(ByteString, ByteString)] -> ByteString
+joinEncoded = BS.intercalate "&" . map (\(k, v) -> k <> "=" <> v)
+
 -- | Encode both halves of every parameter, sort by encoded key then value,
--- join with @&@. An empty value still emits its @=@.
+-- join with @&@. An empty value still emits its @=@. This is the form that
+-- goes into the canonical request -- never onto a URL.
 canonicalQuery :: [(ByteString, ByteString)] -> ByteString
-canonicalQuery =
-  BS.intercalate "&" . map (\(k, v) -> k <> "=" <> v) . sort
-    . map (bimap (uriEncode True) (uriEncode True))
+canonicalQuery = joinEncoded . sort . map encodePair
+
+-- | Render parameters onto a URL /in the order given/, percent-encoding both
+-- halves. Callers must use this rather than a hand-rolled fold: the signature
+-- is computed over encoded values, so a query put on the wire with a literal
+-- @\/@ in @X-Amz-Credential@ would not match the signature that authorises it.
+renderQuery :: [(ByteString, ByteString)] -> ByteString
+renderQuery = joinEncoded . map encodePair
 
 -- | Lowercase names, trimmed values, duplicates merged with a comma, sorted
 -- by name. Both the canonical request and @SignedHeaders@ are built from this
@@ -193,9 +207,11 @@ presignQuery
   -> Int                             -- ^ expires, seconds
   -> [(ByteString, ByteString)]
 presignQuery creds t sc host path expires =
-    sortOn fst (base <> [("X-Amz-Signature", signature creds t sc cr)])
+    base <> [("X-Amz-Signature", signature creds t sc cr)]
   where
     secs = max 1 (min 604800 expires)
+    -- Already in sorted order, with the signature appended last: this is the
+    -- parameter order AWS's own published presigned URL uses.
     base = [ ("X-Amz-Algorithm", "AWS4-HMAC-SHA256")
            , ("X-Amz-Credential", accessKey creds <> "/" <> credentialScope t sc)
            , ("X-Amz-Date", amzDate t)
@@ -205,3 +221,21 @@ presignQuery creds t sc host path expires =
                           , crQuery = canonicalQuery base
                           , crHeaders = [("host", host)]
                           , crPayloadHash = unsignedPayload }
+
+-- | The full presigned URL. @base@ is scheme and authority
+-- (@https:\/\/host[:port]@, trailing slash optional); the @host@ that gets
+-- signed is parsed back out of it, so the URL and its signature can never name
+-- different hosts.
+presignUrl
+  :: Credentials -> UTCTime -> Scope
+  -> ByteString                      -- ^ scheme and host, e.g. @https:\/\/s3.hippius.com@
+  -> ByteString                      -- ^ raw path
+  -> Int                             -- ^ expires, seconds
+  -> ByteString
+presignUrl creds t sc base path expires =
+    root <> uriEncode False path <> "?" <> renderQuery (presignQuery creds t sc host path expires)
+  where
+    root = if not (BS.null base) && BS.last base == 0x2F then BS.init base else base
+    host = BS.takeWhile (/= 0x2F) afterScheme
+    afterScheme = let (_, rest) = BS.breakSubstring "//" root
+                  in if BS.null rest then root else BS.drop 2 rest

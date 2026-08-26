@@ -12,6 +12,7 @@ import Test.Tasty
 import Test.Tasty.HUnit
 import Test.Tasty.Hedgehog (testProperty)
 import Hedgehog
+import qualified Hedgehog as H
 import qualified Hedgehog.Gen as Gen
 import qualified Hedgehog.Range as Range
 
@@ -135,6 +136,18 @@ tests = testGroup "Shelf.Remote.SigV4"
             (Just "aeeed9bbccd4d02ee5c0109b86d86835f995330da4c265957d157751f604d404")
             (lookup "X-Amz-Signature"
                (presignQuery s3Creds s3Time s3Scope s3Host "/test.txt" 86400))
+      , testCase "presignUrl equals AWS's published presigned URL, byte for byte" $
+          assertEqual "url"
+            "https://examplebucket.s3.amazonaws.com/test.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256\
+            \&X-Amz-Credential=AKIAIOSFODNN7EXAMPLE%2F20130524%2Fus-east-1%2Fs3%2Faws4_request\
+            \&X-Amz-Date=20130524T000000Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host\
+            \&X-Amz-Signature=aeeed9bbccd4d02ee5c0109b86d86835f995330da4c265957d157751f604d404"
+            (presignUrl s3Creds s3Time s3Scope "https://examplebucket.s3.amazonaws.com"
+                        "/test.txt" 86400)
+      , testCase "presignUrl tolerates a trailing slash on the endpoint" $
+          assertEqual "url"
+            (presignUrl s3Creds s3Time s3Scope "https://examplebucket.s3.amazonaws.com" "/t.txt" 60)
+            (presignUrl s3Creds s3Time s3Scope "https://examplebucket.s3.amazonaws.com/" "/t.txt" 60)
       , testCase "presign pins algorithm, credential, expires and signed headers" $
           assertEqual "query"
             [ Just "AWS4-HMAC-SHA256"
@@ -156,6 +169,29 @@ tests = testGroup "Shelf.Remote.SigV4"
           assertEqual "query" "Param1=value1&Param2=&a%20b=c%2Fd"
             (canonicalQuery [("Param2", ""), ("a b", "c/d"), ("Param1", "value1")])
       ]
+  , testGroup "encoding and header folding"
+      [ testCase "~ is unreserved and survives uriEncode unencoded" $
+          assertEqual "a~b" "a~b" (uriEncode True "a~b")
+      , testCase "uriEncode uses uppercase hex and spares only A-Za-z0-9-_.~" $
+          assertEqual "encoded" "a%20b%2Fc%3Fd-_.~%2A" (uriEncode True "a b/c?d-_.~*")
+      , testCase "renderQuery keeps the given order and encodes both halves" $
+          assertEqual "query" "b=x%2Fy&a=&c=1"
+            (renderQuery [("b", "x/y"), ("a", ""), ("c", "1")])
+      , testCase "duplicate header names merge with a comma, in first-seen order" $
+          assertEqual "canonical request"
+            "GET\n/\n\nx-dup:one,two\n\nx-dup\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            (canonicalRequest CanonicalRequest
+               { crMethod = "GET", crPath = "/", crQuery = ""
+               , crHeaders = [("X-Dup", "one"), ("x-dup", "two")]
+               , crPayloadHash = hashHex "" })
+      , testCase "header values are trimmed and internal whitespace runs collapse" $
+          assertEqual "canonical request"
+            "GET\n/\n\nx-ws:a b c\n\nx-ws\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            (canonicalRequest CanonicalRequest
+               { crMethod = "GET", crPath = "/", crQuery = ""
+               , crHeaders = [("X-WS", "  a   b\tc  ")]
+               , crPayloadHash = hashHex "" })
+      ]
   , testCase "vector (c): recorded Hippius HEAD-bucket exchange" hippiusVector
   , testGroup "properties"
       [ testProperty "uriEncode True round-trips through a percent decoder" $ property $ do
@@ -165,14 +201,20 @@ tests = testGroup "Shelf.Remote.SigV4"
           s <- forAll (BC.pack <$> Gen.string (Range.linear 0 40) Gen.ascii)
           uriDecode (uriEncode False s) === s
           BS.count 0x2F (uriEncode False s) === BS.count 0x2F s
-      , testProperty "presignQuery is sorted by key" $ property $ do
+      , testProperty "the five signed parameters are sorted, X-Amz-Signature last" $ property $ do
           n <- forAll (Gen.int (Range.linear (-10) 700000))
           let ks = map fst (presignQuery s3Creds s3Time s3Scope s3Host "/k.pdf" n)
-          ks === sort ks
-      , testProperty "X-Amz-Expires is clamped to [1, 604800]" $ property $ do
+          -- AWS's own published presigned URL orders them this way, and the
+          -- vector above pins the resulting string.
+          drop 5 ks === ["X-Amz-Signature"]
+          take 5 ks === sort (take 5 ks)
+      , testProperty "X-Amz-Expires always lands inside S3's [1, 604800]" $ property $ do
           n <- forAll (Gen.int (Range.linear (-1000000) 100000000))
-          let q = presignQuery s3Creds s3Time s3Scope s3Host "/k.pdf" n
-          lookup "X-Amz-Expires" q === Just (BC.pack (show (max 1 (min 604800 n))))
+          v <- maybe failure pure (expiresOf n)
+          H.assert (1 <= v && v <= 604800)
+      , testProperty "X-Amz-Expires is the identity on [1, 604800]" $ property $ do
+          n <- forAll (Gen.int (Range.linear 1 604800))
+          expiresOf n === Just n
       ]
   ]
 
@@ -194,3 +236,13 @@ hippiusVector = do
             , ", Signature=885eed674aace9a1fdc6a371db12de03001e848a7d717ff4707d603d25d8a302" ]
       assertEqual "recomputed Authorization" (Just expected) (lookup "authorization" signed)
     _ -> putStrLn "  (skipped: HIPPIUS_SECRET_ACCESS_KEY / HIPPIUS_ACCESS_KEY_ID unset)"
+
+-- | The @X-Amz-Expires@ a presign actually emitted, read back out of the
+-- query rather than recomputed -- a property that recomputes the clamp only
+-- restates the implementation.
+expiresOf :: Int -> Maybe Int
+expiresOf n = do
+  v <- lookup "X-Amz-Expires" (presignQuery s3Creds s3Time s3Scope s3Host "/k.pdf" n)
+  case BC.readInt v of
+    Just (i, rest) | BS.null rest -> Just i
+    _ -> Nothing
