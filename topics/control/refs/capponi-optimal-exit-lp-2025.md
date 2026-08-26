@@ -6,7 +6,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: adafa768826bcc320896fc577bbcc0120e27a8121ad6979d641d9707c04c30de
 topics: [applications, control]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/control/capponi-optimal-exit-lp-2025.pdf
 ---
 
 ## Notes

@@ -6,7 +6,7 @@ year: 2025
 provenance: {kind: arxiv, id: '2506.02869'}
 sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
 topics: [volatility-swaps]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
 ---
 
 ## Notes

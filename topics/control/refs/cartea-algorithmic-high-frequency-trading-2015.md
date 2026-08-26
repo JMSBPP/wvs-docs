@@ -6,7 +6,7 @@ year: 2015
 provenance: {kind: unsourced}
 sha256: 3216f3ea2582b88dd5e2b1d813ec2875c6ba252dbe5b51eb85f956c22e2d30aa
 topics: [dgp, control]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/control/cartea-algorithmic-high-frequency-trading-2015.pdf
 ---
 
 ## Notes

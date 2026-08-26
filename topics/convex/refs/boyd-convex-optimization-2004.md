@@ -6,7 +6,7 @@ year: 2004
 provenance: {kind: unsourced}
 sha256: 40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e
 topics: [convex]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/convex/boyd-convex-optimization-2004.pdf
 ---
 
 ## Notes

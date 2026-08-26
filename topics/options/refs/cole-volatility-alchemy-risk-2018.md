@@ -6,7 +6,7 @@ year: 2018
 provenance: {kind: unsourced}
 sha256: e8c4e4fe36a7127cabb325fcbb8c8c3c8035959a804ad0d47443db9ddb9efe9d
 topics: [volatility-swaps, options]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/options/cole-volatility-alchemy-risk-2018.pdf
 ---
 
 ## Notes

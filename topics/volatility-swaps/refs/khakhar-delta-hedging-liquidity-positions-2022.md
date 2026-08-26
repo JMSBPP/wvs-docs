@@ -6,7 +6,7 @@ year: 2022
 provenance: {kind: arxiv, id: '2208.03318'}
 sha256: 13330aa39866325870d45a7cc44239cae3a3c3b8576c01606595798df0b488c0
 topics: [volatility-swaps]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/khakhar-delta-hedging-liquidity-positions-2022.pdf
 ---
 
 ## Notes

@@ -6,7 +6,7 @@ year: 2021
 provenance: {kind: arxiv, id: '2112.01472'}
 sha256: de5329e6bcadeec38def141ab2cec5e5755b3c166bc9de7cd398053b9163ef36
 topics: [applications, mechanism-design]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/obadia-unity-is-strength-cross-domain-mev-2021.pdf
 ---
 
 ## Notes

@@ -3,27 +3,27 @@
 ## Sources
 | citekey | title | year | pdf |
 |---|---|---|---|
-| [@baxter-rennie-financial-calculus-1996] | Financial Calculus: An Introduction to Derivative Pricing | 1996 | — |
-| [@clark-replicating-portfolio-bounded-liquidity-2021] | Replicating Portfolios with Bounded Liquidity | 2021 | — |
-| [@clark-replicating-portfolio-constant-product-market-2020] | Replicating Portfolios in Constant Product Markets | 2020 | — |
-| [@clark-spanning-power-perpetuals-2023] | Spanning with Power Perpetuals | 2023 | — |
-| [@cole-volatility-alchemy-risk-2018] | Volatility and the Alchemy of Risk: Reflexivity in the Shadows of Black Monday 1987 | 2018 | — |
-| [@davidson-cboe-putwrite-indices-methodology-2025] |  | 2025 | — |
-| [@derman-stochastic-implied-trees-1998] | Stochastic Implied Trees: Arbitrage Pricing with Stochastic Term and Strike Structure of Volatility | 1998 | — |
-| [@desbrun-discrete-exterior-calculus-2004] | Discrete Exterior Calculus | 2004 | — |
-| [@forgy-financial-modelling-discrete-stochastic-calculus-2004] | Financial Modelling Using Discrete Stochastic Calculus | 2004 | — |
-| [@gatheral-volatility-surface-2006] | The Volatility Surface: A Practitioner's Guide | 2006 | — |
-| [@haug-complete-guide-option-pricing-formulas-2007] | The Complete Guide to Option Pricing Formulas (2nd Edition) | 2007 | — |
-| [@maymin-option-pricing-automated-2026] | Option Pricing on Automated Market Maker Tokens | 2026 | — |
-| [@maymin-pricing-options-amm-native-tokens-2026] | The Pricing of Options on AMM-Native Tokens: Theory and Evidence from Bittensor | 2026 | — |
-| [@murota-discrete-convex-analysis-2003] | Discrete Convex Analysis | 2003 | — |
-| [@murota-discrete-convex-analysis-economics-game-theory-2022] | Discrete Convex Analysis: A Tool for Economics and Game Theory | 2022 | — |
-| [@numoen-whitepaper-2022] | Numoen Whitepaper | 2022 | — |
-| [@pap-pricing-range-accrual-nd] | Pricing Range Accrual Products (MSc Thesis) | nd | — |
-| [@sinclair-volatility-trading-2008] | Volatility Trading | 2008 | — |
-| [@yogo-demand-system-approach-2019] | A Demand System Approach to Asset Pricing | 2019 | — |
-| [@yoo-discrete-time-financial-engineering-2017] | Discrete-Time Financial Engineering | 2017 | — |
-| [@zefram-bunni-v2-shapeshifting-amm-2024] | Bunni v2: Shapeshifting AMM | 2024 | — |
+| [@baxter-rennie-financial-calculus-1996] | Financial Calculus: An Introduction to Derivative Pricing | 1996 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/baxter-rennie-financial-calculus-1996.pdf) |
+| [@clark-replicating-portfolio-bounded-liquidity-2021] | Replicating Portfolios with Bounded Liquidity | 2021 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/clark-replicating-portfolio-bounded-liquidity-2021.pdf) |
+| [@clark-replicating-portfolio-constant-product-market-2020] | Replicating Portfolios in Constant Product Markets | 2020 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/clark-replicating-portfolio-constant-product-market-2020.pdf) |
+| [@clark-spanning-power-perpetuals-2023] | Spanning with Power Perpetuals | 2023 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/clark-spanning-power-perpetuals-2023.pdf) |
+| [@cole-volatility-alchemy-risk-2018] | Volatility and the Alchemy of Risk: Reflexivity in the Shadows of Black Monday 1987 | 2018 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/cole-volatility-alchemy-risk-2018.pdf) |
+| [@davidson-cboe-putwrite-indices-methodology-2025] |  | 2025 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/davidson-cboe-putwrite-indices-methodology-2025.pdf) |
+| [@derman-stochastic-implied-trees-1998] | Stochastic Implied Trees: Arbitrage Pricing with Stochastic Term and Strike Structure of Volatility | 1998 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/derman-stochastic-implied-trees-1998.pdf) |
+| [@desbrun-discrete-exterior-calculus-2004] | Discrete Exterior Calculus | 2004 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/desbrun-discrete-exterior-calculus-2004.pdf) |
+| [@forgy-financial-modelling-discrete-stochastic-calculus-2004] | Financial Modelling Using Discrete Stochastic Calculus | 2004 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/forgy-financial-modelling-discrete-stochastic-calculus-2004.pdf) |
+| [@gatheral-volatility-surface-2006] | The Volatility Surface: A Practitioner's Guide | 2006 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/gatheral-volatility-surface-2006.pdf) |
+| [@haug-complete-guide-option-pricing-formulas-2007] | The Complete Guide to Option Pricing Formulas (2nd Edition) | 2007 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/haug-complete-guide-option-pricing-formulas-2007.pdf) |
+| [@maymin-option-pricing-automated-2026] | Option Pricing on Automated Market Maker Tokens | 2026 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/maymin-option-pricing-automated-2026.pdf) |
+| [@maymin-pricing-options-amm-native-tokens-2026] | The Pricing of Options on AMM-Native Tokens: Theory and Evidence from Bittensor | 2026 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/maymin-pricing-options-amm-native-tokens-2026.pdf) |
+| [@murota-discrete-convex-analysis-2003] | Discrete Convex Analysis | 2003 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/murota-discrete-convex-analysis-2003.pdf) |
+| [@murota-discrete-convex-analysis-economics-game-theory-2022] | Discrete Convex Analysis: A Tool for Economics and Game Theory | 2022 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/murota-discrete-convex-analysis-economics-game-theory-2022.pdf) |
+| [@numoen-whitepaper-2022] | Numoen Whitepaper | 2022 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/numoen-whitepaper-2022.pdf) |
+| [@pap-pricing-range-accrual-nd] | Pricing Range Accrual Products (MSc Thesis) | nd | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/pap-pricing-range-accrual-nd.pdf) |
+| [@sinclair-volatility-trading-2008] | Volatility Trading | 2008 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/sinclair-volatility-trading-2008.pdf) |
+| [@yogo-demand-system-approach-2019] | A Demand System Approach to Asset Pricing | 2019 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/yogo-demand-system-approach-2019.pdf) |
+| [@yoo-discrete-time-financial-engineering-2017] | Discrete-Time Financial Engineering | 2017 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/yoo-discrete-time-financial-engineering-2017.pdf) |
+| [@zefram-bunni-v2-shapeshifting-amm-2024] | Bunni v2: Shapeshifting AMM | 2024 | [pdf](https://s3.hippius.com/cfmm-refs/topics/options/zefram-bunni-v2-shapeshifting-amm-2024.pdf) |
 
 ## Notes
 - notes/AMERICAN_SECURITES_CFMM.md

@@ -6,7 +6,7 @@ year: 1995
 provenance: {kind: unsourced}
 sha256: 802c73891c0959f42956592110f919910d533c810bf057ffd6aefd733db1adf9
 topics: [applications, econometrics]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/applications/shiller-aggregate-income-risks-hedging-1995.pdf
 ---
 
 ## Notes

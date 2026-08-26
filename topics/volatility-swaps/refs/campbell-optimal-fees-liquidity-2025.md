@@ -6,7 +6,7 @@ year: 2025
 provenance: {kind: arxiv, id: '2508.08152'}
 sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
 topics: [volatility-swaps]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
 ---
 
 ## Notes

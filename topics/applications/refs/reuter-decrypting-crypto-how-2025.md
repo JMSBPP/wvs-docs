@@ -7,7 +7,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: c35e106ee133972de3d4aac0c1826773076bce2f21821546ed7973257930b179
 topics: [applications, econometrics]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/applications/reuter-decrypting-crypto-how-2025.pdf
 ---
 
 ## Notes

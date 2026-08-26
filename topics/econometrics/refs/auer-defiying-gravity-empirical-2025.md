@@ -7,7 +7,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: 0a3acb9f68654a3b1b4a69ed183e9fff232a7843216becadb807926b5087a570
 topics: [applications, econometrics]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/econometrics/auer-defiying-gravity-empirical-2025.pdf
 ---
 
 ## Notes

@@ -6,7 +6,7 @@ year: 2007
 provenance: {kind: unsourced}
 sha256: 57d2be7783eeeb19c99ab164be76be0e48dd8ae995ff940bd6c58cb917b62757
 topics: [econometrics]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/econometrics/reiss-wolak-structural-econometric-modeling-rationales-2007.pdf
 ---
 
 ## Notes

@@ -6,7 +6,7 @@ year: 2024
 provenance: {kind: arxiv, id: '2307.13772'}
 sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
 topics: [applications, io]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/io/lehar-fragmentation-liquidity-provision-2024.pdf
 ---
 
 ## Notes

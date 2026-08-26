@@ -6,7 +6,7 @@ year: 2013
 provenance: {kind: unsourced}
 sha256: 32447fe50713389498889210d038594dc354fb63ef381643d147f5ec0cd3f66f
 topics: [mechanism-design]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/goeree-kushnir-geometric-approach-mechanism-design-2013.pdf
 ---
 
 ## Notes

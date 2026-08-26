@@ -6,7 +6,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: 2daad76d1b2dd921f4d789244d4cd6776fe345999d19b59650dabbb13dc89856
 topics: [applications, econometrics]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/applications/alexander-price-discovery-efficiency-uniswap-pools-2025.pdf
 ---
 
 ## Notes

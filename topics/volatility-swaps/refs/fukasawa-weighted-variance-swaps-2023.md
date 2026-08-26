@@ -6,7 +6,7 @@ year: 2023
 provenance: {kind: unsourced}
 sha256: 01aac3aa820ec7f23ed00a24d7046037f26201989322f99bf716ad0ff37f482c
 topics: [volatility-swaps]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/fukasawa-weighted-variance-swaps-2023.pdf
 ---
 
 ## Notes

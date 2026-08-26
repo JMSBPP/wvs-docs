@@ -6,7 +6,7 @@ year: 2024
 provenance: {kind: arxiv, id: '2403.03367'}
 sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
 topics: [volatility-swaps]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
 ---
 
 ## Notes

@@ -6,7 +6,7 @@ year: 2004
 provenance: {kind: unsourced}
 sha256: 23a4575b6c116f6774bdae5d66b0c6e68f5f6cc3265bb0a89cb4ed2a6144ae9b
 topics: [mechanism-design]
-pdf: ~
+pdf: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/strulovici-monotone-comparative-statics-geometric-2004.pdf
 ---
 
 ## Notes
