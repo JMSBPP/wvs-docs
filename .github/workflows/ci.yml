@@ -25,6 +25,7 @@ jobs:
         working-directory: shelf
       - run: $HOME/.local/bin/shelf manifest check --require
       - name: no binaries in git
+        if: always()
         run: |
           bad=$(git ls-files | grep -iE '\.pdf$' | grep -v '^shelf/test/fixtures/' || true)
           if [ -n "$bad" ]; then echo "$bad"; exit 1; fi
