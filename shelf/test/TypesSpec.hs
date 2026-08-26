@@ -8,6 +8,8 @@ import Test.Tasty.HUnit
 import qualified Data.Text as T
 import qualified Data.Aeson as A
 import qualified Data.Binary as B
+import Data.Binary.Get (ByteOffset)
+import qualified Data.ByteString.Lazy as BSL
 import Data.Either (isLeft, isRight)
 import Fixture
 import Shelf.Types
@@ -34,6 +36,12 @@ tests = testGroup "Types"
       assertBool "upper" (isLeft (mkSha256 (T.replicate 64 "A")))
   , testCase "year nd encodes as string" $ A.decode (A.encode NoDate) @?= Just NoDate
   , testCase "citekey Binary round-trip" $ B.decode (B.encode (ck "x-2020")) @?= ck "x-2020"
+  , testCase "Binary decode rejects invalid citekey" $
+      assertBool "rejected" $
+        isLeft
+          ( B.decodeOrFail (B.encode ("Hull_2020" :: T.Text))
+              :: Either (BSL.ByteString, ByteOffset, String) (BSL.ByteString, ByteOffset, Citekey)
+          )
   , testCase "remote-backed iff verified sha matches" $ do
       let src = Source (ck "x-2020") (sh 'b') 1 "t" [] (Year 2020) Unsourced [Topic "options"] [] Nothing
       isRemoteBacked src @?= False
