@@ -35,7 +35,7 @@ in the manifest; embeddings; a sweep of `$HOME` for PDFs the manifest doesn't kn
   `.superpowers/sdd/2026-08-26-cfmm-refs-phase2-remote-cleanup/task-0-report.md`): SigV4
   (`region=decentralized`, path-style) confirmed end-to-end, not just for ListBuckets — a
   signed HEAD on a freshly created bucket returned 200 with `Authorization: AWS4-HMAC-SHA256
-  Credential=hip_72847e631de2a26a06bc7e60/20260826/decentralized/s3/aws4_request,
+  Credential=hip_REDACTED/20260826/decentralized/s3/aws4_request,
   SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=...`. **CreateBucket**: plain
   `PUT` with no body → 200 (no `LocationConstraint` XML needed). **ACL**: both bucket-level
   `PUT ?acl` with `x-amz-acl: public-read` and per-object `x-amz-acl: public-read` on object
