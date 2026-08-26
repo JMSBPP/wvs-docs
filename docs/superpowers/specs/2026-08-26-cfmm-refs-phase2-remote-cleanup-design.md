@@ -31,17 +31,32 @@ in the manifest; embeddings; a sweep of `$HOME` for PDFs the manifest doesn't kn
 - `manifest/scan.yaml` is gitignored and currently holds only the 38 excluded rows; it is
   **not** part of the cleanup candidate set (§5).
 - `hippius:` appears 0 times in `sources.yaml` — the Phase-1 field never reached disk.
-- Hippius verified so far: SigV4 (`region=decentralized`, path-style) ListBuckets → 200,
-  zero buckets. **Unverified and load-bearing:** bucket create, ACL mode, unauthenticated GET,
-  DELETE bucket, read-after-write. Pricing ($0.003/GB/mo → ≈$0.025/yr) has not been checked
-  for a minimum charge or credit floor.
+- Hippius probe results (curl, 2026-08-26, full trace in
+  `.superpowers/sdd/2026-08-26-cfmm-refs-phase2-remote-cleanup/task-0-report.md`): SigV4
+  (`region=decentralized`, path-style) confirmed end-to-end, not just for ListBuckets — a
+  signed HEAD on a freshly created bucket returned 200 with `Authorization: AWS4-HMAC-SHA256
+  Credential=hip_72847e631de2a26a06bc7e60/20260826/decentralized/s3/aws4_request,
+  SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=...`. **CreateBucket**: plain
+  `PUT` with no body → 200 (no `LocationConstraint` XML needed). **ACL**: both bucket-level
+  `PUT ?acl` with `x-amz-acl: public-read` and per-object `x-amz-acl: public-read` on object
+  `PUT` → 200. **Unauthenticated GET → 200** (public-read confirmed; P2-2's URL scheme is no
+  longer provisional). **Read-after-write**: 3/3 rounds on a 5 MB object returned
+  sha256-identical content immediately after write, no staleness; ETag is quoted 32-hex
+  (MD5-shaped, S3-style). **Throughput**: GET ≈2.77–3.69 MB/s (mean ≈3.26 MB/s), PUT ≈1.75
+  MB/s — Task 6's time budget should assume ~2–3.5 MB/s. **DELETE bucket → 204**, and the
+  bucket is gone from a subsequent authenticated ListBuckets. **Pricing**
+  (`hippius.com/pricing`, WebFetch): $0.003/GB/mo, one-hour minimum charge
+  ($0.00000407268/GB for the first hour), continuous 6-second-block billing, monthly cycles in
+  credits (1 credit = $1); the page states no free-credit floor or minimum balance requirement,
+  and billing is cancel-anytime with no penalty. The console credits page itself is **pending
+  user** review.
 
 ## 3. Decisions
 
 | # | Decision | Rejected |
 |---|---|---|
 | P2-1 | Object key `topics/<topic>/<citekey>.pdf`; one object per (source, topic). | Primary-topic only; pointer objects. |
-| P2-2 | Bucket `cfmm-refs`, region `decentralized`, `https://s3.hippius.com`, path-style, **public-read (O-A = a, user reaffirmed after the named-titles warning)**. URL scheme `https://s3.hippius.com/cfmm-refs/<key>` is provisional until the probe (§8 step 1) confirms unauthenticated GET works. | — |
+| P2-2 | Bucket `cfmm-refs`, region `decentralized`, `https://s3.hippius.com`, path-style, **public-read (O-A = a, user reaffirmed after the named-titles warning)**. URL scheme `https://s3.hippius.com/cfmm-refs/<key>` is **confirmed**, not provisional: the 2026-08-26 curl probe (task-0-report.md) verified CreateBucket (plain `PUT`, no body), both bucket- and object-level `x-amz-acl: public-read`, and an unauthenticated GET → 200 on a public-read object. The public-read branch applies; the presigned-only fallback in the probe brief (Step 5) was not needed. | Presigned-only fallback (not triggered — public-read GET returned 200). |
 | P2-3 | Cleanup scope in this phase = `origin` paths of sources with provenance `arxiv` only (O-B = b; 54 sources), including git-tracked copies (via `git rm --cached` under `--allow-repo`). Unsourced sources' duplicates stay on disk until a second remote exists (`cleanup --include-unsourced` is refused unless `--i-accept-two-copies`). | Untracked only; skip cfmm-theory; `$HOME` sweep. |
 | P2-4 | S3 client = hand-rolled SigV4 on `crypton` + `http-client`/`http-client-tls` (no S3 library builds on GHC 9.10 in lts-24.56). | amazonka git pin. |
 | P2-5 | Verification = download-and-compare sha256 after every upload; `--verify=head` (ETag + length) for re-checks; `cleanup --execute` re-HEADs objects before deleting (§5). | Trust PUT ETag; trust the manifest. |
