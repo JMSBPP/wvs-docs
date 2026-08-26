@@ -16,7 +16,7 @@ import System.Directory (canonicalizePath, doesDirectoryExist, doesFileExist, li
 import System.Exit (ExitCode (..), exitWith)
 import System.FilePath (takeDirectory, (</>))
 import System.IO (hPutStrLn, stderr)
-import Shelf.Types (Topic (..))
+import Shelf.Types (Topic, mkTopic)
 
 -- | Every path the tooling writes, derived from the repo root. Nothing else in
 -- the package hard-codes a repo-relative path.
@@ -48,14 +48,15 @@ findRepo start = go =<< canonicalizePath start
         else let up = takeDirectory d in if up == d then pure Nothing else go up
 
 -- | Topics are the subdirectories of @topics/@; plain files there (README.md)
--- are not topics.
+-- are not topics, and neither is a directory whose name 'mkTopic' refuses —
+-- it could not be a remote key segment, so nothing downstream can address it.
 existingTopics :: RepoPaths -> IO [Topic]
 existingTopics rp = do
   there <- doesDirectoryExist (rpTopics rp)
   if not there then pure [] else do
     names <- sort <$> listDirectory (rpTopics rp)
     dirs <- filterM (doesDirectoryExist . (rpTopics rp </>)) names
-    pure (map (Topic . T.pack) dirs)
+    pure [t | d <- dirs, Right t <- [mkTopic (T.pack d)]]
 
 readIfExists :: FilePath -> IO (Maybe Text)
 readIfExists p = do

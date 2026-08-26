@@ -232,4 +232,22 @@ tests = testGroup "Shelf.Apply"
         refreshed @?= before
         m1 <- mtimes rp
         m1 @?= m0
+
+  , testCase "runIndex never invents a topic directory, so UnknownTopic still fires" $
+      withRepo $ \home rp sha -> do
+        -- A hand-edited manifest claiming a topic with no directory on disk.
+        -- If runIndex scaffolded a card for it, topics/invented/ would appear
+        -- and the next `manifest check` would accept the topic as known.
+        saveScan (rpScan rp) [mkRow sha "small-a-2020" ["options"]]
+        _ <- applyWith home rp
+        mf <- right <$> loadManifest (rpManifest rp)
+        saveManifest (rpManifest rp)
+          mf { mfSources = [s { srcTopics = srcTopics s <> [Topic "invented"] } | s <- mfSources mf] }
+        runIndex rp
+        assertBool "no topics/invented/ created" . not
+          =<< doesDirectoryExist (rpTopics rp </> "invented")
+        topics <- existingTopics rp
+        mf' <- right <$> loadManifest (rpManifest rp)
+        assertBool ("UnknownTopic still reported in " <> show (check topics mf'))
+          ((Err, UnknownTopic (ck (T.pack ckA)) (Topic "invented")) `elem` check topics mf')
   ]
