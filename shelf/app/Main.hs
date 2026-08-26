@@ -1,4 +1,52 @@
+-- | Argument parsing and dispatch only; every command body lives in
+-- "Shelf.Apply".
 module Main (main) where
 
+import Data.Text (Text)
+import qualified Data.Text as T
+import Options.Applicative
+import Shelf.Apply
+
+data Cmd
+  = Scan (Maybe FilePath)
+  | Apply
+  | Extract (Maybe Text)      -- ^ 'Nothing' is @--all@.
+  | Index
+  | ManifestCheck Bool        -- ^ @--require@.
+
+data Opts = Opts { optRepo :: Maybe FilePath, optCmd :: Cmd }
+
+repoOpt :: Parser (Maybe FilePath)
+repoOpt = optional (strOption
+  (long "repo" <> metavar "DIR" <> help "Shelf repo root (default: nearest ancestor with manifest/ or topics/)"))
+
+cmdP :: Parser Cmd
+cmdP = hsubparser
+  (  command "scan" (info (Scan <$> optional (strOption (long "root" <> metavar "DIR" <> help "Directory to walk (default: $HOME)")))
+       (progDesc "Walk for PDFs and merge proposals into manifest/scan.yaml"))
+  <> command "apply" (info (pure Apply)
+       (progDesc "Apply included scan rows: pdfs, text, cards, manifest, indexes"))
+  <> command "extract" (info (Extract <$> selP)
+       (progDesc "Re-extract text for one manifest source, or all of them"))
+  <> command "index" (info (pure Index)
+       (progDesc "Rebuild the BM25 index and re-render the topic indexes"))
+  <> command "manifest" (info (hsubparser (command "check" (info (ManifestCheck <$> requireP)
+       (progDesc "Validate manifest/sources.yaml against the topics on disk"))))
+       (progDesc "Manifest subcommands"))
+  )
+  where
+    selP = flag' Nothing (long "all" <> help "Every source in the manifest")
+       <|> (Just . T.pack <$> argument str (metavar "CITEKEY"))
+    requireP = switch (long "require" <> help "Fail if manifest/sources.yaml or topics/ is missing")
+
 main :: IO ()
-main = pure ()
+main = do
+  opts <- execParser (info (Opts <$> repoOpt <*> cmdP <**> helper)
+    (fullDesc <> progDesc "Manage the wvs-docs research shelf" <> header "shelf"))
+  rp <- resolveRepo (optRepo opts)
+  case optCmd opts of
+    Scan root -> runScan root rp
+    Apply -> runApply rp
+    Extract sel -> runExtract sel rp
+    Index -> runIndex rp
+    ManifestCheck require -> runManifestCheck require rp
