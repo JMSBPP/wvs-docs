@@ -11,18 +11,18 @@ Every PDF on the shelf is stored on Hippius S3 under a **topic-organised key**
 (`topics/<topic>/<citekey>.pdf`, one object per topic the source carries), verified by
 download, reachable at a stable URL recorded in the manifest and on cards; any clone can
 rebuild `pdfs/` with `shelf fetch`; and the duplicate PDF copies recorded as `origin` paths
-(**219 paths today, 183 still on disk**, ≈0.6 GB — not the "2.4k files" first estimated;
-the ~2.6k figure counted vendored/junk PDFs the manifest never included) are removed by a
-guarded, dry-run-by-default `shelf cleanup`, leaving `~/cfmm-refs/pdfs/` as the single local
-mirror.
+(**221 unique origin paths, 188 still on disk**) are removed by a guarded, dry-run-by-default
+`shelf cleanup`. In this phase cleanup is limited to arXiv-provenance sources (O-B): **73 files /
+0.104 GB**; the unsourced duplicates (≈0.63 GB) stay until a second remote exists. `~/cfmm-refs/pdfs/`
+remains the single local mirror.
 
 Non-goals: the DeepSeek plugin (Phase 3); deleting anything from `pdfs/`; touching PDFs not
 in the manifest; embeddings; a sweep of `$HOME` for PDFs the manifest doesn't know.
 
 ## 2. Measured facts (2026-08-26)
 
-- 163 sources; 51 multi-topic; Σ|topics| = **214 objects**, 737,056,462 B = **0.686 GB**
-  uploaded (0.574 GB unique). Topic histogram: volatility-swaps 54, applications 48,
+- 163 sources; 51 multi-topic; Σ|topics| = **214 objects**, 737,056,462 B = **0.737 GB** (0.686 GiB)
+  uploaded; Σ srcBytes = 601,299,232 B = 0.601 GB unique. Topic histogram: volatility-swaps 54, applications 48,
   econometrics 28, options 21, formal-methods 15, dgp 11, mechanism-design 8, io/discrete/convex
   7 each, control 4, type-driven 2, linear-algebra 1, banking 1.
 - Provenance: **54 arXiv, 109 unsourced**, 0 DOI/ISBN. Only the 54 have any non-Hippius
@@ -56,6 +56,7 @@ sources:
   - citekey: milionis-amm-arbitrage-fees-2024
     …
     remote:
+      endpoint: https://s3.hippius.com
       bucket: cfmm-refs
       objects:
         - topic: options
@@ -68,13 +69,15 @@ sources:
 
 Types: `newtype Topic` gains `mkTopic` (`^[a-z0-9]+(-[a-z0-9]+)*$`, since it becomes a key
 segment); `RemoteObject { roTopic :: Topic, roKey, roUrl, roEtag :: Text, roVerifiedSha256 ::
-Sha256, roVerifiedAt :: UTCTime }`; `Remote { rmBucket :: Text, rmObjects :: [RemoteObject] }`;
+Sha256, roVerifiedAt :: UTCTime }`; `Remote { rmEndpoint :: Text, rmBucket :: Text, rmObjects :: [RemoteObject] }` — the endpoint is stored in the
+manifest so cards, indexes and `check` never depend on the `HIPPIUS_ENDPOINT` env var (`roUrl` is rendered verbatim);
+`upsertObject` replaces an object by topic;
 `srcRemote :: Maybe Remote`. `HippiusRecord` is deleted. `shelf migrate` rewrites a v1 file to
 v2 (no-op on content since `hippius` never appeared) — the version bump exists so a Phase-1
 binary **fails loudly** on a v2 manifest instead of silently dropping `remote` on its next
 `saveManifest`.
 
-`check :: [Topic] -> Manifest -> [(Severity, Violation)]` with `data Severity = Warn | Err`.
+`check :: [Topic] -> Manifest -> [(Severity, Violation)]` (env-free; URL check is `roUrl == objectUrl rmEndpoint rmBucket roKey`) with `data Severity = Warn | Err`.
 `runManifestCheck` exits 1 on any `Err`; `--require-remote` promotes `Warn` to `Err` (used by
 `cleanup`, never by CI). New violations:
 - `Err`: `BadSchemaVersion`, `RemoteBadKey` (key ≠ `topics/<roTopic>/<ck>.pdf`, or `roUrl ≠
@@ -163,14 +166,16 @@ if the probe shows per-bucket ACL unsupported), `getObject key dest` (streams, r
 
 ## 6. `Shelf.Cleanup`
 
-Architecture: `gather :: RepoPaths -> RemoteConfig -> FilePath -> IO Facts` observes;
-`classify :: Facts -> Decision` is pure and is what the property tests generate against.
+Architecture: `gatherFacts` (IO) observes; `classify :: [FilePath] {-allowed repos-} -> Facts -> Decision` is pure
+and is what the property tests generate against; `Decision = Delete | GitRm top | Skip SkipReason` with a closed
+`SkipReason` type. Eight conjuncts (0–7) below.
 
 Candidates = `⋃ srcOrigin` over the manifest, resolved against `$HOME` (paths not under `$HOME`
 after resolution are `SKIP unresolvable-base`); non-existent paths skipped silently; pre-filter
 on `srcBytes` before hashing; any path containing a `.git` segment is refused.
 
-`Facts` per candidate, and the **DELETE** rule — all must hold, evaluated at execute time:
+`Facts` per candidate, and the **DELETE** rule — all eight must hold, re-evaluated per row at execute time
+(drift since the plan ⇒ the run aborts):
 0. not inside the invoking shelf checkout (`canonicalizePath` under `rpRoot`) **and**
    `(deviceID, fileID)` ≠ that of `pdfs/<ck>.pdf` — mirror protection by identity, never by
    remote-name heuristics;
@@ -188,14 +193,15 @@ on `srcBytes` before hashing; any path containing a `.git` segment is refused.
    memoised): not in a repo, or `ls-files --error-unmatch` ≠ 0 (untracked/ignored) ⇒ `DELETE`;
    tracked ⇒ `GIT-RM` only if toplevel ∈ canonicalised `--allow-repo` set **and** the path's
    status is clean **and** `git diff --cached --quiet` (whole index clean); otherwise `SKIP
-   tracked-in <repo>` / `SKIP repo-index-dirty`.
+   tracked-in <repo>` / `SKIP repo-index-dirty`. `GIT-RM` runs `git rm --literal-pathspecs --`, which
+   stages the deletion **and unlinks the file**.
 
 Output: `DELETE | GIT-RM <repo> | SKIP <reason>` per candidate, totals, repos needing a commit.
-`--execute` requires `--yes`; it recomputes every decision, reprints the table, and **aborts**
-if any decision changed since the last dry run (fresh run required). Log is write-ahead:
-append `{path, sha256, citekey, action, repo?, object_keys, status: pending}` → act → rewrite
-that entry `status: done` (append-only file, entries keyed by path+utc; `pending` entries on a
-crash are reported next run). Log committed. Batched `git rm --cached` per allowed repo.
+`--execute` requires `--yes`; it plans, then for each row re-gathers and re-classifies immediately
+before acting and **aborts the run** if the decision differs. Log is an append-only event log
+(`manifest/cleanup-log.yaml`, committed, paths `$HOME`-relative): `{key: <path>|<utc>, path, sha256,
+citekey, action, repo?, object_keys, status: pending}` → act → append `{key, status: done, at}`;
+last event per key wins; `pending` without `done` is reported on the next run. Batched `git rm --cached` per allowed repo.
 
 Tests: hedgehog over generated `Facts` — a `Facts` failing exactly one conjunct is never
 `DELETE`/`GIT-RM`; golden dry-run table over a temp tree (symlink, untracked dup, tracked dup
