@@ -40,6 +40,12 @@ data GitFacts
   | Tracked FilePath Bool Bool
   -- ^ Toplevel, path status clean, whole index clean.
   | UntrackedOrIgnored FilePath
+  | GitUnknown Text
+  -- ^ A probe did not answer: git is absent, or @rev-parse@ failed for a
+  -- reason other than \"not a git repository\", or one of @ls-files@,
+  -- @status@, @diff --cached@ or @remote get-url@ exited non-zero. The
+  -- classifier refuses on it, so a broken git can only cost a delete that was
+  -- allowed, never buy one that was not.
   deriving stock (Eq, Show)
 
 gitTop :: GitFacts -> Maybe FilePath
@@ -47,6 +53,7 @@ gitTop = \case
   NotInRepo -> Nothing
   Tracked top _ _ -> Just top
   UntrackedOrIgnored top -> Just top
+  GitUnknown _ -> Nothing
 
 -- | 'fSha' and 'fSource' are 'Just' only when the re-hashed file's digest was
 -- found in the manifest, so conjunct 2 is a look at two 'Maybe's rather than
@@ -54,6 +61,7 @@ gitTop = \case
 data Facts = Facts
   { fPath :: FilePath
   , fInShelfCheckout :: Bool
+  , fUnderHome :: Bool
   , fSameInodeAsMirror :: Bool
   , fIsRegular :: Bool
   , fIsSymlink :: Bool
@@ -85,6 +93,7 @@ data SkipReason
   | TrackedIn FilePath
   | RepoIndexDirty
   | PathDirty
+  | GitProbeFailed Text
   | GitInternal
   | UnresolvableBase
   deriving stock (Eq, Show)
@@ -103,6 +112,7 @@ classify :: [FilePath] -> Facts -> Decision
 classify allowed f
   | fInShelfCheckout f = Skip ShelfCheckout
   | fSameInodeAsMirror f = Skip MirrorInode
+  | not (fUnderHome f) = Skip UnresolvableBase
   | not (fIsRegular f) || fIsSymlink f = Skip NotRegular
   | Nothing <- fSha f = Skip ShaUnknown
   | Nothing <- fSource f = Skip ShaUnknown
@@ -112,6 +122,7 @@ classify allowed f
   | fUnderOtherShelf f = Skip OtherShelf
   | not (fProvenanceAllowed f) = Skip ProvenanceExcluded
   | otherwise = case fGit f of
+      GitUnknown why -> Skip (GitProbeFailed why)
       NotInRepo -> Delete
       UntrackedOrIgnored _ -> Delete
       Tracked top clean indexClean
@@ -140,5 +151,6 @@ renderSkipReason = \case
   TrackedIn repo -> "tracked-in " <> T.pack repo
   RepoIndexDirty -> "repo-index-dirty"
   PathDirty -> "path-dirty"
+  GitProbeFailed why -> "git-probe-failed " <> why
   GitInternal -> "git-internal"
   UnresolvableBase -> "unresolvable-base"

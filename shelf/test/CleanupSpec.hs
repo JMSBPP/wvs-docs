@@ -8,6 +8,7 @@ import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as BL
 import Data.List (sortOn)
+import qualified Data.Map.Strict as M
 import Data.Maybe (isJust)
 import qualified Data.Set as S
 import Data.Text (Text)
@@ -18,7 +19,7 @@ import System.Directory
   (canonicalizePath, createDirectoryIfMissing, doesFileExist, removeFile)
 import System.Exit (ExitCode (..))
 import System.Environment (getEnvironment)
-import System.FilePath (makeRelative, takeDirectory, (</>))
+import System.FilePath (makeRelative, takeDirectory, takeFileName, (</>))
 import System.IO.Temp (withSystemTempDirectory)
 import System.Posix.Files (createLink, createSymbolicLink)
 import System.Process.Typed (proc, readProcess, setEnv)
@@ -33,6 +34,7 @@ import Fixture (ck, right, sh)
 import Shelf.Apply.Paths (RepoPaths (..), repoPaths)
 import Shelf.Cleanup
 import Shelf.Cleanup.Facts
+import Shelf.Cleanup.Git (RepoRoot (..), batchProbeWith, repoTopWith)
 import Shelf.Cleanup.Log
 import Shelf.Manifest (Manifest (..), schemaVersion)
 import Shelf.Remote.Http (sha256OfFile)
@@ -68,34 +70,44 @@ allowedRepos = ["/r/one", "/r/two"]
 -- | Every conjunct satisfied, git says untracked: the row that must DELETE.
 passing :: Facts
 passing = Facts
-  { fPath = "/h/papers/a.pdf", fInShelfCheckout = False, fSameInodeAsMirror = False
+  { fPath = "/h/papers/a.pdf", fInShelfCheckout = False, fUnderHome = True
+  , fSameInodeAsMirror = False
   , fIsRegular = True, fIsSymlink = False, fSha = Just (sh 'a'), fSource = Just srcA
   , fRemoteBacked = True, fLive = NotRequired, fMirrorMatches = True
   , fUnderOtherShelf = False, fProvenanceAllowed = True
   , fGit = UntrackedOrIgnored "/r/one" }
 
+-- | Every field reaches both of its values and every constructor is
+-- generated, but each field is biased 9:1 towards the value that passes its
+-- conjunct — an unbiased generator would make an all-passing row so rare that
+-- the acting branches would never be sampled at all (see the 'cover' below).
 genFacts :: Gen Facts
 genFacts = do
-  inShelf <- Gen.bool; inode <- Gen.bool; regular <- Gen.bool; symlink <- Gen.bool
-  hash <- Gen.maybe (pure (sh 'a')); source <- Gen.maybe (pure srcA)
-  backed <- Gen.bool
-  live <- Gen.element [NotRequired, Verified, Failed "boom"]
-  mirror <- Gen.bool; other <- Gen.bool; prov <- Gen.bool
-  gitFacts <- Gen.choice
-    [ pure NotInRepo
-    , Tracked <$> genTop <*> Gen.bool <*> Gen.bool
-    , UntrackedOrIgnored <$> genTop ]
+  inShelf <- fails; inode <- fails; regular <- passes; symlink <- fails
+  hash <- Gen.frequency [(9, pure (Just (sh 'a'))), (1, pure Nothing)]
+  source <- Gen.frequency [(9, pure (Just srcA)), (1, pure Nothing)]
+  backed <- passes
+  live <- Gen.frequency [(9, Gen.element [NotRequired, Verified]), (1, pure (Failed "boom"))]
+  mirror <- passes; other <- fails; prov <- passes
+  gitFacts <- Gen.frequency
+    [ (5, UntrackedOrIgnored <$> genTop)
+    , (3, Tracked <$> genTop <*> passes <*> passes)
+    , (1, pure NotInRepo)
+    , (1, GitUnknown <$> Gen.element ["ls-files exited 128", "git absent"]) ]
   pure passing
     { fInShelfCheckout = inShelf, fSameInodeAsMirror = inode, fIsRegular = regular
     , fIsSymlink = symlink, fSha = hash, fSource = source, fRemoteBacked = backed
     , fLive = live, fMirrorMatches = mirror, fUnderOtherShelf = other
     , fProvenanceAllowed = prov, fGit = gitFacts }
-  where genTop = Gen.element ["/r/one", "/r/two", "/r/three"]
+  where
+    passes = Gen.frequency [(9, pure True), (1, pure False)]
+    fails = Gen.frequency [(9, pure False), (1, pure True)]
+    genTop = Gen.element ["/r/one", "/r/two", "/r/three"]
 
 -- | The eight conjuncts of spec §6, restated independently of 'classify'.
 conjuncts :: [FilePath] -> Facts -> [Bool]
 conjuncts allowed f =
-  [ not (fInShelfCheckout f) && not (fSameInodeAsMirror f)
+  [ not (fInShelfCheckout f) && not (fSameInodeAsMirror f) && fUnderHome f
   , fIsRegular f && not (fIsSymlink f)
   , isJust (fSha f) && isJust (fSource f)
   , fRemoteBacked f && liveOk (fLive f)
@@ -108,6 +120,7 @@ conjuncts allowed f =
     gitOk = \case
       NotInRepo -> True
       UntrackedOrIgnored _ -> True
+      GitUnknown _ -> False
       Tracked top clean indexClean -> top `elem` allowed && clean && indexClean
 
 -- ------------------------------------------------------------- git helpers
@@ -226,15 +239,21 @@ tests = testGroup "Cleanup"
   [ testGroup "classify"
     [ testProperty "an action is taken exactly when all eight conjuncts hold" $ property $ do
         f <- forAll genFacts
-        and (conjuncts allowedRepos f) === isAction (classify allowedRepos f)
+        let decision = classify allowedRepos f
+        cover 5 "deletes" (decision == Delete)
+        cover 2 "git-rms" (case decision of GitRm _ -> True; _ -> False)
+        cover 20 "skips" (not (isAction decision))
+        and (conjuncts allowedRepos f) === isAction decision
     , testProperty "the git conjunct decides the shape of the action" $ property $ do
         g <- forAll (Gen.choice
           [ pure NotInRepo
           , Tracked <$> Gen.element ["/r/one", "/r/three"] <*> Gen.bool <*> Gen.bool
-          , UntrackedOrIgnored <$> Gen.element ["/r/one", "/r/three"] ])
+          , UntrackedOrIgnored <$> Gen.element ["/r/one", "/r/three"]
+          , GitUnknown <$> Gen.element ["boom", "git absent"] ])
         let expected = case g of
               NotInRepo -> Delete
               UntrackedOrIgnored _ -> Delete
+              GitUnknown why -> Skip (GitProbeFailed why)
               Tracked top clean indexClean
                 | top `notElem` allowedRepos -> Skip (TrackedIn top)
                 | not indexClean -> Skip RepoIndexDirty
@@ -252,6 +271,7 @@ tests = testGroup "Cleanup"
       | (name, f, reason) <-
         [ ("0 inside the shelf checkout", passing { fInShelfCheckout = True }, ShelfCheckout)
         , ("0 same inode as the mirror", passing { fSameInodeAsMirror = True }, MirrorInode)
+        , ("0 outside $HOME once canonical", passing { fUnderHome = False }, UnresolvableBase)
         , ("1 not a regular file", passing { fIsRegular = False }, NotRegular)
         , ("1 a symlink", passing { fIsSymlink = True }, NotRegular)
         , ("2 hash not in the manifest", passing { fSha = Nothing }, ShaUnknown)
@@ -264,16 +284,21 @@ tests = testGroup "Cleanup"
         , ("7 tracked in a repo not allowed", passing { fGit = Tracked "/r/three" True True }, TrackedIn "/r/three")
         , ("7 repo index dirty", passing { fGit = Tracked "/r/one" True False }, RepoIndexDirty)
         , ("7 path dirty", passing { fGit = Tracked "/r/one" False True }, PathDirty)
+        , ("7 the git probe did not answer", passing { fGit = GitUnknown "ls-files exited 128" }
+          , GitProbeFailed "ls-files exited 128")
         ] ]
     ]
   , testGroup "candidates"
     [ testCase "origins resolve against home, dedup, and refuse .git and escapes" $ do
         let s1 = mkSrc "alpha-2020" (sh 'a') 9 (ArXiv "1") ["papers/a.pdf", "papers/a.pdf"]
             s2 = mkSrc "bravo-2020" (sh 'b') 9 (ArXiv "2")
-              ["/elsewhere/b.pdf", ".git/modules/x/b.pdf", "/home/u/papers/b.pdf"]
+              [ "/elsewhere/b.pdf", ".git/modules/x/b.pdf", "../outside.pdf"
+              , "papers/./b.pdf", "/home/u/papers/b.pdf" ]
             (keep, skip) = candidates (Manifest schemaVersion [s1, s2]) "/home/u"
         map fst keep @?= ["/home/u/papers/a.pdf", "/home/u/papers/b.pdf"]
-        skip @?= [("/elsewhere/b.pdf", UnresolvableBase), ("/home/u/.git/modules/x/b.pdf", GitInternal)]
+        skip @?= [ ("/elsewhere/b.pdf", UnresolvableBase)
+                 , ("/home/u/.git/modules/x/b.pdf", GitInternal)
+                 , ("/home/outside.pdf", UnresolvableBase) ]
     ]
   , goldenVsString "dry-run table over the spec's eight cases"
       "test/fixtures/cleanup-plan.golden" $
@@ -333,6 +358,63 @@ tests = testGroup "Cleanup"
         length all4 @?= 3
         removeFile logPath
         readPending logPath >>= \p -> length p @?= 0
+  , testCase "a git that is not on PATH refuses instead of deleting" $
+      withSystemTempDirectory "shelf-nogit" $ \tmp -> do
+        root <- canonicalizePath tmp
+        createDirectoryIfMissing True (root </> "emptybin")
+        initRepo (root </> "repo")
+        let candidate = root </> "repo" </> "a.pdf"
+            blind = [("PATH", root </> "emptybin")]
+        _ <- place candidate "a"
+        repoTopWith blind (root </> "repo") >>= \case
+          RepoUnknown _ -> pure ()
+          found -> assertFailure ("expected RepoUnknown, got " <> show found)
+        probed <- batchProbeWith blind (root </> "repo") [candidate]
+        case M.lookup candidate probed of
+          Just (GitUnknown why) ->
+            classify [root </> "repo"] passing { fGit = GitUnknown why } @?= Skip (GitProbeFailed why)
+          found -> assertFailure ("expected GitUnknown, got " <> show found)
+  , testCase "a repository whose index will not parse refuses its candidates" $
+      withSystemTempDirectory "shelf-badindex" $ \tmp -> do
+        root <- canonicalizePath tmp
+        (rp, manifest, allowed) <- setupExec root
+        -- Read-only probes tolerate a held index.lock, so the deterministic
+        -- way to make them fail is an index git cannot parse.
+        BS.writeFile (root </> "repo" </> ".git" </> "index") "garbage"
+        plan <- planCleanup rp root manifest Nothing defaultProvSet allowed False
+        let decisions = [(takeFileName (fPath f), d) | (f, d) <- plan]
+        lookup "gone.pdf" decisions @?= Just Delete
+        case lookup "tracked.pdf" decisions of
+          Just (Skip (GitProbeFailed _)) -> pure ()
+          found -> assertFailure ("expected a git-probe-failed skip, got " <> show found)
+  , testCase "a git rm that fails ends the run at 1 with the pending event standing" $
+      withSystemTempDirectory "shelf-lock" $ \tmp -> do
+        root <- canonicalizePath tmp
+        (rp, manifest, allowed) <- setupExec root
+        plan <- planCleanup rp root manifest Nothing defaultProvSet allowed False
+        BS.writeFile (root </> "repo" </> ".git" </> "index.lock") ""
+        code <- executeCleanup rp root
+          (gatherFacts rp manifest Nothing defaultProvSet False) allowed
+          [row | row@(_, GitRm _) <- plan]
+        code @?= ExitFailure 1
+        survived <- doesFileExist (root </> "repo" </> "tracked.pdf")
+        survived @?= True
+        events <- readEvents (cleanupLogPath rp)
+        map leStatus events @?= ["pending"]
+        readPending (cleanupLogPath rp) >>= \p -> map lePath p @?= ["repo/tracked.pdf"]
+  , testCase "a home reached through a symlink resolves to the same tree" $
+      withSystemTempDirectory "shelf-symhome" $ \tmp -> do
+        outer <- canonicalizePath tmp
+        let realHome = outer </> "real"
+            linkHome = outer </> "link"
+        createDirectoryIfMissing True realHome
+        createSymbolicLink realHome linkHome
+        (_, manifest, allowed) <- setupExec realHome
+        plan <- planCleanup (repoPaths (linkHome </> "cfmm-refs")) linkHome
+          manifest Nothing defaultProvSet allowed False
+        map (fPath . fst) plan @?=
+          [realHome </> "loose" </> "gone.pdf", realHome </> "repo" </> "tracked.pdf"]
+        map snd plan @?= [Delete, GitRm (realHome </> "repo")]
   , testCase "homeRelative strips the home prefix and leaves anything else alone" $ do
       homeRelative "/home/u" "/home/u/papers/a.pdf" @?= "papers/a.pdf"
       homeRelative "/home/u" "/srv/a.pdf" @?= "/srv/a.pdf"

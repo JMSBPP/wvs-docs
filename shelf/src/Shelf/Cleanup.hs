@@ -5,32 +5,43 @@
 -- them, 'planCleanup' does that for all of them with the git probes batched
 -- per repository, and 'executeCleanup' acts on a plan.
 --
--- Two invariants shape 'executeCleanup'. Every row is re-gathered and
+-- Three invariants shape 'executeCleanup'. Every row is re-gathered and
 -- re-classified immediately before it is acted on, and a decision that has
 -- drifted since the plan aborts the run rather than acting on a stale view of
--- the disk. And every action is written to the log as @pending@ before it
--- happens and @done@ after, so an interrupted run names the file it was in
--- the middle of instead of leaving it to be inferred.
+-- the disk. Every action is written to the log as @pending@ before it happens
+-- and @done@ after, so an interrupted run names the file it was in the middle
+-- of instead of leaving it to be inferred. And an action that throws ends the
+-- run at exit 1 with its @pending@ event left standing — the log is the
+-- evidence of what was in flight, so it is never tidied away.
 --
 -- Nothing is memoised across the plan/execute boundary on purpose: a cached
 -- mirror digest would be exactly the observation the drift check exists to
 -- repeat.
+--
+-- Every path is made canonical before it is judged: @$HOME@ reached through a
+-- symlink, an intermediate symlinked directory and a @..@ in a recorded
+-- origin must all resolve to the same string, or the containment tests that
+-- conjunct 0 rests on could be walked around. Only the last component is left
+-- alone — resolving it would turn a symlink into its target and lose
+-- conjunct 1.
 module Shelf.Cleanup
   ( ProvSet
   , defaultProvSet
   , provenanceKind
   , cleanupLogPath
+  , lexicalNormalise
   , candidates
   , gatherFacts
   , planCleanup
   , executeCleanup
   ) where
 
+import Control.Exception (SomeException, try)
 import Control.Monad (filterM)
+import Data.Either (fromRight)
 import Data.List (find, isPrefixOf)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
-import Data.Either (fromRight)
 import Data.Maybe (fromMaybe, isJust)
 import Data.Set (Set)
 import qualified Data.Set as S
@@ -38,9 +49,10 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Time (getCurrentTime)
 import Data.Time.Format.ISO8601 (iso8601Show)
-import System.Directory (canonicalizePath, removeFile)
+import System.Directory (canonicalizePath, getHomeDirectory, removeFile)
 import System.Exit (ExitCode (..))
-import System.FilePath (isAbsolute, normalise, splitDirectories, takeDirectory, (</>))
+import System.FilePath
+  ( isAbsolute, joinPath, normalise, splitDirectories, takeDirectory, takeFileName, (</>) )
 import System.IO (hPutStrLn, stderr)
 import System.IO.Error (tryIOError)
 import System.Posix.Files
@@ -49,7 +61,7 @@ import System.Posix.Files
 
 import Shelf.Apply.Paths (RepoPaths (..))
 import Shelf.Cleanup.Facts
-import Shelf.Cleanup.Git (batchProbe, gitRm, isShelfRemote, repoTop)
+import Shelf.Cleanup.Git (RepoRoot (..), batchProbe, gitRm, isShelfRemote, repoTop)
 import Shelf.Cleanup.Log
 import Shelf.Manifest (Manifest (..))
 import Shelf.Remote (headObject, renderRemoteError, sha256OfFile)
@@ -74,6 +86,25 @@ provenanceKind = \case
 cleanupLogPath :: RepoPaths -> FilePath
 cleanupLogPath rp = takeDirectory (rpManifest rp) </> "cleanup-log.yaml"
 
+-- | Collapse @.@ and @..@ lexically. 'System.FilePath.normalise' leaves @..@
+-- in place, so without this a recorded origin of @..\/..\/etc\/passwd@ would
+-- pass a containment test on @$HOME@ that it has no business passing. This is
+-- the pure half of the defence; 'planCleanup' repeats it on the canonical
+-- forms once the symlinks are resolved.
+lexicalNormalise :: FilePath -> FilePath
+lexicalNormalise p = joinPath (reverse (foldl step [] (splitDirectories (normalise p))))
+  where
+    step acc "." = acc
+    step acc ".." = case acc of
+      (x : rest) | x /= ".." && x /= "/" -> rest
+      _ -> ".." : acc
+    step acc seg = seg : acc
+
+-- | Is @p@ inside @base@? Both are compared segment-wise, so @\/home\/us@ is
+-- not read as a prefix of @\/home\/user@.
+under :: FilePath -> FilePath -> Bool
+under base p = splitDirectories base `isPrefixOf` splitDirectories p
+
 -- | Every origin the manifest remembers, resolved against @home@ and
 -- deduplicated by path — an origin recorded twice, or shared by two sources,
 -- is one candidate. The second component is what was refused before any file
@@ -86,31 +117,49 @@ candidates mf home = (reverse keeps, reverse skips)
   where
     (_, keeps, skips) = foldl step (S.empty, [], []) resolved
     resolved = [(resolve o, s) | s <- mfSources mf, o <- srcOrigin s]
-    resolve o = normalise (if isAbsolute o then o else home </> o)
+    resolve o = lexicalNormalise (if isAbsolute o then o else home </> o)
     step acc@(seen, ks, ss) (p, s)
       | p `S.member` seen = acc
       | ".git" `elem` splitDirectories p = (S.insert p seen, ks, (p, GitInternal) : ss)
-      | not (splitDirectories home `isPrefixOf` splitDirectories p) =
-          (S.insert p seen, ks, (p, UnresolvableBase) : ss)
+      | not (under (lexicalNormalise home) p) = (S.insert p seen, ks, (p, UnresolvableBase) : ss)
       | otherwise = (S.insert p seen, (p, s) : ks, ss)
 
 -- | Observe one candidate, running its git probe on its own. 'planCleanup'
 -- batches those probes per repository instead; this is the shape
 -- 'executeCleanup' needs, where a single row is re-observed in isolation.
+--
+-- @fUnderHome@ is a fact about a path /relative to a home/, and this function
+-- is not told one, so it answers against the process's @$HOME@ — right for
+-- the CLI, which runs where its manifest's origins were recorded.
+-- 'executeCleanup' re-derives that one field against the home it was given,
+-- so a caller working over a tree elsewhere is never judged against the
+-- wrong base.
 gatherFacts :: RepoPaths -> Manifest -> Maybe RemoteConfig -> ProvSet -> Bool -> FilePath -> Source -> IO Facts
-gatherFacts rp mf cfg provs live path src = do
+gatherFacts rp mf cfg provs live rawPath src = do
+  home <- getHomeDirectory
+  path <- canonicalCandidate rawPath
   git <- repoTop (takeDirectory path) >>= \case
-    Nothing -> pure NotInRepo
-    Just top -> M.findWithDefault (UntrackedOrIgnored top) path <$> batchProbe top [path]
-  factsWith rp mf cfg provs live git path src
+    NoRepo -> pure NotInRepo
+    RepoUnknown why -> pure (GitUnknown why)
+    RepoRoot top -> M.findWithDefault (UntrackedOrIgnored top) path <$> batchProbe top [path]
+  factsWith rp home mf cfg provs live git path src
+
+-- | The directory canonicalised, the final component left as written. The
+-- whole point of conjunct 1 is to tell a symlink from a regular file, which a
+-- full 'canonicalizePath' would erase.
+canonicalCandidate :: FilePath -> IO FilePath
+canonicalCandidate p = do
+  dir <- canonicalOrSelf (takeDirectory p)
+  pure (dir </> takeFileName p)
 
 -- | The observation itself, given a git verdict someone else obtained. The
 -- authoritative source is the one whose digest the file actually has, not the
 -- one whose origin list named it: a stale origin pointing at a different
 -- paper must be judged as that other paper, or not at all.
-factsWith :: RepoPaths -> Manifest -> Maybe RemoteConfig -> ProvSet -> Bool -> GitFacts -> FilePath -> Source -> IO Facts
-factsWith rp mf cfg provs live git path src = do
+factsWith :: RepoPaths -> FilePath -> Manifest -> Maybe RemoteConfig -> ProvSet -> Bool -> GitFacts -> FilePath -> Source -> IO Facts
+factsWith rp home mf cfg provs live git path src = do
   root <- canonicalOrSelf (rpRoot rp)
+  canonHome <- canonicalOrSelf home
   canon <- canonicalOrSelf path
   link <- statOf getSymbolicLinkStatus path
   self <- statOf getFileStatus path
@@ -126,11 +175,12 @@ factsWith rp mf cfg provs live git path src = do
       mirror = rpPdfs rp </> T.unpack (citekeyText (srcCitekey subject)) <> ".pdf"
   mirrorStat <- statOf getFileStatus mirror
   mirrorHash <- maybe (pure Nothing) (const (Just <$> sha256OfFile mirror)) mirrorStat
-  otherShelf <- maybe (pure False) isShelfRemote (gitTop git)
+  (otherShelf, git') <- shelfRemote git
   liveness <- liveCheck live cfg subject
   pure Facts
     { fPath = path
-    , fInShelfCheckout = splitDirectories root `isPrefixOf` splitDirectories canon
+    , fInShelfCheckout = under root canon
+    , fUnderHome = under canonHome path && under canonHome canon
     , fSameInodeAsMirror = sameFile self mirrorStat
     , fIsRegular = regular
     , fIsSymlink = symlink
@@ -141,8 +191,20 @@ factsWith rp mf cfg provs live git path src = do
     , fMirrorMatches = mirrorHash == Just (srcSha256 subject)
     , fUnderOtherShelf = otherShelf
     , fProvenanceAllowed = provenanceKind (srcProvenance subject) `S.member` provs
-    , fGit = git
+    , fGit = git'
     }
+
+-- | Conjunct 5, and what a failure to answer it does. A remote lookup that
+-- errors is reported through 'GitUnknown' rather than through
+-- 'fUnderOtherShelf': the row must be refused either way, and \"the git probe
+-- failed\" is the true reason where \"this is another shelf checkout\" would
+-- be a guess.
+shelfRemote :: GitFacts -> IO (Bool, GitFacts)
+shelfRemote git = case gitTop git of
+  Nothing -> pure (False, git)
+  Just top -> isShelfRemote top >>= \case
+    Left why -> pure (False, GitUnknown why)
+    Right hit -> pure (hit, git)
 
 -- | Conjunct 0's second half: the mirror reached by a second name — a hard
 -- link, a bind mount — is the mirror, whatever the manifest calls the path.
@@ -172,15 +234,18 @@ liveCheck True (Just cfg) s = go (maybe [] rmObjects (srcRemote s))
 planCleanup :: RepoPaths -> FilePath -> Manifest -> Maybe RemoteConfig -> ProvSet -> [FilePath] -> Bool -> IO [(Facts, Decision)]
 planCleanup rp home mf cfg provs allowed live = do
   let (wanted, _) = candidates mf home
-  present <- filterM (fmap isJust . statOf getSymbolicLinkStatus . fst) wanted
+  existing <- filterM (fmap isJust . statOf getSymbolicLinkStatus . fst) wanted
+  present <- mapM (\(p, s) -> do { c <- canonicalCandidate p; pure (c, s) }) existing
   tops <- mapM (\(p, _) -> (,) p <$> repoTop (takeDirectory p)) present
   probes <- M.unions <$> mapM (uncurry batchProbe) (M.toList (groupTops tops))
+  let broken = M.fromList [(p, GitUnknown why) | (p, RepoUnknown why) <- tops]
+      verdict p = M.findWithDefault NotInRepo p (M.union broken probes)
   canonical <- mapM canonicalOrSelf allowed
-  rows <- mapM (\(p, s) -> factsWith rp mf cfg provs live (M.findWithDefault NotInRepo p probes) p s) present
+  rows <- mapM (\(p, s) -> factsWith rp home mf cfg provs live (verdict p) p s) present
   pure [(f, classify canonical f) | f <- rows]
 
-groupTops :: [(FilePath, Maybe FilePath)] -> Map FilePath [FilePath]
-groupTops tops = M.fromListWith (flip (<>)) [(top, [p]) | (p, Just top) <- tops]
+groupTops :: [(FilePath, RepoRoot)] -> Map FilePath [FilePath]
+groupTops tops = M.fromListWith (flip (<>)) [(top, [p]) | (p, RepoRoot top) <- tops]
 
 -- | Act on a plan. @regather@ is 'gatherFacts' partially applied by the
 -- caller; taking it as an argument is what lets a test drive drift. Deletes
@@ -193,23 +258,37 @@ executeCleanup rp home regather allowed plan = do
   go canonical [] [row | row@(_, d) <- plan, isAction d]
   where
     logPath = cleanupLogPath rp
-    go _ staged [] = flush staged >> pure ExitSuccess
+    go _ staged [] = flush (M.toList (M.fromListWith (flip (<>)) [(top, [row]) | (top, row) <- reverse staged]))
     go canonical staged ((f, d) : rest) = case fSource f of
       Nothing -> drift f d (Skip ShaUnknown)
       Just src -> do
-        f' <- regather (fPath f) src
+        f' <- rehome =<< regather (fPath f) src
         let d' = classify canonical f'
         case (d' == d, fSha f', fSource f') of
           (True, Just hash, Just subject) -> do
             event <- pending home f' hash subject d
             appendEvent logPath event
             case d of
-              Delete -> removeFile (fPath f') >> markDone event >> go canonical staged rest
+              Delete -> attempt (removeFile (fPath f'))
+                (markDone event >> go canonical staged rest)
               GitRm top -> go canonical ((top, (fPath f', event)) : staged) rest
               Skip _ -> go canonical staged rest
           _ -> drift f d d'
-    flush staged = mapM_ batch (M.toList (M.fromListWith (flip (<>)) [(top, [row]) | (top, row) <- reverse staged]))
-    batch (top, rows) = gitRm top (map fst rows) >> mapM_ (markDone . snd) rows
+    -- The home a row is judged against is this run's, not the regatherer's.
+    rehome f = do
+      canonHome <- canonicalOrSelf home
+      canon <- canonicalOrSelf (fPath f)
+      pure f { fUnderHome = under canonHome (fPath f) && under canonHome canon }
+    flush [] = pure ExitSuccess
+    flush ((top, rows) : rest) = attempt (gitRm top (map fst rows))
+      (mapM_ (markDone . snd) rows >> flush rest)
+    -- A failed action ends the run: the pending event stays behind as the
+    -- record of what was in flight, and the next run reports it.
+    attempt action continue = try action >>= \case
+      Left e -> do
+        hPutStrLn stderr ("cleanup failed: " <> show (e :: SomeException) <> "; the pending log entry stands")
+        pure (ExitFailure 1)
+      Right () -> continue
     markDone event = do
       now <- getCurrentTime
       appendEvent logPath event { leStatus = "done", leAt = now }
