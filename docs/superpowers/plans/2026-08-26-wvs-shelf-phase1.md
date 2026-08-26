@@ -1,6 +1,7 @@
 # wvs-shelf Phase 1 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **Rename (2026-08-26):** the repository `wvs-docs` referred to throughout is now `JMSBPP/cfmm-refs` (local `~/cfmm-refs`). Task 11 (cfmm-theory submodule) was cancelled — cfmm-theory is a local-only directory of repos, not a consumer.
 
 **Goal:** Turn `~/wvs-docs` into the topic-tree CFMM research shelf with a Haskell `shelf` CLI (`scan|apply|extract|index|manifest check`), the local corpus ingested into `manifest/sources.yaml` + `text/` + ref cards, and `cfmm-theory` consuming it as a submodule.
 

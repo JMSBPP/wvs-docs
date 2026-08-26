@@ -1,4 +1,5 @@
 # wvs-docs → CFMM research shelf + DeepSeek plugin — design
+> **Rename (2026-08-26):** the repository `wvs-docs` referred to throughout is now `JMSBPP/cfmm-refs` (local `~/cfmm-refs`). Task 11 (cfmm-theory submodule) was cancelled — cfmm-theory is a local-only directory of repos, not a consumer.
 
 Date: 2026-08-26. Status: approved in conversation; revised after two-reviewer
 pass (Reality Checker + Backend Architect). Open decisions in §11 were resolved 2026-08-26: O1 = (a) history rewrite; O2 = account created, credentials live in `~/.config/hippius/env` (never in git).

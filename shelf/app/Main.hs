@@ -46,7 +46,7 @@ cmdP = hsubparser
 main :: IO ()
 main = do
   opts <- execParser (info (Opts <$> repoOpt <*> cmdP <**> helper)
-    (fullDesc <> progDesc "Manage the wvs-docs research shelf" <> header "shelf"))
+    (fullDesc <> progDesc "Manage the cfmm-refs research shelf" <> header "shelf"))
   rp <- resolveRepo (optRepo opts)
   case optCmd opts of
     Scan root -> runScan root rp

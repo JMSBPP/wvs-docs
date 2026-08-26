@@ -59,7 +59,7 @@ data ScanConfig = ScanConfig { scRoot :: FilePath, scIncludeRoots :: [FilePath],
 defaultConfig :: FilePath -> ScanConfig
 defaultConfig home = ScanConfig home roots excludes
   where
-    roots = [ "wvs-docs", "cfmm/cfmm-theory", "cfmms-playground", "apps/d2p", "learning/convex-analysis"
+    roots = [ "cfmm-refs", "cfmm/cfmm-theory", "cfmms-playground", "apps/d2p", "learning/convex-analysis"
             , "learning/formal-methods", "learning/mechanism-design", "learning/structural-econometrics"
             , "learning/discrete", ".local/share/wvs-shelf/legacy-refs" ]
     excludes = [ ".git", ".cache", ".TinyTeX", "site-packages", ".venv", "node_modules", "_work", ".stack"

@@ -31,7 +31,7 @@ info :: Maybe Text -> Maybe Text -> Maybe Text -> Maybe Int -> Int -> PdfInfo
 info = PdfInfo
 
 gateRoots :: [FilePath]
-gateRoots = ["/h/wvs-docs"]
+gateRoots = ["/h/cfmm-refs"]
 
 realPaper, junkPdf :: PdfInfo
 realPaper = info (Just "T") Nothing (Just "pdfTeX") Nothing 22
@@ -61,7 +61,7 @@ tests = testGroup "Scan"
         proposeTopics "/h/cfmm/cfmm-theory/cfmm-mechanism_design/x.pdf" @?= ["mechanism-design"]
     , testCase "legacy refs" $ proposeTopics "/h/.local/share/wvs-shelf/legacy-refs/refs/x.pdf" @?= ["volatility-swaps"]
     , testCase "learning subdir" $ proposeTopics "/h/learning/convex-analysis/x.pdf" @?= ["convex-analysis"]
-    , testCase "wvs-docs root" $ proposeTopics "/h/wvs-docs/pdfs/x.pdf" @?= ["volatility-swaps"]
+    , testCase "cfmm-refs root" $ proposeTopics "/h/cfmm-refs/pdfs/x.pdf" @?= ["volatility-swaps"]
     , testCase "unknown path" $ proposeTopics "/h/Downloads/x.pdf" @?= []
     ]
   , testGroup "proposeCitekey"
@@ -96,35 +96,35 @@ tests = testGroup "Scan"
       map takeFileName ps @?= ["a.PDF"]
   , testGroup "proposeInclude"
     [ testCase "under an include root and not junk" $
-        proposeInclude gateRoots ["/h/wvs-docs/a.pdf"] realPaper "/h/wvs-docs/a.pdf" @?= True
+        proposeInclude gateRoots ["/h/cfmm-refs/a.pdf"] realPaper "/h/cfmm-refs/a.pdf" @?= True
     , testCase "outside every include root" $
         proposeInclude gateRoots ["/h/Downloads/a.pdf"] realPaper "/h/Downloads/a.pdf" @?= False
     , testCase "under a root but junk" $
-        proposeInclude gateRoots ["/h/wvs-docs/a.pdf"] junkPdf "/h/wvs-docs/a.pdf" @?= False
+        proposeInclude gateRoots ["/h/cfmm-refs/a.pdf"] junkPdf "/h/cfmm-refs/a.pdf" @?= False
     , testCase "reachable from a root via any of its paths" $
-        proposeInclude gateRoots ["/h/Downloads/b.pdf", "/h/wvs-docs/a.pdf"] realPaper "/h/Downloads/b.pdf" @?= True
+        proposeInclude gateRoots ["/h/Downloads/b.pdf", "/h/cfmm-refs/a.pdf"] realPaper "/h/Downloads/b.pdf" @?= True
     , testCase "root match is by path component, not string prefix" $
-        proposeInclude gateRoots ["/h/wvs-docs-other/a.pdf"] realPaper "/h/wvs-docs-other/a.pdf" @?= False
+        proposeInclude gateRoots ["/h/cfmm-refs-other/a.pdf"] realPaper "/h/cfmm-refs-other/a.pdf" @?= False
     ]
   , testCase "scanRows groups by sha, relativises paths, and gates include" $ withSystemTempDirectory "scan" $ \home -> do
-      createDirectoryIfMissing True (home </> "wvs-docs" </> "refs")
+      createDirectoryIfMissing True (home </> "cfmm-refs" </> "refs")
       createDirectory (home </> "other"); createDirectory (home </> "Downloads")
       -- headers.pdf twice under two different names: one row, two paths. The
       -- Downloads copy gets a trailing comment so it is a *different* sha but
       -- still a real 13-page paper, i.e. not junk -- so its include=False can
       -- only come from the root gate.
-      copyFile "test/fixtures/headers.pdf" (home </> "wvs-docs" </> "refs" </> "a.pdf")
+      copyFile "test/fixtures/headers.pdf" (home </> "cfmm-refs" </> "refs" </> "a.pdf")
       copyFile "test/fixtures/headers.pdf" (home </> "other" </> "b.pdf")
       bs <- BS.readFile "test/fixtures/headers.pdf"
       BS.writeFile (home </> "Downloads" </> "c.pdf") (bs <> "% shelf-test variant\n")
       -- "." widens the walk so Downloads/ and other/ are seen at all; it must
       -- not thereby confer inclusion on them.
-      rows <- scanRows (defaultConfig home) { scIncludeRoots = ["wvs-docs", "."] } home
+      rows <- scanRows (defaultConfig home) { scIncludeRoots = ["cfmm-refs", "."] } home
       length rows @?= 2
       let at p = find (\r -> p `elem` srPaths r) rows
-      case (at "wvs-docs/refs/a.pdf", at "Downloads/c.pdf") of
+      case (at "cfmm-refs/refs/a.pdf", at "Downloads/c.pdf") of
         (Just ra, Just rc) -> do
-          srPaths ra @?= ["other/b.pdf", "wvs-docs/refs/a.pdf"]
+          srPaths ra @?= ["cfmm-refs/refs/a.pdf", "other/b.pdf"]
           srInclude ra @?= True
           srHumanEdited ra @?= False
           assertBool "bytes recorded" (srBytes ra > 0)
@@ -138,14 +138,14 @@ tests = testGroup "Scan"
         -- The regression: include roots used to be resolved under $HOME while
         -- the walk resolved them under scRoot, so with --root every row came
         -- back include: false.
-        createDirectoryIfMissing True (root </> "wvs-docs" </> "refs")
-        copyFile "test/fixtures/headers.pdf" (root </> "wvs-docs" </> "refs" </> "x.pdf")
+        createDirectoryIfMissing True (root </> "cfmm-refs" </> "refs")
+        copyFile "test/fixtures/headers.pdf" (root </> "cfmm-refs" </> "refs" </> "x.pdf")
         rows <- scanRows (defaultConfig home) { scRoot = root } home
         case rows of
           [r] -> do
             srInclude r @?= True
             -- Outside $HOME, so recorded relative to the walk root.
-            srPaths r @?= ["wvs-docs/refs/x.pdf"]
+            srPaths r @?= ["cfmm-refs/refs/x.pdf"]
           _ -> assertFailure ("expected one row, got paths " <> show (map srPaths rows))
   , testGroup "srHumanEdited"
     [ testCase "untouched row is not edited" $ srHumanEdited (row '1' "a-2020" Unsourced (Year 2020)) @?= False

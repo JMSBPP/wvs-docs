@@ -1,4 +1,4 @@
-# wvs-docs
+# cfmm-refs
 
 A topic-organized CFMM research shelf: papers, notes, and exercises on options,
 volatility swaps, and the mathematics behind them, tracked as text with PDFs kept
@@ -7,7 +7,7 @@ local-only.
 ## Layout
 
 ```
-wvs-docs/
+cfmm-refs/
 ├── README.md, CLAUDE.md
 ├── .gitignore
 ├── manifest/            # sources.yaml, scan.yaml (gitignored), schema.json;

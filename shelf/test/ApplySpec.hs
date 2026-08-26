@@ -22,7 +22,7 @@ import Shelf.Types
 fixturePdf :: FilePath
 fixturePdf = "test/fixtures/small-a.pdf"
 
--- | A temp repo laid out like wvs-docs, plus a fake @$HOME@ holding the PDF at
+-- | A temp repo laid out like cfmm-refs, plus a fake @$HOME@ holding the PDF at
 -- @refs/small-a.pdf@ so origin paths are home-relative and checkable.
 withRepo :: (FilePath -> RepoPaths -> Sha256 -> IO a) -> IO a
 withRepo act = withSystemTempDirectory "shelf-apply" $ \tmp -> do

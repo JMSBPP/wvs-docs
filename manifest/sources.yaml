@@ -1110,7 +1110,7 @@ sources:
   origin:
   - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2409.12803-elsts-concentrated-liquidity-leverage.pdf
   - cfmm/cfmm-theory/lp-derivatives/elsts-concentrated_liquidity_leverage-2024.pdf
-  - wvs-docs/shelf/test/fixtures/headers.pdf
+  - cfmm-refs/shelf/test/fixtures/headers.pdf
   provenance:
     id: '2409.12803'
     kind: arxiv

@@ -1,4 +1,4 @@
-# wvs-docs — CFMM research shelf
+# cfmm-refs — CFMM research shelf
 
 - PDFs are never committed; `pdfs/` is a local mirror. A source exists in this repo as a
   `manifest/sources.yaml` row + `text/<citekey>.md` + `topics/<t>/refs/<citekey>.md`.

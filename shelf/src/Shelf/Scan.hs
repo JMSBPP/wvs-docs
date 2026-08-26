@@ -78,14 +78,14 @@ proposeTopics path
   | ("wvs-shelf", "legacy-refs") `elem` pairs = ["volatility-swaps"]
   | Just t <- deepest cfmmTopics = [t]
   | Just t <- deepest learningTopics = [t]
-  | "wvs-docs" `elem` segs = ["volatility-swaps"]
+  | "cfmm-refs" `elem` segs = ["volatility-swaps"]
   | otherwise = []
   where
     segs = map T.pack (splitDirectories (takeDirectory path))
     pairs = zip segs (drop 1 segs)
-    -- cfmm-theory is the repo root, not a topic.
+    -- cfmm-theory and cfmm-refs are repo roots, not topics.
     cfmmTopics = [ T.replace "_" "-" r
-                 | s <- segs, s /= "cfmm-theory", Just r <- [T.stripPrefix "cfmm-" s], not (T.null r) ]
+                 | s <- segs, s /= "cfmm-theory", s /= "cfmm-refs", Just r <- [T.stripPrefix "cfmm-" s], not (T.null r) ]
     learningTopics = [b | (a, b) <- pairs, a == "learning", not (T.null b)]
     deepest = listToMaybe . reverse
 

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://wvs-docs/manifest/schema.json",
-  "title": "wvs-docs manifest",
+  "$id": "https://cfmm-refs/manifest/schema.json",
+  "title": "cfmm-refs manifest",
   "description": "Documentation only — the validator is `shelf manifest check`",
   "type": "object",
   "required": ["schema_version", "sources"],
