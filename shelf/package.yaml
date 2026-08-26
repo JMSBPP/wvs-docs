@@ -8,6 +8,7 @@ dependencies:
   - aeson
   - binary
   - bytestring
+  - case-insensitive
   - containers
   - crypton
   - directory
@@ -29,4 +30,4 @@ tests:
   shelf-test:
     main: Main.hs
     source-dirs: test
-    dependencies: [shelf, hedgehog, tasty, tasty-hedgehog, tasty-hunit, tasty-golden, temporary]
+    dependencies: [shelf, case-insensitive, hedgehog, tasty, tasty-hedgehog, tasty-hunit, tasty-golden, temporary]
