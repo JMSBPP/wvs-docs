@@ -6,6 +6,7 @@ year: 2013
 provenance: {kind: unsourced}
 sha256: 32447fe50713389498889210d038594dc354fb63ef381643d147f5ec0cd3f66f
 topics: [mechanism-design]
+pdf: ~
 ---
 
 ## Notes

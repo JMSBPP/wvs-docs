@@ -6,6 +6,7 @@ year: 2023
 provenance: {kind: arxiv, id: '2303.00208'}
 sha256: 1e222135f5a2fb8f7bc731f9e7550abf2467cecfbafcc4462936440e074cee4c
 topics: [volatility-swaps]
+pdf: ~
 ---
 
 ## Notes

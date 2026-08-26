@@ -6,6 +6,7 @@ year: 2018
 provenance: {kind: arxiv, id: '1807.09873'}
 sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
 topics: [formal-methods, discrete]
+pdf: ~
 ---
 
 ## Notes

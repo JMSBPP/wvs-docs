@@ -7,6 +7,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: 0a3acb9f68654a3b1b4a69ed183e9fff232a7843216becadb807926b5087a570
 topics: [applications, econometrics]
+pdf: ~
 ---
 
 ## Notes

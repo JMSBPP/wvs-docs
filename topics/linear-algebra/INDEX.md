@@ -1,12 +1,13 @@
 # linear-algebra
 
 ## Sources
-| citekey | title | year |
-|---|---|---|
-| [@axler-linear-algebra-done-2026] | Linear Algebra Done Right | 2026 |
+| citekey | title | year | pdf |
+|---|---|---|---|
+| [@axler-linear-algebra-done-2026] | Linear Algebra Done Right | 2026 | — |
 
 ## Notes
-- _none_
+- notes/INIT.md
 
 ## Exercises
-- _none_
+- exercises/INVARIANT_SUBSPACES.md
+- exercises/LINEAR_MAPS.md

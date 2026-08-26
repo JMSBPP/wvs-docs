@@ -1,11 +1,11 @@
 # lending
 
 ## Sources
-| citekey | title | year |
-|---|---|---|
+| citekey | title | year | pdf |
+|---|---|---|---|
 
 ## Notes
-- _none_
+- notes/INIT.md
 
 ## Exercises
 - _none_

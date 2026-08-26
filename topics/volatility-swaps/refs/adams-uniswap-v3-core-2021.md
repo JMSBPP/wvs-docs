@@ -6,6 +6,7 @@ year: 2021
 provenance: {kind: unsourced}
 sha256: 1be05d1134f677dfbce9afa7392a2c200c000f3db74fb8d228e3636a2b624494
 topics: [volatility-swaps]
+pdf: ~
 ---
 
 ## Notes

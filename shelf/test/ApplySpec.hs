@@ -5,7 +5,7 @@ import qualified Data.ByteString as BS
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
-import Data.Time.Clock (UTCTime)
+import Data.Time (UTCTime (..), fromGregorian)
 import System.Directory (copyFile, createDirectoryIfMissing, doesDirectoryExist, doesFileExist, getModificationTime, listDirectory)
 import System.FilePath ((</>))
 import System.IO.Temp (withSystemTempDirectory)
@@ -42,6 +42,15 @@ mkRow sha key topics = ScanRow
   , srAuthors = ["Ada Lovelace"], srInclude = True, srCitekey = key, srTopics = topics
   , srYear = Year 2020, srProvenance = Unsourced
   , srProposal = Proposal key topics (Year 2020) Unsourced True, srNote = "" }
+
+endpoint, bucket :: Text
+endpoint = "https://s3.hippius.com"
+bucket = "cfmm-refs"
+
+-- | The manifest row 'mkRow' produces, seen as a source.
+srcOf :: Sha256 -> Source
+srcOf sha = Source (ck (T.pack ckA)) sha 1 "Small A" ["Ada Lovelace"] (Year 2020)
+              Unsourced [Topic "options"] [] Nothing
 
 ckA :: FilePath
 ckA = "small-a-2020"
@@ -179,4 +188,48 @@ tests = testGroup "Shelf.Apply"
         assertBool "index dir created" =<< doesDirectoryExist (rpRoot rp </> "index")
         n <- forM [rpTopics rp </> "README.md"] doesFileExist
         n @?= [True]
+
+  , testCase "refreshCardHeader scaffolds a card that is not there yet" $
+      withRepo $ \_ rp sha -> do
+        let src = srcOf sha
+        refreshCardHeader rp src (Topic "options")
+        got <- readText (cardPath rp)
+        got @?= cardText src (Topic "options")
+
+  , testCase "refreshCardHeader rewrites only the front matter, byte-preserving the body" $
+      withRepo $ \_ rp sha -> do
+        let src = srcOf sha
+            body = "\n## Notes\n\nHand-written, with a | pipe and a trailing blank.\n\n"
+        BS.writeFile (cardPath rp) (TE.encodeUtf8 ("---\ncitekey: stale\ngarbage: yes\n---\n" <> body))
+        refreshCardHeader rp src (Topic "options")
+        out <- readText (cardPath rp)
+        let header = T.unlines (cardHeader src (Topic "options"))
+        assertBool ("header block in " <> show out) (header `T.isPrefixOf` out)
+        T.drop (T.length header) out @?= body
+        assertBool "no verified object yet" ("pdf: ~" `T.isInfixOf` out)
+        assertBool "stale field dropped" (not ("garbage" `T.isInfixOf` out))
+
+  , testCase "refreshCardHeader shows the verified url for its own topic only" $
+      withRepo $ \_ rp sha -> do
+        let key = objectKey (Topic "options") (ck (T.pack ckA))
+            ro = RemoteObject (Topic "options") key (objectUrl endpoint bucket key)
+                   "\"e\"" sha (UTCTime (fromGregorian 2026 8 27) 0)
+            src = upsertObject endpoint bucket ro (srcOf sha) { srcTopics = [Topic "options", Topic "dgp"] }
+        refreshCardHeader rp src (Topic "options")
+        out <- readText (cardPath rp)
+        assertBool ("url in " <> show out)
+          (("pdf: " <> objectUrl endpoint bucket key) `T.isInfixOf` out)
+
+  , testCase "runIndex refreshes every card without touching bodies" $
+      withRepo $ \home rp sha -> do
+        saveScan (rpScan rp) [mkRow sha "small-a-2020" ["options"]]
+        _ <- applyWith home rp
+        before <- readText (cardPath rp)
+        assertBool ("pdf key present in " <> show before) ("pdf: ~" `T.isInfixOf` before)
+        m0 <- mtimes rp
+        runIndex rp
+        refreshed <- readText (cardPath rp)
+        refreshed @?= before
+        m1 <- mtimes rp
+        m1 @?= m0
   ]

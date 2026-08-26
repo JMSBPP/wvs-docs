@@ -6,6 +6,7 @@ year: 2024
 provenance: {kind: arxiv, id: '2407.02496'}
 sha256: a5a7b8c77ba6dc7c4fabcbe1d5807ce3129886340d1580bead32283d93f47ccf
 topics: [volatility-swaps]
+pdf: ~
 ---
 
 ## Notes

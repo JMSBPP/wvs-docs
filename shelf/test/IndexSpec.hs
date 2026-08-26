@@ -8,11 +8,16 @@ import Test.Tasty.Hedgehog (testProperty)
 import Test.Tasty.HUnit
 import Data.Text (Text)
 import qualified Data.Text as T
+import Data.Time (UTCTime (..), fromGregorian)
 import System.FilePath ((</>))
 import System.IO.Temp (withSystemTempDirectory)
 import Fixture
 import Shelf.Index
 import Shelf.Types
+
+endpoint, bucket :: Text
+endpoint = "https://s3.hippius.com"
+bucket = "cfmm-refs"
 
 titleDocId :: Citekey
 titleDocId = ck "optfees-2023"
@@ -98,4 +103,18 @@ tests = testGroup "Index"
       case loaded of
         Nothing -> Hedgehog.failure
         Just ix' -> search ix' q 10 === search ix q 10
+  , testCase "renderTopicIndex carries a pdf column, linked only where verified" $ do
+      let bare = Source (ck "a-2020") (sh 'a') 10 "Title A" [] (Year 2020) Unsourced
+                   [Topic "options", Topic "dgp"] [] Nothing
+          key = objectKey (Topic "options") (ck "a-2020")
+          ro = RemoteObject (Topic "options") key (objectUrl endpoint bucket key) "\"e\"" (sh 'a')
+                 (UTCTime (fromGregorian 2026 8 27) 0)
+          backed = upsertObject endpoint bucket ro bare
+          out = renderTopicIndex (Topic "options") [backed] [] []
+          outDgp = renderTopicIndex (Topic "dgp") [backed] [] []
+      assertBool ("pdf column header in " <> show out) ("| pdf |" `T.isInfixOf` out)
+      assertBool ("link in " <> show out)
+        (("[pdf](" <> objectUrl endpoint bucket key <> ")") `T.isInfixOf` out)
+      assertBool ("dash for the topic with no object in " <> show outDgp)
+        ("| \8212 |" `T.isInfixOf` outDgp)
   ]

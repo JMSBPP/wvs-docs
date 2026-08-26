@@ -12,7 +12,8 @@ data Cmd
   | Apply
   | Extract (Maybe Text)      -- ^ 'Nothing' is @--all@.
   | Index
-  | ManifestCheck Bool        -- ^ @--require@.
+  | Migrate
+  | ManifestCheck Bool Bool   -- ^ @--require@, @--require-remote@.
 
 data Opts = Opts { optRepo :: Maybe FilePath, optCmd :: Cmd }
 
@@ -29,8 +30,10 @@ cmdP = hsubparser
   <> command "extract" (info (Extract <$> selP)
        (progDesc "Re-extract text for one manifest source, or all of them"))
   <> command "index" (info (pure Index)
-       (progDesc "Rebuild the BM25 index and re-render the topic indexes"))
-  <> command "manifest" (info (hsubparser (command "check" (info (ManifestCheck <$> requireP)
+       (progDesc "Rebuild the BM25 index, refresh card headers, re-render the topic indexes"))
+  <> command "migrate" (info (pure Migrate)
+       (progDesc "Rewrite manifest/sources.yaml from schema 1 to schema 2"))
+  <> command "manifest" (info (hsubparser (command "check" (info (ManifestCheck <$> requireP <*> requireRemoteP)
        (progDesc "Validate manifest/sources.yaml against the topics on disk"))))
        (progDesc "Manifest subcommands"))
   )
@@ -42,6 +45,9 @@ cmdP = hsubparser
     selP = flag' Nothing (long "all" <> help "Every source in the manifest")
        <|> (Just . T.pack <$> argument str (metavar "CITEKEY"))
     requireP = switch (long "require" <> help "Fail if manifest/sources.yaml or topics/ is missing")
+    requireRemoteP = switch (long "require-remote"
+      <> help "Also fail on warnings: every source must be backed by a verified \
+              \remote object for every topic it carries")
 
 main :: IO ()
 main = do
@@ -53,4 +59,5 @@ main = do
     Apply -> runApply rp
     Extract sel -> runExtract sel rp
     Index -> runIndex rp
-    ManifestCheck require -> runManifestCheck require rp
+    Migrate -> runMigrate rp
+    ManifestCheck require requireRemote -> runManifestCheck require requireRemote rp

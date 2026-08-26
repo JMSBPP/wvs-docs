@@ -18,6 +18,7 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import System.Directory (createDirectoryIfMissing, doesFileExist)
 import System.FilePath (makeRelative, takeDirectory, takeExtension, (<.>), (</>))
+import Shelf.Apply.Cards (refreshCardHeader)
 import Shelf.Apply.Paths
 import Shelf.Atomic (writeAtomic)
 import Shelf.Index
@@ -33,6 +34,10 @@ runIndex rp = do
     docs <- mapM (sourceDoc rp) (mfSources mf)
     createDirectoryIfMissing True (takeDirectory (rpIndex rp))
     saveIndex (rpIndex rp) (buildIndex h docs)
+  -- Cards are refreshed from the manifest here rather than in the apply pass,
+  -- so a `shelf index` after a push republishes every `pdf:` line without
+  -- touching a single note.
+  forM_ (mfSources mf) $ \s -> mapM_ (refreshCardHeader rp s) (srcTopics s)
   topics <- existingTopics rp
   forM_ topics $ \tp@(Topic t) -> do
     let dir = rpTopics rp </> T.unpack t

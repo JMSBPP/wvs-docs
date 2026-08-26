@@ -11,11 +11,30 @@ import qualified Data.Binary as B
 import Data.Binary.Get (ByteOffset)
 import qualified Data.ByteString.Lazy as BSL
 import Data.Either (isLeft, isRight)
+import Data.Time (UTCTime (..), fromGregorian)
 import Fixture
 import Shelf.Types
 
 genSlug :: Gen T.Text
 genSlug = T.intercalate "-" <$> Gen.list (Range.linear 1 4) (Gen.text (Range.linear 1 8) Gen.lower)
+
+ep, bu :: T.Text
+ep = "https://s3.hippius.com"
+bu = "cfmm-refs"
+
+at0 :: UTCTime
+at0 = UTCTime (fromGregorian 2026 8 27) 0
+
+-- | A source carrying @ts@ and no remote block.
+srcOf :: [T.Text] -> Source
+srcOf ts = Source (ck "x-2020") (sh 'b') 1 "t" [] (Year 2020) Unsourced (map Topic ts) [] Nothing
+
+-- | A well-formed object for @t@ recording @sha@ as the verified digest.
+objOf :: T.Text -> Sha256 -> RemoteObject
+objOf t sha = RemoteObject
+  { roTopic = Topic t, roKey = k, roUrl = objectUrl ep bu k
+  , roEtag = "\"e\"", roVerifiedSha256 = sha, roVerifiedAt = at0 }
+  where k = objectKey (Topic t) (ck "x-2020")
 
 tests :: TestTree
 tests = testGroup "Types"
@@ -42,7 +61,57 @@ tests = testGroup "Types"
           ( B.decodeOrFail (B.encode ("Hull_2020" :: T.Text))
               :: Either (BSL.ByteString, ByteOffset, String) (BSL.ByteString, ByteOffset, Citekey)
           )
-  , testCase "remote-backed iff verified sha matches" $ do
-      let src = Source (ck "x-2020") (sh 'b') 1 "t" [] (Year 2020) Unsourced [Topic "options"] [] Nothing
-      isRemoteBacked src @?= False
+
+  , testGroup "mkTopic"
+      [ testCase "accepts a slug" $ fmap topicText (mkTopic "mechanism-design") @?= Right "mechanism-design"
+      , testCase "rejects uppercase, underscore, empty, stray dashes" $ do
+          assertBool "upper" (isLeft (mkTopic "Mechanism"))
+          assertBool "under" (isLeft (mkTopic "a_b"))
+          assertBool "empty" (isLeft (mkTopic ""))
+          assertBool "leading dash" (isLeft (mkTopic "-x"))
+          assertBool "double dash" (isLeft (mkTopic "a--b"))
+      , testCase "FromJSON validates" $ do
+          A.decode "\"mechanism-design\"" @?= Just (Topic "mechanism-design")
+          (A.decode "\"Mechanism\"" :: Maybe Topic) @?= Nothing
+      ]
+
+  , testCase "objectKey is topics/<topic>/<citekey>.pdf" $
+      objectKey (Topic "options") (ck "x-2020") @?= "topics/options/x-2020.pdf"
+  , testCase "objectUrl joins endpoint, bucket and key" $
+      objectUrl ep bu "topics/options/x-2020.pdf"
+        @?= "https://s3.hippius.com/cfmm-refs/topics/options/x-2020.pdf"
+
+  , testCase "upsertObject replaces by topic and keeps objects sorted" $ do
+      let s0 = srcOf ["options", "dgp"]
+          s1 = upsertObject ep bu (objOf "options" (sh 'b')) s0
+          s2 = upsertObject ep bu ((objOf "options" (sh 'b')) { roEtag = "\"f\"" }) s1
+          s3 = upsertObject ep bu (objOf "dgp" (sh 'b')) s2
+      fmap (map roTopic . rmObjects) (srcRemote s3) @?= Just [Topic "dgp", Topic "options"]
+      fmap (map roEtag . rmObjects) (srcRemote s3) @?= Just ["\"e\"", "\"f\""]
+      fmap rmEndpoint (srcRemote s3) @?= Just ep
+      fmap rmBucket (srcRemote s3) @?= Just bu
+
+  , testCase "remote-backed iff every carried topic is verified with a matching sha" $ do
+      let bare = srcOf ["options", "dgp"]
+          partial = upsertObject ep bu (objOf "options" (sh 'b')) bare
+          full = upsertObject ep bu (objOf "dgp" (sh 'b')) partial
+          drifted = upsertObject ep bu (objOf "dgp" (sh 'c')) partial
+      isRemoteBacked bare @?= False
+      isRemoteBacked partial @?= False
+      isRemoteBacked full @?= True
+      isRemoteBacked drifted @?= False
+      missingTopics bare @?= [Topic "options", Topic "dgp"]
+      missingTopics partial @?= [Topic "dgp"]
+      missingTopics full @?= []
+      missingTopics drifted @?= [Topic "dgp"]
+
+  , testCase "staleObjects are the objects for topics no longer carried" $ do
+      let s = upsertObject ep bu (objOf "dgp" (sh 'b')) (srcOf ["options"])
+      map roTopic (staleObjects s) @?= [Topic "dgp"]
+      map roTopic (staleObjects (srcOf ["options"])) @?= []
+
+  , testCase "Source JSON round-trips through the remote block" $ do
+      let s = upsertObject ep bu (objOf "options" (sh 'b')) (srcOf ["options"])
+      A.decode (A.encode s) @?= Just s
+      A.decode (A.encode (srcOf ["options"])) @?= Just (srcOf ["options"])
   ]
