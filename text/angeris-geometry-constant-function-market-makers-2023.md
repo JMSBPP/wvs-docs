@@ -1,0 +1,2116 @@
+---
+sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
+pdftotext_version: 26.06.0
+extractor_version: 1
+body_bytes: 88076
+---
+arXiv:2308.08066v1 [math.OC] 15 Aug 2023
+The Geometry of Constant Function Market Makers
+Guillermo Angeris∗
+gangeris@baincapital.com
+Tarun Chitra
+tarun@gauntlet.network
+Theo Diamandis
+tdiamand@mit.edu
+Alex Evans
+aevans@baincapital.com
+Kshitij Kulkarni
+ksk@eecs.berkeley.edu
+July 2023
+Abstract
+Constant function market makers (CFMMs) are the most popular type of decen-
+tralized trading venue for cryptocurrency tokens. In this paper, we give a very general
+geometric framework (or ‘axioms’) which encompass and generalize many of the known
+results for CFMMs in the literature, without requiring strong conditions such as differ-
+entiability or homogeneity. One particular consequence of this framework is that every
+CFMM has a (unique) canonical trading function that is nondecreasing, concave, and
+homogeneous, showing that many results known only for homogeneous trading functions
+are actually fully general. We also show that CFMMs satisfy a number of intuitive and
+geometric composition rules, and give a new proof, via conic duality, of the equivalence
+of the portfolio value function and the trading function. Many results are extended
+to the general setting where the CFMM is not assumed to be path-independent, but
+only one trade is allowed. Finally, we show that all ‘path-independent’ CFMMs have a
+simple geometric description that does not depend on any notion of a ‘trading history’.
+Introduction
+The study of automated market makers has existed for many decades, with roots in the
+scoring rule literature dating back to at least the 1950s [McC56]. However, these mecha-
+nisms only reached mass adoption after being implemented as decentralized exchanges on
+blockchains. Surprisingly, the types of automated market maker that are most popular in
+practice bear little resemblance to those proposed prior to the invention of blockchains. In-
+stead, the most popular blockchain-based automated market makers are what are known
+as the constant function market makers, or CFMMs. These market makers are generally
+simpler than earlier market maker designs, such as those based on the logarithmic scoring
+∗
+The authors are listed in alphabetical order.
+1rule, and provide a means for eﬃcient liquidity aggregation and order routing. But why have
+these mechanisms succeeded?
+One of the main reasons that these mechanisms have been so popular in the cryptocur-
+rency space is that solving the optimal arbitrage problem—the problem of how much to
+trade in order to equalize prices between CFMMs and other venues—is generally (compu-
+tationally) ‘easy’ [AECB22]. This ease comes directly from the fact that CFMMs satisfy a
+general, very geometric, notion of convexity. Though the initial line of work, which deﬁned
+CFMMs as a useful class, focused on their geometric properties [AC20], the majority of
+research on CFMMs has focused on analytic properties of CFMMs that depend on explicit
+parameterizations [LP21,WM22,MMR23a,SKM23,FPW23,MMR23b,GRGM23].
+There are important reasons to examine geometry of CFMMs directly. First, a geometric
+lens leads to very natural statements for many of the properties of, and operations one
+can perform on, CFMMs. Second, many ‘surprising’ decisions made by developers that
+‘worked in practice’ can be explained by understanding the geometry of CFMMs; for example,
+intuitively, the ‘curvature’ of a CFMM corresponds to a notion of liquidity [ACE22], which
+was known by practitioners well before its formalization. Third, the geometric setting for
+CFMMs is very general and rarely requires notions of diﬀerentiability, homogeneity, or other
+similar properties. Finally, the geometric view of CFMMs allows for reasoning about CFMMs
+without regards to its particular trading function and/or its representation.
+What is a CFMM? CFMMs are relatively simple to describe analytically, which is likely
+why many researchers and practitioners work with them in this ‘analytic’ setting. A CFMM
+consists of two main objects: a trading function ϕ : Rn
++ → R (sometimes called an ‘invari-
+ant’) and a vector of reserves R ∈ Rn
++. A user proposes a trade, represented as a portfolio
+∆ ∈ Rn
+, and the trade is valid if the trading function, evaluated on the reserves after the
+trade is completed, has the same value as the function evaluated on the reserves before the
+trade is completed, i.e., if ϕ(R − ∆) = ϕ(R). (Hence the name ‘constant function market
+maker’.) If this equality holds, the CFMM then pays out ∆ to the user and resulting in
+new reserves R − ∆. (If the trade is invalid, nothing is paid out or received from the user.)
+Liquidity providers, who provide the reserves R against which trades are made, earn fees
+from these trades. The fact that this process is simple to describe and implement, along
+with having many strong theoretical guarantees, has been part of its reason for success,
+especially within diﬃcult-to-secure environments such as public blockchains. Despite their
+simple description, CFMMs have spawned a large amount of research into their ﬁnancial,
+arbitrage, and routing properties (e.g., [AC20,DKP21,DRCA23,FMW23,MDP23], among
+many others).
+Analytic vs. geometric properties. Many descriptions of CFMMs use a coordinate-
+dependent (or ‘analytic’) version of CFMMs, focusing on the representation of ϕ as an
+explicit function. For instance, Uniswap is commonly described via the trading function
+ϕ(R) =
+Qn
+i=1 Ri. However, there are a number of equivalent trading functions such as ϕ̃(R) =
+(
+Qn
+i=1 Ri)
+c
+for any c > 0. While the pricing and behavior is equivalent for these diﬀerent
+2representations, the mechanics of many deﬁnitions hinge upon the speciﬁc representation
+provided. (Some might demand concavity or monotonicity, for example.) We call any
+properties that are dependent on the particular representation of the trading function analytic
+properties.
+On the other hand, nearly by deﬁnition, geometric descriptions of CFMMs are unique
+and relatively simple to handle. For instance, there is a natural ‘addition’ operator for
+CFMMs using a geometric representation. Describing the corresponding operation on trading
+functions is not obvious and likely has no natural analogue. (We do show that there is
+another functional representation, given by the portfolio value function, that does have a
+natural correspondence.) This idea that certain operations such as addition, are ‘easy’ to
+perform on CFMMs, when deﬁned geometrically, is one of the reasons that proofs using
+geometry can be signiﬁcantly more succinct than those using analytic means.
+This paper. In this paper, we focus on representing CFMMs via classical geometric objects
+such as convex sets and cones, assuming a bare minimum of requirements. Using these
+objects, we replicate the results of a number of papers for CFMMs without fees (also known
+as the ‘path-independent’ CFMMs) and many results in the case of a single trade with no
+restrictions on the CFMM. The key objects we look at are particular cones which we call
+the liquidity cones, and their corresponding conic duals. We construct many of the ‘usual
+objects’ such as trading functions, portfolio value functions, no arbitrage intervals, and so on,
+directly from these objects. This leads to a number of interesting results: for example, that
+every (path-independent) CFMM has a canonical trading function that is nondecreasing,
+concave, and homogeneous, along with new proofs for older, previously known results. We
+assume a reasonable amount of familiarity with convex optimization and provide a very short
+primer on conic duality in appendix A as a refresher.
+## 1 Fee-free constant function market makers
+In this section, we consider the general case of constant function market makers that are
+path-independent. We show the connection between these ‘path-independent’ or ‘fee-free’
+constant function market makers and ‘general’ constant function market makers later, in §2.4.
+We consider this case ﬁrst as this is the most common case in the literature [AC20,FPW23,
+GRGM23], and is a good starting point for the more general case.
+Section layout. The section begins with a basic set of requirements (sometimes called
+‘axioms’) which are of a diﬀerent form than the standard assumptions made in many texts.
+We will show that from these requirements, which are mostly geometric in origin, we can
+derive many known results and a number of generalizations that, to our knowledge, are
+not known in the overall literature. For example, one important case is that any CFMM
+has a canonical trading function that is homogeneous, nondecreasing, and concave. This is
+usually taken as an assumption in some form (see, e.g., [AEC21,FPW23,SKM23]), but we
+show here that it is true of any CFMM satisfying some basic properties that are essentially
+3necessary for a CFMM to be reasonable. (Indeed, these properties are almost always part
+of a much longer list, or are easy consequences of a subset of assumptions generally made in
+the literature.) This geometric set up also simpliﬁes a number of known statements in the
+literature, such as those of [AEC23], by showing that the equivalence of a portfolio value
+function and a trading function is a special case of conic duality.
+## 1.1 Reachable set
+We will deﬁne the reachable set of reserves as a set S ⊆ Rn
+satisfying certain requirements.
+This set will represent the valid holdings of a constant function market maker (CFMM).
+In general, if R ∈ S are the current reserves of the constant function market maker, then
+any trader may change the reserves to R′
+∈ S by selling R′
+− R to the CFMM. The trader
+would then receive the entries of R′
+− R which are negative, and tender the entries which
+are positive to the CFMM. In a certain sense, we may view the reachable set S as the set of
+valid states available to the CFMM.
+Definition. We say a set S is a reachable set (which deﬁnes a fee-free, or ‘path independent’
+CFMM) if it satisﬁes these rules or ‘axioms’:
+1. All reserves are nonnegative; that is, S ⊆ Rn
++
+2. The set S is nonempty, closed, and convex
+3. The set S is upward closed; i.e., if R ∈ S, then any R′
+≥ R has R′
+∈ S
+From these three rules, we will recover (and generalize) many of the results known in the
+literature. In general, while we do not assume that 0 6∈ S, we note that this is a silly case
+as we would then have S = Rn
++, so this case is often excluded from many of the proofs
+presented.
+High-level interpretation. The ﬁrst requirement means that a constant function market
+maker cannot take on debt, or that the position is always solvent. Many, but not all, results
+hold with some slight modiﬁcations, even in the case where this condition is relaxed. The
+convexity requirement roughly corresponds to the fact that increasing the size of a trade
+does not result in a better exchange rate for the trader. The nonemptyness of S just means
+that S is nontrivial, while the closedness is a technical condition. Finally, the ‘upwards
+closed’ condition means that, if a CFMM accepts some trade, then it would always accept a
+diﬀerent trade that tenders more of any asset. (This condition is not technically necessary:
+it suﬃces that, given a nonempty set S satisfying the ﬁrst condition, the set S̃ = S + Rn
++
+satisﬁes the second condition above. Almost all results shown below hold in this case.) The
+last condition also lets us interpret the boundary of S as a Pareto-optimal frontier for the
+possible reserves in the sense that no rational trader would ever trade on the interior of S.
+4S = {R ∈ R2
++ | R1R2 ≥ 1}
+R1
+R2
+S = {R ∈ R2
++ | (R1 + 1
+2
+)(R2 + 1
+2
+) ≥ 1}
+R1
+R2
+Figure 1: The set of reachable reserves for Uniswap (left) and Uniswap v3 (right).
+Examples. One of the canonical examples of a reachable set is that of Uniswap [AZR20],
+deﬁned
+S = {R ∈ R2
++ | R1R2 ≥ k},
+where k > 0 is a constant. See ﬁgure 1 for an example. Another example is that of a ‘tick’
+in Uniswap v3 [AZS+
+21], which is deﬁned
+S = {R ∈ R2
++ | (R1 + α)(R2 + β) ≥ k},
+where, again, α,β,k > 0 are some provided constants.
+Quasiconcavity. Note that, in these examples, S is the superlevel set of some quasicon-
+cave, nondecreasing function. In fact, we can show that any nonempty set S deﬁned by
+S = {R ∈ Rn
++ | ψ(R) ≥ α}, (1)
+with quasiconcave, nondecreasing ψ : Rn
++ → R∪{−∞}, generates a reachable set satisfying
+the required conditions. This includes [SKM23] and [FPW23] as a special case, though we
+do not require homogeneity. (Indeed, homogenity is not needed as an assumption as we will
+later show that one can always choose ψ to be concave, nondecreasing, and homogeneous
+for any set S satisfying the reachable set conditions, even when the ‘original’ function ψ is
+not.) We may also replace the inequality with an equality and deﬁne the set
+S = {R′
+∈ Rn
++ | R′
+≥ R, for some ψ(R) = α}.
+Note that these two deﬁnitions are equivalent if ψ is continuous in some neighborhood
+ψ−1
+(N) where N is a neighborhood around α.
+5S1
+R1
+R2
+S2
+R1
+R2
+S1 + S2
+R1
+R2
+Figure 2: Adding two Uniswap v3 bounded liquidity pools (left, middle) gives us another CFMM
+(right).
+## 1.2 Composition rules
+An interesting consequence of the deﬁnition of reachable sets is that these sets, and therefore
+CFMMs, satisfy certain composition rules, some of which were known in the literature under
+additional assumptions [EH21]. These rules follow directly from the calculus of convex
+sets [BV04, §2.3] and require no additional assumptions than those given in §1.1.
+Nonnegative scaling. Given a reachable set S, we may scale the set by α ≥ 0 to get αS,
+which is another reasonable reachable set satisfying the conditions. (We will see later in §1.6
+that this scaling corresponds to adding or removing liquidity to the CFMM.)
+Set addition. We may also add any two reachable sets S and S′
+, which gives another
+reachable set
+S + S′
+= {R + R′
+| R ∈ S, R′
+∈ S′
+}.
+This set is convex and nonempty, and it is not hard to prove the set is closed since S and
+S′
+are both contained in the positive orthant. It is also clear that S + S′
+is upward closed
+since each of S and S′
+are upward closed. These sums have the ‘simple’ interpretation that
+S + S′
+are the possible combined holdings of the two CFMMs. Additionally, this, combined
+with nonnegative scaling, means that taking nonnegative linear combinations of trading sets
+always yields another trading set. We provide an example in ﬁgure 2.
+Nonnegative matrix multiplication. Another important rule is that multiplication by
+a nonnegative matrix A ∈ Rn×p
++ and ‘upwards closure’ of the resulting set gives another
+reachable set; i.e., the set
+AS + Rn
++ = {R′
+∈ Rn
++ | R′
+≥ AR for some R ∈ S},
+is a reachable set. This operation can be interpreted when looking at each row j = 1,...,n
+of A, which we write as ãT
+j . Given some vector R ∈ S, then ãT
+j R = (AR)j. This entry,
+(AR)j, can then be seen as a type of ‘meta-asset’, whose value is equal to a weighted basket
+of assets, where the weights are the entries of ãj. This is a reachable set since AR ∈ Rn
++ for
+6any R ∈ S ⊆ Rn
++ and AS is a convex set if S is convex. (The set is clearly upward closed
+by deﬁnition.)
+Special case: projection. An important special case is when the matrix A projects all
+components of a trading set into a larger space. More speciﬁcally, let A be a matrix of the
+form
+A =
+
+a1 a2 ··· ak
+
+with ai ∈ Rn
+and k ≤ n being all distinct unit basis vectors (i.e., ai is 0 everywhere except
+at exactly one entry, where it is 1). We can interpret AS +Rk
++ in the following way: if there
+is a ‘list’ of n assets, and the CFMM deﬁned by S trades only k of those assets, then AS is
+a CFMM which trades these k assets and zero of the remaining possible n − k assets. (The
+CFMM will happily accept any of the remaining n − k assets, but tender nothing for them:
+a trade no rational user would want.)
+Intersection. Finally, we can take the intersection of reachable sets, which yields another
+reachable set; i.e., if S and S′
+are reachable sets then S∩S′
+is similarly a reachable set. This
+corresponds to a CFMM whose reachable reserves can only be those which the individual
+CFMMs have in common. Though this is not a natural operation for CFMMs which already
+exist on chain, it is a useful theoretical operation for constructing CFMMs with particular
+properties. (Indeed, we will see that constructing a CFMM from a portfolio value function,
+to be presented later, is possible only due to this intersection property.)
+Aggregate CFMMs. Combining the previous two rules gives us a very general way of
+‘combining’ CFMMs which trade diﬀerent (but potentially overlapping) baskets of assets.
+Assume we have m constant function market makers and a universe of n assets. We will
+have CFMMs i = 1,...,m with reachable sets Si ⊆ Rni
++ , each trading a subset tokens of
+ni tokens. We introduce matrices Ai ∈ Rn×ni
++ which map the ‘local’ basket of ni tokens for
+CFMM i to the global universe of n tokens. We have (Ai)jk = 1 if token k in market i’s
+local index corresponds to global token index j, and (Ai)jk = 0 otherwise. We note that the
+ordering of tokens in the local index does not need to be the same as the global ordering.
+Then the set
+S̃ =
+m X
+i=1
+AiSi
+is a aggregate CFMM which corresponds exactly to the set of all possible holdings for every
+CFMM in the network. Such CFMMs were ﬁrst implicitly deﬁned for Uniswap v3 [AZS+
+21],
+and later used in [CAE21] to prove some basic approximation bounds, while [MMR23a]
+deﬁned a notion of ‘complexity’ based on similar ideas, and, ﬁnally [DRCA23] deﬁned them
+as part of the solution method for optimal routing.
+Extensions to negative reserves. There are some basic generalizations of some of these
+conditions in the case where the set S is not contained in the positive orthant. In this case,
+7the CFMM can take on debt. If the debt is unbounded, it is possible to create sets S and S′
+such that S+S′
+is not closed, so the resulting set would not be a reachable set. On the other
+hand, it is not hard to show that allowing bounded debt (i.e., there exists some x ∈ Rn
++ such
+that x + S ⊆ Rn
++) means that an analogous statement does still hold by a nearly identical
+proof.
+## 1.3 Liquidity cone and canonical trading function
+In this subsection we introduce the liquidity cone for a reachable set S. The liquidity cone
+is a kind of ‘homogenized’ version of the reachable set deﬁned previously that simpliﬁes a
+number of later derivations. Its deﬁnition will also suggest a canonical trading function: a
+trading function that corresponds to the reachable set S and is nondecreasing, homogeneous,
+and concave.
+## 1.3.1 Liquidity cone
+The liquidity cone for reachable set S is deﬁned as
+K = cl{(R,λ) ∈ Rn+1
+| R/λ ∈ S, λ > 0}, (2)
+where cl is the closure of the set. The set K is a cone as (R,λ) ∈ K implies that (αR,αλ) ∈ K
+for any α ≥ 0. The name ‘liquidity cone’ comes from the fact that, if (R,λ) ∈ K then the
+largest such λ indicates, roughly speaking, the amount of liquidity available from reserves
+R. (We will see what this means in a later section.)
+Basic properties. The liquidity cone K has some important properties we use later in
+this section. First, the set K is nonempty as S is nonempty and S ×{1} ⊆ K. We also have
+that 0 ∈ K as K is nonempty and closed. To see this, if y ∈ K then αy ∈ K, so α ↓ 0 gives
+the result. The cone K is also a convex cone as it is the closure of the perspective transform
+on the convex set S × R++ (see, e.g., [BV04, §2.3.3]).
+Upward closedness. The cone K is not upward closed, but is ‘almost upward closed’ in
+the following sense: if (R,λ) ∈ K and R′
+≥ R with λ′
+≤ λ then (R′
+,λ′
+) ∈ K. In particular,
+note that the inequality over λ is reversed. Showing this fact is just a deﬁnitional exercise.
+Positive reachability. We also have that,
+(Rn
+++,0) ⊆ K. (3)
+This follows from the fact that the set S is nonempty. To see this, let R ∈ S and note that,
+for any strictly positive vector R′
+∈ Rn
+++ we know that R′
+/λ ≥ R for λ small enough, so
+(R′
+,λ) ∈ K. Finally, since (R′
+,λ) ∈ K implies that (R′
+,λ′
+) ∈ K for any λ′
+≤ λ, then we
+are done by setting λ′
+= 0. Roughly speaking, this corresponds to the intuitive fact that
+8every nonnegative basket is a feasible set of reserves, at some ‘large enough’ multiple. This
+observation is taken as an assumption in [FPW23] and [SKM23], but is a direct consequence
+of the deﬁnition of the reachable set. Additionally, since K is closed we have
+(Rn
++,0) ⊆ K,
+though this construction is less useful than the previous.
+Reachable set. We may, of course recover the reachable set from the liquidity cone in a
+variety of ways. Perhaps the simplest is to note that, for any λ > 0 we have
+S = {R/λ | (R,λ) ∈ K}. (4)
+This is easy to see as (R,λ) = λ(R/λ,1) ∈ K, and, since K is a cone, this is if, and only if,
+(R/λ,1) ∈ K which is also if, and only if, R/λ ∈ S. This will be useful in what follows.
+## 1.3.2 Canonical trading function
+Given any liquidity cone K for a reachable set S, we will deﬁne a canonical trading function,
+ϕ(R) = sup{λ | (R,λ) ∈ K}, (5)
+setting ϕ(R) = 0 if the set is empty. (Since K is closed, we may replace the sup with a max
+if 0 6∈ S, which we assume for the remainder of the section.) In terms of the trading set S,
+we may write this as
+ϕ(R) = sup{λ > 0 | R/λ ∈ S},
+using the deﬁnition of the liquidity cone K. If the reachable set S is written using a nonde-
+creasing, quasiconcave, but not necessarily concave, function as in (1), then we can ‘canoni-
+calize’ this trading function by writing
+ϕ(R) = sup{λ > 0 | ψ(R/λ) ≥ k}. (6)
+Note that, if ψ is continuous, this is the same as ﬁnding the largest positive root over λ of
+ψ(R/λ) = k. If the function is strictly increasing (as is often the case) then the positive
+root is unique and it suﬃces only to ﬁnd it. Figure 3 illustrates this deﬁnition for the case
+of Uniswap.
+Computational considerations. It may be the case that the canonical trading func-
+tion (6) has no closed form solution. From the previous, since we know that computing
+the value of the canonical trading function at some reserves R corresponds to a root-ﬁnding
+problem, we may do this using eﬃciently by using bisection (as ψ is assumed to be nonde-
+creasing) or, if ψ is diﬀerentiable, using Newton’s method for ﬁnding the positive root. In
+either case, computing ϕ(R) can be done eﬃciently in practice. (As a side note: if bisection
+is used, it suﬃces to run it only until the bracketing interval is either fully contained in [0,1)
+or [1,∞). In the former, the reserves are guaranteed to be infeasible, while in the latter they
+are guaranteed to be feasible.)
+9R = (R1,R2)
+R/λ⋆
+R1
+R2
+Figure 3: Another interpretation of the canonical trading function (5): we scale along the line
+segment defined by (R1,R2) to (0,0), with scale factor 1/λ, increasing λ until we hit the reachable
+set boundary.
+Reachable set. From (4) we can recover the set S from this canonical trading function
+since
+S = {R ∈ Rn
++ | ϕ(R) ≥ 1}.
+(Of course, the set of R such that ϕ(R) = 1 gives the boundary of S.) Additionally, note
+that if ϕ(R) > 0, which is always true if R ∈ Rn
+++ is strictly positive, from positive reacha-
+bility (3), then
+R
+ϕ(R)
+∈ S. (7)
+Concavity. This function is concave, as it is the partial maximization of the concave
+function
+f(R,λ) = λ − I(R,λ)
+over λ, where I is the indicator function of the (convex) set K, deﬁned I(R,λ) = 0 if
+(R,λ) ∈ K and +∞ otherwise.
+Homogeneity. The trading function ϕ is homogeneous for α > 0 since
+ϕ(αR) = sup{λ | (αR,λ) ∈ K}.
+Since K is a cone, then (αR,λ) ∈ K if, and only if, (R,λ/α) ∈ K. Setting λ̄ = λ/α, then
+we have
+ϕ(αR) = sup{αλ̄ | (R,λ̄) ∈ K} = αϕ(R).
+For α = 0 the result follows since 0 ∈ K.
+10Monotonicity. The trading function is nondecreasing from the ‘almost upward closed’
+property mentioned previously. For the remainder of the paper, we will call a function that
+is concave, homogeneous, and nondecreasing a consistent function.
+Marginal prices. Given R with ϕ(R) = 1, i.e., the starting reserves are ‘reasonable’ and
+ϕ diﬀerentiable at R, then, from concavity,
+ϕ(R + ∆) ≤ ϕ(R) + ∇ϕ(R)T
+∆.
+(We may replace the gradient with a supergradient for a more general condition.) If the
+trade ∆ is feasible in that ϕ(R + ∆) ≥ ϕ(R) then
+∇ϕ(R)T
+∆ ≥ 0.
+Note that this means that ∇ϕ(R) is a supporting hyperplane of S at R if ϕ(R) = 1. If the
+trader is trading some amount of asset i for asset j, i.e., ∆i > 0 and ∆j < 0 with all other
+entries zero, we have
+(∇ϕ(R))j∆j ≤ −(∇ϕ(R))i∆i,
+or, rewriting further,
+∆j ≤
+(∇ϕ(R))i
+(∇ϕ(R))j
+(−∆i).
+Where equality can be achieved in the limit as the trade becomes small. We can therefore
+interpret the quantity (∇ϕ(R))i/(∇ϕ(R))j as the price of token j with respect to token i,
+and we can interpret the vector ∇ϕ(R) as a vector of prices, up to a scaling factor determined
+by the numeraire.
+Discussion. This shows that a number of results which hold ‘only’ for homogeneous trading
+functions, such as those of [FPW23,AEC21], are fully general and hold for all CFMMs.
+Indeed, we do not need to assume homogeneity at all as it may always be derived for a
+trading set satisfying some basic conditions given above. Additionally, the direct connection
+to constant function market makers comes from the fact that any trader may change the
+reserves to some R′
+∈ R+ so long as
+ϕ(R′
+) ≥ ϕ(R) = 1,
+where we assume that ϕ(R) = 1 is a ‘starting condition’ on the level set. Of course, no trader
+would ever take ϕ(R′
+) > 1, since otherwise there exists some dominating trade R̃′
+≤ R′
+with
+at least one inequality holding strictly; i.e., the trader would tender less (or get more) of
+at least one token and still have a feasible trade. So, in general, we have that, for any
+‘reasonable’ action,
+ϕ(R′
+) = ϕ(R), (8)
+where R′
+is the new set of reserves, after a trade has been made, and R is the original set
+of reserves. Equation (8) is the deﬁning equation for path-independent constant function
+market makers, explaining both their name and the direct connection to the reachable set
+deﬁned here. (See [AAE+
+22] for more.)
+111.3.3 Uniqueness of canonical trading function
+We call this trading function canonical since it is unique up to a scaling constant. In fact,
+this function is unique if the function is scaled such that the reachable set corresponds to its
+1-superlevel set.
+Proof. To see this, let ϕ and ϕ̃ be two trading functions that are consistent and yield the
+same reachable set S; i.e.,
+S = {R ∈ Rn
++ | ϕ(R) ≥ α} = {R ∈ Rn
++ | ϕ̃(R) ≥ β},
+where α,β > 0. (If α = 0 then, since ϕ is homogeneous and nondecreasing, we have that
+ϕ(R) ≥ 0, which would imply that its reachable set is all of Rn
++, and similarly for ϕ̃.) This
+is the same as
+{R | ϕ(R)/α ≥ 1} = {R | ϕ̃(R)/β ≥ 1},
+so we will overload notation by writing ϕ for ϕ/α and ϕ̃ for ϕ̃/β, with the understanding
+that these diﬀer by a proportionality constant. Now, we will show that ϕ = ϕ̃. To see this,
+start with the case that R satisﬁes ϕ(R) > 0 and ϕ̃(R) > 0, then
+ϕ
+
+R
+ϕ(R)
+
+= 1,
+so R/ϕ(R) ∈ S and we then have, by deﬁnition of ϕ̃,
+ϕ̃(R)
+ϕ(R)
+= ϕ̃
+
+R
+ϕ(R)
+
+≥ 1.
+Repeating the steps above with ϕ and ϕ̃ swapped yields
+ϕ(R) = ϕ̃(R),
+when ϕ(R) > 0 and ϕ̃(R) > 0. Now, if ϕ(R) = 0 then
+ϕ(tR) = tϕ(R) = 0,
+so tR 6∈ S for any t > 0. This means that
+tϕ̃(R) = ϕ̃(tR) < 1,
+again by deﬁnition of ϕ̃, or, that ϕ̃(R) < 1/t for any t > 0, so ϕ̃(R) = 0. Repeating these
+steps where ϕ is swapped with ϕ̃ implies that ϕ(R) = 0 only when ϕ̃(R) = 0. This gives the
+ﬁnal result that ϕ = ϕ̃, or that the canonical function is unique up to scaling constants.
+## 1.3.4 Examples
+In this subsection, we show the canonical trading function for Uniswap and Uniswap v3. We
+also derive the canonical trading function for Curve [Ego19] in appendix B.
+120
+1
+2
+ϕ(R)
+R1
+R2
+λ
+R1
+R 2
+Figure 4: Left: the liquidity cone for Uniswap, with the level set defined by the trading function
+ϕ(R) =
+√
+R1R2 = 1 shown. Right: each λ-level set of the surface looks like the boundary of the set
+of reachable reserves (see figure 1). The trading function ϕ is highlighted.
+Uniswap. Starting with the usual example of Uniswap, we have that
+S = {R ∈ R2
++ | R1R2 ≥ k}.
+The liquidity cone for Uniswap is given by
+K = {(R,λ) ∈ R3
+| R1R2/λ2
+≥ k ∈ S, λ > 0} (9)
+so, the canonical trading function (6) can be written
+ϕ(R) = sup{λ > 0 | R1R2/λ2
+≥ k},
+when R ∈ R2
++ (and zero otherwise). This gives the canonical trading function
+ϕ(R) =
+r
+R1R2
+k
+,
+which is evidently concave, nondecreasing, and 1-homogeneous, with
+ϕ(R) ≥ 1 if, and only if R1R2 ≥ k,
+as required. The liquidity cone and canonical trading function are shown in ﬁgure 4.
+Uniswap v3. We can also do the same for Uniswap v3, which has a quasiconcave trading
+function given by
+ψ(R) = (R1 + α)(R2 + β).
+Since ψ is strictly increasing in the positive orthant, it suﬃces only to ﬁnd the (positive)
+root of
+(R1/λ + α)(R2/λ + β) = k,
+13which is a simple quadratic. The resulting canonical trading function is unfortunately more
+complicated:
+ϕ(R) =
+1
+2
+βR1 + αR2 +
+p
+(βR1 + αR2)2 + 4(k − αβ)R1R2
+k − αβ
+!
+. (10)
+This function is evidently homogeneous and strictly increasing since k > αβ. Concavity is
+more diﬃcult due to the square root term, but we show it directly in appendix C. A good
+exercise is to show that the canonical trading function ϕ in (10) has ϕ(R) ≥ 1, if, and only
+if, (R1 + α)(R2 + β) ≥ k.
+## 1.4 Dual cone and portfolio value function
+In this section, we will look at an equivalent characterization of the liquidity cone K, called
+the dual cone. The characterizations are equivalent since the liquidity cone K is convex.
+Indeed, we will show that this dual cone has a very tight relationship with the portfolio
+value function, and leads to a simple proof of the equivalence of (consistent) portfolio value
+functions and (canonical) trading functions in that every portfolio value function has a
+corresponding trading function, and vice versa, which was originally derived in [AEC23].
+## 1.4.1 Dual cone
+The dual cone of a cone K ⊆ Rn+1
+is deﬁned as
+K∗
+= {(c,η) ∈ Rn+1
+| cT
+R + ηλ ≥ 0, for all (R,λ) ∈ K}.
+While this deﬁnition holds for any cone K, for the remainder of this section, we will be
+working with the case that K is the liquidity cone of a CFMM with reachable set S, as
+deﬁned the previous subsection.
+Intuition. In a very general sense, the dual cone K∗
+is simply another (dual) representation
+of the original liquidity cone, K, in that the dual of K∗
+, deﬁned as (K∗
+)∗
+= K, as K is closed
+and convex. (For more information on conic duality, we refer the reader to appendix A.)
+We will use this fact to give a simple proof that the trading function and the portfolio value
+function (to be introduced later in this section) are two views of the same underlying object.
+Basic properties. First, note that K∗
+is always a closed, convex cone as it can be written
+as the intersection of closed hyperplanes, and, by deﬁnition, we have 0 ∈ K∗
+. Additionally,
+we have that
+K∗
+⊆ Rn
++ × R (11)
+since K ⊇ Rn
+++ × {0}, from the previous section. (To see this, use the deﬁnition of K∗
+.)
+Finally, we may write the dual cone in terms of only the reachable set S. We have that
+(c,η) ∈ K∗
+if, and only if,
+cT
+R + ηλ ≥ 0, for all (R,λ) ∈ K,
+14by deﬁnition. But this latter statement is true if, and only if it is true for all λ > 0, since K
+is the closure over the set deﬁned in (2); i.e., (c,η) ∈ K∗
+if, and only if,
+cT
+R + ηλ ≥ 0, for all (R,λ) ∈ K, λ > 0.
+Rearranging the inequality gives that cT
+(R/λ) + η ≥ 0, and note that, by deﬁnition of K,
+we have that (R,λ) ∈ K with λ > 0 only when R/λ ∈ S. This means that (c,η) ∈ K∗
+if,
+and only if,
+cT
+R̃ + η ≥ 0, for all R̃ ∈ S. (12)
+This particular rewriting of K∗
+will be useful in what follows.
+## 1.4.2 Portfolio value function
+Much in the same way that we deﬁned the trading function, we may deﬁne the portfolio
+value function as
+V (c) = sup{−η | (c,η) ∈ K∗
+}. (13)
+This function has the following interpretation: given an external market with prices c ∈ Rn
++
+(i.e., anyone may trade asset i for asset j at a ﬁxed price ci/cj) then V (c) corresponds to the
+total value of reserves after arbitrage has been performed. In particular, V (c) is the optimal
+value of the problem,
+minimize cT
+R
+subject to R ∈ S,
+(14)
+with variable R ∈ Rn
+, where S is the reachable set.
+To see this, note that (c,η) ∈ K∗
+if, and only if,
+cT
+R ≥ −η, for all R ∈ S,
+from the previous characterization of K∗
+given in (12). The claim follows by applying the
+deﬁnition of V in (13).
+Properties. From the optimization problem formulation (14), we see that V is clearly
+nonnegative and nondecreasing since for any R ∈ S, we have that R ≥ 0. The function V is
+also concave because it is the partial maximization of the concave function
+f(c,η) = −η − I(c,η),
+over η, where I is the indicator function of the convex set K∗
+, deﬁned as I(c,η) = 0 if
+(c,η) ∈ K∗
+and +∞, otherwise. Finally, we see that V is homogeneous since for α > 0,
+V (αc) is the optimal value of the problem
+minimize αcT
+R
+subject to R ∈ S.
+Since α is a constant, this value is clearly αV (c).
+15Consistency. We say a portfolio value function is consistent if it is concave, homogeneous,
+and nondecreasing, which we know is true for any function V derived from a reachable set
+S. Of course, every consistent portfolio value function also deﬁnes a dual cone:
+K∗
+= {(c,η) | V (c) + η ≥ 0},
+which can be easily veriﬁed to be a convex cone that is contained in K∗
+⊆ Rn
++ × R using
+the fact that V is consistent, so we may convert from portfolio value functions to dual cones
+directly.
+Examples. Using (9), we can write the dual cone for Uniswap
+K∗
+= {(c,η) | cT
+R + ηλ ≥ 0, for all R1R2 ≥ kλ2
+, λ > 0}.
+We can simplify this expression via a few observations. First, we must have c ≥ 0, from (11).
+Second, because c ≥ 0, if η ≥ 0 then (c,η) is clearly in K∗
+. The interesting case is then
+when c ≥ 0 but η < 0. In this case, we must have that
+cT
+R ≥ (−η)
+r
+R1R2
+k
+,
+since λ can take any value between 0 and
+p
+R1R2/k. Rearranging, we have that
+c1x + c2x−1
+≥ (−η)/
+√
+k,
+where x =
+p
+R1/R2. Minimizing the left hand side over x > 0 means that this inequality is
+true if, and only if,
+2
+√
+c1c2 ≥ −η/
+√
+k,
+so the dual cone for Uniswap is
+K∗
+= {(c,η) ∈ R2
++ × R | 2
+p
+kc1c2 + η ≥ 0}.
+The portfolio value function can almost be read oﬀ from the deﬁnition:
+V (c) = 2
+p
+kc1c2, (15)
+which is evidently concave, homogeneous, and nondecreasing.
+As a more complicated example, we’ll derive the portfolio value function for a Uniswap
+v3 ‘tick’. In this case, it’s easier to work directly from the optimization problem (14).
+For convenience, let c = (p,1) and note that we can recover the general case using the
+homogeneity of V , as V (c̃) = c̃2V (c̃1/c̃2,1). Then,
+V (p,1) = inf
+R≥0
+{pR1 + R2 | (R1 + α)(R2 + β) ≥ k}.
+Any proﬁt maximizing trader will ensure that the inequality holds with equality (i.e., the
+solution is at the boundary of the set S). After substitution, we have a simple convex
+16function that is minimized either at a point R > 0 with gradient zero or at the boundary.
+We can conclude that
+V (p,1) =
+
+ 
+ 
+pk/α − β p < β2
+/k
+2
+√
+pk − (α + β) β2
+/k ≤ p ≤ k/α2
+pk/β − α k/α2
+< p.
+Note the similarity of this expression to the previous (15) when the price is within a particular
+range. This range corresponds exactly to the ‘tick’ interval in Uniswap v3 [AZS+
+21].
+## 1.4.3 Replicating market makers
+In this subsection we show how to convert directly between the portfolio value function and a
+canonical trading function (and vice versa). This shows that, indeed, every canonical trading
+function has an equivalent consistent portfolio value function, and, in a sense, each of these
+functions is a diﬀerent ‘view’ of the same underlying object.
+Trading function to portfolio value. Assuming ϕ is a canonical trading function, as
+deﬁned in (5), then we may write the portfolio value function as
+V (c) = inf
+R>0
+
+cT
+R
+ϕ(R)
+
+.
+To see this, note that the deﬁnition of K∗
+is that (c,η) ∈ K∗
+when
+cT
+R + ηλ ≥ 0, for all (R,λ) ∈ K.
+Minimizing the left hand side over λ > 0 gives that (c,η) ∈ K∗
+only when
+cT
+R + ηϕ(R) ≥ 0, for all R ∈ Rn
++,
+by deﬁnition of ϕ(R). Using a basic limiting argument, we may replace R ∈ Rn
++ with
+R ∈ Rn
+++, which implies that ϕ(R) > 0 by positive reachability (3), so we have that
+−η ≤
+cT
+R
+ϕ(R)
+, for all R ∈ Rn
+++,
+or, equivalently, that (c,η) ∈ K∗
+if, and only if,
+−η ≤ inf
+R>0
+
+cT
+R
+ϕ(R)
+
+.
+Applying the deﬁnition of V (c), given in (13), gives the ﬁnal result.
+17Trading function from portfolio value. It is also possible to show that we can recover
+a canonical trading function from a given portfolio value function. To see this, note that
+ϕ(R) = inf
+c>0
+
+cT
+R
+V (c)
+
+, (16)
+is a concave (as it is the minimization of a family of aﬃne functions over R), homogeneous,
+and nondecreasing trading function. We can easily show that, if K∗
+corresponds to the
+dual of a liquidity cone K, and V is the corresponding portfolio value function, then ϕ(R)
+corresponds to its canonical trading function.
+From a nearly-identical argument to the previous, replacing the deﬁnition of ϕ with that
+of V , we have that (R̃,λ̃) ∈ (K∗
+)∗
+if, and only if,
+λ̃ ≤ inf
+c>0
+cT
+R̃
+V (c)
+!
+.
+Since K is a liquidity cone (by assumption) it is therefore closed and convex, so we have
+that (K∗
+)∗
+= K; cf., appendix A. Finally, maximizing over λ̃ and using the deﬁnition of ϕ
+given in (5):
+ϕ(R̃) = inf
+c>0
+cT
+R̃
+V (c)
+!
+,
+where ϕ is the canonical trading function for K.
+Example. To complete the cycle, we convert the portfolio value function of Uniswap back
+to its canonical trading function. From above,
+ϕ(R) = inf
+c>0
+
+cT
+R
+V (c)
+
+=
+1
+2
+√
+k
+inf
+c>0
+r
+c1
+c2
+R1 +
+r
+c2
+c1
+R2
+
+=
+1
+2
+√
+k
+inf
+x>0
+xR1 + x−1
+R2
+
+=
+r
+R1R2
+k
+,
+where we recognized xR1 + x−1
+R2 as a convex function and minimized by simply applying
+the ﬁrst order optimality conditions.
+Interpretation. There is a nice interpretation for equation (16) which is that the quotient
+cT
+R/V (c) denotes the leverage or the ‘lambda’ of the portfolio R ∈ Rn
++ at price c, where
+V (c) denotes the true value of the CFMM holdings at this price. We may then view the
+trading function ϕ(R) as the lowest possible leverage over all possible prices. The inequality
+ϕ(R) ≥ 1, which deﬁnes the reachable set, says that the leverage must be at least 1 in order
+for the reserves to lie in the set.
+18Connection to RMMs. There is a connection to the original result of [AEC23] by noting
+that the trading function presented there is deﬁned, using the portfolio value function V , as
+ϕ0
+(R) = inf
+c>0
+cT
+R − V (c)
+
+= −I(K∗)∗(R,1),
+where I(K∗)∗ is the indicator function for the dual cone of the dual cone, (K∗
+)∗
+. Since
+(K∗
+)∗
+= K then ϕ0
+(R) ≥ 0 if, and only if, (R,1) ∈ K, which happens if, and only if, R ∈ S,
+as required.
+Discussion. From the above, we have that every consistent portfolio value leads to a
+canonical trading function. This method gives a general procedure for going from one to
+the other. Additionally, since we know ((K∗
+)∗
+)∗
+= K∗
+, then we know that, starting from
+any consistent portfolio value function V , converting it to a trading function ϕ, and then
+converting back results in the same V we started with, which shows that the mapping is
+indeed invertible.
+## 1.4.4 Composition rules
+We will denote SV ⊆ Rn
++ as the reachable set corresponding to the portfolio value function
+V . (We will see how to construct this explicitly in what follows.)
+Composition rules for portfolio value. Given consistent portfolio value functions, there
+are a number of possible ways these could be ‘combined’. The ﬁrst is by scaling: if V is
+consistent, then certainly αV is consistent. If both V and V ′
+are consistent, then V + V ′
+is consistent, and, ﬁnally if A is a nonnegative orthogonal matrix, and V is consistent, then
+V ◦ AT
+is consistent. We will show that these operations correspond to natural operations
+over the reachable sets corresponding to the portfolio value functions.
+Recovering the reachable set. We may recover the reachable set from a given portfolio
+value function since we know that, for given portfolio value function, its liquidity cone, which
+we will denote KV ⊆ Rn+1
+is
+KV = {(R,λ) ∈ Rn+1
+| cT
+R − λV (c) ≥ 0 for all c ≥ 0}.
+Clearly, this cone is convex, closed, and satisﬁes KV ⊆ Rn+1
++ from the fact that V is
+consistent. Additionally, since we may deﬁne a reachable set from a liquidity cone as
+SV = {R | (R,1) ∈ KV }, then this is the same as saying
+SV = {R | cT
+R ≥ V (c) for all c ≥ 0}. (17)
+It remains to be veriﬁed that SV is a valid reachable set, but this follows from the properties
+of KV outlined above. (Another way to see this is to note that cT
+R ≥ V (c) if, and only
+if, cT
+R/V (c) ≥ 1 for all c > 0, i.e., ϕ(R) ≥ 1 using (16). Since ϕ is a canonical trading
+function, then SV is a reachable set.)
+19Scaling. It is not hard to see that
+SαV = αSV ,
+for any α ≥ 0 by using the deﬁnition of SV and the fact that V is homogeneous.
+Addition. Similarly, addition over the portfolio value functions ‘commutes’ over the reach-
+able sets; i.e.,
+SV +V ′ = SV + SV ′.
+The direction SV +V ′ ⊆ SV + SV ′ is easy to show by deﬁnition. On the other hand, since
+SV +V ′ is a closed convex set, if R 6∈ SV +V ′ then there exists a strictly separating hyperplane
+c ∈ Rn
++ with
+cT
+R < cT
+R̃, for all R̃ ∈ SV +V ′.
+Taking the inﬁmum of the right hand side and using (14) gives
+cT
+R < (V + V ′
+)(c) ≤ cT
+R̃ + cT
+R̃′
+for all R̃ ∈ SV , R̃′
+∈ SV ′,
+which means that R 6∈ SV + SV ′. Here, the last inequality follows from the fact that
+V (c) ≤ cT
+R̃ for all R̃ ∈ SV and similarly for SV ′. Putting both statements together gives
+that SV +V ′ = SV + SV ′.
+Nonnegative projection. Given some nonnegative matrix A ∈ Rm×n
++ that is also an
+orthogonal matrix, i.e., AT
+A = I, then
+SV ◦AT = ASV + Rm
++,
+where (V ◦ AT
+)(c) = V (AT
+c). This follows nearly immediately from the deﬁnition of A
+and (17).
+Intersection. There is a natural question then, as to what the intersection of reachable
+sets corresponds to. Clearly, we have
+SV ∩ SV ′ = {R | cT
+R ≥ V (c) and cT
+R ≥ V ′
+(c)}.
+Of course, this implies that
+SV ∩ SV ′ = Smax{V,V ′},
+where the max is taken pointwise. Note that this does not correspond to a natural operation
+on the portfolio value functions as the pointwise maximum of two concave functions is not
+necessarily concave. (Take, for example, V (p,1) =
+√
+p and V ′
+(p,1) = p.) Let, on the other
+hand, Ṽ be the (pointwise) smallest concave function with Ṽ ≥ V and Ṽ ≥ V ′
+, then indeed
+we have
+SV ∩ SV ′ = SṼ ,
+and it is not hard to show that Ṽ is consistent.
+20Discussion. This also gives another proof of the composition rules presented for the reach-
+able sets since we may always recover a consistent portfolio value from any reachable set. In
+this sense, we may think of the portfolio value function and the reachable set as two objects
+with a ‘natural homomorphism’ under which scaling, addition, nonnegative projection, and
+intersection are all preserved.
+## 1.5 Connection to prediction markets
+Prediction markets are a type of market which attempts to elicit the beliefs of players about
+the probability that certain events occur. These markets have a rich academic history,
+stemming back since at least the 50s [McC56] and, until the relatively recent paper [FPW23],
+a connection between such markets and CFMMs was not known, except in some very special
+cases. This section restates and simpliﬁes the results of [FPW23] in this framework. We
+diﬀer in the notion of ‘histories’ for path-independent CFMMs which is implicitly included
+in this framework and discussed later in this paper, as a general result in §2.4.
+Cost functions. A cost function is deﬁned as a function C : Rn
+→ R ∪ {+∞} such that
+1. The function C is convex, nondecreasing
+2. It is translation invariant, C(q + α1) = C(q) + α
+3. It is somewhere ﬁnite; i.e., there is at least one q for which C(q) is ﬁnite
+Note that we do not require the function to be diﬀerentiable, only subdiﬀerentiable in its
+domain. This means that there might be many probabilities which are consistent with the
+market’s predictions, but includes diﬀerentiability as the special case where there is only
+one.
+Example. One particular, important example is the logarithmic market scoring rule, or
+LMSR, which has cost function
+C(q) = blog
+n X
+i=1
+exp
+qi
+b
+
+!
+,
+where b > 0 is some given constant. This function is clearly nondecreasing and ﬁnite. It
+is also convex as it is a log-sum-exp [BV04, §3.1.5] function with aﬃne precomposition. It
+is not hard to see that this function is also translation invariant using the deﬁnition, which
+means that this function is, indeed, a reasonable cost function.
+Mechanics. The mechanics of a prediction market are that any player may buy any of
+n possible mutually exclusive outcomes. Every player will be paid a dollar for each share
+of outcome i they hold if outcome i occurs at some future time. All other outcomes will
+have a value of zero. A player who wishes to buy δ ∈ Rn
+shares and must pay a cost of
+21C(q + δ) − C(q), where q is the current set of outstanding shares that have been sold to all
+players. (Negative values of δi means that the player is selling back δi shares to the market.)
+The outstanding shares are then updated to q ← q + δ.
+Interpretation. Let’s say the prediction market begins with some outstanding shares q0,
+and a player has beliefs p ∈ Rn
++ about the probability of each event such that pi corresponds
+to the probability of the ith event occurring. The player can then maximize her expected
+proﬁt (under her distribution of beliefs) by solving
+maximize pT
+q − (C(q0 + q) − C(q0)),
+with variable q. We note that the optimal value of this problem, call it E(p) for expected
+payoﬀ at probabilities p, is tightly related to the Fenchel conjugate of C, since
+E(p) = C∗
+(p) + C(q0) − pT
+q0.
+The optimality conditions for this problem are that
+p ∈ ∂C(q0 + q⋆
+),
+where q⋆
+is the solution to the optimization problem. This means that, if the market has
+some outstanding shares given by q0 then we may interpret ∂C(q0) as the set of probabilities
+consistent with the market’s belief about the event.
+CFMM to cost function. Given a reachable set S, we can construct a cost function:
+C(q) = min{α ≥ 0 | α1 − q ∈ S}. (18)
+(This was ﬁrst observed by [FPW23].) We may also deﬁne the cost function in terms of the
+liquidity cone as
+C(q) = max{β ≥ 0 | (1 − βq,β) ∈ K}.
+This function is a cost function since it is evidently translation invariant by deﬁnition, and
+is nondecreasing since S is upward closed. The function is ﬁnite at 0 since S is nonempty:
+if R ∈ S, then 0 ≤ C(0) ≤ maxi Ri. Additionally, this function is convex as it is the partial
+minimization of the convex function
+f(α,q) = α + I(α,q),
+over α ∈ R, where I(α,q) = 0 if α1 − q ∈ S and α ≥ 0, and is +∞ otherwise. (This set
+indicator is convex as it is the indicator function for the intersection of convex sets.)
+22Example. Recall that Uniswap has the trading set
+S = {R ∈ R2
++ | R1R2 ≥ k}
+Using (18), we have the cost function
+C(q) = min{α ≥ 0 | (α − q1)(α − q2) ≥ k}.
+The cost function is the positive root of the quadratic over α, the same as was found
+in [FPW23]:
+C(q) =
+q1 + q2
+2
++
+1
+2
+p
+(q1 − q2)2 + k.
+We can easily verify that this function is ﬁnite, translation invariant, and convex (by noting
+that the square root term can be expressed as the ℓ2 norm of the vector (q1 − q2,
+√
+k)).
+The fact that it is nondecreasing can be seen by showing that its gradient is everywhere
+nonnegative.
+Cost function to CFMM. Any cost function C deﬁnes a CFMM by deﬁning its reachable
+set as,
+S = {R ∈ Rn
++ | C(−R) ≤ 0}. (19)
+This S is indeed a reachable set as (a) the function C is nondecreasing by assumption, so S
+is upward closed, (b) it is convex as C is convex, and (c) it is nonempty since C(q) is ﬁnite
+for some q ∈ Rn
+, so C(q−C(q)1) = 0 by translation invariance, and therefore C(q)1−q ∈ S.
+We may write its canonical trading function using (6):
+ϕ(R) = sup{λ > 0 | C(−R/λ) ≤ 0}.
+Equivalence. If the cost function C is constructed from a CFMM with reachable set S,
+as in (18), then it is not hard to show that (19) yields exactly this set S. To see this, note
+that, by deﬁnition (18), we have that C(−R) ≤ 0, if, and only if, α1 + R ∈ S for all α ≥ 0;
+letting α = 0 gives that R ∈ S. On the other hand, if R ∈ S then, R + α1 ∈ S for every
+α ≥ 0, by upward closedness, so C(−R) ≤ 0 and the sets are equivalent.
+Example. The logarithmic market scoring rule (LMSR) has the cost function
+C(q) = blog
+n X
+i=1
+exp
+qi
+b
+
+!
+.
+We may deﬁne its trading set, using (19), as
+S =
+(
+R ∈ Rn
++
+n X
+i=1
+exp(−Ri/b) ≤ 1
+)
+.
+23The corresponding canonical trading function is
+ϕ(R) = sup
+(
+λ > 0
+n X
+i=1
+exp(−Ri/λb) ≤ 1
+)
+This function has no closed form solution but can be solved numerically as a univariate
+root-ﬁnding problem. Since C is strictly increasing, the positive root is unique and can be
+found eﬃciently using the methods discussed in §1.3.2.
+## 1.6 Liquidity provision
+As in [AAE+
+22], we discuss liquidity provision in the case where the trading function ϕ
+is homogeneous. This is, of course, fully general as we may assume that ϕ is a consistent
+trading function.
+Liquidity providers. An agent, called a liquidity provider can add or remove assets from
+the CFMM’s reserves R. When an agent adds liquidity, she adds a basket Ψ ∈ Rn
++ to the
+reserves, resulting in the updated reserves R+
+= R + Ψ. When an agent removes liquidity,
+she removes a basket Ψ ∈ Rn
++ with Ψ ≤ R from the reserves, resulting in the updated
+reserves R+
+= R − Ψ. When adding (or removing) to reserves, the agent receives (tenders)
+an IOU. This IOU gives the agent a pro-rata share of the reserves based on the amount of
+value the agent added and the total amount of value in the pool. We describe the exact
+mechanism for liquidity addition (and removal) below.
+Liquidity change condition. The main condition for adding and removing liquidity is
+that the asset prices must not change after the removal, or addition, of liquidity. More
+speciﬁcally, we must have that the prices, as given in §1.3.2, at the new reserves, R+
+∈ Rn
++,
+must be equal, up to a scalar multiple, to those at the original reserves, R ∈ Rn
++. Written
+out, this gives the following condition:
+∇ϕ(R+
+) = α∇ϕ(R),
+where ϕ is the canonical trading function and α > 0 is some positive constant. Since ϕ is
+homogeneous, we have that, for any α > 0, ∇ϕ(αR) = α∇ϕ(R). We conclude that Ψ = νR
+for ν > 0 is a valid liquidity change for any ν > 0 (where we must have ν ≤ 1 for liquidity
+removal). Note that scaling R to αR corresponds exactly to scaling the reachable set by α.
+Liquidity provider share weights. The CFMM additionally maintains a table of all
+liquidity providers and their corresponding share weights, representing the fraction of the
+reserves that each liquidity provider owns. We denote these weights as w ∈ RN
++, where N
+is the number of liquidity providers, and enforce that they sum to one, i.e.,
+PN
+i=1 wi = 1.
+These weights are updated whenever a liquidity provider adds or removes liquidity, or when
+the number of liquidity providers N changes.
+24Value of the reserves. Let V = pT
+R be the value of the CFMM reserves at price p. After
+adding liquidity νR, the value of the reserves is now
+V +
+= pT
+R+
+= (1 + ν)pT
+R = (1 + ν)V.
+For removing liquidity, we replace ν with −ν. The fractional change in reserve value is
+(V +
+− V )/V +
+= ν/(1 + ν).
+Liquidity provider share update. When liquidity provider j adds or removes liquidity,
+all the share weights are adjusted pro-rata based on the change of value of the reserves,
+which is the value of the basket she adds or removes. The fractional change in reserve value
+is ν/(1 + ν). Thus, after adding liquidity, the change in share weights is
+w+
+i =
+(
+wi/(1 + ν) + ν/(1 + ν) i = j
+wi/(1 + ν) i 6= j.
+For removing liquidity, we replace ν with −ν and add the constraint that ν ≤ wj.
+Portfolio value. We note that, since liquidity providers own a pro-rata share with weight
+wi of the total pool value, we may view each liquidity provider’s position as ‘independent’.
+In particular, there is no distinction between many liquidity providers pooling their assets
+together into a single CFMM versus every liquidity provider having their own CFMM in-
+stance and owning all of the assets of their particular instance. (There may be practical
+diﬀerences, however, owing to the fact that users may prefer to trade with a subset of these
+for a variety of reasons, such as gas fees.)
+## 2 Single trade
+We consider in this section the general CFMM case, which potentially includes fees and is
+therefore not necessarily path-independent. (We show the connection to the previous fee-free
+case later in the section.)
+## 2.1 Trading set
+Much in the same way as the previously-deﬁned reachable set, we will deﬁne the trading set
+T ⊆ Rn
+, which is any set T satisfying the following properties:
+1. The set T is closed and convex
+2. The zero trade is included, 0 ∈ T
+3. The set T is downward closed; i.e., if ∆ ∈ T and ∆′
+≤ ∆ then ∆′
+∈ T
+25An additional requirement that will be useful in the composition rules presented later, but
+is not strictly required for most of the statements below is that: there exists R ∈ Rn
++ such
+that
+R − T = {R − ∆ | ∆ ∈ T} ⊆ Rn
++. (20)
+This corresponds to the statement that the CFMM can only tender a ﬁnite amount of some
+asset (in ‘usual’ CFMMs, this would be the available reserves) which is upper bounded by
+the quantity R ≥ 0. One could imagine a mechanism that is allowed to mint unbounded
+amounts of tokens may violate (20).
+Set up. In this set up, we have a trader who wishes to trade with the CFMM. This trader
+can suggest to trade a basket of tokens ∆ ∈ Rn
+, where positive values denote what the
+trader receives from the CFMM and negative values denote what the trader tenders to the
+CFMM. The CFMM accepts this trade (and tenders or receives the stated amounts) only
+when ∆ ∈ T. (If ∆ 6∈ T, the trader receives and tenders nothing to the CFMM.) The
+state of the CFMM is then updated based on the accepted trade ∆ (and a rejected trade
+does not change the state), but, for now, we will only consider the single-trade case and
+elide discussion of this state update until later. We assume only that the trading set at the
+current state is known and accessible to the trader.
+Interpretation. The conditions imposed on the trading set all have relatively simple in-
+terpretations. The convexity of the trading set means that, as users trade more of a token,
+they receive marginally less (or, at least, no more) than they otherwise would by trading
+less. The fact that the zero trade is included means that a user is allowed to not trade.
+Finally, the downward-closedness of the set means that the CFMM will accept more of a
+given token, all else being equal; i.e., a trader is allowed to ‘overpay’ for a given trade, and
+this new trade is still valid. The ﬁnal optional condition can be interpreted as: a CFMM
+has a ﬁnite amount of assets that it is allowed to tender. While not strictly a requirement,
+we will need it for a technical condition we present later.
+Example. A basic example of a trading set is Uniswap with fees. In this particular case,
+the current state of the CFMM is given by some reserves R ∈ R2
++, and the trading set is
+T = {∆+
+− ∆−
+| (R1 + γ∆−
+1 − ∆+
+1 )+(R2 + γ∆−
+2 − ∆+
+2 )+ ≥ R1R2, ∆−
+,∆+
+∈ Rn
++},
+where 0 ≤ γ ≤ 1 is the fee parameter and is set by the CFMM at creation time. We show
+this set in ﬁgure 5. This writing is bit verbose and diﬃcult to parse, but the construction is
+very similar to the original, given in the fee-free case above. Because of this, it is often nicer
+to work directly with a functional form, which we describe below.
+Quasiconcavity and fees. Given any nondecreasing, quasiconcave function, with non-
+negative domain ψ : Rn
++ → R (much like the previous) we can deﬁne a trading set with fee
+0 ≤ γ ≤ 1 and reserves R ∈ Rn
++,
+T = {∆+
+− ∆−
+| ψ(R + γ∆−
+− ∆+
+) ≥ ψ(R), ∆−
+,∆+
+∈ Rn
++}. (21)
+26T
+∆1
+∆2
+T
+∆1
+∆2
+Figure 5: Left: the trading set for Uniswap (without fees) for R = (1,1) (light gray) and R = (2,2)
+(dark gray). Right: the trading set for Uniswap v3.
+(We will, by convention, let the function ψ take on −∞ for values outside of its domain.)
+Clearly 0 ∈ T and T is downward closed as ψ is nondecreasing. The set is evidently convex
+as it is an aﬃne transform of the set
+{(∆+
+,∆−
+) ∈ Rn
++ × Rn
++ | ψ(R + γ∆−
+− ∆+
+) ≥ ψ(R)},
+which is a convex set by the quasiconcavity of ψ. Closedness is trickier, but follows from the
+fact that the valid choices of ∆+
+are in some compact set, 0 ≤ ∆+
+≤ R.
+Composition rules. The composition rules are nearly identical in both statement and
+proof to those of the reachable set. Given trading sets T,T′
+⊆ Rn
++
+1. Trading sets may be added; i.e., T + T′
+yields a trading set
+2. Trading sets may be scaled, so αT is a trading set for any α > 0
+3. Taking the intersection T ∩ T′
+preserves the trading set property
+4. Applying a nonnegative linear transformation A ∈ Rk×n
++ and adding all dominated
+trades,
+AT − Rk
++,
+preserves the trading set property
+These composition rules similarly lead to the notion of an aggregate CFMM mentioned
+previously, in the single-trade case, which is especially useful in the case of Uni v3 as we will
+show later. The only technical condition appears when adding trading sets: to ensure that
+the resulting trading set is closed, it suﬃces to ensure that all CFMMs can tender only a
+ﬁnite amount of assets, as in condition (20).
+272.2 Trading cone and dual
+Much in the same way as we have deﬁned the liquidity cone, we deﬁne the trading cone as
+K = cl{(∆,λ) ∈ Rn+1
+| ∆/λ ∈ T, λ > 0}.
+This cone plays a similar role to the liquidity cone, except in the single trade case. Indeed,
+many of the constructions we have shown previously for the liquidity cone will apply in a
+similar form to the trading cone. (We have overloaded notation as we will make no further
+reference to the liquidity cone.)
+Trading function. From a nearly identical argument to the previous we may deﬁne a
+homogeneous, nondecreasing, but convex (instead of concave) trading function
+ϕ(∆) = min{λ ≥ 0 | (∆,λ) ∈ K},
+or, equivalently,
+ϕ(∆) = inf{λ > 0 | ∆/λ ∈ T}. (22)
+such that
+T = {∆ ∈ Rn
+| ϕ(∆) ≤ 1}.
+(Here, we deﬁne the min and inf of an empty set to be +∞ for convenience.) The diﬀerence
+in sign from the deﬁnition in the path independent case in §1.3.2 comes from the fact that
+the set T is downward (rather than upward) closed, since we are taking the perspective of
+the trader, rather than the CFMM or its liquidity providers. In this case, the function ϕ is
+similarly canonical and rational traders will always tender trades ∆ such that
+ϕ(∆) = 1,
+hence, again, the name ‘constant function market maker.’
+Example. Perhaps the simplest example of this type of function is, unsurprisingly, Uniswap.
+Using the quasiconcave function deﬁnition (21) of the trading set, we have, for R ∈ R2
++,
+ψ(R1,R2) = R1R2
+with some fee 0 ≤ γ ≤ 1. For a given proposed trade, ∆ ∈ Rn
+, we can decompose ∆ into its
+positive and negative parts ∆ = ∆+
+−∆−
+with ∆−
+,∆+
+≥ 0 and disjoint support ∆−
+i ∆+
+i = 0
+for each i = 1,2. Using the deﬁnition of the trading function, we look for the smallest λ ≥ 0
+such that 
+R1 + γ
+∆−
+1
+λ
+−
+∆+
+1
+λ
+
+R2 + γ
+∆−
+2
+λ
+−
+∆+
+2
+λ
+
+≥ R1R2.
+With some basic rearrangements, we ﬁnd
+ϕ(∆) =
+(∆+
+1 − γ∆−
+1 )(∆+
+2 − γ∆−
+2 )
+R1(γ∆−
+2 − ∆+
+2 ) + R2(γ∆−
+1 − ∆+
+1 )
+.
+28This trading function is homogeneous since the numerator is a homogeneous quadratic while
+the denominator is homogeneous. We can similarly verify that, as expected from the previous
+discussion, it is convex and nondecreasing by writing it in the following form:
+ϕ(∆) =
+1
+−(R1/(γ∆−
+1 − ∆+
+1 ) + R2/(γ∆−
+2 − ∆+
+2 ))
+.
+Since the denominator is nonnegative, concave, and nonincreasing (in ∆+
+), then ϕ must be
+nonnegative, convex, and nondecreasing (in ∆+
+). Since ∆ = ∆+
+− ∆−
+, directly verifying
+fact that ϕ is nondecreasing and convex in ∆ requires one more step, which we leave to
+the reader as a useful exercise. (Of course, we know that both of these already follow from
+the construction of the trading function in (22) and the fact that ψ is quasiconcave and
+nondecreasing, as is the case for all such trading functions.)
+Bounded liquidity. in a similar way to the previous section, we know that, since 0 ∈ T,
+then
+(−Rn
++,0) ⊆ K.
+We say the trading set has bounded liquidity in asset i if the supremum
+sup{∆i | ∆ ∈ T} = ∆⋆
+i ,
+is achieved at some ∆⋆
+∈ T. This has the interpretation that there is a ﬁnite basket of assets
+such that we receive all possible amount of asset i from the CFMM. We say a trading set has
+bounded liquidity if it has bounded liquidity for each asset i = 1,...,n. Examples of bounded
+liquidity CFMMs include Uniswap v3 (see ﬁgure 5) and those with linear trading functions.
+These bounded liquidity CFMMs are useful since arbitrage can be easily computed in many
+important practical cases; see [DRCA23, §3] for more.
+Arbitrage cone. In a similar way to the previous, we will deﬁne the dual cone for the
+trading cone K ⊆ Rn+1
+as
+K∗
+= {(c,η) | cT
+∆ + ηλ ≥ 0, for all (∆,λ) ∈ K}.
+By downward closedness and the fact that 0 ∈ T, it is not hard to show that K∗
+⊆ (−R+)n
+×
+R+. Minimizing over the left hand side of the inequality gives another deﬁnition, based on
+the trading function:
+K∗
+= {(c,η) | cT
+∆ + ηϕ(∆) ≥ 0, for all ∆ ∈ Rn
+}.
+Some care has to be taken when interpreting this expression if ϕ(∆) = ∞ when η = 0, based
+on the original deﬁnition of K, but this is an informative exercise for the reader.
+29Relation to arbitrage. Much like the portfolio value function, we write the arbitrage
+function, arb : Rn
+→ R, for the trading set T as
+arb(c) = sup{cT
+∆ | ∆ ∈ T}. (23)
+Note that if ci < 0 for any i then arb(c) = +∞ by the downward-closedness of T, so we may
+generally assume that c ≥ 0. This function has the following interpretation: if there is an
+external market with prices c ∈ Rn
++, this is the maximum proﬁt that an arbitrageur could
+derive by trading between the external market and the CFMM. This function is convex (as
+it is the supremum of a family of functions that are aﬃne in c), nondecreasing over c ≥ 0,
+and homogeneous. We may write this function in terms of the dual cone as
+arb(c) = inf{η | (−c,η) ∈ K∗
+},
+by a nearly-identical argument to that of the portfolio value function in §1.4.2. This function
+will be very useful in the routing problem that follows. Additionally, from a very similar
+argument to §1.4.3, the arbitrage function and the trading function are equivalent represen-
+tations in that we may derive one from the other by setting
+ϕ(∆) = sup
+arb(c)>0
+
+cT
+∆
+arb(c)
+
+,
+and
+arb(c) = sup
+ϕ(∆)>0
+
+cT
+∆
+ϕ(∆)
+
+.
+From before, note the suprema in this equation, versus the inﬁma in the previous. For
+examples of such arbitrage functions for some common constant function market makers,
+see [DRCA23, app. A].
+Marginal prices. We can view the supporting hyperplanes of T at some ∆ as the set of
+marginal prices at trade ∆. We write this set as
+C(∆) =
+\
+∆′∈T
+{ν ∈ Rn
+| νT
+(∆′
+− ∆) ≤ 0}. (24)
+Note that this set is a closed convex cone as it is the intersection of closed convex cones and
+is always nonempty as 0 ∈ C(∆). We can write the cone C(∆) using the trading function as
+C(∆) =
+[
+λ≥0
+λ∂(ϕ(∆)), (25)
+whenever ϕ(∆) = 1 and the subdiﬀerential is deﬁned. As we will soon see, the cone C(0)
+will be called the no-trade cone. This is a generalization of the no-trade interval [DRCA23]
+in the case where n ≥ 2. We show this cone for Uniswap in ﬁgure 6.
+30The proof of the equivalence (25) can be shown in two steps, one for the forward inclusion,
+and one for the reverse. From the statement, we have ∆ with ϕ(∆) = 1. Now let g ∈ ∂ϕ(∆),
+then
+ϕ(∆) + gT
+(∆′
+− ∆) ≤ ϕ(∆′
+),
+by deﬁnition of the subgradient g. Letting ∆′
+∈ T means that ϕ(∆′
+) ≤ 1 by deﬁnition and
+ϕ(∆) = 1 by the previous, so
+gT
+(∆′
+− ∆) ≤ ϕ(∆′
+) − 1 ≤ 0,
+for every ∆′
+∈ T, which means that g ∈ C(∆). Multiplying both sides of this inequality by
+λ ≥ 0 then means that λg ∈ C(∆), or that
+[
+λ≥0
+λ∂(ϕ(∆)) ⊆ C(∆).
+For the other direction, using the deﬁnition of C in (24), we can see that g ∈ C(∆) if,
+and only if, ∆ is a maximizer of the following optimization problem:
+maximize gT
+∆′
+subject to ϕ(∆′
+) ≤ 1,
+with variable ∆′
+∈ Rn
+. Using the optimality conditions of this problem, we know that ∆ is
+a maximizer if, and only if, there exists some λ ≥ 0 such that
+0 ∈ −g + λ∂ϕ(∆),
+or, equivalently, if, and only if, g ∈ λ∂ϕ(∆) for some λ ≥ 0, which shows the reverse
+inclusion. It also shows that
+C(∆) ⊆ Rn
++,
+since ϕ is nondecreasing, so it subgradients must be nonnegative. The optimality conditions
+are necessary and suﬃcient by Slater’s condition [BV04, §5.2.3], since ϕ(−1) = 0 < 1 and
+−1 is in the interior of the domain of ϕ.
+Marginal price composition. Given ∆i ∈ Ti for i = 1,...,m, we have that
+C
+m X
+i=1
+∆i
+!
+=
+m \
+i=1
+Ci(∆i), (26)
+where Ci is the cone of marginal prices for CFMM i while C is the cone of marginal prices
+for the aggregate CFMM
+T̃ =
+m X
+i=1
+Ti.
+This is easy to see from the deﬁnitions of C and T̃.
+31T
+C(0)
+∆1
+∆2
+Figure 6: The trading set for Uniswap with fees (notice that the set is kinked at 0) and the
+corresponding no-trade cone.
+Connection to arbitrage. Note that ∆ is a solution to the arbitrage problem at price c,
+i.e., cT
+∆ = arb(c) if, and only if,
+c ∈ C(∆),
+which follows by using the deﬁnition of arb and C. In other words, the arbitrage problem
+is solved at any trade which changes the prices to match those of the external market with
+prices c ∈ Rn
++. We say there is no arbitrage at price c if the zero trade is a solution, i.e.,
+c ∈ C(0).
+Equivalently, we may view this as the case where the CFMM’s prices are consistent with
+those of the external market. Alternatively, there is a direct connection between the marginal
+prices, arbitrage, and the dual cone K∗
+:
+c ∈ C(∆), if, and only if, (−c,cT
+∆) ∈ K∗
+.
+We can see this since c ∈ C(∆) if, and only if, for all ∆′
+∈ T, we have
+cT
+∆′
+≤ cT
+∆.
+But (∆′
+,λ′
+) ∈ K with λ′
+> 0 if and only if ∆′
+/λ′
+∈ T so
+cT
+∆′
+λ′
+≤ cT
+∆.
+Multiplying both sides by λ′
+> 0 and using a limiting argument shows that this is true, if,
+and only if, for all (∆′
+,λ′
+) ∈ K we have
+cT
+∆′
+≤ λ′
+cT
+∆,
+which is the same as saying (−c,cT
+∆) ∈ K∗
+.
+322.3 Routing problem
+The routing problem takes a number of possible CFMMs i = 1,...,m, each trading a subset
+of ni tokens out of the universe of n tokens, and seeks to ﬁnd the best possible set of trades,
+i.e., those maximizing a given utility function U : Rn
+→ R ∪ {−∞}. We assume that U
+is concave and increasing (i.e., we assume all assets have value with potentially diminishing
+marginal returns). We use inﬁnite values of U to encode constraints; a trade Ψ such that
+U(Ψ) = −∞ is unacceptable to the trader. See [AECB22, §5.2] for examples, including
+liquidating or purchasing a basket of tokens and ﬁnding arbitrage.
+We denote the trade we make with the ith CFMM by ∆i and this CFMM’s trading cone
+by Ki ⊆ Rni+1
+. We also introduce matrices Ai ∈ Rn×ni
+which map the ‘local’ basket of ni
+tokens for CFMM i to the global universe of n tokens. This construction is similar to the
+construction of aggregate CFMMs in §1.2, but here we focus on the trade vectors and not
+the trading sets. The net trade is simply
+Ψ =
+m X
+i=1
+Ai∆i.
+The optimal routing problem is then the problem of ﬁnding a set of valid trades with each
+market that maximize the trader’s utility:
+maximize U(Ψ)
+subject to Ψ =
+m X
+i=1
+Ai∆i
+(∆i,1) ∈ Ki, i = 1,...,m.
+The variables here are the net trade Ψ ∈ Rn
+and the trades ∆i ∈ Rni
+. Note that, by
+deﬁnition of the trading cone Ki, we have that ∆i ∈ Ti if, and only if, (∆i,1) ∈ Ki.
+Other interpretations. If Ai = I, i.e., if all CFMMs trade the same tokens, then this
+problem is equivalent to
+maximize U(˜ ∆)
+subject to ˜ ∆ ∈ T̃,
+where T̃ =
+Pm
+i=1 Ti, which is another trading set, by the composition rules given in §2.1.
+While this rewriting seems silly, it tells us that we may consider routing through a network
+of CFMMs as trading with one ‘large’ CFMM. The optimality conditions for this problem
+are that
+0 ∈ ∂(−U)(˜ ∆⋆
+) + C̃(∆⋆
+),
+and ˜ ∆⋆
+∈ T̃. From (26) we know that C̃ is the intersection of each individual price cone, so,
+using the deﬁnition of T̃, we get
+0 ∈ ∂(−U)
+m X
+i=1
+Ai∆⋆
+i
+!
++
+m \
+i=1
+Ci(∆⋆
+i ),
+33and ∆⋆
+i ∈ Ti, which are exactly the optimality conditions we would get from considering the
+original routing problem. The case where Ai are general nonnegative orthogonal matrices is
+slightly more involved, but is ultimately very similar.
+Dual problem. From conic duality (cf., appendix A), we know that the dual problem can
+be written as
+minimize Ū(ν) + 1T
+η
+subject to (−AT
+i ν,ηi) ∈ K∗
+i , i = 1,...,m,
+where the variables are ν ∈ Rn
+and η ∈ Rm
+. Partially minimizing over each ηi and using
+the deﬁnition of the optimal arbitrage function, we have that this problem is equivalent to
+minimize Ū(ν) +
+m X
+i=1
+arbi(AT
+i ν),
+where arbi is the optimal arbitrage function for the ith trading set. This is exactly the
+dual problem used in the decomposition method of [DRCA23]. This problem has a beautiful
+interpretation: the optimal trades are exactly those which result in a price vector ν that
+minimizes the total arbitrage proﬁts that the user would receive if we interpret Ū(ν) as the
+maximum utility that could be received by trading with an external market with price ν.
+## 2.4 Path independence
+In this subsection, we show the connection between the path-independent CFMMs, presented
+in the previous section, and the ‘general’ CFMMs presented in this one.
+Mechanics of trading. In a CFMM, as stated previously, we have some state, which is
+given by the reserves R ∈ Rn
++. The current trading set, deﬁned as T(R) ⊆ Rn
+has the same
+properties given at the beginning of this section. (We implicitly included the relationship
+between the trading set and the reserves in the previous section as the reserves could be
+considered ﬁxed for a single trade.) The CFMM then accepts or rejects any proposed trade
+∆ ∈ Rn
+based on whether ∆ ∈ T(R). If this is the case, then the CFMM accepts the trade,
+updating its reserves to R → R − ∆ (as it pays out ∆i to the trader from its reserves for
+∆i > 0 and vice versa) and making the new trading set T(R − ∆). If the trade is rejected
+then the reserves are not updated and the trading set remains as-is.
+Sequential feasibility. From before, we say a trade ∆ is feasible if ∆ ∈ T(R). We say a
+sequence of trades ∆i ∈ Rn
+for i = 1,...,m is (sequentially) feasible if
+∆i ∈ T(R − (∆1 + ··· + ∆i−1)).
+for each i = 1,...,m.
+34T(R′
+)
+∆1
+∆2
+S = R′
+− T(R′
+)
+R′
+R1
+R2
+Figure 7: The trading set T(R′) for Uniswap (left) and the corresponding reachable set S (right).
+Reachability. We say some reserves R′
+are reachable from some initial set of reserves R
+if there is a sequence of feasible trades ∆i ∈ Rn
+, for i = 1,...,m, such that
+R′
+= R − (∆1 + ··· + ∆m).
+In other words, R′
+is reachable from R if there is a sequence of feasible trades that takes us
+from reserves R to reserves R′
+Path independence. We say a CFMM is path independent if, for any reserves R and for
+any trade ∆ satisfying ∆ ∈ T(R), we have
+∆′
+∈ T(R − ∆) if, and only if, ∆ + ∆′
+∈ T(R). (27)
+In English: a CFMM is path independent if there is no diﬀerence between performing trades
+sequentially versus in aggregate, if the trades are sequentially feasible. (We may apply
+induction to this deﬁnition to get the more ‘general-seeming’ case that applies to any ﬁnite
+sequence of feasible trades.)
+Reachable set. If the CFMM is path independent, there exists a ﬁxed set S ⊆ Rn
+(which,
+as we will soon see, corresponds exactly to the reachable set of §1.1) such that every trading
+set T(R′
+) can be written as
+T(R′
+) = R′
+− S, (28)
+for any reachable R′
+, starting from some reserves R. (Here, R′
+− S = {R′
+− R̃ | R̃ ∈ S}.)
+Figure 7 illustrates these sets for Uniswap.
+Proof. We will show that, whenever the CFMM is path independent, then we will have
+that, for any reachable R′
+, R − T(R) = R′
+− T(R′
+). Setting S = R − T(R) will then suﬃce
+to satisfy (28). Note that it suﬃces to consider only R′
+which are reachable in 1 step, since
+35the result follows by induction. That is, we will consider the case where R′
+= R − ∆ for
+∆ ∈ T(R) and the general case follows by induction.
+We can rewrite the path independence condition (27) as
+∆′
+∈ T(R − ∆) if, and only if, ∆′
+∈ T(R) − ∆,
+or, equivalently,
+T(R − ∆) = T(R) − ∆.
+The proof is then nearly obvious after this:
+R′
+− T(R′
+) = (R − ∆) − T(R − ∆) = R − ∆ − T(R) + ∆ = R − T(R).
+We may then set S = R′
+−T(R′
+) = R−T(R), such that (28) is satisﬁed for any R′
+reachable
+from R.
+Conditions. Note that the conditions on T(R) will imply some conditions on S. Indeed,
+since T(R) is a closed convex set, then S must also be. Similarly, since 0 ∈ T(R) then
+R ∈ S, so S is nonempty, and, since we must have R − ∆ ≥ 0 for any ∆ ∈ T(R) then
+S = R − T(R) ⊆ Rn
++. Finally, since T(R) is downward closed, then S must be upward
+closed, hence S must be a reachable set as deﬁned in §1.1.
+Equivalence. This is, of course, a bijection. We know that any path independent CFMM
+with trading set T(R) may be written as
+T(R) = R − S,
+so long as R ∈ S. Additionally, if S is a reachable set, then we must have that 0 ∈ T(R),
+that T(R) is closed and convex, and that T(R) is downward closed, making it a reasonable
+trading set. It is also bounded (20) since S ⊆ Rn
++ so R − T(R) ⊆ Rn
++.
+Discussion. In general, it is tempting to deal with histories of trades among other objects
+when discussing CFMMs as these are dynamic systems with some internal state that changes
+as trades are performed. The above shows that, in the special case that the CFMM is path
+independent, we only need to consider the reachable set, as this contains all properties needed
+to completely describe the object in question. Indeed, the proof above shows that a CFMM
+is path-independent if, and only if, it is completely described by a reachable set meeting the
+conditions outlined in §1.1.
+## 3 Conclusion
+In this paper, we have shown that a general geometric perspective on constant function
+market makers is relatively fruitful. Indeed, assuming only a small number of ‘intuitive’
+36conditions on sets, we have derived a number of results—some known already, some not—
+which follow from almost purely geometrical considerations. In some cases, we show that
+assumptions made in the literature actually are unnecessary, and indeed are consequences of
+a subset of the assumptions made. Examples of these include the homogeneity of [AEC21],
+[SKM23], and [FPW23]. In others, we derive a new form of a known result such as [AEC23]
+or [FPW23]. We suspect that there are a number of useful ‘geometric’ interpretations to
+other known results in the literature, but leave these for future work.
+References
+[AAE+
+22] Guillermo Angeris, Akshay Agrawal, Alex Evans, Tarun Chitra, and Stephen
+Boyd. Constant function market makers: Multi-asset trades via convex opti-
+mization. In Handbook on Blockchain, pages 415–444. Springer, 2022.
+[AC20] Guillermo Angeris and Tarun Chitra. Improved price oracles: Constant function
+market makers. In Proceedings of the 2nd ACM Conference on Advances in
+Financial Technologies, pages 80–91, 2020.
+[ACE22] Guillermo Angeris, Tarun Chitra, and Alex Evans. When Does The Tail
+Wag The Dog? Curvature and Market Making. Cryptoeconomic Systems,
+2(1), jun 13 2022. https://cryptoeconomicsystems.pubpub.org/pub/angeris-
+curvature-market-making.
+[AEC21] Guillermo Angeris, Alex Evans, and Tarun Chitra. A Note on Privacy in Con-
+stant Function Market Makers, March 2021.
+[AEC23] Guillermo Angeris, Alex Evans, and Tarun Chitra. Replicating market makers.
+Digital Finance, pages 1–21, 2023.
+[AECB22] Guillermo Angeris, Alex Evans, Tarun Chitra, and Stephen Boyd. Optimal
+routing for constant function market makers. In Proceedings of the 23rd ACM
+Conference on Economics and Computation, pages 115–128, 2022.
+[AZR20] Hayden Adams, Noah Zinsmeister, and Dan Robinson. Uniswap v2 core. URL:
+https://uniswap.org/whitepaper.pdf, 2020.
+[AZS+
+21] Hayden Adams, Noah Zinsmeister, Moody Salem, River Keefer, and Dan Robin-
+son. Uniswap v3 core. Tech. rep., Uniswap, Tech. Rep., 2021.
+[Ber09] Dimitri Bertsekas. Convex optimization theory, volume 1. Athena Scientiﬁc,
+2009.
+[BV04] Stephen P. Boyd and Lieven Vandenberghe. Convex Optimization. Cambridge
+University Press, Cambridge, UK; New York, 2004.
+37[CAE21] Tarun Chitra, Guillermo Angeris, and Alex Evans. How liveness separates cfmms
+and order books. 2021.
+[DKP21] Vincent Danos, Hamza El Khallouﬁ, and Julien Prat. Global order routing
+on exchange networks. In Matthew Bernhard, Andrea Bracciali, Lewis Gud-
+geon, Thomas Haines, Ariah Klages-Mundt, Shin’ichiro Matsuo, Daniel Perez,
+Massimiliano Sala, and Sam Werner, editors, Financial Cryptography and Data
+Security. FC 2021 International Workshops, pages 207–226, Berlin, Heidelberg,
+2021. Springer Berlin Heidelberg.
+[DRCA23] Theo Diamandis, Max Resnick, Tarun Chitra, and Guillermo Angeris. An eﬃ-
+cient algorithm for optimal routing through constant function market makers.
+arXiv preprint arXiv:2302.04938, 2023.
+[Ego19] Michael Egorov. Stableswap-eﬃcient mechanism for stablecoin liquidity. 2019.
+[EH21] Daniel Engel and Maurice Herlihy. Composing networks of automated market
+makers. In Proceedings of the 3rd ACM Conference on Advances in Financial
+Technologies. ACM, sep 2021.
+[FMW23] Masaaki Fukasawa, Basile Maire, and Marcus Wunsch. Weighted variance swaps
+hedge against impermanent loss. Quantitative Finance, 23(6):901–911, 2023.
+[FPW23] Rafael Frongillo, Maneesha Papireddygari, and Bo Waggoner. An axiomatic
+characterization of cfmms and equivalence to prediction markets. arXiv preprint
+arXiv:2302.00196, 2023.
+[GRGM23] Mohak Goyal, Geoﬀrey Ramseyer, Ashish Goel, and David Mazières. Finding the
+right curve: Optimal design of constant function market makers. In Proceedings
+of the 24th ACM Conference on Economics and Computation, pages 783–812,
+2023.
+[LP21] Alfred Lehar and Christine A Parlour. Decentralized exchanges. Available at
+SSRN 3905316, 2021.
+[McC56] John McCarthy. Measures of the value of information. Proceedings of the Na-
+tional Academy of Sciences, 42(9):654–655, 1956.
+[MDP23] Bruno Mazorra and Nicolás Della Penna. Towards optimal prior-free permis-
+sionless rebate mechanisms, with applications to automated market makers &
+combinatorial orderﬂow auctions. arXiv preprint arXiv:2306.17024, 2023.
+[MMR23a] Jason Milionis, Ciamac C. Moallemi, and Tim Roughgarden. Complexity-
+approximation trade-oﬀs in exchange mechanisms: Amms vs. lobs, 2023.
+[MMR23b] Jason Milionis, Ciamac C. Moallemi, and Tim Roughgarden. A myersonian
+framework for optimal liquidity provision in automated market makers, 2023.
+38[SKM23] Jan Christoph Schlegel, Mateusz Kwaśnicki, and Akaki Mamageishvili. Axioms
+for constant function market makers, 2023.
+[WM22] Mike Wu and Will McTighe. Constant power root market makers, 2022.
+A A primer on conic duality
+This appendix is intended as a (very short) primer on conic duality. We assume basic
+familiarity with convex sets and the separating hyperplane theorem. For far more, see [BV04,
+§2.6].
+Cones. A cone is a set K ⊆ Rn
+such that, if x ∈ K then, for any α ≥ 0, we have αx ∈ K.
+A convex cone is, as one would expect, a cone that is convex. More generally, convex cones
+are closed under nonnegative scalar multiplication, i.e., if x,y ∈ K and α,β ≥ 0, then
+αx + βy ∈ K.
+Basic examples of convex cones include the nonnegative real elements Rn
++ and the norm
+cones, given by
+Kk·k = {(x,t) ∈ Rn+1
+| kxk ≤ t}.
+Properties. If K is closed and nonempty then 0 ∈ K. The intersection of convex cones is
+a convex cone and scaling a convex cone results in a convex cone. Finally, the (Cartesian)
+product of two convex cones is again a convex cone.
+Dual cone. The dual cone K∗
+of a cone K is deﬁned as
+K∗
+= {y ∈ Rn
+| yT
+x ≥ 0, for all x ∈ K}.
+In other words, the dual cone of K is the set of all vectors which have nonnegative inner
+product with every element in K. Since we can write
+K∗
+=
+\
+x∈K
+{y ∈ Rn
+| yT
+x ≥ 0},
+then we can see that K∗
+is a closed convex cone (even when K is not). For example, the
+dual cone of Rn
++ is Rn
++, while the norm cone is
+K∗
+k·k = {(y,r) ∈ Rn+1
+| kyk∗ ≤ r},
+where kyk∗ is the dual norm of y, deﬁned
+kyk∗ = sup{yT
+x | kxk ≤ 1}.
+39Properties. By deﬁnition 0 ∈ K, and, since K∗
+can be written as an intersection over K,
+then if K′
+⊆ K, we have
+K∗
+⊆ K′∗
+.
+Additionally note that
+(K + K′
+)∗
+= K∗
+∩ K′∗
+,
+and
+(K × K′
+)∗
+= K∗
+× K′∗
+,
+all of which are simple exercises and follow from the deﬁnition of the dual cone above.
+Duality. In a certain sense, we may view the dual cone K∗
+as a collection of certificates
+that an element is not in K. More speciﬁcally, if we have any x ∈ Rn
+and we are given some
+y ∈ K∗
+such that yT
+x < 0, then we are guaranteed that, indeed x 6∈ K, by deﬁnition of K∗
+.
+Conic duality gives the following guarantee for a nonempty, closed convex cone K: for any
+x ∈ Rn
+, either x ∈ K, or there exists y ∈ K∗
+with yT
+x < 0, but not both. In other words,
+either some given point x it either belongs in the cone, or we can furnish a certiﬁcate, using
+the dual cone, that it does not.
+The reverse implication follows from the previous argument. (Note that this implication
+requires no assumptions on K.) The forward implication will make use of the convexity of
+K to furnish a certiﬁcate. To see this, let x 6∈ K, then, since K is convex closed, there exists
+a strict separating hyperplane with slope y ∈ Rn
+such that
+xT
+y < zT
+y, for all z ∈ K.
+Since, for any t ≥ 0 and z ∈ K, we have tz ∈ K, we therefore know that, for any z ∈ K,
+xT
+y/t < zT
+y,
+and sending t → ∞ we then know
+zT
+y ≥ 0 for any z ∈ K,
+so y ∈ K∗
+. Finally, since K is closed, then 0 ∈ K so
+xT
+y < 0,
+completing the proof.
+Dual of the dual. Because of the previous, we now have the following result: K is exactly
+the set of vectors x ∈ Rn
+such that x has nonnegative inner product with every element of
+K∗
+; i.e., for which we cannot furnish a certiﬁcate that x 6∈ K. But, the set of vectors which
+have nonnegative inner product with every element of K∗
+is exactly the dual cone of K∗
+,
+written (K∗
+)∗
+= K∗∗
+. This gives the following beautiful relation for a nonempty, closed, and
+convex cone K:
+K∗∗
+= K.
+40Conic duality in optimization. Most convex optimization problems can be cast as conic
+optimization problems. The general form of such a problem is, for some convex objective
+function f : Rn
+→ R ∪ {∞}
+minimize f(x)
+subject to Ax = b
+x ∈ K,
+where the variable is x ∈ Rn
+, and the problem data are the closed nonempty convex cone
+K ⊆ Rn
+, the matrix A ∈ Rm×n
+, and the constraint vector b ∈ Rm
+.
+Conic duality tells us that, if there exists any point in the interior of K, i.e., intK 6= ∅,
+then this problem and the following problem, called the dual problem, have the same optimal
+value
+maximize ¯ f(AT
+y) + bT
+y
+subject to −AT
+y ∈ K∗
+,
+with variable y ∈ Rn
+, where
+¯ f(z) = inf
+x
+(f(x) − xT
+z),
+is sometimes known as the concave conjugate. As we only use this fact once in the main
+text, we do not derive it in detail, but see [Ber09, §5.3.6] for reference.
+B Curve
+In this section, we derive the canonical trading function for a two-asset Curve pool. Recall
+that the trading set for this market is given by [AC20]
+S =
+
+R R1 + R2 −
+α
+R1R2
+≥ k
+
+.
+From (6), we can write the trading function as
+ϕ(R) = sup
+
+λ > 0
+R1 + R2
+λ
+−
+αλ2
+R1R2
+≥ k
+
+.
+Rewriting, we have that
+ϕ(R) = sup
+
+λ > 0 − αλ3
+− kR1R2λ + R1R2(R1 + R2) ≥ 0 .
+The solution is given by the largest positive root of the cubic polynomial in λ:
+λ⋆
+=
+3
+q
+c1(R) +
+p
+c2(R)
+3 3
+√
+2α
+−
+3
+√
+2kR1R2
+3
+q
+c1(R) +
+p
+c2(R)
+41where c1(R) = 27α2
+R2
+1R2 + 27α2
+R1R2
+2 and c2(R) = 108α3
+k3
+R3
+1R3
+2 + c2
+1. Plugging this back
+in, we have the canonical trading function
+ϕ(R) =
+R1 + R2
+kλ⋆
+−
+α(λ⋆
+)2
+kR1R2
+,
+which can (painfully) be veriﬁed to be homogeneous.
+C Proof of concavity of Uniswap v3
+The main diﬃculty in showing that (10) is concave is the square root term
+p
+(βR1 + αR2)2 + 4(k − αβ)R1R2.
+Its concavity follows from the fact that the set
+Q = {(x,y,t) ∈ R3
++ | k(
+√
+η(x − y),t)k2 ≤
+p
+1 + η(x + y)}
+is convex when η ≥ 0, where k·k2 denotes the Euclidean norm. (To see this, note that norms
+are convex and aﬃne functions are convex. Sets of the form {z | f(z) ≤ 0} are convex when
+f is convex, and aﬃne precomposition preserves convexity.) Expanding the inequality gives
+the following equivalent characterization of the set:
+Q = {(x,y,t) ∈ R3
++ | t ≤
+p
+(x + y)2 + 4ηxy},
+which means that the function
+p
+(x + y)2 + 4ηxy = sup{t ≥ 0 | (x,y,t) ∈ Q},
+is concave in (x,y). Finally, setting η = (k −αβ)/αβ, x = βR1 and y = αR2 shows that the
+function p
+(βR1 + αR2)2 + 4(k − αβ)R1R2,
+is concave in R1 and R2.
+42

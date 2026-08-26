@@ -1,0 +1,19681 @@
+---
+sha256: 6bc491c90dcc8fd5922eb4bc3e18c5b18307f5239c7e9029b9051b9afbc0465d
+pdftotext_version: 26.06.0
+extractor_version: 1
+body_bytes: 896800
+---
+Linear Algebra Done Right
+fourth edition
+## 9 May 2026
+© 2024 Sheldon Axler
+Sheldon Axler
+Comments, corrections, and suggestions
+about this book are most welcome.
+Please send them to linear@axler.net.
+The print version of this book is published by Springer.
+Open Access This book is licensed under the terms of the Creative Commons Attribution-NonCommercial 4.0
+International License (https://creativecommons.org/licenses/by-nc/4.0), which permits any noncommercial use,
+sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit
+to original author and source, provide a link to the Creative Commons license, and indicate if changes were made.
+The images or other third party material in this book are included in the book’s Creative
+Commons license, unless indicated otherwise in a credit line to the material. If material
+is not included in the book’s Creative Commons license and your intended use is not
+permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the
+copyright holder.
+𝐹𝑛 =
+1
+√5
+[(
+1 + √5
+2
+)
+𝑛
+− (
+1 − √5
+2
+)
+𝑛
+]About the Author
+Sheldon Axler received his undergraduate degree from Princeton University,
+followed by a PhD in mathematics from the University of California at Berkeley.
+As a postdoctoral Moore Instructor at MIT, Axler received a university-wide
+teaching award. He was then an assistant professor, associate professor, and
+professor at Michigan State University, where he received the first J. Sutherland
+Frame Teaching Award and the Distinguished Faculty Award.
+Axler received the Lester R. Ford Award for expository writing from the Math-
+ematicalAssociationofAmericain1996, forapaperthateventuallyexpandedinto
+this book. In addition to publishing numerous research papers, he is the author of
+six mathematics textbooks, ranging from freshman to graduate level. Previous
+editions of this book have been adopted as a textbook at over 375 universities and
+colleges and have been translated into three languages.
+Axler has served as Editor-in-Chief of the Mathematical Intelligencer and
+Associate Editor of the American Mathematical Monthly. He has been a member
+oftheCounciloftheAmericanMathematicalSocietyandoftheBoardofTrustees
+of the Mathematical Sciences Research Institute. He has also served on the
+editorialboardofSpringer’sseriesUndergraduateTextsinMathematics, Graduate
+Texts in Mathematics, Universitext, and Springer Monographs in Mathematics.
+Axler is a Fellow of the American Mathematical Society and has been a
+recipient of numerous grants from the National Science Foundation.
+Axler joined San Francisco State University as chair of the Mathematics
+Department in 1997. He served as dean of the College of Science & Engineering
+from 2002 to 2015, when he returned to a regular faculty appointment as a
+professor in the Mathematics Department.
+Carrie Heeter, Bishnu Sarangi
+The author and his cat Moon.
+Cover equation: Formula for the 𝑛th
+Fibonacci number. Exercise 21 in Section 5D
+uses linear algebra to derive this formula.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+vContents
+About the Author v
+Preface for Students xii
+Preface for Instructors xiii
+Acknowledgments xvii
+Chapter 1
+Vector Spaces 1
+1A 𝐑𝑛
+and 𝐂𝑛
+2
+Complex Numbers 2
+Lists 5
+𝐅𝑛
+6
+Digression on Fields 10
+Exercises 1A 10
+1B Definition of Vector Space 12
+Exercises 1B 16
+1C Subspaces 18
+Sums of Subspaces 19
+Direct Sums 21
+Exercises 1C 24
+Chapter 2
+Finite-Dimensional Vector Spaces 27
+2A Span and Linear Independence 28
+Linear Combinations and Span 28
+Linear Independence 31
+Exercises 2A 37
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+viContents vii
+2B Bases 39
+Exercises 2B 42
+2C Dimension 44
+Exercises 2C 48
+Chapter 3
+Linear Maps 51
+3A Vector Space of Linear Maps 52
+Definition and Examples of Linear Maps 52
+Algebraic Operations on ℒ(𝑉,𝑊) 55
+Exercises 3A 57
+3B Null Spaces and Ranges 59
+Null Space and Injectivity 59
+Range and Surjectivity 61
+Fundamental Theorem of Linear Maps 62
+Exercises 3B 66
+3C Matrices 69
+Representing a Linear Map by a Matrix 69
+Addition and Scalar Multiplication of Matrices 71
+Matrix Multiplication 72
+Column–Row Factorization and Rank of a Matrix 77
+Exercises 3C 79
+3D Invertibility and Isomorphisms 82
+Invertible Linear Maps 82
+Isomorphic Vector Spaces 86
+Linear Maps Thought of as Matrix Multiplication 88
+Change of Basis 90
+Exercises 3D 93
+3E Products and Quotients of Vector Spaces 96
+Products of Vector Spaces 96
+Quotient Spaces 98
+Exercises 3E 103
+3F Duality 105
+Dual Space and Dual Map 105
+Null Space and Range of Dual of Linear Map 109
+Linear Algebra Done Right, fourth edition, by Sheldon Axlerviii Contents
+Matrix of Dual of Linear Map 113
+Exercises 3F 115
+Chapter 4
+Polynomials 119
+Zeros of Polynomials 122
+Division Algorithm for Polynomials 123
+Factorization of Polynomials over 𝐂 124
+Factorization of Polynomials over 𝐑 127
+Exercises 4 129
+Chapter 5
+Eigenvalues and Eigenvectors 132
+5A Invariant Subspaces 133
+Eigenvalues 133
+Polynomials Applied to Operators 137
+Exercises 5A 139
+5B The Minimal Polynomial 143
+Existence of Eigenvalues on Complex Vector Spaces 143
+Eigenvalues and the Minimal Polynomial 144
+Eigenvalues on Odd-Dimensional Real Vector Spaces 149
+Exercises 5B 150
+5C Upper-Triangular Matrices 154
+Exercises 5C 160
+5D Diagonalizable Operators 163
+Diagonal Matrices 163
+Conditions for Diagonalizability 165
+Gershgorin Disk Theorem 170
+Exercises 5D 172
+5E Commuting Operators 175
+Exercises 5E 179
+Chapter 6
+Inner Product Spaces 181
+6A Inner Products and Norms 182
+Inner Products 182
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerContents ix
+Norms 186
+Exercises 6A 191
+6B Orthonormal Bases 197
+Orthonormal Lists and the Gram–Schmidt Procedure 197
+Linear Functionals on Inner Product Spaces 204
+Exercises 6B 207
+6C Orthogonal Complements and Minimization Problems 211
+Orthogonal Complements 211
+Minimization Problems 217
+Pseudoinverse 220
+Exercises 6C 224
+Chapter 7
+Operators on Inner Product Spaces 227
+7A Self-Adjoint and Normal Operators 228
+Adjoints 228
+Self-Adjoint Operators 233
+Normal Operators 235
+Exercises 7A 239
+7B Spectral Theorem 243
+Real Spectral Theorem 243
+Complex Spectral Theorem 246
+Exercises 7B 247
+7C Positive Operators 251
+Exercises 7C 255
+7D Isometries, Unitary Operators, and Matrix Factorization 258
+Isometries 258
+Unitary Operators 260
+QR Factorization 263
+Cholesky Factorization 266
+Exercises 7D 268
+7E Singular Value Decomposition 270
+Singular Values 270
+SVD for Linear Maps and for Matrices 273
+Exercises 7E 278
+Linear Algebra Done Right, fourth edition, by Sheldon Axlerx Contents
+7F Consequences of Singular Value Decomposition 280
+Norms of Linear Maps 280
+ApproximationbyLinearMapswithLower-DimensionalRange 283
+Polar Decomposition 285
+Operators Applied to Ellipsoids and Parallelepipeds 287
+Volume via Singular Values 291
+Properties of an Operator as Determined by Its Eigenvalues 293
+Exercises 7F 294
+Chapter 8
+Operators on Complex Vector Spaces 297
+8A Generalized Eigenvectors and Nilpotent Operators 298
+Null Spaces of Powers of an Operator 298
+Generalized Eigenvectors 300
+Nilpotent Operators 303
+Exercises 8A 306
+8B Generalized Eigenspace Decomposition 308
+Generalized Eigenspaces 308
+Multiplicity of an Eigenvalue 310
+Block Diagonal Matrices 314
+Exercises 8B 316
+8C Consequences of Generalized Eigenspace Decomposition 319
+Square Roots of Operators 319
+Jordan Form 321
+Exercises 8C 324
+8D Trace: A Connection Between Matrices and Operators 326
+Exercises 8D 330
+Chapter 9
+Multilinear Algebra and Determinants 332
+9A Bilinear Forms and Quadratic Forms 333
+Bilinear Forms 333
+Symmetric Bilinear Forms 337
+Quadratic Forms 341
+Exercises 9A 344
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerContents xi
+9B Alternating Multilinear Forms 346
+Multilinear Forms 346
+Alternating Multilinear Forms and Permutations 348
+Exercises 9B 352
+9C Determinants 354
+Defining the Determinant 354
+Properties of Determinants 357
+Exercises 9C 367
+9D Tensor Products 370
+Tensor Product of Two Vector Spaces 370
+Tensor Product of Inner Product Spaces 376
+Tensor Product of Multiple Vector Spaces 378
+Exercises 9D 380
+Photo Credits 383
+Symbol Index 384
+Index 385
+Colophon: Notes on Typesetting 390
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerPreface for Students
+You are probably about to begin your second exposure to linear algebra. Unlike
+your first brush with the subject, which probably emphasized Euclidean spaces
+and matrices, this encounter will focus on abstract vector spaces and linear maps.
+These terms will be defined later, so don’t worry if you do not know what they
+mean. This book starts from the beginning of the subject, assuming no knowledge
+of linear algebra. The key point is that you are about to immerse yourself in
+serious mathematics, with an emphasis on attaining a deep understanding of the
+definitions, theorems, and proofs.
+You cannot read mathematics the way you read a novel. If you zip through a
+page in less than an hour, you are probably going too fast. When you encounter
+the phrase “as you should verify”, you should indeed do the verification, which
+will usually require some writing on your part. When steps are left out, you need
+to supply the missing pieces. You should ponder and internalize each definition.
+For each theorem, you should seek examples to show why each hypothesis is
+necessary. Discussions with other students should help.
+As a visual aid, definitions and notations are in yellow boxes (and have a title
+begining with the word “definition” or “notation”) and theorems are in blue boxes
+(in color versions of the book). Each theorem has an informal descriptive name.
+Please check the website below for additional information about the book,
+including a link to videos that are freely available to accompany the book.
+Your suggestions, comments, and corrections are most welcome.
+Best wishes for success and enjoyment in learning linear algebra!
+Sheldon Axler
+San Francisco State University
+website: https://linear.axler.net
+e-mail: linear@axler.net
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+xiiPreface for Instructors
+You are about to teach a course that will probably give students their second
+exposure to linear algebra. During their first brush with the subject, your students
+probably worked with Euclidean spaces and matrices. In contrast, this course will
+emphasize abstract vector spaces and linear maps.
+The title of this book deserves an explanation. Most linear algebra textbooks
+use determinants to prove that every linear operator on a finite-dimensional com-
+plex vector space has an eigenvalue. Determinants are difficult, nonintuitive,
+and often defined without motivation. To prove the theorem about existence of
+eigenvalues on complex vector spaces, most books must define determinants,
+prove that a linear operator is not invertible if and only if its determinant equals 0,
+and then define the characteristic polynomial. This tortuous (torturous?) path
+gives students little feeling for why eigenvalues exist.
+In contrast, the simple determinant-free proofs presented here (for example,
+see 5.19) offer more insight. Once determinants have been moved to the end of
+the book, a new route opens to the main goal of linear algebra—understanding
+the structure of linear operators.
+This book starts at the beginning of the subject, with no prerequisites other
+than the usual demand for suitable mathematical maturity. A few examples
+and exercises involve calculus concepts such as continuity, differentiation, and
+integration. You can easily skip those examples and exercises if your students
+have not had calculus. If your students have had calculus, then those examples and
+exercises can enrich their experience by showing connections between different
+parts of mathematics.
+Even if your students have already seen some of the material in the first few
+chapters, they may be unaccustomed to working exercises of the type presented
+here, most of which require an understanding of proofs.
+Here is a chapter-by-chapter summary of the highlights of the book:
+• Chapter 1: Vector spaces are defined in this chapter, and their basic properties
+are developed.
+• Chapter 2: Linear independence, span, basis, and dimension are defined in this
+chapter, which presents the basic theory of finite-dimensional vector spaces.
+• Chapter 3: This chapter introduces linear maps. The key result here is the
+fundamental theorem of linear maps: if 𝑇 is a linear map on 𝑉, then dim𝑉 =
+dimnull𝑇 +dimrange𝑇. Quotient spaces and duality are topics in this chapter
+at a higher level of abstraction than most of the book; these topics can be
+skipped (except that duality is needed for tensor products in Section 9D).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+xiiixiv Preface for Instructors
+• Chapter 4: The part of the theory of polynomials that will be needed to un-
+derstand linear operators is presented in this chapter. This chapter contains no
+linear algebra. It can be covered quickly, especially if your students are already
+familiar with these results.
+• Chapter 5: The idea of studying a linear operator by restricting it to small sub-
+spacesleadstoeigenvectorsintheearlypartofthischapter. Thehighlightofthis
+chapter is a simple proof that on complex vector spaces, eigenvalues always ex-
+ist. Thisresultisthenusedtoshowthateachlinearoperatoronacomplexvector
+space has an upper-triangular matrix with respect to some basis. The minimal
+polynomial plays an important role here and later in the book. For example, this
+chapter gives a characterization of the diagonalizable operators in terms of the
+minimal polynomial. Section 5E can be skipped if you want to save some time.
+• Chapter 6: Inner product spaces are defined in this chapter, and their basic
+properties are developed along with tools such as orthonormal bases and the
+Gram–Schmidt procedure. This chapter also shows how orthogonal projections
+can be used to solve certain minimization problems. The pseudoinverse is then
+introduced as a useful tool when the inverse does not exist. The material on
+the pseudoinverse can be skipped if you want to save some time.
+• Chapter 7: The spectral theorem, which characterizes the linear operators for
+which there exists an orthonormal basis consisting of eigenvectors, is one of
+the highlights of this book. The work in earlier chapters pays off here with espe-
+cially simple proofs. This chapter also deals with positive operators, isometries,
+unitary operators, matrix factorizations, and especially the singular value de-
+composition, which leads to the polar decomposition and norms of linear maps.
+• Chapter 8: This chapter shows that for each operator on a complex vector space,
+there is a basis of the vector space consisting of generalized eigenvectors of the
+operator. Then the generalized eigenspace decomposition describes a linear
+operatoronacomplexvectorspace. Themultiplicityofaneigenvalueisdefined
+as the dimension of the corresponding generalized eigenspace. These tools are
+used to prove that every invertible linear operator on a complex vector space
+has a square root. Then the chapter gives a proof that every linear operator on
+a complex vector space can be put into Jordan form. The chapter concludes
+with an investigation of the trace of operators.
+• Chapter9: Thischapterbeginsbylookingatbilinearformsandshowingthatthe
+vector space of bilinear forms is the direct sum of the subspaces of symmetric
+bilinear forms and alternating bilinear forms. Then quadratic forms are diag-
+onalized. Moving to multilinear forms, the chapter shows that the subspace of
+alternating 𝑛-linear forms on an 𝑛-dimensional vector space has dimension one.
+This result leads to a clean basis-free definition of the determinant of an opera-
+tor. Forcomplexvectorspaces, thedeterminantturnsouttoequaltheproductof
+the eigenvalues, with each eigenvalue included in the product as many times as
+its multiplicity. The chapter concludes with an introduction to tensor products.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerPreface for Instructors xv
+This book usually develops linear algebra simultaneously for real and complex
+vectorspacesbyletting𝐅 denoteeithertherealorthecomplexnumbers. Ifyouand
+yourstudentsprefertothink of𝐅 asanarbitraryfield, thenseethecomments atthe
+end of Section 1A. I prefer avoiding arbitrary fields at this level because they intro-
+duceextraabstractionwithoutleadingtoanynewlinearalgebra. Also,studentsare
+more comfortable thinking of polynomials as functions instead of the more formal
+objectsneededforpolynomialswithcoefficientsinfinitefields. Finally, evenifthe
+beginning part of the theory were developed with arbitrary fields, inner product
+spaces would push consideration back to just real and complex vector spaces.
+You probably cannot cover everything in this book in one semester. Going
+through all the material in the first seven or eight chapters during a one-semester
+course may require a rapid pace. If you must reach Chapter 9, then consider
+skipping the material on quotient spaces in Section 3E, skipping Section 3F
+on duality (unless you intend to cover tensor products in Section 9D), covering
+Chapter 4 on polynomials in a half hour, skipping Section 5E on commuting
+operators, and skipping the subsection in Section 6C on the pseudoinverse.
+A goal more important than teaching any particular theorem is to develop in
+students the ability to understand and manipulate the objects of linear algebra.
+Mathematics can be learned only by doing. Fortunately, linear algebra has many
+good homework exercises. When teaching this course, during each class I usually
+assign as homework several of the exercises, due the next class. Going over the
+homework might take up significant time in a typical class.
+Some of the exercises are intended to lead curious students into important
+topics beyond what might usually be included in a basic second course in linear
+algebra.
+The author’s top ten
+Listed below are the author’s ten favorite results in the book, in order of their
+appearanceinthebook. Studentswholeaveyourcoursewithagoodunderstanding
+of these crucial results will have an excellent foundation in linear algebra.
+• any two bases of a vector space have the same length (2.34)
+• fundamental theorem of linear maps (3.21)
+• existence of eigenvalues if 𝐅 = 𝐂 (5.19)
+• upper-triangular form always exists if 𝐅 = 𝐂 (5.47)
+• Cauchy–Schwarz inequality (6.14)
+• Gram–Schmidt procedure (6.32)
+• spectral theorem (7.29 and 7.31)
+• singular value decomposition (7.70)
+• generalized eigenspace decomposition theorem when 𝐅 = 𝐂 (8.22)
+• dimension of alternating 𝑛-linear forms on 𝑉 is 1 if dim𝑉 = 𝑛 (9.37)
+Linear Algebra Done Right, fourth edition, by Sheldon Axlerxvi Preface for Instructors
+Major improvements and additions for the fourth edition
+• Over 250 new exercises and over 70 new examples.
+• Increasing use of the minimal polynomial to provide cleaner proofs of multiple
+results, including necessary and sufficient conditions for an operator to have an
+upper-triangular matrix with respect to some basis (see Section 5C), necessary
+and sufficient conditions for diagonalizability (see Section 5D), and the real
+spectral theorem (see Section 7B).
+• New section on commuting operators (see Section 5E).
+• New subsection on pseudoinverse (see Section 6C).
+• New subsections on QR factorization/Cholesky factorization (see Section 7D).
+• Singular value decomposition now done for linear maps from an inner product
+space to another (possibly different) inner product space, rather than only deal-
+ing with linear operators from an inner product space to itself (see Section 7E).
+• Polardecompositionnowprovedfromsingularvaluedecomposition,ratherthan
+in the opposite order; this has led to cleaner proofs of both the singular value
+decomposition (see Section 7E) and the polar decomposition (see Section 7F).
+• New subsection on norms of linear maps on finite-dimensional inner prod-
+uct spaces, using the singular value decomposition to avoid even mentioning
+supremum in the definition of the norm of a linear map (see Section 7F).
+• New subsection on approximation by linear maps with lower-dimensional range
+(see Section 7F).
+• New elementary proof of the important result that if 𝑇 is an operator on a finite-
+dimensional complex vector space 𝑉, then there exists a basis of 𝑉 consisting
+of generalized eigenvectors of 𝑇 (see 8.9).
+• New Chapter 9 on multilinear algebra, including bilinear forms, quadratic
+forms, multilinear forms, and tensor products. Determinants now are defined
+using a basis-free approach via alternating multilinear forms.
+• New formatting to improve the student-friendly appearance of the book. For
+example, the definition and result boxes now have rounded corners instead of
+right-angle corners, for a gentler look. The main font size has been reduced
+from 11 point to 10.5 point.
+Please check the website below for additional links and information about the
+book. Your suggestions, comments, and corrections are most welcome.
+Best wishes for teaching a successful linear algebra class!
+Contact the author, or Springer if the
+author is not available, for permission
+for translations or other commercial
+reuse of the contents of this book.
+Sheldon Axler
+San Francisco State University
+website: https://linear.axler.net
+e-mail: linear@axler.net
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerAcknowledgments
+I owe a huge intellectual debt to all the mathematicians who created linear algebra
+overthepasttwocenturies. Theresultsinthisbookbelongtothecommonheritage
+of mathematics. A special case of a theorem may first have been proved long ago,
+then sharpened and improved by many mathematicians in different time periods.
+Bestowing proper credit on all contributors would be a difficult task that I have
+not undertaken. In no case should the reader assume that any result presented
+here represents my original contribution.
+Many people helped make this a better book. The three previous editions of
+this book were used as a textbook at over 375 universities and colleges around
+the world. I received thousands of suggestions and comments from faculty and
+students who used the book. Many of those suggestions led to improvements
+in this edition. The manuscript for this fourth edition was class tested at 30
+universities. I am extremely grateful for the useful feedback that I received from
+faculty and students during this class testing.
+The long list of people who should be thanked for their suggestions would
+fill up many pages. Lists are boring to read. Thus to represent all contributors
+to this edition, I will mention only Noel Hinton, a graduate student at Australian
+National University, who sent me more suggestions and corrections for this fourth
+edition than anyone else. To everyone who contributed suggestions, let me say
+how truly grateful I am to all of you. Many many thanks!
+I thank Springer for providing me with help when I needed it and for allowing
+me the freedom to make the final decisions about the content and appearance
+of this book. Special thanks to the two terrific mathematics editors at Springer
+who worked with me on this project—Loretta Bartolini during the first half of
+my work on the fourth edition, and Elizabeth Loew during the second half of my
+work on the fourth edition. I am deeply indebted to David Kramer, who did a
+magnificent job of copyediting and prevented me from making many mistakes.
+Extra special thanks to my fantastic partner Carrie Heeter. Her understanding
+and encouragement enabled me to work intensely on this new edition. Our won-
+derful cat Moon, whose picture appears on the About the Author page, provided
+sweet breaks throughout the writing process. Moon died suddenly due to a blood
+clot as this book was being finished. We are grateful for five precious years with
+him.
+Sheldon Axler
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+xviiChapter 1
+Vector Spaces
+Linear algebra is the study of linear maps on finite-dimensional vector spaces.
+Eventually we will learn what all these terms mean. In this chapter we will define
+vector spaces and discuss their elementary properties.
+In linear algebra, better theorems and more insight emerge if complex numbers
+are investigated along with real numbers. Thus we will begin by introducing the
+complex numbers and their basic properties.
+We will generalize the examples of a plane and of ordinary space to 𝐑𝑛
+and
+𝐂𝑛
+, which we then will generalize to the notion of a vector space. As we will see,
+a vector space is a set with operations of addition and scalar multiplication that
+satisfy natural algebraic properties.
+Then our next topic will be subspaces, which play a role for vector spaces
+analogous to the role played by subsets for sets. Finally, we will look at sums
+of subspaces (analogous to unions of subsets) and direct sums of subspaces
+(analogous to unions of disjoint sets). Pierre Louis Dumesnil, Nils Forsberg
+René Descartes explaining his work to Queen Christina of Sweden.
+Vector spaces are a generalization of the description of a plane
+using two coordinates, as published by Descartes in 1637.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+12 Chapter 1 Vector Spaces
+1A 𝐑𝑛
+and 𝐂𝑛
+Complex Numbers
+You should already be familiar with basic properties of the set 𝐑 of real numbers.
+Complex numbers were invented so that we can take square roots of negative
+numbers. The idea is to assume we have a square root of −1, denoted by 𝑖, that
+obeys the usual rules of arithmetic. Here are the formal definitions.
+1.1 definition: complex numbers, 𝐂
+• A complex number is an ordered pair (𝑎,𝑏), where 𝑎,𝑏 ∈ 𝐑, but we will
+write this as 𝑎 + 𝑏𝑖.
+• The set of all complex numbers is denoted by 𝐂:
+𝐂 = {𝑎 + 𝑏𝑖 ∶ 𝑎,𝑏 ∈ 𝐑}.
+• Addition and multiplication on 𝐂 are defined by
+(𝑎 + 𝑏𝑖) + (𝑐 + 𝑑𝑖) = (𝑎 + 𝑐) + (𝑏 + 𝑑)𝑖,
+(𝑎 + 𝑏𝑖)(𝑐 + 𝑑𝑖) = (𝑎𝑐 − 𝑏𝑑) + (𝑎𝑑 + 𝑏𝑐)𝑖;
+here 𝑎,𝑏,𝑐,𝑑 ∈ 𝐑.
+If 𝑎 ∈ 𝐑, we identify 𝑎 + 0𝑖 with the real number 𝑎. Thus we think of 𝐑 as a
+subset of 𝐂. We usually write 0+𝑏𝑖 as just 𝑏𝑖, and we usually write 0+1𝑖 as just 𝑖.
+The symbol 𝑖 was first used to denote
+√−1 by Leonhard Euler in 1777.
+To motivate the definition of complex
+multiplication given above, pretend that
+we knew that 𝑖2
+= −1 and then use the
+usual rules of arithmetic to derive the formula above for the product of two
+complex numbers. Then use that formula to verify that we indeed have
+𝑖2
+= −1.
+Do not memorize the formula for the product of two complex numbers—you
+can always rederive it by recalling that 𝑖2
+= −1 and then using the usual rules of
+arithmetic (as given by 1.3). The next example illustrates this procedure.
+1.2 example: complex arithmetic
+The product (2 +3𝑖)(4 +5𝑖) can be evaluated by applying the distributive and
+commutative properties from 1.3:
+(2 + 3𝑖)(4 + 5𝑖) = 2 ⋅ (4 + 5𝑖) + (3𝑖)(4 + 5𝑖)
+= 2 ⋅ 4 + 2 ⋅ 5𝑖 + 3𝑖 ⋅ 4 + (3𝑖)(5𝑖)
+= 8 + 10𝑖 + 12𝑖 − 15
+= −7 + 22𝑖.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1A 𝐑𝑛
+and 𝐂𝑛
+3
+Our first result states that complex addition and complex multiplication have
+the familiar properties that we expect.
+1.3 properties of complex arithmetic
+commutativity
+𝛼 + 𝛽 = 𝛽 + 𝛼 and 𝛼𝛽 = 𝛽𝛼 for all 𝛼,𝛽 ∈ 𝐂.
+associativity
+(𝛼 + 𝛽) + 𝜆 = 𝛼 + (𝛽 + 𝜆) and (𝛼𝛽)𝜆 = 𝛼(𝛽𝜆) for all 𝛼,𝛽, 𝜆 ∈ 𝐂.
+identities
+𝜆 + 0 = 𝜆 and 𝜆1 = 𝜆 for all 𝜆 ∈ 𝐂.
+additive inverse
+For every 𝛼 ∈ 𝐂, there exists a unique 𝛽 ∈ 𝐂 such that 𝛼 + 𝛽 = 0.
+multiplicative inverse
+For every 𝛼 ∈ 𝐂 with 𝛼 ≠ 0, there exists a unique 𝛽 ∈ 𝐂 such that 𝛼𝛽 = 1.
+distributive property
+𝜆(𝛼 + 𝛽) = 𝜆𝛼 + 𝜆𝛽 for all 𝜆,𝛼,𝛽 ∈ 𝐂.
+The properties above are proved using the familiar properties of real numbers
+and the definitions of complex addition and multiplication. The next example
+shows how commutativity of complex multiplication is proved. Proofs of the
+other properties above are left as exercises.
+1.4 example: commutativity of complex multiplication
+To show that 𝛼𝛽 = 𝛽𝛼 for all 𝛼,𝛽 ∈ 𝐂, suppose
+𝛼 = 𝑎 + 𝑏𝑖 and 𝛽 = 𝑐 + 𝑑𝑖,
+where 𝑎,𝑏,𝑐,𝑑 ∈ 𝐑. Then the definition of multiplication of complex numbers
+shows that
+𝛼𝛽 = (𝑎 + 𝑏𝑖)(𝑐 + 𝑑𝑖)
+= (𝑎𝑐 − 𝑏𝑑) + (𝑎𝑑 + 𝑏𝑐)𝑖
+and
+𝛽𝛼 = (𝑐 + 𝑑𝑖)(𝑎 + 𝑏𝑖)
+= (𝑐𝑎 − 𝑑𝑏) + (𝑐𝑏 + 𝑑𝑎)𝑖.
+The equations above and the commutativity of multiplication and addition of real
+numbers show that 𝛼𝛽 = 𝛽𝛼.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler4 Chapter 1 Vector Spaces
+Next, we define the additive and multiplicative inverses of complex numbers,
+and then use those inverses to define subtraction and division operations with
+complex numbers.
+1.5 definition: −𝛼, subtraction, 1/𝛼, division
+Suppose 𝛼,𝛽 ∈ 𝐂.
+• Let −𝛼 denote the additive inverse of 𝛼. Thus −𝛼 is the unique complex
+number such that
+𝛼 + (−𝛼) = 0.
+• Subtraction on 𝐂 is defined by
+𝛽 − 𝛼 = 𝛽 + (−𝛼).
+• For 𝛼 ≠ 0, let 1/𝛼 and 1
+𝛼 denote the multiplicative inverse of 𝛼. Thus 1/𝛼 is
+the unique complex number such that
+𝛼(1/𝛼) = 1.
+• For 𝛼 ≠ 0, division by 𝛼 is defined by
+𝛽/𝛼 = 𝛽(1/𝛼).
+So that we can conveniently make definitions and prove theorems that apply
+to both real and complex numbers, we adopt the following notation.
+1.6 notation: 𝐅
+Throughout this book, 𝐅 stands for either 𝐑 or 𝐂.
+The letter 𝐅 is used because 𝐑 and 𝐂
+are examples of what are called fields.
+Thus if we prove a theorem involving
+𝐅, we will know that it holds when 𝐅 is
+replaced with 𝐑 and when 𝐅 is replaced
+with 𝐂.
+Elements of 𝐅 are called scalars. The word “scalar” (which is just a fancy
+word for “number”) is often used when we want to emphasize that an object is a
+number, as opposed to a vector (vectors will be defined soon).
+For 𝛼 ∈ 𝐅 and 𝑚 a positive integer, we define 𝛼𝑚
+to denote the product of 𝛼
+with itself 𝑚 times:
+𝛼𝑚
+= 𝛼⋯𝛼 ⏟
+𝑚 times
+.
+This definition implies that
+(𝛼𝑚
+)
+𝑛
+= 𝛼𝑚𝑛
+and (𝛼𝛽)𝑚
+= 𝛼𝑚
+𝛽𝑚
+for all 𝛼,𝛽 ∈ 𝐅 and all positive integers 𝑚,𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1A 𝐑𝑛
+and 𝐂𝑛
+5
+Lists
+Before defining 𝐑𝑛
+and 𝐂𝑛
+, we look at two important examples.
+1.7 example: 𝐑2
+and 𝐑3
+• The set 𝐑2
+, which you can think of as a plane, is the set of all ordered pairs of
+real numbers:
+𝐑2
+= {(𝑥,𝑦) ∶ 𝑥,𝑦 ∈ 𝐑}.
+• The set 𝐑3
+, which you can think of as ordinary space, is the set of all ordered
+triples of real numbers:
+𝐑3
+= {(𝑥,𝑦,𝑧) ∶ 𝑥,𝑦,𝑧 ∈ 𝐑}.
+To generalize 𝐑2
+and 𝐑3
+to higher dimensions, we first need to discuss the
+concept of lists.
+1.8 definition: list, length
+• Suppose 𝑛 is a nonnegative integer. A list of length 𝑛 is an ordered collec-
+tion of 𝑛 elements (which might be numbers, other lists, or more abstract
+objects).
+• Two lists are equal if and only if they have the same length and the same
+elements in the same order.
+Many mathematicians call a list of
+length 𝑛 an 𝑛-tuple.
+Lists are often written as elements
+separated by commas and surrounded by
+parentheses. Thus a list of length two is
+an ordered pair that might be written as (𝑎,𝑏). A list of length three is an ordered
+triple that might be written as (𝑥,𝑦,𝑧). A list of length 𝑛 might look like this:
+(𝑧1,…,𝑧𝑛).
+Sometimes we will use the word list without specifying its length. Remember,
+however, that by definition each list has a finite length that is a nonnegative integer.
+Thus an object that looks like (𝑥1,𝑥2,…), which might be said to have infinite
+length, is not a list.
+A list of length 0 looks like this: ( ). We consider such an object to be a list
+so that some of our theorems will not have trivial exceptions.
+Lists differ from finite sets in two ways: in lists, order matters and repetitions
+have meaning; in sets, order and repetitions are irrelevant.
+1.9 example: lists versus sets
+• The lists (3,5) and (5,3) are not equal, but the sets {3,5} and {5,3} are equal.
+• The lists (4,4) and (4,4,4) are not equal (they do not have the same length),
+although the sets {4,4} and {4,4,4} both equal the set {4}.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler6 Chapter 1 Vector Spaces
+𝐅𝑛
+To define the higher-dimensional analogues of 𝐑2
+and 𝐑3
+, we will simply replace
+𝐑 with 𝐅 (which equals 𝐑 or 𝐂) and replace the 2 or 3 with an arbitrary positive
+integer.
+1.10 notation: 𝑛
+Fix a positive integer 𝑛 for the rest of this chapter.
+1.11 definition: 𝐅𝑛
+, coordinate
+𝐅𝑛
+is the set of all lists of length 𝑛 of elements of 𝐅:
+𝐅𝑛
+= {(𝑥1,…,𝑥𝑛) ∶ 𝑥𝑘 ∈ 𝐅 for 𝑘 = 1,…,𝑛}.
+For (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+and 𝑘 ∈ {1,…,𝑛}, we say that 𝑥𝑘 is the 𝑘th
+coordinate
+of (𝑥1,…,𝑥𝑛).
+If 𝐅 = 𝐑 and 𝑛 equals 2 or 3, then the definition above of 𝐅𝑛
+agrees with our
+previous notions of 𝐑2
+and 𝐑3
+.
+1.12 example: 𝐂4
+𝐂4
+is the set of all lists of four complex numbers:
+𝐂4
+= {(𝑧1,𝑧2,𝑧3,𝑧4) ∶ 𝑧1,𝑧2,𝑧3,𝑧4 ∈ 𝐂}.
+Read Flatland: A Romance of Many
+Dimensions, by Edwin A. Abbott, for
+an amusing account of how 𝐑3
+would
+be perceived by creatures living in 𝐑2
+.
+This novel, published in 1884, may
+help you imagine a physical space of
+four or more dimensions.
+If 𝑛 ≥ 4, we cannot visualize 𝐑𝑛
+as
+a physical object. Similarly, 𝐂1
+can be
+thought of as a plane, but for 𝑛 ≥ 2, the
+human brain cannot provide a full image
+of 𝐂𝑛
+. However, even if 𝑛 is large, we
+can perform algebraic manipulations in
+𝐅𝑛
+as easily as in 𝐑2
+or 𝐑3
+. For example,
+addition in 𝐅𝑛
+is defined as follows.
+1.13 definition: addition in 𝐅𝑛
+Addition in 𝐅𝑛
+is defined by adding corresponding coordinates:
+(𝑥1,…,𝑥𝑛) + (𝑦1,…,𝑦𝑛) = (𝑥1 + 𝑦1,…,𝑥𝑛 + 𝑦𝑛).
+Often the mathematics of 𝐅𝑛
+becomes cleaner if we use a single letter to denote
+a list of 𝑛 numbers, without explicitly writing the coordinates. For example, the
+next result is stated with 𝑥 and 𝑦 in 𝐅𝑛
+even though the proof requires the more
+cumbersome notation of (𝑥1,…,𝑥𝑛) and (𝑦1,…,𝑦𝑛).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1A 𝐑𝑛
+and 𝐂𝑛
+7
+1.14 commutativity of addition in 𝐅𝑛
+If 𝑥,𝑦 ∈ 𝐅𝑛
+, then 𝑥 + 𝑦 = 𝑦 + 𝑥.
+Proof Suppose 𝑥 = (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+and 𝑦 = (𝑦1,…,𝑦𝑛) ∈ 𝐅𝑛
+. Then
+𝑥 + 𝑦 = (𝑥1,…,𝑥𝑛) + (𝑦1,…,𝑦𝑛)
+= (𝑥1 + 𝑦1,…,𝑥𝑛 + 𝑦𝑛)
+= (𝑦1 + 𝑥1,…,𝑦𝑛 + 𝑥𝑛)
+= (𝑦1,…,𝑦𝑛) + (𝑥1,…,𝑥𝑛)
+= 𝑦 + 𝑥,
+where the second and fourth equalities above hold because of the definition of
+addition in 𝐅𝑛
+and the third equality holds because of the usual commutativity of
+addition in 𝐅.
+The symbol means “end of proof”. If a single letter is used to denote an
+element of 𝐅𝑛
+, then the same letter with
+appropriatesubscriptsisoftenusedwhen
+coordinates must be displayed. For example, if 𝑥 ∈ 𝐅𝑛
+, then letting 𝑥 equal
+(𝑥1,…,𝑥𝑛) is good notation, as shown in the proof above. Even better, work with
+just 𝑥 and avoid explicit coordinates when possible.
+1.15 notation: 0
+Let 0 denote the list of length 𝑛 whose coordinates are all 0:
+0 = (0,…,0).
+Here we are using the symbol 0 in two different ways—on the left side of the
+equation above, the symbol 0 denotes a list of length 𝑛, which is an element of 𝐅𝑛
+,
+whereas on the right side, each 0 denotes a number. This potentially confusing
+practice actually causes no problems because the context should always make
+clear which 0 is intended.
+1.16 example: context determines which 0 is intended
+Consider the statement that 0 is an additive identity for 𝐅𝑛
+:
+𝑥 + 0 = 𝑥 for all 𝑥 ∈ 𝐅𝑛
+.
+Here the 0 above is the list defined in 1.15, not the number 0, because we have
+not defined the sum of an element of 𝐅𝑛
+(namely, 𝑥) and the number 0.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler8 Chapter 1 Vector Spaces
+Elements of 𝐑2
+can be thought of
+as points or as vectors.
+Apicturecanaidourintuition. Wewill
+draw pictures in 𝐑2
+because we can sketch
+this space on two-dimensional surfaces
+such as paper and computer screens. A
+typical element of 𝐑2
+is a point 𝑣 = (𝑎,𝑏).
+Sometimes we think of 𝑣 not as a point
+but as an arrow starting at the origin and
+ending at (𝑎,𝑏), as shown here. When we
+think of an element of 𝐑2
+as an arrow, we
+refer to it as a vector.
+A vector.
+Whenwethinkofvectorsin𝐑2
+asarrows, we
+canmoveanarrowparalleltoitself(notchanging
+its length or direction) and still think of it as the
+same vector. With that viewpoint, you will often
+gain better understanding by dispensing with the
+coordinate axes and the explicit coordinates and
+just thinking of the vector, as shown in the figure here. The two arrows shown
+here have the same length and same direction, so we think of them as the same
+vector.
+Mathematical models of the economy
+can have thousands of variables, say
+𝑥1,…,𝑥5000,whichmeansthatwemust
+work in 𝐑5000
+. Such a space cannot be
+dealt with geometrically. However, the
+algebraic approach works well. Thus
+our subject is called linear algebra.
+Whenever we use pictures in 𝐑2
+or
+use the somewhat vague language of
+points and vectors, remember that these
+arejustaidstoourunderstanding,notsub-
+stitutes for the actual mathematics that
+we will develop. Although we cannot
+draw good pictures in high-dimensional
+spaces, the elements of these spaces are
+as rigorously defined as elements of 𝐑2
+.
+For example, (2,−3,17,𝜋,√2) is an element of 𝐑5
+, and we may casually
+refer to it as a point in 𝐑5
+or a vector in 𝐑5
+without worrying about whether the
+geometry of 𝐑5
+has any physical meaning.
+Recall that we defined the sum of two elements of 𝐅𝑛
+to be the element of 𝐅𝑛
+obtained by adding corresponding coordinates; see 1.13. As we will now see,
+addition has a simple geometric interpretation in the special case of 𝐑2
+.
+The sum of two vectors.
+Suppose we have two vectors 𝑢 and 𝑣 in 𝐑2
+that we want to add. Move the vector 𝑣 parallel
+to itself so that its initial point coincides with the
+end point of the vector 𝑢, as shown here. The
+sum 𝑢 + 𝑣 then equals the vector whose initial
+point equals the initial point of 𝑢 and whose end
+point equals the end point of the vector 𝑣, as
+shown here.
+In the next definition, the 0 on the right side of the displayed equation is the
+list 0 ∈ 𝐅𝑛
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1A 𝐑𝑛
+and 𝐂𝑛
+9
+1.17 definition: additive inverse in 𝐅𝑛
+, −𝑥
+For 𝑥 ∈ 𝐅𝑛
+, the additive inverse of 𝑥, denoted by −𝑥, is the vector −𝑥 ∈ 𝐅𝑛
+such that
+𝑥 + (−𝑥) = 0.
+Thus if 𝑥 = (𝑥1,…,𝑥𝑛), then −𝑥 = (−𝑥1,…,−𝑥𝑛).
+A vector and its additive inverse.
+The additive inverse of a vector in 𝐑2
+is the
+vector with the same length but pointing in the
+opposite direction. The figure here illustrates
+this way of thinking about the additive inverse
+in 𝐑2
+. As you can see, the vector labeled −𝑥 has
+the same length as the vector labeled 𝑥 but points
+in the opposite direction.
+Having dealt with addition in 𝐅𝑛
+, we now turn to multiplication. We could
+define a multiplication in 𝐅𝑛
+in a similar fashion, starting with two elements of
+𝐅𝑛
+and getting another element of 𝐅𝑛
+by multiplying corresponding coordinates.
+Experience shows that this definition is not useful for our purposes. Another
+type of multiplication, called scalar multiplication, will be central to our subject.
+Specifically, we need to define what it means to multiply an element of 𝐅𝑛
+by an
+element of 𝐅.
+1.18 definition: scalar multiplication in 𝐅𝑛
+The product of a number 𝜆 and a vector in 𝐅𝑛
+is computed by multiplying
+each coordinate of the vector by 𝜆:
+𝜆(𝑥1,…,𝑥𝑛) = (𝜆𝑥1,…, 𝜆𝑥𝑛);
+here 𝜆 ∈ 𝐅 and (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+.
+Scalar multiplication in 𝐅𝑛
+multiplies
+together a scalar and a vector, getting
+a vector. In contrast, the dot product in
+𝐑2
+or 𝐑3
+multiplies together two vec-
+tors and gets a scalar. Generalizations
+of the dot product will become impor-
+tant in Chapter 6.
+Scalar multiplication has a nice geo-
+metric interpretation in 𝐑2
+. If 𝜆 > 0 and
+𝑥 ∈ 𝐑2
+, then 𝜆𝑥 is the vector that points
+in the same direction as 𝑥 and whose
+length is 𝜆 times the length of 𝑥. In other
+words, to get 𝜆𝑥, we shrink or stretch 𝑥
+by a factor of 𝜆, depending on whether
+𝜆 < 1 or 𝜆 > 1.
+Scalar multiplication.
+If 𝜆 < 0 and 𝑥 ∈ 𝐑2
+, then 𝜆𝑥 is the
+vectorthatpointsinthedirectionopposite
+to that of 𝑥 and whose length is |𝜆| times
+the length of 𝑥, as shown here.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler10 Chapter 1 Vector Spaces
+Digression on Fields
+A field is a set containing at least two distinct elements called 0 and 1, along with
+operations of addition and multiplication satisfying all properties listed in 1.3.
+Thus 𝐑 and 𝐂 are fields, as is the set of rational numbers along with the usual
+operations of addition and multiplication. Another example of a field is the set
+{0,1} with the usual operations of addition and multiplication except that 1 + 1 is
+defined to equal 0.
+In this book we will not deal with fields other than 𝐑 and 𝐂. However, many
+of the definitions, theorems, and proofs in linear algebra that work for the fields
+𝐑 and 𝐂 also work without change for arbitrary fields. If you prefer to do so,
+throughout much of this book (except for Chapters 6 and 7, which deal with inner
+product spaces) you can think of 𝐅 as denoting an arbitrary field instead of 𝐑
+or 𝐂. For results (except in the inner product chapters) that have as a hypothesis
+that 𝐅 is 𝐂, you can probably replace that hypothesis with the hypothesis that 𝐅
+is an algebraically closed field, which means that every nonconstant polynomial
+with coefficients in 𝐅 has a zero. A few results, such as Exercise 13 in Section
+1C, require the hypothesis on 𝐅 that 1 + 1 ≠ 0.
+Exercises 1A
+1 Show that 𝛼 + 𝛽 = 𝛽 + 𝛼 for all 𝛼,𝛽 ∈ 𝐂.
+2 Show that (𝛼 + 𝛽) + 𝜆 = 𝛼 + (𝛽 + 𝜆) for all 𝛼,𝛽, 𝜆 ∈ 𝐂.
+3 Show that (𝛼𝛽)𝜆 = 𝛼(𝛽𝜆) for all 𝛼,𝛽, 𝜆 ∈ 𝐂.
+4 Show that 𝜆(𝛼 + 𝛽) = 𝜆𝛼 + 𝜆𝛽 for all 𝜆,𝛼,𝛽 ∈ 𝐂.
+5 Show that for every 𝛼 ∈ 𝐂, there exists a unique 𝛽 ∈ 𝐂 such that 𝛼 + 𝛽 = 0.
+## 6 Show that for every 𝛼 ∈ 𝐂 with 𝛼 ≠ 0, there exists a unique 𝛽 ∈ 𝐂 such
+that 𝛼𝛽 = 1.
+## 7 Show that
+−1 + √3𝑖
+2
+is a cube root of 1 (meaning that its cube equals 1).
+## 8 Find two distinct square roots of 𝑖.
+9 Find 𝑥 ∈ 𝐑4
+such that
+(4,−3,1,7) + 2𝑥 = (5,9,−6,8).
+## 10 Explain why there does not exist 𝜆 ∈ 𝐂 such that
+𝜆(2 − 3𝑖,5 + 4𝑖,−6 + 7𝑖) = (12 − 5𝑖,7 + 22𝑖,−32 − 9𝑖).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1A 𝐑𝑛
+and 𝐂𝑛
+11
+11 Show that (𝑥 + 𝑦) + 𝑧 = 𝑥 + (𝑦 + 𝑧) for all 𝑥,𝑦,𝑧 ∈ 𝐅𝑛
+.
+12 Show that (𝑎𝑏)𝑥 = 𝑎(𝑏𝑥) for all 𝑥 ∈ 𝐅𝑛
+and all 𝑎,𝑏 ∈ 𝐅.
+13 Show that 1𝑥 = 𝑥 for all 𝑥 ∈ 𝐅𝑛
+.
+14 Show that 𝜆(𝑥 + 𝑦) = 𝜆𝑥 + 𝜆𝑦 for all 𝜆 ∈ 𝐅 and all 𝑥,𝑦 ∈ 𝐅𝑛
+.
+15 Show that (𝑎 + 𝑏)𝑥 = 𝑎𝑥 + 𝑏𝑥 for all 𝑎,𝑏 ∈ 𝐅 and all 𝑥 ∈ 𝐅𝑛
+.
+“Can you do addition?” the White Queen asked. “What’s one and one and one
+and one and one and one and one and one and one and one?”
+“I don’t know,” said Alice. “I lost count.”
+—Through the Looking Glass, Lewis Carroll
+Linear Algebra Done Right, fourth edition, by Sheldon Axler12 Chapter 1 Vector Spaces
+1B Definition of Vector Space
+The motivation for the definition of a vector space comes from properties of
+addition and scalar multiplication in 𝐅𝑛
+: Addition is commutative, associative,
+and has an identity. Every element has an additive inverse. Scalar multiplication
+is associative. Scalar multiplication by 1 acts as expected. Addition and scalar
+multiplication are connected by distributive properties.
+We will define a vector space to be a set 𝑉 with an addition and a scalar
+multiplication on 𝑉 that satisfy the properties in the paragraph above.
+1.19 definition: addition, scalar multiplication
+• An addition on a set 𝑉 is a function that assigns an element 𝑢 + 𝑣 ∈ 𝑉
+to each pair of elements 𝑢,𝑣 ∈ 𝑉.
+• A scalar multiplication on a set 𝑉 is a function that assigns an element
+𝜆𝑣 ∈ 𝑉 to each 𝜆 ∈ 𝐅 and each 𝑣 ∈ 𝑉.
+Now we are ready to give the formal definition of a vector space.
+1.20 definition: vector space
+Avectorspaceisaset𝑉 alongwithanadditionon𝑉 andascalarmultiplication
+on 𝑉 such that the following properties hold.
+commutativity
+𝑢 + 𝑣 = 𝑣 + 𝑢 for all 𝑢,𝑣 ∈ 𝑉.
+associativity
+(𝑢 + 𝑣) + 𝑤 = 𝑢 + (𝑣 + 𝑤) and (𝑎𝑏)𝑣 = 𝑎(𝑏𝑣) for all 𝑢,𝑣,𝑤 ∈ 𝑉 and for
+all 𝑎,𝑏 ∈ 𝐅.
+additive identity
+There exists an element 0 ∈ 𝑉 such that 𝑣 + 0 = 𝑣 for all 𝑣 ∈ 𝑉.
+additive inverse
+For every 𝑣 ∈ 𝑉, there exists 𝑤 ∈ 𝑉 such that 𝑣 + 𝑤 = 0.
+multiplicative identity
+1𝑣 = 𝑣 for all 𝑣 ∈ 𝑉.
+distributive properties
+𝑎(𝑢 + 𝑣) = 𝑎𝑢 + 𝑎𝑣 and (𝑎 + 𝑏)𝑣 = 𝑎𝑣 + 𝑏𝑣 for all 𝑎,𝑏 ∈ 𝐅 and all 𝑢,𝑣 ∈ 𝑉.
+The following geometric language sometimes aids our intuition.
+1.21 definition: vector, point
+Elements of a vector space are called vectors or points.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1B Definition of Vector Space 13
+The scalar multiplication in a vector space depends on 𝐅. Thus when we need
+to be precise, we will say that 𝑉 is a vector space over 𝐅 instead of saying simply
+that 𝑉 is a vector space. For example, 𝐑𝑛
+is a vector space over 𝐑, and 𝐂𝑛
+is a
+vector space over 𝐂.
+1.22 definition: real vector space, complex vector space
+• A vector space over 𝐑 is called a real vector space.
+• A vector space over 𝐂 is called a complex vector space.
+Usually the choice of 𝐅 is either clear from the context or irrelevant. Thus we
+oftenassumethat𝐅 islurkinginthebackgroundwithoutspecificallymentioningit.
+The simplest vector space is {0}, which
+contains only one point.
+With the usual operations of addition
+and scalar multiplication, 𝐅𝑛
+is a vector
+space over 𝐅, as you should verify. The
+example of 𝐅𝑛
+motivated our definition of vector space.
+1.23 example: 𝐅∞
+𝐅∞
+is defined to be the set of all sequences of elements of 𝐅:
+𝐅∞
+= {(𝑥1,𝑥2,…) ∶ 𝑥𝑘 ∈ 𝐅 for 𝑘 = 1,2,…}.
+Addition and scalar multiplication on 𝐅∞
+are defined as expected:
+(𝑥1,𝑥2,…) + (𝑦1,𝑦2,…) = (𝑥1 + 𝑦1,𝑥2 + 𝑦2,…),
+𝜆(𝑥1,𝑥2,…) = (𝜆𝑥1, 𝜆𝑥2,…).
+With these definitions, 𝐅∞
+becomes a vector space over 𝐅, as you should verify.
+The additive identity in this vector space is the sequence of all 0’s.
+Our next example of a vector space involves a set of functions.
+1.24 notation: 𝐅𝑆
+• If 𝑆 is a set, then 𝐅𝑆
+denotes the set of functions from 𝑆 to 𝐅.
+• For 𝑓,𝑔 ∈ 𝐅𝑆
+, the sum 𝑓 + 𝑔 ∈ 𝐅𝑆
+is the function defined by
+(𝑓 + 𝑔)(𝑥) = 𝑓(𝑥) + 𝑔(𝑥)
+for all 𝑥 ∈ 𝑆.
+• For 𝜆 ∈ 𝐅 and 𝑓 ∈ 𝐅𝑆
+, the product 𝜆𝑓 ∈ 𝐅𝑆
+is the function defined by
+(𝜆𝑓)(𝑥) = 𝜆𝑓(𝑥)
+for all 𝑥 ∈ 𝑆.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler14 Chapter 1 Vector Spaces
+As an example of the notation above, if 𝑆 is the interval [0,1] and 𝐅 = 𝐑, then
+𝐑[0,1]
+is the set of real-valued functions on the interval [0,1].
+You should verify all three bullet points in the next example.
+1.25 example: 𝐅𝑆
+is a vector space
+• If 𝑆 is a nonempty set, then 𝐅𝑆
+(with the operations of addition and scalar
+multiplication as defined above) is a vector space over 𝐅.
+• The additive identity of 𝐅𝑆
+is the function 0 ∶ 𝑆 → 𝐅 defined by
+0(𝑥) = 0
+for all 𝑥 ∈ 𝑆.
+• For 𝑓 ∈ 𝐅𝑆
+, the additive inverse of 𝑓 is the function −𝑓 ∶ 𝑆 → 𝐅 defined by
+(−𝑓)(𝑥) = −𝑓(𝑥)
+for all 𝑥 ∈ 𝑆.
+The elements of the vector space 𝐑[0,1]
+are real-valued functions on [0,1], not
+lists. In general, a vector space is an
+abstract entity whose elements might
+be lists, functions, or weird objects.
+The vector space 𝐅𝑛
+is a special case
+of the vector space 𝐅𝑆
+because each
+(𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+can be thought of as
+a function 𝑥 from the set {1,2,…,𝑛} to
+𝐅 by writing 𝑥(𝑘) instead of 𝑥𝑘 for the 𝑘th
+coordinateof(𝑥1,…,𝑥𝑛). Inotherwords,
+we can think of 𝐅𝑛
+as 𝐅{1,2,…,𝑛}
+. Similarly, we can think of 𝐅∞
+as 𝐅{1,2,…}
+.
+Soonwewillseefurtherexamplesofvectorspaces,butfirstweneedtodevelop
+some of the elementary properties of vector spaces.
+The definition of a vector space requires it to have an additive identity. The
+next result states that this identity is unique.
+1.26 unique additive identity
+A vector space has a unique additive identity.
+Proof Suppose 0 and 0′
+are both additive identities for some vector space 𝑉.
+Then
+0′
+= 0′
++ 0 = 0 + 0′
+= 0,
+where the first equality holds because 0 is an additive identity, the second equality
+comes from commutativity, and the third equality holds because 0′
+is an additive
+identity. Thus 0′
+= 0, proving that 𝑉 has only one additive identity.
+Each element 𝑣 in a vector space has an additive inverse, an element 𝑤 in the
+vector space such that 𝑣 + 𝑤 = 0. The next result shows that each element in a
+vector space has only one additive inverse.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1B Definition of Vector Space 15
+1.27 unique additive inverse
+Every element in a vector space has a unique additive inverse.
+Proof Suppose 𝑉 is a vector space. Let 𝑣 ∈ 𝑉. Suppose 𝑤 and 𝑤′
+are additive
+inverses of 𝑣. Then
+𝑤 = 𝑤 + 0 = 𝑤 + (𝑣 + 𝑤′
+) = (𝑤 + 𝑣) + 𝑤′
+= 0 + 𝑤′
+= 𝑤′
+.
+Thus 𝑤 = 𝑤′
+, as desired.
+Because additive inverses are unique, the following notation now makes sense.
+1.28 notation: −𝑣, 𝑤 − 𝑣
+Let 𝑣,𝑤 ∈ 𝑉. Then
+• −𝑣 denotes the additive inverse of 𝑣;
+• 𝑤 − 𝑣 is defined to be 𝑤 + (−𝑣).
+Almost all results in this book involve some vector space. To avoid having to
+restate frequently that 𝑉 is a vector space, we now make the necessary declaration
+once and for all.
+1.29 notation: 𝑉
+For the rest of this book, 𝑉 denotes a vector space over 𝐅.
+In the next result, 0 denotes a scalar (the number 0 ∈ 𝐅) on the left side of the
+equation and a vector (the additive identity of 𝑉) on the right side of the equation.
+1.30 the number 0 times a vector
+0𝑣 = 0 for every 𝑣 ∈ 𝑉.
+The result in 1.30 involves the additive
+identity of 𝑉 and scalar multiplication.
+The only part of the definition of a vec-
+tor space that connects vector addition
+and scalar multiplication is the dis-
+tributive property. Thus the distribu-
+tive property must be used in the proof
+of 1.30.
+Proof For 𝑣 ∈ 𝑉, we have
+0𝑣 = (0 + 0)𝑣 = 0𝑣 + 0𝑣.
+Adding the additive inverse of 0𝑣 to both
+sides of the equation above gives 0 = 0𝑣,
+as desired.
+In the next result, 0 denotes the addi-
+tive identity of 𝑉. Although their proofs
+are similar, 1.30 and 1.31 are not identical. More precisely, 1.30 states that the
+product of the scalar 0 and any vector equals the vector 0, whereas 1.31 states that
+the product of any scalar and the vector 0 equals the vector 0.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler16 Chapter 1 Vector Spaces
+1.31 a number times the vector 0
+𝑎0 = 0 for every 𝑎 ∈ 𝐅.
+Proof For 𝑎 ∈ 𝐅, we have
+𝑎0 = 𝑎(0 + 0) = 𝑎0 + 𝑎0.
+Adding the additive inverse of 𝑎0 to both sides of the equation above gives 0 = 𝑎0,
+as desired.
+Now we show that if an element of 𝑉 is multiplied by the scalar −1, then the
+result is the additive inverse of the element of 𝑉.
+1.32 the number −1 times a vector
+(−1)𝑣 = −𝑣 for every 𝑣 ∈ 𝑉.
+Proof For 𝑣 ∈ 𝑉, we have
+𝑣 + (−1)𝑣 = 1𝑣 + (−1)𝑣 = (1 + (−1))𝑣 = 0𝑣 = 0.
+This equation says that (−1)𝑣, when added to 𝑣, gives 0. Thus (−1)𝑣 is the
+additive inverse of 𝑣, as desired.
+Exercises 1B
+## 1 Prove that −(−𝑣) = 𝑣 for every 𝑣 ∈ 𝑉.
+## 2 Suppose 𝑎 ∈ 𝐅, 𝑣 ∈ 𝑉, and 𝑎𝑣 = 0. Prove that 𝑎 = 0 or 𝑣 = 0.
+3 Suppose 𝑣,𝑤 ∈ 𝑉. Explain why there exists a unique 𝑥 ∈ 𝑉 such that
+𝑣 + 3𝑥 = 𝑤.
+## 4 The empty set is not a vector space. The empty set fails to satisfy only one
+of the requirements listed in the definition of a vector space (1.20). Which
+one?
+## 5 Show that in the definition of a vector space (1.20), the additive inverse
+condition can be replaced with the condition that
+0𝑣 = 0 for all 𝑣 ∈ 𝑉.
+Here the 0 on the left side is the number 0, and the 0 on the right side is the
+additive identity of 𝑉.
+The phrase a “condition can be replaced” in a definition means that the
+collection of objects satisfying the definition is unchanged if the original
+condition is replaced with the new condition.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1B Definition of Vector Space 17
+6 Let ∞ and −∞ denote two distinct objects, neither of which is in 𝐑. Define
+an addition and scalar multiplication on 𝐑 ∪ {∞,−∞} as you could guess
+from the notation. Specifically, the sum and product of two real numbers is
+as usual, and for 𝑡 ∈ 𝐑 define
+𝑡∞ =
+⎧
+{ {
+⎨
+{ {
+⎩
+−∞ if 𝑡 < 0,
+0 if 𝑡 = 0,
+∞ if 𝑡 > 0,
+𝑡(−∞) =
+⎧
+{ {
+⎨
+{ {
+⎩
+∞ if 𝑡 < 0,
+0 if 𝑡 = 0,
+−∞ if 𝑡 > 0,
+and
+𝑡 + ∞ = ∞ + 𝑡 = ∞ + ∞ = ∞,
+𝑡 + (−∞) = (−∞) + 𝑡 = (−∞) + (−∞) = −∞,
+∞ + (−∞) = (−∞) + ∞ = 0.
+With these operations of addition and scalar multiplication, is 𝐑 ∪ {∞,−∞}
+a vector space over 𝐑? Explain.
+7 Suppose 𝑆 is a nonempty set. Let 𝑉𝑆
+denote the set of functions from 𝑆 to 𝑉.
+Define a natural addition and scalar multiplication on 𝑉𝑆
+, and show that 𝑉𝑆
+is a vector space with these definitions.
+## 8 Suppose 𝑉 is a real vector space.
+• The complexification of 𝑉, denoted by 𝑉𝐂, equals 𝑉× 𝑉. An element
+of 𝑉𝐂 is an ordered pair (𝑢,𝑣), where 𝑢,𝑣 ∈ 𝑉, but we write this as
+𝑢 + 𝑖𝑣.
+• Addition on 𝑉𝐂 is defined by
+(𝑢1 + 𝑖𝑣1) + (𝑢2 + 𝑖𝑣2) = (𝑢1 + 𝑢2) + 𝑖(𝑣1 + 𝑣2)
+for all 𝑢1,𝑣1,𝑢2,𝑣2 ∈ 𝑉.
+• Complex scalar multiplication on 𝑉𝐂 is defined by
+(𝑎 + 𝑏𝑖)(𝑢 + 𝑖𝑣) = (𝑎𝑢 − 𝑏𝑣) + 𝑖(𝑎𝑣 + 𝑏𝑢)
+for all 𝑎,𝑏 ∈ 𝐑 and all 𝑢,𝑣 ∈ 𝑉.
+Prove that with the definitions of addition and scalar multiplication as above,
+𝑉𝐂 is a complex vector space.
+Think of 𝑉 as a subset of 𝑉𝐂 by identifying 𝑢 ∈ 𝑉 with 𝑢 + 𝑖0. The
+construction of 𝑉𝐂 from 𝑉 can then be thought of as generalizing the
+construction of 𝐂𝑛
+from 𝐑𝑛
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler18 Chapter 1 Vector Spaces
+1C Subspaces
+By considering subspaces, we can greatly expand our examples of vector spaces.
+1.33 definition: subspace
+A subset 𝑈 of 𝑉 is called a subspace of 𝑉 if 𝑈 is also a vector space with the
+same additive identity, addition, and scalar multiplication as on 𝑉.
+Some people use the terminology
+linear subspace, which means the
+same as subspace.
+The next result gives the easiest way
+to check whether a subset of a vector
+space is a subspace.
+1.34 conditions for a subspace
+A subset 𝑈 of 𝑉 is a subspace of 𝑉 if and only if 𝑈 satisfies the following
+three conditions.
+additive identity
+0 ∈ 𝑈.
+closed under addition
+𝑢,𝑤 ∈ 𝑈 implies 𝑢 + 𝑤 ∈ 𝑈.
+closed under scalar multiplication
+𝑎 ∈ 𝐅 and 𝑢 ∈ 𝑈 implies 𝑎𝑢 ∈ 𝑈.
+The additive identity condition above
+could be replaced with the condition
+that 𝑈 is nonempty (because then tak-
+ing 𝑢 ∈ 𝑈 and multiplying it by 0
+would imply that 0 ∈ 𝑈). However,
+if a subset 𝑈 of 𝑉 is indeed a sub-
+space, then usually the quickest way
+to show that 𝑈 is nonempty is to show
+that 0 ∈ 𝑈.
+Proof If 𝑈 is a subspace of 𝑉, then 𝑈
+satisfies the three conditions above by the
+definition of vector space.
+Conversely, suppose 𝑈 satisfies the
+three conditions above. The first condi-
+tion ensures that the additive identity of
+𝑉 is in 𝑈. The second condition ensures
+thatadditionmakessenseon𝑈. Thethird
+condition ensures that scalar multiplica-
+tion makes sense on 𝑈.
+If 𝑢 ∈ 𝑈, then −𝑢 [which equals (−1)𝑢 by 1.32] is also in 𝑈 by the third
+condition above. Hence every element of 𝑈 has an additive inverse in 𝑈.
+The other parts of the definition of a vector space, such as associativity and
+commutativity, are automatically satisfied for 𝑈 because they hold on the larger
+space 𝑉. Thus 𝑈 is a vector space and hence is a subspace of 𝑉.
+The three conditions in the result above usually enable us to determine quickly
+whether a given subset of 𝑉 is a subspace of 𝑉. You should verify all assertions
+in the next example.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1C Subspaces 19
+1.35 example: subspaces
+(a) If 𝑏 ∈ 𝐅, then
+{(𝑥1,𝑥2,𝑥3,𝑥4) ∈ 𝐅4
+∶ 𝑥3 = 5𝑥4 + 𝑏}
+is a subspace of 𝐅4
+if and only if 𝑏 = 0.
+(b) The set of continuous real-valued functions on the interval [0,1] is a subspace
+of 𝐑[0,1]
+.
+(c) The set of differentiable real-valued functions on 𝐑 is a subspace of 𝐑𝐑
+.
+(d) The set of differentiable real-valued functions 𝑓 on the interval (0,3) such
+that 𝑓′
+(2) = 𝑏 is a subspace of 𝐑(0,3)
+if and only if 𝑏 = 0.
+(e) The set of all sequences of complex numbers with limit 0 is a subspace of 𝐂∞
+.
+The set {0} is the smallest subspace of
+𝑉, and 𝑉 itself is the largest subspace
+of 𝑉. The empty set is not a subspace
+of 𝑉 because a subspace must be a
+vectorspaceandhencemustcontainat
+least one element, namely, an additive
+identity.
+Verifying some of the items above
+shows the linear structure underlying
+parts of calculus. For example, (b) above
+requires the result that the sum of two
+continuous functions is continuous. As
+another example, (d) above requires the
+result that for a constant 𝑐, the derivative
+of 𝑐𝑓 equals 𝑐 times the derivative of 𝑓.
+The subspaces of 𝐑2
+are precisely {0}, all lines in 𝐑2
+containing the origin,
+and𝐑2
+. Thesubspacesof𝐑3
+areprecisely{0}, alllinesin𝐑3
+containingtheorigin,
+all planes in 𝐑3
+containing the origin, and 𝐑3
+. To prove that all these objects are
+indeed subspaces is straightforward—the hard part is to show that they are the
+only subspaces of 𝐑2
+and 𝐑3
+. That task will be easier after we introduce some
+additional tools in the next chapter.
+Sums of Subspaces
+The union of subspaces is rarely a sub-
+space (see Exercise 12), which is why
+we usually work with sums rather than
+unions.
+When dealing with vector spaces, we are
+usually interested only in subspaces, as
+opposed to arbitrary subsets. The notion
+of the sum of subspaces will be useful.
+1.36 definition: sum of subspaces
+Suppose 𝑉1,…,𝑉𝑚 are subspaces of 𝑉. The sum of 𝑉1,…,𝑉𝑚, denoted by
+𝑉1 + ⋯ + 𝑉𝑚, is the set of all possible sums of elements of 𝑉1,…,𝑉𝑚. More
+precisely,
+𝑉1 + ⋯ + 𝑉𝑚 = {𝑣1 + ⋯ + 𝑣𝑚 ∶ 𝑣1 ∈ 𝑉1,…,𝑣𝑚 ∈ 𝑉𝑚}.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler20 Chapter 1 Vector Spaces
+Let’s look at some examples of sums of subspaces.
+1.37 example: a sum of subspaces of 𝐅3
+Suppose 𝑈 is the set of all elements of 𝐅3
+whose second and third coordinates
+equal 0, and 𝑊 is the set of all elements of 𝐅3
+whose first and third coordinates
+equal 0:
+𝑈 = {(𝑥,0,0) ∈ 𝐅3
+∶ 𝑥 ∈ 𝐅} and 𝑊 = {(0,𝑦,0) ∈ 𝐅3
+∶ 𝑦 ∈ 𝐅}.
+Then
+𝑈 + 𝑊 = {(𝑥,𝑦,0) ∈ 𝐅3
+∶ 𝑥,𝑦 ∈ 𝐅},
+as you should verify.
+1.38 example: a sum of subspaces of 𝐅4
+Suppose
+𝑈 = {(𝑥,𝑥,𝑦,𝑦) ∈ 𝐅4
+∶ 𝑥,𝑦 ∈ 𝐅} and 𝑊 = {(𝑥,𝑥,𝑥,𝑦) ∈ 𝐅4
+∶ 𝑥,𝑦 ∈ 𝐅}.
+Using words rather than symbols, we could say that 𝑈 is the set of elements
+of 𝐅4
+whose first two coordinates equal each other and whose third and fourth
+coordinates equal each other. Similarly, 𝑊 is the set of elements of 𝐅4
+whose first
+three coordinates equal each other.
+To find a description of 𝑈 +𝑊, consider a typical element (𝑎,𝑎,𝑏,𝑏) of 𝑈 and
+a typical element (𝑐,𝑐,𝑐,𝑑) of 𝑊, where 𝑎,𝑏,𝑐,𝑑 ∈ 𝐅. We have
+(𝑎,𝑎,𝑏,𝑏) + (𝑐,𝑐,𝑐,𝑑) = (𝑎 + 𝑐,𝑎 + 𝑐,𝑏 + 𝑐,𝑏 + 𝑑),
+which shows that every element of 𝑈 + 𝑊 has its first two coordinates equal to
+each other. Thus
+1.39 𝑈 + 𝑊 ⊆ {(𝑥,𝑥,𝑦,𝑧) ∈ 𝐅4
+∶ 𝑥,𝑦,𝑧 ∈ 𝐅}.
+To prove the inclusion in the other direction, suppose 𝑥,𝑦,𝑧 ∈ 𝐅. Then
+(𝑥,𝑥,𝑦,𝑧) = (𝑥,𝑥,𝑦,𝑦) + (0,0,0,𝑧 − 𝑦),
+where the first vector on the right is in 𝑈 and the second vector on the right is
+in 𝑊. Thus (𝑥,𝑥,𝑦,𝑧) ∈ 𝑈 + 𝑊, showing that the inclusion 1.39 also holds in
+the opposite direction. Hence
+𝑈 + 𝑊 = {(𝑥,𝑥,𝑦,𝑧) ∈ 𝐅4
+∶ 𝑥,𝑦,𝑧 ∈ 𝐅},
+which shows that 𝑈 + 𝑊 is the set of elements of 𝐅4
+whose first two coordinates
+equal each other.
+The next result states that the sum of subspaces is a subspace, and is in fact the
+smallest subspace containing all the summands (which means that every subspace
+containing all the summands also contains the sum).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1C Subspaces 21
+1.40 sum of subspaces is the smallest containing subspace
+Suppose 𝑉1,…,𝑉𝑚 are subspaces of 𝑉. Then 𝑉1 + ⋯ + 𝑉𝑚 is the smallest
+subspace of 𝑉 containing 𝑉1,…,𝑉𝑚.
+Proof The reader can verify that 𝑉1 + ⋯ + 𝑉𝑚 contains the additive identity 0
+and is closed under addition and scalar multiplication. Thus 1.34 implies that
+𝑉1 + ⋯ + 𝑉𝑚 is a subspace of 𝑉.
+Sums of subspaces in the theory of vec-
+tor spaces are analogous to unions of
+subsets in set theory. Given two sub-
+spaces of a vector space, the smallest
+subspace containing them is their sum.
+Analogously, given two subsets of a set,
+the smallest subset containing them is
+their union.
+The subspaces 𝑉1,…,𝑉𝑚 are all con-
+tained in 𝑉1 + ⋯ + 𝑉𝑚 (to see this, con-
+sider sums 𝑣1 + ⋯ + 𝑣𝑚 where all except
+one of the 𝑣𝑘’s are 0). Conversely, every
+subspace of 𝑉 containing 𝑉1,…,𝑉𝑚 con-
+tains 𝑉1 + ⋯ + 𝑉𝑚 (because subspaces
+must contain all finite sums of their ele-
+ments). Thus 𝑉1 +⋯+𝑉𝑚 is the smallest
+subspace of 𝑉 containing 𝑉1,…,𝑉𝑚.
+Direct Sums
+Suppose 𝑉1,…,𝑉𝑚 are subspaces of 𝑉. Every element of 𝑉1 + ⋯ + 𝑉𝑚 can be
+written in the form
+𝑣1 + ⋯ + 𝑣𝑚,
+where each 𝑣𝑘 ∈ 𝑉𝑘. Of special interest are cases in which each vector in
+𝑉1 +⋯+𝑉𝑚 can be represented in the form above in only one way. This situation
+is so important that it gets a special name (direct sum) and a special symbol (⊕).
+1.41 definition: direct sum, ⊕
+Suppose 𝑉1,…,𝑉𝑚 are subspaces of 𝑉.
+• The sum 𝑉1 +⋯+𝑉𝑚 is called a direct sum if each element of 𝑉1 +⋯+𝑉𝑚
+can be written in only one way as a sum 𝑣1 + ⋯ + 𝑣𝑚, where each 𝑣𝑘 ∈ 𝑉𝑘.
+• If 𝑉1 + ⋯ + 𝑉𝑚 is a direct sum, then 𝑉1 ⊕ ⋯ ⊕ 𝑉𝑚 denotes 𝑉1 + ⋯ + 𝑉𝑚,
+with the ⊕ notation serving as an indication that this is a direct sum.
+1.42 example: a direct sum of two subspaces
+Suppose𝑈 isthesubspaceof𝐅3
+ofthosevectorswhoselastcoordinateequals0,
+and 𝑊 is the subspace of 𝐅3
+of those vectors whose first two coordinates equal 0:
+𝑈 = {(𝑥,𝑦,0) ∈ 𝐅3
+∶ 𝑥,𝑦 ∈ 𝐅} and 𝑊 = {(0,0,𝑧) ∈ 𝐅3
+∶ 𝑧 ∈ 𝐅}.
+Then 𝐅3
+= 𝑈 ⊕ 𝑊, as you should verify.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler≈ 7𝜋 Chapter 1 Vector Spaces
+1.43 example: a direct sum of multiple subspaces
+To produce ⊕ in TEX, type \oplus. Suppose 𝑉𝑘 is the subspace of 𝐅𝑛
+of
+those vectors whose coordinates are all 0,
+except possibly in the 𝑘th
+slot; for example, 𝑉2 = {(0,𝑥,0,…,0) ∈ 𝐅𝑛
+∶ 𝑥 ∈ 𝐅}.
+Then
+𝐅𝑛
+= 𝑉1 ⊕ ⋯ ⊕ 𝑉𝑛,
+as you should verify.
+Sometimes nonexamples add to our understanding as much as examples.
+1.44 example: a sum that is not a direct sum
+Suppose
+𝑉1 = {(𝑥,𝑦,0) ∈ 𝐅3
+∶ 𝑥,𝑦 ∈ 𝐅},
+𝑉2 = {(0,0,𝑧) ∈ 𝐅3
+∶ 𝑧 ∈ 𝐅},
+𝑉3 = {(0,𝑦,𝑦) ∈ 𝐅3
+∶ 𝑦 ∈ 𝐅}.
+Then 𝐅3
+= 𝑉1 + 𝑉2 + 𝑉3 because every vector (𝑥,𝑦,𝑧) ∈ 𝐅3
+can be written as
+(𝑥,𝑦,𝑧) = (𝑥,𝑦,0) + (0,0,𝑧) + (0,0,0),
+where the first vector on the right side is in 𝑉1, the second vector is in 𝑉2, and the
+third vector is in 𝑉3.
+However, 𝐅3
+does not equal the direct sum of 𝑉1,𝑉2,𝑉3, because the vector
+(0,0,0) can be written in more than one way as a sum 𝑣1 + 𝑣2 + 𝑣3, with each
+𝑣𝑘 ∈ 𝑉𝑘. Specifically, we have
+(0,0,0) = (0,1,0) + (0,0,1) + (0,−1,−1)
+and, of course,
+(0,0,0) = (0,0,0) + (0,0,0) + (0,0,0),
+where the first vector on the right side of each equation above is in 𝑉1, the second
+vector is in 𝑉2, and the third vector is in 𝑉3. Thus the sum 𝑉1 + 𝑉2 + 𝑉3 is not a
+direct sum.
+The symbol ⊕, which is a plus sign
+inside a circle, reminds us that we are
+dealing with a special type of sum of
+subspaces—each element in the direct
+sumcanberepresentedinonlyoneway
+as a sum of elements from the specified
+subspaces.
+The definition of direct sum requires
+every vector in the sum to have a unique
+representation as an appropriate sum.
+The next result shows that when deciding
+whether a sum of subspaces is a direct
+sum, we only need to consider whether 0
+can be uniquely written as an appropriate
+sum.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1C Subspaces 23
+1.45 condition for a direct sum
+Suppose 𝑉1,…,𝑉𝑚 are subspaces of 𝑉. Then 𝑉1 + ⋯ + 𝑉𝑚 is a direct sum if
+and only if the only way to write 0 as a sum 𝑣1 +⋯+𝑣𝑚, where each 𝑣𝑘 ∈ 𝑉𝑘,
+is by taking each 𝑣𝑘 equal to 0.
+Proof First suppose 𝑉1 + ⋯ + 𝑉𝑚 is a direct sum. Then the definition of direct
+sumimpliesthattheonlywaytowrite 0 asasum𝑣1+⋯+𝑣𝑚, whereeach𝑣𝑘 ∈ 𝑉𝑘,
+is by taking each 𝑣𝑘 equal to 0.
+Now suppose that the only way to write 0 as a sum 𝑣1 + ⋯ + 𝑣𝑚, where each
+𝑣𝑘 ∈ 𝑉𝑘, is by taking each 𝑣𝑘 equal to 0. To show that 𝑉1 + ⋯ + 𝑉𝑚 is a direct
+sum, let 𝑣 ∈ 𝑉1 + ⋯ + 𝑉𝑚. We can write
+𝑣 = 𝑣1 + ⋯ + 𝑣𝑚
+for some 𝑣1 ∈ 𝑉1,…,𝑣𝑚 ∈ 𝑉𝑚. To show that this representation is unique,
+suppose we also have
+𝑣 = 𝑢1 + ⋯ + 𝑢𝑚,
+where 𝑢1 ∈ 𝑉1,…,𝑢𝑚 ∈ 𝑉𝑚. Subtracting these two equations, we have
+0 = (𝑣1 − 𝑢1) + ⋯ + (𝑣𝑚 − 𝑢𝑚).
+Because 𝑣1 − 𝑢1 ∈ 𝑉1,…,𝑣𝑚 − 𝑢𝑚 ∈ 𝑉𝑚, the equation above implies that each
+𝑣𝑘 − 𝑢𝑘 equals 0. Thus 𝑣1 = 𝑢1,…,𝑣𝑚 = 𝑢𝑚, as desired.
+The symbol ⟺ used below means
+“if and only if”; this symbol could also
+be read to mean “is equivalent to”.
+The next result gives a simple con-
+dition for testing whether a sum of two
+subspaces is a direct sum.
+1.46 direct sum of two subspaces
+Suppose 𝑈 and 𝑊 are subspaces of 𝑉. Then
+𝑈 + 𝑊 is a direct sum ⟺ 𝑈 ∩ 𝑊 = {0}.
+Proof First suppose that 𝑈+𝑊 is a direct sum. If 𝑣 ∈ 𝑈∩𝑊, then 0 = 𝑣+(−𝑣),
+where 𝑣 ∈ 𝑈 and −𝑣 ∈ 𝑊. By the unique representation of 0 as the sum of a
+vector in 𝑈 and a vector in 𝑊, we have 𝑣 = 0. Thus 𝑈 ∩ 𝑊 = {0}, completing
+the proof in one direction.
+To prove the other direction, now suppose 𝑈 ∩𝑊 = {0}. To prove that 𝑈 +𝑊
+is a direct sum, suppose 𝑢 ∈ 𝑈, 𝑤 ∈ 𝑊, and
+0 = 𝑢 + 𝑤.
+To complete the proof, we only need to show that 𝑢 = 𝑤 = 0 (by 1.45). The
+equation above implies that 𝑢 = −𝑤 ∈ 𝑊. Thus 𝑢 ∈ 𝑈 ∩ 𝑊. Hence 𝑢 = 0,
+which by the equation above implies that 𝑤 = 0, completing the proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler24 Chapter 1 Vector Spaces
+Sums of subspaces are analogous to
+unions of subsets. Similarly, direct
+sums of subspaces are analogous to
+disjoint unions of subsets. No two sub-
+spacesofavectorspacecanbedisjoint,
+because both contain 0. So disjoint-
+ness is replaced, at least in the case
+of two subspaces, with the requirement
+that the intersection equal {0}.
+The result above deals only with
+the case of two subspaces. When ask-
+ing about a possible direct sum with
+more than two subspaces, it is not
+enough to test that each pair of the
+subspaces intersect only at 0. To see
+this, consider Example 1.44. In that
+nonexample of a direct sum, we have
+𝑉1 ∩ 𝑉2 = 𝑉1 ∩ 𝑉3 = 𝑉2 ∩ 𝑉3 = {0}.
+Exercises 1C
+1 For each of the following subsets of 𝐅3
+, determine whether it is a subspace
+of 𝐅3
+.
+(a) {(𝑥1,𝑥2,𝑥3) ∈ 𝐅3
+∶ 𝑥1 + 2𝑥2 + 3𝑥3 = 0}
+(b) {(𝑥1,𝑥2,𝑥3) ∈ 𝐅3
+∶ 𝑥1 + 2𝑥2 + 3𝑥3 = 4}
+(c) {(𝑥1,𝑥2,𝑥3) ∈ 𝐅3
+∶ 𝑥1𝑥2𝑥3 = 0}
+(d) {(𝑥1,𝑥2,𝑥3) ∈ 𝐅3
+∶ 𝑥1 = 5𝑥3}
+## 2 Verify all assertions about subspaces in Example 1.35.
+## 3 Show that the set of differentiable real-valued functions 𝑓 on the interval
+(−4,4) such that 𝑓′
+(−1) = 3𝑓(2) is a subspace of 𝐑(−4,4)
+.
+4 Suppose 𝑏 ∈ 𝐑. Show that the set of continuous real-valued functions 𝑓 on
+the interval [0,1] such that ∫
+1
+0 𝑓 = 𝑏 is a subspace of 𝐑[0,1]
+if and only if
+𝑏 = 0.
+5 Is 𝐑2
+a subspace of the complex vector space 𝐂2
+?
+6 (a) Is {(𝑎,𝑏,𝑐) ∈ 𝐑3
+∶ 𝑎3
+= 𝑏3
+} a subspace of 𝐑3
+?
+(b) Is {(𝑎,𝑏,𝑐) ∈ 𝐂3
+∶ 𝑎3
+= 𝑏3
+} a subspace of 𝐂3
+?
+7 Prove or give a counterexample: If 𝑈 is a nonempty subset of 𝐑2
+such that
+𝑈 is closed under addition and under taking additive inverses (meaning
+−𝑢 ∈ 𝑈 whenever 𝑢 ∈ 𝑈), then 𝑈 is a subspace of 𝐑2
+.
+8 Give an example of a nonempty subset 𝑈 of 𝐑2
+such that 𝑈 is closed under
+scalar multiplication, but 𝑈 is not a subspace of 𝐑2
+.
+9 A function 𝑓 ∶ 𝐑 → 𝐑 is called periodic if there exists a positive number
+𝑝 such that 𝑓(𝑥) = 𝑓(𝑥 + 𝑝) for all 𝑥 ∈ 𝐑. Is the set of periodic functions
+from 𝐑 to 𝐑 a subspace of 𝐑𝐑
+? Explain.
+## 10 Suppose 𝑉1 and 𝑉2 are subspaces of 𝑉. Prove that the intersection 𝑉1 ∩ 𝑉2
+is a subspace of 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 1C Subspaces 25
+11 Provethattheintersectionofeverycollectionofsubspacesof𝑉 isasubspace
+of 𝑉.
+## 12 Prove that the union of two subspaces of 𝑉 is a subspace of 𝑉 if and only if
+one of the subspaces is contained in the other.
+## 13 Prove that the union of three subspaces of 𝑉 is a subspace of 𝑉 if and only
+if one of the subspaces contains the other two.
+This exercise is surprisingly harder than Exercise 12, possibly because this
+exercise is not true if we replace 𝐅 with a field containing only two elements.
+## 14 Suppose
+𝑈 = {(𝑥,−𝑥,2𝑥) ∈ 𝐅3
+∶ 𝑥 ∈ 𝐅} and 𝑊 = {(𝑥,𝑥,2𝑥) ∈ 𝐅3
+∶ 𝑥 ∈ 𝐅}.
+Describe 𝑈 + 𝑊 using symbols, and also give a description of 𝑈 + 𝑊 that
+uses no symbols.
+15 Suppose 𝑈 is a subspace of 𝑉. What is 𝑈 + 𝑈?
+## 16 Is the operation of addition on the subspaces of 𝑉 commutative? In other
+words, if 𝑈 and 𝑊 are subspaces of 𝑉, is 𝑈 + 𝑊 = 𝑊 + 𝑈?
+## 17 Is the operation of addition on the subspaces of 𝑉 associative? In other
+words, if 𝑉1,𝑉2,𝑉3 are subspaces of 𝑉, is
+(𝑉1 + 𝑉2) + 𝑉3 = 𝑉1 + (𝑉2 + 𝑉3)?
+## 18 Does the operation of addition on the subspaces of 𝑉 have an additive
+identity? Which subspaces have additive inverses?
+19 Prove or give a counterexample: If 𝑉1,𝑉2,𝑈 are subspaces of 𝑉 such that
+𝑉1 + 𝑈 = 𝑉2 + 𝑈,
+then 𝑉1 = 𝑉2.
+## 20 Suppose
+𝑈 = {(𝑥,𝑥,𝑦,𝑦) ∈ 𝐅4
+∶ 𝑥,𝑦 ∈ 𝐅}.
+Find a subspace 𝑊 of 𝐅4
+such that 𝐅4
+= 𝑈 ⊕ 𝑊.
+## 21 Suppose
+𝑈 = {(𝑥,𝑦,𝑥 + 𝑦,𝑥 − 𝑦,2𝑥) ∈ 𝐅5
+∶ 𝑥,𝑦 ∈ 𝐅}.
+Find a subspace 𝑊 of 𝐅5
+such that 𝐅5
+= 𝑈 ⊕ 𝑊.
+## 22 Suppose
+𝑈 = {(𝑥,𝑦,𝑥 + 𝑦,𝑥 − 𝑦,2𝑥) ∈ 𝐅5
+∶ 𝑥,𝑦 ∈ 𝐅}.
+Find three subspaces 𝑊1,𝑊2,𝑊3 of 𝐅5
+, none of which equals {0}, such that
+𝐅5
+= 𝑈 ⊕ 𝑊1 ⊕ 𝑊2 ⊕ 𝑊3.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler26 Chapter 1 Vector Spaces
+23 Prove or give a counterexample: If 𝑉1,𝑉2,𝑈 are subspaces of 𝑉 such that
+𝑉 = 𝑉1 ⊕ 𝑈 and 𝑉 = 𝑉2 ⊕ 𝑈,
+then 𝑉1 = 𝑉2.
+Hint: When trying to discover whether a conjecture in linear algebra is true
+or false, it is often useful to start by experimenting in 𝐅2
+.
+24 A function 𝑓 ∶ 𝐑 → 𝐑 is called even if
+𝑓(−𝑥) = 𝑓(𝑥)
+for all 𝑥 ∈ 𝐑. A function 𝑓 ∶ 𝐑 → 𝐑 is called odd if
+𝑓(−𝑥) = −𝑓(𝑥)
+for all 𝑥 ∈ 𝐑. Let 𝑉e denote the set of real-valued even functions on 𝐑
+and let 𝑉o denote the set of real-valued odd functions on 𝐑. Show that
+𝐑𝐑
+= 𝑉e ⊕ 𝑉o.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 2
+Finite-Dimensional Vector Spaces
+In the last chapter we learned about vector spaces. Linear algebra focuses not
+on arbitrary vector spaces, but on finite-dimensional vector spaces, which we
+introduce in this chapter.
+We begin this chapter by considering linear combinations of lists of vectors.
+Thisleadsustothecrucialconceptoflinearindependence. Thelineardependence
+lemma will become one of our most useful tools.
+Alistofvectorsinavectorspacethatissmallenoughtobelinearlyindependent
+and big enough so the linear combinations of the list fill up the vector space is
+called a basis of the vector space. We will see that every basis of a vector space
+has the same length, which will allow us to define the dimension of a vector space.
+Thischapterendswithaformulaforthedimensionofthesumoftwosubspaces.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑉 denotes a vector space over 𝐅.
+The main building of the Institute for Advanced Study, in Princeton, New Jersey.
+Paul Halmos (1916–2006) wrote the first modern linear algebra book in this building.
+Halmos’s linear algebra book was published in 1942 (second edition published in 1958).
+The title of Halmos’s book was the same as the title of this chapter.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+2728 Chapter 2 Finite-Dimensional Vector Spaces
+2A Span and Linear Independence
+We have been writing lists of numbers surrounded by parentheses, and we will
+continue to do so for elements of 𝐅𝑛
+; for example, (2,−7,8) ∈ 𝐅3
+. However, now
+we need to consider lists of vectors (which may be elements of 𝐅𝑛
+or of other
+vector spaces). To avoid confusion, we will usually write lists of vectors without
+surrounding parentheses. For example, (4,1,6),(9,5,7) is a list of length two of
+vectors in 𝐑3
+.
+2.1 notation: list of vectors
+We will usually write lists of vectors without surrounding parentheses.
+Linear Combinations and Span
+A sum of scalar multiples of the vectors in a list is called a linear combination of
+the list. Here is the formal definition.
+2.2 definition: linear combination
+A linear combination of a list 𝑣1,…,𝑣𝑚 of vectors in 𝑉 is a vector of the form
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚,
+where 𝑎1,…,𝑎𝑚 ∈ 𝐅.
+2.3 example: linear combinations in 𝐑3
+• (17,−4,2) is a linear combination of (2,1,−3),(1,−2,4), which is a list of
+length two of vectors in 𝐑3
+, because
+(17,−4,2) = 6(2,1,−3) + 5(1,−2,4).
+• (17,−4,5) is not a linear combination of (2,1,−3),(1,−2,4), which is a list
+of length two of vectors in 𝐑3
+, because there do not exist numbers 𝑎1,𝑎2 ∈ 𝐑
+such that
+(17,−4,5) = 𝑎1(2,1,−3) + 𝑎2(1,−2,4).
+In other words, the system of equations
+17 = 2𝑎1 + 𝑎2
+−4 = 𝑎1 − 2𝑎2
+5 = −3𝑎1 + 4𝑎2
+has no solutions (as you should verify).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2A Span and Linear Independence 29
+2.4 definition: span
+The set of all linear combinations of a list of vectors 𝑣1,…,𝑣𝑚 in 𝑉 is called
+the span of 𝑣1,…,𝑣𝑚, denoted by span(𝑣1,…,𝑣𝑚). In other words,
+span(𝑣1,…,𝑣𝑚) = {𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 ∶ 𝑎1,…,𝑎𝑚 ∈ 𝐅}.
+The span of the empty list ( ) is defined to be {0}.
+2.5 example: span
+The previous example shows that in 𝐅3
+,
+• (17,−4,2) ∈ span((2,1,−3),(1,−2,4));
+• (17,−4,5) ∉ span((2,1,−3),(1,−2,4)).
+2.6 span is the smallest containing subspace
+The span of a list of vectors in 𝑉 is the smallest subspace of 𝑉 containing all
+vectors in the list.
+Proof Suppose 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉.
+Somemathematiciansusetheterminol-
+ogylinearspan,whichmeansthesame
+as span.
+First we show that span(𝑣1,…,𝑣𝑚) is
+a subspace of 𝑉. The additive identity is
+in span(𝑣1,…,𝑣𝑚) because
+0 = 0𝑣1 + ⋯ + 0𝑣𝑚.
+Also, span(𝑣1,…,𝑣𝑚) is closed under addition because
+(𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚) + (𝑐1𝑣1 + ⋯ + 𝑐𝑚𝑣𝑚) = (𝑎1 + 𝑐1)𝑣1 + ⋯ + (𝑎𝑚 + 𝑐𝑚)𝑣𝑚.
+Furthermore, span(𝑣1,…,𝑣𝑚) is closed under scalar multiplication because
+𝜆(𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚) = 𝜆𝑎1𝑣1 + ⋯ + 𝜆𝑎𝑚𝑣𝑚.
+Thus span(𝑣1,…,𝑣𝑚) is a subspace of 𝑉 (by 1.34).
+Each 𝑣𝑘 is a linear combination of 𝑣1,…,𝑣𝑚 (to show this, set 𝑎𝑘 = 1 and let
+the other 𝑎’s in 2.2 equal 0). Thus span(𝑣1,…,𝑣𝑚) contains each 𝑣𝑘. Conversely,
+because subspaces are closed under scalar multiplication and addition, every sub-
+space of 𝑉 that contains each 𝑣𝑘 contains span(𝑣1,…,𝑣𝑚). Thus span(𝑣1,…,𝑣𝑚)
+is the smallest subspace of 𝑉 containing all the vectors 𝑣1,…,𝑣𝑚.
+2.7 definition: spans
+If span(𝑣1,…,𝑣𝑚) equals 𝑉, we say that the list 𝑣1,…,𝑣𝑚 spans 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler30 Chapter 2 Finite-Dimensional Vector Spaces
+2.8 example: a list that spans 𝐅𝑛
+Suppose 𝑛 is a positive integer. We want to show that
+(1,0,…,0),(0,1,0,…,0),…,(0,…,0,1)
+spans 𝐅𝑛
+. Here the 𝑘th
+vector in the list above has 1 in the 𝑘th
+slot and 0 in all other
+slots.
+Suppose (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+. Then
+(𝑥1,…,𝑥𝑛) = 𝑥1(1,0,…,0) + 𝑥2(0,1,0,…,0) + ⋯ + 𝑥𝑛(0,…,0,1).
+Thus (𝑥1,…,𝑥𝑛) ∈ span((1,0,…,0),(0,1,0,…,0),…,(0,…,0,1)), as desired.
+Now we can make one of the key definitions in linear algebra.
+2.9 definition: finite-dimensional vector space
+A vector space is called finite-dimensional if some list of vectors in it spans
+the space.
+Recall that by definition every list has
+finite length.
+Example 2.8 above shows that 𝐅𝑛
+is a
+finite-dimensional vector space for every
+positive integer 𝑛.
+The definition of a polynomial is no doubt already familiar to you.
+2.10 definition: polynomial, 𝒫(𝐅)
+• A function 𝑝∶ 𝐅 → 𝐅 is called a polynomial with coefficients in 𝐅 if there
+exist 𝑎0,…,𝑎𝑚 ∈ 𝐅 such that
+𝑝(𝑧) = 𝑎0 + 𝑎1𝑧 + 𝑎2𝑧2
++ ⋯ + 𝑎𝑚𝑧𝑚
+for all 𝑧 ∈ 𝐅.
+• 𝒫(𝐅) is the set of all polynomials with coefficients in 𝐅.
+With the usual operations of addition and scalar multiplication, 𝒫(𝐅) is a
+vector space over 𝐅, as you should verify. Hence 𝒫(𝐅) is a subspace of 𝐅𝐅
+, the
+vector space of functions from 𝐅 to 𝐅.
+If a polynomial (thought of as a function from 𝐅 to 𝐅) is represented by two
+sets of coefficients, then subtracting one representation of the polynomial from
+the other produces a polynomial that is identically zero as a function on 𝐅 and
+hence has all zero coefficients (if you are unfamiliar with this fact, just believe
+it for now; we will prove it later—see 4.8). Conclusion: the coefficients of a
+polynomial are uniquely determined by the polynomial. Thus the next definition
+uniquely defines the degree of a polynomial.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2A Span and Linear Independence 31
+2.11 definition: degree of a polynomial, deg𝑝
+• A polynomial 𝑝 ∈ 𝒫(𝐅) is said to have degree 𝑚 if there exist scalars
+𝑎0,𝑎1,…,𝑎𝑚 ∈ 𝐅 with 𝑎𝑚 ≠ 0 such that for every 𝑧 ∈ 𝐅, we have
+𝑝(𝑧) = 𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚𝑧𝑚
+.
+• The polynomial that is identically 0 is said to have degree −∞.
+• The degree of a polynomial 𝑝 is denoted by deg𝑝.
+In the next definition, we use the convention that −∞ < 𝑚, which means that
+the polynomial 0 is in 𝒫𝑚(𝐅).
+2.12 notation: 𝒫𝑚(𝐅)
+For 𝑚 a nonnegative integer, 𝒫𝑚(𝐅) denotes the set of all polynomials with
+coefficients in 𝐅 and degree at most 𝑚.
+If𝑚isanonnegativeinteger,then𝒫𝑚(𝐅) = span(1,𝑧,…,𝑧𝑚
+)[hereweslightly
+abusenotationbyletting𝑧𝑘
+denoteafunction]. Thus𝒫𝑚(𝐅)isafinite-dimensional
+vector space for each nonnegative integer 𝑚.
+2.13 definition: infinite-dimensional vector space
+A vector space is called infinite-dimensional if it is not finite-dimensional.
+2.14 example: 𝒫(𝐅) is infinite-dimensional
+Consider any list of elements of 𝒫(𝐅). Let 𝑚 denote the highest degree of
+the polynomials in this list. Then every polynomial in the span of this list has
+degree at most 𝑚. Thus 𝑧𝑚+1
+is not in the span of our list. Hence no list spans
+𝒫(𝐅). Thus 𝒫(𝐅) is infinite-dimensional.
+Linear Independence
+Suppose 𝑣1,…,𝑣𝑚 ∈ 𝑉 and 𝑣 ∈ span(𝑣1,…,𝑣𝑚). By the definition of span,
+there exist 𝑎1,…,𝑎𝑚 ∈ 𝐅 such that
+𝑣 = 𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚.
+Consider the question of whether the choice of scalars in the equation above is
+unique. Suppose 𝑐1,…,𝑐𝑚 is another set of scalars such that
+𝑣 = 𝑐1𝑣1 + ⋯ + 𝑐𝑚𝑣𝑚.
+Subtracting the last two equations, we have
+0 = (𝑎1 − 𝑐1)𝑣1 + ⋯ + (𝑎𝑚 − 𝑐𝑚)𝑣𝑚.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler32 Chapter 2 Finite-Dimensional Vector Spaces
+Thus we have written 0 as a linear combination of (𝑣1,…,𝑣𝑚). If the only way
+to do this is by using 0 for all the scalars in the linear combination, then each
+𝑎𝑘 − 𝑐𝑘 equals 0, which means that each 𝑎𝑘 equals 𝑐𝑘 (and thus the choice of
+scalars was indeed unique). This situation is so important that we give it a special
+name—linear independence—which we now define.
+2.15 definition: linearly independent
+• A list 𝑣1,…,𝑣𝑚 of vectors in 𝑉 is called linearly independent if the only
+choice of 𝑎1,…,𝑎𝑚 ∈ 𝐅 that makes
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 = 0
+is 𝑎1 = ⋯ = 𝑎𝑚 = 0.
+• The empty list ( ) is also declared to be linearly independent.
+The reasoning above shows that 𝑣1,…,𝑣𝑚 is linearly independent if and only if
+eachvectorinspan(𝑣1,…,𝑣𝑚)hasonlyonerepresentationasalinearcombination
+of 𝑣1,…,𝑣𝑚.
+2.16 example: linearly independent lists
+(a) To see that the list (1,0,0,0),(0,1,0,0),(0,0,1,0) is linearly independent in
+𝐅4
+, suppose 𝑎1,𝑎2,𝑎3 ∈ 𝐅 and
+𝑎1(1,0,0,0) + 𝑎2(0,1,0,0) + 𝑎3(0,0,1,0) = (0,0,0,0).
+Thus
+(𝑎1,𝑎2,𝑎3,0) = (0,0,0,0).
+Hence 𝑎1 = 𝑎2 = 𝑎3 = 0. Thus the list (1,0,0,0),(0,1,0,0),(0,0,1,0) is
+linearly independent in 𝐅4
+.
+(b) Suppose 𝑚 is a nonnegative integer. To see that the list 1,𝑧,…,𝑧𝑚
+is linearly
+independent in 𝒫(𝐅), suppose 𝑎0,𝑎1,…,𝑎𝑚 ∈ 𝐅 and
+𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚𝑧𝑚
+= 0,
+where we think of both sides as elements of 𝒫(𝐅). Then
+𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚𝑧𝑚
+= 0
+for all 𝑧 ∈ 𝐅. As discussed earlier (and as follows from 4.8), this implies that
+𝑎0 = 𝑎1 = ⋯ = 𝑎𝑚 = 0. Thus 1,𝑧,…,𝑧𝑚
+is a linearly independent list in
+𝒫(𝐅).
+(c) A list of length one in a vector space is linearly independent if and only if the
+vector in the list is not 0.
+(d) A list of length two in a vector space is linearly independent if and only if
+neither of the two vectors in the list is a scalar multiple of the other.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2A Span and Linear Independence 33
+If some vectors are removed from a linearly independent list, the remaining
+list is also linearly independent, as you should verify.
+2.17 definition: linearly dependent
+• A list of vectors in 𝑉 is called linearly dependent if it is not linearly inde-
+pendent.
+• In other words, a list 𝑣1,…,𝑣𝑚 of vectors in 𝑉 is linearly dependent if there
+exist 𝑎1,…,𝑎𝑚 ∈ 𝐅, not all 0, such that 𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 = 0.
+2.18 example: linearly dependent lists
+• (2,3,1),(1,−1,2),(7,3,8) is linearly dependent in 𝐅3
+because
+2(2,3,1) + 3(1,−1,2) + (−1)(7,3,8) = (0,0,0).
+• The list (2,3,1),(1,−1,2),(7,3,𝑐) is linearly dependent in 𝐅3
+if and only if
+𝑐 = 8, as you should verify.
+• If some vector in a list of vectors in 𝑉 is a linear combination of the other
+vectors, then the list is linearly dependent. (Proof: After writing one vector in
+the list as equal to a linear combination of the other vectors, move that vector
+to the other side of the equation, where it will be multiplied by −1.)
+• Every list of vectors in 𝑉 containing the 0 vector is linearly dependent. (This
+is a special case of the previous bullet point.)
+The next lemma is a terrific tool. It states that given a linearly dependent list
+of vectors, one of the vectors is in the span of the previous ones. Furthermore, we
+can throw out that vector without changing the span of the original list.
+2.19 linear dependence lemma
+Suppose 𝑣1,…,𝑣𝑚 is a linearly dependent list in 𝑉. Then there exists
+𝑘 ∈ {1,2,…,𝑚} such that
+𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘−1).
+Furthermore, if 𝑘 satisfies the condition above and the 𝑘th
+term is removed
+from 𝑣1,…,𝑣𝑚, then the span of the remaining list equals span(𝑣1,…,𝑣𝑚).
+Proof Because the list 𝑣1,…,𝑣𝑚 is linearly dependent, there exist numbers
+𝑎1,…,𝑎𝑚 ∈ 𝐅, not all 0, such that
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 = 0.
+Let 𝑘 be the largest element of {1,…,𝑚} such that 𝑎𝑘 ≠ 0. Then
+𝑣𝑘 = −
+𝑎1
+𝑎𝑘
+𝑣1 − ⋯ −
+𝑎𝑘−1
+𝑎𝑘
+𝑣𝑘−1,
+which proves that 𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘−1), as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler34 Chapter 2 Finite-Dimensional Vector Spaces
+Now suppose 𝑘 is any element of {1,…,𝑚} such that 𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘−1).
+Let 𝑏1,…,𝑏𝑘−1 ∈ 𝐅 be such that
+2.20 𝑣𝑘 = 𝑏1𝑣1 + ⋯ + 𝑏𝑘−1𝑣𝑘−1.
+Suppose 𝑢 ∈ span(𝑣1,…,𝑣𝑚). Then there exist 𝑐1,…,𝑐𝑚 ∈ 𝐅 such that
+𝑢 = 𝑐1𝑣1 + ⋯ + 𝑐𝑚𝑣𝑚.
+In the equation above, we can replace 𝑣𝑘 with the right side of 2.20, which shows
+that 𝑢 is in the span of the list obtained by removing the 𝑘th
+term from 𝑣1,…,𝑣𝑚.
+Thus removing the 𝑘th
+term of the list 𝑣1,…,𝑣𝑚 does not change the span of the
+list.
+If 𝑘 = 1 in the linear dependence lemma, then 𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘−1) means
+that 𝑣1 = 0, because span( ) = {0}. Note also that parts of the proof of the linear
+dependence lemma need to be modified if 𝑘 = 1. In general, the proofs in the
+rest of the book will not call attention to special cases that must be considered
+involving lists of length 0, the subspace {0}, or other trivial cases for which the
+result is true but needs a slightly different proof. Be sure to check these special
+cases yourself.
+2.21 example: smallest 𝑘 in linear dependence lemma
+Consider the list
+(1,2,3),(6,5,4),(15,16,17),(8,9,7)
+in 𝐑3
+. This list of length four is linearly dependent, as we will soon see. Thus the
+linear dependence lemma implies that there exists 𝑘 ∈ {1,2,3,4} such that the 𝑘th
+vector in this list is a linear combination of the previous vectors in the list. Let’s
+see how to find the smallest value of 𝑘 that works.
+Taking 𝑘 = 1 in the linear dependence lemma works if and only if the first
+vector in the list equals 0. Because (1,2,3) is not the 0 vector, we cannot take
+𝑘 = 1 for this list.
+Taking 𝑘 = 2 in the linear dependence lemma works if and only if the second
+vector in the list is a scalar multiple of the first vector. However, there does not
+exist 𝑐 ∈ 𝐑 such that (6,5,4) = 𝑐(1,2,3). Thus we cannot take 𝑘 = 2 for this list.
+Taking 𝑘 = 3 in the linear dependence lemma works if and only if the third
+vector in the list is a linear combination of the first two vectors. Thus for the list
+in this example, we want to know whether there exist 𝑎,𝑏 ∈ 𝐑 such that
+(15,16,17) = 𝑎(1,2,3) + 𝑏(6,5,4).
+The equation above is equivalent to a system of three linear equations in the two
+unknowns 𝑎,𝑏. Using Gaussian elimination or appropriate software, we find that
+𝑎 = 3, 𝑏 = 2 is a solution of the equation above, as you can verify. Thus for the
+list in this example, taking 𝑘 = 3 is the smallest value of 𝑘 that works in the linear
+dependence lemma.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2A Span and Linear Independence 35
+Now we come to a key result. It says that no linearly independent list in 𝑉 is
+longer than a spanning list in 𝑉.
+2.22 length of linearly independent list ≤ length of spanning list
+In a finite-dimensional vector space, the length of every linearly independent
+list of vectors is less than or equal to the length of every spanning list of
+vectors.
+Proof Suppose that 𝑢1,…,𝑢𝑚 is linearly independent in 𝑉. Suppose also that
+𝑤1,…,𝑤𝑛 spans 𝑉. We need to prove that 𝑚 ≤ 𝑛. We do so through the process
+described below with 𝑚 steps; note that in each step we add one of the 𝑢’s and
+remove one of the 𝑤’s.
+Step 1
+Let 𝐵 be the list 𝑤1,…,𝑤𝑛, which spans 𝑉. Adjoining 𝑢1 at the beginning of
+this list produces a linearly dependent list (because 𝑢1 can be written as a linear
+combination of 𝑤1,…,𝑤𝑛). In other words, the list
+𝑢1,𝑤1,…,𝑤𝑛
+is linearly dependent.
+Thus by the linear dependence lemma (2.19), one of the vectors in the list above
+is a linear combination of the previous vectors in the list. We know that 𝑢1 ≠ 0
+because the list 𝑢1,…,𝑢𝑚 is linearly independent. Thus 𝑢1 is not in the span
+of the previous vectors in the list above (because 𝑢1 is not in {0}, which is the
+span of the empty list). Hence the linear dependence lemma implies that we
+can remove one of the 𝑤’s so that the new list 𝐵 (of length 𝑛) consisting of 𝑢1
+and the remaining 𝑤’s spans 𝑉.
+Step k, for k = 2, …, m
+The list 𝐵 (of length 𝑛) from step 𝑘−1 spans 𝑉. In particular, 𝑢𝑘 is in the span of
+the list 𝐵. Thus the list of length (𝑛 +1) obtained by adjoining 𝑢𝑘 to 𝐵, placing
+it just after 𝑢1,…,𝑢𝑘−1, is linearly dependent. By the linear dependence lemma
+(2.19), one of the vectors in this list is in the span of the previous ones, and
+because 𝑢1,…,𝑢𝑘 is linearly independent, this vector cannot be one of the 𝑢’s.
+Hence there still must be at least one remaining 𝑤 at this step. We can remove
+from our new list (after adjoining 𝑢𝑘 in the proper place) a 𝑤 that is a linear
+combination of the previous vectors in the list, so that the new list 𝐵 (of length
+𝑛) consisting of 𝑢1,…,𝑢𝑘 and the remaining 𝑤’s spans 𝑉.
+After step 𝑚, we have added all the 𝑢’s and the process stops. At each step
+as we add a 𝑢 to 𝐵, the linear dependence lemma implies that there is some 𝑤 to
+remove. Thus there are at least as many 𝑤’s as 𝑢’s.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler36 Chapter 2 Finite-Dimensional Vector Spaces
+Thenexttwoexamplesshowhowtheresult abovecanbeusedtoshow, without
+any computations, that certain lists are not linearly independent and that certain
+lists do not span a given vector space.
+2.23 example: no list of length 4 is linearly independent in 𝐑3
+The list (1,0,0),(0,1,0),(0,0,1), which has length three, spans 𝐑3
+. Thus no
+list of length larger than three is linearly independent in 𝐑3
+.
+For example, we now know that (1,2,3),(4,5,8),(9,6,7),(−3,2,8), which
+is a list of length four, is not linearly independent in 𝐑3
+.
+2.24 example: no list of length 3 spans 𝐑4
+The list (1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1), which has length four, is
+linearly independent in 𝐑4
+. Thus no list of length less than four spans 𝐑4
+.
+For example, we now know that (1,2,3,−5),(4,5,8,3),(9,6,7,−1), which
+is a list of length three, does not span 𝐑4
+.
+Our intuition suggests that every subspace of a finite-dimensional vector space
+should also be finite-dimensional. We now prove that this intuition is correct.
+2.25 finite-dimensional subspaces
+Every subspace of a finite-dimensional vector space is finite-dimensional.
+Proof Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. We need to
+prove that 𝑈 is finite-dimensional. We do this through the following multistep
+construction.
+Step 1
+If 𝑈 = {0}, then 𝑈 is finite-dimensional and we are done. If 𝑈 ≠ {0}, then
+choose a nonzero vector 𝑢1 ∈ 𝑈.
+Step k
+If 𝑈 = span(𝑢1,…,𝑢𝑘−1), then 𝑈 is finite-dimensional and we are done. If
+𝑈 ≠ span(𝑢1,…,𝑢𝑘−1), then choose a vector 𝑢𝑘 ∈ 𝑈 such that
+𝑢𝑘 ∉ span(𝑢1,…,𝑢𝑘−1).
+After each step, as long as the process continues, we have constructed a list
+of vectors such that no vector in this list is in the span of the previous vectors.
+Thus after each step we have constructed a linearly independent list, by the linear
+dependence lemma (2.19). This linearly independent list cannot be longer than
+any spanning list of 𝑉 (by 2.22). Thus the process eventually terminates, which
+means that 𝑈 is finite-dimensional.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2A Span and Linear Independence 37
+Exercises 2A
+1 Find a list of four distinct vectors in 𝐅3
+whose span equals
+{(𝑥,𝑦,𝑧) ∈ 𝐅3
+∶ 𝑥 + 𝑦 + 𝑧 = 0}.
+2 Prove or give a counterexample: If 𝑣1,𝑣2,𝑣3,𝑣4 spans 𝑉, then the list
+𝑣1 − 𝑣2,𝑣2 − 𝑣3,𝑣3 − 𝑣4,𝑣4
+also spans 𝑉.
+3 Suppose 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉. For 𝑘 ∈ {1,…,𝑚}, let
+𝑤𝑘 = 𝑣1 + ⋯ + 𝑣𝑘.
+Show that span(𝑣1,…,𝑣𝑚) = span(𝑤1,…,𝑤𝑚).
+4 (a) Show that a list of length one in a vector space is linearly independent
+if and only if the vector in the list is not 0.
+(b) Show that a list of length two in a vector space is linearly independent
+if and only if neither of the two vectors in the list is a scalar multiple of
+the other.
+## 5 Find a number 𝑡 such that
+(3,1,4),(2,−3,5),(5,9,𝑡)
+is not linearly independent in 𝐑3
+.
+6 Show that the list (2,3,1),(1,−1,2),(7,3,𝑐) is linearly dependent in 𝐅3
+if
+and only if 𝑐 = 8.
+7 (a) Show that if we think of 𝐂 as a vector space over 𝐑, then the list
+1 + 𝑖,1 − 𝑖 is linearly independent.
+(b) Show that if we think of 𝐂 as a vector space over 𝐂, then the list
+1 + 𝑖,1 − 𝑖 is linearly dependent.
+8 Suppose 𝑣1,𝑣2,𝑣3,𝑣4 is linearly independent in 𝑉. Prove that the list
+𝑣1 − 𝑣2,𝑣2 − 𝑣3,𝑣3 − 𝑣4,𝑣4
+is also linearly independent.
+9 Prove or give a counterexample: If 𝑣1,𝑣2,…,𝑣𝑚 is a linearly independent
+list of vectors in 𝑉, then
+5𝑣1 − 4𝑣2,𝑣2,𝑣3,…,𝑣𝑚
+is linearly independent.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler38 Chapter 2 Finite-Dimensional Vector Spaces
+10 Prove or give a counterexample: If 𝑣1,𝑣2,…,𝑣𝑚 is a linearly independent
+list of vectors in 𝑉 and 𝜆 ∈ 𝐅 with 𝜆 ≠ 0, then 𝜆𝑣1, 𝜆𝑣2,…, 𝜆𝑣𝑚 is linearly
+independent.
+11 Prove or give a counterexample: If 𝑣1,…,𝑣𝑚 and 𝑤1,…,𝑤𝑚 are linearly
+independent lists of vectors in 𝑉, then the list 𝑣1 +𝑤1,…,𝑣𝑚 +𝑤𝑚 is linearly
+independent.
+12 Suppose 𝑣1,…,𝑣𝑚 is linearly independent in 𝑉 and 𝑤 ∈ 𝑉. Prove that if
+𝑣1 + 𝑤,…,𝑣𝑚 + 𝑤 is linearly dependent, then 𝑤 ∈ span(𝑣1,…,𝑣𝑚).
+13 Suppose 𝑣1,…,𝑣𝑚 is linearly independent in 𝑉 and 𝑤 ∈ 𝑉. Show that
+𝑣1,…,𝑣𝑚,𝑤 is linearly independent ⟺ 𝑤 ∉ span(𝑣1,…,𝑣𝑚).
+14 Suppose 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉. For 𝑘 ∈ {1,…,𝑚}, let
+𝑤𝑘 = 𝑣1 + ⋯ + 𝑣𝑘.
+Show that the list 𝑣1,…,𝑣𝑚 is linearly independent if and only if the list
+𝑤1,…,𝑤𝑚 is linearly independent.
+## 15 Explain why there does not exist a list of six polynomials that is linearly
+independent in 𝒫4(𝐅).
+16 Explain why no list of four polynomials spans 𝒫4(𝐅).
+17 Provethat𝑉 isinfinite-dimensionalifandonlyifthereisasequence𝑣1,𝑣2,…
+of vectors in 𝑉 such that 𝑣1,…,𝑣𝑚 is linearly independent for every positive
+integer 𝑚.
+18 Prove that 𝐅∞
+is infinite-dimensional.
+## 19 Prove that the real vector space of all continuous real-valued functions on
+the interval [0,1] is infinite-dimensional.
+20 Suppose 𝑝0,𝑝1,…,𝑝𝑚 are polynomials in 𝒫𝑚(𝐅) such that 𝑝𝑘(2) = 0 for
+each 𝑘 ∈ {0,…,𝑚}. Prove that 𝑝0,𝑝1,…,𝑝𝑚 is not linearly independent in
+𝒫𝑚(𝐅).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2B Bases 39
+2B Bases
+In the previous section, we discussed linearly independent lists and we also
+discussed spanning lists. Now we bring these concepts together by considering
+lists that have both properties.
+2.26 definition: basis
+A basis of 𝑉 is a list of vectors in 𝑉 that is linearly independent and spans 𝑉.
+2.27 example: bases
+(a) The list (1,0,…,0),(0,1,0,…,0),…,(0,…,0,1) is a basis of 𝐅𝑛
+, called the
+standard basis of 𝐅𝑛
+.
+(b) The list (1,2),(3,5) is a basis of 𝐅2
+. Note that this list has length two, which
+is the same as the length of the standard basis of 𝐅2
+. In the next section, we
+will see that this is not a coincidence.
+(c) The list (1,2,−4),(7,−5,6) is linearly independent in 𝐅3
+but is not a basis
+of 𝐅3
+because it does not span 𝐅3
+.
+(d) The list (1,2),(3,5),(4,13) spans 𝐅2
+but is not a basis of 𝐅2
+because it is not
+linearly independent.
+(e) The list (1,1,0),(0,0,1) is a basis of {(𝑥,𝑥,𝑦) ∈ 𝐅3
+∶ 𝑥,𝑦 ∈ 𝐅}.
+(f) The list (1,−1,0),(1,0,−1) is a basis of
+{(𝑥,𝑦,𝑧) ∈ 𝐅3
+∶ 𝑥 + 𝑦 + 𝑧 = 0}.
+(g) The list 1,𝑧,…,𝑧𝑚
+is a basis of 𝒫𝑚(𝐅), called the standard basis of 𝒫𝑚(𝐅).
+In addition to the standard basis, 𝐅𝑛
+has many other bases. For example,
+(7,5),(−4,9) and (1,2),(3,5)
+are both bases of 𝐅2
+.
+The next result helps explain why bases are useful. Recall that “uniquely”
+means “in only one way”.
+2.28 criterion for basis
+A list 𝑣1,…,𝑣𝑛 of vectors in 𝑉 is a basis of 𝑉 if and only if every 𝑣 ∈ 𝑉 can
+be written uniquely in the form
+2.29 𝑣 = 𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛,
+where 𝑎1,…,𝑎𝑛 ∈ 𝐅.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler40 Chapter 2 Finite-Dimensional Vector Spaces
+This proof is essentially a repetition of
+the ideas that led us to the definition of
+linear independence.
+Proof First suppose that 𝑣1,…,𝑣𝑛 is a
+basis of 𝑉. Let 𝑣 ∈ 𝑉. Because 𝑣1,…,𝑣𝑛
+spans 𝑉, there exist 𝑎1,…,𝑎𝑛 ∈ 𝐅 such
+that 2.29 holds. To show that the repre-
+sentation in 2.29 is unique, suppose 𝑐1,…,𝑐𝑛 are scalars such that we also have
+𝑣 = 𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛.
+Subtracting the last equation from 2.29, we get
+0 = (𝑎1 − 𝑐1)𝑣1 + ⋯ + (𝑎𝑛 − 𝑐𝑛)𝑣𝑛.
+This implies that each 𝑎𝑘 −𝑐𝑘 equals 0 (because 𝑣1,…,𝑣𝑛 is linearly independent).
+Hence 𝑎1 = 𝑐1,…,𝑎𝑛 = 𝑐𝑛. We have the desired uniqueness, completing the
+proof in one direction.
+For the other direction, suppose every 𝑣 ∈ 𝑉 can be written uniquely in the
+form given by 2.29. This implies that the list 𝑣1,…,𝑣𝑛 spans 𝑉. To show that
+𝑣1,…,𝑣𝑛 is linearly independent, suppose 𝑎1,…,𝑎𝑛 ∈ 𝐅 are such that
+0 = 𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛.
+The uniqueness of the representation 2.29 (taking 𝑣 = 0) now implies that
+𝑎1 = ⋯ = 𝑎𝑛 = 0. Thus 𝑣1,…,𝑣𝑛 is linearly independent and hence is a basis
+of 𝑉.
+A spanning list in a vector space may not be a basis because it is not linearly
+independent. Our next result says that given any spanning list, some (possibly
+none) of the vectors in it can be discarded so that the remaining list is linearly
+independent and still spans the vector space.
+As an example in the vector space 𝐅2
+, if the procedure in the proof below is
+applied to the list (1,2),(3,6),(4,7),(5,9), then the second and fourth vectors
+will be removed. This leaves (1,2),(4,7), which is a basis of 𝐅2
+.
+2.30 every spanning list contains a basis
+Every spanning list in a vector space can be reduced to a basis of the vector
+space.
+Proof Suppose 𝑣1,…,𝑣𝑛 spans 𝑉. We want to remove some of the vectors from
+𝑣1,…,𝑣𝑛 so that the remaining vectors form a basis of 𝑉. We do this through the
+multistep process described below.
+Start with 𝐵 equal to the list 𝑣1,…,𝑣𝑛.
+Step 1
+If 𝑣1 = 0, then delete 𝑣1 from 𝐵. If 𝑣1 ≠ 0, then leave 𝐵 unchanged.
+Step k
+If 𝑣𝑘 is in span(𝑣1,…,𝑣𝑘−1), then delete 𝑣𝑘 from the list 𝐵. If 𝑣𝑘 is not in
+span(𝑣1,…,𝑣𝑘−1), then leave 𝐵 unchanged.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2B Bases 41
+Stop the process after step 𝑛, getting a list 𝐵. This list 𝐵 spans 𝑉 because
+our original list spanned 𝑉 and we have discarded only vectors that were already
+in the span of the previous vectors. The process ensures that no vector in 𝐵 is
+in the span of the previous ones. Thus 𝐵 is linearly independent, by the linear
+dependence lemma (2.19). Hence 𝐵 is a basis of 𝑉.
+We now come to an important corollary of the previous result.
+2.31 basis of finite-dimensional vector space
+Every finite-dimensional vector space has a basis.
+Proof By definition, a finite-dimensional vector space has a spanning list. The
+previous result tells us that each spanning list can be reduced to a basis.
+Our next result is in some sense a dual of 2.30, which said that every spanning
+listcanbereducedtoabasis. Nowweshowthatgivenanylinearlyindependentlist,
+we can adjoin some additional vectors (this includes the possibility of adjoining
+no additional vectors) so that the extended list is still linearly independent but
+also spans the space.
+2.32 every linearly independent list extends to a basis
+Every linearly independent list of vectors in a finite-dimensional vector space
+can be extended to a basis of the vector space.
+Proof Suppose 𝑢1,…,𝑢𝑚 is linearly independent in a finite-dimensional vector
+space 𝑉. Let 𝑤1,…,𝑤𝑛 be a list of vectors in 𝑉 that spans 𝑉. Thus the list
+𝑢1,…,𝑢𝑚,𝑤1,…,𝑤𝑛
+spans 𝑉. Applying the procedure of the proof of 2.30 to reduce this list to a
+basis of 𝑉 produces a basis consisting of the vectors 𝑢1,…,𝑢𝑚 and some of the
+𝑤’s (none of the 𝑢’s get deleted in this procedure because 𝑢1,…,𝑢𝑚 is linearly
+independent).
+As an example in 𝐅3
+, suppose we start with the linearly independent list
+(2,3,4),(9,6,8). Ifwetake𝑤1,𝑤2,𝑤3 tobethestandardbasisof𝐅3
+,thenapplying
+the procedure in the proof above produces the list
+(2,3,4),(9,6,8),(0,1,0),
+which is a basis of 𝐅3
+.
+Using the same ideas but more ad-
+vanced tools, the next result can be
+proved without the hypothesis that 𝑉
+is finite-dimensional.
+As an application of the result above,
+we now show that every subspace of a
+finite-dimensional vector space can be
+paired with another subspace to form a
+direct sum of the whole space.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler42 Chapter 2 Finite-Dimensional Vector Spaces
+2.33 every subspace of 𝑉 is part of a direct sum equal to 𝑉
+Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Then there is a
+subspace 𝑊 of 𝑉 such that 𝑉 = 𝑈 ⊕ 𝑊.
+Proof Because 𝑉 is finite-dimensional, so is 𝑈 (see 2.25). Thus there is a basis
+𝑢1,…,𝑢𝑚 of 𝑈 (by 2.31). Of course 𝑢1,…,𝑢𝑚 is a linearly independent list of
+vectors in 𝑉. Hence this list can be extended to a basis 𝑢1,…,𝑢𝑚,𝑤1,…,𝑤𝑛 of 𝑉
+(by 2.32). Let 𝑊 = span(𝑤1,…,𝑤𝑛).
+To prove that 𝑉 = 𝑈 ⊕ 𝑊, by 1.46 we only need to show that
+𝑉 = 𝑈 + 𝑊 and 𝑈 ∩ 𝑊 = {0}.
+To prove the first equation above, suppose 𝑣 ∈ 𝑉. Then, because the list
+𝑢1,…,𝑢𝑚,𝑤1,…,𝑤𝑛 spans 𝑉, there exist 𝑎1,…,𝑎𝑚,𝑏1,…,𝑏𝑛 ∈ 𝐅 such that
+𝑣 = 𝑎1𝑢1 + ⋯ + 𝑎𝑚𝑢𝑚 ⏟ ⏟ ⏟ ⏟ ⏟ ⏟ ⏟
+𝑢
++𝑏1𝑤1 + ⋯ + 𝑏𝑛𝑤𝑛 ⏟ ⏟ ⏟ ⏟ ⏟ ⏟ ⏟
+𝑤
+.
+We have 𝑣 = 𝑢 + 𝑤, where 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑊 are defined as above. Thus
+𝑣 ∈ 𝑈 + 𝑊, completing the proof that 𝑉 = 𝑈 + 𝑊.
+To show that 𝑈 ∩ 𝑊 = {0}, suppose 𝑣 ∈ 𝑈 ∩ 𝑊. Then there exist scalars
+𝑎1,…,𝑎𝑚,𝑏1,…,𝑏𝑛 ∈ 𝐅 such that
+𝑣 = 𝑎1𝑢1 + ⋯ + 𝑎𝑚𝑢𝑚 = 𝑏1𝑤1 + ⋯ + 𝑏𝑛𝑤𝑛.
+Thus
+𝑎1𝑢1 + ⋯ + 𝑎𝑚𝑢𝑚 − 𝑏1𝑤1 − ⋯ − 𝑏𝑛𝑤𝑛 = 0.
+Because 𝑢1,…,𝑢𝑚,𝑤1,…,𝑤𝑛 is linearly independent, this implies that
+𝑎1 = ⋯ = 𝑎𝑚 = 𝑏1 = ⋯ = 𝑏𝑛 = 0.
+Thus 𝑣 = 0, completing the proof that 𝑈 ∩ 𝑊 = {0}.
+Exercises 2B
+## 1 Find all vector spaces that have exactly one basis.
+## 2 Verify all assertions in Example 2.27.
+3 (a) Let 𝑈 be the subspace of 𝐑5
+defined by
+𝑈 = {(𝑥1,𝑥2,𝑥3,𝑥4,𝑥5) ∈ 𝐑5
+∶ 𝑥1 = 3𝑥2 and 𝑥3 = 7𝑥4}.
+Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝐑5
+.
+(c) Find a subspace 𝑊 of 𝐑5
+such that 𝐑5
+= 𝑈 ⊕ 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2B Bases 43
+4 (a) Let 𝑈 be the subspace of 𝐂5
+defined by
+𝑈 = {(𝑧1,𝑧2,𝑧3,𝑧4,𝑧5) ∈ 𝐂5
+∶ 6𝑧1 = 𝑧2 and 𝑧3 + 2𝑧4 + 3𝑧5 = 0}.
+Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝐂5
+.
+(c) Find a subspace 𝑊 of 𝐂5
+such that 𝐂5
+= 𝑈 ⊕ 𝑊.
+5 Suppose 𝑉 is finite-dimensional and 𝑈,𝑊 are subspaces of 𝑉 such that
+𝑉 = 𝑈 + 𝑊. Prove that there exists a basis of 𝑉 consisting of vectors in
+𝑈 ∪ 𝑊.
+6 Prove or give a counterexample: If 𝑝0,𝑝1,𝑝2,𝑝3 is a list in 𝒫3(𝐅) such that
+none of the polynomials 𝑝0,𝑝1,𝑝2,𝑝3 has degree 2, then 𝑝0,𝑝1,𝑝2,𝑝3 is not
+a basis of 𝒫3(𝐅).
+7 Suppose 𝑣1,𝑣2,𝑣3,𝑣4 is a basis of 𝑉. Prove that
+𝑣1 + 𝑣2,𝑣2 + 𝑣3,𝑣3 + 𝑣4,𝑣4
+is also a basis of 𝑉.
+8 Prove or give a counterexample: If 𝑣1,𝑣2,𝑣3,𝑣4 is a basis of 𝑉 and 𝑈 is a
+subspace of 𝑉 such that 𝑣1,𝑣2 ∈ 𝑈 and 𝑣3 ∉ 𝑈 and 𝑣4 ∉ 𝑈, then 𝑣1,𝑣2 is a
+basis of 𝑈.
+9 Suppose 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉. For 𝑘 ∈ {1,…,𝑚}, let
+𝑤𝑘 = 𝑣1 + ⋯ + 𝑣𝑘.
+Show that 𝑣1,…,𝑣𝑚 is a basis of 𝑉 if and only if 𝑤1,…,𝑤𝑚 is a basis of 𝑉.
+## 10 Suppose 𝑈 and 𝑊 are subspaces of 𝑉 such that 𝑉 = 𝑈 ⊕ 𝑊. Suppose also
+that 𝑢1,…,𝑢𝑚 is a basis of 𝑈 and 𝑤1,…,𝑤𝑛 is a basis of 𝑊. Prove that
+𝑢1,…,𝑢𝑚,𝑤1,…,𝑤𝑛
+is a basis of 𝑉.
+11 Suppose 𝑉 is a real vector space. Show that if 𝑣1,…,𝑣𝑛 is a basis of 𝑉 (as a
+real vector space), then 𝑣1,…,𝑣𝑛 is also a basis of the complexification 𝑉𝐂
+(as a complex vector space).
+See Exercise 8 in Section 1B for the definition of the complexification 𝑉𝐂.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler44 Chapter 2 Finite-Dimensional Vector Spaces
+2C Dimension
+Although we have been discussing finite-dimensional vector spaces, we have not
+yet defined the dimension of such an object. How should dimension be defined?
+A reasonable definition should force the dimension of 𝐅𝑛
+to equal 𝑛. Notice that
+the standard basis
+(1,0,…,0),(0,1,0,…,0),…,(0,…,0,1)
+of 𝐅𝑛
+has length 𝑛. Thus we are tempted to define the dimension as the length of
+a basis. However, a finite-dimensional vector space in general has many different
+bases, and our attempted definition makes sense only if all bases in a given vector
+space have the same length. Fortunately that turns out to be the case, as we now
+show.
+2.34 basis length does not depend on basis
+Any two bases of a finite-dimensional vector space have the same length.
+Proof Suppose 𝑉 is finite-dimensional. Let 𝐵1 and 𝐵2 be two bases of 𝑉. Then
+𝐵1 is linearly independent in 𝑉 and 𝐵2 spans 𝑉, so the length of 𝐵1 is at most the
+length of 𝐵2 (by 2.22). Interchanging the roles of 𝐵1 and 𝐵2, we also see that the
+length of 𝐵2 is at most the length of 𝐵1. Thus the length of 𝐵1 equals the length
+of 𝐵2, as desired.
+Now that we know that any two bases of a finite-dimensional vector space
+have the same length, we can formally define the dimension of such spaces.
+2.35 definition: dimension, dim𝑉
+• The dimension of a finite-dimensional vector space is the length of any
+basis of the vector space.
+• The dimension of a finite-dimensional vector space 𝑉 is denoted by dim𝑉.
+2.36 example: dimensions
+• dim𝐅𝑛
+= 𝑛 because the standard basis of 𝐅𝑛
+has length 𝑛.
+• dim𝒫𝑚(𝐅) = 𝑚+1 because the standard basis 1,𝑧,…,𝑧𝑚
+of 𝒫𝑚(𝐅) has length
+𝑚 + 1.
+• If 𝑈 = {(𝑥,𝑥,𝑦) ∈ 𝐅3
+∶ 𝑥,𝑦 ∈ 𝐅}, then dim𝑈 = 2 because (1,1,0),(0,0,1)
+is a basis of 𝑈.
+• If 𝑈 = {(𝑥,𝑦,𝑧) ∈ 𝐅3
+∶ 𝑥 + 𝑦 + 𝑧 = 0}, then dim𝑈 = 2 because the list
+(1,−1,0),(1,0,−1) is a basis of 𝑈.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2C Dimension 45
+Every subspace of a finite-dimensional vector space is finite-dimensional
+(by 2.25) and so has a dimension. The next result gives the expected inequality
+about the dimension of a subspace.
+2.37 dimension of a subspace
+If 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉, then dim𝑈 ≤ dim𝑉.
+Proof Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Think of
+a basis of 𝑈 as a linearly independent list in 𝑉, and think of a basis of 𝑉 as a
+spanning list in 𝑉. Now use 2.22 to conclude that dim𝑈 ≤ dim𝑉.
+The real vector space 𝐑2
+has dimen-
+sion two; the complex vector space 𝐂
+has dimension one. As sets, 𝐑2
+can
+be identified with 𝐂 (and addition is
+the same on both spaces, as is scalar
+multiplication by real numbers). Thus
+when we talk about the dimension of
+a vector space, the role played by the
+choice of 𝐅 cannot be neglected.
+To check that a list of vectors in 𝑉
+is a basis of 𝑉, we must, according to
+the definition, show that the list in ques-
+tion satisfies two properties: it must be
+linearly independent and it must span 𝑉.
+The next two results show that if the list
+in question has the right length, then we
+only need to check that it satisfies one
+of the two required properties. First we
+prove that every linearly independent list
+of the right length is a basis.
+2.38 linearly independent list of the right length is a basis
+Suppose 𝑉 is finite-dimensional. Then every linearly independent list of
+vectors in 𝑉 of length dim𝑉 is a basis of 𝑉.
+Proof Suppose dim𝑉 = 𝑛 and 𝑣1,…,𝑣𝑛 is linearly independent in 𝑉. The list
+𝑣1,…,𝑣𝑛 can be extended to a basis of 𝑉 (by 2.32). However, every basis of 𝑉 has
+length 𝑛, so in this case the extension is the trivial one, meaning that no elements
+are adjoined to 𝑣1,…,𝑣𝑛. Thus 𝑣1,…,𝑣𝑛 is a basis of 𝑉, as desired.
+The next result is a useful consequence of the previous result.
+2.39 subspace of full dimension equals the whole space
+Suppose that 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉 such that
+dim𝑈 = dim𝑉. Then 𝑈 = 𝑉.
+Proof Let 𝑢1,…,𝑢𝑛 be a basis of 𝑈. Thus 𝑛 = dim𝑈, and by hypothesis we
+also have 𝑛 = dim𝑉. Thus 𝑢1,…,𝑢𝑛 is a linearly independent list of vectors in 𝑉
+(because it is a basis of 𝑈) of length dim𝑉. From 2.38, we see that 𝑢1,…,𝑢𝑛 is a
+basis of 𝑉. In particular every vector in 𝑉 is a linear combination of 𝑢1,…,𝑢𝑛.
+Thus 𝑈 = 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler46 Chapter 2 Finite-Dimensional Vector Spaces
+2.40 example: a basis of 𝐅2
+Consider the list (5,7),(4,3) of vectors in 𝐅2
+. This list of length two is linearly
+independent in 𝐅2
+(because neither vector is a scalar multiple of the other). Note
+that 𝐅2
+has dimension two. Thus 2.38 implies that the linearly independent list
+(5,7),(4,3) of length two is a basis of 𝐅2
+(we do not need to bother checking that
+it spans 𝐅2
+).
+2.41 example: a basis of a subspace of 𝒫3(𝐑)
+Let 𝑈 be the subspace of 𝒫3(𝐑) defined by
+𝑈 = {𝑝 ∈ 𝒫3(𝐑) ∶ 𝑝′
+(5) = 0}.
+To find a basis of 𝑈, first note that each of the polynomials 1, (𝑥−5)2
+, and (𝑥−5)3
+is in 𝑈.
+Suppose 𝑎,𝑏,𝑐 ∈ 𝐑 and
+𝑎 + 𝑏(𝑥 − 5)2
++ 𝑐(𝑥 − 5)3
+= 0
+for every 𝑥 ∈ 𝐑. Without explicitly expanding the left side of the equation above,
+we can see that the left side has a 𝑐𝑥3
+term. Because the right side has no 𝑥3
+term, this implies that 𝑐 = 0. Because 𝑐 = 0, we see that the left side has a 𝑏𝑥2
+term, which implies that 𝑏 = 0. Because 𝑏 = 𝑐 = 0, we can also conclude that
+𝑎 = 0. Thus the equation above implies that 𝑎 = 𝑏 = 𝑐 = 0. Hence the list
+1,(𝑥 − 5)2
+,(𝑥 − 5)3
+is linearly independent in 𝑈. Thus 3 ≤ dim𝑈. Hence
+3 ≤ dim𝑈 ≤ dim𝒫3(𝐑) = 4,
+where we have used 2.37.
+The polynomial 𝑥 is not in 𝑈 because its derivative is the constant function 1.
+Thus 𝑈 ≠ 𝒫3(𝐑). Hence dim𝑈 ≠ 4 (by 2.39). The inequality above now implies
+that dim𝑈 = 3. Thus the linearly independent list 1,(𝑥 − 5)2
+,(𝑥 − 5)3
+in 𝑈 has
+length dim𝑈 and hence is a basis of 𝑈 (by 2.38).
+Now we prove that a spanning list of the right length is a basis.
+2.42 spanning list of the right length is a basis
+Suppose 𝑉 is finite-dimensional. Then every list of vectors in 𝑉 that spans 𝑉
+and has length dim𝑉 is a basis of 𝑉.
+Proof Suppose dim𝑉 = 𝑛 and 𝑣1,…,𝑣𝑛 spans 𝑉. The list 𝑣1,…,𝑣𝑛 can be
+reduced to a basis of 𝑉 (by 2.30). However, every basis of 𝑉 has length 𝑛, so in
+this case the reduction is the trivial one, meaning that no elements are deleted
+from 𝑣1,…,𝑣𝑛. Thus 𝑣1,…,𝑣𝑛 is a basis of 𝑉, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2C Dimension 47
+The next result gives a formula for the dimension of the sum of two subspaces
+of a finite-dimensional vector space. This formula is analogous to a familiar
+counting formula: the number of elements in the union of two finite sets equals
+the number of elements in the first set, plus the number of elements in the second
+set, minus the number of elements in the intersection of the two sets.
+2.43 dimension of a sum
+If 𝑉1 and 𝑉2 are subspaces of a finite-dimensional vector space, then
+dim(𝑉1 + 𝑉2) = dim𝑉1 + dim𝑉2 − dim(𝑉1 ∩ 𝑉2).
+Proof Let 𝑣1,…,𝑣𝑚 be a basis of 𝑉1 ∩ 𝑉2; thus dim(𝑉1 ∩ 𝑉2) = 𝑚. Because
+𝑣1,…,𝑣𝑚 is a basis of 𝑉1 ∩𝑉2, it is linearly independent in 𝑉1. Hence this list can
+be extended to a basis 𝑣1,…,𝑣𝑚,𝑢1,…,𝑢𝑗 of 𝑉1 (by 2.32). Thus dim𝑉1 = 𝑚 + 𝑗.
+Also extend 𝑣1,…,𝑣𝑚 to a basis 𝑣1,…,𝑣𝑚,𝑤1,…,𝑤𝑘 of 𝑉2; thus dim𝑉2 = 𝑚+𝑘.
+We will show that
+2.44 𝑣1,…,𝑣𝑚,𝑢1,…,𝑢𝑗,𝑤1,…,𝑤𝑘
+is a basis of 𝑉1 + 𝑉2. This will complete the proof, because then we will have
+dim(𝑉1 + 𝑉2) = 𝑚 + 𝑗 + 𝑘
+= (𝑚 + 𝑗) + (𝑚 + 𝑘) − 𝑚
+= dim𝑉1 + dim𝑉2 − dim(𝑉1 ∩ 𝑉2).
+The list 2.44 is contained in 𝑉1 ∪ 𝑉2 and thus is contained in 𝑉1 + 𝑉2. The
+span of this list contains 𝑉1 and contains 𝑉2 and hence is equal to 𝑉1 + 𝑉2. Thus
+to show that 2.44 is a basis of 𝑉1 + 𝑉2 we only need to show that it is linearly
+independent.
+To prove that 2.44 is linearly independent, suppose
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 + 𝑏1𝑢1 + ⋯ + 𝑏𝑗𝑢𝑗 + 𝑐1𝑤1 + ⋯ + 𝑐𝑘𝑤𝑘 = 0,
+where all the 𝑎’s, 𝑏’s, and 𝑐’s are scalars. We need to prove that all the 𝑎’s, 𝑏’s,
+and 𝑐’s equal 0. The equation above can be rewritten as
+2.45 𝑐1𝑤1 + ⋯ + 𝑐𝑘𝑤𝑘 = −𝑎1𝑣1 − ⋯ − 𝑎𝑚𝑣𝑚 − 𝑏1𝑢1 − ⋯ − 𝑏𝑗𝑢𝑗,
+which shows that 𝑐1𝑤1 + ⋯ + 𝑐𝑘𝑤𝑘 ∈ 𝑉1. All the 𝑤’s are in 𝑉2, so this implies
+that 𝑐1𝑤1 + ⋯ + 𝑐𝑘𝑤𝑘 ∈ 𝑉1 ∩ 𝑉2. Because 𝑣1,…,𝑣𝑚 is a basis of 𝑉1 ∩ 𝑉2, we
+have
+𝑐1𝑤1 + ⋯ + 𝑐𝑘𝑤𝑘 = 𝑑1𝑣1 + ⋯ + 𝑑𝑚𝑣𝑚
+for some scalars 𝑑1,…,𝑑𝑚. But 𝑣1,…,𝑣𝑚,𝑤1,…,𝑤𝑘 is linearly independent, so
+the last equation implies that all the 𝑐’s (and 𝑑’s) equal 0. Thus 2.45 becomes the
+equation
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 + 𝑏1𝑢1 + ⋯ + 𝑏𝑗𝑢𝑗 = 0.
+Because the list 𝑣1,…,𝑣𝑚,𝑢1,…,𝑢𝑗 is linearly independent, this equation implies
+that all the 𝑎’s and 𝑏’s are 0, completing the proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler48 Chapter 2 Finite-Dimensional Vector Spaces
+For 𝑆 a finite set, let #𝑆 denote the number of elements of 𝑆. The table below
+compares finite sets with finite-dimensional vector spaces, showing the analogy
+between#𝑆 (forsets)anddim𝑉 (forvectorspaces), aswellastheanalogybetween
+unions of subsets (in the context of sets) and sums of subspaces (in the context of
+vector spaces).
+sets vector spaces
+𝑆 is a finite set 𝑉 is a finite-dimensional vector space
+#𝑆 dim𝑉
+for subsets 𝑆1,𝑆2 of 𝑆, the union 𝑆1 ∪ 𝑆2
+is the smallest subset of 𝑆 containing 𝑆1
+and 𝑆2
+forsubspaces𝑉1,𝑉2 of𝑉,thesum𝑉1+𝑉2
+is the smallest subspace of 𝑉 containing
+𝑉1 and 𝑉2
+#(𝑆1 ∪ 𝑆2) dim(𝑉1 + 𝑉2)
+= #𝑆1 + #𝑆2 − #(𝑆1 ∩ 𝑆2) = dim𝑉1 + dim𝑉2 − dim(𝑉1 ∩ 𝑉2)
+#(𝑆1 ∪ 𝑆2) = #𝑆1 + #𝑆2 dim(𝑉1 + 𝑉2) = dim𝑉1 + dim𝑉2
+⟺ 𝑆1 ∩ 𝑆2 = ∅ ⟺ 𝑉1 ∩ 𝑉2 = {0}
+𝑆1 ∪ ⋯ ∪ 𝑆𝑚 is a disjoint union ⟺
+#(𝑆1 ∪ ⋯ ∪ 𝑆𝑚) = #𝑆1 + ⋯ + #𝑆𝑚
+𝑉1 + ⋯ + 𝑉𝑚 is a direct sum ⟺
+dim(𝑉1 + ⋯ + 𝑉𝑚)
+= dim𝑉1 + ⋯ + dim𝑉𝑚
+The last row above focuses on the analogy between disjoint unions (for sets)
+and direct sums (for vector spaces). The proof of the result in the last box above
+will be given in 3.94.
+You should be able to find results about sets that correspond, via analogy, to
+the results about vector spaces in Exercises 12 through 18.
+Exercises 2C
+1 Show that the subspaces of 𝐑2
+are precisely {0}, all lines in 𝐑2
+containing
+the origin, and 𝐑2
+.
+2 Show that the subspaces of 𝐑3
+are precisely {0}, all lines in 𝐑3
+containing
+the origin, all planes in 𝐑3
+containing the origin, and 𝐑3
+.
+3 (a) Let 𝑈 = {𝑝 ∈ 𝒫4(𝐅) ∶ 𝑝(6) = 0}. Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝒫4(𝐅).
+(c) Find a subspace 𝑊 of 𝒫4(𝐅) such that 𝒫4(𝐅) = 𝑈 ⊕ 𝑊.
+4 (a) Let 𝑈 = {𝑝 ∈ 𝒫4(𝐑) ∶ 𝑝″
+(6) = 0}. Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝒫4(𝐑).
+(c) Find a subspace 𝑊 of 𝒫4(𝐑) such that 𝒫4(𝐑) = 𝑈 ⊕ 𝑊.
+5 (a) Let 𝑈 = {𝑝 ∈ 𝒫4(𝐅) ∶ 𝑝(2) = 𝑝(5)}. Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝒫4(𝐅).
+(c) Find a subspace 𝑊 of 𝒫4(𝐅) such that 𝒫4(𝐅) = 𝑈 ⊕ 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 2C Dimension 49
+6 (a) Let 𝑈 = {𝑝 ∈ 𝒫4(𝐅) ∶ 𝑝(2) = 𝑝(5) = 𝑝(6)}. Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝒫4(𝐅).
+(c) Find a subspace 𝑊 of 𝒫4(𝐅) such that 𝒫4(𝐅) = 𝑈 ⊕ 𝑊.
+7 (a) Let 𝑈 = {𝑝 ∈ 𝒫4(𝐑) ∶ ∫
+1
+−1 𝑝 = 0}. Find a basis of 𝑈.
+(b) Extend the basis in (a) to a basis of 𝒫4(𝐑).
+(c) Find a subspace 𝑊 of 𝒫4(𝐑) such that 𝒫4(𝐑) = 𝑈 ⊕ 𝑊.
+8 Suppose 𝑣1,…,𝑣𝑚 is linearly independent in 𝑉 and 𝑤 ∈ 𝑉. Prove that
+dimspan(𝑣1 + 𝑤,…,𝑣𝑚 + 𝑤) ≥ 𝑚 − 1.
+9 Suppose 𝑚 is a positive integer and 𝑝0,𝑝1,…,𝑝𝑚 ∈ 𝒫(𝐅) are such that each
+𝑝𝑘 has degree 𝑘. Prove that 𝑝0,𝑝1,…,𝑝𝑚 is a basis of 𝒫𝑚(𝐅).
+## 10 Suppose 𝑚 is a positive integer. For 0 ≤ 𝑘 ≤ 𝑚, let
+𝑝𝑘(𝑥) = 𝑥𝑘
+(1 − 𝑥)𝑚−𝑘
+.
+Show that 𝑝0,…,𝑝𝑚 is a basis of 𝒫𝑚(𝐅).
+The basis in this exercise leads to what are called Bernstein polynomials.
+You can do a web search to learn how Bernstein polynomials are used to
+approximate continuous functions on [0,1].
+11 Suppose 𝑈 and 𝑊 are both four-dimensional subspaces of 𝐂6
+. Prove that
+there exist two vectors in 𝑈 ∩𝑊 such that neither of these vectors is a scalar
+multiple of the other.
+12 Suppose that 𝑈 and 𝑊 are subspaces of 𝐑8
+suchthat dim𝑈 = 3, dim𝑊 = 5,
+and 𝑈 + 𝑊 = 𝐑8
+. Prove that 𝐑8
+= 𝑈 ⊕ 𝑊.
+13 Suppose 𝑈 and 𝑊 are both five-dimensional subspaces of 𝐑9
+. Prove that
+𝑈 ∩ 𝑊 ≠ {0}.
+14 Suppose 𝑉 is a ten-dimensional vector space and 𝑉1,𝑉2,𝑉3 are subspaces
+of 𝑉 with dim𝑉1 = dim𝑉2 = dim𝑉3 = 7. Prove that 𝑉1 ∩ 𝑉2 ∩ 𝑉3 ≠ {0}.
+15 Suppose 𝑉 is finite-dimensional and 𝑉1,𝑉2,𝑉3 are subspaces of 𝑉 with
+dim𝑉1 + dim𝑉2 + dim𝑉3 > 2dim𝑉. Prove that 𝑉1 ∩ 𝑉2 ∩ 𝑉3 ≠ {0}.
+## 16 Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉 with 𝑈 ≠ 𝑉. Let
+𝑛 = dim𝑉 and 𝑚 = dim𝑈. Prove that there exist 𝑛 − 𝑚 subspaces of 𝑉,
+each of dimension 𝑛 − 1, whose intersection equals 𝑈.
+17 Suppose that 𝑉1,…,𝑉𝑚 are finite-dimensional subspaces of 𝑉. Prove that
+𝑉1 + ⋯ + 𝑉𝑚 is finite-dimensional and
+dim(𝑉1 + ⋯ + 𝑉𝑚) ≤ dim𝑉1 + ⋯ + dim𝑉𝑚.
+The inequality above is an equality if and only if 𝑉1 + ⋯ + 𝑉𝑚 is a direct
+sum, as will be shown in 3.94.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler50 Chapter 2 Finite-Dimensional Vector Spaces
+18 Suppose 𝑉 is finite-dimensional, with dim𝑉 = 𝑛 ≥ 1. Prove that there exist
+one-dimensional subspaces 𝑉1,…,𝑉𝑛 of 𝑉 such that
+𝑉 = 𝑉1 ⊕ ⋯ ⊕ 𝑉𝑛.
+## 19 Explain why you might guess, motivated by analogy with the formula for
+the number of elements in the union of three finite sets, that if 𝑉1,𝑉2,𝑉3 are
+subspaces of a finite-dimensional vector space, then
+dim(𝑉1 + 𝑉2 + 𝑉3)
+=dim𝑉1 + dim𝑉2 + dim𝑉3
+− dim(𝑉1 ∩ 𝑉2) − dim(𝑉1 ∩ 𝑉3) − dim(𝑉2 ∩ 𝑉3)
++ dim(𝑉1 ∩ 𝑉2 ∩ 𝑉3).
+Then either prove the formula above or give a counterexample.
+20 Prove that if 𝑉1,𝑉2, and 𝑉3 are subspaces of a finite-dimensional vector
+space, then
+dim(𝑉1 + 𝑉2 + 𝑉3)
+=dim𝑉1 + dim𝑉2 + dim𝑉3
+−
+dim(𝑉1 ∩ 𝑉2) + dim(𝑉1 ∩ 𝑉3) + dim(𝑉2 ∩ 𝑉3)
+3
+−
+dim((𝑉1+𝑉2)∩𝑉3) + dim((𝑉1+𝑉3)∩𝑉2) + dim((𝑉2 +𝑉3)∩𝑉1)
+3
+.
+The formula above may seem strange because the right side does not look
+like an integer.
+I at once gave up my former occupations, set down natural history and all its
+progeny as a deformed and abortive creation, and entertained the greatest disdain
+for a would-be science which could never even step within the threshold of real
+knowledge. In this mood I betook myself to the mathematics and the branches of
+study appertaining to that science as being built upon secure foundations, and so
+worthy of my consideration.
+—Frankenstein, Mary Wollstonecraft Shelley
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 3
+Linear Maps
+So far our attention has focused on vector spaces. No one gets excited about
+vector spaces. The interesting part of linear algebra is the subject to which we
+now turn—linear maps.
+We will frequently use the powerful fundamental theorem of linear maps,
+whichstatesthatthedimensionofthedomainofalinearmapequalsthedimension
+of the subspace that gets sent to 0 plus the dimension of the range. This will imply
+the striking result that a linear map from a finite-dimensional vector space to itself
+is one-to-one if and only if its range is the whole space.
+A major concept that we will introduce in this chapter is the matrix associated
+with a linear map and with a basis of the domain space and a basis of the target
+space. This correspondence between linear maps and matrices provides much
+insight into key aspects of linear algebra.
+This chapter concludes by introducing product, quotient, and dual spaces.
+In this chapter we will need additional vector spaces, which we call 𝑈 and 𝑊,
+in addition to 𝑉. Thus our standing assumptions are now as follows.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑈, 𝑉, and 𝑊 denote vector spaces over 𝐅.
+Stefan Schäfer CC BY-SA
+The twelfth-century Dankwarderode Castle in Brunswick (Braunschweig), where Carl
+Friedrich Gauss (1777–1855) was born and grew up. In 1809 Gauss published a method
+for solving systems of linear equations. This method, now called Gaussian elimination,
+was used in a Chinese book written over 1600 years earlier.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+5152 Chapter 3 Linear Maps
+3A Vector Space of Linear Maps
+Definition and Examples of Linear Maps
+Now we are ready for one of the key definitions in linear algebra.
+3.1 definition: linear map
+A linear map from 𝑉 to 𝑊 is a function 𝑇∶ 𝑉 → 𝑊 with the following
+properties.
+additivity
+𝑇(𝑢 + 𝑣) = 𝑇𝑢 + 𝑇𝑣 for all 𝑢,𝑣 ∈ 𝑉.
+homogeneity
+𝑇(𝜆𝑣) = 𝜆(𝑇𝑣) for all 𝜆 ∈ 𝐅 and all 𝑣 ∈ 𝑉.
+Some mathematicians use the phrase
+linear transformation, which means
+the same as linear map.
+Note that for linear maps we often
+use the notation 𝑇𝑣 as well as the usual
+function notation 𝑇(𝑣).
+3.2 notation: ℒ(𝑉,𝑊), ℒ(𝑉)
+• The set of linear maps from 𝑉 to 𝑊 is denoted by ℒ(𝑉,𝑊).
+• The set of linear maps from 𝑉 to 𝑉 is denoted by ℒ(𝑉). In other words,
+ℒ(𝑉) = ℒ(𝑉,𝑉).
+Let’s look at some examples of linear maps. Make sure you verify that each
+of the functions defined in the next example is indeed a linear map:
+3.3 example: linear maps
+zero
+In addition to its other uses, we let the symbol 0 denote the linear map that takes
+every element of some vector space to the additive identity of another (or possibly
+the same) vector space. To be specific, 0 ∈ ℒ(𝑉,𝑊) is defined by
+0𝑣 = 0.
+The 0 on the left side of the equation above is a function from 𝑉 to 𝑊, whereas
+the 0 on the right side is the additive identity in 𝑊. As usual, the context should
+allow you to distinguish between the many uses of the symbol 0.
+identity operator
+The identity operator, denoted by 𝐼, is the linear map on some vector space that
+takes each element to itself. To be specific, 𝐼 ∈ ℒ(𝑉) is defined by
+𝐼𝑣 = 𝑣.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3A Vector Space of Linear Maps 53
+differentiation
+Define 𝐷 ∈ ℒ(𝒫(𝐑)) by
+𝐷𝑝 = 𝑝′
+.
+The assertion that this function is a linear map is another way of stating a basic
+result about differentiation: (𝑓 + 𝑔)′
+= 𝑓′
++ 𝑔′
+and (𝜆𝑓)′
+= 𝜆𝑓′
+whenever 𝑓,𝑔
+are differentiable and 𝜆 is a constant.
+integration
+Define 𝑇 ∈ ℒ(𝒫(𝐑),𝐑) by
+𝑇𝑝 = ∫
+1
+0
+𝑝.
+The assertion that this function is linear is another way of stating a basic result
+about integration: the integral of the sum of two functions equals the sum of the
+integrals, and the integral of a constant times a function equals the constant times
+the integral of the function.
+multiplication by 𝑥2
+Define a linear map 𝑇 ∈ ℒ(𝒫(𝐑)) by
+(𝑇𝑝)(𝑥) = 𝑥2
+𝑝(𝑥)
+for each 𝑥 ∈ 𝐑.
+backward shift
+Recall that 𝐅∞
+denotes the vector space of all sequences of elements of 𝐅. Define
+a linear map 𝑇 ∈ ℒ(𝐅∞
+) by
+𝑇(𝑥1,𝑥2,𝑥3,…) = (𝑥2,𝑥3,…).
+from 𝐑3
+to 𝐑2
+Define a linear map 𝑇 ∈ ℒ(𝐑3
+,𝐑2
+) by
+𝑇(𝑥,𝑦,𝑧) = (2𝑥 − 𝑦 + 3𝑧,7𝑥 + 5𝑦 − 6𝑧).
+from 𝐅𝑛
+to 𝐅𝑚
+To generalize the previous example, let 𝑚 and 𝑛 be positive integers, let 𝐴𝑗,𝑘 ∈ 𝐅
+for each 𝑗 = 1,…,𝑚 and each 𝑘 = 1,…,𝑛, and define a linear map 𝑇 ∈ ℒ(𝐅𝑛
+,𝐅𝑚
+)
+by
+𝑇(𝑥1,…,𝑥𝑛) = (𝐴1,1𝑥1 + ⋯ + 𝐴1,𝑛 𝑥𝑛,…,𝐴𝑚,1𝑥1 + ⋯ + 𝐴𝑚,𝑛 𝑥𝑛).
+Actually every linear map from 𝐅𝑛
+to 𝐅𝑚
+is of this form.
+composition
+Fix a polynomial 𝑞 ∈ 𝒫(𝐑). Define a linear map 𝑇 ∈ ℒ(𝒫(𝐑)) by
+(𝑇𝑝)(𝑥) = 𝑝(𝑞(𝑥)).
+The existence part of the next result means that we can find a linear map that
+takes on whatever values we wish on the vectors in a basis. The uniqueness part
+of the next result means that a linear map is completely determined by its values
+on a basis.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler54 Chapter 3 Linear Maps
+3.4 linear map lemma
+Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑤1,…,𝑤𝑛 ∈ 𝑊. Then there exists a
+unique linear map 𝑇∶ 𝑉 → 𝑊 such that
+𝑇𝑣𝑘 = 𝑤𝑘
+for each 𝑘 = 1,…,𝑛.
+Proof First we show the existence of a linear map 𝑇 with the desired property.
+Define 𝑇∶ 𝑉 → 𝑊 by
+𝑇(𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛) = 𝑐1𝑤1 + ⋯ + 𝑐𝑛𝑤𝑛,
+where 𝑐1,…,𝑐𝑛 are arbitrary elements of 𝐅. The list 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Thus
+the equation above does indeed define a function 𝑇 from 𝑉 to 𝑊 (because each
+element of 𝑉 can be uniquely written in the form 𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛).
+For each 𝑘, taking 𝑐𝑘 = 1 and the other 𝑐’s equal to 0 in the equation above
+shows that 𝑇𝑣𝑘 = 𝑤𝑘.
+If 𝑢,𝑣 ∈ 𝑉 with 𝑢 = 𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛 and 𝑣 = 𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛, then
+𝑇(𝑢 + 𝑣) = 𝑇((𝑎1 + 𝑐1)𝑣1 + ⋯ + (𝑎𝑛 + 𝑐𝑛)𝑣𝑛)
+= (𝑎1 + 𝑐1)𝑤1 + ⋯ + (𝑎𝑛 + 𝑐𝑛)𝑤𝑛
+= (𝑎1𝑤1 + ⋯ + 𝑎𝑛𝑤𝑛) + (𝑐1𝑤1 + ⋯ + 𝑐𝑛𝑤𝑛)
+= 𝑇𝑢 + 𝑇𝑣.
+Similarly, if 𝜆 ∈ 𝐅 and 𝑣 = 𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛, then
+𝑇(𝜆𝑣) = 𝑇(𝜆𝑐1𝑣1 + ⋯ + 𝜆𝑐𝑛𝑣𝑛)
+= 𝜆𝑐1𝑤1 + ⋯ + 𝜆𝑐𝑛𝑤𝑛
+= 𝜆(𝑐1𝑤1 + ⋯ + 𝑐𝑛𝑤𝑛)
+= 𝜆𝑇𝑣.
+Thus 𝑇 is a linear map from 𝑉 to 𝑊.
+To prove uniqueness, now suppose that 𝑇 ∈ ℒ(𝑉,𝑊) and that 𝑇𝑣𝑘 = 𝑤𝑘 for
+each 𝑘 = 1,…,𝑛. Let 𝑐1,…,𝑐𝑛 ∈ 𝐅. Then the homogeneity of 𝑇 implies that
+𝑇(𝑐𝑘𝑣𝑘) = 𝑐𝑘𝑤𝑘 for each 𝑘 = 1,…,𝑛. The additivity of 𝑇 now implies that
+𝑇(𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛) = 𝑐1𝑤1 + ⋯ + 𝑐𝑛𝑤𝑛.
+Thus𝑇 isuniquelydeterminedonspan(𝑣1,…,𝑣𝑛) bytheequationabove. Because
+𝑣1,…,𝑣𝑛 is a basis of 𝑉, this implies that 𝑇 is uniquely determined on 𝑉, as
+desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3A Vector Space of Linear Maps 55
+Algebraic Operations on ℒ(𝑉,𝑊)
+We begin by defining addition and scalar multiplication on ℒ(𝑉,𝑊).
+3.5 definition: addition and scalar multiplication on ℒ(𝑉,𝑊)
+Suppose 𝑆,𝑇 ∈ ℒ(𝑉,𝑊) and 𝜆 ∈ 𝐅. The sum 𝑆 + 𝑇 and the product 𝜆𝑇 are
+the linear maps from 𝑉 to 𝑊 defined by
+(𝑆 + 𝑇)(𝑣) = 𝑆𝑣 + 𝑇𝑣 and (𝜆𝑇)(𝑣) = 𝜆(𝑇𝑣)
+for all 𝑣 ∈ 𝑉.
+Linear maps are pervasive throughout
+mathematics. However, they are not as
+ubiquitous as imagined by people who
+seem to think cos is a linear map from
+𝐑 to𝐑 whentheyincorrectlywritethat
+cos(𝑥+𝑦) equalscos𝑥+cos𝑦 andthat
+cos2𝑥 equals 2cos𝑥.
+You should verify that 𝑆 + 𝑇 and 𝜆𝑇
+as defined above are indeed linear maps.
+In other words, if 𝑆,𝑇 ∈ ℒ(𝑉,𝑊) and
+𝜆 ∈ 𝐅, then 𝑆 +𝑇 ∈ ℒ(𝑉,𝑊) and 𝜆𝑇 ∈
+ℒ(𝑉,𝑊).
+Because we took the trouble to de-
+fine addition and scalar multiplication on
+ℒ(𝑉,𝑊), the next result should not be a
+surprise.
+3.6 ℒ(𝑉,𝑊) is a vector space
+With the operations of addition and scalar multiplication as defined above,
+ℒ(𝑉,𝑊) is a vector space.
+The routine proof of the result above is left to the reader. Note that the additive
+identity of ℒ(𝑉,𝑊) is the zero linear map defined in Example 3.3.
+Usually it makes no sense to multiply together two elements of a vector space,
+but for some pairs of linear maps a useful product exists, as in the next definition.
+3.7 definition: product of linear maps
+If 𝑇 ∈ ℒ(𝑈,𝑉) and 𝑆 ∈ ℒ(𝑉,𝑊), then the product 𝑆𝑇 ∈ ℒ(𝑈,𝑊) is
+defined by
+(𝑆𝑇)(𝑢) = 𝑆(𝑇𝑢)
+for all 𝑢 ∈ 𝑈.
+Thus 𝑆𝑇 is just the usual composition 𝑆 ∘ 𝑇 of two functions, but when both
+functions are linear, we usually write 𝑆𝑇 instead of 𝑆 ∘ 𝑇. The product notation
+𝑆𝑇 helps make the distributive properties (see next result) seem natural.
+Note that 𝑆𝑇 is defined only when 𝑇 maps into the domain of 𝑆. You should
+verify that 𝑆𝑇 is indeed a linear map from 𝑈 to 𝑊 whenever 𝑇 ∈ ℒ(𝑈,𝑉) and
+𝑆 ∈ ℒ(𝑉,𝑊).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler56 Chapter 3 Linear Maps
+3.8 algebraic properties of products of linear maps
+associativity
+(𝑇1𝑇2)𝑇3 = 𝑇1(𝑇2𝑇3) whenever 𝑇1, 𝑇2, and 𝑇3 are linear maps such that
+the products make sense (meaning 𝑇3 maps into the domain of 𝑇2, and 𝑇2
+maps into the domain of 𝑇1).
+identity
+𝑇𝐼 = 𝐼𝑇 = 𝑇 whenever 𝑇 ∈ ℒ(𝑉,𝑊); here the first 𝐼 is the identity
+operator on 𝑉, and the second 𝐼 is the identity operator on 𝑊.
+distributive properties
+(𝑆1 + 𝑆2)𝑇 = 𝑆1𝑇 + 𝑆2𝑇 and 𝑆(𝑇1 + 𝑇2) = 𝑆𝑇1 + 𝑆𝑇2 whenever
+𝑇,𝑇1,𝑇2 ∈ ℒ(𝑈,𝑉) and 𝑆,𝑆1,𝑆2 ∈ ℒ(𝑉,𝑊).
+The routine proof of the result above is left to the reader.
+Multiplication of linear maps is not commutative. In other words, it is not
+necessarily true that 𝑆𝑇 = 𝑇𝑆, even if both sides of the equation make sense.
+3.9 example: two noncommuting linear maps from 𝒫(𝐑) to 𝒫(𝐑)
+Suppose 𝐷 ∈ ℒ(𝒫(𝐑)) is the differentiation map defined in Example 3.3
+and 𝑇 ∈ ℒ(𝒫(𝐑)) is the multiplication by 𝑥2
+map defined earlier in this section.
+Then
+((𝑇𝐷)𝑝)(𝑥) = 𝑥2
+𝑝′
+(𝑥) but ((𝐷𝑇)𝑝)(𝑥) = 𝑥2
+𝑝′
+(𝑥) + 2𝑥𝑝(𝑥).
+Thus 𝑇𝐷 ≠ 𝐷𝑇—differentiating and then multiplying by 𝑥2
+is not the same as
+multiplying by 𝑥2
+and then differentiating.
+3.10 linear maps take 0 to 0
+Suppose 𝑇 is a linear map from 𝑉 to 𝑊. Then 𝑇(0) = 0.
+Proof By additivity, we have
+𝑇(0) = 𝑇(0 + 0) = 𝑇(0) + 𝑇(0).
+Add the additive inverse of 𝑇(0) to each side of the equation above to conclude
+that 𝑇(0) = 0.
+Suppose 𝑚,𝑏 ∈ 𝐑. The function 𝑓 ∶ 𝐑 → 𝐑 defined by
+𝑓(𝑥) = 𝑚𝑥 + 𝑏
+is a linear map if and only if 𝑏 = 0 (use 3.10). Thus the linear functions of high
+school algebra are not the same as linear maps in the context of linear algebra.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3A Vector Space of Linear Maps 57
+Exercises 3A
+1 Suppose 𝑏,𝑐 ∈ 𝐑. Define 𝑇∶ 𝐑3
+→ 𝐑2
+by
+𝑇(𝑥,𝑦,𝑧) = (2𝑥 − 4𝑦 + 3𝑧 + 𝑏,6𝑥 + 𝑐𝑥𝑦𝑧).
+Show that 𝑇 is linear if and only if 𝑏 = 𝑐 = 0.
+2 Suppose 𝑏,𝑐 ∈ 𝐑. Define 𝑇∶ 𝒫(𝐑) → 𝐑2
+by
+𝑇𝑝 = (3𝑝(4) + 5𝑝′
+(6) + 𝑏𝑝(1)𝑝(2),∫
+2
+−1
+𝑥3
+𝑝(𝑥)𝑑𝑥 + 𝑐sin𝑝(0)).
+Show that 𝑇 is linear if and only if 𝑏 = 𝑐 = 0.
+3 Suppose that 𝑇 ∈ ℒ(𝐅𝑛
+,𝐅𝑚
+). Show that there exist scalars 𝐴𝑗,𝑘 ∈ 𝐅 for
+𝑗 = 1,…,𝑚 and 𝑘 = 1,…,𝑛 such that
+𝑇(𝑥1,…,𝑥𝑛) = (𝐴1,1𝑥1 + ⋯ + 𝐴1,𝑛 𝑥𝑛,…,𝐴𝑚,1𝑥1 + ⋯ + 𝐴𝑚,𝑛 𝑥𝑛)
+for every (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+.
+This exercise shows that the linear map 𝑇 has the form promised in the
+second to last item of Example 3.3.
+4 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉 such that
+𝑇𝑣1,…,𝑇𝑣𝑚 is a linearly independent list in 𝑊. Prove that 𝑣1,…,𝑣𝑚 is
+linearly independent.
+5 Prove that ℒ(𝑉,𝑊) is a vector space, as was asserted in 3.6.
+## 6 Prove that multiplication of linear maps has the associative, identity, and
+distributive properties asserted in 3.8.
+## 7 Show that every linear map from a one-dimensional vector space to itself is
+multiplication by some scalar. More precisely, prove that if dim𝑉 = 1 and
+𝑇 ∈ ℒ(𝑉), then there exists 𝜆 ∈ 𝐅 such that 𝑇𝑣 = 𝜆𝑣 for all 𝑣 ∈ 𝑉.
+8 Give an example of a function 𝜑∶ 𝐑2
+→ 𝐑 such that
+𝜑(𝑎𝑣) = 𝑎𝜑(𝑣)
+for all 𝑎 ∈ 𝐑 and all 𝑣 ∈ 𝐑2
+but 𝜑 is not linear.
+This exercise and the next exercise show that neither homogeneity nor
+additivity alone is enough to imply that a function is a linear map.
+9 Give an example of a function 𝜑∶ 𝐂 → 𝐂 such that
+𝜑(𝑤 + 𝑧) = 𝜑(𝑤) + 𝜑(𝑧)
+for all 𝑤,𝑧 ∈ 𝐂 but 𝜑 is not linear. (Here 𝐂 is thought of as a complex vector
+space.)
+There also exists a function 𝜑∶ 𝐑 → 𝐑 such that 𝜑 satisfies the additivity
+condition above but 𝜑 is not linear. However, showing the existence of such
+a function involves considerably more advanced tools.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler58 Chapter 3 Linear Maps
+10 Prove or give a counterexample: If 𝑞 ∈ 𝒫(𝐑) and 𝑇∶ 𝒫(𝐑) → 𝒫(𝐑) is
+defined by 𝑇𝑝 = 𝑞 ∘ 𝑝, then 𝑇 is a linear map.
+The function 𝑇 defined here differs from the function 𝑇 defined in the last
+bullet point of 3.3 by the order of the functions in the compositions.
+## 11 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is a scalar
+multiple of the identity if and only if 𝑆𝑇 = 𝑇𝑆 for every 𝑆 ∈ ℒ(𝑉).
+12 Suppose 𝑈 is a subspace of 𝑉 with 𝑈 ≠ 𝑉. Suppose 𝑆 ∈ ℒ(𝑈,𝑊) and
+𝑆 ≠ 0 (which means that 𝑆𝑢 ≠ 0 for some 𝑢 ∈ 𝑈). Define 𝑇∶ 𝑉 → 𝑊 by
+𝑇𝑣 =
+⎧ {
+⎨ { ⎩
+𝑆𝑣 if 𝑣 ∈ 𝑈,
+0 if 𝑣 ∈ 𝑉 and 𝑣 ∉ 𝑈.
+Prove that 𝑇 is not a linear map on 𝑉.
+## 13 Suppose 𝑉 is finite-dimensional. Prove that every linear map on a subspace
+of 𝑉 can be extended to a linear map on 𝑉. In other words, show that if 𝑈
+is a subspace of 𝑉 and 𝑆 ∈ ℒ(𝑈,𝑊), then there exists 𝑇 ∈ ℒ(𝑉,𝑊) such
+that 𝑇𝑢 = 𝑆𝑢 for all 𝑢 ∈ 𝑈.
+The result in this exercise is used in the proof of 3.125.
+14 Suppose 𝑉 is finite-dimensional with dim𝑉 > 0, and suppose 𝑊 is infinite-
+dimensional. Prove that ℒ(𝑉,𝑊) is infinite-dimensional.
+15 Suppose 𝑣1,…,𝑣𝑚 is a linearly dependent list of vectors in 𝑉. Suppose
+also that 𝑊 ≠ {0}. Prove that there exist 𝑤1,…,𝑤𝑚 ∈ 𝑊 such that no
+𝑇 ∈ ℒ(𝑉,𝑊) satisfies 𝑇𝑣𝑘 = 𝑤𝑘 for each 𝑘 = 1,…,𝑚.
+16 Suppose 𝑉 is finite-dimensional with dim𝑉 > 1. Prove that there exist
+𝑆,𝑇 ∈ ℒ(𝑉) such that 𝑆𝑇 ≠ 𝑇𝑆.
+## 17 Suppose 𝑉 is finite-dimensional. Show that the only two-sided ideals of
+ℒ(𝑉) are {0} and ℒ(𝑉).
+A subspace ℰ of ℒ(𝑉) is called a two-sided ideal of ℒ(𝑉) if 𝑇𝐸 ∈ ℰ and
+𝐸𝑇 ∈ ℰ for all 𝐸 ∈ ℰ and all 𝑇 ∈ ℒ(𝑉).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3B Null Spaces and Ranges 59
+3B Null Spaces and Ranges
+Null Space and Injectivity
+In this section we will learn about two subspaces that are intimately connected
+with each linear map. We begin with the set of vectors that get mapped to 0.
+3.11 definition: null space, null𝑇
+For 𝑇 ∈ ℒ(𝑉,𝑊), the null space of 𝑇, denoted by null𝑇, is the subset of 𝑉
+consisting of those vectors that 𝑇 maps to 0:
+null𝑇 = {𝑣 ∈ 𝑉 ∶ 𝑇𝑣 = 0}.
+3.12 example: null space
+• If 𝑇 is the zero map from 𝑉 to 𝑊, meaning that 𝑇𝑣 = 0 for every 𝑣 ∈ 𝑉, then
+null𝑇 = 𝑉.
+• Suppose 𝜑 ∈ ℒ(𝐂3
+,𝐂) is defined by 𝜑(𝑧1,𝑧2,𝑧3) = 𝑧1 + 2𝑧2 + 3𝑧3. Then
+null𝜑 equals {(𝑧1,𝑧2,𝑧3) ∈ 𝐂3
+∶ 𝑧1 + 2𝑧2 + 3𝑧3 = 0}, which is a subspace of
+the domain of 𝜑. We will soon see that the null space of each linear map is a
+subspace of its domain.
+• The word “null” means zero. Thus the
+term “null space”should remind you
+of the connection to 0. Some mathe-
+maticians use the term kernel instead
+of null space.
+Suppose 𝐷 ∈ ℒ(𝒫(𝐑)) is the dif-
+ferentiation map defined by 𝐷𝑝 = 𝑝′
+.
+The only functions whose derivative
+equals the zero function are the con-
+stantfunctions. Thusthenullspaceof
+𝐷 equals the set of constant functions.
+• Suppose that 𝑇 ∈ ℒ(𝒫(𝐑)) is the multiplication by 𝑥2
+map defined by
+(𝑇𝑝)(𝑥) = 𝑥2
+𝑝(𝑥). The only polynomial 𝑝 such that 𝑥2
+𝑝(𝑥) = 0 for all 𝑥 ∈ 𝐑
+is the 0 polynomial. Thus null𝑇 = {0}.
+• Suppose 𝑇 ∈ ℒ(𝐅∞
+) is the backward shift defined by
+𝑇(𝑥1,𝑥2,𝑥3,…) = (𝑥2,𝑥3,…).
+Then 𝑇(𝑥1,𝑥2,𝑥3,…) equals 0 if and only if the numbers 𝑥2,𝑥3,… are all 0.
+Thus null𝑇 = {(𝑎,0,0,…) ∶ 𝑎 ∈ 𝐅}.
+The next result shows that the null space of each linear map is a subspace of
+the domain. In particular, 0 is in the null space of every linear map.
+3.13 the null space is a subspace
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then null𝑇 is a subspace of 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler60 Chapter 3 Linear Maps
+Proof Because 𝑇 is a linear map, 𝑇(0) = 0 (by 3.10). Thus 0 ∈ null𝑇.
+Suppose 𝑢,𝑣 ∈ null𝑇. Then
+𝑇(𝑢 + 𝑣) = 𝑇𝑢 + 𝑇𝑣 = 0 + 0 = 0.
+Hence 𝑢 + 𝑣 ∈ null𝑇. Thus null𝑇 is closed under addition.
+Suppose 𝑢 ∈ null𝑇 and 𝜆 ∈ 𝐅. Then
+𝑇(𝜆𝑢) = 𝜆𝑇𝑢 = 𝜆0 = 0.
+Hence 𝜆𝑢 ∈ null𝑇. Thus null𝑇 is closed under scalar multiplication.
+We have shown that null𝑇 contains 0 and is closed under addition and scalar
+multiplication. Thus null𝑇 is a subspace of 𝑉 (by 1.34).
+As we will soon see, for a linear map the next definition is closely connected
+to the null space.
+3.14 definition: injective
+A function 𝑇∶ 𝑉 → 𝑊 is called injective if 𝑇𝑢 = 𝑇𝑣 implies 𝑢 = 𝑣.
+The term one-to-one means the same
+as injective.
+We could rephrase the definition
+above to say that 𝑇 is injective if 𝑢 ≠ 𝑣
+impliesthat𝑇𝑢 ≠ 𝑇𝑣. Thus𝑇 isinjective
+if and only if it maps distinct inputs to distinct outputs.
+The next result says that we can check whether a linear map is injective
+by checking whether 0 is the only vector that gets mapped to 0. As a simple
+application of this result, we see that of the linear maps whose null spaces we
+computed in 3.12, only multiplication by 𝑥2
+is injective (except that the zero map
+is injective in the special case 𝑉 = {0}).
+3.15 injectivity ⟺ null space equals {0}
+Let 𝑇 ∈ ℒ(𝑉,𝑊). Then 𝑇 is injective if and only if null𝑇 = {0}.
+Proof First suppose 𝑇 is injective. We want to prove that null𝑇 = {0}. We
+already know that {0} ⊆ null𝑇 (by 3.10). To prove the inclusion in the other
+direction, suppose 𝑣 ∈ null𝑇. Then
+𝑇(𝑣) = 0 = 𝑇(0).
+Because 𝑇 is injective, the equation above implies that 𝑣 = 0. Thus we can
+conclude that null𝑇 = {0}, as desired.
+To prove the implication in the other direction, now suppose null𝑇 = {0}. We
+want to prove that 𝑇 is injective. To do this, suppose 𝑢,𝑣 ∈ 𝑉 and 𝑇𝑢 = 𝑇𝑣. Then
+0 = 𝑇𝑢 − 𝑇𝑣 = 𝑇(𝑢 − 𝑣).
+Thus 𝑢 − 𝑣 is in null𝑇, which equals {0}. Hence 𝑢 − 𝑣 = 0, which implies that
+𝑢 = 𝑣. Hence 𝑇 is injective, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3B Null Spaces and Ranges 61
+Range and Surjectivity
+Now we give a name to the set of outputs of a linear map.
+3.16 definition: range
+For𝑇 ∈ ℒ(𝑉,𝑊), therangeof𝑇 isthesubsetof𝑊 consistingofthosevectors
+that are equal to 𝑇𝑣 for some 𝑣 ∈ 𝑉:
+range𝑇 = {𝑇𝑣 ∶ 𝑣 ∈ 𝑉}.
+3.17 example: range
+• If 𝑇 is the zero map from 𝑉 to 𝑊, meaning that 𝑇𝑣 = 0 for every 𝑣 ∈ 𝑉, then
+range𝑇 = {0}.
+• Suppose 𝑇 ∈ ℒ(𝐑2
+,𝐑3
+) is defined by 𝑇(𝑥,𝑦) = (2𝑥,5𝑦,𝑥 + 𝑦). Then
+range𝑇 = {(2𝑥,5𝑦,𝑥 + 𝑦) ∶ 𝑥,𝑦 ∈ 𝐑}.
+Note that range𝑇 is a subspace of 𝐑3
+. We will soon see that the range of each
+element of ℒ(𝑉,𝑊) is a subspace of 𝑊.
+• Suppose 𝐷 ∈ ℒ(𝒫(𝐑)) is the differentiation map defined by 𝐷𝑝 = 𝑝′
+. Because
+for every polynomial 𝑞 ∈ 𝒫(𝐑) there exists a polynomial 𝑝 ∈ 𝒫(𝐑) such that
+𝑝′
+= 𝑞, the range of 𝐷 is 𝒫(𝐑).
+The next result shows that the range of each linear map is a subspace of the
+vector space into which it is being mapped.
+3.18 the range is a subspace
+If 𝑇 ∈ ℒ(𝑉,𝑊), then range𝑇 is a subspace of 𝑊.
+Proof Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then 𝑇(0) = 0 (by 3.10), which implies that
+0 ∈ range𝑇.
+If 𝑤1,𝑤2 ∈ range𝑇, then there exist 𝑣1,𝑣2 ∈ 𝑉 such that 𝑇𝑣1 = 𝑤1 and
+𝑇𝑣2 = 𝑤2. Thus
+𝑇(𝑣1 + 𝑣2) = 𝑇𝑣1 + 𝑇𝑣2 = 𝑤1 + 𝑤2.
+Hence 𝑤1 + 𝑤2 ∈ range𝑇. Thus range𝑇 is closed under addition.
+If 𝑤 ∈ range𝑇 and 𝜆 ∈ 𝐅, then there exists 𝑣 ∈ 𝑉 such that 𝑇𝑣 = 𝑤. Thus
+𝑇(𝜆𝑣) = 𝜆𝑇𝑣 = 𝜆𝑤.
+Hence 𝜆𝑤 ∈ range𝑇. Thus range𝑇 is closed under scalar multiplication.
+We have shown that range𝑇 contains 0 and is closed under addition and scalar
+multiplication. Thus range𝑇 is a subspace of 𝑊 (by 1.34).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler62 Chapter 3 Linear Maps
+3.19 definition: surjective
+A function 𝑇∶ 𝑉 → 𝑊 is called surjective if its range equals 𝑊.
+To illustrate the definition above, note that of the ranges we computed in 3.17,
+only the differentiation map is surjective (except that the zero map is surjective in
+the special case 𝑊 = {0}).
+Some people use the term onto, which
+means the same as surjective.
+Whether a linear map is surjective de-
+pends on what we are thinking of as the
+vector space into which it maps.
+3.20 example: surjectivity depends on the target space
+The differentiation map 𝐷 ∈ ℒ(𝒫5(𝐑)) defined by 𝐷𝑝 = 𝑝′
+is not surjective,
+because the polynomial 𝑥5
+is not in the range of 𝐷. However, the differentiation
+map 𝑆 ∈ ℒ(𝒫5(𝐑),𝒫4(𝐑)) defined by 𝑆𝑝 = 𝑝′
+is surjective, because its range
+equals 𝒫4(𝐑), which is the vector space into which 𝑆 maps.
+Fundamental Theorem of Linear Maps
+The next result is so important that it gets a dramatic name.
+3.21 fundamental theorem of linear maps
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then range𝑇 is finite-
+dimensional and
+dim𝑉 = dimnull𝑇 + dimrange𝑇.
+Proof Let 𝑢1,…,𝑢𝑚 be a basis of null𝑇; thus dimnull𝑇 = 𝑚. The linearly
+independent list 𝑢1,…,𝑢𝑚 can be extended to a basis
+𝑢1,…,𝑢𝑚,𝑣1,…,𝑣𝑛
+of 𝑉 (by 2.32). Thus dim𝑉 = 𝑚+𝑛. To complete the proof, we need to show that
+range𝑇 is finite-dimensional and dimrange𝑇 = 𝑛. We will do this by proving
+that 𝑇𝑣1,…,𝑇𝑣𝑛 is a basis of range𝑇.
+Let 𝑣 ∈ 𝑉. Because 𝑢1,…,𝑢𝑚,𝑣1,…,𝑣𝑛 spans 𝑉, we can write
+𝑣 = 𝑎1𝑢1 + ⋯ + 𝑎𝑚𝑢𝑚 + 𝑏1𝑣1 + ⋯ + 𝑏𝑛𝑣𝑛,
+where the 𝑎’s and 𝑏’s are in 𝐅. Applying 𝑇 to both sides of this equation, we get
+𝑇𝑣 = 𝑏1𝑇𝑣1 + ⋯ + 𝑏𝑛𝑇𝑣𝑛,
+where the terms of the form 𝑇𝑢𝑘 disappeared because each 𝑢𝑘 is in null𝑇. The last
+equation implies that the list 𝑇𝑣1,…,𝑇𝑣𝑛 spans range𝑇. In particular, range𝑇 is
+finite-dimensional.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3B Null Spaces and Ranges 63
+To show 𝑇𝑣1,…,𝑇𝑣𝑛 is linearly independent, suppose 𝑐1,…,𝑐𝑛 ∈ 𝐅 and
+𝑐1𝑇𝑣1 + ⋯ + 𝑐𝑛𝑇𝑣𝑛 = 0.
+Then
+𝑇(𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛) = 0.
+Hence
+𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛 ∈ null𝑇.
+Because 𝑢1,…,𝑢𝑚 spans null𝑇, we can write
+𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛 = 𝑑1𝑢1 + ⋯ + 𝑑𝑚𝑢𝑚,
+where the 𝑑’s are in 𝐅. This equation implies that all the 𝑐’s (and 𝑑’s) are 0 (be-
+cause 𝑢1,…,𝑢𝑚,𝑣1,…,𝑣𝑛 is linearly independent). Thus 𝑇𝑣1,…,𝑇𝑣𝑛 is linearly
+independent and hence is a basis of range𝑇, as desired.
+Now we can show that no linear map from a finite-dimensional vector space
+to a “smaller” vector space can be injective, where “smaller” is measured by
+dimension.
+3.22 linear map to a lower-dimensional space is not injective
+Suppose 𝑉 and 𝑊 are finite-dimensional vector spaces such that
+dim𝑉 > dim𝑊. Then no linear map from 𝑉 to 𝑊 is injective.
+Proof Let 𝑇 ∈ ℒ(𝑉,𝑊). Then
+dimnull𝑇 = dim𝑉 − dimrange𝑇
+≥ dim𝑉 − dim𝑊
+> 0,
+where the first line above comes from the fundamental theorem of linear maps
+(3.21) and the second line follows from 2.37. The inequality above states that
+dimnull𝑇 > 0. This means that null𝑇 contains vectors other than 0. Thus 𝑇 is
+not injective (by 3.15).
+3.23 example: linear map from 𝐅4
+to 𝐅3
+is not injective
+Define a linear map 𝑇∶ 𝐅4
+→ 𝐅3
+by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (√7𝑧1 + 𝜋𝑧2 + 𝑧4,97𝑧1 + 3𝑧2 + 2𝑧3,𝑧2 + 6𝑧3 + 7𝑧4).
+Because dim𝐅4
+> dim𝐅3
+, we can use 3.22 to assert that 𝑇 is not injective, without
+doing any calculations.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler64 Chapter 3 Linear Maps
+The next result shows that no linear map from a finite-dimensional vector
+space to a “bigger” vector space can be surjective, where “bigger” is measured by
+dimension.
+3.24 linear map to a higher-dimensional space is not surjective
+Suppose 𝑉 and 𝑊 are finite-dimensional vector spaces such that
+dim𝑉 < dim𝑊. Then no linear map from 𝑉 to 𝑊 is surjective.
+Proof Let 𝑇 ∈ ℒ(𝑉,𝑊). Then
+dimrange𝑇 = dim𝑉 − dimnull𝑇
+≤ dim𝑉
+< dim𝑊,
+where the equality above comes from the fundamental theorem of linear maps
+(3.21). The inequality above states that dimrange𝑇 < dim𝑊. This means that
+range𝑇 cannot equal 𝑊. Thus 𝑇 is not surjective.
+As we will soon see, 3.22 and 3.24 have important consequences in the theory
+of linear equations. The idea is to express questions about systems of linear
+equations in terms of linear maps. Let’s begin by rephrasing in terms of linear
+maps the question of whether a homogeneous system of linear equations has a
+nonzero solution.
+Homogeneous, in this context, means
+that the constant term on the right side
+of each equation below is 0.
+Fix positive integers 𝑚 and 𝑛, and let
+𝐴𝑗,𝑘 ∈ 𝐅 for 𝑗 = 1,…,𝑚 and 𝑘 = 1,…,𝑛.
+Consider the homogeneous system of lin-
+ear equations
+𝑛
+∑
+𝑘=1
+𝐴1,𝑘 𝑥𝑘 = 0
+⋮
+𝑛
+∑
+𝑘=1
+𝐴𝑚,𝑘 𝑥𝑘 = 0.
+Clearly 𝑥1 = ⋯ = 𝑥𝑛 = 0 is a solution of the system of equations above; the
+question here is whether any other solutions exist.
+Define 𝑇∶ 𝐅𝑛
+→ 𝐅𝑚
+by
+3.25 𝑇(𝑥1,…,𝑥𝑛) = (
+𝑛
+∑
+𝑘=1
+𝐴1,𝑘 𝑥𝑘,…,
+𝑛
+∑
+𝑘=1
+𝐴𝑚,𝑘 𝑥𝑘).
+Theequation𝑇(𝑥1,…,𝑥𝑛) = 0(the0hereistheadditiveidentityin𝐅𝑚
+,namely,
+the list of length 𝑚 of all 0’s) is the same as the homogeneous system of linear
+equations above.
+Thus we want to know if null𝑇 is strictly bigger than {0}, which is equivalent
+to 𝑇 not being injective (by 3.15). The next result gives an important condition
+for ensuring that 𝑇 is not injective.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3B Null Spaces and Ranges 65
+3.26 homogeneous system of linear equations
+A homogeneous system of linear equations with more variables than equations
+has nonzero solutions.
+Proof Use the notation and result from the discussion above. Thus 𝑇 is a linear
+map from 𝐅𝑛
+to 𝐅𝑚
+, and we have a homogeneous system of 𝑚 linear equations
+with 𝑛 variables 𝑥1,…,𝑥𝑛. From 3.22 we see that 𝑇 is not injective if 𝑛 > 𝑚.
+Example of the result above: a homogeneous system of four linear equations
+with five variables has nonzero solutions.
+Now we consider the question of whether a system of linear equations has no
+solutions for some choice of the constant terms. To rephrase this question in terms
+of a linear map, fix positive integers 𝑚 and 𝑛, and let 𝐴𝑗,𝑘 ∈ 𝐅 for all 𝑗 = 1,…,𝑚
+and all 𝑘 = 1,…,𝑛. For 𝑐1,…,𝑐𝑚 ∈ 𝐅, consider the system of linear equations
+𝑛
+∑
+𝑘=1
+𝐴1,𝑘 𝑥𝑘 = 𝑐1
+⋮ 3.27
+𝑛
+∑
+𝑘=1
+𝐴𝑚,𝑘 𝑥𝑘 = 𝑐𝑚.
+Withthisnotation,thequestionhereiswhetherthereissomechoiceoftheconstant
+terms 𝑐1,…,𝑐𝑚 ∈ 𝐅 such that no solution exists to the system above.
+The results 3.26 and 3.28, which com-
+pare the number of variables and
+the number of equations, can also
+be proved using Gaussian elimina-
+tion. The abstract approach taken here
+seems to provide cleaner proofs.
+Define 𝑇∶ 𝐅𝑛
+→ 𝐅𝑚
+as in 3.25. The
+equation 𝑇(𝑥1,…,𝑥𝑛) = (𝑐1,…,𝑐𝑚) is
+the same as the system of equations 3.27.
+Thus we want to know if range𝑇 ≠ 𝐅𝑚
+.
+Hence we can rephrase our question
+about not having a solution for some
+choiceof𝑐1,…,𝑐𝑚 ∈ 𝐅 asfollows: What
+conditionensuresthat𝑇 isnotsurjective? Thenextresultgivesonesuchcondition.
+3.28 system of linear equations with more equations than variables
+Asystemoflinearequationswithmoreequationsthanvariableshasnosolution
+for some choice of the constant terms.
+Proof Use the notation from the discussion above. Thus 𝑇 is a linear map from
+𝐅𝑛
+to 𝐅𝑚
+, and we have a system of 𝑚 equations with 𝑛 variables 𝑥1,…,𝑥𝑛; see
+3.27. If 𝑛 < 𝑚, then 3.24 implies that 𝑇 is not surjective. As discussed above,
+this shows that if we have more equations than variables in a system of linear
+equations, then there is no solution for some choice of the constant terms.
+Example of the result above: a system of five linear equations with four
+variables has no solution for some choice of the constant terms.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler66 Chapter 3 Linear Maps
+Exercises 3B
+1 Give an example of a linear map 𝑇 with dimnull𝑇 = 3 and dimrange𝑇 = 2.
+2 Suppose 𝑆,𝑇 ∈ ℒ(𝑉) are such that range𝑆 ⊆ null𝑇. Prove that (𝑆𝑇)2
+= 0.
+3 Suppose 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉. Define 𝑇 ∈ ℒ(𝐅𝑚
+,𝑉) by
+𝑇(𝑧1,…,𝑧𝑚) = 𝑧1𝑣1 + ⋯ + 𝑧𝑚𝑣𝑚.
+(a) What property of 𝑇 corresponds to 𝑣1,…,𝑣𝑚 spanning 𝑉?
+(b) What property of 𝑇 corresponds to the list 𝑣1,…,𝑣𝑚 being linearly
+independent?
+4 Show that {𝑇 ∈ ℒ(𝐑5
+,𝐑4
+) ∶ dimnull𝑇 > 2} is not a subspace of ℒ(𝐑5
+,𝐑4
+).
+5 Give an example of 𝑇 ∈ ℒ(𝐑4
+) such that range𝑇 = null𝑇.
+6 Prove that there does not exist 𝑇 ∈ ℒ(𝐑5
+) such that range𝑇 = null𝑇.
+7 Suppose 𝑉 and 𝑊 are finite-dimensional with 2 ≤ dim𝑉 ≤ dim𝑊. Show
+that {𝑇 ∈ ℒ(𝑉,𝑊) ∶ 𝑇 is not injective} is not a subspace of ℒ(𝑉,𝑊).
+8 Suppose 𝑉 and 𝑊 are finite-dimensional with dim𝑉 ≥ dim𝑊 ≥ 2. Show
+that {𝑇 ∈ ℒ(𝑉,𝑊) ∶ 𝑇 is not surjective} is not a subspace of ℒ(𝑉,𝑊).
+9 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) is injective and 𝑣1,…,𝑣𝑛 is linearly independent
+in 𝑉. Prove that 𝑇𝑣1,…,𝑇𝑣𝑛 is linearly independent in 𝑊.
+10 Suppose 𝑣1,…,𝑣𝑛 spans 𝑉 and 𝑇 ∈ ℒ(𝑉,𝑊). Show that 𝑇𝑣1,…,𝑇𝑣𝑛 spans
+range𝑇.
+11 Suppose that 𝑉 is finite-dimensional and that 𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+there exists a subspace 𝑈 of 𝑉 such that
+𝑈 ∩ null𝑇 = {0} and range𝑇 = {𝑇𝑢 ∶ 𝑢 ∈ 𝑈}.
+12 Suppose 𝑇 is a linear map from 𝐅4
+to 𝐅2
+such that
+null𝑇 = {(𝑥1,𝑥2,𝑥3,𝑥4) ∈ 𝐅4
+∶ 𝑥1 = 5𝑥2 and 𝑥3 = 7𝑥4}.
+Prove that 𝑇 is surjective.
+13 Suppose 𝑈 is a three-dimensional subspace of 𝐑8
+and that 𝑇 is a linear map
+from 𝐑8
+to 𝐑5
+such that null𝑇 = 𝑈. Prove that 𝑇 is surjective.
+14 Prove that there does not exist a linear map from 𝐅5
+to 𝐅2
+whose null space
+equals {(𝑥1,𝑥2,𝑥3,𝑥4,𝑥5) ∈ 𝐅5
+∶ 𝑥1 = 3𝑥2 and 𝑥3 = 𝑥4 = 𝑥5}.
+## 15 Suppose there exists a linear map on 𝑉 whose null space and range are both
+finite-dimensional. Prove that 𝑉 is finite-dimensional.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3B Null Spaces and Ranges 67
+## 16 Suppose 𝑉 and 𝑊 are both finite-dimensional. Prove that there exists an
+injective linear map from 𝑉 to 𝑊 if and only if dim𝑉 ≤ dim𝑊.
+## 17 Suppose 𝑉 and 𝑊 are both finite-dimensional. Prove that there exists a
+surjective linear map from 𝑉 onto 𝑊 if and only if dim𝑉 ≥ dim𝑊.
+## 18 Suppose 𝑉 and 𝑊 are finite-dimensional and that 𝑈 is a subspace of 𝑉.
+Prove that there exists 𝑇 ∈ ℒ(𝑉,𝑊) such that null𝑇 = 𝑈 if and only if
+dim𝑈 ≥ dim𝑉 − dim𝑊.
+19 Suppose 𝑊 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that 𝑇 is injective
+if and only if there exists 𝑆 ∈ ℒ(𝑊,𝑉) such that 𝑆𝑇 is the identity operator
+on 𝑉.
+20 Suppose 𝑊 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that 𝑇 is sur-
+jective if and only if there exists 𝑆 ∈ ℒ(𝑊,𝑉) such that 𝑇𝑆 is the identity
+operator on 𝑊.
+21 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉,𝑊), and 𝑈 is a subspace of 𝑊.
+Prove that {𝑣 ∈ 𝑉 ∶ 𝑇𝑣 ∈ 𝑈} is a subspace of 𝑉 and
+dim{𝑣 ∈ 𝑉 ∶ 𝑇𝑣 ∈ 𝑈} = dimnull𝑇 + dim(𝑈 ∩ range𝑇).
+22 Suppose 𝑈 and 𝑉 are finite-dimensional vector spaces and 𝑆 ∈ ℒ(𝑉,𝑊)
+and 𝑇 ∈ ℒ(𝑈,𝑉). Prove that
+dimnull𝑆𝑇 ≤ dimnull𝑆 + dimnull𝑇.
+23 Suppose 𝑈 and 𝑉 are finite-dimensional vector spaces and 𝑆 ∈ ℒ(𝑉,𝑊)
+and 𝑇 ∈ ℒ(𝑈,𝑉). Prove that
+dimrange𝑆𝑇 ≤ min{dimrange𝑆,dimrange𝑇}.
+24 (a) Suppose dim𝑉 = 5 and 𝑆,𝑇 ∈ ℒ(𝑉) are such that 𝑆𝑇 = 0. Prove that
+dimrange𝑇𝑆 ≤ 2.
+(b) Give an example of 𝑆,𝑇 ∈ ℒ(𝐅5
+) with 𝑆𝑇 = 0 and dimrange𝑇𝑆 = 2.
+25 Suppose that 𝑊 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+null𝑆 ⊆ null𝑇 if and only if there exists 𝐸 ∈ ℒ(𝑊) such that 𝑇 = 𝐸𝑆.
+26 Suppose that 𝑉 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+range𝑆 ⊆ range𝑇 if and only if there exists 𝐸 ∈ ℒ(𝑉) such that 𝑆 = 𝑇𝐸.
+27 Suppose 𝑃 ∈ ℒ(𝑉) and 𝑃2
+= 𝑃. Prove that 𝑉 = null𝑃 ⊕ range𝑃.
+28 Suppose 𝐷 ∈ ℒ(𝒫(𝐑)) is such that deg𝐷𝑝 = (deg𝑝) − 1 for every non-
+constant polynomial 𝑝 ∈ 𝒫(𝐑). Prove that 𝐷 is surjective.
+The notation 𝐷 is used above to remind you of the differentiation map that
+sends a polynomial 𝑝 to 𝑝′
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler68 Chapter 3 Linear Maps
+## 29 Suppose 𝑝 ∈ 𝒫(𝐑). Prove that there exists a polynomial 𝑞 ∈ 𝒫(𝐑) such
+that 5𝑞″
++ 3𝑞′
+= 𝑝.
+This exercise can be done without linear algebra, but it’s more fun to do it
+using linear algebra.
+30 Suppose 𝜑 ∈ ℒ(𝑉,𝐅) and 𝜑 ≠ 0. Suppose 𝑢 ∈ 𝑉 is not in null𝜑. Prove
+that
+𝑉 = null𝜑 ⊕ {𝑎𝑢 ∶ 𝑎 ∈ 𝐅}.
+## 31 Suppose 𝑉 is finite-dimensional, 𝑋 is a subspace of 𝑉, and 𝑌 is a finite-
+dimensional subspace of 𝑊. Prove that there exists 𝑇 ∈ ℒ(𝑉,𝑊) such that
+null𝑇 = 𝑋 and range𝑇 = 𝑌 if and only if dim𝑋 + dim𝑌 = dim𝑉.
+32 Suppose 𝑉 is finite-dimensional with dim𝑉 > 1. Show that if 𝜑∶ℒ(𝑉)→ 𝐅
+is a linear map such that 𝜑(𝑆𝑇) = 𝜑(𝑆)𝜑(𝑇) for all 𝑆,𝑇 ∈ ℒ(𝑉), then
+𝜑 = 0.
+Hint: The description of the two-sided ideals of ℒ(𝑉) given by Exercise 17
+in Section 3A might be useful.
+33 Suppose that 𝑉 and 𝑊 are real vector spaces and 𝑇 ∈ ℒ(𝑉,𝑊). Define
+𝑇𝐂 ∶ 𝑉𝐂 → 𝑊𝐂 by
+𝑇𝐂(𝑢 + 𝑖𝑣) = 𝑇𝑢 + 𝑖𝑇𝑣
+for all 𝑢,𝑣 ∈ 𝑉.
+(a) Show that 𝑇𝐂 is a (complex) linear map from 𝑉𝐂 to 𝑊𝐂.
+(b) Show that 𝑇𝐂 is injective if and only if 𝑇 is injective.
+(c) Show that range𝑇𝐂 = 𝑊𝐂 if and only if range𝑇 = 𝑊.
+See Exercise 8 in Section 1B for the definition of the complexification 𝑉𝐂.
+The linear map 𝑇𝐂 is called the complexification of the linear map 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 69
+3C Matrices
+Representing a Linear Map by a Matrix
+We know that if 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑇∶ 𝑉 → 𝑊 is linear, then the values
+of 𝑇𝑣1,…,𝑇𝑣𝑛 determine the values of 𝑇 on arbitrary vectors in 𝑉—see the linear
+map lemma (3.4). As we will soon see, matrices provide an efficient method of
+recording the values of the 𝑇𝑣𝑘’s in terms of a basis of 𝑊.
+3.29 definition: matrix, 𝐴𝑗,𝑘
+Suppose𝑚and𝑛arenonnegativeintegers. An𝑚-by-𝑛matrix𝐴isarectangular
+array of elements of 𝐅 with 𝑚 rows and 𝑛 columns:
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1,1 ⋯ 𝐴1,𝑛
+⋮ ⋮
+𝐴𝑚,1 ⋯ 𝐴𝑚,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+The notation 𝐴𝑗,𝑘 denotes the entry in row 𝑗, column 𝑘 of 𝐴.
+3.30 example: 𝐴𝑗,𝑘 equals entry in row 𝑗, column 𝑘 of 𝐴
+When dealing with matrices, the first
+index refers to the row number; the sec-
+ond index refers to the column number.
+Suppose 𝐴 = (
+8 4 5 − 3𝑖
+1 9 7
+).
+Thus𝐴2,3 referstotheentryinthesecond
+row, third column of 𝐴, which means that
+𝐴2,3 = 7.
+Now we come to the key definition in this section.
+3.31 definition: matrix of a linear map, ℳ(𝑇)
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑤1,…,𝑤𝑚 is a basis
+of 𝑊. The matrix of 𝑇 with respect to these bases is the 𝑚-by-𝑛 matrix ℳ(𝑇)
+whose entries 𝐴𝑗,𝑘 are defined by
+𝑇𝑣𝑘 = 𝐴1,𝑘𝑤1 + ⋯ + 𝐴𝑚,𝑘𝑤𝑚.
+If the bases 𝑣1,…,𝑣𝑛 and 𝑤1,…,𝑤𝑚 are not clear from the context, then the
+notation ℳ(𝑇,(𝑣1,…,𝑣𝑛),(𝑤1,…,𝑤𝑚)) is used.
+Thematrixℳ(𝑇)ofalinearmap𝑇 ∈ ℒ(𝑉,𝑊)dependsonthebasis𝑣1,…,𝑣𝑛
+of 𝑉 and the basis 𝑤1,…,𝑤𝑚 of 𝑊, as well as on 𝑇. However, the bases should
+be clear from the context, and thus they are often not included in the notation.
+To remember how ℳ(𝑇) is constructed from 𝑇, you might write across the
+top of the matrix the basis vectors 𝑣1,…,𝑣𝑛 for the domain and along the left the
+basis vectors 𝑤1,…,𝑤𝑚 for the vector space into which 𝑇 maps, as follows:
+Linear Algebra Done Right, fourth edition, by Sheldon Axler70 Chapter 3 Linear Maps
+𝑣1 ⋯ 𝑣𝑘 ⋯ 𝑣𝑛
+𝑤1
+ℳ(𝑇) = ⋮
+𝑤𝑚
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1,𝑘
+⋮
+𝐴𝑚,𝑘
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+The 𝑘th
+column of ℳ(𝑇) consists of
+the scalars needed to write 𝑇𝑣𝑘 as a
+linear combination of 𝑤1,…,𝑤𝑚:
+𝑇𝑣𝑘 =
+𝑚
+∑
+𝑗=1
+𝐴𝑗,𝑘𝑤𝑗.
+In the matrix above only the 𝑘th
+col-
+umn is shown. Thus the second index of
+each displayed entry of the matrix above
+is𝑘. Thepictureaboveshouldremindyou
+that 𝑇𝑣𝑘 can be computed from ℳ(𝑇) by
+multiplying each entry in the 𝑘th
+column
+by the corresponding 𝑤𝑗 from the left col-
+umn, and then adding up the resulting
+vectors.
+If 𝑇 is a linear map from an
+𝑛-dimensional vector space to an
+𝑚-dimensional vector space, then
+ℳ(𝑇) is an 𝑚-by-𝑛 matrix.
+If 𝑇 is a linear map from 𝐅𝑛
+to 𝐅𝑚
+,
+then unless stated otherwise, assume the
+bases in question are the standard ones
+(where the 𝑘th
+basis vector is 1 in the 𝑘th
+slot and 0 in all other slots). If you think
+of elements of 𝐅𝑚
+as columns of 𝑚 numbers, then you can think of the 𝑘th
+column
+of ℳ(𝑇) as 𝑇 applied to the 𝑘th
+standard basis vector.
+3.32 example: the matrix of a linear map from 𝐅2
+to 𝐅3
+Suppose 𝑇 ∈ ℒ(𝐅2
+,𝐅3
+) is defined by
+𝑇(𝑥,𝑦) = (𝑥 + 3𝑦,2𝑥 + 5𝑦,7𝑥 + 9𝑦).
+Because 𝑇(1,0) = (1,2,7) and 𝑇(0,1) = (3,5,9), the matrix of 𝑇 with respect
+to the standard bases is the 3-by-2 matrix below:
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+1 3
+2 5
+7 9
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+When working with 𝒫𝑚(𝐅), use the standard basis 1,𝑥,𝑥2
+,…,𝑥𝑚
+unless the
+context indicates otherwise.
+3.33 example: matrix of the differentiation map from 𝒫3(𝐑) to 𝒫2(𝐑)
+Suppose 𝐷 ∈ ℒ(𝒫3(𝐑),𝒫2(𝐑)) is the differentiation map defined by 𝐷𝑝 = 𝑝′
+.
+Because (𝑥𝑛
+)′
+= 𝑛𝑥𝑛−1
+, the matrix of 𝐷 with respect to the standard bases is the
+3-by-4 matrix below:
+ℳ(𝐷) =
+⎛ ⎜ ⎜ ⎜
+⎝
+0 1 0 0
+0 0 2 0
+0 0 0 3
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 71
+Addition and Scalar Multiplication of Matrices
+For the rest of this section, assume that 𝑈, 𝑉, and 𝑊 are finite-dimensional and
+that a basis has been chosen for each of these vector spaces. Thus for each linear
+map from 𝑉 to 𝑊, we can talk about its matrix (with respect to the chosen bases).
+Is the matrix of the sum of two linear maps equal to the sum of the matrices of
+the two maps? Right now this question does not yet make sense because although
+we have defined the sum of two linear maps, we have not defined the sum of two
+matrices. Fortunately, the natural definition of the sum of two matrices has the
+right properties. Specifically, we make the following definition.
+3.34 definition: matrix addition
+The sum of two matrices of the same size is the matrix obtained by adding
+corresponding entries in the matrices:
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1,1 ⋯ 𝐴1,𝑛
+⋮ ⋮
+𝐴𝑚,1 ⋯ 𝐴𝑚,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
++
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐶1,1 ⋯ 𝐶1,𝑛
+⋮ ⋮
+𝐶𝑚,1 ⋯ 𝐶𝑚,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+=
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1,1 + 𝐶1,1 ⋯ 𝐴1,𝑛 + 𝐶1,𝑛
+⋮ ⋮
+𝐴𝑚,1 + 𝐶𝑚,1 ⋯ 𝐴𝑚,𝑛 + 𝐶𝑚,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+In the next result, the assumption is that the same bases are used for all three
+linear maps 𝑆 + 𝑇, 𝑆, and 𝑇.
+3.35 matrix of the sum of linear maps
+Suppose 𝑆,𝑇 ∈ ℒ(𝑉,𝑊). Then ℳ(𝑆 + 𝑇) = ℳ(𝑆) + ℳ(𝑇).
+The verification of the result above follows from the definitions and is left to
+the reader.
+Still assuming that we have some bases in mind, is the matrix of a scalar times
+a linear map equal to the scalar times the matrix of the linear map? Again, the
+questiondoesnotyetmakesensebecausewehavenotdefinedscalarmultiplication
+on matrices. Fortunately, the natural definition again has the right properties.
+3.36 definition: scalar multiplication of a matrix
+The product of a scalar and a matrix is the matrix obtained by multiplying
+each entry in the matrix by the scalar:
+𝜆
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1,1 ⋯ 𝐴1,𝑛
+⋮ ⋮
+𝐴𝑚,1 ⋯ 𝐴𝑚,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+=
+⎛ ⎜ ⎜ ⎜
+⎝
+𝜆𝐴1,1 ⋯ 𝜆𝐴1,𝑛
+⋮ ⋮
+𝜆𝐴𝑚,1 ⋯ 𝜆𝐴𝑚,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler72 Chapter 3 Linear Maps
+3.37 example: addition and scalar multiplication of matrices
+2(
+3 1
+−1 5
+) + (
+4 2
+1 6
+) = (
+6 2
+−2 10
+) + (
+4 2
+1 6
+) = (
+10 4
+−1 16
+)
+In the next result, the assumption is that the same bases are used for both the
+linear maps 𝜆𝑇 and 𝑇.
+3.38 the matrix of a scalar times a linear map
+Suppose 𝜆 ∈ 𝐅 and 𝑇 ∈ ℒ(𝑉,𝑊). Then ℳ(𝜆𝑇) = 𝜆ℳ(𝑇).
+The verification of the result above is also left to the reader.
+Because addition and scalar multiplication have now been defined for matrices,
+you should not be surprised that a vector space is about to appear. First we
+introduce a bit of notation so that this new vector space has a name, and then we
+find the dimension of this new vector space.
+3.39 notation: 𝐅𝑚,𝑛
+For 𝑚 and 𝑛 positive integers, the set of all 𝑚-by-𝑛 matrices with entries in 𝐅
+is denoted by 𝐅𝑚,𝑛
+.
+3.40 dim𝐅𝑚,𝑛
+= 𝑚𝑛
+Suppose 𝑚 and 𝑛 are positive integers. With addition and scalar multiplication
+defined as above, 𝐅𝑚,𝑛
+is a vector space of dimension 𝑚𝑛.
+Proof The verification that 𝐅𝑚,𝑛
+is a vector space is left to the reader. Note that
+the additive identity of 𝐅𝑚,𝑛
+is the 𝑚-by-𝑛 matrix all of whose entries equal 0.
+The reader should also verify that the list of distinct 𝑚-by-𝑛 matrices that have
+0 in all entries except for a 1 in one entry is a basis of 𝐅𝑚,𝑛
+. There are 𝑚𝑛 such
+matrices, so the dimension of 𝐅𝑚,𝑛
+equals 𝑚𝑛.
+Matrix Multiplication
+Suppose, as previously, that 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑤1,…,𝑤𝑚 is a basis
+of 𝑊. Suppose also that 𝑢1,…,𝑢𝑝 is a basis of 𝑈.
+Consider linear maps 𝑇∶ 𝑈 → 𝑉 and 𝑆∶ 𝑉 → 𝑊. The composition 𝑆𝑇 is a
+linear map from 𝑈 to 𝑊. Does ℳ(𝑆𝑇) equal ℳ(𝑆)ℳ(𝑇)? This question does
+not yet make sense because we have not defined the product of two matrices. We
+will choose a definition of matrix multiplication that forces this question to have
+a positive answer. Let’s see how to do this.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 73
+Suppose ℳ(𝑆) = 𝐴 and ℳ(𝑇) = 𝐵. For 1 ≤ 𝑘 ≤ 𝑝, we have
+(𝑆𝑇)𝑢𝑘 = 𝑆(
+𝑛
+∑
+𝑟=1
+𝐵𝑟,𝑘𝑣𝑟)
+=
+𝑛
+∑
+𝑟=1
+𝐵𝑟,𝑘𝑆𝑣𝑟
+=
+𝑛
+∑
+𝑟=1
+𝐵𝑟,𝑘
+𝑚
+∑
+𝑗=1
+𝐴𝑗,𝑟𝑤𝑗
+=
+𝑚
+∑
+𝑗=1
+(
+𝑛
+∑
+𝑟=1
+𝐴𝑗,𝑟𝐵𝑟,𝑘)𝑤𝑗.
+Thus ℳ(𝑆𝑇) is the 𝑚-by-𝑝 matrix whose entry in row 𝑗, column 𝑘, equals
+𝑛
+∑
+𝑟=1
+𝐴𝑗,𝑟𝐵𝑟,𝑘.
+Now we see how to define matrix multiplication so that the desired equation
+ℳ(𝑆𝑇) = ℳ(𝑆)ℳ(𝑇) holds.
+3.41 definition: matrix multiplication
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix and 𝐵 is an 𝑛-by-𝑝 matrix. Then 𝐴𝐵 is defined
+to be the 𝑚-by-𝑝 matrix whose entry in row 𝑗, column 𝑘, is given by the
+equation
+(𝐴𝐵)𝑗,𝑘 =
+𝑛
+∑
+𝑟=1
+𝐴𝑗,𝑟𝐵𝑟,𝑘.
+Thus the entry in row 𝑗, column 𝑘, of 𝐴𝐵 is computed by taking row 𝑗 of 𝐴 and
+column 𝑘 of 𝐵, multiplying together corresponding entries, and then summing.
+You may have learned this definition
+of matrix multiplication in an earlier
+course, although you may not have
+seen this motivation for it.
+Note that we define the product of
+two matrices only when the number of
+columns of the first matrix equals the
+number of rows of the second matrix.
+3.42 example: matrix multiplication
+Here we multiply together a 3-by-2 matrix and a 2-by-4 matrix, obtaining a
+3-by-4 matrix:
+⎛ ⎜ ⎜ ⎜
+⎝
+1 2
+3 4
+5 6
+⎞ ⎟ ⎟ ⎟
+⎠
+(
+6 5 4 3
+2 1 0 −1
+) =
+⎛ ⎜ ⎜ ⎜
+⎝
+10 7 4 1
+26 19 12 5
+42 31 20 9
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Matrix multiplication is not commutative—𝐴𝐵 is not necessarily equal to
+𝐵𝐴 even if both products are defined (see Exercise 10). Matrix multiplication is
+distributive and associative (see Exercises 11 and 12).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler74 Chapter 3 Linear Maps
+In the next result, we assume that the same basis of 𝑉 is used in considering
+𝑇 ∈ ℒ(𝑈,𝑉) and 𝑆 ∈ ℒ(𝑉,𝑊), the same basis of 𝑊 is used in considering
+𝑆 ∈ ℒ(𝑉,𝑊) and 𝑆𝑇 ∈ ℒ(𝑈,𝑊), and the same basis of 𝑈 is used in considering
+𝑇 ∈ ℒ(𝑈,𝑉) and 𝑆𝑇 ∈ ℒ(𝑈,𝑊).
+3.43 matrix of product of linear maps
+If 𝑇 ∈ ℒ(𝑈,𝑉) and 𝑆 ∈ ℒ(𝑉,𝑊), then ℳ(𝑆𝑇) = ℳ(𝑆)ℳ(𝑇).
+The proof of the result above is the calculation that was done as motivation
+before the definition of matrix multiplication.
+In the next piece of notation, note that as usual the first index refers to a row
+and the second index refers to a column, with a vertically centered dot used as a
+placeholder.
+3.44 notation: 𝐴𝑗,⋅ , 𝐴⋅,𝑘
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix.
+• If 1 ≤ 𝑗 ≤ 𝑚, then 𝐴𝑗,⋅ denotes the 1-by-𝑛 matrix consisting of row 𝑗 of 𝐴.
+• If 1 ≤ 𝑘 ≤ 𝑛, then 𝐴⋅,𝑘 denotes the 𝑚-by-1 matrix consisting of column 𝑘
+of 𝐴.
+3.45 example: 𝐴𝑗,⋅ equals 𝑗th
+row of 𝐴 and 𝐴⋅,𝑘 equals 𝑘th
+column of 𝐴
+The notation 𝐴2,⋅ denotes the second row of 𝐴 and 𝐴⋅,2 denotes the second
+column of 𝐴. Thus if 𝐴 = (
+8 4 5
+1 9 7
+), then
+𝐴2,⋅ = ( 1 9 7 ) and 𝐴⋅,2 = (
+4
+9
+).
+The product of a 1-by-𝑛 matrix and an 𝑛-by-1 matrix is a 1-by-1 matrix. How-
+ever, we will frequently identify a 1-by-1 matrix with its entry. For example,
+( 3 4 )(
+6
+2
+) = ( 26 )
+because 3 ⋅ 6 + 4 ⋅ 2 = 26. However, we can identify ( 26 ) with 26, writing
+( 3 4 )(
+6
+2
+) = 26.
+The next result uses the convention discussed in the paragraph above to give
+another way to think of matrix multiplication. For example, the next result and
+the calculation in the paragraph above explain why the entry in row 2, column 1,
+of the product in Example 3.42 equals 26.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 75
+3.46 entry of matrix product equals row times column
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix and 𝐵 is an 𝑛-by-𝑝 matrix. Then
+(𝐴𝐵)𝑗,𝑘 = 𝐴𝑗,⋅ 𝐵⋅,𝑘
+if 1 ≤ 𝑗 ≤ 𝑚 and 1 ≤ 𝑘 ≤ 𝑝. In other words, the entry in row 𝑗, column 𝑘, of
+𝐴𝐵 equals (row 𝑗 of 𝐴) times (column 𝑘 of 𝐵).
+Proof Suppose1 ≤ 𝑗 ≤ 𝑚and1 ≤ 𝑘 ≤ 𝑝. Thedefinitionofmatrixmultiplication
+states that
+3.47 (𝐴𝐵)𝑗,𝑘 = 𝐴𝑗,1𝐵1,𝑘 + ⋯ + 𝐴𝑗,𝑛𝐵𝑛,𝑘.
+The definition of matrix multiplication also implies that the product of the 1-by-𝑛
+matrix 𝐴𝑗,⋅ and the 𝑛-by-1 matrix 𝐵⋅,𝑘 is the 1-by-1 matrix whose entry is the
+number on the right side of the equation above. Thus the entry in row 𝑗, column 𝑘,
+of 𝐴𝐵 equals (row 𝑗 of 𝐴) times (column 𝑘 of 𝐵).
+The next result gives yet another way to think of matrix multiplication. In
+the result below, (𝐴𝐵)⋅,𝑘 is column 𝑘 of the 𝑚-by-𝑝 matrix 𝐴𝐵. Thus (𝐴𝐵)⋅,𝑘 is
+an 𝑚-by-1 matrix. Also, 𝐴𝐵⋅,𝑘 is an 𝑚-by-1 matrix because it is the product of an
+𝑚-by-𝑛 matrix and an 𝑛-by-1 matrix. Thus the two sides of the equation in the
+result below have the same size, making it reasonable that they might be equal.
+3.48 column of matrix product equals matrix times column
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix and 𝐵 is an 𝑛-by-𝑝 matrix. Then
+(𝐴𝐵)⋅,𝑘 = 𝐴𝐵⋅,𝑘
+if 1 ≤ 𝑘 ≤ 𝑝. In other words, column 𝑘 of 𝐴𝐵 equals 𝐴 times column 𝑘 of 𝐵.
+Proof As discussed above, (𝐴𝐵)⋅,𝑘 and 𝐴𝐵⋅,𝑘 are both 𝑚-by-1 matrices. If 1 ≤
+𝑗 ≤ 𝑚, then the entry in row 𝑗 of (𝐴𝐵)⋅,𝑘 is the left side of 3.47 and the entry in
+row 𝑗 of 𝐴𝐵⋅,𝑘 is the right side of 3.47. Thus (𝐴𝐵)⋅,𝑘 = 𝐴𝐵⋅,𝑘.
+Our next result will give another way of thinking about the product of an
+𝑚-by-𝑛 matrix and an 𝑛-by-1 matrix, motivated by the next example.
+3.49 example: product of a 3-by-2 matrix and a 2-by-1 matrix
+Use our definitions and basic arithmetic to verify that
+⎛ ⎜ ⎜ ⎜
+⎝
+1 2
+3 4
+5 6
+⎞ ⎟ ⎟ ⎟
+⎠
+(
+5
+1
+) =
+⎛ ⎜ ⎜ ⎜
+⎝
+7
+19
+31
+⎞ ⎟ ⎟ ⎟
+⎠
+= 5
+⎛ ⎜ ⎜ ⎜
+⎝
+1
+3
+5
+⎞ ⎟ ⎟ ⎟
+⎠
++ 1
+⎛ ⎜ ⎜ ⎜
+⎝
+2
+4
+6
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Thus in this example, the product of a 3-by-2 matrix and a 2-by-1 matrix is a
+linear combination of the columns of the 3-by-2 matrix, with the scalars (5 and 1)
+that multiply the columns coming from the 2-by-1 matrix.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler76 Chapter 3 Linear Maps
+The next result generalizes the example above.
+3.50 linear combination of columns
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix and 𝑏 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝑏1
+⋮
+𝑏𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+is an 𝑛-by-1 matrix. Then
+𝐴𝑏 = 𝑏1𝐴⋅,1 + ⋯ + 𝑏𝑛 𝐴⋅,𝑛.
+In other words, 𝐴𝑏 is a linear combination of the columns of 𝐴, with the
+scalars that multiply the columns coming from 𝑏.
+Proof If 𝑘 ∈ {1,…,𝑚}, then the definition of matrix multiplication implies that
+the entry in row 𝑘 of the 𝑚-by-1 matrix 𝐴𝑏 is
+𝐴𝑘,1𝑏1 + ⋯ + 𝐴𝑘,𝑛𝑏𝑛.
+The entry in row 𝑘 of 𝑏1𝐴⋅,1 +⋯+𝑏𝑛 𝐴⋅,𝑛 also equals the number displayed above.
+Because 𝐴𝑏 and 𝑏1𝐴⋅,1 + ⋯ + 𝑏𝑛 𝐴⋅,𝑛 have the same entry in row 𝑘 for each
+𝑘 ∈ {1,…,𝑚}, we conclude that 𝐴𝑏 = 𝑏1𝐴⋅,1 + ⋯ + 𝑏𝑛 𝐴⋅,𝑛.
+Our two previous results focus on the columns of a matrix. Analogous results
+hold for the rows of a matrix. Specifically, see Exercises 8 and 9, which can be
+proved using appropriate modifications of the proofs of 3.48 and 3.50.
+The next result is the main tool used in the next subsection to prove the
+column–row factorization (3.56) and to prove that the column rank of a matrix
+equals the row rank (3.57). To be consistent with the notation often used with the
+column–row factorization, including in the next subsection, the matrices in the
+next result are called 𝐶 and 𝑅 instead of 𝐴 and 𝐵.
+3.51 matrix multiplication as linear combinations of columns or rows
+Suppose 𝐶 is an 𝑚-by-𝑐 matrix and 𝑅 is a 𝑐-by-𝑛 matrix.
+(a) If 𝑘 ∈ {1,…,𝑛}, then column 𝑘 of 𝐶𝑅 is a linear combination of the
+columns of 𝐶, with the coefficients of this linear combination coming
+from column 𝑘 of 𝑅.
+(b) If 𝑗 ∈ {1,…,𝑚}, then row 𝑗 of 𝐶𝑅 is a linear combination of the rows of
+𝑅, with the coefficients of this linear combination coming from row 𝑗 of
+𝐶.
+Proof Suppose 𝑘 ∈ {1,…,𝑛}. Then column 𝑘 of 𝐶𝑅 equals 𝐶𝑅⋅,𝑘 (by 3.48),
+which equals the linear combination of the columns of 𝐶 with coefficients coming
+from 𝑅⋅,𝑘 (by 3.50). Thus (a) holds.
+To prove (b), follow the pattern of the proof of (a) but use rows instead of
+columns and use Exercises 8 and 9 instead of 3.48 and 3.50.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 77
+Column–Row Factorization and Rank of a Matrix
+We begin by defining two nonnegative integers associated with each matrix.
+3.52 definition: column rank, row rank
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix with entries in 𝐅.
+• The column rank of 𝐴 is the dimension of the span of the columns of 𝐴
+in 𝐅𝑚,1
+.
+• The row rank of 𝐴 is the dimension of the span of the rows of 𝐴 in 𝐅1,𝑛
+.
+If𝐴 isan𝑚-by-𝑛 matrix, thenthecolumnrankof𝐴 isatmost𝑛 (because𝐴 has
+𝑛 columns) and the column rank of 𝐴 is also at most 𝑚 (because dim𝐅𝑚,1
+= 𝑚).
+Similarly, the row rank of 𝐴 is also at most min{𝑚,𝑛}.
+3.53 example: column rank and row rank of a 2-by-4 matrix
+Suppose
+𝐴 = (
+4 7 1 8
+3 5 2 9
+).
+The column rank of 𝐴 is the dimension of
+span⎛ ⎜ ⎜
+⎝
+(
+4
+3
+),(
+7
+5
+),(
+1
+2
+),(
+8
+9
+)⎞ ⎟ ⎟
+⎠
+in 𝐅2,1
+. Neither of the first two vectors listed above in 𝐅2,1
+is a scalar multiple of
+the other. Thus the span of this list of length four has dimension at least two. The
+span of this list of vectors in 𝐅2,1
+cannot have dimension larger than two because
+dim𝐅2,1
+= 2. Thus the span of this list has dimension two, which means that the
+column rank of 𝐴 is two.
+The row rank of 𝐴 is the dimension of
+span(( 4 7 1 8 ),( 3 5 2 9 ))
+in 𝐅1,4
+. Neither of the two vectors listed above in 𝐅1,4
+is a scalar multiple of the
+other. Thus the span of this list of length two has dimension two, which means
+that the row rank of 𝐴 is two.
+We now define the transpose of a matrix.
+3.54 definition: transpose, 𝐴t
+The transpose of a matrix 𝐴, denoted by 𝐴t
+, is the matrix obtained from 𝐴 by
+interchanging rows and columns. Specifically, if 𝐴 is an 𝑚-by-𝑛 matrix, then
+𝐴t
+is the 𝑛-by-𝑚 matrix whose entries are given by the equation
+(𝐴t)𝑘,𝑗
+= 𝐴𝑗,𝑘.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler78 Chapter 3 Linear Maps
+3.55 example: transpose of a matrix
+If 𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+5 −7
+3 8
+−4 2
+⎞ ⎟ ⎟ ⎟
+⎠
+, then 𝐴t
+= (
+5 3 −4
+−7 8 2
+).
+Note that here 𝐴 is a 3-by-2 matrix and 𝐴t
+is a 2-by-3 matrix.
+The transpose has nice algebraic properties: (𝐴+𝐵)t
+= 𝐴t
++𝐵t
+, (𝜆𝐴)t
+= 𝜆𝐴t
+,
+and (𝐴𝐶)t
+= 𝐶t
+𝐴t
+for all 𝑚-by-𝑛 matrices 𝐴,𝐵, all 𝜆 ∈ 𝐅, and all 𝑛-by-𝑝 matrices
+𝐶 (see Exercises 14 and 15).
+The next result will be the main tool used to prove that the column rank equals
+the row rank (see 3.57).
+3.56 column–row factorization
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix with entries in 𝐅 and column rank 𝑐 ≥ 1. Then
+there exist an 𝑚-by-𝑐 matrix 𝐶 and a 𝑐-by-𝑛 matrix 𝑅, both with entries in 𝐅,
+such that 𝐴 = 𝐶𝑅.
+Proof Each column of 𝐴 is an 𝑚-by-1 matrix. The list 𝐴⋅,1,…,𝐴⋅,𝑛 of columns
+of 𝐴 can be reduced to a basis of the span of the columns of 𝐴 (by 2.30). This
+basis has length 𝑐, by the definition of the column rank. The 𝑐 columns in this
+basis can be put together to form an 𝑚-by-𝑐 matrix 𝐶.
+If 𝑘 ∈ {1,…,𝑛}, then column 𝑘 of 𝐴 is a linear combination of the columns
+of 𝐶. Make the coefficients of this linear combination into column 𝑘 of a 𝑐-by-𝑛
+matrix that we call 𝑅. Then 𝐴 = 𝐶𝑅, as follows from 3.51(a).
+In Example 3.53, the column rank and row rank turned out to equal each other.
+The next result states that this happens for all matrices.
+3.57 column rank equals row rank
+Suppose 𝐴 ∈ 𝐅𝑚,𝑛
+. Then the column rank of 𝐴 equals the row rank of 𝐴.
+Proof Let 𝑐 denote the column rank of 𝐴. If 𝑐 = 0, then 𝐴 = 0 and hence the
+row rank of 𝐴 also equals 0. Thus we can assume that 𝑐 ≥ 1.
+Let 𝐴 = 𝐶𝑅 be the column–row factorization of 𝐴 given by 3.56, where 𝐶 is
+an 𝑚-by-𝑐 matrix and 𝑅 is a 𝑐-by-𝑛 matrix. Then 3.51(b) tells us that every row
+of 𝐴 is a linear combination of the rows of 𝑅. Because 𝑅 has 𝑐 rows, this implies
+that the row rank of 𝐴 is less than or equal to the column rank 𝑐 of 𝐴.
+To prove the inequality in the other direction, apply the previous paragraph
+result to 𝐴t
+, getting
+column rank of 𝐴 = row rank of 𝐴t
+≤ column rank of 𝐴t
+= row rank of 𝐴.
+Thus the column rank of 𝐴 equals the row rank of 𝐴.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 79
+Because the column rank equals the row rank, the last result allows us to
+dispense with the terms “column rank” and “row rank” and just use the simpler
+term “rank”.
+3.58 definition: rank
+The rank of a matrix 𝐴 ∈ 𝐅𝑚,𝑛
+is the column rank of 𝐴.
+See 3.133 and Exercise 8 in Section 7A for alternative proofs that the column
+rank equals the row rank.
+Exercises 3C
+1 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Show that with respect to each choice of bases of
+𝑉 and 𝑊, the matrix of 𝑇 has at least dimrange𝑇 nonzero entries.
+2 Suppose 𝑇 ∈ ℒ(𝑉,𝑊), where 𝑉 and 𝑊 are finite-dimensional and nonzero.
+Prove that dimrange𝑇 = 1 if and only if there exist a basis of 𝑉 and a basis
+of 𝑊 such that with respect to these bases, all entries of ℳ(𝑇) equal 1.
+3 Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑤1,…,𝑤𝑚 is a basis of 𝑊.
+(a) Show that if 𝑆,𝑇 ∈ ℒ(𝑉,𝑊), then ℳ(𝑆 + 𝑇) = ℳ(𝑆) + ℳ(𝑇).
+(b) Show that if 𝜆 ∈ 𝐅 and 𝑇 ∈ ℒ(𝑉,𝑊), then ℳ(𝜆𝑇) = 𝜆ℳ(𝑇).
+This exercise asks you to verify 3.35 and 3.38.
+4 Suppose that 𝐷 ∈ ℒ(𝒫3(𝐑),𝒫2(𝐑)) is the differentiation map defined by
+𝐷𝑝 = 𝑝′
+. Find a basis of 𝒫3(𝐑) and a basis of 𝒫2(𝐑) such that the matrix of
+𝐷 with respect to these bases is
+⎛ ⎜ ⎜ ⎜
+⎝
+1 0 0 0
+0 1 0 0
+0 0 1 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Compare with Example 3.33. The next exercise generalizes this exercise.
+5 Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that there
+exist a basis of 𝑉 and a basis of 𝑊 such that with respect to these bases, all
+entries of ℳ(𝑇) are 0 except that the entries in row 𝑘, column 𝑘, equal 1 if
+1 ≤ 𝑘 ≤ dimrange𝑇.
+6 Suppose 𝑣1,…,𝑣𝑚 is a basis of 𝑉 and 𝑊 is finite-dimensional. Suppose
+𝑇 ∈ ℒ(𝑉,𝑊). Prove that there exists a basis 𝑤1,…,𝑤𝑛 of 𝑊 such that all
+entries in the first column of ℳ(𝑇) [with respect to the bases 𝑣1,…,𝑣𝑚 and
+𝑤1,…,𝑤𝑛] are 0 except for possibly a 1 in the first row, first column.
+In this exercise, unlike Exercise 5, you are given the basis of 𝑉 instead of
+being able to choose a basis of 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler80 Chapter 3 Linear Maps
+7 Suppose 𝑤1,…,𝑤𝑛 is a basis of 𝑊 and 𝑉 is finite-dimensional. Suppose
+𝑇 ∈ ℒ(𝑉,𝑊). Prove that there exists a basis 𝑣1,…,𝑣𝑚 of 𝑉 such that all
+entries in the first row of ℳ(𝑇) [with respect to the bases 𝑣1,…,𝑣𝑚 and
+𝑤1,…,𝑤𝑛] are 0 except for possibly a 1 in the first row, first column.
+In this exercise, unlike Exercise 5, you are given the basis of 𝑊 instead of
+being able to choose a basis of 𝑊.
+## 8 Suppose 𝐴 is an 𝑚-by-𝑛 matrix and 𝐵 is an 𝑛-by-𝑝 matrix. Prove that
+(𝐴𝐵)𝑗,⋅ = 𝐴𝑗,⋅ 𝐵
+for each 1 ≤ 𝑗 ≤ 𝑚. In other words, show that row 𝑗 of 𝐴𝐵 equals (row 𝑗 of 𝐴)
+times 𝐵.
+This exercise gives the row version of 3.48.
+## 9 Suppose 𝑎 = ( 𝑎1 ⋯ 𝑎𝑛 ) is a 1-by-𝑛 matrix and 𝐵 is an 𝑛-by-𝑝 matrix.
+Prove that
+𝑎𝐵 = 𝑎1𝐵1,⋅ + ⋯ + 𝑎𝑛𝐵𝑛,⋅ .
+In other words, show that 𝑎𝐵 is a linear combination of the rows of 𝐵, with
+the scalars that multiply the rows coming from 𝑎.
+This exercise gives the row version of 3.50.
+## 10 Give an example of 2-by-2 matrices 𝐴 and 𝐵 such that 𝐴𝐵 ≠ 𝐵𝐴.
+## 11 Prove that the distributive property holds for matrix addition and matrix
+multiplication. In other words, suppose 𝐴, 𝐵, 𝐶, 𝐷, 𝐸, and 𝐹 are matrices
+whose sizes are such that 𝐴(𝐵 + 𝐶) and (𝐷 + 𝐸)𝐹 make sense. Explain why
+𝐴𝐵 + 𝐴𝐶 and 𝐷𝐹 + 𝐸𝐹 both make sense and prove that
+𝐴(𝐵 + 𝐶) = 𝐴𝐵 + 𝐴𝐶 and (𝐷 + 𝐸)𝐹 = 𝐷𝐹 + 𝐸𝐹.
+## 12 Prove that matrix multiplication is associative. In other words, suppose 𝐴, 𝐵,
+and 𝐶 are matrices whose sizes are such that (𝐴𝐵)𝐶 makes sense. Explain
+why 𝐴(𝐵𝐶) makes sense and prove that
+(𝐴𝐵)𝐶 = 𝐴(𝐵𝐶).
+Try to find a clean proof that illustrates the following quote from Emil Artin:
+“It is my experience that proofs involving matrices can be shortened by 50%
+if one throws the matrices out.”
+13 Suppose 𝐴 is an 𝑛-by-𝑛 matrix and 1 ≤ 𝑗,𝑘 ≤ 𝑛. Show that the entry in
+row 𝑗, column 𝑘, of 𝐴3
+(which is defined to mean 𝐴𝐴𝐴) is
+𝑛
+∑
+𝑝=1
+𝑛
+∑
+𝑟=1
+𝐴𝑗,𝑝 𝐴𝑝,𝑟 𝐴𝑟,𝑘.
+14 Suppose 𝑚 and 𝑛 are positive integers. Prove that the function 𝐴 ↦ 𝐴t
+is a
+linear map from 𝐅𝑚,𝑛
+to 𝐅𝑛,𝑚
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3C Matrices 81
+## 15 Prove that if 𝐴 is an 𝑚-by-𝑛 matrix and 𝐶 is an 𝑛-by-𝑝 matrix, then
+(𝐴𝐶)t
+= 𝐶t
+𝐴t
+.
+This exercise shows that the transpose of the product of two matrices is the
+product of the transposes in the opposite order.
+## 16 Suppose 𝐴 is an 𝑚-by-𝑛 matrix with 𝐴 ≠ 0. Prove that the rank of 𝐴 is 1
+if and only if there exist (𝑐1,…,𝑐𝑚) ∈ 𝐅𝑚
+and (𝑑1,…,𝑑𝑛) ∈ 𝐅𝑛
+such that
+𝐴𝑗,𝑘 = 𝑐𝑗𝑑𝑘 for every 𝑗 = 1,…,𝑚 and every 𝑘 = 1,…,𝑛.
+17 Suppose 𝑇 ∈ ℒ(𝑉), and 𝑢1,…,𝑢𝑛 and 𝑣1,…,𝑣𝑛 are bases of 𝑉. Prove that
+the following are equivalent.
+(a) 𝑇 is injective.
+(b) The columns of ℳ(𝑇) are linearly independent in 𝐅𝑛,1
+.
+(c) The columns of ℳ(𝑇) span 𝐅𝑛,1
+.
+(d) The rows of ℳ(𝑇) span 𝐅1,𝑛
+.
+(e) The rows of ℳ(𝑇) are linearly independent in 𝐅1,𝑛
+.
+Here ℳ(𝑇) means ℳ(𝑇,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler82 Chapter 3 Linear Maps
+3D Invertibility and Isomorphisms
+Invertible Linear Maps
+We begin this section by defining the notions of invertible and inverse in the
+context of linear maps.
+3.59 definition: invertible, inverse
+• A linear map 𝑇 ∈ ℒ(𝑉,𝑊) is called invertible if there exists a linear map
+𝑆 ∈ ℒ(𝑊,𝑉) such that 𝑆𝑇 equals the identity operator on 𝑉 and 𝑇𝑆 equals
+the identity operator on 𝑊.
+• A linear map 𝑆 ∈ ℒ(𝑊,𝑉) satisfying 𝑆𝑇 = 𝐼 and 𝑇𝑆 = 𝐼 is called an
+inverse of 𝑇 (note that the first 𝐼 is the identity operator on 𝑉 and the second
+𝐼 is the identity operator on 𝑊).
+The definition above mentions “an inverse”. However, the next result shows
+that we can change this terminology to “the inverse”.
+3.60 inverse is unique
+An invertible linear map has a unique inverse.
+Proof Suppose 𝑇 ∈ ℒ(𝑉,𝑊) is invertible and 𝑆1 and 𝑆2 are inverses of 𝑇. Then
+𝑆1 = 𝑆1𝐼 = 𝑆1(𝑇𝑆2) = (𝑆1𝑇)𝑆2 = 𝐼𝑆2 = 𝑆2.
+Thus 𝑆1 = 𝑆2.
+Now that we know that the inverse is unique, we can give it a notation.
+3.61 notation: 𝑇−1
+If 𝑇 is invertible, then its inverse is denoted by 𝑇−1
+. In other words, if
+𝑇 ∈ ℒ(𝑉,𝑊) is invertible, then 𝑇−1
+is the unique element of ℒ(𝑊,𝑉) such
+that 𝑇−1
+𝑇 = 𝐼 and 𝑇𝑇−1
+= 𝐼.
+3.62 example: inverse of a linear map from 𝐑3
+to 𝐑3
+Suppose 𝑇 ∈ ℒ(𝐑3
+) is defined by 𝑇(𝑥,𝑦,𝑧) = (−𝑦,𝑥,4𝑧). Thus 𝑇 is a
+counterclockwise rotation by 90∘
+in the 𝑥𝑦-plane and a stretch by a factor of 4 in
+the direction of the 𝑧-axis.
+Hence the inverse map 𝑇−1
+∈ ℒ(𝐑3
+) is the clockwise rotation by 90∘
+in the
+𝑥𝑦-plane and a stretch by a factor of 1
+4
+in the direction of the 𝑧-axis:
+𝑇−1
+(𝑥,𝑦,𝑧) = (𝑦,−𝑥, 1
+4
+𝑧).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 83
+The next result shows that a linear map is invertible if and only if it is one-to-
+one and onto.
+3.63 invertibility ⟺ injectivity and surjectivity
+A linear map is invertible if and only if it is injective and surjective.
+Proof Suppose 𝑇 ∈ ℒ(𝑉,𝑊). We need to show that 𝑇 is invertible if and only
+if it is injective and surjective.
+First suppose 𝑇 is invertible. To show that 𝑇 is injective, suppose 𝑢,𝑣 ∈ 𝑉
+and 𝑇𝑢 = 𝑇𝑣. Then
+𝑢 = 𝑇−1
+(𝑇𝑢) = 𝑇−1
+(𝑇𝑣) = 𝑣,
+so 𝑢 = 𝑣. Hence 𝑇 is injective.
+We are still assuming that 𝑇 is invertible. Now we want to prove that 𝑇 is
+surjective. To do this, let 𝑤 ∈ 𝑊. Then 𝑤 = 𝑇(𝑇−1
+𝑤), which shows that 𝑤 is
+in the range of 𝑇. Thus range𝑇 = 𝑊. Hence 𝑇 is surjective, completing this
+direction of the proof.
+Nowsuppose𝑇 isinjectiveandsurjective. Wewanttoprovethat𝑇 isinvertible.
+For each 𝑤 ∈ 𝑊, define 𝑆(𝑤) to be the unique element of 𝑉 such that 𝑇(𝑆(𝑤)) =
+𝑤 (the existence and uniqueness of such an element follow from the surjectivity
+and injectivity of 𝑇). The definition of 𝑆 implies that 𝑇 ∘ 𝑆 equals the identity
+operator on 𝑊.
+To prove that 𝑆 ∘ 𝑇 equals the identity operator on 𝑉, let 𝑣 ∈ 𝑉. Then
+𝑇((𝑆 ∘ 𝑇)𝑣) = (𝑇 ∘ 𝑆)(𝑇𝑣) = 𝐼(𝑇𝑣) = 𝑇𝑣.
+This equation implies that (𝑆∘𝑇)𝑣 = 𝑣 (because 𝑇 is injective). Thus 𝑆∘𝑇 equals
+the identity operator on 𝑉.
+To complete the proof, we need to show that 𝑆 is linear. To do this, suppose
+𝑤1, 𝑤2 ∈ 𝑊. Then
+𝑇(𝑆(𝑤1) + 𝑆(𝑤2)) = 𝑇(𝑆(𝑤1)) + 𝑇(𝑆(𝑤2)) = 𝑤1 + 𝑤2.
+Thus 𝑆(𝑤1) + 𝑆(𝑤2) is the unique element of 𝑉 that 𝑇 maps to 𝑤1 + 𝑤2. By the
+definition of 𝑆, this implies that 𝑆(𝑤1 + 𝑤2) = 𝑆(𝑤1) + 𝑆(𝑤2). Hence 𝑆 satisfies
+the additive property required for linearity.
+The proof of homogeneity is similar. Specifically, if 𝑤 ∈ 𝑊 and 𝜆 ∈ 𝐅, then
+𝑇(𝜆𝑆(𝑤)) = 𝜆𝑇(𝑆(𝑤)) = 𝜆𝑤.
+Thus 𝜆𝑆(𝑤) is the unique element of 𝑉 that 𝑇 maps to 𝜆𝑤. By the definition of
+𝑆, this implies that 𝑆(𝜆𝑤) = 𝜆𝑆(𝑤). Hence 𝑆 is linear, as desired.
+For a linear map from a vector space to itself, you might wonder whether
+injectivity alone, or surjectivity alone, is enough to imply invertibility. On infinite-
+dimensional vector spaces, neither condition alone implies invertibility, as illus-
+trated by the next example, which uses two familiar linear maps from Example 3.3.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler84 Chapter 3 Linear Maps
+3.64 example: neither injectivity nor surjectivity implies invertibility
+• The multiplication by 𝑥2
+linear map from 𝒫(𝐑) to 𝒫(𝐑) (see 3.3) is injective
+but it is not invertible because it is not surjective (the polynomial 1 is not in
+the range).
+• The backward shift linear map from 𝐅∞
+to 𝐅∞
+(see 3.3) is surjective but it is
+not invertible because it is not injective [the vector (1,0,0,0,…) is in the null
+space].
+In view of the example above, the next result is remarkable—it states that for
+a linear map from a finite-dimensional vector space to a vector space of the same
+dimension, either injectivity or surjectivity alone implies the other condition.
+Note that the hypothesis below that dim𝑉 = dim𝑊 is automatically satisfied in
+the important special case where 𝑉 is finite-dimensional and 𝑊 = 𝑉.
+3.65 injectivity is equivalent to surjectivity (if dim𝑉 = dim𝑊 < ∞)
+Suppose that 𝑉 and 𝑊 are finite-dimensional vector spaces, dim𝑉 = dim𝑊,
+and 𝑇 ∈ ℒ(𝑉,𝑊). Then
+𝑇 is invertible ⟺ 𝑇 is injective ⟺ 𝑇 is surjective.
+Proof The fundamental theorem of linear maps (3.21) states that
+3.66 dim𝑉 = dimnull𝑇 + dimrange𝑇.
+If 𝑇 is injective (which by 3.15 is equivalent to the condition dimnull𝑇 = 0),
+then the equation above implies that
+dimrange𝑇 = dim𝑉 − dimnull𝑇 = dim𝑉 = dim𝑊,
+which implies that 𝑇 is surjective (by 2.39).
+Conversely, if 𝑇 is surjective, then 3.66 implies that
+dimnull𝑇 = dim𝑉 − dimrange𝑇 = dim𝑉 − dim𝑊 = 0,
+which implies that 𝑇 is injective.
+Thus we have shown that 𝑇 is injective if and only if 𝑇 is surjective. Thus if
+𝑇 is either injective or surjective, then 𝑇 is both injective and surjective, which
+implies that 𝑇 is invertible. Hence 𝑇 is invertible if and only if 𝑇 is injective if
+and only if 𝑇 is surjective.
+The next example illustrates the power of the previous result. Although it is
+possible to prove the result in the example below without using linear algebra, the
+proof using linear algebra is cleaner and easier.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 85
+3.67 example: there exists a polynomial 𝑝 such that ((𝑥2
++ 5𝑥 + 7)𝑝)
+″
+= 𝑞
+The linear map
+𝑝 ↦ ((𝑥2
++ 5𝑥 + 7)𝑝)
+″
+from 𝒫(𝐑) to itself is injective, as you can show. Thus we are tempted to use 3.65
+to show that this map is surjective. However, Example 3.64 shows that the magic
+of 3.65 does not apply to the infinite-dimensional vector space 𝒫(𝐑). We will
+get around this problem by restricting attention to the finite-dimensional vector
+space 𝒫𝑚(𝐑).
+Suppose𝑞 ∈ 𝒫(𝐑). Thereexistsanonnegativeinteger𝑚suchthat𝑞 ∈ 𝒫𝑚(𝐑).
+Define 𝑇∶ 𝒫𝑚(𝐑) → 𝒫𝑚(𝐑) by
+𝑇𝑝 = ((𝑥2
++ 5𝑥 + 7)𝑝)
+″
+.
+Multiplying a nonzero polynomial by (𝑥2
++5𝑥+7) increases the degree by 2, and
+then differentiating twice reduces the degree by 2. Thus 𝑇 is indeed a linear map
+from 𝒫𝑚(𝐑) to itself.
+Every polynomial whose second derivative equals 0 is of the form 𝑎𝑥 + 𝑏,
+where 𝑎,𝑏 ∈ 𝐑. Thus null𝑇 = {0}. Hence 𝑇 is injective.
+Thus 𝑇 is surjective (by 3.65), which means that there exists a polynomial
+𝑝 ∈ 𝒫𝑚(𝐑) such that ((𝑥2
++5𝑥+7)𝑝)
+″
+= 𝑞, as claimed in the title of this example.
+Exercise 35 in Section 6A gives a similar but more spectacular example of
+using 3.65.
+The hypothesis in the result below that dim𝑉 = dim𝑊 holds in the important
+special case in which 𝑉 is finite-dimensional and 𝑊 = 𝑉. Thus in that case, the
+equation 𝑆𝑇 = 𝐼 implies that 𝑆𝑇 = 𝑇𝑆, even though we do not have multiplicative
+commutativity of arbitrary linear maps from 𝑉 to 𝑉.
+3.68 𝑆𝑇 = 𝐼 ⟺ 𝑇𝑆 = 𝐼 (on vector spaces of the same dimension)
+Suppose 𝑉 and 𝑊 are finite-dimensional vector spaces of the same dimension,
+𝑆 ∈ ℒ(𝑊,𝑉), and 𝑇 ∈ ℒ(𝑉,𝑊). Then 𝑆𝑇 = 𝐼 if and only if 𝑇𝑆 = 𝐼.
+Proof First suppose 𝑆𝑇 = 𝐼. If 𝑣 ∈ 𝑉 and 𝑇𝑣 = 0, then
+𝑣 = 𝐼𝑣 = (𝑆𝑇)𝑣 = 𝑆(𝑇𝑣) = 𝑆(0) = 0.
+Thus 𝑇 is injective (by 3.15). Because 𝑉 and 𝑊 have the same dimension, this
+implies that 𝑇 is invertible (by 3.65).
+Now multiply both sides of the equation 𝑆𝑇 = 𝐼 by 𝑇−1
+on the right, getting
+𝑆 = 𝑇−1
+.
+Thus 𝑇𝑆 = 𝑇𝑇−1
+= 𝐼, as desired.
+To prove the implication in the other direction, simply reverse the roles of 𝑆
+and 𝑇 (and 𝑉 and 𝑊) in the direction we have already proved, showing that if
+𝑇𝑆 = 𝐼, then 𝑆𝑇 = 𝐼.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler86 Chapter 3 Linear Maps
+Isomorphic Vector Spaces
+The next definition captures the idea of two vector spaces that are essentially the
+same, except for the names of their elements.
+3.69 definition: isomorphism, isomorphic
+• An isomorphism is an invertible linear map.
+• Two vector spaces are called isomorphic if there is an isomorphism from
+one vector space onto the other one.
+Think of an isomorphism 𝑇∶ 𝑉 → 𝑊 as relabeling 𝑣 ∈ 𝑉 as 𝑇𝑣 ∈ 𝑊. This
+viewpoint explains why two isomorphic vector spaces have the same vector space
+properties. The terms “isomorphism” and “invertible linear map” mean the same
+thing. Use “isomorphism” when you want to emphasize that the two spaces are
+essentially the same.
+It can be difficult to determine whether two mathematical structures (such as
+groups or topological spaces) are essentially the same, differing only in the names
+of the elements of underlying sets. However, the next result shows that we need
+to look at only a single number (the dimension) to determine whether two vector
+spaces are isomorphic.
+3.70 dimension shows whether vector spaces are isomorphic
+Two finite-dimensional vector spaces over 𝐅 are isomorphic if and only if they
+have the same dimension.
+Proof First suppose 𝑉 and 𝑊 are isomorphic finite-dimensional vector spaces.
+Thus there exists an isomorphism 𝑇 from 𝑉 onto 𝑊. Because 𝑇 is invertible, we
+have null𝑇 = {0} and range𝑇 = 𝑊. Thus
+dimnull𝑇 = 0 and dimrange𝑇 = dim𝑊.
+The formula
+dim𝑉 = dimnull𝑇 + dimrange𝑇
+(thefundamentaltheoremoflinearmaps,whichis3.21)thusbecomestheequation
+dim𝑉 = dim𝑊, completing the proof in one direction.
+To prove the other direction, suppose 𝑉 and 𝑊 are finite-dimensional vector
+spaces of the same dimension. Let 𝑣1,…,𝑣𝑛 be a basis of 𝑉 and 𝑤1,…,𝑤𝑛 be a
+basis of 𝑊. Let 𝑇 ∈ ℒ(𝑉,𝑊) be defined by
+𝑇(𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛) = 𝑐1𝑤1 + ⋯ + 𝑐𝑛𝑤𝑛.
+Then 𝑇 is a well-defined linear map because 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Also, 𝑇
+is surjective because 𝑤1,…,𝑤𝑛 spans 𝑊. Furthermore, null𝑇 = {0} because
+𝑤1,…,𝑤𝑛 is linearly independent. Thus 𝑇 is injective. Because 𝑇 is injective and
+surjective, it is an isomorphism (see 3.63). Hence 𝑉 and 𝑊 are isomorphic.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 87
+Every finite-dimensional vector space
+isisomorphictosome𝐅𝑛
+. Thuswhynot
+just study 𝐅𝑛
+instead of more general
+vector spaces? To answer this ques-
+tion, note that an investigation of 𝐅𝑛
+would soon lead to other vector spaces.
+For example, we would encounter the
+null space and range of linear maps.
+Although each of these vector spaces
+is isomorphic to some 𝐅𝑚
+, thinking of
+them that way often adds complexity
+but no new insight.
+The previous result implies that each
+finite-dimensional vector space 𝑉 is iso-
+morphic to 𝐅𝑛
+, where 𝑛 = dim𝑉. For
+example, if 𝑚 is a nonnegative integer,
+then 𝒫𝑚(𝐅) is isomorphic to 𝐅𝑚+1
+.
+Recall that the notation 𝐅𝑚,𝑛
+denotes
+the vector space of 𝑚-by-𝑛 matrices with
+entries in 𝐅. If 𝑣1,…,𝑣𝑛 is a basis of 𝑉
+and 𝑤1,…,𝑤𝑚 is a basis of 𝑊, then for
+each 𝑇 ∈ ℒ(𝑉,𝑊), we have a matrix
+ℳ(𝑇) ∈ 𝐅𝑚,𝑛
+. Thus once bases have
+been fixed for 𝑉 and 𝑊, ℳ becomes a
+function from ℒ(𝑉,𝑊) to 𝐅𝑚,𝑛
+. Notice
+that 3.35 and 3.38 show that ℳ is a lin-
+ear map. This linear map is actually an
+isomorphism, as we now show.
+3.71 ℒ(𝑉,𝑊) and 𝐅𝑚,𝑛
+are isomorphic
+Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑤1,…,𝑤𝑚 is a basis of 𝑊. Then ℳ is
+an isomorphism between ℒ(𝑉,𝑊) and 𝐅𝑚,𝑛
+.
+Proof We already noted that ℳ is linear. We need to prove that ℳ is injective
+and surjective.
+We begin with injectivity. If 𝑇 ∈ ℒ(𝑉,𝑊) and ℳ(𝑇) = 0, then 𝑇𝑣𝑘 = 0 for
+each 𝑘 = 1,…,𝑛. Because 𝑣1,…,𝑣𝑛 is a basis of 𝑉, this implies 𝑇 = 0. Thus ℳ
+is injective (by 3.15).
+To prove that ℳ is surjective, suppose 𝐴 ∈ 𝐅𝑚,𝑛
+. By the linear map lemma
+(3.4), there exists 𝑇 ∈ ℒ(𝑉,𝑊) such that
+𝑇𝑣𝑘 =
+𝑚
+∑
+𝑗=1
+𝐴𝑗,𝑘𝑤𝑗
+for each 𝑘 = 1,…,𝑛. Because ℳ(𝑇) equals 𝐴, the range of ℳ equals 𝐅𝑚,𝑛
+, as
+desired.
+Now we can determine the dimension of the vector space of linear maps from
+one finite-dimensional vector space to another.
+3.72 dimℒ(𝑉,𝑊) = (dim𝑉)(dim𝑊)
+Suppose 𝑉 and 𝑊 are finite-dimensional. Then ℒ(𝑉,𝑊) is finite-dimensional
+and
+dimℒ(𝑉,𝑊) = (dim𝑉)(dim𝑊).
+Proof The desired result follows from 3.71, 3.70, and 3.40.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler88 Chapter 3 Linear Maps
+Linear Maps Thought of as Matrix Multiplication
+Previously we defined the matrix of a linear map. Now we define the matrix of a
+vector.
+3.73 definition: matrix of a vector, ℳ(𝑣)
+Suppose 𝑣 ∈ 𝑉 and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. The matrix of 𝑣 with respect to
+this basis is the 𝑛-by-1 matrix
+ℳ(𝑣) =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝑏1
+⋮
+𝑏𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where 𝑏1,…,𝑏𝑛 are the scalars such that
+𝑣 = 𝑏1𝑣1 + ⋯ + 𝑏𝑛𝑣𝑛.
+The matrix ℳ(𝑣) of a vector 𝑣 ∈ 𝑉 depends on the basis 𝑣1,…,𝑣𝑛 of 𝑉, as
+well as on 𝑣. However, the basis should be clear from the context and thus it is
+not included in the notation.
+3.74 example: matrix of a vector
+• The matrix of the polynomial 2 − 7𝑥 + 5𝑥3
++ 𝑥4
+with respect to the standard
+basis of 𝒫4(𝐑) is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+2
+−7
+0
+5
+1
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+• The matrix of a vector 𝑥 ∈ 𝐅𝑛
+with respect to the standard basis is obtained by
+writing the coordinates of 𝑥 as the entries in an 𝑛-by-1 matrix. In other words,
+if 𝑥 = (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+, then
+ℳ(𝑥) =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝑥1
+⋮
+𝑥𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Occasionally we want to think of elements of 𝑉 as relabeled to be 𝑛-by-1
+matrices. Once a basis 𝑣1,…,𝑣𝑛 is chosen, the function ℳ that takes 𝑣 ∈ 𝑉 to
+ℳ(𝑣) is an isomorphism of 𝑉 onto 𝐅𝑛,1
+that implements this relabeling.
+Recall that if 𝐴 is an 𝑚-by-𝑛 matrix, then 𝐴⋅,𝑘 denotes the 𝑘th
+column of 𝐴,
+thought of as an 𝑚-by-1 matrix. In the next result, ℳ(𝑇𝑣𝑘) is computed with
+respect to the basis 𝑤1,…,𝑤𝑚 of 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 89
+3.75 ℳ(𝑇)⋅,𝑘 = ℳ(𝑇𝑣𝑘)
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑤1,…,𝑤𝑚 is a basis
+of 𝑊. Let 1 ≤ 𝑘 ≤ 𝑛. Then the 𝑘th
+column of ℳ(𝑇), which is denoted by
+ℳ(𝑇)⋅,𝑘, equals ℳ(𝑇𝑣𝑘).
+Proof The desired result follows immediately from the definitions of ℳ(𝑇) and
+ℳ(𝑇𝑣𝑘).
+The next result shows how the notions of the matrix of a linear map, the matrix
+of a vector, and matrix multiplication fit together.
+3.76 linear maps act like matrix multiplication
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑣 ∈ 𝑉. Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and
+𝑤1,…,𝑤𝑚 is a basis of 𝑊. Then
+ℳ(𝑇𝑣) = ℳ(𝑇)ℳ(𝑣).
+Proof Suppose 𝑣 = 𝑏1𝑣1 + ⋯ + 𝑏𝑛𝑣𝑛, where 𝑏1,…,𝑏𝑛 ∈ 𝐅. Thus
+3.77 𝑇𝑣 = 𝑏1𝑇𝑣1 + ⋯ + 𝑏𝑛𝑇𝑣𝑛.
+Hence
+ℳ(𝑇𝑣) = 𝑏1ℳ(𝑇𝑣1) + ⋯ + 𝑏𝑛ℳ(𝑇𝑣𝑛)
+= 𝑏1ℳ(𝑇)⋅,1 + ⋯ + 𝑏𝑛ℳ(𝑇)⋅,𝑛
+= ℳ(𝑇)ℳ(𝑣),
+where the first equality follows from 3.77 and the linearity of ℳ, the second
+equality comes from 3.75, and the last equality comes from 3.50.
+Each 𝑚-by-𝑛 matrix 𝐴 induces a linear map from 𝐅𝑛,1
+to 𝐅𝑚,1
+, namely the
+matrix multiplication function that takes 𝑥 ∈ 𝐅𝑛,1
+to 𝐴𝑥 ∈ 𝐅𝑚,1
+. The result above
+can be used to think of every linear map (from a finite-dimensional vector space
+to another finite-dimensional vector space) as a matrix multiplication map after
+suitablerelabelingviatheisomorphismsgivenbyℳ. Specifically,if𝑇 ∈ ℒ(𝑉,𝑊)
+and we identify 𝑣 ∈ 𝑉 with ℳ(𝑣) ∈ 𝐅𝑛,1
+, then the result above says that we can
+identify 𝑇𝑣 with ℳ(𝑇)ℳ(𝑣).
+Because the result above allows us to think (via isomorphisms) of each linear
+map as multiplication on 𝐅𝑛,1
+by some matrix 𝐴, keep in mind that the specific
+matrix 𝐴 depends not only on the linear map but also on the choice of bases. One
+of the themes of many of the most important results in later chapters will be the
+choice of a basis that makes the matrix 𝐴 as simple as possible.
+In this book, we concentrate on linear maps rather than on matrices. However,
+sometimes thinking of linear maps as matrices (or thinking of matrices as linear
+maps) gives important insights that we will find useful.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler90 Chapter 3 Linear Maps
+Notice that no bases are in sight in the statement of the next result. Although
+ℳ(𝑇) in the next result depends on a choice of bases of 𝑉 and 𝑊, the next result
+shows that the column rank of ℳ(𝑇) is the same for all such choices (because
+range𝑇 does not depend on a choice of basis).
+3.78 dimension of range𝑇 equals column rank of ℳ(𝑇)
+Suppose𝑉 and𝑊 arefinite-dimensionaland𝑇 ∈ ℒ(𝑉,𝑊). Thendimrange𝑇
+equals the column rank of ℳ(𝑇).
+Proof Suppose𝑣1,…,𝑣𝑛 isabasisof𝑉 and𝑤1,…,𝑤𝑚 isabasisof𝑊. Thelinear
+map that takes 𝑤 ∈ 𝑊 to ℳ(𝑤) is an isomorphism from 𝑊 onto the space 𝐅𝑚,1
+of 𝑚-by-1 column vectors. The restriction of this isomorphism to range𝑇 [which
+equals span(𝑇𝑣1,…,𝑇𝑣𝑛) by Exercise 10 in Section 3B] is an isomorphism from
+range𝑇 onto span(ℳ(𝑇𝑣1),…,ℳ(𝑇𝑣𝑛)). For each 𝑘 ∈ {1,…,𝑛}, the 𝑚-by-1
+matrix ℳ(𝑇𝑣𝑘) equals column 𝑘 of ℳ(𝑇). Thus
+dimrange𝑇 = the column rank of ℳ(𝑇),
+as desired.
+Change of Basis
+In Section 3C we defined the matrix
+ℳ(𝑇,(𝑣1,…,𝑣𝑛),(𝑤1,…,𝑤𝑚))
+of a linear map 𝑇 from 𝑉 to a possibly different vector space 𝑊, where 𝑣1,…,𝑣𝑛
+is a basis of 𝑉 and 𝑤1,…,𝑤𝑚 is a basis of 𝑊. For linear maps from a vector space
+to itself, we usually use the same basis for both the domain vector space and the
+target vector space. When using a single basis in both capacities, we often write
+the basis only once. In other words, if 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉,
+then the notation ℳ(𝑇,(𝑣1,…,𝑣𝑛)) is defined by the equation
+ℳ(𝑇,(𝑣1,…,𝑣𝑛)) = ℳ(𝑇,(𝑣1,…,𝑣𝑛),(𝑣1,…,𝑣𝑛)).
+If the basis 𝑣1,…,𝑣𝑛 is clear from the context, then we can write just ℳ(𝑇).
+3.79 definition: identity matrix, I
+Suppose 𝑛 is a positive integer. The 𝑛-by-𝑛 matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+1 0
+⋱
+0 1
+⎞ ⎟ ⎟ ⎟
+⎠
+with 1’s on the diagonal (the entries where the row number equals the column
+number) and 0’s elsewhere is called the identity matrix and is denoted by 𝐼.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 91
+Inthedefinitionabove, the0 inthelowerleftcornerofthematrixindicatesthat
+all entries below the diagonal are 0, and the 0 in the upper right corner indicates
+that all entries above the diagonal are 0.
+With respect to each basis of 𝑉, the matrix of the identity operator 𝐼 ∈ ℒ(𝑉)
+is the identity matrix 𝐼. Note that the symbol 𝐼 is used to denote both the identity
+operator and the identity matrix. The context indicates which meaning of 𝐼 is
+intended. For example, consider the equation ℳ(𝐼) = 𝐼; on the left side 𝐼 denotes
+the identity operator, and on the right side 𝐼 denotes the identity matrix.
+If 𝐴 is a square matrix (meaning it has the same number of rows as columns)
+with the same size as 𝐼, then 𝐴𝐼 = 𝐼𝐴 = 𝐴, as you should verify.
+3.80 definition: invertible, inverse, 𝐴−1
+A square matrix 𝐴 is called invertible if there is a square matrix 𝐵 of the same
+size such that 𝐴𝐵 = 𝐵𝐴 = 𝐼; we call 𝐵 the inverse of 𝐴 and denote it by 𝐴−1
+.
+Some mathematicians use the terms
+nonsingular and singular, which
+mean the same as invertible and non-
+invertible.
+The same proof as used in 3.60 shows
+that if 𝐴 is an invertible square matrix,
+then there is a unique matrix 𝐵 such that
+𝐴𝐵 = 𝐵𝐴 = 𝐼 (and thus the notation
+𝐵 = 𝐴−1
+is justified).
+If 𝐴 is an invertible matrix, then (𝐴−1
+)
+−1
+= 𝐴 because
+𝐴−1
+𝐴 = 𝐴𝐴−1
+= 𝐼.
+Also, if 𝐴 and 𝐶 are invertible square matrices of the same size, then 𝐴𝐶 is
+invertible and (𝐴𝐶)−1
+= 𝐶−1
+𝐴−1
+because
+(𝐴𝐶)(𝐶−1
+𝐴−1
+) = 𝐴(𝐶𝐶−1
+)𝐴−1
+= 𝐴𝐼𝐴−1
+= 𝐴𝐴−1
+= 𝐼,
+and similarly (𝐶−1
+𝐴−1
+)(𝐴𝐶) = 𝐼.
+The next result holds because we defined matrix multiplication to make it
+true—see 3.43 and the material preceding it. Now we are just being more explicit
+about the bases involved.
+3.81 matrix of product of linear maps
+Suppose 𝑇 ∈ ℒ(𝑈,𝑉) and 𝑆 ∈ ℒ(𝑉,𝑊). If 𝑢1,…,𝑢𝑚 is a basis of 𝑈,
+𝑣1,…,𝑣𝑛 is a basis of 𝑉, and 𝑤1,…,𝑤𝑝 is a basis of 𝑊, then
+ℳ(𝑆𝑇,(𝑢1,…,𝑢𝑚),(𝑤1,…,𝑤𝑝)) =
+ℳ(𝑆,(𝑣1,…,𝑣𝑛),(𝑤1,…,𝑤𝑝))ℳ(𝑇,(𝑢1,…,𝑢𝑚),(𝑣1,…,𝑣𝑛)).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler92 Chapter 3 Linear Maps
+The next result deals with the matrix of the identity operator 𝐼 with respect to
+two different bases. Note that the 𝑘th
+column of ℳ(𝐼,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛))
+consists of the scalars needed to write 𝑢𝑘 as a linear combination of the basis
+𝑣1,…,𝑣𝑛.
+In the statement of the next result, 𝐼 denotes the identity operator from 𝑉 to 𝑉.
+In the proof, 𝐼 also denotes the 𝑛-by-𝑛 identity matrix.
+3.82 matrix of identity operator with respect to two bases
+Suppose that 𝑢1,…,𝑢𝑛 and 𝑣1,…,𝑣𝑛 are bases of 𝑉. Then the matrices
+ℳ(𝐼,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)) and ℳ(𝐼,(𝑣1,…,𝑣𝑛),(𝑢1,…,𝑢𝑛))
+are invertible, and each is the inverse of the other.
+Proof In 3.81, replace 𝑤𝑘 with 𝑢𝑘, and replace 𝑆 and 𝑇 with 𝐼, getting
+𝐼 = ℳ(𝐼,(𝑣1,…,𝑣𝑛),(𝑢1,…,𝑢𝑛))ℳ(𝐼,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)).
+Now interchange the roles of the 𝑢’s and 𝑣’s, getting
+𝐼 = ℳ(𝐼,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛))ℳ(𝐼,(𝑣1,…,𝑣𝑛),(𝑢1,…,𝑢𝑛)).
+These two equations above give the desired result.
+3.83 example: matrix of identity operator on 𝐅2
+with respect to two bases
+Consider the bases (4,2),(5,3) and (1,0),(0,1) of 𝐅2
+. Because 𝐼(4,2) =
+4(1,0) + 2(0,1) and 𝐼(5,3) = 5(1,0) + 3(0,1), we have
+ℳ(𝐼,((4,2),(5,3)),((1,0),(0,1))) = (
+4 5
+2 3
+).
+The inverse of the matrix above is
+⎛ ⎜
+⎝
+3
+2
+−5
+2
+−1 2
+⎞ ⎟
+⎠
+,
+as you should verify. Thus 3.82 implies that
+ℳ(𝐼,((1,0),(0,1)),((4,2),(5,3))) = ⎛ ⎜
+⎝
+3
+2
+−5
+2
+−1 2
+⎞ ⎟
+⎠
+.
+Our next result shows how the matrix of 𝑇 changes when we change bases. In
+thenextresult,wehavetwodifferentbasesof𝑉,eachofwhichisusedasabasisfor
+the domain space and as a basis for the target space. Recall our shorthand notation
+that allows us to display a basis only once when it is used in both capacities:
+ℳ(𝑇,(𝑢1,…,𝑢𝑛)) = ℳ(𝑇,(𝑢1,…,𝑢𝑛),(𝑢1,…,𝑢𝑛)).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 93
+3.84 change-of-basis formula
+Suppose 𝑇 ∈ ℒ(𝑉). Suppose 𝑢1,…,𝑢𝑛 and 𝑣1,…,𝑣𝑛 are bases of 𝑉. Let
+𝐴 = ℳ(𝑇,(𝑢1,…,𝑢𝑛)) and 𝐵 = ℳ(𝑇,(𝑣1,…,𝑣𝑛))
+and 𝐶 = ℳ(𝐼,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)). Then
+𝐴 = 𝐶−1
+𝐵𝐶.
+Proof In 3.81, replace 𝑤𝑘 with 𝑢𝑘 and replace 𝑆 with 𝐼, getting
+3.85 𝐴 = 𝐶−1
+ℳ(𝑇,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)),
+where we have used 3.82.
+Again use 3.81, this time replacing 𝑤𝑘 with 𝑣𝑘. Also replace 𝑇 with 𝐼 and
+replace 𝑆 with 𝑇, getting
+ℳ(𝑇,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)) = 𝐵𝐶.
+Substituting the equation above into 3.85 gives the equation 𝐴 = 𝐶−1
+𝐵𝐶.
+The proof of the next result is left as an exercise.
+3.86 matrix of inverse equals inverse of matrix
+Suppose that 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑇 ∈ ℒ(𝑉) is invertible. Then
+ℳ(𝑇−1
+) = (ℳ(𝑇))
+−1
+, where both matrices are with respect to the basis
+𝑣1,…,𝑣𝑛.
+Exercises 3D
+1 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) is invertible. Show that 𝑇−1
+is invertible and
+(𝑇−1
+)
+−1
+= 𝑇.
+2 Suppose 𝑇 ∈ ℒ(𝑈,𝑉) and 𝑆 ∈ ℒ(𝑉,𝑊) are both invertible linear maps.
+Prove that 𝑆𝑇 ∈ ℒ(𝑈,𝑊) is invertible and that (𝑆𝑇)−1
+= 𝑇−1
+𝑆−1
+.
+## 3 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that the following
+are equivalent.
+(a) 𝑇 is invertible.
+(b) 𝑇𝑣1,…,𝑇𝑣𝑛 is a basis of 𝑉 for every basis 𝑣1,…,𝑣𝑛 of 𝑉.
+(c) 𝑇𝑣1,…,𝑇𝑣𝑛 is a basis of 𝑉 for some basis 𝑣1,…,𝑣𝑛 of 𝑉.
+4 Suppose 𝑉 is finite-dimensional and dim𝑉 > 1. Prove that the set of
+noninvertible linear maps from 𝑉 to itself is not a subspace of ℒ(𝑉).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler94 Chapter 3 Linear Maps
+5 Suppose 𝑉 is finite-dimensional, 𝑈 is a subspace of 𝑉, and 𝑆 ∈ ℒ(𝑈,𝑉).
+Prove that there exists an invertible linear map 𝑇 from 𝑉 to itself such that
+𝑇𝑢 = 𝑆𝑢 for every 𝑢 ∈ 𝑈 if and only if 𝑆 is injective.
+6 Suppose that 𝑊 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+null𝑆 = null𝑇 if and only if there exists an invertible 𝐸 ∈ ℒ(𝑊) such that
+𝑆 = 𝐸𝑇.
+7 Suppose that 𝑉 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+range𝑆 = range𝑇 if and only if there exists an invertible 𝐸 ∈ ℒ(𝑉) such
+that 𝑆 = 𝑇𝐸.
+8 Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+there exist invertible 𝐸1 ∈ ℒ(𝑉) and 𝐸2 ∈ ℒ(𝑊) such that 𝑆 = 𝐸2𝑇𝐸1 if
+and only if dimnull𝑆 = dimnull𝑇.
+9 Suppose 𝑉 is finite-dimensional and 𝑇∶ 𝑉 → 𝑊 is a surjective linear map
+of 𝑉 onto 𝑊. Prove that there is a subspace 𝑈 of 𝑉 such that 𝑇|𝑈 is an
+isomorphism of 𝑈 onto 𝑊.
+Here 𝑇|𝑈 means the function 𝑇 restricted to 𝑈. Thus 𝑇|𝑈 is the function
+whose domain is 𝑈, with 𝑇|𝑈 defined by 𝑇|𝑈(𝑢) = 𝑇𝑢 for every 𝑢 ∈ 𝑈.
+## 10 Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑈 is a subspace of 𝑉. Let
+ℰ = {𝑇 ∈ ℒ(𝑉,𝑊) ∶ 𝑈 ⊆ null𝑇}.
+(a) Show that ℰ is a subspace of ℒ(𝑉,𝑊).
+(b) Find a formula for dimℰ in terms of dim𝑉, dim𝑊, and dim𝑈.
+Hint: Define Φ∶ ℒ(𝑉,𝑊) → ℒ(𝑈,𝑊) by Φ(𝑇) = 𝑇|𝑈. What is nullΦ?
+What is rangeΦ?
+11 Suppose 𝑉 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉). Prove that
+𝑆𝑇 is invertible ⟺ 𝑆 and 𝑇 are invertible.
+12 Suppose 𝑉 is finite-dimensional and 𝑆,𝑇,𝑈 ∈ ℒ(𝑉) and 𝑆𝑇𝑈 = 𝐼. Show
+that 𝑇 is invertible and that 𝑇−1
+= 𝑈𝑆.
+## 13 Show that the result in Exercise 12 can fail without the hypothesis that 𝑉 is
+finite-dimensional.
+## 14 Prove or give a counterexample: If 𝑉 is a finite-dimensional vector space
+and 𝑅,𝑆,𝑇 ∈ ℒ(𝑉) are such that 𝑅𝑆𝑇 is surjective, then 𝑆 is injective.
+15 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑚 is a list in 𝑉 such that 𝑇𝑣1,…,𝑇𝑣𝑚
+spans 𝑉. Prove that 𝑣1,…,𝑣𝑚 spans 𝑉.
+16 Prove that every linear map from 𝐅𝑛,1
+to 𝐅𝑚,1
+is given by a matrix multipli-
+cation. In other words, prove that if 𝑇 ∈ ℒ(𝐅𝑛,1
+,𝐅𝑚,1
+), then there exists an
+𝑚-by-𝑛 matrix 𝐴 such that 𝑇𝑥 = 𝐴𝑥 for every 𝑥 ∈ 𝐅𝑛,1
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3D Invertibility and Isomorphisms 95
+## 17 Suppose 𝑉 is finite-dimensional and 𝑆 ∈ ℒ(𝑉). Define 𝒜 ∈ ℒ(ℒ(𝑉)) by
+𝒜(𝑇) = 𝑆𝑇
+for 𝑇 ∈ ℒ(𝑉).
+(a) Show that dimnull𝒜 = (dim𝑉)(dimnull𝑆).
+(b) Show that dimrange𝒜 = (dim𝑉)(dimrange𝑆).
+18 Show that 𝑉 and ℒ(𝐅,𝑉) are isomorphic vector spaces.
+## 19 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 has the same
+matrix with respect to every basis of 𝑉 if and only if 𝑇 is a scalar multiple
+of the identity operator.
+## 20 Suppose 𝑞 ∈ 𝒫(𝐑). Prove that there exists a polynomial 𝑝 ∈ 𝒫(𝐑) such
+that
+𝑞(𝑥) = (𝑥2
++ 𝑥)𝑝″
+(𝑥) + 2𝑥𝑝′
+(𝑥) + 𝑝(3)
+for all 𝑥 ∈ 𝐑.
+21 Suppose 𝑛 is a positive integer and 𝐴𝑗,𝑘 ∈ 𝐅 for all 𝑗,𝑘 = 1,…,𝑛. Prove that
+the following are equivalent (note that in both parts below, the number of
+equations equals the number of variables).
+(a) The trivial solution 𝑥1 = ⋯ = 𝑥𝑛 = 0 is the only solution to the
+homogeneous system of equations
+𝑛
+∑
+𝑘=1
+𝐴1,𝑘 𝑥𝑘 = 0
+⋮
+𝑛
+∑
+𝑘=1
+𝐴𝑛,𝑘 𝑥𝑘 = 0.
+(b) Forevery𝑐1,…,𝑐𝑛 ∈ 𝐅,thereexistsasolutiontothesystemofequations
+𝑛
+∑
+𝑘=1
+𝐴1,𝑘 𝑥𝑘 = 𝑐1
+⋮
+𝑛
+∑
+𝑘=1
+𝐴𝑛,𝑘 𝑥𝑘 = 𝑐𝑛.
+22 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Prove that
+ℳ(𝑇,(𝑣1,…,𝑣𝑛)) is invertible ⟺ 𝑇 is invertible.
+23 Suppose that 𝑢1,…,𝑢𝑛 and 𝑣1,…,𝑣𝑛 are bases of 𝑉. Let 𝑇 ∈ ℒ(𝑉) be such
+that 𝑇𝑣𝑘 = 𝑢𝑘 for each 𝑘 = 1,…,𝑛. Prove that
+ℳ(𝑇,(𝑣1,…,𝑣𝑛)) = ℳ(𝐼,(𝑢1,…,𝑢𝑛),(𝑣1,…,𝑣𝑛)).
+24 Suppose 𝐴 and 𝐵 are square matrices of the same size and 𝐴𝐵 = 𝐼. Prove
+that 𝐵𝐴 = 𝐼.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler96 Chapter 3 Linear Maps
+3E Products and Quotients of Vector Spaces
+Products of Vector Spaces
+As usual when dealing with more than one vector space, all vector spaces in use
+should be over the same field.
+3.87 definition: product of vector spaces
+Suppose 𝑉1,…,𝑉𝑚 are vector spaces over 𝐅.
+• The product 𝑉1 × ⋯ × 𝑉𝑚 is defined by
+𝑉1 × ⋯ × 𝑉𝑚 = {(𝑣1,…,𝑣𝑚) ∶ 𝑣1 ∈ 𝑉1,…,𝑣𝑚 ∈ 𝑉𝑚}.
+• Addition on 𝑉1 × ⋯ × 𝑉𝑚 is defined by
+(𝑢1,…,𝑢𝑚) + (𝑣1,…,𝑣𝑚) = (𝑢1 + 𝑣1,…,𝑢𝑚 + 𝑣𝑚).
+• Scalar multiplication on 𝑉1 × ⋯ × 𝑉𝑚 is defined by
+𝜆(𝑣1,…,𝑣𝑚) = (𝜆𝑣1,…, 𝜆𝑣𝑚).
+3.88 example: product of the vector spaces 𝒫5(𝐑) and 𝐑3
+Elements of 𝒫5(𝐑) × 𝐑3
+are lists of length two, with the first item in the list
+an element of 𝒫5(𝐑) and the second item in the list an element of 𝐑3
+.
+For example, (5 − 6𝑥 + 4𝑥2
+,(3,8,7)) and (𝑥 + 9𝑥5
+,(2,2,2)) are elements of
+𝒫5(𝐑) × 𝐑3
+. Their sum is defined by
+(5 − 6𝑥 + 4𝑥2
+,(3,8,7)) + (𝑥 + 9𝑥5
+,(2,2,2))
+= (5 − 5𝑥 + 4𝑥2
++ 9𝑥5
+,(5,10,9)).
+Also, 2(5 − 6𝑥 + 4𝑥2
+,(3,8,7)) = (10 − 12𝑥 + 8𝑥2
+,(6,16,14)).
+The next result should be interpreted to mean that the product of vector spaces
+is a vector space with the operations of addition and scalar multiplication as
+defined by 3.87.
+3.89 product of vector spaces is a vector space
+Suppose 𝑉1,…,𝑉𝑚 are vector spaces over 𝐅. Then 𝑉1 × ⋯ × 𝑉𝑚 is a vector
+space over 𝐅.
+The proof of the result above is left to the reader. Note that the additive identity
+of 𝑉1 × ⋯ × 𝑉𝑚 is (0,…,0), where the 0 in the 𝑘th
+slot is the additive identity
+of 𝑉𝑘. The additive inverse of (𝑣1,…,𝑣𝑚) ∈ 𝑉1 × ⋯ × 𝑉𝑚 is (−𝑣1,…,−𝑣𝑚).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3E Products and Quotients of Vector Spaces 97
+3.90 example: 𝐑2
+× 𝐑3
+≠ 𝐑5
+but 𝐑2
+× 𝐑3
+is isomorphic to 𝐑5
+Elements of the vector space 𝐑2
+× 𝐑3
+are lists
+((𝑥1,𝑥2),(𝑥3,𝑥4,𝑥5)),
+where 𝑥1,𝑥2,𝑥3,𝑥4,𝑥5 ∈ 𝐑. Elements of 𝐑5
+are lists
+(𝑥1,𝑥2,𝑥3,𝑥4,𝑥5),
+where 𝑥1,𝑥2,𝑥3,𝑥4,𝑥5 ∈ 𝐑.
+Although elements of 𝐑2
+×𝐑3
+and 𝐑5
+look similar, they are not the same kind
+of object. Elements of 𝐑2
+× 𝐑3
+are lists of length two (with the first item itself a
+list of length two and the second item a list of length three), and elements of 𝐑5
+are lists of length five. Thus 𝐑2
+× 𝐑3
+does not equal 𝐑5
+.
+This isomorphism is so natural that
+we should think of it as a relabel-
+ing. Some people informally say that
+𝐑2
+×𝐑3
+equals𝐑5
+,whichisnottechni-
+cally correct but which captures the
+spirit of identification via relabeling.
+The linear map
+((𝑥1,𝑥2),(𝑥3,𝑥4,𝑥5)) ↦ (𝑥1,𝑥2,𝑥3,𝑥4,𝑥5)
+is an isomorphism of the vector space
+𝐑2
+× 𝐑3
+onto the vector space 𝐑5
+. Thus
+these two vector spaces are isomorphic, al-
+though they are not equal.
+The next example illustrates the idea that we will use in the proof of 3.92.
+3.91 example: a basis of 𝒫2(𝐑) × 𝐑2
+Consider this list of length five of elements of 𝒫2(𝐑) × 𝐑2
+:
+(1,(0,0)),(𝑥,(0,0)),(𝑥2
+,(0,0)),(0,(1,0)),(0,(0,1)).
+The list above is linearly independent and it spans 𝒫2(𝐑) × 𝐑2
+. Thus it is a basis
+of 𝒫2(𝐑) × 𝐑2
+.
+3.92 dimension of a product is the sum of dimensions
+Suppose 𝑉1,…,𝑉𝑚 are finite-dimensional vector spaces. Then 𝑉1 × ⋯ × 𝑉𝑚
+is finite-dimensional and
+dim(𝑉1 × ⋯ × 𝑉𝑚) = dim𝑉1 + ⋯ + dim𝑉𝑚.
+Proof Choose a basis of each 𝑉𝑘. For each basis vector of each 𝑉𝑘, consider the
+element of 𝑉1 ×⋯×𝑉𝑚 that equals the basis vector in the 𝑘th
+slot and 0 in the other
+slots. The list of all such vectors is linearly independent and spans 𝑉1 × ⋯ × 𝑉𝑚.
+Thus it is a basis of 𝑉1 ×⋯×𝑉𝑚. The length of this basis is dim𝑉1 +⋯+dim𝑉𝑚,
+as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler98 Chapter 3 Linear Maps
+Inthenextresult, themapΓ issurjectivebythedefinitionof𝑉1+⋯+𝑉𝑚. Thus
+the last word in the result below could be changed from “injective” to “invertible”.
+3.93 products and direct sums
+Suppose that 𝑉1,…,𝑉𝑚 are subspaces of 𝑉. Define a linear map
+Γ ∶ 𝑉1 × ⋯ × 𝑉𝑚 → 𝑉1 + ⋯ + 𝑉𝑚 by
+Γ(𝑣1,…,𝑣𝑚) = 𝑣1 + ⋯ + 𝑣𝑚.
+Then 𝑉1 + ⋯ + 𝑉𝑚 is a direct sum if and only if Γ is injective.
+Proof By 3.15, Γ is injective if and only if the only way to write 0 as a sum
+𝑣1 + ⋯ + 𝑣𝑚, where each 𝑣𝑘 is in 𝑉𝑘, is by taking each 𝑣𝑘 equal to 0. Thus 1.45
+shows that Γ is injective if and only if 𝑉1 + ⋯ + 𝑉𝑚 is a direct sum, as desired.
+3.94 a sum is a direct sum if and only if dimensions add up
+Suppose 𝑉 is finite-dimensional and 𝑉1,…,𝑉𝑚 are subspaces of 𝑉. Then
+𝑉1 + ⋯ + 𝑉𝑚 is a direct sum if and only if
+dim(𝑉1 + ⋯ + 𝑉𝑚) = dim𝑉1 + ⋯ + dim𝑉𝑚.
+Proof The map Γ in 3.93 is surjective. Thus by the fundamental theorem of
+linear maps (3.21), Γ is injective if and only if
+dim(𝑉1 + ⋯ + 𝑉𝑚) = dim(𝑉1 × ⋯ × 𝑉𝑚).
+Combining 3.93 and 3.92 now shows that 𝑉1 +⋯+𝑉𝑚 is a direct sum if and only
+if
+dim(𝑉1 + ⋯ + 𝑉𝑚) = dim𝑉1 + ⋯ + dim𝑉𝑚,
+as desired.
+In the special case 𝑚 = 2, an alternative proof that 𝑉1 + 𝑉2 is a direct sum if
+and only if dim(𝑉1 + 𝑉2) = dim𝑉1 + dim𝑉2 can be obtained by combining 1.46
+and 2.43.
+Quotient Spaces
+We begin our approach to quotient spaces by defining the sum of a vector and a
+subset.
+3.95 notation: 𝑣 + 𝑈
+Suppose 𝑣 ∈ 𝑉 and 𝑈 ⊆ 𝑉. Then 𝑣 + 𝑈 is the subset of 𝑉 defined by
+𝑣 + 𝑈 = {𝑣 + 𝑢 ∶ 𝑢 ∈ 𝑈}.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3E Products and Quotients of Vector Spaces 99
+3.96 example: sum of a vector and a one-dimensional subspace of 𝐑2
+(17,20) + 𝑈 is parallel
+to the subspace 𝑈.
+Suppose
+𝑈 = {(𝑥,2𝑥) ∈ 𝐑2
+∶ 𝑥 ∈ 𝐑}.
+Hence 𝑈 is the line in 𝐑2
+through the origin with
+slope 2. Thus
+(17,20) + 𝑈
+is the line in 𝐑2
+that contains the point (17,20)
+and has slope 2.
+Because
+(10,20) ∈ 𝑈 and (17,20) ∈ (17,20) + 𝑈,
+we see that (17,20) +𝑈 is obtained by moving 𝑈
+to the right by 7 units.
+3.97 definition: translate
+For 𝑣 ∈ 𝑉 and 𝑈 a subset of 𝑉, the set 𝑣 + 𝑈 is said to be a translate of 𝑈.
+3.98 example: translates
+• If 𝑈 is the line in 𝐑2
+defined by 𝑈 = {(𝑥,2𝑥) ∈ 𝐑2
+∶ 𝑥 ∈ 𝐑}, then all lines in
+𝐑2
+with slope 2 are translates of 𝑈. See Example 3.96 above for a drawing of
+𝑈 and one of its translates.
+• More generally, if 𝑈 is a line in 𝐑2
+, then the set of all translates of 𝑈 is the set
+of all lines in 𝐑2
+that are parallel to 𝑈.
+• If 𝑈 = {(𝑥,𝑦,0) ∈ 𝐑3
+∶ 𝑥,𝑦 ∈ 𝐑}, then the translates of 𝑈 are the planes in
+𝐑3
+that are parallel to the 𝑥𝑦-plane 𝑈.
+• More generally, if 𝑈 is a plane in 𝐑3
+, then the set of all translates of 𝑈 is the
+set of all planes in 𝐑3
+that are parallel to 𝑈 (see, for example, Exercise 7).
+3.99 definition: quotient space, 𝑉/𝑈
+Suppose 𝑈 is a subspace of 𝑉. Then the quotient space 𝑉/𝑈 is the set of all
+translates of 𝑈. Thus
+𝑉/𝑈 = {𝑣 + 𝑈 ∶ 𝑣 ∈ 𝑉}.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler100 Chapter 3 Linear Maps
+3.100 example: quotient spaces
+• If 𝑈 = {(𝑥,2𝑥) ∈ 𝐑2
+∶ 𝑥 ∈ 𝐑}, then 𝐑2
+/𝑈 is the set of all lines in 𝐑2
+that have
+slope 2.
+• If 𝑈 is a line in 𝐑3
+containing the origin, then 𝐑3
+/𝑈 is the set of all lines in 𝐑3
+parallel to 𝑈.
+• If 𝑈 is a plane in 𝐑3
+containing the origin, then 𝐑3
+/𝑈 is the set of all planes in
+𝐑3
+parallel to 𝑈.
+Our next goal is to make 𝑉/𝑈 into a vector space. To do this, we will need
+the next result.
+3.101 two translates of a subspace are equal or disjoint
+Suppose 𝑈 is a subspace of 𝑉 and 𝑣,𝑤 ∈ 𝑉. Then
+𝑣 − 𝑤 ∈ 𝑈 ⟺ 𝑣 + 𝑈 = 𝑤 + 𝑈 ⟺ (𝑣 + 𝑈) ∩ (𝑤 + 𝑈) ≠ ∅.
+Proof First suppose 𝑣 − 𝑤 ∈ 𝑈. If 𝑢 ∈ 𝑈, then
+𝑣 + 𝑢 = 𝑤 + ((𝑣 − 𝑤) + 𝑢) ∈ 𝑤 + 𝑈.
+Thus 𝑣+𝑈 ⊆ 𝑤+𝑈. Similarly, 𝑤+𝑈 ⊆ 𝑣+𝑈. Thus 𝑣+𝑈 = 𝑤+𝑈, completing
+the proof that 𝑣 − 𝑤 ∈ 𝑈 implies 𝑣 + 𝑈 = 𝑤 + 𝑈.
+The equation 𝑣 + 𝑈 = 𝑤 + 𝑈 implies that (𝑣 + 𝑈) ∩ (𝑤 + 𝑈) ≠ ∅.
+Now suppose (𝑣 + 𝑈) ∩ (𝑤 + 𝑈) ≠ ∅. Thus there exist 𝑢1,𝑢2 ∈ 𝑈 such that
+𝑣 + 𝑢1 = 𝑤 + 𝑢2.
+Thus 𝑣 − 𝑤 = 𝑢2 − 𝑢1. Hence 𝑣 − 𝑤 ∈ 𝑈, showing that (𝑣 + 𝑈) ∩ (𝑤 + 𝑈) ≠ ∅
+implies 𝑣 − 𝑤 ∈ 𝑈, which completes the proof.
+Now we can define addition and scalar multiplication on 𝑉/𝑈.
+3.102 definition: addition and scalar multiplication on 𝑉/𝑈
+Suppose 𝑈 is a subspace of 𝑉. Then addition and scalar multiplication are
+defined on 𝑉/𝑈 by
+(𝑣 + 𝑈) + (𝑤 + 𝑈) = (𝑣 + 𝑤) + 𝑈
+𝜆(𝑣 + 𝑈) = (𝜆𝑣) + 𝑈
+for all 𝑣,𝑤 ∈ 𝑉 and all 𝜆 ∈ 𝐅.
+As part of the proof of the next result, we will show that the definitions above
+make sense.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3E Products and Quotients of Vector Spaces 101
+3.103 quotient space is a vector space
+Suppose 𝑈 is a subspace of 𝑉. Then 𝑉/𝑈, with the operations of addition and
+scalar multiplication as defined above, is a vector space.
+Proof The potential problem with the definitions above of addition and scalar
+multiplication on 𝑉/𝑈 is that the representation of a translate of 𝑈 is not unique.
+Specifically, suppose 𝑣1,𝑣2,𝑤1,𝑤2 ∈ 𝑉 are such that
+𝑣1 + 𝑈 = 𝑣2 + 𝑈 and 𝑤1 + 𝑈 = 𝑤2 + 𝑈.
+To show that the definition of addition on 𝑉/𝑈 given above makes sense, we must
+show that (𝑣1 + 𝑤1) + 𝑈 = (𝑣2 + 𝑤2) + 𝑈.
+By 3.101, we have
+𝑣1 − 𝑣2 ∈ 𝑈 and 𝑤1 − 𝑤2 ∈ 𝑈.
+Because 𝑈 is a subspace of 𝑉 and thus is closed under addition, this implies that
+(𝑣1 −𝑣2)+(𝑤1 −𝑤2) ∈ 𝑈. Thus (𝑣1 +𝑤1)−(𝑣2 +𝑤2) ∈ 𝑈. Using 3.101 again,
+we see that
+(𝑣1 + 𝑤1) + 𝑈 = (𝑣2 + 𝑤2) + 𝑈,
+as desired. Thus the definition of addition on 𝑉/𝑈 makes sense.
+Similarly, suppose 𝜆 ∈ 𝐅. We are still assuming that 𝑣1 + 𝑈 = 𝑣2 + 𝑈.
+Because 𝑈 is a subspace of 𝑉 and thus is closed under scalar multiplication, we
+have 𝜆(𝑣1 − 𝑣2) ∈ 𝑈. Thus 𝜆𝑣1 − 𝜆𝑣2 ∈ 𝑈. Hence 3.101 implies that
+(𝜆𝑣1) + 𝑈 = (𝜆𝑣2) + 𝑈.
+Thus the definition of scalar multiplication on 𝑉/𝑈 makes sense.
+Now that addition and scalar multiplication have been defined on 𝑉/𝑈, the
+verification that these operations make 𝑉/𝑈 into a vector space is straightforward
+and is left to the reader. Note that the additive identity of 𝑉/𝑈 is 0 + 𝑈 (which
+equals 𝑈) and that the additive inverse of 𝑣 + 𝑈 is (−𝑣) + 𝑈.
+The next concept will lead to a computation of the dimension of 𝑉/𝑈.
+3.104 definition: quotient map, 𝜋
+Suppose 𝑈 is a subspace of 𝑉. The quotient map 𝜋∶ 𝑉 → 𝑉/𝑈 is the linear
+map defined by
+𝜋(𝑣) = 𝑣 + 𝑈
+for each 𝑣 ∈ 𝑉.
+The reader should verify that 𝜋 is indeed a linear map. Although 𝜋 depends
+on 𝑈 as well as 𝑉, these spaces are left out of the notation because they should be
+clear from the context.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler102 Chapter 3 Linear Maps
+3.105 dimension of quotient space
+Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Then
+dim𝑉/𝑈 = dim𝑉 − dim𝑈.
+Proof Let𝜋 denotethequotientmapfrom𝑉 to𝑉/𝑈. If𝑣 ∈ 𝑉,then𝑣+𝑈 = 0+𝑈
+if and only if 𝑣 ∈ 𝑈 (by 3.101), which implies that null𝜋 = 𝑈. The definition of
+𝜋 implies range𝜋 = 𝑉/𝑈. The fundamental theorem of linear maps (3.21) now
+implies dim𝑉 = dim𝑈 + dim𝑉/𝑈, which gives the desired result.
+Each linear map 𝑇 on 𝑉 induces a linear map ̃ 𝑇 on 𝑉/(null𝑇), as defined
+below.
+3.106 notation: ̃ 𝑇
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Define ̃ 𝑇∶ 𝑉/(null𝑇) → 𝑊 by
+̃ 𝑇(𝑣 + null𝑇) = 𝑇𝑣.
+To show that the definition of ̃ 𝑇 makes sense, suppose 𝑢,𝑣 ∈ 𝑉 are such that
+𝑢 + null𝑇 = 𝑣 + null𝑇. By 3.101, we have 𝑢 − 𝑣 ∈ null𝑇. Thus 𝑇(𝑢 − 𝑣) = 0.
+Hence 𝑇𝑢 = 𝑇𝑣. Thus the definition of ̃ 𝑇 indeed makes sense. The routine
+verification that ̃ 𝑇 is a linear map from 𝑉/(null𝑇) to 𝑊 is left to the reader.
+The next result shows that we can think of ̃ 𝑇 as a modified version of 𝑇, with
+a domain that produces a one-to-one map.
+3.107 null space and range of ̃ 𝑇
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) ̃ 𝑇 ∘ 𝜋 = 𝑇, where 𝜋 is the quotient map of 𝑉 onto 𝑉/(null𝑇);
+(b) ̃ 𝑇 is injective;
+(c) rangẽ 𝑇 = range𝑇;
+(d) 𝑉/(null𝑇) and range𝑇 are isomorphic vector spaces.
+Proof
+(a) If 𝑣 ∈ 𝑉, then (̃ 𝑇 ∘ 𝜋)(𝑣) = ̃ 𝑇(𝜋(𝑣)) = ̃ 𝑇(𝑣 + null𝑇) = 𝑇𝑣, as desired.
+(b) Suppose 𝑣 ∈ 𝑉 and ̃ 𝑇(𝑣 + null𝑇) = 0. Then 𝑇𝑣 = 0. Thus 𝑣 ∈ null𝑇.
+Hence 3.101 implies that 𝑣 + null𝑇 = 0 + null𝑇. This implies that null̃ 𝑇 =
+{0 + null𝑇}. Hence ̃ 𝑇 is injective, as desired.
+(c) The definition of ̃ 𝑇 shows that rangẽ 𝑇 = range𝑇.
+(d) Now (b) and (c) imply that if we think of ̃ 𝑇 as mapping into range𝑇, then ̃ 𝑇
+is an isomorphism from 𝑉/(null𝑇) onto range𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3E Products and Quotients of Vector Spaces 103
+Exercises 3E
+1 Suppose 𝑇 is a function from 𝑉 to 𝑊. The graph of 𝑇 is the subset of 𝑉×𝑊
+defined by
+graph of 𝑇 = {(𝑣,𝑇𝑣) ∈ 𝑉× 𝑊 ∶ 𝑣 ∈ 𝑉}.
+Prove that 𝑇 is a linear map if and only if the graph of 𝑇 is a subspace of
+𝑉× 𝑊.
+Formally, a function 𝑇 from 𝑉 to 𝑊 is a subset 𝑇 of 𝑉× 𝑊 such that for
+each 𝑣 ∈ 𝑉, there exists exactly one element (𝑣,𝑤) ∈ 𝑇. In other words,
+formally a function is what is called above its graph. We do not usually
+think of functions in this formal manner. However, if we do become formal,
+then this exercise could be rephrased as follows: Prove that a function 𝑇
+from 𝑉 to 𝑊 is a linear map if and only if 𝑇 is a subspace of 𝑉× 𝑊.
+2 Suppose that 𝑉1,…,𝑉𝑚 are vector spaces such that 𝑉1 × ⋯ × 𝑉𝑚 is finite-
+dimensional. Prove that 𝑉𝑘 is finite-dimensional for each 𝑘 = 1,…,𝑚.
+3 Suppose 𝑉1,…,𝑉𝑚 are vector spaces. Prove that ℒ(𝑉1 × ⋯ × 𝑉𝑚,𝑊) and
+ℒ(𝑉1,𝑊) × ⋯ × ℒ(𝑉𝑚,𝑊) are isomorphic vector spaces.
+Thereisnoassumptionintheexerciseaboveorinthetwofollowingexercises
+that the vector spaces are finite-dimensional.
+4 Suppose 𝑊1,…,𝑊𝑚 are vector spaces. Prove that ℒ(𝑉,𝑊1 × ⋯ × 𝑊𝑚) and
+ℒ(𝑉,𝑊1) × ⋯ × ℒ(𝑉,𝑊𝑚) are isomorphic vector spaces.
+5 For 𝑚 a positive integer, define 𝑉𝑚
+by
+𝑉𝑚
+= 𝑉× ⋯ × 𝑉 ⏟
+𝑚 times
+.
+Prove that 𝑉𝑚
+and ℒ(𝐅𝑚
+,𝑉) are isomorphic vector spaces.
+6 Suppose that 𝑣,𝑥 are vectors in 𝑉 and that 𝑈,𝑊 are subspaces of 𝑉 such
+that 𝑣 + 𝑈 = 𝑥 + 𝑊. Prove that 𝑈 = 𝑊.
+7 Let 𝑈 = {(𝑥,𝑦,𝑧) ∈ 𝐑3
+∶ 2𝑥 + 3𝑦 + 5𝑧 = 0}. Suppose 𝐴 ⊆ 𝐑3
+. Prove that
+𝐴 is a translate of 𝑈 if and only if there exists 𝑐 ∈ 𝐑 such that
+𝐴 = {(𝑥,𝑦,𝑧) ∈ 𝐑3
+∶ 2𝑥 + 3𝑦 + 5𝑧 = 𝑐}.
+8 (a) Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑐 ∈ 𝑊. Prove that {𝑥 ∈ 𝑉 ∶ 𝑇𝑥 = 𝑐} is
+either the empty set or is a translate of null𝑇.
+(b) Explain why the set of solutions to a system of linear equations such as
+3.27 is either the empty set or is a translate of some subspace of 𝐅𝑛
+.
+## 9 Prove that a nonempty subset 𝐴 of 𝑉 is a translate of some subspace of 𝑉 if
+and only if 𝜆𝑣 + (1 − 𝜆)𝑤 ∈ 𝐴 for all 𝑣,𝑤 ∈ 𝐴 and all 𝜆 ∈ 𝐅.
+10 Suppose 𝐴1 = 𝑣 + 𝑈1 and 𝐴2 = 𝑤 + 𝑈2 for some 𝑣,𝑤 ∈ 𝑉 and some
+subspaces 𝑈1,𝑈2 of 𝑉. Prove that the intersection 𝐴1 ∩ 𝐴2 is either a
+translate of some subspace of 𝑉 or is the empty set.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler104 Chapter 3 Linear Maps
+11 Suppose 𝑈 = {(𝑥1,𝑥2,…) ∈ 𝐅∞
+∶ 𝑥𝑘 ≠ 0 for only finitely many 𝑘}.
+(a) Show that 𝑈 is a subspace of 𝐅∞
+.
+(b) Prove that 𝐅∞
+/𝑈 is infinite-dimensional.
+12 Suppose 𝑣1,…,𝑣𝑚 ∈ 𝑉. Let
+𝐴 = {𝜆1𝑣1 + ⋯ + 𝜆𝑚𝑣𝑚 ∶ 𝜆1,…, 𝜆𝑚 ∈ 𝐅 and 𝜆1 + ⋯ + 𝜆𝑚 = 1}.
+(a) Prove that 𝐴 is a translate of some subspace of 𝑉.
+(b) Prove that if 𝐵 is a translate of some subspace of 𝑉 and {𝑣1,…,𝑣𝑚} ⊆ 𝐵,
+then 𝐴 ⊆ 𝐵.
+(c) Prove that 𝐴 is a translate of some subspace of 𝑉 of dimension less
+than 𝑚.
+## 13 Suppose 𝑈 is a subspace of 𝑉 such that 𝑉/𝑈 is finite-dimensional. Prove
+that 𝑉 is isomorphic to 𝑈 × (𝑉/𝑈).
+14 Suppose 𝑈 and 𝑊 are subspaces of 𝑉 and 𝑉 = 𝑈 ⊕𝑊. Suppose 𝑤1,…,𝑤𝑚
+is a basis of 𝑊. Prove that 𝑤1 + 𝑈,…,𝑤𝑚 + 𝑈 is a basis of 𝑉/𝑈.
+15 Suppose 𝑈 is a subspace of 𝑉 and 𝑣1 +𝑈,…,𝑣𝑚 +𝑈 is a basis of 𝑉/𝑈 and
+𝑢1,…,𝑢𝑛 is a basis of 𝑈. Prove that 𝑣1,…,𝑣𝑚,𝑢1,…,𝑢𝑛 is a basis of 𝑉.
+16 Suppose 𝜑 ∈ ℒ(𝑉,𝐅) and 𝜑 ≠ 0. Prove that dim𝑉/(null𝜑) = 1.
+17 Suppose 𝑈 is a subspace of 𝑉 such that dim𝑉/𝑈 = 1. Prove that there
+exists 𝜑 ∈ ℒ(𝑉,𝐅) such that null𝜑 = 𝑈.
+## 18 Suppose that 𝑈 is a subspace of 𝑉 such that 𝑉/𝑈 is finite-dimensional.
+(a) Show that if 𝑊 is a finite-dimensional subspace of 𝑉 and 𝑉 = 𝑈 + 𝑊,
+then dim𝑊 ≥ dim𝑉/𝑈.
+(b) Prove that there exists a finite-dimensional subspace 𝑊 of 𝑉 such that
+dim𝑊 = dim𝑉/𝑈 and 𝑉 = 𝑈 ⊕ 𝑊.
+19 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑈 is a subspace of 𝑉. Let 𝜋 denote the quotient
+map from 𝑉 onto 𝑉/𝑈. Prove that there exists 𝑆 ∈ ℒ(𝑉/𝑈,𝑊) such that
+𝑇 = 𝑆 ∘ 𝜋 if and only if 𝑈 ⊆ null𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 105
+3F Duality
+Dual Space and Dual Map
+Linear maps into the scalar field 𝐅 play a special role in linear algebra, and thus
+they get a special name.
+3.108 definition: linear functional
+A linear functional on 𝑉 is a linear map from 𝑉 to 𝐅. In other words, a linear
+functional is an element of ℒ(𝑉,𝐅).
+3.109 example: linear functionals
+• Define 𝜑∶ 𝐑3
+→ 𝐑 by 𝜑(𝑥,𝑦,𝑧) = 4𝑥 − 5𝑦 + 2𝑧. Then 𝜑 is a linear functional
+on 𝐑3
+.
+• Fix (𝑐1,…,𝑐𝑛) ∈ 𝐅𝑛
+. Define 𝜑∶ 𝐅𝑛
+→ 𝐅 by 𝜑(𝑥1,…,𝑥𝑛) = 𝑐1𝑥1 + ⋯ + 𝑐𝑛 𝑥𝑛.
+Then 𝜑 is a linear functional on 𝐅𝑛
+.
+• Define 𝜑∶ 𝒫(𝐑) → 𝐑 by
+𝜑(𝑝) = 3𝑝″
+(5) + 7𝑝(4).
+Then 𝜑 is a linear functional on 𝒫(𝐑).
+• Define 𝜑∶ 𝒫(𝐑) → 𝐑 by
+𝜑(𝑝) = ∫
+1
+0
+𝑝
+for each 𝑝 ∈ 𝒫(𝐑). Then 𝜑 is a linear functional on 𝒫(𝐑).
+The vector space ℒ(𝑉,𝐅) also gets a special name and special notation.
+3.110 definition: dual space, 𝑉′
+The dual space of 𝑉, denoted by 𝑉′
+, is the vector space of all linear functionals
+on 𝑉. In other words, 𝑉′
+= ℒ(𝑉,𝐅).
+3.111 dim𝑉′
+= dim𝑉
+Suppose 𝑉 is finite-dimensional. Then 𝑉′
+is also finite-dimensional and
+dim𝑉′
+= dim𝑉.
+Proof By 3.72 we have
+dim𝑉′
+= dimℒ(𝑉,𝐅) = (dim𝑉)(dim𝐅) = dim𝑉,
+as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler106 Chapter 3 Linear Maps
+In the following definition, the linear map lemma (3.4) implies that each 𝜑𝑗 is
+well defined.
+3.112 definition: dual basis
+If 𝑣1,…,𝑣𝑛 is a basis of 𝑉, then the dual basis of 𝑣1,…,𝑣𝑛 is the list 𝜑1,…,𝜑𝑛
+of elements of 𝑉′
+, where each 𝜑𝑗 is the linear functional on 𝑉 such that
+𝜑𝑗(𝑣𝑘) =
+⎧ {
+⎨ { ⎩
+1 if 𝑘 = 𝑗,
+0 if 𝑘 ≠ 𝑗.
+3.113 example: the dual basis of the standard basis of 𝐅𝑛
+Suppose 𝑛 is a positive integer. For 1 ≤ 𝑗 ≤ 𝑛, define 𝜑𝑗 to be the linear
+functional on 𝐅𝑛
+that selects the 𝑗th
+coordinate of a vector in 𝐅𝑛
+. Thus
+𝜑𝑗(𝑥1,…,𝑥𝑛) = 𝑥𝑗
+for each (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+.
+Let 𝑒1,…,𝑒𝑛 be the standard basis of 𝐅𝑛
+. Then
+𝜑𝑗(𝑒𝑘) =
+⎧ {
+⎨ { ⎩
+1 if 𝑘 = 𝑗,
+0 if 𝑘 ≠ 𝑗.
+Thus 𝜑1,…,𝜑𝑛 is the dual basis of the standard basis 𝑒1,…,𝑒𝑛 of 𝐅𝑛
+.
+The next result shows that the dual basis of a basis of 𝑉 consists of the linear
+functionals on 𝑉 that give the coefficients for expressing a vector in 𝑉 as a linear
+combination of the basis vectors.
+3.114 dual basis gives coefficients for linear combination
+Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝜑1,…,𝜑𝑛 is the dual basis. Then
+𝑣 = 𝜑1(𝑣)𝑣1 + ⋯ + 𝜑𝑛(𝑣)𝑣𝑛
+for each 𝑣 ∈ 𝑉.
+Proof Suppose 𝑣 ∈ 𝑉. Then there exist 𝑐1,…,𝑐𝑛 ∈ 𝐅 such that
+3.115 𝑣 = 𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛.
+If 𝑗 ∈ {1,…,𝑛}, then applying 𝜑𝑗 to both sides of the equation above gives
+𝜑𝑗(𝑣) = 𝑐𝑗.
+Substituting the values for 𝑐1,…,𝑐𝑛 given by the equation above into 3.115 shows
+that 𝑣 = 𝜑1(𝑣)𝑣1 + ⋯ + 𝜑𝑛(𝑣)𝑣𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 107
+The next result shows that the dual basis is indeed a basis of the dual space.
+Thus the terminology “dual basis” is justified.
+3.116 dual basis is a basis of the dual space
+Suppose 𝑉 is finite-dimensional. Then the dual basis of a basis of 𝑉 is a basis
+of 𝑉′
+.
+Proof Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Let 𝜑1,…,𝜑𝑛 denote the dual basis.
+To show that 𝜑1,…,𝜑𝑛 is a linearly independent list of elements of 𝑉′
+, suppose
+𝑎1,…,𝑎𝑛 ∈ 𝐅 are such that
+3.117 𝑎1𝜑1 + ⋯ + 𝑎𝑛𝜑𝑛 = 0.
+Now
+(𝑎1𝜑1 + ⋯ + 𝑎𝑛𝜑𝑛)(𝑣𝑘) = 𝑎𝑘
+for each 𝑘 = 1,…,𝑛. Thus 3.117 shows that 𝑎1 = ⋯ = 𝑎𝑛 = 0. Hence 𝜑1,…,𝜑𝑛
+is linearly independent.
+Because 𝜑1,…,𝜑𝑛 is a linearly independent list in 𝑉′
+whose length equals
+dim𝑉′
+(by 3.111), we can conclude that 𝜑1,…,𝜑𝑛 is a basis of 𝑉′
+(see 2.38).
+In the definition below, note that if 𝑇 is a linear map from 𝑉 to 𝑊 then 𝑇′
+is a
+linear map from 𝑊′
+to 𝑉′
+.
+3.118 definition: dual map, 𝑇′
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). The dual map of 𝑇 is the linear map 𝑇′
+∈ ℒ(𝑊′
+,𝑉′
+)
+defined for each 𝜑 ∈ 𝑊′
+by
+𝑇′
+(𝜑) = 𝜑 ∘ 𝑇.
+If𝑇 ∈ ℒ(𝑉,𝑊) and𝜑 ∈ 𝑊′
+, then𝑇′
+(𝜑) isdefinedabovetobethecomposition
+of the linear maps 𝜑 and 𝑇. Thus 𝑇′
+(𝜑) is indeed a linear map from 𝑉 to 𝐅; in
+other words, 𝑇′
+(𝜑) ∈ 𝑉′
+.
+The following two bullet points show that 𝑇′
+is a linear map from 𝑊′
+to 𝑉′
+.
+• If 𝜑,𝜓 ∈ 𝑊′
+, then
+𝑇′
+(𝜑 + 𝜓) = (𝜑 + 𝜓) ∘ 𝑇 = 𝜑 ∘ 𝑇 + 𝜓 ∘ 𝑇 = 𝑇′
+(𝜑) + 𝑇′
+(𝜓).
+• If 𝜆 ∈ 𝐅 and 𝜑 ∈ 𝑊′
+, then
+𝑇′
+(𝜆𝜑) = (𝜆𝜑) ∘ 𝑇 = 𝜆(𝜑 ∘ 𝑇) = 𝜆𝑇′
+(𝜑).
+The prime notation appears with two unrelated meanings in the next example:
+𝐷′
+denotes the dual of the linear map 𝐷, and 𝑝′
+denotes the derivative of a
+polynomial 𝑝.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler108 Chapter 3 Linear Maps
+3.119 example: dual map of the differentiation linear map
+Define 𝐷∶ 𝒫(𝐑) → 𝒫(𝐑) by 𝐷𝑝 = 𝑝′
+.
+• Suppose 𝜑 is the linear functional on 𝒫(𝐑) defined by 𝜑(𝑝) = 𝑝(3). Then
+𝐷′
+(𝜑) is the linear functional on 𝒫(𝐑) given by
+(𝐷′
+(𝜑))(𝑝) = (𝜑 ∘ 𝐷)(𝑝) = 𝜑(𝐷𝑝) = 𝜑(𝑝′
+) = 𝑝′
+(3).
+Thus 𝐷′
+(𝜑) is the linear functional on 𝒫(𝐑) taking 𝑝 to 𝑝′
+(3).
+• Suppose 𝜑 is the linear functional on 𝒫(𝐑) defined by 𝜑(𝑝) = ∫
+1
+0 𝑝. Then
+𝐷′
+(𝜑) is the linear functional on 𝒫(𝐑) given by
+(𝐷′
+(𝜑))(𝑝) = (𝜑 ∘ 𝐷)(𝑝)
+= 𝜑(𝐷𝑝)
+= 𝜑(𝑝′
+)
+= ∫
+1
+0
+𝑝′
+= 𝑝(1) − 𝑝(0).
+Thus 𝐷′
+(𝜑) is the linear functional on 𝒫(𝐑) taking 𝑝 to 𝑝(1) − 𝑝(0).
+In the next result, (a) and (b) imply that the function that takes 𝑇 to 𝑇′
+is a
+linear map from ℒ(𝑉,𝑊) to ℒ(𝑊′
+,𝑉′
+).
+In (c) below, note the reversal of order from 𝑆𝑇 on the left to 𝑇′
+𝑆′
+on the right.
+3.120 algebraic properties of dual maps
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) (𝑆 + 𝑇)′
+= 𝑆′
++ 𝑇′
+for all 𝑆 ∈ ℒ(𝑉,𝑊);
+(b) (𝜆𝑇)′
+= 𝜆𝑇′
+for all 𝜆 ∈ 𝐅;
+(c) (𝑆𝑇)′
+= 𝑇′
+𝑆′
+for all 𝑆 ∈ ℒ(𝑊,𝑈).
+Proof The proofs of (a) and (b) are left to the reader.
+To prove (c), suppose 𝜑 ∈ 𝑈′
+. Then
+(𝑆𝑇)′
+(𝜑) = 𝜑 ∘ (𝑆𝑇) = (𝜑 ∘ 𝑆) ∘ 𝑇 = 𝑇′
+(𝜑 ∘ 𝑆) = 𝑇′
+(𝑆′
+(𝜑)) = (𝑇′
+𝑆′
+)(𝜑),
+Some books use the notation 𝑉∗ and
+𝑇∗ for duality instead of 𝑉′
+and 𝑇′
+.
+However, here we reserve the notation
+𝑇∗ for the adjoint, which will be intro-
+duced when we study linear maps on
+inner product spaces in Chapter 7.
+where the first, third, and fourth equal-
+ities above hold because of the defini-
+tion of the dual map, the second equality
+holds because composition of functions
+is associative, and the last equality fol-
+lows from the definition of composition.
+The equation above shows that
+(𝑆𝑇)′
+(𝜑) = (𝑇′
+𝑆′
+)(𝜑) for all 𝜑 ∈ 𝑈′
+.
+Thus (𝑆𝑇)′
+= 𝑇′
+𝑆′
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 109
+Null Space and Range of Dual of Linear Map
+Our goal in this subsection is to describe null𝑇′
+and range𝑇′
+in terms of range𝑇
+and null𝑇. To do this, we will need the next definition.
+3.121 definition: annihilator, 𝑈0
+For 𝑈 ⊆ 𝑉, the annihilator of 𝑈, denoted by 𝑈0
+, is defined by
+𝑈0
+= {𝜑 ∈ 𝑉′
+∶ 𝜑(𝑢) = 0 for all 𝑢 ∈ 𝑈}.
+3.122 example: element of an annihilator
+Suppose 𝑈 is the subspace of 𝒫(𝐑) consisting of polynomial multiples of 𝑥2
+.
+If 𝜑 is the linear functional on 𝒫(𝐑) defined by 𝜑(𝑝) = 𝑝′
+(0), then 𝜑 ∈ 𝑈0
+.
+For 𝑈 ⊆ 𝑉, the annihilator 𝑈0
+is a subset of the dual space 𝑉′
+. Thus 𝑈0
+depends on the vector space containing 𝑈, so a notation such as 𝑈0
+𝑉 would be
+more precise. However, the containing vector space will always be clear from the
+context, so we will use the simpler notation 𝑈0
+.
+3.123 example: the annihilator of a two-dimensional subspace of 𝐑5
+Let 𝑒1,𝑒2,𝑒3,𝑒4,𝑒5 denote the standard basis of 𝐑5
+; let 𝜑1,𝜑2,𝜑3,𝜑4,𝜑5 ∈
+(𝐑5
+)
+′
+denote the dual basis of 𝑒1,𝑒2,𝑒3,𝑒4,𝑒5. Suppose
+𝑈 = span(𝑒1,𝑒2) = {(𝑥1,𝑥2,0,0,0) ∈ 𝐑5
+∶ 𝑥1,𝑥2 ∈ 𝐑}.
+We want to show that 𝑈0
+= span(𝜑3,𝜑4,𝜑5).
+Recall (see 3.113) that 𝜑𝑗 is the linear functional on 𝐑5
+that selects the 𝑗th
+coordinate: 𝜑𝑗(𝑥1,𝑥2,𝑥3,𝑥4,𝑥5) = 𝑥𝑗.
+First suppose 𝜑 ∈ span(𝜑3,𝜑4,𝜑5). Then there exist 𝑐3,𝑐4,𝑐5 ∈ 𝐑 such that
+𝜑 = 𝑐3𝜑3 + 𝑐4𝜑4 + 𝑐5𝜑5. If (𝑥1,𝑥2,0,0,0) ∈ 𝑈, then
+𝜑(𝑥1,𝑥2,0,0,0) = (𝑐3𝜑3 + 𝑐4𝜑4 + 𝑐5𝜑5)(𝑥1,𝑥2,0,0,0) = 0.
+Thus 𝜑 ∈ 𝑈0
+. Hence we have shown that span(𝜑3,𝜑4,𝜑5) ⊆ 𝑈0
+.
+To show the inclusion in the other direction, suppose that 𝜑 ∈ 𝑈0
+. Be-
+cause the dual basis is a basis of (𝐑5
+)
+′
+, there exist 𝑐1,𝑐2,𝑐3,𝑐4,𝑐5 ∈ 𝐑 such that
+𝜑 = 𝑐1𝜑1 + 𝑐2𝜑2 + 𝑐3𝜑3 + 𝑐4𝜑4 + 𝑐5𝜑5. Because 𝑒1 ∈ 𝑈 and 𝜑 ∈ 𝑈0
+, we have
+0 = 𝜑(𝑒1) = (𝑐1𝜑1 + 𝑐2𝜑2 + 𝑐3𝜑3 + 𝑐4𝜑4 + 𝑐5𝜑5)(𝑒1) = 𝑐1.
+Similarly, 𝑒2 ∈ 𝑈 and thus 𝑐2 = 0. Hence 𝜑 = 𝑐3𝜑3 + 𝑐4𝜑4 + 𝑐5𝜑5. Thus
+𝜑 ∈ span(𝜑3,𝜑4,𝜑5), which shows that 𝑈0
+⊆ span(𝜑3,𝜑4,𝜑5).
+Thus 𝑈0
+= span(𝜑3,𝜑4,𝜑5).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler110 Chapter 3 Linear Maps
+3.124 the annihilator is a subspace
+Suppose 𝑈 ⊆ 𝑉. Then 𝑈0
+is a subspace of 𝑉′
+.
+Proof Note that 0 ∈ 𝑈0
+(here 0 is the zero linear functional on 𝑉) because the
+zero linear functional applied to every vector in 𝑈 equals 0 ∈ 𝐅.
+Suppose 𝜑,𝜓 ∈ 𝑈0
+. Thus 𝜑,𝜓 ∈ 𝑉′
+and 𝜑(𝑢) = 𝜓(𝑢) = 0 for every 𝑢 ∈ 𝑈.
+If 𝑢 ∈ 𝑈, then
+(𝜑 + 𝜓)(𝑢) = 𝜑(𝑢) + 𝜓(𝑢) = 0 + 0 = 0.
+Thus 𝜑 + 𝜓 ∈ 𝑈0
+.
+Similarly, 𝑈0
+is closed under scalar multiplication. Thus 1.34 implies that 𝑈0
+is a subspace of 𝑉′
+.
+The next result shows that dim𝑈0
+is the difference of dim𝑉 and dim𝑈. For
+example, this shows that if 𝑈 is a two-dimensional subspace of 𝐑5
+, then 𝑈0
+is a
+three-dimensional subspace of (𝐑5
+)
+′
+, as in Example 3.123.
+ThenextresultcanbeprovedfollowingthepatternofExample3.123: choosea
+basis𝑢1,…,𝑢𝑚 of𝑈,extendtoabasis𝑢1,…,𝑢𝑚,…,𝑢𝑛 of𝑉,let𝜑1,…,𝜑𝑚,…,𝜑𝑛
+be the dual basis of 𝑉′
+, and then show that 𝜑𝑚+1,…,𝜑𝑛 is a basis of 𝑈0
+, which
+implies the desired result. You should construct the proof just outlined, even
+though a slicker proof is presented here.
+3.125 dimension of the annihilator
+Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Then
+dim𝑈0
+= dim𝑉 − dim𝑈.
+Proof Let 𝑖 ∈ ℒ(𝑈,𝑉) be the inclusion map defined by 𝑖(𝑢) = 𝑢 for each
+𝑢 ∈ 𝑈. Thus 𝑖′
+is a linear map from 𝑉′
+to 𝑈′
+. The fundamental theorem of linear
+maps (3.21) applied to 𝑖′
+shows that
+dimrange𝑖′
++ dimnull𝑖′
+= dim𝑉′
+.
+However, null𝑖′
+= 𝑈0
+(as can be seen by thinking about the definitions) and
+dim𝑉′
+= dim𝑉 (by 3.111), so we can rewrite the equation above as
+3.126 dimrange𝑖′
++ dim𝑈0
+= dim𝑉.
+If 𝜑 ∈ 𝑈′
+, then 𝜑 can be extended to a linear functional 𝜓 on 𝑉 (see, for
+example, Exercise 13 in Section 3A). The definition of 𝑖′
+shows that 𝑖′
+(𝜓) = 𝜑.
+Thus 𝜑 ∈ range𝑖′
+, which implies that range𝑖′
+= 𝑈′
+. Hence
+dimrange𝑖′
+= dim𝑈′
+= dim𝑈,
+and then 3.126 becomes the equation dim𝑈 + dim𝑈0
+= dim𝑉, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 111
+The next result can be a useful tool to show that a subspace is as big as
+possible—see (a)—or to show that a subspace is as small as possible—see (b).
+3.127 condition for the annihilator to equal {0} or the whole space
+Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Then
+(a) 𝑈0
+= {0} ⟺ 𝑈 = 𝑉;
+(b) 𝑈0
+= 𝑉′
+⟺ 𝑈 = {0}.
+Proof To prove (a), we have
+𝑈0
+= {0} ⟺ dim𝑈0
+= 0
+⟺ dim𝑈 = dim𝑉
+⟺ 𝑈 = 𝑉,
+wherethesecondequivalencefollowsfrom3.125andthethirdequivalencefollows
+from 2.39.
+Similarly, to prove (b) we have
+𝑈0
+= 𝑉′
+⟺ dim𝑈0
+= dim𝑉′
+⟺ dim𝑈0
+= dim𝑉
+⟺ dim𝑈 = 0
+⟺ 𝑈 = {0},
+where one direction of the first equivalence follows from 2.39, the second equiva-
+lence follows from 3.111, and the third equivalence follows from 3.125.
+The proof of (a) in the next result does not use the hypothesis that 𝑉 and 𝑊
+are finite-dimensional.
+3.128 the null space of 𝑇′
+Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) null𝑇′
+= (range𝑇)0
+;
+(b) dimnull𝑇′
+= dimnull𝑇 + dim𝑊 − dim𝑉.
+Proof
+(a) First suppose 𝜑 ∈ null𝑇′
+. Thus 0 = 𝑇′
+(𝜑) = 𝜑 ∘ 𝑇. Hence
+0 = (𝜑 ∘ 𝑇)(𝑣) = 𝜑(𝑇𝑣) for every 𝑣 ∈ 𝑉.
+Thus 𝜑 ∈ (range𝑇)0
+. This implies that null𝑇′
+⊆ (range𝑇)0
+.
+To prove the inclusion in the opposite direction, now suppose 𝜑 ∈ (range𝑇)0
+.
+Thus 𝜑(𝑇𝑣) = 0 for every vector 𝑣 ∈ 𝑉. Hence 0 = 𝜑 ∘ 𝑇 = 𝑇′
+(𝜑). In other
+words, 𝜑 ∈ null𝑇′
+, which shows that (range𝑇)0
+⊆ null𝑇′
+, completing the
+proof of (a).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler112 Chapter 3 Linear Maps
+(b) We have
+dimnull𝑇′
+= dim(range𝑇)0
+= dim𝑊 − dimrange𝑇
+= dim𝑊 − (dim𝑉 − dimnull𝑇)
+= dimnull𝑇 + dim𝑊 − dim𝑉,
+where the first equality comes from (a), the second equality comes from
+3.125, and the third equality comes from the fundamental theorem of linear
+maps (3.21).
+The next result can be useful because sometimes it is easier to verify that 𝑇′
+is injective than to show directly that 𝑇 is surjective.
+3.129 𝑇 surjective is equivalent to 𝑇′
+injective
+Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then
+𝑇 is surjective ⟺ 𝑇′
+is injective.
+Proof We have
+𝑇 ∈ ℒ(𝑉,𝑊) is surjective ⟺ range𝑇 = 𝑊
+⟺ (range𝑇)0
+= {0}
+⟺ null𝑇′
+= {0}
+⟺ 𝑇′
+is injective,
+where the second equivalence comes from 3.127(a) and the third equivalence
+comes from 3.128(a).
+3.130 the range of 𝑇′
+Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) dimrange𝑇′
+= dimrange𝑇;
+(b) range𝑇′
+= (null𝑇)0
+.
+Proof
+(a) We have
+dimrange𝑇′
+= dim𝑊′
+− dimnull𝑇′
+= dim𝑊 − dim(range𝑇)0
+= dimrange𝑇,
+where the first equality comes from 3.21, the second equality comes from
+3.111 and 3.128(a), and the third equality comes from 3.125.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 113
+(b) First suppose 𝜑 ∈ range𝑇′
+. Thus there exists 𝜓 ∈ 𝑊′
+such that 𝜑 = 𝑇′
+(𝜓).
+If 𝑣 ∈ null𝑇, then
+𝜑(𝑣) = (𝑇′
+(𝜓))𝑣 = (𝜓 ∘ 𝑇)(𝑣) = 𝜓(𝑇𝑣) = 𝜓(0) = 0.
+Hence 𝜑 ∈ (null𝑇)0
+. This implies that range𝑇′
+⊆ (null𝑇)0
+.
+We will complete the proof by showing that range𝑇′
+and (null𝑇)0
+have the
+same dimension. To do this, note that
+dimrange𝑇′
+= dimrange𝑇
+= dim𝑉 − dimnull𝑇
+= dim(null𝑇)0
+,
+where the first equality comes from (a), the second equality comes from 3.21,
+and the third equality comes from 3.125.
+The next result should be compared to 3.129.
+3.131 𝑇 injective is equivalent to 𝑇′
+surjective
+Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then
+𝑇 is injective ⟺ 𝑇′
+is surjective.
+Proof We have
+𝑇 is injective ⟺ null𝑇 = {0}
+⟺ (null𝑇)0
+= 𝑉′
+⟺ range𝑇′
+= 𝑉′
+,
+where the second equivalence follows from 3.127(b) and the third equivalence
+follows from 3.130(b).
+Matrix of Dual of Linear Map
+The setting for the next result is the assumption that we have a basis 𝑣1,…,𝑣𝑛
+of 𝑉, along with its dual basis 𝜑1,…,𝜑𝑛 of 𝑉′
+. We also have a basis 𝑤1,…,𝑤𝑚
+of 𝑊, along with its dual basis 𝜓1,…,𝜓𝑚 of 𝑊′
+. Thus ℳ(𝑇) is computed with
+respect to the bases just mentioned of 𝑉 and 𝑊, and ℳ(𝑇′
+) is computed with
+respect to the dual bases just mentioned of 𝑊′
+and 𝑉′
+. Using these bases gives
+the following pretty result.
+3.132 matrix of 𝑇′
+is transpose of matrix of 𝑇
+Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then
+ℳ(𝑇′
+) = (ℳ(𝑇))
+t
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler114 Chapter 3 Linear Maps
+Proof Let 𝐴 = ℳ(𝑇) and 𝐶 = ℳ(𝑇′
+). Suppose 1 ≤ 𝑗 ≤ 𝑚 and 1 ≤ 𝑘 ≤ 𝑛.
+From the definition of ℳ(𝑇′
+) we have
+𝑇′
+(𝜓𝑗) =
+𝑛
+∑
+𝑟=1
+𝐶𝑟,𝑗𝜑𝑟.
+The left side of the equation above equals 𝜓𝑗 ∘ 𝑇. Thus applying both sides of the
+equation above to 𝑣𝑘 gives
+(𝜓𝑗 ∘ 𝑇)(𝑣𝑘) =
+𝑛
+∑
+𝑟=1
+𝐶𝑟,𝑗𝜑𝑟(𝑣𝑘)
+= 𝐶𝑘,𝑗.
+We also have
+(𝜓𝑗 ∘ 𝑇)(𝑣𝑘) = 𝜓𝑗(𝑇𝑣𝑘)
+= 𝜓𝑗(
+𝑚
+∑
+𝑟=1
+𝐴𝑟,𝑘𝑤𝑟)
+=
+𝑚
+∑
+𝑟=1
+𝐴𝑟,𝑘𝜓𝑗(𝑤𝑟)
+= 𝐴𝑗,𝑘.
+Comparing the last line of the last two sets of equations, we have 𝐶𝑘,𝑗 = 𝐴𝑗,𝑘.
+Thus 𝐶 = 𝐴t
+. In other words, ℳ(𝑇′
+) = (ℳ(𝑇))
+t
+, as desired.
+Now we use duality to give an alternative proof that the column rank of a
+matrix equals the row rank of the matrix. This result was previously proved using
+different tools—see 3.57.
+3.133 column rank equals row rank
+Suppose 𝐴 ∈ 𝐅𝑚,𝑛
+. Then the column rank of 𝐴 equals the row rank of 𝐴.
+Proof Define 𝑇∶ 𝐅𝑛,1
+→ 𝐅𝑚,1
+by 𝑇𝑥 = 𝐴𝑥. Thus ℳ(𝑇) = 𝐴, where ℳ(𝑇) is
+computed with respect to the standard bases of 𝐅𝑛,1
+and 𝐅𝑚,1
+. Now
+column rank of 𝐴 = column rank of ℳ(𝑇)
+= dimrange𝑇
+= dimrange𝑇′
+= column rank of ℳ(𝑇′
+)
+= column rank of 𝐴t
+= row rank of 𝐴,
+wherethesecondequalitycomesfrom3.78,thethirdequalitycomesfrom3.130(a),
+the fourth equality comes from 3.78, the fifth equality comes from 3.132, and the
+last equality follows from the definitions of row and column rank.
+See Exercise 8 in Section 7A for another alternative proof of the result above.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 115
+Exercises 3F
+## 1 Explain why each linear functional is surjective or is the zero map.
+2 Give three distinct examples of linear functionals on 𝐑[0,1]
+.
+## 3 Suppose 𝑉 is finite-dimensional and 𝑣 ∈ 𝑉 with 𝑣 ≠ 0. Prove that there
+exists 𝜑 ∈ 𝑉′
+such that 𝜑(𝑣) = 1.
+## 4 Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉 such that 𝑈 ≠ 𝑉.
+Prove that there exists 𝜑 ∈ 𝑉′
+such that 𝜑(𝑢) = 0 for every 𝑢 ∈ 𝑈 but 𝜑 ≠ 0.
+5 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑤1,…,𝑤𝑚 is a basis of range𝑇. Hence for each
+𝑣 ∈ 𝑉, there exist unique numbers 𝜑1(𝑣),…,𝜑𝑚(𝑣) such that
+𝑇𝑣 = 𝜑1(𝑣)𝑤1 + ⋯ + 𝜑𝑚(𝑣)𝑤𝑚,
+thus defining functions 𝜑1,…,𝜑𝑚 from 𝑉 to 𝐅. Show that each of the
+functions 𝜑1,…,𝜑𝑚 is a linear functional on 𝑉.
+6 Suppose 𝜑,𝛽 ∈ 𝑉′
+. Prove that null𝜑 ⊆ null𝛽 if and only if there exists
+𝑐 ∈ 𝐅 such that 𝛽 = 𝑐𝜑.
+7 Suppose that 𝑉1,…,𝑉𝑚 are vector spaces. Prove that (𝑉1 × ⋯ × 𝑉𝑚)′
+and
+𝑉1
+′
+× ⋯ × 𝑉𝑚
+′
+are isomorphic vector spaces.
+8 Suppose𝑣1,…,𝑣𝑛 isabasisof𝑉 and𝜑1,…,𝜑𝑛 isthedualbasisof𝑉′
+. Define
+Γ∶ 𝑉 → 𝐅𝑛
+and Λ∶ 𝐅𝑛
+→ 𝑉 by
+Γ(𝑣) = (𝜑1(𝑣),…,𝜑𝑛(𝑣)) and Λ(𝑎1,…,𝑎𝑛) = 𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛.
+Explain why Γ and Λ are inverses of each other.
+## 9 Suppose 𝑚 is a positive integer. Show that the dual basis of the basis
+1,𝑥,…,𝑥𝑚
+of 𝒫𝑚(𝐑) is 𝜑0,𝜑1,…,𝜑𝑚, where
+𝜑𝑘(𝑝) =
+𝑝(𝑘)
+(0)
+𝑘!
+.
+Here 𝑝(𝑘)
+denotes the 𝑘th
+derivative of 𝑝, with the understanding that the 0th
+derivative of 𝑝 is 𝑝.
+## 10 Suppose 𝑚 is a positive integer.
+(a) Show that 1,𝑥 − 5,…,(𝑥 − 5)𝑚
+is a basis of 𝒫𝑚(𝐑).
+(b) What is the dual basis of the basis in (a)?
+11 Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝜑1,…,𝜑𝑛 is the corresponding dual
+basis of 𝑉′
+. Suppose 𝜓 ∈ 𝑉′
+. Prove that
+𝜓 = 𝜓(𝑣1)𝜑1 + ⋯ + 𝜓(𝑣𝑛)𝜑𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler116 Chapter 3 Linear Maps
+12 Suppose 𝑆,𝑇 ∈ ℒ(𝑉,𝑊).
+(a) Prove that (𝑆 + 𝑇)′
+= 𝑆′
++ 𝑇′
+.
+(b) Prove that (𝜆𝑇)′
+= 𝜆𝑇′
+for all 𝜆 ∈ 𝐅.
+This exercise asks you to verify (a) and (b) in 3.120.
+## 13 Show that the dual map of the identity operator on 𝑉 is the identity operator
+on 𝑉′
+.
+14 Define 𝑇∶ 𝐑3
+→ 𝐑2
+by
+𝑇(𝑥,𝑦,𝑧) = (4𝑥 + 5𝑦 + 6𝑧,7𝑥 + 8𝑦 + 9𝑧).
+Suppose 𝜑1,𝜑2 denotes the dual basis of the standard basis of 𝐑2
+and
+𝜓1,𝜓2,𝜓3 denotes the dual basis of the standard basis of 𝐑3
+.
+(a) Describe the linear functionals 𝑇′
+(𝜑1) and 𝑇′
+(𝜑2).
+(b) Write 𝑇′
+(𝜑1) and 𝑇′
+(𝜑2) as linear combinations of 𝜓1,𝜓2,𝜓3.
+15 Define 𝑇∶ 𝒫(𝐑) → 𝒫(𝐑) by
+(𝑇𝑝)(𝑥) = 𝑥2
+𝑝(𝑥) + 𝑝″
+(𝑥)
+for each 𝑥 ∈ 𝐑.
+(a) Suppose 𝜑 ∈ 𝒫(𝐑)′
+is defined by 𝜑(𝑝) = 𝑝′
+(4). Describe the linear
+functional 𝑇′
+(𝜑) on 𝒫(𝐑).
+(b) Suppose 𝜑 ∈ 𝒫(𝐑)′
+is defined by 𝜑(𝑝) = ∫
+1
+0 𝑝. Evaluate (𝑇′
+(𝜑))(𝑥3
+).
+16 Suppose 𝑊 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+𝑇′
+= 0 ⟺ 𝑇 = 0.
+17 Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that 𝑇 is
+invertible if and only if 𝑇′
+∈ ℒ(𝑊′
+,𝑉′
+) is invertible.
+## 18 Suppose 𝑉 and 𝑊 are finite-dimensional. Prove that the map that takes
+𝑇 ∈ ℒ(𝑉,𝑊) to 𝑇′
+∈ ℒ(𝑊′
+,𝑉′
+) is an isomorphism of ℒ(𝑉,𝑊) onto
+ℒ(𝑊′
+,𝑉′
+).
+## 19 Suppose 𝑈 ⊆ 𝑉. Explain why
+𝑈0
+= {𝜑 ∈ 𝑉′
+∶ 𝑈 ⊆ null𝜑}.
+## 20 Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Show that
+𝑈 = {𝑣 ∈ 𝑉 ∶ 𝜑(𝑣) = 0 for every 𝜑 ∈ 𝑈0
+}.
+## 21 Suppose 𝑉 is finite-dimensional and 𝑈 and 𝑊 are subspaces of 𝑉.
+(a) Prove that 𝑊0
+⊆ 𝑈0
+if and only if 𝑈 ⊆ 𝑊.
+(b) Prove that 𝑊0
+= 𝑈0
+if and only if 𝑈 = 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 3F Duality 117
+## 22 Suppose 𝑉 is finite-dimensional and 𝑈 and 𝑊 are subspaces of 𝑉.
+(a) Show that (𝑈 + 𝑊)0
+= 𝑈0
+∩ 𝑊0
+.
+(b) Show that (𝑈 ∩ 𝑊)0
+= 𝑈0
++ 𝑊0
+.
+23 Suppose 𝑉 is finite-dimensional and 𝜑1,…,𝜑𝑚 ∈ 𝑉′
+. Prove that the follow-
+ing three sets are equal to each other.
+(a) span(𝜑1,…,𝜑𝑚)
+(b) ((null𝜑1) ∩ ⋯ ∩ (null𝜑𝑚))
+0
+(c) {𝜑 ∈ 𝑉′
+∶ (null𝜑1) ∩ ⋯ ∩ (null𝜑𝑚) ⊆ null𝜑}
+24 Suppose 𝑉 is finite-dimensional and 𝑣1,…,𝑣𝑚 ∈ 𝑉. Define a linear map
+Γ∶ 𝑉′
+→ 𝐅𝑚
+by Γ(𝜑) = (𝜑(𝑣1),…,𝜑(𝑣𝑚)).
+(a) Prove that 𝑣1,…,𝑣𝑚 spans 𝑉 if and only if Γ is injective.
+(b) Prove that 𝑣1,…,𝑣𝑚 is linearly independent if and only if Γ is surjective.
+25 Suppose 𝑉 is finite-dimensional and 𝜑1,…,𝜑𝑚 ∈ 𝑉′
+. Define a linear map
+Γ∶ 𝑉 → 𝐅𝑚
+by Γ(𝑣) = (𝜑1(𝑣),…,𝜑𝑚(𝑣)).
+(a) Prove that 𝜑1,…,𝜑𝑚 spans 𝑉′
+if and only if Γ is injective.
+(b) Prove that 𝜑1,…,𝜑𝑚 is linearly independent if and only if Γ is surjective.
+26 Suppose 𝑉 is finite-dimensional and Ω is a subspace of 𝑉′
+. Prove that
+Ω = {𝑣 ∈ 𝑉 ∶ 𝜑(𝑣) = 0 for every 𝜑 ∈ Ω}
+0
+.
+27 Suppose 𝑇 ∈ ℒ(𝒫5(𝐑)) and null𝑇′
+= span(𝜑), where 𝜑 is the linear
+functional on 𝒫5(𝐑) defined by 𝜑(𝑝) = 𝑝(8). Prove that
+range𝑇 = {𝑝 ∈ 𝒫5(𝐑) ∶ 𝑝(8) = 0}.
+28 Suppose 𝑉 is finite-dimensional and 𝜑1,…,𝜑𝑚 is a linearly independent list
+in 𝑉′
+. Prove that
+dim((null𝜑1) ∩ ⋯ ∩ (null𝜑𝑚)) = (dim𝑉) − 𝑚.
+29 Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊).
+(a) Prove that if 𝜑 ∈ 𝑊′
+and null𝑇′
+= span(𝜑), then range𝑇 = null𝜑.
+(b) Prove that if 𝜓 ∈ 𝑉′
+and range𝑇′
+= span(𝜓), then null𝑇 = null𝜓.
+30 Suppose 𝑉 is finite-dimensional and 𝜑1,…,𝜑𝑛 is a basis of 𝑉′
+. Show that
+there exists a basis of 𝑉 whose dual basis is 𝜑1,…,𝜑𝑛.
+31 Suppose 𝑈 is a subspace of 𝑉. Let 𝑖∶ 𝑈 → 𝑉 be the inclusion map defined
+by 𝑖(𝑢) = 𝑢. Thus 𝑖′
+∈ ℒ(𝑉′
+,𝑈′
+).
+(a) Show that null𝑖′
+= 𝑈0
+.
+(b) Prove that if 𝑉 is finite-dimensional, then range𝑖′
+= 𝑈′
+.
+(c) Prove that if 𝑉 is finite-dimensional, then ̃ 𝑖′ is an isomorphism from
+𝑉′
+/𝑈0
+onto 𝑈′
+.
+The isomorphism in (c) is natural in that it does not depend on a choice of
+basis in either vector space.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler118 Chapter 3 Linear Maps
+32 The double dual space of 𝑉, denoted by 𝑉″
+, is defined to be the dual space
+of 𝑉′
+. In other words, 𝑉″
+= (𝑉′
+)
+′
+. Define Λ∶ 𝑉 → 𝑉″
+by
+(Λ𝑣)(𝜑) = 𝜑(𝑣)
+for each 𝑣 ∈ 𝑉 and each 𝜑 ∈ 𝑉′
+.
+(a) Show that Λ is a linear map from 𝑉 to 𝑉″
+.
+(b) Show that if 𝑇 ∈ ℒ(𝑉), then 𝑇″
+∘ Λ = Λ ∘ 𝑇, where 𝑇″
+= (𝑇′
+)
+′
+.
+(c) Show that if 𝑉 is finite-dimensional, then Λ is an isomorphism from 𝑉
+onto 𝑉″
+.
+Suppose 𝑉 is finite-dimensional. Then 𝑉 and 𝑉′
+are isomorphic, but finding
+an isomorphism from 𝑉 onto 𝑉′
+generally requires choosing a basis of 𝑉.
+In contrast, the isomorphism Λ from 𝑉 onto 𝑉″
+does not require a choice
+of basis and thus is considered more natural.
+33 Suppose 𝑈 is a subspace of 𝑉. Let 𝜋∶ 𝑉 → 𝑉/𝑈 be the usual quotient map.
+Thus 𝜋′
+∈ ℒ((𝑉/𝑈)′
+,𝑉′
+).
+(a) Show that 𝜋′
+is injective.
+(b) Show that range𝜋′
+= 𝑈0
+.
+(c) Conclude that 𝜋′
+is an isomorphism from (𝑉/𝑈)′
+onto 𝑈0
+.
+The isomorphism in (c) is natural in that it does not depend on a choice of
+basis in either vector space. In fact, there is no assumption here that any of
+these vector spaces are finite-dimensional.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4
+Polynomials
+This chapter contains material on polynomials that we will use to investigate
+linear maps from a vector space to itself. Many results in this chapter will already
+be familiar to you from other courses; they are included here for completeness.
+Becausethischapterisnotaboutlinearalgebra,yourinstructormaygothrough
+it rapidly. You may not be asked to scrutinize all the proofs. Make sure, however,
+that you at least read and understand the statements of all results in this chapter—
+they will be used in later chapters.
+This chapter begins with a brief discussion of algebraic properties of the
+complex numbers. Then we prove that a nonconstant polynomial cannot have
+more zeros than its degree. We also give a linear-algebra-based proof of the
+division algorithm for polynomials, which is worth reading even if you are already
+familiar with a proof that does not use linear algebra.
+As we will see, the fundamental theorem of algebra leads to a factorization of
+every polynomial into degree-one factors if the scalar field is 𝐂 or to factors of
+degree at most two if the scalar field is 𝐑.
+standing assumption for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+Alireza Javaheri CC BY
+Statue of mathematician and poet Omar Khayyam (1048–1131), whose algebra
+book written in 1070 contained the first serious study of cubic polynomials.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+119120 Chapter 4 Polynomials
+Before discussing polynomials with complex or real coefficients, we need to
+learn a bit more about the complex numbers.
+4.1 definition: real part, Re𝑧, imaginary part, Im𝑧
+Suppose 𝑧 = 𝑎 + 𝑏𝑖, where 𝑎 and 𝑏 are real numbers.
+• The real part of 𝑧, denoted by Re𝑧, is defined by Re𝑧 = 𝑎.
+• The imaginary part of 𝑧, denoted by Im𝑧, is defined by Im𝑧 = 𝑏.
+Thus for every complex number 𝑧, we have
+𝑧 = Re𝑧 + (Im𝑧)𝑖.
+4.2 definition: complex conjugate, 𝑧, absolute value, |𝑧|
+Suppose 𝑧 ∈ 𝐂.
+• The complex conjugate of 𝑧 ∈ 𝐂, denoted by 𝑧, is defined by
+𝑧 = Re𝑧 − (Im𝑧)𝑖.
+• The absolute value of a complex number 𝑧, denoted by |𝑧|, is defined by
+|𝑧| = √(Re𝑧)2 + (Im𝑧)2.
+4.3 example: real and imaginary part, complex conjugate, absolute value
+Suppose 𝑧 = 3 + 2𝑖. Then
+• Re𝑧 = 3 and Im𝑧 = 2;
+• 𝑧 = 3 − 2𝑖;
+• |𝑧| = √32 + 22 = √13.
+Identifying a complex number 𝑧 ∈ 𝐂 with the ordered pair (Re𝑧,Im𝑧) ∈ 𝐑2
+identifies 𝐂 with 𝐑2
+. Note that 𝐂 is a one-dimensional complex vector space,
+but we can also think of 𝐂 (identified with 𝐑2
+) as a two-dimensional real vector
+space.
+The absolute value of each complex number is a nonnegative number. Specif-
+ically, if 𝑧 ∈ 𝐂, then |𝑧| equals the distance from the origin in 𝐑2
+to the point
+(Re𝑧,Im𝑧) ∈ 𝐑2
+.
+You should verify that 𝑧 = 𝑧 if and only
+if 𝑧 is a real number.
+The real and imaginary parts, com-
+plex conjugate, and absolute value have
+the properties listed in the following
+multipart result.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4 Polynomials 121
+4.4 properties of complex numbers
+Suppose 𝑤,𝑧 ∈ 𝐂. Then the following equalities and inequalities hold.
+sum of 𝑧 and 𝑧
+𝑧 + 𝑧 = 2Re𝑧.
+difference of 𝑧 and 𝑧
+𝑧 − 𝑧 = 2(Im𝑧)𝑖.
+product of 𝑧 and 𝑧
+𝑧𝑧 = |𝑧|2
+.
+additivity and multiplicativity of complex conjugate
+𝑤 + 𝑧 = 𝑤 + 𝑧 and 𝑤𝑧 = 𝑤 𝑧.
+double complex conjugate
+𝑧 = 𝑧.
+real and imaginary parts are bounded by |𝑧|
+|Re𝑧| ≤ |𝑧| and |Im𝑧| ≤ |𝑧|.
+absolute value of the complex conjugate
+∣𝑧∣ = |𝑧|.
+multiplicativity of absolute value
+|𝑤𝑧| = |𝑤||𝑧|.
+triangle inequality
+|𝑤 + 𝑧| ≤ |𝑤| + |𝑧|.
+Geometric interpretation of triangle in-
+equality: The length of each side of a
+triangle is less than or equal to the sum
+of the lengths of the two other sides.
+Proof Except for the last item above,
+the routine verifications of the assertions
+above are left to the reader. To verify the
+triangle inequality, we have
+|𝑤 + 𝑧|2
+= (𝑤 + 𝑧)(𝑤 + 𝑧)
+= 𝑤𝑤 + 𝑧𝑧 + 𝑤𝑧 + 𝑧𝑤
+= |𝑤|2
++ |𝑧|2
++ 𝑤𝑧 + 𝑤𝑧
+= |𝑤|2
++ |𝑧|2
++ 2Re(𝑤𝑧)
+≤ |𝑤|2
++ |𝑧|2
++ 2∣𝑤𝑧∣
+= |𝑤|2
++ |𝑧|2
++ 2|𝑤||𝑧|
+= (|𝑤| + |𝑧|)2
+.
+See Exercise 2 for the reverse triangle
+inequality.
+Takingsquarerootsnowgivesthedesired
+inequality |𝑤 + 𝑧| ≤ |𝑤| + |𝑧|.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler122 Chapter 4 Polynomials
+Zeros of Polynomials
+Recall that a function 𝑝∶ 𝐅 → 𝐅 is called a polynomial of degree 𝑚 if there exist
+𝑎0,…,𝑎𝑚 ∈ 𝐅 with 𝑎𝑚 ≠ 0 such that
+𝑝(𝑧) = 𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚𝑧𝑚
+for all 𝑧 ∈ 𝐅. A polynomial could have more than one degree if the representation
+of 𝑝 in the form above were not unique. Our first task is to show that this cannot
+happen.
+The solutions to the equation 𝑝(𝑧) = 0 play a crucial role in the study of a
+polynomial 𝑝 ∈ 𝒫(𝐅). Thus these solutions have a special name.
+4.5 definition: zero of a polynomial
+A number 𝜆 ∈ 𝐅 is called a zero (or root) of a polynomial 𝑝 ∈ 𝒫(𝐅) if
+𝑝(𝜆) = 0.
+The next result is the key tool that we will use to show that the degree of a
+polynomial is unique.
+4.6 each zero of a polynomial corresponds to a degree-one factor
+Suppose 𝑚 is a positive integer and 𝑝 ∈ 𝒫(𝐅) is a polynomial of degree 𝑚.
+Suppose 𝜆 ∈ 𝐅. Then 𝑝(𝜆) = 0 if and only if there exists a polynomial
+𝑞 ∈ 𝒫(𝐅) of degree 𝑚 − 1 such that
+𝑝(𝑧) = (𝑧 − 𝜆)𝑞(𝑧)
+for every 𝑧 ∈ 𝐅.
+Proof First suppose 𝑝(𝜆) = 0. Let 𝑎0,𝑎1,…,𝑎𝑚 ∈ 𝐅 be such that
+𝑝(𝑧) = 𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚𝑧𝑚
+for all 𝑧 ∈ 𝐅. Then
+4.7 𝑝(𝑧) = 𝑝(𝑧) − 𝑝(𝜆) = 𝑎1(𝑧 − 𝜆) + ⋯ + 𝑎𝑚(𝑧𝑚
+− 𝜆𝑚
+)
+for all 𝑧 ∈ 𝐅. For each 𝑘 ∈ {1,…,𝑚}, the equation
+𝑧𝑘
+− 𝜆𝑘
+= (𝑧 − 𝜆)
+𝑘
+∑
+𝑗=1
+𝜆𝑗−1
+𝑧𝑘−𝑗
+shows that 𝑧𝑘
+− 𝜆𝑘
+equals 𝑧− 𝜆 times some polynomial of degree 𝑘 −1. Thus 4.7
+shows that 𝑝 equals 𝑧 − 𝜆 times some polynomial of degree 𝑚 − 1, as desired.
+To prove the implication in the other direction, now suppose that there is
+a polynomial 𝑞 ∈ 𝒫(𝐅) such that 𝑝(𝑧) = (𝑧 − 𝜆)𝑞(𝑧) for every 𝑧 ∈ 𝐅. Then
+𝑝(𝜆) = (𝜆 − 𝜆)𝑞(𝜆) = 0, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4 Polynomials 123
+Now we can prove that polynomials do not have too many zeros.
+4.8 degree 𝑚 implies at most 𝑚 zeros
+Suppose 𝑚 is a positive integer and 𝑝 ∈ 𝒫(𝐅) is a polynomial of degree 𝑚.
+Then 𝑝 has at most 𝑚 zeros in 𝐅.
+Proof We will use induction on 𝑚. The desired result holds if 𝑚 = 1 because
+if 𝑎1 ≠ 0 then the polynomial 𝑎0 + 𝑎1𝑧 has only one zero (which equals −𝑎0/𝑎1).
+Thus assume that 𝑚 > 1 and the desired result holds for 𝑚 − 1.
+If 𝑝 has no zeros in 𝐅, then the desired result holds and we are done. Thus
+suppose 𝑝 has a zero 𝜆 ∈ 𝐅. By 4.6, there is polynomial 𝑞 ∈ 𝒫(𝐅) of degree
+𝑚 − 1 such that
+𝑝(𝑧) = (𝑧 − 𝜆)𝑞(𝑧)
+for every 𝑧 ∈ 𝐅. Our induction hypothesis implies that 𝑞 has at most 𝑚 − 1 zeros
+in 𝐅. The equation above shows that the zeros of 𝑝 in 𝐅 are exactly the zeros of 𝑞
+in 𝐅 along with 𝜆. Thus 𝑝 has at most 𝑚 zeros in 𝐅.
+The result above implies that the coefficients of a polynomial are uniquely
+determined (because if a polynomial had two different sets of coefficients, then
+subtracting the two representations of the polynomial would give a polynomial
+withsomenonzerocoefficientsbutinfinitelymanyzeros). Inparticular, thedegree
+of a polynomial is uniquely defined.
+The 0 polynomial is declared to have
+degree −∞ so that exceptions are not
+needed for various reasonable results
+such as deg(𝑝𝑞) = deg𝑝 + deg𝑞.
+Recall that the degree of the 0 poly-
+nomial is defined to be −∞. When
+necessary, use the expected arithmetic
+with −∞. For example, −∞ < 𝑚 and
+−∞ + 𝑚 = −∞ for every integer 𝑚.
+Division Algorithm for Polynomials
+If 𝑝 and 𝑠 are nonnegative integers, with 𝑠 ≠ 0, then there exist nonnegative
+integers 𝑞 and 𝑟 such that
+𝑝 = 𝑠𝑞 + 𝑟
+and 𝑟 < 𝑠. Think of dividing 𝑝 by 𝑠, getting quotient 𝑞 with remainder 𝑟. Our next
+result gives an analogous result for polynomials. Thus the next result is often
+called the division algorithm for polynomials, although as stated here it is not
+really an algorithm, just a useful result.
+Thinkofthedivisionalgorithmforpoly-
+nomials as giving a remainder polyno-
+mial𝑟 whenthepolynomial𝑝isdivided
+by the polynomial 𝑠.
+The division algorithm for polynomi-
+als could be proved without using any
+linear algebra. However, as is appropri-
+ateforalinearalgebratextbook,theproof
+given here uses linear algebra techniques
+and makes nice use of a basis of 𝒫𝑛(𝐅), which is the (𝑛 + 1)-dimensional vector
+space of polynomials with coefficients in 𝐅 and of degree at most 𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler124 Chapter 4 Polynomials
+4.9 division algorithm for polynomials
+Suppose that 𝑝,𝑠 ∈ 𝒫(𝐅), with 𝑠 ≠ 0. Then there exist unique polynomials
+𝑞,𝑟 ∈ 𝒫(𝐅) such that
+𝑝 = 𝑠𝑞 + 𝑟
+and deg𝑟 < deg𝑠.
+Proof Let 𝑛 = deg𝑝 and let 𝑚 = deg𝑠. If 𝑛 < 𝑚, then take 𝑞 = 0 and 𝑟 = 𝑝 to
+get the desired equation 𝑝 = 𝑠𝑞 + 𝑟 with deg𝑟 < deg𝑠. Thus we now assume that
+𝑛 ≥ 𝑚.
+The list
+4.10 1,𝑧,…,𝑧𝑚−1
+,𝑠,𝑧𝑠,…,𝑧𝑛−𝑚
+𝑠
+islinearlyindependentin𝒫𝑛(𝐅) becauseeachpolynomialinthislisthasadifferent
+degree. Also, the list 4.10 has length 𝑛 + 1, which equals dim𝒫𝑛(𝐅). Hence 4.10
+is a basis of 𝒫𝑛(𝐅) [by 2.38].
+Because 𝑝 ∈ 𝒫𝑛(𝐅) and 4.10 is a basis of 𝒫𝑛(𝐅), there exist unique constants
+𝑎0,𝑎1,…,𝑎𝑚−1 ∈ 𝐅 and 𝑏0,𝑏1,…,𝑏𝑛−𝑚 ∈ 𝐅 such that
+𝑝 = 𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚−1𝑧𝑚−1
++ 𝑏0𝑠 + 𝑏1𝑧𝑠 + ⋯ + 𝑏𝑛−𝑚𝑧𝑛−𝑚
+𝑠 4.11
+= 𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚−1𝑧𝑚−1
+⏟⏟⏟⏟⏟⏟⏟⏟⏟
+𝑟
++ 𝑠(𝑏0 + 𝑏1𝑧 + ⋯ + 𝑏𝑛−𝑚𝑧𝑛−𝑚
+⏟⏟⏟⏟⏟⏟⏟⏟⏟
+𝑞
+).
+With 𝑟 and 𝑞 as defined above, we see that 𝑝 can be written as 𝑝 = 𝑠𝑞 + 𝑟 with
+deg𝑟 < deg𝑠, as desired.
+The uniqueness of 𝑞,𝑟 ∈ 𝒫(𝐅) satisfying these conditions follows from the
+uniqueness of the constants 𝑎0,𝑎1,…,𝑎𝑚−1 ∈ 𝐅 and 𝑏0,𝑏1,…,𝑏𝑛−𝑚 ∈ 𝐅 satisfy-
+ing 4.11.
+Factorization of Polynomials over 𝐂
+The fundamental theorem of algebra is
+an existence theorem. Its proof does
+not lead to a method for finding zeros.
+The quadratic formula gives the zeros
+explicitly for polynomials of degree 2.
+Similarbutmorecomplicatedformulas
+exist for polynomials of degree 3 and 4.
+No such formulas exist for polynomials
+of degree 5 and above.
+We have been handling polynomials with
+complex coefficients and polynomials
+with real coefficients simultaneously, let-
+ting 𝐅 denote 𝐑 or 𝐂. Now we will
+see differences between these two cases.
+First we treat polynomials with complex
+coefficients. Then we will use those re-
+sults to prove corresponding results for
+polynomials with real coefficients.
+Ourproofofthefundamentaltheorem
+of algebra implicitly uses the result that a continuous real-valued function on a
+closed disk in 𝐑2
+attains a minimum value. A web search can lead you to several
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4 Polynomials 125
+other proofs of the fundamental theorem of algebra. The proof using Liouville’s
+theorem is particularly nice if you are comfortable with analytic functions. All
+proofs of the fundamental theorem of algebra need to use some analysis, because
+the result is not true if 𝐂 is replaced, for example, with the set of numbers of the
+form 𝑐 + 𝑑𝑖 where 𝑐,𝑑 are rational numbers.
+4.12 fundamental theorem of algebra, first version
+Every nonconstant polynomial with complex coefficients has a zero in 𝐂.
+Proof De Moivre’s theorem, which you can prove using induction on 𝑘 and the
+addition formulas for cosine and sine, states that if 𝑘 is a positive integer and
+𝜃 ∈ 𝐑, then
+(cos𝜃 + 𝑖sin𝜃)𝑘
+= cos𝑘𝜃 + 𝑖sin𝑘𝜃.
+Suppose 𝑤 ∈ 𝐂 and 𝑘 is a positive integer. Using polar coordinates, we know
+that there exist 𝑟 ≥ 0 and 𝜃 ∈ 𝐑 such that
+𝑟(cos𝜃 + 𝑖sin𝜃) = 𝑤.
+De Moivre’s theorem implies that
+(𝑟1/𝑘
+(cos 𝜃
+𝑘
++ 𝑖sin 𝜃
+𝑘
+))
+𝑘
+= 𝑤.
+Thus every complex number has a 𝑘th
+root, a fact that we will soon use.
+Suppose 𝑝 is a nonconstant polynomial with complex coefficients and highest-
+order nonzero term 𝑐𝑚𝑧𝑚
+. Then |𝑝(𝑧)| → ∞ as |𝑧| → ∞ (because |𝑝(𝑧)|/∣𝑧𝑚
+∣ → |𝑐𝑚|
+as |𝑧| → ∞). Thus the continuous function 𝑧 ↦ |𝑝(𝑧)| has a global minimum at
+some point 𝜁 ∈ 𝐂. To show that 𝑝(𝜁) = 0, suppose that 𝑝(𝜁) ≠ 0.
+Define a new polynomial 𝑞 by
+𝑞(𝑧) =
+𝑝(𝑧 + 𝜁)
+𝑝(𝜁)
+.
+The function 𝑧 ↦ |𝑞(𝑧)| has a global minimum value of 1 at 𝑧 = 0. Write
+𝑞(𝑧) = 1 + 𝑎𝑘𝑧𝑘
++ ⋯ + 𝑎𝑚𝑧𝑚
+,
+where 𝑘 is the smallest positive integer such that the coefficient of 𝑧𝑘
+is nonzero;
+in other words, 𝑎𝑘 ≠ 0.
+Let 𝛽 ∈ 𝐂 be such that 𝛽𝑘
+= −
+1
+𝑎𝑘
+. There is a constant 𝑐 > 1 such that if
+𝑡 ∈ (0,1), then
+|𝑞(𝑡𝛽)| ≤ ∣1 + 𝑎𝑘𝑡𝑘
+𝛽𝑘
+∣ + 𝑡𝑘+1
+𝑐
+= 1 − 𝑡𝑘
+(1 − 𝑡𝑐).
+Thus taking 𝑡 to be 1/(2𝑐) in the inequality above, we have |𝑞(𝑡𝛽)| < 1, which
+contradicts the assumption that the global minimum of 𝑧 ↦ |𝑞(𝑧)| is 1. This
+contradiction implies that 𝑝(𝜁) = 0, showing that 𝑝 has a zero, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler126 Chapter 4 Polynomials
+Computers can use clever numerical methods to find good approximations to
+the zeros of any polynomial, even when exact zeros cannot be found. For example,
+no one will ever give an exact formula for a zero of the polynomial 𝑝 defined by
+𝑝(𝑥) = 𝑥5
+− 5𝑥4
+− 6𝑥3
++ 17𝑥2
++ 4𝑥 − 7.
+However, a computer can find that the zeros of 𝑝 are approximately the five
+numbers −1.87, −0.74, 0.62, 1.47, 5.51.
+The first version of the fundamental theorem of algebra leads to the following
+factorization result for polynomials with complex coefficients. Note that in this
+factorization, the zeros of 𝑝 are the numbers 𝜆1,…, 𝜆𝑚, which are the only values
+of 𝑧 for which the right side of the equation in the next result equals 0.
+4.13 fundamental theorem of algebra, second version
+If 𝑝 ∈ 𝒫(𝐂) is a nonconstant polynomial, then 𝑝 has a unique factorization
+(except for the order of the factors) of the form
+𝑝(𝑧) = 𝑐(𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚),
+where 𝑐, 𝜆1,…, 𝜆𝑚 ∈ 𝐂.
+Proof Let 𝑝 ∈ 𝒫(𝐂) and let 𝑚 = deg𝑝. We will use induction on 𝑚. If 𝑚 = 1,
+then the desired factorization exists and is unique. So assume that 𝑚 > 1 and that
+the desired factorization exists and is unique for all polynomials of degree 𝑚 − 1.
+First we will show that the desired factorization of 𝑝 exists. By the first version
+of the fundamental theorem of algebra (4.12), 𝑝 has a zero 𝜆 ∈ 𝐂. By 4.6, there
+is a polynomial 𝑞 of degree 𝑚 − 1 such that
+𝑝(𝑧) = (𝑧 − 𝜆)𝑞(𝑧)
+forall𝑧 ∈ 𝐂. Ourinductionhypothesisimpliesthat𝑞 hasthedesiredfactorization,
+which when plugged into the equation above gives the desired factorization of 𝑝.
+Now we turn to the question of uniqueness. The number 𝑐 is uniquely deter-
+mined as the coefficient of 𝑧𝑚
+in 𝑝. So we only need to show that except for the
+order, there is only one way to choose 𝜆1,…, 𝜆𝑚. If
+(𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) = (𝑧 − 𝜏1)⋯(𝑧 − 𝜏𝑚)
+for all 𝑧 ∈ 𝐂, then because the left side of the equation above equals 0 when
+𝑧 = 𝜆1, one of the 𝜏’s on the right side equals 𝜆1. Relabeling, we can assume
+that 𝜏1 = 𝜆1. Now if 𝑧 ≠ 𝜆1, we can divide both sides of the equation above by
+𝑧 − 𝜆1, getting
+(𝑧 − 𝜆2)⋯(𝑧 − 𝜆𝑚) = (𝑧 − 𝜏2)⋯(𝑧 − 𝜏𝑚)
+for all 𝑧 ∈ 𝐂 except possibly 𝑧 = 𝜆1. Actually the equation above holds for all
+𝑧 ∈ 𝐂, because otherwise by subtracting the right side from the left side we would
+get a nonzero polynomial that has infinitely many zeros. The equation above and
+our induction hypothesis imply that except for the order, the 𝜆’s are the same as
+the 𝜏’s, completing the proof of uniqueness.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4 Polynomials 127
+Factorization of Polynomials over 𝐑
+The failure of the fundamental theorem
+of algebra for 𝐑 accounts for the differ-
+ences between linear algebra on real
+and complex vector spaces, as we will
+see in later chapters.
+A polynomial with real coefficients may
+have no real zeros. For example, the poly-
+nomial 1 + 𝑥2
+has no real zeros.
+Toobtainafactorizationtheoremover
+𝐑, we will use our factorization theorem
+over 𝐂. We begin with the next result.
+4.14 polynomials with real coefficients have nonreal zeros in pairs
+Suppose 𝑝 ∈ 𝒫(𝐂) is a polynomial with real coefficients. If 𝜆 ∈ 𝐂 is a zero
+of 𝑝, then so is 𝜆.
+Proof Let
+𝑝(𝑧) = 𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑚𝑧𝑚
+,
+where 𝑎0,…,𝑎𝑚 are real numbers. Suppose 𝜆 ∈ 𝐂 is a zero of 𝑝. Then
+𝑎0 + 𝑎1𝜆 + ⋯ + 𝑎𝑚𝜆𝑚
+= 0.
+Take the complex conjugate of both sides of this equation, obtaining
+𝑎0 + 𝑎1𝜆 + ⋯ + 𝑎𝑚𝜆𝑚
+= 0,
+where we have used basic properties of the complex conjugate (see 4.4). The
+equation above shows that 𝜆 is a zero of 𝑝.
+Think about the quadratic formula in
+connection with the result below.
+We want a factorization theorem for
+polynomials with real coefficients. We
+begin with the following result.
+4.15 factorization of a quadratic polynomial
+Suppose 𝑏,𝑐 ∈ 𝐑. Then there is a polynomial factorization of the form
+𝑥2
++ 𝑏𝑥 + 𝑐 = (𝑥 − 𝜆1)(𝑥 − 𝜆2)
+with 𝜆1, 𝜆2 ∈ 𝐑 if and only if 𝑏2
+≥ 4𝑐.
+Proof Notice that
+𝑥2
++ 𝑏𝑥 + 𝑐 = (𝑥 +
+𝑏
+2
+)
+2
++ (𝑐 −
+𝑏2
+4
+).
+The equation above is the basis of
+the technique called completing the
+square.
+First suppose 𝑏2
+< 4𝑐. Then the right
+side of the equation above is positive for
+every 𝑥 ∈ 𝐑. Hence the polynomial
+𝑥2
++ 𝑏𝑥 + 𝑐 has no real zeros and thus
+cannot be factored in the form (𝑥 − 𝜆1)(𝑥 − 𝜆2) with 𝜆1, 𝜆2 ∈ 𝐑.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler128 Chapter 4 Polynomials
+Conversely, now suppose 𝑏2
+≥ 4𝑐. Then there is a real number 𝑑 such that
+𝑑2
+= 𝑏2
+4
+− 𝑐. From the displayed equation above, we have
+𝑥2
++ 𝑏𝑥 + 𝑐 = (𝑥 +
+𝑏
+2
+)
+2
+− 𝑑2
+= (𝑥 +
+𝑏
+2
++ 𝑑)(𝑥 +
+𝑏
+2
+− 𝑑),
+which gives the desired factorization.
+The next result gives a factorization of a polynomial over 𝐑. The idea of
+the proof is to use the second version of the fundamental theorem of algebra
+(4.13), which gives a factorization of 𝑝 as a polynomial with complex coefficients.
+Complex but nonreal zeros of 𝑝 come in pairs; see 4.14. Thus if the factorization
+of 𝑝 as an element of 𝒫(𝐂) includes terms of the form (𝑥 − 𝜆) with 𝜆 a nonreal
+complex number, then (𝑥 − 𝜆) is also a term in the factorization. Multiplying
+together these two terms, we get
+𝑥2
+− 2(Re 𝜆)𝑥 + |𝜆|2
+,
+which is a quadratic term of the required form.
+The idea sketched in the paragraph above almost provides a proof of the
+existence of our desired factorization. However, we need to be careful about
+one point. Suppose 𝜆 is a nonreal complex number and (𝑥 − 𝜆) is a term in the
+factorization of 𝑝 as an element of 𝒫(𝐂). We are guaranteed by 4.14 that (𝑥 − 𝜆)
+also appears as a term in the factorization, but 4.14 does not state that these two
+factors appear the same number of times, as needed to make the idea above work.
+However, the proof works around this point.
+In the next result, either 𝑚 or 𝑀 may equal 0. The numbers 𝜆1,…, 𝜆𝑚 are
+precisely the real zeros of 𝑝, for these are the only real values of 𝑥 for which the
+right side of the equation in the next result equals 0.
+4.16 factorization of a polynomial over 𝐑
+Suppose 𝑝 ∈ 𝒫(𝐑) is a nonconstant polynomial. Then 𝑝 has a unique factor-
+ization (except for the order of the factors) of the form
+𝑝(𝑥) = 𝑐(𝑥 − 𝜆1)⋯(𝑥 − 𝜆𝑚)(𝑥2
++ 𝑏1𝑥 + 𝑐1)⋯(𝑥2
++ 𝑏𝑀𝑥 + 𝑐𝑀),
+where 𝑐, 𝜆1,…, 𝜆𝑚,𝑏1,…,𝑏𝑀,𝑐1,…,𝑐𝑀 ∈ 𝐑, with 𝑏𝑘
+2
+< 4𝑐𝑘 for each 𝑘.
+Proof First we will prove that the desired factorization exists, and after that we
+will prove the uniqueness.
+Think of 𝑝 as an element of 𝒫(𝐂). If all (complex) zeros of 𝑝 are real, then
+we have the desired factorization by 4.13. Thus suppose 𝑝 has a zero 𝜆 ∈ 𝐂 with
+𝜆 ∉ 𝐑. By 4.14, 𝜆 is a zero of 𝑝. Thus we can write
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4 Polynomials 129
+𝑝(𝑥) = (𝑥 − 𝜆)(𝑥 − 𝜆)𝑞(𝑥)
+= (𝑥2
+− 2(Re 𝜆)𝑥 + |𝜆|2
+)𝑞(𝑥)
+for some polynomial 𝑞 ∈ 𝒫(𝐂) of degree two less than the degree of 𝑝. If we
+can prove that 𝑞 has real coefficients, then using induction on the degree of 𝑝
+completes the proof of the existence part of this result.
+To prove that 𝑞 has real coefficients, we solve the equation above for 𝑞, getting
+𝑞(𝑥) =
+𝑝(𝑥)
+𝑥2 − 2(Re 𝜆)𝑥 + |𝜆|2
+for all 𝑥 ∈ 𝐑. The equation above implies that 𝑞(𝑥) ∈ 𝐑 for all 𝑥 ∈ 𝐑. Writing
+𝑞(𝑥) = 𝑎0 + 𝑎1𝑥 + ⋯ + 𝑎𝑛−2𝑥𝑛−2
+,
+where 𝑛 = deg𝑝 and 𝑎0,…,𝑎𝑛−2 ∈ 𝐂, we thus have
+0 = Im𝑞(𝑥) = (Im𝑎0) + (Im𝑎1)𝑥 + ⋯ + (Im𝑎𝑛−2)𝑥𝑛−2
+for all 𝑥 ∈ 𝐑. This implies that Im𝑎0,…,Im𝑎𝑛−2 all equal 0 (by 4.8). Thus all
+coefficients of 𝑞 are real, as desired. Hence the desired factorization exists.
+Now we turn to the question of uniqueness of our factorization. A factor of 𝑝
+ofthe form 𝑥2
++𝑏𝑘𝑥+𝑐𝑘 with 𝑏𝑘
+2
+< 4𝑐𝑘 canbe uniquelywritten as (𝑥−𝜆𝑘)(𝑥−𝜆𝑘)
+with 𝜆𝑘 ∈ 𝐂. A moment’s thought shows that two different factorizations of 𝑝 as
+an element of 𝒫(𝐑) would lead to two different factorizations of 𝑝 as an element
+of 𝒫(𝐂), contradicting 4.13.
+Exercises 4
+1 Suppose 𝑤,𝑧 ∈ 𝐂. Verify the following equalities and inequalities.
+(a) 𝑧 + 𝑧 = 2Re𝑧
+(b) 𝑧 − 𝑧 = 2(Im𝑧)𝑖
+(c) 𝑧𝑧 = |𝑧|2
+(d) 𝑤 + 𝑧 = 𝑤 + 𝑧 and 𝑤𝑧 = 𝑤 𝑧
+(e) 𝑧 = 𝑧
+(f) |Re𝑧| ≤ |𝑧| and |Im𝑧| ≤ |𝑧|
+(g) ∣𝑧∣ = |𝑧|
+(h) |𝑤𝑧| = |𝑤||𝑧|
+The results above are the parts of 4.4 that were left to the reader.
+2 Prove that if 𝑤,𝑧 ∈ 𝐂, then ∣|𝑤| − |𝑧|∣ ≤ |𝑤 − 𝑧|.
+The inequality above is called the reverse triangle inequality.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler130 Chapter 4 Polynomials
+3 Suppose 𝑉 is a complex vector space and 𝜑 ∈ 𝑉′
+. Define 𝜎 ∶ 𝑉 → 𝐑 by
+𝜎(𝑣) = Re𝜑(𝑣) for each 𝑣 ∈ 𝑉. Show that
+𝜑(𝑣) = 𝜎(𝑣) − 𝑖𝜎(𝑖𝑣)
+for all 𝑣 ∈ 𝑉.
+## 4 Suppose 𝑚 is a positive integer. Is the set
+{0} ∪ {𝑝 ∈ 𝒫(𝐅) ∶ deg𝑝 = 𝑚}
+a subspace of 𝒫(𝐅)?
+## 5 Is the set
+{0} ∪ {𝑝 ∈ 𝒫(𝐅) ∶ deg𝑝 is even}
+a subspace of 𝒫(𝐅)?
+## 6 Suppose that 𝑚 and 𝑛 are positive integers with 𝑚 ≤ 𝑛, and suppose
+𝜆1,…, 𝜆𝑚 ∈ 𝐅. Prove that there exists a polynomial 𝑝 ∈ 𝒫(𝐅) with
+deg𝑝 = 𝑛 such that 0 = 𝑝(𝜆1) = ⋯ = 𝑝(𝜆𝑚) and such that 𝑝 has no
+other zeros.
+7 Suppose that 𝑚 is a nonnegative integer, 𝑧1,…,𝑧𝑚+1 are distinct elements
+of 𝐅, and 𝑤1,…,𝑤𝑚+1 ∈ 𝐅. Prove that there exists a unique polynomial
+𝑝 ∈ 𝒫𝑚(𝐅) such that
+𝑝(𝑧𝑘) = 𝑤𝑘
+for each 𝑘 = 1,…,𝑚 + 1.
+This result can be proved without using linear algebra. However, try to find
+the clearer, shorter proof that uses some linear algebra.
+## 8 Suppose 𝑝 ∈ 𝒫(𝐂) has degree 𝑚. Prove that 𝑝 has 𝑚 distinct zeros if and
+only if 𝑝 and its derivative 𝑝′
+have no zeros in common.
+## 9 Prove that every polynomial of odd degree with real coefficients has a real
+zero.
+10 For 𝑝 ∈ 𝒫(𝐑), define 𝑇𝑝∶ 𝐑 → 𝐑 by
+(𝑇𝑝)(𝑥) =
+⎧ { {
+⎨ { { ⎩
+𝑝(𝑥) − 𝑝(3)
+𝑥 − 3
+if 𝑥 ≠ 3,
+𝑝′
+(3) if 𝑥 = 3
+for each 𝑥 ∈ 𝐑. Show that 𝑇𝑝 ∈ 𝒫(𝐑) for every polynomial 𝑝 ∈ 𝒫(𝐑) and
+also show that 𝑇∶ 𝒫(𝐑) → 𝒫(𝐑) is a linear map.
+11 Suppose 𝑝 ∈ 𝒫(𝐂). Define 𝑞∶ 𝐂 → 𝐂 by
+𝑞(𝑧) = 𝑝(𝑧)𝑝(𝑧).
+Prove that 𝑞 is a polynomial with real coefficients.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 4 Polynomials 131
+12 Suppose 𝑚 is a nonnegative integer and 𝑝 ∈ 𝒫𝑚(𝐂) is such that there are
+distinct real numbers 𝑥0,𝑥1,…,𝑥𝑚 with 𝑝(𝑥𝑘) ∈ 𝐑 for each 𝑘 = 0,1,…,𝑚.
+Prove that all coefficients of 𝑝 are real.
+## 13 Suppose 𝑝 ∈ 𝒫(𝐅) with 𝑝 ≠ 0. Let 𝑈 = {𝑝𝑞 ∶ 𝑞 ∈ 𝒫(𝐅)}.
+(a) Show that dim𝒫(𝐅)/𝑈 = deg𝑝.
+(b) Find a basis of 𝒫(𝐅)/𝑈.
+14 Suppose𝑝,𝑞 ∈ 𝒫(𝐂) arenonconstantpolynomialswithnozerosincommon.
+Let 𝑚 = deg𝑝 and 𝑛 = deg𝑞. Use linear algebra as outlined below in (a)–(c)
+to prove that there exist 𝑟 ∈ 𝒫𝑛−1(𝐂) and 𝑠 ∈ 𝒫𝑚−1(𝐂) such that
+𝑟𝑝 + 𝑠𝑞 = 1.
+(a) Define 𝑇∶ 𝒫𝑛−1(𝐂) × 𝒫𝑚−1(𝐂) → 𝒫𝑚+𝑛−1(𝐂) by
+𝑇(𝑟,𝑠) = 𝑟𝑝 + 𝑠𝑞.
+Show that the linear map 𝑇 is injective.
+(b) Show that the linear map 𝑇 in (a) is surjective.
+(c) Use (b) to conclude that there exist 𝑟 ∈ 𝒫𝑛−1(𝐂) and 𝑠 ∈ 𝒫𝑚−1(𝐂) such
+that 𝑟𝑝 + 𝑠𝑞 = 1.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 5
+Eigenvalues and Eigenvectors
+Linear maps from one vector space to another vector space were the objects of
+study in Chapter 3. Now we begin our investigation of operators, which are linear
+maps from a vector space to itself. Their study constitutes the most important
+part of linear algebra.
+To learn about an operator, we might try restricting it to a smaller subspace.
+Asking for that restriction to be an operator will lead us to the notion of invariant
+subspaces. Each one-dimensional invariant subspace arises from a vector that
+the operator maps into a scalar multiple of the vector. This path will lead us to
+eigenvectors and eigenvalues.
+We will then prove one of the most important results in linear algebra: every
+operator on a finite-dimensional nonzero complex vector space has an eigenvalue.
+This result will allow us to show that for each operator on a finite-dimensional
+complex vector space, there is a basis of the vector space with respect to which
+the matrix of the operator has at least almost half its entries equal to 0.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑉 denotes a vector space over 𝐅.
+Hans-Peter Postel CC BY
+Statue of Leonardo of Pisa (1170–1250, approximate dates), also known as Fibonacci.
+Exercise 21 in Section 5D shows how linear algebra can be used to find
+the explicit formula for the Fibonacci sequence shown on the front cover.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+132Section 5A Invariant Subspaces 133
+5A Invariant Subspaces
+Eigenvalues
+5.1 definition: operator
+A linear map from a vector space to itself is called an operator.
+Recall that we defined the notation
+ℒ(𝑉) to mean ℒ(𝑉,𝑉).
+Suppose 𝑇 ∈ ℒ(𝑉). If 𝑚 ≥ 2 and
+𝑉 = 𝑉1 ⊕ ⋯ ⊕ 𝑉𝑚 ,
+where each 𝑉𝑘 is a nonzero subspace of 𝑉, then to understand the behavior of
+𝑇 we only need to understand the behavior of each 𝑇|𝑉𝑘
+; here 𝑇|𝑉𝑘
+denotes the
+restriction of 𝑇 to the smaller domain 𝑉𝑘. Dealing with 𝑇|𝑉𝑘
+should be easier than
+dealing with 𝑇 because 𝑉𝑘 is a smaller vector space than 𝑉.
+However, if we intend to apply tools useful in the study of operators (such
+as taking powers), then we have a problem: 𝑇|𝑉𝑘
+may not map 𝑉𝑘 into itself; in
+other words, 𝑇|𝑉𝑘
+may not be an operator on 𝑉𝑘. Thus we are led to consider only
+decompositionsof𝑉 oftheformaboveinwhich𝑇 mapseach𝑉𝑘 intoitself. Hence
+we now give a name to subspaces of 𝑉 that get mapped into themselves by 𝑇.
+5.2 definition: invariant subspace
+Suppose 𝑇 ∈ ℒ(𝑉). A subspace 𝑈 of 𝑉 iscalled invariant under 𝑇 if 𝑇𝑢 ∈ 𝑈
+for every 𝑢 ∈ 𝑈.
+Thus 𝑈 is invariant under 𝑇 if 𝑇|𝑈 is an operator on 𝑈.
+5.3 example: subspace invariant under differentiation operator
+Suppose that 𝑇 ∈ ℒ(𝒫(𝐑)) is defined by 𝑇𝑝 = 𝑝′
+. Then 𝒫4(𝐑), which is a
+subspace of 𝒫(𝐑), is invariant under 𝑇 because if 𝑝 ∈ 𝒫(𝐑) has degree at most 4,
+then 𝑝′
+also has degree at most 4.
+5.4 example: four invariant subspaces, not necessarily all different
+If 𝑇 ∈ ℒ(𝑉), then the following subspaces of 𝑉 are all invariant under 𝑇.
+{0} The subspace {0} is invariant under 𝑇 because if 𝑢 ∈ {0}, then 𝑢 = 0
+and hence 𝑇𝑢 = 0 ∈ {0}.
+𝑉 The subspace 𝑉 is invariant under 𝑇 because if 𝑢 ∈ 𝑉, then 𝑇𝑢 ∈ 𝑉.
+null𝑇 The subspace null𝑇 is invariant under 𝑇 because if 𝑢 ∈ null𝑇, then
+𝑇𝑢 = 0, and hence 𝑇𝑢 ∈ null𝑇.
+range𝑇 The subspace range𝑇 is invariant under 𝑇 because if 𝑢 ∈ range𝑇,
+then 𝑇𝑢 ∈ range𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler134 Chapter 5 Eigenvalues and Eigenvectors
+Must an operator 𝑇 ∈ ℒ(𝑉) have any invariant subspaces other than {0}
+and 𝑉? Later we will see that this question has an affirmative answer if 𝑉 is
+finite-dimensional and dim𝑉 > 1 (for 𝐅 = 𝐂) or dim𝑉 > 2 (for 𝐅 = 𝐑); see
+5.19 and Exercise 29 in Section 5B.
+The previous example noted that null𝑇 and range𝑇 are invariant under 𝑇.
+However, these subspaces do not necessarily provide easy answers to the question
+above about the existence of invariant subspaces other than {0} and 𝑉, because
+null𝑇 may equal {0} and range𝑇 may equal 𝑉 (this happens when 𝑇 is invertible).
+We will return later to a deeper study of invariant subspaces. Now we turn to
+an investigation of the simplest possible nontrivial invariant subspaces—invariant
+subspaces of dimension one.
+Take any 𝑣 ∈ 𝑉 with 𝑣 ≠ 0 and let 𝑈 equal the set of all scalar multiples of 𝑣:
+𝑈 = {𝜆𝑣 ∶ 𝜆 ∈ 𝐅} = span(𝑣).
+Then 𝑈 is a one-dimensional subspace of 𝑉 (and every one-dimensional subspace
+of 𝑉 is of this form for an appropriate choice of 𝑣). If 𝑈 is invariant under an
+operator 𝑇 ∈ ℒ(𝑉), then 𝑇𝑣 ∈ 𝑈, and hence there is a scalar 𝜆 ∈ 𝐅 such that
+𝑇𝑣 = 𝜆𝑣.
+Conversely, if 𝑇𝑣 = 𝜆𝑣 for some 𝜆 ∈ 𝐅, then span(𝑣) is a one-dimensional
+subspace of 𝑉 invariant under 𝑇.
+The equation 𝑇𝑣 = 𝜆𝑣, which we have just seen is intimately connected with
+one-dimensional invariant subspaces, is important enough that the scalars 𝜆 and
+vectors 𝑣 satisfying it are given special names.
+5.5 definition: eigenvalue
+Suppose 𝑇 ∈ ℒ(𝑉). A number 𝜆 ∈ 𝐅 is called an eigenvalue of 𝑇 if there
+exists 𝑣 ∈ 𝑉 such that 𝑣 ≠ 0 and 𝑇𝑣 = 𝜆𝑣.
+The word eigenvalue is half-German,
+half-English. The German prefix eigen
+means “own” in the sense of charac-
+terizing an intrinsic property.
+In the definition above, we require
+that 𝑣 ≠ 0 because every scalar 𝜆 ∈ 𝐅
+satisfies 𝑇0 = 𝜆0.
+The comments above show that 𝑉
+hasaone-dimensionalsubspaceinvariant
+under 𝑇 if and only if 𝑇 has an eigenvalue.
+5.6 example: eigenvalue
+Define an operator 𝑇 ∈ ℒ(𝐅3
+) by
+𝑇(𝑥,𝑦,𝑧) = (7𝑥 + 3𝑧,3𝑥 + 6𝑦 + 9𝑧,−6𝑦)
+for (𝑥,𝑦,𝑧) ∈ 𝐅3
+. Then 𝑇(3,1,−1) = (18,6,−6) = 6(3,1,−1). Thus 6 is an
+eigenvalue of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5A Invariant Subspaces 135
+The equivalences in the next result, along with many deep results in linear
+algebra, are valid only in the context of finite-dimensional vector spaces.
+5.7 equivalent conditions to be an eigenvalue
+Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝜆 ∈ 𝐅. Then the following
+are equivalent.
+(a) 𝜆 is an eigenvalue of 𝑇.
+(b) 𝑇 − 𝜆𝐼 is not injective.
+(c) 𝑇 − 𝜆𝐼 is not surjective.
+Reminder: 𝐼 ∈ ℒ(𝑉) is the identity
+operator. Thus 𝐼𝑣 = 𝑣 for all 𝑣 ∈ 𝑉.
+(d) 𝑇 − 𝜆𝐼 is not invertible.
+Proof Conditions (a) and (b) are equivalent because the equation 𝑇𝑣 = 𝜆𝑣
+is equivalent to the equation (𝑇 − 𝜆𝐼)𝑣 = 0. Conditions (b), (c), and (d) are
+equivalent by 3.65.
+5.8 definition: eigenvector
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅 is an eigenvalue of 𝑇. A vector 𝑣 ∈ 𝑉 is called
+an eigenvector of 𝑇 corresponding to 𝜆 if 𝑣 ≠ 0 and 𝑇𝑣 = 𝜆𝑣.
+In other words, a nonzero vector 𝑣 ∈ 𝑉 is an eigenvector of an operator
+𝑇 ∈ ℒ(𝑉) if and only if 𝑇𝑣 is a scalar multiple of 𝑣. Because 𝑇𝑣 = 𝜆𝑣 if and only
+if (𝑇 − 𝜆𝐼)𝑣 = 0, a vector 𝑣 ∈ 𝑉 with 𝑣 ≠ 0 is an eigenvector of 𝑇 corresponding
+to 𝜆 if and only if 𝑣 ∈ null(𝑇 − 𝜆𝐼).
+5.9 example: eigenvalues and eigenvectors
+Suppose 𝑇 ∈ ℒ(𝐅2
+) is defined by 𝑇(𝑤,𝑧) = (−𝑧,𝑤).
+(a) First consider the case 𝐅 = 𝐑. Then 𝑇 is a counterclockwise rotation by 90∘
+about the origin in 𝐑2
+. An operator has an eigenvalue if and only if there
+exists a nonzero vector in its domain that gets sent by the operator to a scalar
+multiple of itself. A 90∘
+counterclockwise rotation of a nonzero vector in 𝐑2
+cannot equal a scalar multiple of itself. Conclusion: if 𝐅 = 𝐑, then 𝑇 has no
+eigenvalues (and thus has no eigenvectors).
+(b) Now consider the case 𝐅 = 𝐂. To find eigenvalues of 𝑇, we must find the
+scalars 𝜆 suchthat𝑇(𝑤,𝑧) = 𝜆(𝑤,𝑧) hassomesolutionotherthan𝑤 = 𝑧 = 0.
+The equation 𝑇(𝑤,𝑧) = 𝜆(𝑤,𝑧) is equivalent to the simultaneous equations
+5.10 −𝑧 = 𝜆𝑤, 𝑤 = 𝜆𝑧.
+Substitutingthevaluefor𝑤givenbythesecondequationintothefirstequation
+gives
+−𝑧 = 𝜆2
+𝑧.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler136 Chapter 5 Eigenvalues and Eigenvectors
+Now 𝑧 cannot equal 0 [otherwise 5.10 implies that 𝑤 = 0; we are looking for
+solutions to 5.10 such that (𝑤,𝑧) is not the 0 vector], so the equation above
+leads to the equation
+−1 = 𝜆2
+.
+The solutions to this equation are 𝜆 = 𝑖 and 𝜆 = −𝑖.
+You can verify that 𝑖 and −𝑖 are eigenvalues of 𝑇. Indeed, the eigenvectors
+corresponding to the eigenvalue 𝑖 are the vectors of the form (𝑤,−𝑤𝑖), with
+𝑤 ∈ 𝐂 and 𝑤 ≠ 0. Furthermore, the eigenvectors corresponding to the
+eigenvalue −𝑖 are the vectors of the form (𝑤,𝑤𝑖), with 𝑤 ∈ 𝐂 and 𝑤 ≠ 0.
+In the next proof, we again use the equivalence
+𝑇𝑣 = 𝜆𝑣 ⟺ (𝑇 − 𝜆𝐼)𝑣 = 0.
+5.11 linearly independent eigenvectors
+Suppose 𝑇 ∈ ℒ(𝑉). Then every list of eigenvectors of 𝑇 corresponding to
+distinct eigenvalues of 𝑇 is linearly independent.
+Proof Suppose the desired result is false. Then there exists a smallest positive
+integer 𝑚 such that there exists a linearly dependent list 𝑣1,…,𝑣𝑚 of eigenvectors
+of 𝑇 corresponding to distinct eigenvalues 𝜆1,…, 𝜆𝑚 of 𝑇 (note that 𝑚 ≥ 2
+because an eigenvector is, by definition, nonzero). Thus there exist 𝑎1,…,𝑎𝑚 ∈ 𝐅,
+none of which are 0 (because of the minimality of 𝑚), such that
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 = 0.
+Apply 𝑇 − 𝜆𝑚𝐼 to both sides of the equation above, getting
+𝑎1(𝜆1 − 𝜆𝑚)𝑣1 + ⋯ + 𝑎𝑚−1(𝜆𝑚−1 − 𝜆𝑚)𝑣𝑚−1 = 0.
+Because the eigenvalues 𝜆1,…, 𝜆𝑚 are distinct, none of the coefficients above
+equal 0. Thus 𝑣1,…,𝑣𝑚−1 is a linearly dependent list of 𝑚 − 1 eigenvectors of 𝑇
+corresponding to distinct eigenvalues, contradicting the minimality of 𝑚. This
+contradiction completes the proof.
+The result above leads to a short proof of the result below, which puts an upper
+bound on the number of distinct eigenvalues that an operator can have.
+5.12 operator cannot have more eigenvalues than dimension of vector space
+Suppose 𝑉 is finite-dimensional. Then each operator on 𝑉 has at most dim𝑉
+distinct eigenvalues.
+Proof Let 𝑇 ∈ ℒ(𝑉). Suppose 𝜆1,…, 𝜆𝑚 are distinct eigenvalues of 𝑇. Let
+𝑣1,…,𝑣𝑚 becorrespondingeigenvectors. Then5.11impliesthatthelist𝑣1,…,𝑣𝑚
+is linearly independent. Thus 𝑚 ≤ dim𝑉 (see 2.22), as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5A Invariant Subspaces 137
+Polynomials Applied to Operators
+The main reason that a richer theory exists for operators (which map a vector
+space into itself) than for more general linear maps is that operators can be raised
+to powers. In this subsection we define that notion and the concept of applying a
+polynomial to an operator. This concept will be the key tool that we use in the
+next section when we prove that every operator on a nonzero finite-dimensional
+complex vector space has an eigenvalue.
+If 𝑇 is an operator, then 𝑇𝑇 makes sense (see 3.7) and is also an operator on
+the same vector space as 𝑇. We usually write 𝑇2
+instead of 𝑇𝑇. More generally,
+we have the following definition of 𝑇𝑚
+.
+5.13 notation: 𝑇𝑚
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑚 is a positive integer.
+• 𝑇𝑚
+∈ ℒ(𝑉) is defined by 𝑇𝑚
+= 𝑇 ⋯𝑇 ⏟
+𝑚 times
+.
+• 𝑇0
+is defined to be the identity operator 𝐼 on 𝑉.
+• If 𝑇 is invertible with inverse 𝑇−1
+, then 𝑇−𝑚
+∈ ℒ(𝑉) is defined by
+𝑇−𝑚
+= (𝑇−1
+)
+𝑚
+.
+You should verify that if 𝑇 is an operator, then
+𝑇𝑚
+𝑇𝑛
+= 𝑇𝑚+𝑛
+and (𝑇𝑚
+)
+𝑛
+= 𝑇𝑚𝑛
+,
+where 𝑚 and 𝑛 are arbitrary integers if 𝑇 is invertible and are nonnegative integers
+if 𝑇 is not invertible.
+Having defined powers of an operator, we can now define what it means to
+apply a polynomial to an operator.
+5.14 notation: 𝑝(𝑇)
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑝 ∈ 𝒫(𝐅) is a polynomial given by
+𝑝(𝑧) = 𝑎0 + 𝑎1𝑧 + 𝑎2𝑧2
++ ⋯ + 𝑎𝑚𝑧𝑚
+for all 𝑧 ∈ 𝐅. Then 𝑝(𝑇) is the operator on 𝑉 defined by
+𝑝(𝑇) = 𝑎0𝐼 + 𝑎1𝑇 + 𝑎2𝑇2
++ ⋯ + 𝑎𝑚𝑇𝑚
+.
+This is a new use of the symbol 𝑝 because we are applying 𝑝 to operators, not
+just elements of 𝐅. The idea here is that to evaluate 𝑝(𝑇), we simply replace 𝑧 with
+𝑇 in the expression defining 𝑝. Note that the constant term 𝑎0 in 𝑝(𝑧) becomes the
+operator 𝑎0𝐼 (which is a reasonable choice because 𝑎0 = 𝑎0𝑧0
+and thus we should
+replace 𝑎0 with 𝑎0𝑇0
+, which equals 𝑎0𝐼).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler138 Chapter 5 Eigenvalues and Eigenvectors
+5.15 example: a polynomial applied to the differentiation operator
+Suppose 𝐷 ∈ ℒ(𝒫(𝐑)) is the differentiation operator defined by 𝐷𝑞 = 𝑞′
+and
+𝑝 is the polynomial defined by 𝑝(𝑥) = 7 −3𝑥 +5𝑥2
+. Then 𝑝(𝐷) = 7𝐼 −3𝐷+5𝐷2
+.
+Thus
+(𝑝(𝐷))𝑞 = 7𝑞 − 3𝑞′
++ 5𝑞″
+for every 𝑞 ∈ 𝒫(𝐑).
+If we fix an operator 𝑇 ∈ ℒ(𝑉), then the function from 𝒫(𝐅) to ℒ(𝑉) given
+by 𝑝 ↦ 𝑝(𝑇) is linear, as you should verify.
+5.16 definition: product of polynomials
+If 𝑝,𝑞 ∈ 𝒫(𝐅), then 𝑝𝑞 ∈ 𝒫(𝐅) is the polynomial defined by
+(𝑝𝑞)(𝑧) = 𝑝(𝑧)𝑞(𝑧)
+for all 𝑧 ∈ 𝐅.
+The order does not matter in taking products of polynomials of a single
+operator, as shown by (b) in the next result.
+5.17 multiplicative properties
+Suppose 𝑝,𝑞 ∈ 𝒫(𝐅) and 𝑇 ∈ ℒ(𝑉).
+Then
+(a) (𝑝𝑞)(𝑇) = 𝑝(𝑇)𝑞(𝑇);
+(b) 𝑝(𝑇)𝑞(𝑇) = 𝑞(𝑇)𝑝(𝑇).
+Informal proof: When a product of
+polynomials is expanded using the dis-
+tributive property, it does not matter
+whether the symbol is 𝑧 or 𝑇.
+Proof
+(a) Suppose 𝑝(𝑧) =
+𝑚
+∑
+𝑗 = 0
+𝑎𝑗𝑧𝑗
+and 𝑞(𝑧) =
+𝑛
+∑
+𝑘=0
+𝑏𝑘𝑧𝑘
+for all 𝑧 ∈ 𝐅. Then
+(𝑝𝑞)(𝑧) =
+𝑚
+∑
+𝑗 = 0
+𝑛
+∑
+𝑘=0
+𝑎𝑗𝑏𝑘𝑧𝑗+𝑘
+.
+Thus
+(𝑝𝑞)(𝑇) =
+𝑚
+∑
+𝑗 = 0
+𝑛
+∑
+𝑘=0
+𝑎𝑗𝑏𝑘𝑇𝑗+𝑘
+= (
+𝑚
+∑
+𝑗 = 0
+𝑎𝑗𝑇𝑗
+)(
+𝑛
+∑
+𝑘=0
+𝑏𝑘𝑇𝑘
+)
+= 𝑝(𝑇)𝑞(𝑇).
+(b) Using (a) twice, we have 𝑝(𝑇)𝑞(𝑇) = (𝑝𝑞)(𝑇) = (𝑞𝑝)(𝑇) = 𝑞(𝑇)𝑝(𝑇).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5A Invariant Subspaces 139
+We observed earlier that if 𝑇 ∈ ℒ(𝑉), then the subspaces null𝑇 and range𝑇
+are invariant under 𝑇 (see 5.4). Now we show that the null space and the range of
+every polynomial of 𝑇 are also invariant under 𝑇.
+5.18 null space and range of 𝑝(𝑇) are invariant under 𝑇
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑝 ∈ 𝒫(𝐅). Then null𝑝(𝑇) and range𝑝(𝑇) are
+invariant under 𝑇.
+Proof Suppose 𝑢 ∈ null𝑝(𝑇). Then 𝑝(𝑇)𝑢 = 0. Thus
+(𝑝(𝑇))(𝑇𝑢) = (𝑝(𝑇)𝑇)(𝑢) = (𝑇 𝑝(𝑇))(𝑢) = 𝑇(𝑝(𝑇)𝑢) = 𝑇(0) = 0.
+Hence 𝑇𝑢 ∈ null𝑝(𝑇). Thus null𝑝(𝑇) is invariant under 𝑇, as desired.
+Suppose 𝑢 ∈ range𝑝(𝑇). Then there exists 𝑣 ∈ 𝑉 such that 𝑢 = 𝑝(𝑇)𝑣. Thus
+𝑇𝑢 = 𝑇(𝑝(𝑇)𝑣) = 𝑝(𝑇)(𝑇𝑣).
+Hence 𝑇𝑢 ∈ range𝑝(𝑇). Thus range𝑝(𝑇) is invariant under 𝑇, as desired.
+Exercises 5A
+## 1 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑈 is a subspace of 𝑉.
+(a) Prove that if 𝑈 ⊆ null𝑇, then 𝑈 is invariant under 𝑇.
+(b) Prove that if range𝑇 ⊆ 𝑈, then 𝑈 is invariant under 𝑇.
+2 Supposethat𝑇 ∈ ℒ(𝑉) and𝑉1,…,𝑉𝑚 aresubspacesof𝑉 invariantunder𝑇.
+Prove that 𝑉1 + ⋯ + 𝑉𝑚 is invariant under 𝑇.
+## 3 Suppose 𝑇 ∈ ℒ(𝑉). Prove that the intersection of every collection of
+subspaces of 𝑉 invariant under 𝑇 is invariant under 𝑇.
+## 4 Prove or give a counterexample: If 𝑉 is finite-dimensional and 𝑈 is a sub-
+space of 𝑉 that is invariant under every operator on 𝑉, then 𝑈 = {0} or
+𝑈 = 𝑉.
+5 Suppose 𝑇 ∈ ℒ(𝐑2
+) is defined by 𝑇(𝑥,𝑦) = (−3𝑦,𝑥). Find the eigenvalues
+of 𝑇.
+6 Define 𝑇 ∈ ℒ(𝐅2
+) by 𝑇(𝑤,𝑧) = (𝑧,𝑤). Find all eigenvalues and eigenvec-
+tors of 𝑇.
+7 Define 𝑇 ∈ ℒ(𝐅3
+) by 𝑇(𝑧1,𝑧2,𝑧3) = (2𝑧2,0,5𝑧3). Find all eigenvalues and
+eigenvectors of 𝑇.
+8 Suppose 𝑃 ∈ ℒ(𝑉) is such that 𝑃2
+= 𝑃. Prove that if 𝜆 is an eigenvalue of 𝑃,
+then 𝜆 = 0 or 𝜆 = 1.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler140 Chapter 5 Eigenvalues and Eigenvectors
+9 Define 𝑇∶ 𝒫(𝐑) → 𝒫(𝐑) by 𝑇𝑝 = 𝑝′
+. Find all eigenvalues and eigenvectors
+of 𝑇.
+10 Define 𝑇 ∈ ℒ(𝒫4(𝐑)) by (𝑇𝑝)(𝑥) = 𝑥𝑝′
+(𝑥) for all 𝑥 ∈ 𝐑. Find all eigenval-
+ues and eigenvectors of 𝑇.
+## 11 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝛼 ∈ 𝐅. Prove that there ex-
+ists𝛿 > 0suchthat𝑇−𝜆𝐼 isinvertibleforall 𝜆 ∈ 𝐅 suchthat0 < |𝛼 − 𝜆| < 𝛿.
+## 12 Suppose 𝑉 = 𝑈 ⊕ 𝑊, where 𝑈 and 𝑊 are nonzero subspaces of 𝑉. Define
+𝑃 ∈ ℒ(𝑉) by 𝑃(𝑢 + 𝑤) = 𝑢 for each 𝑢 ∈ 𝑈 and each 𝑤 ∈ 𝑊. Find all
+eigenvalues and eigenvectors of 𝑃.
+## 13 Suppose 𝑇 ∈ ℒ(𝑉). Suppose 𝑆 ∈ ℒ(𝑉) is invertible.
+(a) Prove that 𝑇 and 𝑆−1
+𝑇𝑆 have the same eigenvalues.
+(b) What is the relationship between the eigenvectors of 𝑇 and the eigen-
+vectors of 𝑆−1
+𝑇𝑆?
+14 Give an example of an operator on 𝐑4
+that has no (real) eigenvalues.
+## 15 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝜆 ∈ 𝐅. Show that 𝜆 is
+an eigenvalue of 𝑇 if and only if 𝜆 is an eigenvalue of the dual operator
+𝑇′
+∈ ℒ(𝑉′
+).
+16 Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑇 ∈ ℒ(𝑉). Prove that if 𝜆 is an
+eigenvalue of 𝑇, then
+|𝜆| ≤ 𝑛max{∣ℳ(𝑇)𝑗,𝑘∣ ∶ 1 ≤ 𝑗,𝑘 ≤ 𝑛},
+where ℳ(𝑇)𝑗,𝑘 denotes the entry in row 𝑗, column 𝑘 of the matrix of 𝑇 with
+respect to the basis 𝑣1,…,𝑣𝑛.
+See Exercise 19 in Section 6A for a different bound on |𝜆|.
+17 Suppose 𝐅 = 𝐑, 𝑇 ∈ ℒ(𝑉), and 𝜆 ∈ 𝐑. Prove that 𝜆 is an eigenvalue of 𝑇
+if and only if 𝜆 is an eigenvalue of the complexification 𝑇𝐂.
+See Exercise 33 in Section 3B for the definition of 𝑇𝐂.
+18 Suppose 𝐅 = 𝐑, 𝑇 ∈ ℒ(𝑉), and 𝜆 ∈ 𝐂. Prove that 𝜆 is an eigenvalue of
+the complexification 𝑇𝐂 if and only if 𝜆 is an eigenvalue of 𝑇𝐂.
+19 Show that the forward shift operator 𝑇 ∈ ℒ(𝐅∞
+) defined by
+𝑇(𝑧1,𝑧2,…) = (0,𝑧1,𝑧2,…)
+has no eigenvalues.
+20 Define the backward shift operator 𝑆 ∈ ℒ(𝐅∞
+) by
+𝑆(𝑧1,𝑧2,𝑧3,…) = (𝑧2,𝑧3,…).
+(a) Show that every element of 𝐅 is an eigenvalue of 𝑆.
+(b) Find all eigenvectors of 𝑆.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5A Invariant Subspaces ≈ 100√2
+## 21 Suppose 𝑇 ∈ ℒ(𝑉) is invertible.
+(a) Suppose 𝜆 ∈ 𝐅 with 𝜆 ≠ 0. Prove that 𝜆 is an eigenvalue of 𝑇 if and
+only if 1
+𝜆
+is an eigenvalue of 𝑇−1
+.
+(b) Prove that 𝑇 and 𝑇−1
+have the same eigenvectors.
+## 22 Suppose 𝑇 ∈ ℒ(𝑉) and there exist nonzero vectors 𝑢 and 𝑤 in 𝑉 such that
+𝑇𝑢 = 3𝑤 and 𝑇𝑤 = 3𝑢.
+Prove that 3 or −3 is an eigenvalue of 𝑇.
+23 Suppose 𝑉 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉). Prove that 𝑆𝑇 and 𝑇𝑆
+have the same eigenvalues.
+24 Suppose 𝐴 is an 𝑛-by-𝑛 matrix with entries in 𝐅. Define 𝑇 ∈ ℒ(𝐅𝑛
+) by
+𝑇𝑥 = 𝐴𝑥, where elements of 𝐅𝑛
+are thought of as 𝑛-by-1 column vectors.
+(a) Suppose the sum of the entries in each row of 𝐴 equals 1. Prove that 1
+is an eigenvalue of 𝑇.
+(b) Suppose the sum of the entries in each column of 𝐴 equals 1. Prove that
+1 is an eigenvalue of 𝑇.
+25 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑢,𝑤 are eigenvectors of 𝑇 such that 𝑢 + 𝑤 is also
+an eigenvector of 𝑇. Prove that 𝑢 and 𝑤 are eigenvectors of 𝑇 corresponding
+to the same eigenvalue.
+## 26 Suppose 𝑇 ∈ ℒ(𝑉) is such that every nonzero vector in 𝑉 is an eigenvector
+of 𝑇. Prove that 𝑇 is a scalar multiple of the identity operator.
+27 Suppose that 𝑉 is finite-dimensional and 𝑘 ∈ {1,…,dim𝑉 − 1}. Suppose
+𝑇 ∈ ℒ(𝑉) is such that every subspace of 𝑉 of dimension 𝑘 is invariant
+under 𝑇. Prove that 𝑇 is a scalar multiple of the identity operator.
+## 28 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 has at most
+1 + dimrange𝑇 distinct eigenvalues.
+29 Suppose 𝑇 ∈ ℒ(𝐑3
+) and −4, 5, and √7 are eigenvalues of 𝑇. Prove that
+there exists 𝑥 ∈ 𝐑3
+such that 𝑇𝑥 − 9𝑥 = (−4,5,√7).
+## 30 Suppose 𝑇 ∈ ℒ(𝑉) and (𝑇 − 2𝐼)(𝑇 − 3𝐼)(𝑇 − 4𝐼) = 0. Suppose 𝜆 is an
+eigenvalue of 𝑇. Prove that 𝜆 = 2 or 𝜆 = 3 or 𝜆 = 4.
+31 Give an example of 𝑇 ∈ ℒ(𝐑2
+) such that 𝑇4
+= −𝐼.
+32 Suppose 𝑇 ∈ ℒ(𝑉) has no eigenvalues and 𝑇4
+= 𝐼. Prove that 𝑇2
+= −𝐼.
+## 33 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑚 is a positive integer.
+(a) Prove that 𝑇 is injective if and only if 𝑇𝑚
+is injective.
+(b) Prove that 𝑇 is surjective if and only if 𝑇𝑚
+is surjective.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler142 Chapter 5 Eigenvalues and Eigenvectors
+34 Suppose 𝑉 is finite-dimensional and 𝑣1,…,𝑣𝑚 ∈ 𝑉. Prove that the list
+𝑣1,…,𝑣𝑚 is linearly independent if and only if there exists 𝑇 ∈ ℒ(𝑉) such
+that 𝑣1,…,𝑣𝑚 are eigenvectors of 𝑇 corresponding to distinct eigenvalues.
+35 Suppose that 𝜆1,…, 𝜆𝑛 is a list of distinct real numbers. Prove that the
+list 𝑒𝜆1𝑥
+,…,𝑒𝜆𝑛𝑥
+is linearly independent in the vector space of real-valued
+functions on 𝐑.
+Hint: Let 𝑉 = span(𝑒𝜆1𝑥
+,…,𝑒𝜆𝑛𝑥
+), and define an operator 𝐷 ∈ ℒ(𝑉) by
+𝐷𝑓 = 𝑓′
+. Find eigenvalues and eigenvectors of 𝐷.
+36 Suppose that 𝜆1,…, 𝜆𝑛 is a list of distinct positive numbers. Prove that the
+list cos(𝜆1𝑥),…,cos(𝜆𝑛𝑥) is linearly independent in the vector space of
+real-valued functions on 𝐑.
+## 37 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Define 𝒜 ∈ ℒ(ℒ(𝑉)) by
+𝒜(𝑆) = 𝑇𝑆
+for each 𝑆 ∈ ℒ(𝑉). Prove that the set of eigenvalues of 𝑇 equals the set of
+eigenvalues of 𝒜.
+## 38 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑈 is a subspace of 𝑉
+invariant under 𝑇. The quotient operator 𝑇/𝑈 ∈ ℒ(𝑉/𝑈) is defined by
+(𝑇/𝑈)(𝑣 + 𝑈) = 𝑇𝑣 + 𝑈
+for each 𝑣 ∈ 𝑉.
+(a) Show that the definition of 𝑇/𝑈 makes sense (which requires using the
+condition that 𝑈 is invariant under 𝑇) and show that 𝑇/𝑈 is an operator
+on 𝑉/𝑈.
+(b) Show that each eigenvalue of 𝑇/𝑈 is an eigenvalue of 𝑇.
+## 39 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 has an eigen-
+value if and only if there exists a subspace of 𝑉 of dimension dim𝑉 −1 that
+is invariant under 𝑇.
+40 Suppose𝑆,𝑇 ∈ ℒ(𝑉)and𝑆isinvertible. Suppose𝑝 ∈ 𝒫(𝐅)isapolynomial.
+Prove that
+𝑝(𝑆𝑇𝑆−1
+) = 𝑆𝑝(𝑇)𝑆−1
+.
+## 41 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑈 is a subspace of 𝑉 invariant under 𝑇. Prove that
+𝑈 is invariant under 𝑝(𝑇) for every polynomial 𝑝 ∈ 𝒫(𝐅).
+42 Define 𝑇 ∈ ℒ(𝐅𝑛
+) by 𝑇(𝑥1,𝑥2,𝑥3,…,𝑥𝑛) = (𝑥1,2𝑥2,3𝑥3,…,𝑛𝑥𝑛).
+(a) Find all eigenvalues and eigenvectors of 𝑇.
+(b) Find all subspaces of 𝐅𝑛
+that are invariant under 𝑇.
+43 Suppose that 𝑉 is finite-dimensional, dim𝑉 > 1, and 𝑇 ∈ ℒ(𝑉). Prove that
+{𝑝(𝑇) ∶ 𝑝 ∈ 𝒫(𝐅)} ≠ ℒ(𝑉).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5B The Minimal Polynomial 143
+5B The Minimal Polynomial
+Existence of Eigenvalues on Complex Vector Spaces
+Now we come to one of the central results about operators on finite-dimensional
+complex vector spaces.
+5.19 existence of eigenvalues
+Every operator on a finite-dimensional nonzero complex vector space has an
+eigenvalue.
+Proof Suppose 𝑉 is a finite-dimensional complex vector space of dimension
+𝑛 > 0 and 𝑇 ∈ ℒ(𝑉). Choose 𝑣 ∈ 𝑉 with 𝑣 ≠ 0. Then
+𝑣,𝑇𝑣,𝑇2
+𝑣,…,𝑇𝑛
+𝑣
+is not linearly independent, because 𝑉 has dimension 𝑛 and this list has length
+𝑛 + 1. Hence some linear combination (with not all the coefficients equal to 0)
+of the vectors above equals 0. Thus there exists a nonconstant polynomial 𝑝 of
+smallest degree such that
+𝑝(𝑇)𝑣 = 0.
+By the first version of the fundamental theorem of algebra (see 4.12), there
+exists 𝜆 ∈ 𝐂 such that 𝑝(𝜆) = 0. Hence there exists a polynomial 𝑞 ∈ 𝒫(𝐂) such
+that
+𝑝(𝑧) = (𝑧 − 𝜆)𝑞(𝑧)
+for every 𝑧 ∈ 𝐂 (see 4.6). This implies (using 5.17) that
+0 = 𝑝(𝑇)𝑣 = (𝑇 − 𝜆𝐼)(𝑞(𝑇)𝑣).
+Because 𝑞 has smaller degree than 𝑝, we know that 𝑞(𝑇)𝑣 ≠ 0. Thus the equation
+above implies that 𝜆 is an eigenvalue of 𝑇 with eigenvector 𝑞(𝑇)𝑣.
+The proof above makes crucial use of the fundamental theorem of algebra.
+The comment following Exercise 16 helps explain why the fundamental theorem
+of algebra is so tightly connected to the result above.
+The hypothesis in the result above that 𝐅 = 𝐂 cannot be replaced with the
+hypothesis that 𝐅 = 𝐑, as shown by Example 5.9. The next example shows that
+the finite-dimensional hypothesis in the result above also cannot be deleted.
+5.20 example: an operator on a complex vector space with no eigenvalues
+Define 𝑇 ∈ ℒ(𝒫(𝐂)) by (𝑇𝑝)(𝑧) = 𝑧𝑝(𝑧). If 𝑝 ∈ 𝒫(𝐂) is a nonzero poly-
+nomial, then the degree of 𝑇𝑝 is one more than the degree of 𝑝, and thus 𝑇𝑝 cannot
+equal a scalar multiple of 𝑝. Hence 𝑇 has no eigenvalues.
+Because 𝒫(𝐂) is infinite-dimensional, this example does not contradict the
+result above.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler144 Chapter 5 Eigenvalues and Eigenvectors
+Eigenvalues and the Minimal Polynomial
+In this subsection we introduce an important polynomial associated with each
+operator. We begin with the following definition.
+5.21 definition: monic polynomial
+Amonicpolynomial isapolynomialwhosehighest-degreecoefficientequals1.
+For example, the polynomial 2 + 9𝑧2
++ 𝑧7
+is a monic polynomial of degree 7.
+5.22 existence, uniqueness, and degree of minimal polynomial
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Then there is a unique monic
+polynomial 𝑝 ∈ 𝒫(𝐅) of smallest degree such that 𝑝(𝑇) = 0. Furthermore,
+deg𝑝 ≤ dim𝑉.
+Proof If dim𝑉 = 0, then 𝐼 is the zero operator on 𝑉 and thus we take 𝑝 to be
+the constant polynomial 1.
+Now use induction on dim𝑉. Thus assume that dim𝑉 > 0 and that the
+desired result is true for all operators on all vector spaces of smaller dimension.
+Let 𝑢 ∈ 𝑉 be such that 𝑢 ≠ 0. The list 𝑢,𝑇𝑢,…,𝑇dim𝑉
+𝑢 has length 1 + dim𝑉
+and thus is linearly dependent. By the linear dependence lemma (2.19), there is
+a smallest positive integer 𝑚 ≤ dim𝑉 such that 𝑇𝑚
+𝑢 is a linear combination of
+𝑢,𝑇𝑢,…,𝑇𝑚−1
+𝑢. Thus there exist scalars 𝑐0,𝑐1,𝑐2,…,𝑐𝑚−1 ∈ 𝐅 such that
+5.23 𝑐0𝑢 + 𝑐1𝑇𝑢 + ⋯ + 𝑐𝑚−1𝑇𝑚−1
+𝑢 + 𝑇𝑚
+𝑢 = 0.
+Define a monic polynomial 𝑞 ∈ 𝒫𝑚(𝐅) by
+𝑞(𝑧) = 𝑐0 + 𝑐1𝑧 + ⋯ + 𝑐𝑚−1𝑧𝑚−1
++ 𝑧𝑚
+.
+Then 5.23 implies that 𝑞(𝑇)𝑢 = 0.
+If 𝑘 is a nonnegative integer, then
+𝑞(𝑇)(𝑇𝑘
+𝑢) = 𝑇𝑘
+(𝑞(𝑇)𝑢) = 𝑇𝑘
+(0) = 0.
+The linear dependence lemma (2.19) shows that 𝑢,𝑇𝑢,…,𝑇𝑚−1
+𝑢 is linearly inde-
+pendent. Thus the equation above implies that dimnull𝑞(𝑇) ≥ 𝑚. Hence
+dimrange𝑞(𝑇) = dim𝑉 − dimnull𝑞(𝑇) ≤ dim𝑉 − 𝑚.
+Because range𝑞(𝑇) is invariant under 𝑇 (by 5.18), we can apply our induction
+hypothesis to the operator 𝑇|range𝑞(𝑇) on the vector space range𝑞(𝑇). Thus there
+is a monic polynomial 𝑠 ∈ 𝒫(𝐅) with
+deg𝑠 ≤ dim𝑉 − 𝑚 and 𝑠(𝑇|range𝑞(𝑇)) = 0.
+Hence for all 𝑣 ∈ 𝑉 we have
+((𝑠𝑞)(𝑇))(𝑣) = 𝑠(𝑇)(𝑞(𝑇)𝑣) = 0
+because 𝑞(𝑇)𝑣 ∈ range𝑞(𝑇) and 𝑠(𝑇)|range𝑞(𝑇) = 𝑠(𝑇|range𝑞(𝑇)) = 0. Thus 𝑠𝑞 is a
+monic polynomial such that deg𝑠𝑞 ≤ dim𝑉 and (𝑠𝑞)(𝑇) = 0.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5B The Minimal Polynomial 145
+The paragraph above shows that there is a monic polynomial of degree at
+most dim𝑉 that when applied to 𝑇 gives the 0 operator. Thus there is a monic
+polynomial of smallest degree with this property, completing the existence part
+of this result.
+Let 𝑝 ∈ 𝒫(𝐅) be a monic polynomial of smallest degree such that 𝑝(𝑇) = 0.
+To prove the uniqueness part of the result, suppose 𝑟 ∈ 𝒫(𝐅) is a monic poly-
+nomial of the same degree as 𝑝 and 𝑟(𝑇) = 0. Then (𝑝 − 𝑟)(𝑇) = 0 and also
+deg(𝑝 − 𝑟) < deg𝑝. If 𝑝 − 𝑟 were not equal to 0, then we could divide 𝑝 − 𝑟 by
+the coefficient of the highest-order term in 𝑝 − 𝑟 to get a monic polynomial (of
+smaller degree than 𝑝) that when applied to 𝑇 gives the 0 operator. Thus 𝑝−𝑟 = 0,
+as desired.
+The previous result justifies the following definition.
+5.24 definition: minimal polynomial
+Suppose𝑉 isfinite-dimensionaland𝑇 ∈ ℒ(𝑉). Thentheminimalpolynomial
+of 𝑇 is the unique monic polynomial 𝑝 ∈ 𝒫(𝐅) of smallest degree such that
+𝑝(𝑇) = 0.
+To compute the minimal polynomial of an operator 𝑇 ∈ ℒ(𝑉), we need to
+find the smallest positive integer 𝑚 such that the equation
+𝑐0𝐼 + 𝑐1𝑇 + ⋯ + 𝑐𝑚−1𝑇𝑚−1
+= −𝑇𝑚
+has a solution 𝑐0,𝑐1,…,𝑐𝑚−1 ∈ 𝐅. If we pick a basis of 𝑉 and replace 𝑇 in the
+equation above with the matrix of 𝑇, then the equation above can be thought of
+as a system of (dim𝑉)2
+linear equations in the 𝑚 unknowns 𝑐0,𝑐1,…,𝑐𝑚−1 ∈ 𝐅.
+Gaussianeliminationoranotherfastmethodofsolvingsystemsoflinearequations
+can tell us whether a solution exists, testing successive values 𝑚 = 1,2,… until
+a solution exists. By 5.22, a solution exists for some smallest positive integer
+𝑚 ≤ dim𝑉. The minimal polynomial of 𝑇 is then 𝑐0 + 𝑐1𝑧 + ⋯ + 𝑐𝑚−1𝑧𝑚−1
++ 𝑧𝑚
+.
+Even faster (usually), pick 𝑣 ∈ 𝑉 with 𝑣 ≠ 0 and consider the equation
+5.25 𝑐0𝑣 + 𝑐1𝑇𝑣 + ⋯ + 𝑐dim𝑉−1𝑇dim𝑉−1
+𝑣 = −𝑇dim𝑉
+𝑣.
+Use a basis of 𝑉 to convert the equation above to a system of dim𝑉 linear
+equations in dim𝑉 unknowns 𝑐0,𝑐1,…,𝑐dim𝑉−1. If this system of equations has a
+unique solution 𝑐0,𝑐1,…,𝑐dim𝑉−1 (as happens most of the time), then the scalars
+𝑐0,𝑐1,…,𝑐dim𝑉−1,1 are the coefficients of the minimal polynomial of 𝑇 (because
+5.22 states that the degree of the minimal polynomial is at most dim𝑉).
+These estimates are based on testing
+millions of random matrices.
+Consider operators on 𝐑4
+(thought
+of as 4-by-4 matrices with respect to the
+standard basis), and take 𝑣 = (1,0,0,0)
+in the paragraph above. The faster method described above works on over 99.8%
+of the 4-by-4 matrices with integer entries in the interval [−10,10] and on over
+99.999% of the 4-by-4 matrices with integer entries in [−100,100].
+Linear Algebra Done Right, fourth edition, by Sheldon Axler146 Chapter 5 Eigenvalues and Eigenvectors
+The next example illustrates the faster procedure discussed above.
+5.26 example: minimal polynomial of an operator on 𝐅5
+Suppose 𝑇 ∈ ℒ(𝐅5
+) and
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+0 0 0 0 −3
+1 0 0 0 6
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+with respect to the standard basis 𝑒1,𝑒2,𝑒3,𝑒4,𝑒5. Taking 𝑣 = 𝑒1 for 5.25, we have
+𝑇𝑒1 = 𝑒2, 𝑇4
+𝑒1 = 𝑇(𝑇3
+𝑒1) = 𝑇𝑒4 = 𝑒5,
+𝑇2
+𝑒1 = 𝑇(𝑇𝑒1) = 𝑇𝑒2 = 𝑒3, 𝑇5
+𝑒1 = 𝑇(𝑇4
+𝑒1) = 𝑇𝑒5 = −3𝑒1 + 6𝑒2.
+𝑇3
+𝑒1 = 𝑇(𝑇2
+𝑒1) = 𝑇𝑒3 = 𝑒4,
+Thus 3𝑒1 − 6𝑇𝑒1 = −𝑇5
+𝑒1. The list 𝑒1,𝑇𝑒1,𝑇2
+𝑒1,𝑇3
+𝑒1,𝑇4
+𝑒1, which equals the list
+𝑒1,𝑒2,𝑒3,𝑒4,𝑒5, is linearly independent, so no other linear combination of this list
+equals −𝑇5
+𝑒1. Hence the minimal polynomial of 𝑇 is 3 − 6𝑧 + 𝑧5
+.
+Recall that by definition, eigenvalues of operators on 𝑉 and zeros of polyno-
+mials in 𝒫(𝐅) must be elements of 𝐅. In particular, if 𝐅 = 𝐑, then eigenvalues
+and zeros must be real numbers.
+5.27 eigenvalues are the zeros of the minimal polynomial
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉).
+(a) The zeros of the minimal polynomial of 𝑇 are the eigenvalues of 𝑇.
+(b) If 𝑉 is a complex vector space, then the minimal polynomial of 𝑇 has the
+form
+(𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚),
+where 𝜆1,…, 𝜆𝑚 is a list of all eigenvalues of 𝑇, possibly with repetitions.
+Proof Let 𝑝 be the minimal polynomial of 𝑇.
+(a) First suppose 𝜆 ∈ 𝐅 is a zero of 𝑝. Then 𝑝 can be written in the form
+𝑝(𝑧) = (𝑧 − 𝜆)𝑞(𝑧),
+where 𝑞 is a monic polynomial with coefficients in 𝐅 (see 4.6). Because
+𝑝(𝑇) = 0, we have
+0 = (𝑇 − 𝜆𝐼)(𝑞(𝑇)𝑣)
+for all 𝑣 ∈ 𝑉. Because deg𝑞 = (deg𝑝) − 1 and 𝑝 is the minimal polynomial
+of 𝑇, there exists at least one vector 𝑣 ∈ 𝑉 such that 𝑞(𝑇)𝑣 ≠ 0. The equation
+above thus implies that 𝜆 is an eigenvalue of 𝑇, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5B The Minimal Polynomial 147
+To prove that every eigenvalue of 𝑇 is a zero of 𝑝, now suppose 𝜆 ∈ 𝐅 is
+an eigenvalue of 𝑇. Thus there exists 𝑣 ∈ 𝑉 with 𝑣 ≠ 0 such that 𝑇𝑣 = 𝜆𝑣.
+Repeated applications of 𝑇 to both sides of this equation show that 𝑇𝑘
+𝑣 = 𝜆𝑘
+𝑣
+for every nonnegative integer 𝑘. Thus
+𝑝(𝑇)𝑣 = 𝑝(𝜆)𝑣.
+Because 𝑝 is the minimal polynomial of 𝑇, we have 𝑝(𝑇)𝑣 = 0. Hence the
+equation above implies that 𝑝(𝜆) = 0. Thus 𝜆 is a zero of 𝑝, as desired.
+(b) To get the desired result, use (a) and the second version of the fundamental
+theorem of algebra (see 4.13).
+Anonzeropolynomialhasatmostasmanydistinctzerosasitsdegree(see4.8).
+Thus (a) of the previous result, along with the result that the minimal polynomial
+of an operator on 𝑉 has degree at most dim𝑉, gives an alternative proof of 5.12,
+which states that an operator on 𝑉 has at most dim𝑉 distinct eigenvalues.
+Every monic polynomial is the minimal polynomial of some operator, as
+shown by Exercise 16, which generalizes Example 5.26. Thus 5.27(a) shows that
+finding exact expressions for the eigenvalues of an operator is equivalent to the
+problem of finding exact expressions for the zeros of a polynomial (and thus is
+not possible for some operators).
+5.28 example: An operator whose eigenvalues cannot be found exactly
+Let 𝑇 ∈ ℒ(𝐂5
+) be the operator defined by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4,𝑧5) = (−3𝑧5,𝑧1 + 6𝑧5,𝑧2,𝑧3,𝑧4).
+The matrix of 𝑇 with respect to the standard basis of 𝐂5
+is the 5-by-5 matrix in
+Example 5.26. As we showed in that example, the minimal polynomial of 𝑇 is
+the polynomial
+3 − 6𝑧 + 𝑧5
+.
+No zero of the polynomial above can be expressed using rational numbers,
+roots of rational numbers, and the usual rules of arithmetic (a proof of this would
+take us considerably beyond linear algebra). Because the zeros of the polynomial
+above are the eigenvalues of 𝑇 [by 5.27(a)], we cannot find an exact expression
+for any eigenvalue of 𝑇 in any familiar form.
+Numerical techniques, which we will not discuss here, show that the zeros
+of the polynomial above, and thus the eigenvalues of 𝑇, are approximately the
+following five complex numbers:
+−1.67, 0.51, 1.40, −0.12 + 1.59𝑖, −0.12 − 1.59𝑖.
+Note that the two nonreal zeros of this polynomial are complex conjugates of
+each other, as we expect for a polynomial with real coefficients (see 4.14).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler148 Chapter 5 Eigenvalues and Eigenvectors
+The next result completely characterizes the polynomials that when applied to
+an operator give the 0 operator.
+5.29 𝑞(𝑇) = 0 ⟺ 𝑞 is a polynomial multiple of the minimal polynomial
+Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑞 ∈ 𝒫(𝐅). Then 𝑞(𝑇) = 0
+if and only if 𝑞 is a polynomial multiple of the minimal polynomial of 𝑇.
+Proof Let 𝑝 denote the minimal polynomial of 𝑇.
+First suppose 𝑞(𝑇) = 0. By the division algorithm for polynomials (4.9), there
+exist polynomials 𝑠,𝑟 ∈ 𝒫(𝐅) such that
+5.30 𝑞 = 𝑝𝑠 + 𝑟
+and deg𝑟 < deg𝑝. We have
+0 = 𝑞(𝑇) = 𝑝(𝑇)𝑠(𝑇) + 𝑟(𝑇) = 𝑟(𝑇).
+The equation above implies that 𝑟 = 0 (otherwise, dividing 𝑟 by its highest-degree
+coefficient would produce a monic polynomial that when applied to 𝑇 gives 0;
+this polynomial would have a smaller degree than the minimal polynomial, which
+would be a contradiction). Thus 5.30 becomes the equation 𝑞 = 𝑝𝑠. Hence 𝑞 is a
+polynomial multiple of 𝑝, as desired.
+To prove the other direction, now suppose 𝑞 is a polynomial multiple of 𝑝.
+Thus there exists a polynomial 𝑠 ∈ 𝒫(𝐅) such that 𝑞 = 𝑝𝑠. We have
+𝑞(𝑇) = 𝑝(𝑇)𝑠(𝑇) = 0𝑠(𝑇) = 0,
+as desired.
+The next result is a nice consequence of the result above.
+5.31 minimal polynomial of a restriction operator
+Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑈 is a subspace of 𝑉 that is
+invariant under 𝑇. Then the minimal polynomial of 𝑇 is a polynomial multiple
+of the minimal polynomial of 𝑇|𝑈.
+Proof Suppose 𝑝 is the minimal polynomial of 𝑇. Thus 𝑝(𝑇)𝑣 = 0 for all 𝑣 ∈ 𝑉.
+In particular,
+𝑝(𝑇)𝑢 = 0 for all 𝑢 ∈ 𝑈.
+Thus 𝑝(𝑇|𝑈) = 0. Now 5.29, applied to the operator 𝑇|𝑈 in place of 𝑇, implies
+that 𝑝 is a polynomial multiple of the minimal polynomial of 𝑇|𝑈.
+See Exercise 25 for a result about quotient operators that is analogous to the
+result above.
+The next result shows that the constant term of the minimal polynomial of an
+operator determines whether the operator is invertible.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5B The Minimal Polynomial 149
+5.32 𝑇 not invertible ⟺ constant term of minimal polynomial of 𝑇 is 0
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Then 𝑇 is not invertible if
+and only if the constant term of the minimal polynomial of 𝑇 is 0.
+Proof Suppose 𝑇 ∈ ℒ(𝑉) and 𝑝 is the minimal polynomial of 𝑇. Then
+𝑇 is not invertible ⟺ 0 is an eigenvalue of 𝑇
+⟺ 0 is a zero of 𝑝
+⟺ the constant term of 𝑝 is 0,
+where the first equivalence holds by 5.7, the second equivalence holds by 5.27(a),
+and the last equivalence holds because the constant term of 𝑝 equals 𝑝(0).
+Eigenvalues on Odd-Dimensional Real Vector Spaces
+The next result will be the key tool that we use to show that every operator on an
+odd-dimensional real vector space has an eigenvalue.
+5.33 even-dimensional null space
+Suppose 𝐅 = 𝐑 and 𝑉 is finite-dimensional. Suppose also that 𝑇 ∈ ℒ(𝑉)
+and 𝑏,𝑐 ∈ 𝐑 with 𝑏2
+< 4𝑐. Then dimnull(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) is an even number.
+Proof Recall that null(𝑇2
++𝑏𝑇+𝑐𝐼) is invariant under 𝑇 (by 5.18). By replacing
+𝑉 with null(𝑇2
++𝑏𝑇 +𝑐𝐼) and replacing 𝑇 with 𝑇 restricted to null(𝑇2
++𝑏𝑇 +𝑐𝐼),
+we can assume that 𝑇2
++ 𝑏𝑇 + 𝑐𝐼 = 0; we now need to prove that dim𝑉 is even.
+Suppose 𝜆 ∈ 𝐑 and 𝑣 ∈ 𝑉 are such that 𝑇𝑣 = 𝜆𝑣. Then
+0 = (𝑇2
++ 𝑏𝑇 + 𝑐𝐼)𝑣 = (𝜆2
++ 𝑏𝜆 + 𝑐)𝑣 = ((𝜆 + 𝑏
+2
+)
+2
++ 𝑐 − 𝑏2
+4
+)𝑣.
+The term in large parentheses above is a positive number. Thus the equation above
+implies that 𝑣 = 0. Hence we have shown that 𝑇 has no eigenvectors.
+Let𝑈 beasubspaceof𝑉 thatisinvariantunder𝑇 andhasthelargestdimension
+among all subspaces of 𝑉 that are invariant under 𝑇 and have even dimension. If
+𝑈 = 𝑉, then we are done; otherwise assume there exists 𝑤 ∈ 𝑉 such that 𝑤 ∉ 𝑈.
+Let 𝑊 = span(𝑤,𝑇𝑤). Then 𝑊 is invariant under 𝑇 because 𝑇(𝑇𝑤) =
+−𝑏𝑇𝑤 − 𝑐𝑤. Furthermore, dim𝑊 = 2 because otherwise 𝑤 would be an eigen-
+vector of 𝑇. Now
+dim(𝑈 + 𝑊) = dim𝑈 + dim𝑊 − dim(𝑈 ∩ 𝑊) = dim𝑈 + 2,
+where 𝑈 ∩ 𝑊 = {0} because otherwise 𝑈 ∩ 𝑊 would be a one-dimensional
+subspaceof𝑉 thatisinvariantunder𝑇 (impossiblebecause𝑇 hasnoeigenvectors).
+Because 𝑈+𝑊 is invariant under 𝑇, the equation above shows that there exists
+a subspace of 𝑉 invariant under 𝑇 of even dimension larger than dim𝑈. Thus the
+assumption that 𝑈 ≠ 𝑉 was incorrect. Hence 𝑉 has even dimension.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler150 Chapter 5 Eigenvalues and Eigenvectors
+The next result states that on odd-dimensional vector spaces, every operator
+has an eigenvalue. We already know this result for finite-dimensional complex
+vector spaces (without the odd hypothesis). Thus in the proof below, we will
+assume that 𝐅 = 𝐑.
+5.34 operators on odd-dimensional vector spaces have eigenvalues
+Every operator on an odd-dimensional vector space has an eigenvalue.
+Proof Suppose 𝐅 = 𝐑 and 𝑉 is finite-dimensional. Let 𝑛 = dim𝑉, and suppose
+𝑛 is an odd number. Let 𝑇 ∈ ℒ(𝑉). We will use induction on 𝑛 in steps of size
+two to show that 𝑇 has an eigenvalue. To get started, note that the desired result
+holds if dim𝑉 = 1 because then every nonzero vector in 𝑉 is an eigenvector of 𝑇.
+Now suppose that 𝑛 ≥ 3 and the desired result holds for all operators on all
+odd-dimensional vector spaces of dimension less than 𝑛. Let 𝑝 denote the minimal
+polynomial of 𝑇. If 𝑝 is a polynomial multiple of 𝑥− 𝜆 for some 𝜆 ∈ 𝐑, then 𝜆 is
+an eigenvalue of 𝑇 [by 5.27(a)] and we are done. Thus we can assume that there
+exist 𝑏,𝑐 ∈ 𝐑 such that 𝑏2
+< 4𝑐 and 𝑝 is a polynomial multiple of 𝑥2
++𝑏𝑥 +𝑐 (see
+4.16).
+There exists a monic polynomial 𝑞 ∈ 𝒫(𝐑) such that 𝑝(𝑥) = 𝑞(𝑥)(𝑥2
++𝑏𝑥+𝑐)
+for all 𝑥 ∈ 𝐑. Now
+0 = 𝑝(𝑇) = (𝑞(𝑇))(𝑇2
++ 𝑏𝑇 + 𝑐𝐼),
+which means that 𝑞(𝑇) equals 0 on range(𝑇2
++ 𝑏𝑇 + 𝑐𝐼). Because deg𝑞 < deg𝑝
+and 𝑝 is the minimal polynomial of 𝑇, this implies that range(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) ≠ 𝑉.
+The fundamental theorem of linear maps (3.21) tells us that
+dim𝑉 = dimnull(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) + dimrange(𝑇2
++ 𝑏𝑇 + 𝑐𝐼).
+Because dim𝑉 is odd (by hypothesis) and dimnull(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) is even (by
+5.33), the equation above shows that dimrange(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) is odd.
+Hence range(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) is a subspace of 𝑉 that is invariant under 𝑇 (by
+5.18) and that has odd dimension less than dim𝑉. Our induction hypothesis now
+implies that 𝑇 restricted to range(𝑇2
++ 𝑏𝑇 + 𝑐𝐼) has an eigenvalue, which means
+that 𝑇 has an eigenvalue.
+See Exercise 23 in Section 8B and Exercise 10 in Section 9C for alternative
+proofs of the result above.
+Exercises 5B
+1 Suppose 𝑇 ∈ ℒ(𝑉). Prove that 9 is an eigenvalue of 𝑇2
+if and only if 3 or
+−3 is an eigenvalue of 𝑇.
+## 2 Suppose 𝑉 is a complex vector space and 𝑇 ∈ ℒ(𝑉) has no eigenvalues.
+Prove that every subspace of 𝑉 invariant under 𝑇 is either {0} or infinite-
+dimensional.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5B The Minimal Polynomial 151
+3 Suppose 𝑛 is an integer with 𝑛 > 1 and 𝑇 ∈ ℒ(𝐅𝑛
+) is defined by
+𝑇(𝑥1,…,𝑥𝑛) = (𝑥1 + ⋯ + 𝑥𝑛,…,𝑥1 + ⋯ + 𝑥𝑛).
+(a) Find all eigenvalues and eigenvectors of 𝑇.
+(b) Find the minimal polynomial of 𝑇.
+The matrix of 𝑇 with respect to the standard basis of 𝐅𝑛
+consists of all 1’s.
+4 Suppose 𝐅 = 𝐂, 𝑇 ∈ ℒ(𝑉), 𝑝 ∈ 𝒫(𝐂) is a nonconstant polynomial, and
+𝛼 ∈ 𝐂. Prove that 𝛼 is an eigenvalue of 𝑝(𝑇) if and only if 𝛼 = 𝑝(𝜆) for
+some eigenvalue 𝜆 of 𝑇.
+5 Give an example of an operator on 𝐑2
+that shows the result in Exercise 4
+does not hold if 𝐂 is replaced with 𝐑.
+6 Suppose 𝑇 ∈ ℒ(𝐅2
+) is defined by 𝑇(𝑤,𝑧) = (−𝑧,𝑤). Find the minimal
+polynomial of 𝑇.
+7 (a) Give an example of 𝑆,𝑇 ∈ ℒ(𝐅2
+) such that the minimal polynomial of
+𝑆𝑇 does not equal the minimal polynomial of 𝑇𝑆.
+(b) Suppose 𝑉 is finite-dimensional and 𝑆,𝑇 ∈ ℒ(𝑉). Prove that if at least
+one of 𝑆,𝑇 is invertible, then the minimal polynomial of 𝑆𝑇 equals the
+minimal polynomial of 𝑇𝑆.
+Hint: Show that if 𝑆 is invertible and 𝑝 ∈ 𝒫(𝐅), then 𝑝(𝑇𝑆) = 𝑆−1
+𝑝(𝑆𝑇)𝑆.
+8 Suppose 𝑇 ∈ ℒ(𝐑2
+) is the operator of counterclockwise rotation by1∘
+. Find
+the minimal polynomial of 𝑇.
+Because dim𝐑2
+= 2, the degree of the minimal polynomial of 𝑇 is at most 2.
+Thus the minimal polynomial of 𝑇 is not the tempting polynomial 𝑥180
++ 1,
+even though 𝑇180
+= −𝐼.
+## 9 Suppose 𝑇 ∈ ℒ(𝑉) is such that with respect to some basis of 𝑉, all entries
+of the matrix of 𝑇 are rational numbers. Explain why all coefficients of the
+minimal polynomial of 𝑇 are rational numbers.
+## 10 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑣 ∈ 𝑉. Prove that
+span(𝑣,𝑇𝑣,…,𝑇𝑚
+𝑣) = span(𝑣,𝑇𝑣,…,𝑇dim𝑉−1
+𝑣)
+for all integers 𝑚 ≥ dim𝑉 − 1.
+## 11 Suppose 𝑉 is a two-dimensional vector space, 𝑇 ∈ ℒ(𝑉), and the matrix of
+𝑇 with respect to some basis of 𝑉 is (
+𝑎 𝑐
+𝑏 𝑑
+).
+(a) Show that 𝑇2
+− (𝑎 + 𝑑)𝑇 + (𝑎𝑑 − 𝑏𝑐)𝐼 = 0.
+(b) Show that the minimal polynomial of 𝑇 equals
+⎧ {
+⎨ { ⎩
+𝑧 − 𝑎 if 𝑏 = 𝑐 = 0 and 𝑎 = 𝑑,
+𝑧2
+− (𝑎 + 𝑑)𝑧 + (𝑎𝑑 − 𝑏𝑐) otherwise.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler152 Chapter 5 Eigenvalues and Eigenvectors
+12 Define 𝑇 ∈ ℒ(𝐅𝑛
+) by 𝑇(𝑥1,𝑥2,𝑥3,…,𝑥𝑛) = (𝑥1,2𝑥2,3𝑥3,…,𝑛𝑥𝑛). Find
+the minimal polynomial of 𝑇.
+## 13 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑝 ∈ 𝒫(𝐅). Prove that
+there exists a unique 𝑟 ∈ 𝒫(𝐅) such that 𝑝(𝑇) = 𝑟(𝑇) and deg𝑟 is less than
+the degree of the minimal polynomial of 𝑇.
+## 14 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉) has minimal polynomial
+4 + 5𝑧 − 6𝑧2
+− 7𝑧3
++ 2𝑧4
++ 𝑧5
+. Find the minimal polynomial of 𝑇−1
+.
+15 Suppose 𝑉 is a finite-dimensional complex vector space with dim𝑉 > 0
+and 𝑇 ∈ ℒ(𝑉). Define 𝑓 ∶ 𝐂 → 𝐑 by
+𝑓(𝜆) = dimrange(𝑇 − 𝜆𝐼).
+Prove that 𝑓 is not a continuous function.
+16 Suppose 𝑎0,…,𝑎𝑛−1 ∈ 𝐅. Let 𝑇 be the operator on 𝐅𝑛
+whose matrix (with
+respect to the standard basis) is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+0 −𝑎0
+1 0 −𝑎1
+1 ⋱ −𝑎2
+⋱ ⋮
+0 −𝑎𝑛−2
+1 −𝑎𝑛−1
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Here all entries of the matrix are 0 except for all 1’s on the line under the
+diagonal and the entries in the last column (some of which might also be 0).
+Show that the minimal polynomial of 𝑇 is the polynomial
+𝑎0 + 𝑎1𝑧 + ⋯ + 𝑎𝑛−1𝑧𝑛−1
++ 𝑧𝑛
+.
+The matrix above is called the companion matrix of the polynomial above.
+This exercise shows that every monic polynomial is the minimal polynomial
+of some operator. Hence a formula or an algorithm that could produce
+exact eigenvalues for each operator on each 𝐅𝑛
+could then produce exact
+zeros for each polynomial [by 5.27(a)]. Thus there is no such formula or
+algorithm. However, efficient numerical methods exist for obtaining very
+good approximations for the eigenvalues of an operator.
+17 Suppose𝑉 isfinite-dimensional,𝑇 ∈ ℒ(𝑉),and𝑝istheminimalpolynomial
+of 𝑇. Suppose 𝜆 ∈ 𝐅. Show that the minimal polynomial of 𝑇 − 𝜆𝐼 is the
+polynomial 𝑞 defined by 𝑞(𝑧) = 𝑝(𝑧 + 𝜆).
+18 Suppose𝑉 isfinite-dimensional,𝑇 ∈ ℒ(𝑉),and𝑝istheminimalpolynomial
+of 𝑇. Suppose 𝜆 ∈ 𝐅\{0}. Show that the minimal polynomial of 𝜆𝑇 is the
+polynomial 𝑞 defined by 𝑞(𝑧) = 𝜆deg𝑝
+𝑝(
+𝑧
+𝜆
+).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5B The Minimal Polynomial 153
+## 19 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Let ℰ be the subspace of
+ℒ(𝑉) defined by
+ℰ = {𝑞(𝑇) ∶ 𝑞 ∈ 𝒫(𝐅)}.
+Prove that dimℰ equals the degree of the minimal polynomial of 𝑇.
+20 Suppose 𝑇 ∈ ℒ(𝐅4
+) is such that the eigenvalues of 𝑇 are 3,5,8. Prove that
+(𝑇 − 3𝐼)2
+(𝑇 − 5𝐼)2
+(𝑇 − 8𝐼)2
+= 0.
+## 21 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that the minimal
+polynomial of 𝑇 has degree at most 1 + dimrange𝑇.
+If dimrange𝑇 < dim𝑉 − 1, then this exercise gives a better upper bound
+than 5.22 for the degree of the minimal polynomial of 𝑇.
+## 22 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is invertible if
+and only if 𝐼 ∈ span(𝑇,𝑇2
+,…,𝑇dim𝑉
+).
+23 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Let 𝑛 = dim𝑉. Prove that
+if 𝑣 ∈ 𝑉, then span(𝑣,𝑇𝑣,…,𝑇𝑛−1
+𝑣) is invariant under 𝑇.
+24 Suppose𝑉 isafinite-dimensionalcomplexvectorspace. Suppose𝑇 ∈ ℒ(𝑉)
+is such that 5 and 6 are eigenvalues of 𝑇 and that 𝑇 has no other eigenvalues.
+Prove that (𝑇 − 5𝐼)dim𝑉−1
+(𝑇 − 6𝐼)dim𝑉−1
+= 0.
+## 25 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑈 is a subspace of 𝑉 that
+is invariant under 𝑇.
+(a) Prove that the minimal polynomial of 𝑇 is a polynomial multiple of the
+minimal polynomial of the quotient operator 𝑇/𝑈.
+(b) Prove that
+(minimal polynomial of 𝑇|𝑈) × (minimal polynomial of 𝑇/𝑈)
+is a polynomial multiple of the minimal polynomial of 𝑇.
+The quotient operator 𝑇/𝑈 was defined in Exercise 38 in Section 5A.
+## 26 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑈 is a subspace of 𝑉 that
+is invariant under 𝑇. Prove that the set of eigenvalues of 𝑇 equals the union
+of the set of eigenvalues of 𝑇|𝑈 and the set of eigenvalues of 𝑇/𝑈.
+27 Suppose 𝐅 = 𝐑, 𝑉 is finite-dimensional, and 𝑇 ∈ ℒ(𝑉). Prove that the
+minimal polynomial of 𝑇𝐂 equals the minimal polynomial of 𝑇.
+The complexification 𝑇𝐂 was defined in Exercise 33 of Section 3B.
+## 28 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that the minimal
+polynomial of 𝑇′
+∈ ℒ(𝑉′
+) equals the minimal polynomial of 𝑇.
+The dual map 𝑇′
+was defined in Section 3F.
+## 29 Show that every operator on a finite-dimensional vector space of dimension
+at least two has an invariant subspace of dimension two.
+Exercise 6 in Section 5C will give an improvement of this result when 𝐅 = 𝐂.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler154 Chapter 5 Eigenvalues and Eigenvectors
+5C Upper-Triangular Matrices
+InChapter3wedefinedthematrixofalinearmapfromafinite-dimensionalvector
+space to another finite-dimensional vector space. That matrix depends on a choice
+of basis of each of the two vector spaces. Now that we are studying operators,
+which map a vector space to itself, the emphasis is on using only one basis.
+5.35 definition: matrix of an operator, ℳ(𝑇)
+Suppose 𝑇 ∈ ℒ(𝑉). The matrix of 𝑇 with respect to a basis 𝑣1,…,𝑣𝑛 of 𝑉 is
+the 𝑛-by-𝑛 matrix
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1,1 ⋯ 𝐴1,𝑛
+⋮ ⋮
+𝐴𝑛,1 ⋯ 𝐴𝑛,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+whose entries 𝐴𝑗,𝑘 are defined by
+𝑇𝑣𝑘 = 𝐴1,𝑘𝑣1 + ⋯ + 𝐴𝑛,𝑘𝑣𝑛.
+The notation ℳ(𝑇,(𝑣1,…,𝑣𝑛)) is used if the basis is not clear from the
+context.
+Operators have square matrices (meaning that the number of rows equals the
+number of columns), rather than the more general rectangular matrices that we
+considered earlier for linear maps.
+The 𝑘th
+column of the matrix ℳ(𝑇) is
+formed from the coefficients used to
+write 𝑇𝑣𝑘 as a linear combination of
+the basis 𝑣1,…,𝑣𝑛.
+If 𝑇 is an operator on 𝐅𝑛
+and no ba-
+sis is specified, assume that the basis in
+question is the standard one (where the
+𝑘th
+basis vector is 1 in the 𝑘th
+slot and 0
+in all other slots). You can then think of
+the 𝑘th
+column of ℳ(𝑇) as 𝑇 applied to the 𝑘th
+basis vector, where we identify
+𝑛-by-1 column vectors with elements of 𝐅𝑛
+.
+5.36 example: matrix of an operator with respect to standard basis
+Define 𝑇 ∈ ℒ(𝐅3
+) by 𝑇(𝑥,𝑦,𝑧) = (2𝑥 +𝑦,5𝑦 +3𝑧,8𝑧). Then the matrix of 𝑇
+with respect to the standard basis of 𝐅3
+is
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+2 1 0
+0 5 3
+0 0 8
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+as you should verify.
+A central goal of linear algebra is to show that given an operator 𝑇 on a finite-
+dimensional vector space 𝑉, there exists a basis of 𝑉 with respect to which 𝑇 has
+a reasonably simple matrix. To make this vague formulation a bit more precise,
+we might try to choose a basis of 𝑉 such that ℳ(𝑇) has many 0’s.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5C Upper-Triangular Matrices 155
+If 𝑉 is a finite-dimensional complex vector space, then we already know
+enough to show that there is a basis of 𝑉 with respect to which the matrix of 𝑇
+has 0’s everywhere in the first column, except possibly the first entry. In other
+words, there is a basis of 𝑉 with respect to which the matrix of 𝑇 looks like
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+𝜆
+0 ∗
+⋮
+0
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+;
+here ∗ denotes the entries in all columns other than the first column. To prove
+this, let 𝜆 be an eigenvalue of 𝑇 (one exists by 5.19) and let 𝑣 be a corresponding
+eigenvector. Extend 𝑣 to a basis of 𝑉. Then the matrix of 𝑇 with respect to this
+basis has the form above. Soon we will see that we can choose a basis of 𝑉 with
+respect to which the matrix of 𝑇 has even more 0’s.
+5.37 definition: diagonal of a matrix
+The diagonal of a square matrix consists of the entries on the line from the
+upper left corner to the bottom right corner.
+For example, the diagonal of the matrix
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+2 1 0
+0 5 3
+0 0 8
+⎞ ⎟ ⎟ ⎟
+⎠
+from Example 5.36 consists of the entries 2,5,8, which are shown in red in the
+matrix above.
+5.38 definition: upper-triangular matrix
+A square matrix is called upper triangular if all entries below the diagonal
+are 0.
+For example, the 3-by-3 matrix above is upper triangular.
+Typically we represent an upper-triangular matrix in the form
+⎛ ⎜ ⎜ ⎜
+⎝
+𝜆1 ∗
+⋱
+0 𝜆𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+;
+We often use ∗to denote matrix entries
+that we do not know or that are irrele-
+vant to the questions being discussed.
+the 0 in the matrix above indicates that
+all entries below the diagonal in this
+𝑛-by-𝑛 matrix equal 0. Upper-triangular
+matrices can be considered reasonably
+simple—if 𝑛 is large, then at least almost half the entries in an 𝑛-by-𝑛 upper-
+triangular matrix are 0.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler156 Chapter 5 Eigenvalues and Eigenvectors
+Thenextresultprovidesausefulconnectionbetweenupper-triangularmatrices
+and invariant subspaces.
+5.39 conditions for upper-triangular matrix
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Then the following are
+equivalent.
+(a) The matrix of 𝑇 with respect to 𝑣1,…,𝑣𝑛 is upper triangular.
+(b) span(𝑣1,…,𝑣𝑘) is invariant under 𝑇 for each 𝑘 = 1,…,𝑛.
+(c) 𝑇𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘) for each 𝑘 = 1,…,𝑛.
+Proof First suppose (a) holds. To prove that (b) holds, suppose 𝑘 ∈ {1,…,𝑛}.
+If 𝑗 ∈ {1,…,𝑛}, then
+𝑇𝑣𝑗 ∈ span(𝑣1,…,𝑣𝑗)
+because the matrix of 𝑇 with respect to 𝑣1,…,𝑣𝑛 is upper triangular. Because
+span(𝑣1,…,𝑣𝑗) ⊆ span(𝑣1,…,𝑣𝑘) if 𝑗 ≤ 𝑘, we see that
+𝑇𝑣𝑗 ∈ span(𝑣1,…,𝑣𝑘)
+for each 𝑗 ∈ {1,…,𝑘}. Thus span(𝑣1,…,𝑣𝑘) is invariant under 𝑇, completing the
+proof that (a) implies (b).
+Now suppose (b) holds, so span(𝑣1,…,𝑣𝑘) is invariant under 𝑇 for each
+𝑘 = 1,…,𝑛. In particular, 𝑇𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘) for each 𝑘 = 1,…,𝑛. Thus
+(b) implies (c).
+Now suppose (c) holds, so 𝑇𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘) for each 𝑘 = 1,…,𝑛. This
+means that when writing each 𝑇𝑣𝑘 as a linear combination of the basis vectors
+𝑣1,…,𝑣𝑛, we need to use only the vectors 𝑣1,…,𝑣𝑘. Hence all entries under the
+diagonal of ℳ(𝑇) are 0. Thus ℳ(𝑇) is an upper-triangular matrix, completing
+the proof that (c) implies (a).
+We have shown that (a) ⟹ (b) ⟹ (c) ⟹ (a), which shows that (a), (b),
+and (c) are equivalent.
+The next result tells us that if 𝑇 ∈ ℒ(𝑉) and with respect to some basis of 𝑉
+we have
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝜆1 ∗
+⋱
+0 𝜆𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+then 𝑇 satisfies a simple equation depending on 𝜆1,…, 𝜆𝑛.
+5.40 equation satisfied by operator with upper-triangular matrix
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑉 has a basis with respect to which 𝑇 has an upper-
+triangular matrix with diagonal entries 𝜆1,…, 𝜆𝑛. Then
+(𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑛𝐼) = 0.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5C Upper-Triangular Matrices 157
+Proof Let 𝑣1,…,𝑣𝑛 denote a basis of 𝑉 with respect to which 𝑇 has an upper-
+triangular matrix with diagonal entries 𝜆1,…, 𝜆𝑛. Then 𝑇𝑣1 = 𝜆1𝑣1, which
+means that (𝑇 − 𝜆1𝐼)𝑣1 = 0, which implies that (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼)𝑣1 = 0
+for 𝑚 = 1,…,𝑛 (using the commutativity of each 𝑇 − 𝜆𝑗𝐼 with each 𝑇 − 𝜆𝑘𝐼).
+Note that (𝑇 − 𝜆2𝐼)𝑣2 ∈ span(𝑣1). Thus (𝑇 − 𝜆1𝐼)(𝑇 − 𝜆2𝐼)𝑣2 = 0 (by
+the previous paragraph), which implies that (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼)𝑣2 = 0 for
+𝑚 = 2,…,𝑛 (using the commutativity of each 𝑇 − 𝜆𝑗𝐼 with each 𝑇 − 𝜆𝑘𝐼).
+Note that (𝑇 − 𝜆3𝐼)𝑣3 ∈ span(𝑣1,𝑣2). Thus by the previous paragraph,
+(𝑇−𝜆1𝐼)(𝑇−𝜆2𝐼)(𝑇−𝜆3𝐼)𝑣3 = 0,whichimpliesthat(𝑇−𝜆1𝐼)⋯(𝑇−𝜆𝑚𝐼)𝑣3 =
+0 for 𝑚 = 3,…,𝑛 (using the commutativity of each 𝑇 − 𝜆𝑗𝐼 with each 𝑇 − 𝜆𝑘𝐼).
+Continuing this pattern, we see that (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑛𝐼)𝑣𝑘 = 0 for each
+𝑘 = 1,…,𝑛. Thus (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑛𝐼) is the 0 operator because it is 0 on each
+vector in a basis of 𝑉.
+Unfortunately no method exists for exactly computing the eigenvalues of an
+operator from its matrix. However, if we are fortunate enough to find a basis with
+respect to which the matrix of the operator is upper triangular, then the problem
+of computing the eigenvalues becomes trivial, as the next result shows.
+5.41 determination of eigenvalues from upper-triangular matrix
+Suppose 𝑇 ∈ ℒ(𝑉) has an upper-triangular matrix with respect to some basis
+of 𝑉. Then the eigenvalues of 𝑇 are precisely the entries on the diagonal of
+that upper-triangular matrix.
+Proof Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 with respect to which 𝑇 has an upper-
+triangular matrix
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝜆1 ∗
+⋱
+0 𝜆𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Because 𝑇𝑣1 = 𝜆1𝑣1, we see that 𝜆1 is an eigenvalue of 𝑇.
+Suppose 𝑘 ∈ {2,…,𝑛}. Then (𝑇− 𝜆𝑘𝐼)𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘−1). Thus 𝑇− 𝜆𝑘𝐼
+maps span(𝑣1,…,𝑣𝑘) into span(𝑣1,…,𝑣𝑘−1). Because
+dimspan(𝑣1,…,𝑣𝑘) = 𝑘 and dimspan(𝑣1,…,𝑣𝑘−1) = 𝑘 − 1,
+this implies that 𝑇 − 𝜆𝑘𝐼 restricted to span(𝑣1,…,𝑣𝑘) is not injective (by 3.22).
+Thus there exists 𝑣 ∈ span(𝑣1,…,𝑣𝑘) such that 𝑣 ≠ 0 and (𝑇 − 𝜆𝑘𝐼)𝑣 = 0. Thus
+𝜆𝑘 is an eigenvalue of 𝑇. Hence we have shown that every entry on the diagonal
+of ℳ(𝑇) is an eigenvalue of 𝑇.
+To prove 𝑇 has no other eigenvalues, let 𝑞 be the polynomial defined by
+𝑞(𝑧) = (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑛). Then 𝑞(𝑇) = 0 (by 5.40). Hence 𝑞 is a polynomial
+multipleoftheminimalpolynomialof𝑇 (by5.29). Thuseveryzerooftheminimal
+polynomial of 𝑇 is a zero of 𝑞. Because the zeros of the minimal polynomial of
+𝑇 are the eigenvalues of 𝑇 (by 5.27), this implies that every eigenvalue of 𝑇 is a
+zero of 𝑞. Hence the eigenvalues of 𝑇 are all contained in the list 𝜆1,…, 𝜆𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler158 Chapter 5 Eigenvalues and Eigenvectors
+5.42 example: eigenvalues via an upper-triangular matrix
+Define 𝑇 ∈ ℒ(𝐅3
+) by 𝑇(𝑥,𝑦,𝑧) = (2𝑥 +𝑦,5𝑦 +3𝑧,8𝑧). The matrix of 𝑇 with
+respect to the standard basis is
+ℳ(𝑇) =
+⎛ ⎜ ⎜ ⎜
+⎝
+2 1 0
+0 5 3
+0 0 8
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Now 5.41 implies that the eigenvalues of 𝑇 are 2, 5, and 8.
+The next example illustrates 5.44: an operator has an upper-triangular matrix
+with respect to some basis if and only if the minimal polynomial of the operator
+is the product of polynomials of degree 1.
+5.43 example: whether 𝑇 has an upper-triangular matrix can depend on 𝐅
+Define 𝑇 ∈ ℒ(𝐅4
+) by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (−𝑧2,𝑧1,2𝑧1 + 3𝑧3,𝑧3 + 3𝑧4).
+Thus with respect to the standard basis of 𝐅4
+, the matrix of 𝑇 is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+0 −1 0 0
+1 0 0 0
+2 0 3 0
+0 0 1 3
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+You can ask a computer to verify that the minimal polynomial of 𝑇 is the polyno-
+mial 𝑝 defined by
+𝑝(𝑧) = 9 − 6𝑧 + 10𝑧2
+− 6𝑧3
++ 𝑧4
+.
+First consider the case 𝐅 = 𝐑. Then the polynomial 𝑝 factors as
+𝑝(𝑧) = (𝑧2
++ 1)(𝑧 − 3)(𝑧 − 3),
+with no further factorization of 𝑧2
++1 as the product of two polynomials of degree
+1 with real coefficients. Thus 5.44 states that there does not exist a basis of 𝐑4
+with respect to which 𝑇 has an upper-triangular matrix.
+Now consider the case 𝐅 = 𝐂. Then the polynomial 𝑝 factors as
+𝑝(𝑧) = (𝑧 − 𝑖)(𝑧 + 𝑖)(𝑧 − 3)(𝑧 − 3),
+whereallfactorsabovehavetheform𝑧−𝜆𝑘. Thus5.44statesthatthereisabasisof
+𝐂4
+with respect to which 𝑇 has an upper-triangular matrix. Indeed, you can verify
+that with respect to the basis (4−3𝑖,−3−4𝑖,−3+𝑖,1),(4+3𝑖,−3+4𝑖,−3−𝑖,1),
+(0,0,0,1),(0,0,1,0) of 𝐂4
+, the operator 𝑇 has the upper-triangular matrix
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+𝑖 0 0 0
+0 −𝑖 0 0
+0 0 3 1
+0 0 0 3
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5C Upper-Triangular Matrices 159
+5.44 necessary and sufficient condition to have an upper-triangular matrix
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Then 𝑇 has an upper-
+triangular matrix with respect to some basis of 𝑉 if and only if the minimal
+polynomial of 𝑇 equals (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some 𝜆1,…, 𝜆𝑚 ∈ 𝐅.
+Proof First suppose 𝑇 has an upper-triangular matrix with respect to some basis
+of𝑉. Let𝛼1,…,𝛼𝑛 denotethediagonalentriesofthatmatrix. Defineapolynomial
+𝑞 ∈ 𝒫(𝐅) by
+𝑞(𝑧) = (𝑧 − 𝛼1)⋯(𝑧 − 𝛼𝑛).
+Then 𝑞(𝑇) = 0, by 5.40. Hence 𝑞 is a polynomial multiple of the minimal polyno-
+mial of 𝑇, by 5.29. Thus the minimal polynomial of 𝑇 equals (𝑧− 𝜆1)⋯(𝑧− 𝜆𝑚)
+for some 𝜆1,…, 𝜆𝑚 ∈ 𝐅 with {𝜆1,…, 𝜆𝑚} ⊆ {𝛼1,…,𝛼𝑛}.
+To prove the implication in the other direction, now suppose the minimal
+polynomial of 𝑇 equals (𝑧− 𝜆1)⋯(𝑧− 𝜆𝑚) for some 𝜆1,…, 𝜆𝑚 ∈ 𝐅. We will use
+induction on 𝑚. To get started, if 𝑚 = 1 then 𝑧− 𝜆1 is the minimal polynomial of
+𝑇, which implies that 𝑇 = 𝜆1𝐼, which implies that the matrix of 𝑇 (with respect
+to any basis of 𝑉) is upper triangular.
+Now suppose 𝑚 > 1 and the desired result holds for all smaller positive
+integers. Let
+𝑈 = range(𝑇 − 𝜆𝑚𝐼).
+Then 𝑈 is invariant under 𝑇 [this is a special case of 5.18 with 𝑝(𝑧) = 𝑧 − 𝜆𝑚].
+Thus 𝑇|𝑈 is an operator on 𝑈.
+If 𝑢 ∈ 𝑈, then 𝑢 = (𝑇 − 𝜆𝑚𝐼)𝑣 for some 𝑣 ∈ 𝑉 and
+(𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚−1𝐼)𝑢 = (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼)𝑣 = 0.
+Hence (𝑧− 𝜆1)⋯(𝑧− 𝜆𝑚−1) is a polynomial multiple of the minimal polynomial
+of 𝑇|𝑈, by 5.29. Thus the minimal polynomial of 𝑇|𝑈 is the product of at most
+𝑚 − 1 terms of the form 𝑧 − 𝜆𝑘.
+By our induction hypothesis, there is a basis 𝑢1,…,𝑢𝑀 of 𝑈 with respect to
+which 𝑇|𝑈 has an upper-triangular matrix. Thus for each 𝑘 ∈ {1,…,𝑀}, we have
+(using 5.39)
+5.45 𝑇𝑢𝑘 = (𝑇|𝑈)(𝑢𝑘) ∈ span(𝑢1,…,𝑢𝑘).
+Extend 𝑢1,…,𝑢𝑀 to a basis 𝑢1,…,𝑢𝑀,𝑣1,…,𝑣𝑁 of 𝑉. If 𝑘 ∈ {1,…,𝑁}, then
+𝑇𝑣𝑘 = (𝑇 − 𝜆𝑚𝐼)𝑣𝑘 + 𝜆𝑚𝑣𝑘.
+The definition of 𝑈 shows that (𝑇 − 𝜆𝑚𝐼)𝑣𝑘 ∈ 𝑈 = span(𝑢1,…,𝑢𝑀). Thus the
+equation above shows that
+5.46 𝑇𝑣𝑘 ∈ span(𝑢1,…,𝑢𝑀,𝑣1,…,𝑣𝑘).
+From 5.45 and 5.46, we conclude (using 5.39) that 𝑇 has an upper-triangular
+matrix with respect to the basis 𝑢1,…,𝑢𝑀,𝑣1,…,𝑣𝑁 of 𝑉, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler160 Chapter 5 Eigenvalues and Eigenvectors
+The set of numbers {𝜆1,…, 𝜆𝑚} from the previous result equals the set of
+eigenvalues of 𝑇 (because the set of zeros of the minimal polynomial of 𝑇 equals
+the set of eigenvalues of 𝑇, by 5.27), although the list 𝜆1,…, 𝜆𝑚 in the previous
+result may contain repetitions.
+In Chapter 8 we will improve even the wonderful result below; see 8.37 and
+8.46.
+5.47 if 𝐅 = 𝐂, then every operator on 𝑉 has an upper-triangular matrix
+Suppose 𝑉 is a finite-dimensional complex vector space and 𝑇 ∈ ℒ(𝑉). Then
+𝑇 has an upper-triangular matrix with respect to some basis of 𝑉.
+Proof The desired result follows immediately from 5.44 and the second version
+of the fundamental theorem of algebra (see 4.13).
+For an extension of the result above to two operators 𝑆 and 𝑇 such that
+𝑆𝑇 = 𝑇𝑆,
+see 5.80. Also, for an extension to more than two operators, see Exercise 9(b) in
+Section 5E.
+Caution: Ifanoperator𝑇 ∈ ℒ(𝑉) hasanupper-triangularmatrixwithrespect
+to some basis 𝑣1,…,𝑣𝑛 of 𝑉, then the eigenvalues of 𝑇 are exactly the entries on
+the diagonal of ℳ(𝑇), as shown by 5.41, and furthermore 𝑣1 is an eigenvector of
+𝑇. However, 𝑣2,…,𝑣𝑛 need not be eigenvectors of 𝑇. Indeed, a basis vector 𝑣𝑘 is
+an eigenvector of 𝑇 if and only if all entries in the 𝑘th
+column of the matrix of 𝑇
+are 0, except possibly the 𝑘th
+entry.
+The row echelon form of the matrix
+of an operator does not give us a list
+of the eigenvalues of the operator. In
+contrast, an upper-triangular matrix
+with respect to some basis gives us a
+list of all the eigenvalues of the op-
+erator. However, there is no method
+for computing exactly such an upper-
+triangular matrix, even though 5.47
+guarantees its existence if 𝐅 = 𝐂.
+You may recall from a previous
+course that every matrix of numbers can
+be changed to a matrix in what is called
+row echelon form. If one begins with a
+square matrix, the matrix in row echelon
+form will be an upper-triangular matrix.
+Do not confuse this upper-triangular ma-
+trix with the upper-triangular matrix of
+an operator with respect to some basis
+whose existence is proclaimed by 5.47 (if
+𝐅 = 𝐂)—there is no connection between
+these upper-triangular matrices.
+Exercises 5C
+1 Proveorgiveacounterexample: If𝑇 ∈ ℒ(𝑉) and𝑇2
+hasanupper-triangular
+matrix with respect to some basis of 𝑉, then 𝑇 has an upper-triangular matrix
+with respect to some basis of 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5C Upper-Triangular Matrices 161
+## 2 Suppose 𝐴 and 𝐵 are upper-triangular matrices of the same size, with
+𝛼1,…,𝛼𝑛 on the diagonal of 𝐴 and 𝛽1,…,𝛽𝑛 on the diagonal of 𝐵.
+(a) Show that 𝐴 + 𝐵 is an upper-triangular matrix with 𝛼1 + 𝛽1,…,𝛼𝑛 + 𝛽𝑛
+on the diagonal.
+(b) Show that 𝐴𝐵 is an upper-triangular matrix with 𝛼1𝛽1,…,𝛼𝑛𝛽𝑛 on the
+diagonal.
+The results in this exercise are used in the proof of 5.81.
+3 Suppose 𝑇 ∈ ℒ(𝑉) is invertible and 𝑣1,…,𝑣𝑛 is a basis of 𝑉 with respect
+to which the matrix of 𝑇 is upper triangular, with 𝜆1,…, 𝜆𝑛 on the diagonal.
+Show that the matrix of 𝑇−1
+is also upper triangular with respect to the basis
+𝑣1,…,𝑣𝑛, with
+1
+𝜆1
+,…,
+1
+𝜆𝑛
+on the diagonal.
+## 4 Give an example of an operator whose matrix with respect to some basis
+contains only 0’s on the diagonal, but the operator is invertible.
+This exercise and the exercise below show that 5.41 fails without the hypoth-
+esis that an upper-triangular matrix is under consideration.
+## 5 Give an example of an operator whose matrix with respect to some basis
+contains only nonzero numbers on the diagonal, but the operator is not
+invertible.
+6 Suppose 𝐅 = 𝐂, 𝑉 is finite-dimensional, and 𝑇 ∈ ℒ(𝑉). Prove that if
+𝑘 ∈ {1,…,dim𝑉}, then 𝑉 has a 𝑘-dimensional subspace invariant under 𝑇.
+## 7 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑣 ∈ 𝑉.
+(a) Prove that there exists a unique monic polynomial 𝑝𝑣 of smallest degree
+such that 𝑝𝑣(𝑇)𝑣 = 0.
+(b) Prove that the minimal polynomial of 𝑇 is a polynomial multiple of 𝑝𝑣.
+## 8 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and there exists a nonzero
+vector 𝑣 ∈ 𝑉 such that 𝑇2
+𝑣 + 2𝑇𝑣 = −2𝑣.
+(a) Prove that if 𝐅 = 𝐑, then there does not exist a basis of 𝑉 with respect
+to which 𝑇 has an upper-triangular matrix.
+(b) Prove that if 𝐅 = 𝐂 and 𝐴 is an upper-triangular matrix that equals
+the matrix of 𝑇 with respect to some basis of 𝑉, then −1 + 𝑖 or −1 − 𝑖
+appears on the diagonal of 𝐴.
+## 9 Suppose 𝐵 is a square matrix with complex entries. Prove that there exists
+an invertible square matrix 𝐴 with complex entries such that 𝐴−1
+𝐵𝐴 is an
+upper-triangular matrix.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler162 Chapter 5 Eigenvalues and Eigenvectors
+10 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Show that the following
+are equivalent.
+(a) The matrix of 𝑇 with respect to 𝑣1,…,𝑣𝑛 is lower triangular.
+(b) span(𝑣𝑘,…,𝑣𝑛) is invariant under 𝑇 for each 𝑘 = 1,…,𝑛.
+(c) 𝑇𝑣𝑘 ∈ span(𝑣𝑘,…,𝑣𝑛) for each 𝑘 = 1,…,𝑛.
+A square matrix is called lower triangular if all entries above the diagonal
+are 0.
+## 11 Suppose 𝐅 = 𝐂 and 𝑉 is finite-dimensional. Prove that if 𝑇 ∈ ℒ(𝑉), then
+there exists a basis of 𝑉 with respect to which 𝑇 has a lower-triangular
+matrix.
+## 12 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉) has an upper-triangular matrix
+with respect to some basis of 𝑉, and 𝑈 is a subspace of 𝑉 that is invariant
+under 𝑇.
+(a) Prove that 𝑇|𝑈 has an upper-triangular matrix with respect to some basis
+of 𝑈.
+(b) Prove that the quotient operator 𝑇/𝑈 has an upper-triangular matrix
+with respect to some basis of 𝑉/𝑈.
+The quotient operator 𝑇/𝑈 was defined in Exercise 38 in Section 5A.
+## 13 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Suppose there exists
+a subspace 𝑈 of 𝑉 that is invariant under 𝑇 such that 𝑇|𝑈 has an upper-
+triangular matrix with respect to some basis of 𝑈 and also 𝑇/𝑈 has an
+upper-triangular matrix with respect to some basis of 𝑉/𝑈. Prove that 𝑇 has
+an upper-triangular matrix with respect to some basis of 𝑉.
+## 14 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 has an upper-
+triangular matrix with respect to some basis of 𝑉 if and only if the dual
+operator 𝑇′
+has an upper-triangular matrix with respect to some basis of the
+dual space 𝑉′
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5D Diagonalizable Operators 163
+5D Diagonalizable Operators
+Diagonal Matrices
+5.48 definition: diagonal matrix
+A diagonal matrix is a square matrix that is 0 everywhere except possibly on
+the diagonal.
+5.49 example: diagonal matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+8 0 0
+0 5 0
+0 0 5
+⎞ ⎟ ⎟ ⎟
+⎠
+is a diagonal matrix.
+Every diagonal matrix is upper tri-
+angular. Diagonal matrices typically
+have many more 0’s than most upper-
+triangular matrices of the same size.
+If an operator has a diagonal matrix
+with respect to some basis, then the en-
+tries on the diagonal are precisely the
+eigenvalues of the operator; this follows
+from 5.41 (or find an easier direct proof
+for diagonal matrices).
+5.50 definition: diagonalizable
+An operator on 𝑉 is called diagonalizable if the operator has a diagonal matrix
+with respect to some basis of 𝑉.
+5.51 example: diagonalization may require a different basis
+Define 𝑇 ∈ ℒ(𝐑2
+) by
+𝑇(𝑥,𝑦) = (41𝑥 + 7𝑦,−20𝑥 + 74𝑦).
+The matrix of 𝑇 with respect to the standard basis of 𝐑2
+is
+(
+41 7
+−20 74
+),
+which is not a diagonal matrix. However, 𝑇 is diagonalizable. Specifically, the
+matrix of 𝑇 with respect to the basis (1,4),(7,5) is
+(
+69 0
+0 46
+)
+because 𝑇(1,4) = (69,276) = 69(1,4) and 𝑇(7,5) = (322,230) = 46(7,5).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler164 Chapter 5 Eigenvalues and Eigenvectors
+For 𝜆 ∈ 𝐅, we will find it convenient to have a name and a notation for the set
+of vectors that an operator 𝑇 maps to 𝜆 times the vector.
+5.52 definition: eigenspace, 𝐸(𝜆,𝑇)
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅. The eigenspace of 𝑇 corresponding to 𝜆 is
+the subspace 𝐸(𝜆,𝑇) of 𝑉 defined by
+𝐸(𝜆,𝑇) = null(𝑇 − 𝜆𝐼) = {𝑣 ∈ 𝑉 ∶ 𝑇𝑣 = 𝜆𝑣}.
+Hence 𝐸(𝜆,𝑇) is the set of all eigenvectors of 𝑇 corresponding to 𝜆, along
+with the 0 vector.
+For 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅, the set 𝐸(𝜆,𝑇) is a subspace of 𝑉 because the null
+space of each linear map on 𝑉 is a subspace of 𝑉. The definitions imply that 𝜆 is
+an eigenvalue of 𝑇 if and only if 𝐸(𝜆,𝑇) ≠ {0}.
+5.53 example: eigenspaces of an operator
+Suppose the matrix of an operator 𝑇 ∈ ℒ(𝑉) with respect to a basis 𝑣1,𝑣2,𝑣3
+of 𝑉 is the matrix in Example 5.49. Then
+𝐸(8,𝑇) = span(𝑣1), 𝐸(5,𝑇) = span(𝑣2,𝑣3).
+If 𝜆 is an eigenvalue of an operator 𝑇 ∈ ℒ(𝑉), then 𝑇 restricted to 𝐸(𝜆,𝑇) is
+just the operator of multiplication by 𝜆.
+5.54 sum of eigenspaces is a direct sum
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆1,…, 𝜆𝑚 are distinct eigenvalues of 𝑇. Then
+𝐸(𝜆1,𝑇) + ⋯ + 𝐸(𝜆𝑚,𝑇)
+is a direct sum. Furthermore, if 𝑉 is finite-dimensional, then
+dim𝐸(𝜆1,𝑇) + ⋯ + dim𝐸(𝜆𝑚,𝑇) ≤ dim𝑉.
+Proof To show that 𝐸(𝜆1,𝑇) + ⋯ + 𝐸(𝜆𝑚,𝑇) is a direct sum, suppose
+𝑣1 + ⋯ + 𝑣𝑚 = 0,
+where each 𝑣𝑘 is in 𝐸(𝜆𝑘,𝑇). Because eigenvectors corresponding to distinct
+eigenvalues are linearly independent (by 5.11), this implies that each 𝑣𝑘 equals 0.
+Thus 𝐸(𝜆1,𝑇) + ⋯ + 𝐸(𝜆𝑚,𝑇) is a direct sum (by 1.45), as desired.
+Now suppose 𝑉 is finite-dimensional. Then
+dim𝐸(𝜆1,𝑇) + ⋯ + dim𝐸(𝜆𝑚,𝑇) = dim(𝐸(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐸(𝜆𝑚,𝑇))
+≤ dim𝑉,
+where the first line follows from 3.94 and the second line follows from 2.37.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5D Diagonalizable Operators 165
+Conditions for Diagonalizability
+The following characterizations of diagonalizable operators will be useful.
+5.55 conditions equivalent to diagonalizability
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑚 denote the
+distinct eigenvalues of 𝑇. Then the following are equivalent.
+(a) 𝑇 is diagonalizable.
+(b) 𝑉 has a basis consisting of eigenvectors of 𝑇.
+(c) 𝑉 = 𝐸(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐸(𝜆𝑚,𝑇).
+(d) dim𝑉 = dim𝐸(𝜆1,𝑇) + ⋯ + dim𝐸(𝜆𝑚,𝑇).
+Proof An operator 𝑇 ∈ ℒ(𝑉) has a diagonal matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+𝜆1 0
+⋱
+0 𝜆𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+with respect to a basis 𝑣1,…,𝑣𝑛 of 𝑉 if and only if 𝑇𝑣𝑘 = 𝜆𝑘𝑣𝑘 for each 𝑘. Thus
+(a) and (b) are equivalent.
+Suppose (b) holds; thus 𝑉 has a basis consisting of eigenvectors of 𝑇. Hence
+every vector in 𝑉 is a linear combination of eigenvectors of 𝑇, which implies that
+𝑉 = 𝐸(𝜆1,𝑇) + ⋯ + 𝐸(𝜆𝑚,𝑇).
+Now 5.54 shows that (c) holds, proving that (b) implies (c).
+That (c) implies (d) follows immediately from 3.94.
+Finally, suppose (d) holds; thus
+5.56 dim𝑉 = dim𝐸(𝜆1,𝑇) + ⋯ + dim𝐸(𝜆𝑚,𝑇).
+Chooseabasisofeach𝐸(𝜆𝑘,𝑇); putallthesebasestogethertoformalist𝑣1,…,𝑣𝑛
+of eigenvectors of 𝑇, where 𝑛 = dim𝑉 (by 5.56). To show that this list is linearly
+independent, suppose
+𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛 = 0,
+where 𝑎1,…,𝑎𝑛 ∈ 𝐅. For each 𝑘 = 1,…,𝑚, let 𝑢𝑘 denote the sum of all the terms
+𝑎𝑗𝑣𝑗 such that 𝑣𝑗 ∈ 𝐸(𝜆𝑘,𝑇). Thus each 𝑢𝑘 is in 𝐸(𝜆𝑘,𝑇), and
+𝑢1 + ⋯ + 𝑢𝑚 = 0.
+Because eigenvectors corresponding to distinct eigenvalues are linearly indepen-
+dent (see 5.11), this implies that each 𝑢𝑘 equals 0. Because each 𝑢𝑘 is a sum of
+terms 𝑎𝑗𝑣𝑗, where the 𝑣𝑗’s were chosen to be a basis of 𝐸(𝜆𝑘,𝑇), this implies that
+all 𝑎𝑗’s equal 0. Thus 𝑣1,…,𝑣𝑛 is linearly independent and hence is a basis of 𝑉
+(by 2.38). Thus (d) implies (b), completing the proof.
+For additional conditions equivalent to diagonalizability, see 5.62, Exercises 5
+and 15 in this section, Exercise 24 in Section 7B, and Exercise 15 in Section 8A.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler166 Chapter 5 Eigenvalues and Eigenvectors
+As we know, every operator on a nonzero finite-dimensional complex vector
+space has an eigenvalue. However, not every operator on a nonzero finite-
+dimensional complex vector space has enough eigenvectors to be diagonalizable,
+as shown by the next example.
+5.57 example: an operator that is not diagonalizable
+Define an operator 𝑇 ∈ ℒ(𝐅3
+) by 𝑇(𝑎,𝑏,𝑐) = (𝑏,𝑐,0). The matrix of 𝑇 with
+respect to the standard basis of 𝐅3
+is
+⎛ ⎜ ⎜ ⎜
+⎝
+0 1 0
+0 0 1
+0 0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+which is an upper-triangular matrix but is not a diagonal matrix.
+As you should verify, 0 is the only eigenvalue of 𝑇 and furthermore
+𝐸(0,𝑇) = {(𝑎,0,0) ∈ 𝐅3
+∶ 𝑎 ∈ 𝐅}.
+Hence conditions (b), (c), and (d) of 5.55 fail (of course, because these conditions
+are equivalent, it is sufficient to check that only one of them fails). Thus condition
+(a) of 5.55 also fails. Hence 𝑇 is not diagonalizable, regardless of whether 𝐅 = 𝐑
+or 𝐅 = 𝐂.
+The next result shows that if an operator has as many distinct eigenvalues as
+the dimension of its domain, then the operator is diagonalizable.
+5.58 enough eigenvalues implies diagonalizability
+Suppose𝑉 isfinite-dimensionaland𝑇 ∈ ℒ(𝑉)hasdim𝑉 distincteigenvalues.
+Then 𝑇 is diagonalizable.
+Proof Suppose 𝑇 has distinct eigenvalues 𝜆1,…, 𝜆dim𝑉. For each 𝑘, let 𝑣𝑘 ∈ 𝑉
+be an eigenvector corresponding to the eigenvalue 𝜆𝑘. Because eigenvectors corre-
+sponding to distinct eigenvalues are linearly independent (see 5.11), 𝑣1,…,𝑣dim𝑉
+is linearly independent.
+Alinearlyindependentlistofdim𝑉 vectorsin𝑉 isabasisof𝑉 (see2.38); thus
+𝑣1,…,𝑣dim𝑉 is a basis of 𝑉. With respect to this basis consisting of eigenvectors,
+𝑇 has a diagonal matrix.
+In later chapters we will find additional conditions that imply that certain
+operators are diagonalizable. For example, see the real spectral theorem (7.29)
+and the complex spectral theorem (7.31).
+The result above gives a sufficient condition for an operator to be diagonal-
+izable. However, this condition is not necessary. For example, the operator 𝑇
+on 𝐅3
+defined by 𝑇(𝑥,𝑦,𝑧) = (6𝑥,6𝑦,7𝑧) has only two eigenvalues (6 and 7) and
+dim𝐅3
+= 3, but 𝑇 is diagonalizable (by the standard basis of 𝐅3
+).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5D Diagonalizable Operators 167
+For a spectacular application of these
+techniques, see Exercise 21, which
+shows how to use diagonalization to
+find an exact formula for the 𝑛th
+term
+of the Fibonacci sequence.
+The next example illustrates the im-
+portance of diagonalization, which can
+be used to compute high powers of an
+operator, taking advantage of the equa-
+tion 𝑇𝑘
+𝑣 = 𝜆𝑘
+𝑣 if 𝑣 is an eigenvector of
+𝑇 with eigenvalue 𝜆.
+5.59 example: using diagonalization to compute 𝑇100
+Define 𝑇 ∈ ℒ(𝐅3
+) by 𝑇(𝑥,𝑦,𝑧) = (2𝑥 + 𝑦,5𝑦 + 3𝑧,8𝑧). With respect to the
+standard basis, the matrix of 𝑇 is
+⎛ ⎜ ⎜ ⎜
+⎝
+2 1 0
+0 5 3
+0 0 8
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+The matrix above is an upper-triangular matrix but it is not a diagonal matrix. By
+5.41, the eigenvalues of 𝑇 are 2, 5, and 8. Because 𝑇 is an operator on a vector
+space of dimension three and 𝑇 has three distinct eigenvalues, 5.58 assures us
+that there exists a basis of 𝐅3
+with respect to which 𝑇 has a diagonal matrix.
+To find this basis, we only have to find an eigenvector for each eigenvalue. In
+other words, we have to find a nonzero solution to the equation
+𝑇(𝑥,𝑦,𝑧) = 𝜆(𝑥,𝑦,𝑧)
+for 𝜆 = 2, then for 𝜆 = 5, and then for 𝜆 = 8. Solving these simple equations
+shows that for 𝜆 = 2 we have an eigenvector (1,0,0), for 𝜆 = 5 we have an
+eigenvector (1,3,0), and for 𝜆 = 8 we have an eigenvector (1,6,6).
+Thus (1,0,0),(1,3,0),(1,6,6) is a basis of 𝐅3
+consisting of eigenvectors of 𝑇,
+and with respect to this basis the matrix of 𝑇 is the diagonal matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+2 0 0
+0 5 0
+0 0 8
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+To compute 𝑇100
+(0,0,1), for example, write (0,0,1) as a linear combination
+of our basis of eigenvectors:
+(0,0,1) = 1
+6
+(1,0,0) − 1
+3
+(1,3,0) + 1
+6
+(1,6,6).
+Now apply 𝑇100
+to both sides of the equation above, getting
+𝑇100
+(0,0,1) = 1
+6
+(𝑇100
+(1,0,0)) − 1
+3
+(𝑇100
+(1,3,0)) + 1
+6
+(𝑇100
+(1,6,6))
+= 1
+6
+(2100
+(1,0,0) − 2 ⋅ 5100
+(1,3,0) + 8100
+(1,6,6))
+= 1
+6
+(2100
+− 2 ⋅ 5100
++ 8100
+, 6 ⋅ 8100
+− 6 ⋅ 5100
+, 6 ⋅ 8100
+).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler168 Chapter 5 Eigenvalues and Eigenvectors
+Wesawearlierthatanoperator𝑇 onafinite-dimensionalvectorspace𝑉 hasan
+upper-triangular matrix with respect to some basis of 𝑉 if and only if the minimal
+polynomial of 𝑇 equals (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some 𝜆1,…, 𝜆𝑚 ∈ 𝐅 (see 5.44).
+As we previously noted (see 5.47), this condition is always satisfied if 𝐅 = 𝐂.
+Our next result 5.62 states that an operator 𝑇 ∈ ℒ(𝑉) has a diagonal matrix
+with respect to some basis of 𝑉 if and only if the minimal polynomial of 𝑇 equals
+(𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some distinct 𝜆1,…, 𝜆𝑚 ∈ 𝐅. Before formally stating
+this result, we give two examples of using it.
+5.60 example: diagonalizable, but with no known exact eigenvalues
+Define 𝑇 ∈ ℒ(𝐂5
+) by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4,𝑧5) = (−3𝑧5,𝑧1 + 6𝑧5,𝑧2,𝑧3,𝑧4).
+The matrix of 𝑇 is shown in Example 5.26, where we showed that the minimal
+polynomial of 𝑇 is 3 − 6𝑧 + 𝑧5
+.
+As mentioned in Example 5.28, no exact expression is known for any of the
+zeros of this polynomial, but numerical techniques show that the zeros of this
+polynomial are approximately −1.67, 0.51, 1.40, −0.12 + 1.59𝑖, −0.12 − 1.59𝑖.
+The software that produces these approximations is accurate to more than
+three digits. Thus these approximations are good enough to show that the five
+numbers above are distinct. The minimal polynomial of 𝑇 equals the fifth degree
+monic polynomial with these zeros. Now 5.62 shows that 𝑇 is diagonalizable.
+5.61 example: showing that an operator is not diagonalizable
+Define 𝑇 ∈ ℒ(𝐅3
+) by
+𝑇(𝑧1,𝑧2,𝑧3) = (6𝑧1 + 3𝑧2 + 4𝑧3,6𝑧2 + 2𝑧3,7𝑧3).
+The matrix of 𝑇 with respect to the standard basis of 𝐅3
+is
+⎛ ⎜ ⎜ ⎜
+⎝
+6 3 4
+0 6 2
+0 0 7
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+The matrix above is an upper-triangular matrix but is not a diagonal matrix. Might
+𝑇 have a diagonal matrix with respect to some other basis of 𝐅3
+?
+To answer this question, we will find the minimal polynomial of 𝑇. First note
+that the eigenvalues of 𝑇 are the diagonal entries of the matrix above (by 5.41).
+Thus the zeros of the minimal polynomial of 𝑇 are 6,7 [by 5.27(a)]. The diagonal
+of the matrix above tells us that (𝑇 − 6𝐼)2
+(𝑇 − 7𝐼) = 0 (by 5.40). The minimal
+polynomial of 𝑇 has degree at most 3 (by 5.22). Putting all this together, we see
+that the minimal polynomial of 𝑇 is either (𝑧 − 6)(𝑧 − 7) or (𝑧 − 6)2
+(𝑧 − 7).
+A simple computation shows that (𝑇 − 6𝐼)(𝑇 − 7𝐼) ≠ 0. Thus the minimal
+polynomial of 𝑇 is (𝑧 − 6)2
+(𝑧 − 7).
+Now 5.62 shows that 𝑇 is not diagonalizable.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5D Diagonalizable Operators 169
+5.62 necessary and sufficient condition for diagonalizability
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Then 𝑇 is diagonalizable if
+and only if the minimal polynomial of 𝑇 equals (𝑧− 𝜆1)⋯(𝑧− 𝜆𝑚) for some
+list of distinct numbers 𝜆1,…, 𝜆𝑚 ∈ 𝐅.
+Proof First suppose 𝑇 is diagonalizable. Thus there is a basis 𝑣1,…,𝑣𝑛 of 𝑉
+consisting of eigenvectors of 𝑇. Let 𝜆1,…, 𝜆𝑚 be the distinct eigenvalues of 𝑇.
+Then for each 𝑣𝑗, there exists 𝜆𝑘 with (𝑇 − 𝜆𝑘𝐼)𝑣𝑗 = 0. Thus
+(𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼)𝑣𝑗 = 0,
+which implies that the minimal polynomial of 𝑇 equals (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚).
+To prove the implication in the other direction, now suppose the minimal
+polynomial of 𝑇 equals (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some list of distinct numbers
+𝜆1,…, 𝜆𝑚 ∈ 𝐅. Thus
+5.63 (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼) = 0.
+We will prove that 𝑇 is diagonalizable by induction on 𝑚. To get started,
+suppose 𝑚 = 1. Then 𝑇 − 𝜆1𝐼 = 0, which means that 𝑇 is a scalar multiple of the
+identity operator, which implies that 𝑇 is diagonalizable.
+Now suppose that 𝑚 > 1 and the desired result holds for all smaller values of
+𝑚. The subspace range(𝑇 − 𝜆𝑚𝐼) is invariant under 𝑇 [this is a special case of
+5.18 with 𝑝(𝑧) = 𝑧 − 𝜆𝑚]. Thus 𝑇 restricted to range(𝑇 − 𝜆𝑚𝐼) is an operator on
+range(𝑇 − 𝜆𝑚𝐼).
+If 𝑢 ∈ range(𝑇−𝜆𝑚𝐼), then 𝑢 = (𝑇−𝜆𝑚𝐼)𝑣 for some 𝑣 ∈ 𝑉, and 5.63 implies
+5.64 (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚−1𝐼)𝑢 = (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼)𝑣 = 0.
+Hence (𝑧− 𝜆1)⋯(𝑧− 𝜆𝑚−1) is a polynomial multiple of the minimal polynomial
+of 𝑇 restricted to range(𝑇 − 𝜆𝑚𝐼) [by 5.29]. Thus by our induction hypothesis,
+there is a basis of range(𝑇 − 𝜆𝑚𝐼) consisting of eigenvectors of 𝑇.
+Suppose that 𝑢 ∈ range(𝑇 − 𝜆𝑚𝐼) ∩ null(𝑇 − 𝜆𝑚𝐼). Then 𝑇𝑢 = 𝜆𝑚𝑢. Now
+5.64 implies that
+0 = (𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚−1𝐼)𝑢
+= (𝜆𝑚 − 𝜆1)⋯(𝜆𝑚 − 𝜆𝑚−1)𝑢.
+Because 𝜆1,…, 𝜆𝑚 are distinct, the equation above implies that 𝑢 = 0. Hence
+range(𝑇 − 𝜆𝑚𝐼) ∩ null(𝑇 − 𝜆𝑚𝐼) = {0}.
+Thusrange(𝑇−𝜆𝑚𝐼)+null(𝑇−𝜆𝑚𝐼)isadirectsum(by1.46)whosedimension
+is dim𝑉 (by 3.94 and 3.21). Hence range(𝑇 − 𝜆𝑚𝐼)⊕null(𝑇 − 𝜆𝑚𝐼) = 𝑉. Every
+nonzero vector in null(𝑇 − 𝜆𝑚𝐼) is an eigenvector of 𝑇 with eigenvalue 𝜆𝑚.
+Earlier in this proof we saw that there is a basis of range(𝑇 − 𝜆𝑚𝐼) consisting of
+eigenvectors of 𝑇. Adjoining to that basis a basis of null(𝑇 − 𝜆𝑚𝐼) gives a basis
+of 𝑉 consisting of eigenvectors of 𝑇. The matrix of 𝑇 with respect to this basis is
+a diagonal matrix, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler170 Chapter 5 Eigenvalues and Eigenvectors
+No formula exists for the zeros of polynomials of degree 5 or greater. However,
+the previous result can be used to determine whether an operator on a complex
+vector space is diagonalizable without even finding approximations of the zeros
+of the minimal polynomial—see Exercise 15.
+Thenextresultwillbeakeytoolwhenweprovearesultaboutthesimultaneous
+diagonalization of two operators; see 5.76. Note how the use of a characterization
+of diagonalizable operators in terms of the minimal polynomial (see 5.62) leads
+to a short proof of the next result.
+5.65 restriction of diagonalizable operator to invariant subspace
+Suppose𝑇 ∈ ℒ(𝑉) isdiagonalizableand𝑈 isasubspaceof𝑉 thatisinvariant
+under 𝑇. Then 𝑇|𝑈 is a diagonalizable operator on 𝑈.
+Proof Because the operator 𝑇 is diagonalizable, the minimal polynomial of 𝑇
+equals (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some list of distinct numbers 𝜆1,…, 𝜆𝑚 ∈ 𝐅 (by
+5.62). The minimal polynomial of 𝑇 is a polynomial multiple of the minimal
+polynomial of 𝑇|𝑈 (by 5.31). Hence the minimal polynomial of 𝑇|𝑈 has the form
+required by 5.62, which shows that 𝑇|𝑈 is diagonalizable.
+Gershgorin Disk Theorem
+5.66 definition: Gershgorin disks
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Let 𝐴 denote the matrix of
+𝑇 with respect to this basis. A Gershgorin disk of 𝑇 with respect to the basis
+𝑣1,…,𝑣𝑛 is a set of the form
+{𝑧 ∈ 𝐅 ∶ |𝑧 − 𝐴𝑗,𝑗| ≤
+𝑛
+∑
+𝑘=1
+𝑘≠𝑗
+|𝐴𝑗,𝑘|},
+where 𝑗 ∈ {1,…,𝑛}.
+Because there are 𝑛 choices for 𝑗 in the definition above, 𝑇 has 𝑛 Gershgorin
+disks. If 𝐅 = 𝐂, then for each 𝑗 ∈ {1,…,𝑛}, the corresponding Gershgorin disk
+is a closed disk in 𝐂 centered at 𝐴𝑗,𝑗, which is the 𝑗th
+entry on the diagonal of 𝐴.
+The radius of this closed disk is the sum of the absolute values of the entries in
+row 𝑗 of 𝐴, excluding the diagonal entry. If 𝐅 = 𝐑, then the Gershgorin disks are
+closed intervals in 𝐑.
+In the special case that the square matrix 𝐴 above is a diagonal matrix, each
+Gershgorin disk consists of a single point that is a diagonal entry of 𝐴 (and
+each eigenvalue of 𝑇 is one of those points, as required by the next result). One
+consequence of our next result is that if the nondiagonal entries of 𝐴 are small,
+then each eigenvalue of 𝑇 is near a diagonal entry of 𝐴.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5D Diagonalizable Operators 171
+## 5.67 Gershgorin disk theorem
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Then each eigenvalue of 𝑇
+is contained in some Gershgorin disk of 𝑇 with respect to the basis 𝑣1,…,𝑣𝑛.
+Proof Suppose 𝜆 ∈ 𝐅 is an eigenvalue of 𝑇. Let 𝑤 ∈ 𝑉 be a corresponding
+eigenvector. There exist 𝑐1,…,𝑐𝑛 ∈ 𝐅 such that
+5.68 𝑤 = 𝑐1𝑣1 + ⋯ + 𝑐𝑛𝑣𝑛.
+Let 𝐴 denote the matrix of 𝑇 with respect to the basis 𝑣1,…,𝑣𝑛. Applying 𝑇
+to both sides of the equation above gives
+𝜆𝑤 =
+𝑛
+∑
+𝑘=1
+𝑐𝑘𝑇𝑣𝑘 5.69
+=
+𝑛
+∑
+𝑘=1
+𝑐𝑘
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑣𝑗
+=
+𝑛
+∑
+𝑗 = 1
+(
+𝑛
+∑
+𝑘=1
+𝐴𝑗,𝑘𝑐𝑘)𝑣𝑗. 5.70
+Let 𝑗 ∈ {1,…,𝑛} be such that
+|𝑐𝑗| = max{|𝑐1|,…,|𝑐𝑛|}.
+Using 5.68, we see that the coefficient of 𝑣𝑗 on the left side of 5.69 equals 𝜆𝑐𝑗,
+which must equal the coefficient of 𝑣𝑗 on the right side of 5.70. In other words,
+𝜆𝑐𝑗 =
+𝑛
+∑
+𝑘=1
+𝐴𝑗,𝑘 𝑐𝑘.
+Subtract 𝐴𝑗,𝑗 𝑐𝑗 from each side of the equation above and then divide both sides
+by 𝑐𝑗 to get
+|𝜆 − 𝐴𝑗,𝑗| = ∣
+𝑛
+∑
+𝑘=1
+𝑘≠𝑗
+𝐴𝑗,𝑘
+𝑐𝑘
+𝑐𝑗
+∣
+≤
+𝑛
+∑
+𝑘=1
+𝑘≠𝑗
+|𝐴𝑗,𝑘|.
+Thus 𝜆 is in the 𝑗th
+Gershgorin disk with respect to the basis 𝑣1,…,𝑣𝑛.
+The Gershgorin disk theorem is named
+for Semyon Aronovich Gershgorin,
+who published this result in 1931.
+Exercise 22 gives a nice application
+of the Gershgorin disk theorem.
+Exercise 23 states that the radius of
+each Gershgorin disk could be changed
+to the sum of the absolute values of corresponding column entries (instead of row
+entries), excluding the diagonal entry, and the theorem above would still hold.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler172 Chapter 5 Eigenvalues and Eigenvectors
+Exercises 5D
+## 1 Suppose 𝑉 is a finite-dimensional complex vector space and 𝑇 ∈ ℒ(𝑉).
+(a) Prove that if 𝑇4
+= 𝐼, then 𝑇 is diagonalizable.
+(b) Prove that if 𝑇4
+= 𝑇, then 𝑇 is diagonalizable.
+(c) Give an example of an operator 𝑇 ∈ ℒ(𝐂2
+) such that 𝑇4
+= 𝑇2
+and 𝑇 is
+not diagonalizable.
+## 2 Suppose 𝑇 ∈ ℒ(𝑉) has a diagonal matrix 𝐴 with respect to some basis
+of 𝑉. Prove that if 𝜆 ∈ 𝐅, then 𝜆 appears on the diagonal of 𝐴 precisely
+dim𝐸(𝜆,𝑇) times.
+## 3 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that if the operator
+𝑇 is diagonalizable, then 𝑉 = null𝑇 ⊕ range𝑇.
+## 4 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that the following
+are equivalent.
+(a) 𝑉 = null𝑇 ⊕ range𝑇.
+(b) 𝑉 = null𝑇 + range𝑇.
+(c) null𝑇 ∩ range𝑇 = {0}.
+## 5 Suppose 𝑉 is a finite-dimensional complex vector space and 𝑇 ∈ ℒ(𝑉).
+Prove that 𝑇 is diagonalizable if and only if
+𝑉 = null(𝑇 − 𝜆𝐼) ⊕ range(𝑇 − 𝜆𝐼)
+for every 𝜆 ∈ 𝐂.
+6 Suppose 𝑇 ∈ ℒ(𝐅5
+) and dim𝐸(8,𝑇) = 4. Prove that 𝑇 − 2𝐼 or 𝑇 − 6𝐼 is
+invertible.
+## 7 Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Prove that
+𝐸(𝜆,𝑇) = 𝐸(1
+𝜆
+,𝑇−1
+)
+for every 𝜆 ∈ 𝐅 with 𝜆 ≠ 0.
+8 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑚 denote the
+distinct nonzero eigenvalues of 𝑇. Prove that
+dim𝐸(𝜆1,𝑇) + ⋯ + dim𝐸(𝜆𝑚,𝑇) ≤ dimrange𝑇.
+9 Suppose 𝑅,𝑇 ∈ ℒ(𝐅3
+) each have 2, 6, 7 as eigenvalues. Prove that there
+exists an invertible operator 𝑆 ∈ ℒ(𝐅3
+) such that 𝑅 = 𝑆−1
+𝑇𝑆.
+10 Find 𝑅,𝑇 ∈ ℒ(𝐅4
+) such that 𝑅 and 𝑇 each have 2, 6, 7 as eigenvalues, 𝑅 and
+𝑇 have no other eigenvalues, and there does not exist an invertible operator
+𝑆 ∈ ℒ(𝐅4
+) such that 𝑅 = 𝑆−1
+𝑇𝑆.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5D Diagonalizable Operators 173
+11 Find 𝑇 ∈ ℒ(𝐂3
+) such that 6 and 7 are eigenvalues of 𝑇 and such that 𝑇 does
+not have a diagonal matrix with respect to any basis of 𝐂3
+.
+12 Suppose 𝑇 ∈ ℒ(𝐂3
+) is such that 6 and 7 are eigenvalues of 𝑇. Furthermore,
+suppose 𝑇 does not have a diagonal matrix with respect to any basis of 𝐂3
+.
+Prove that there exists (𝑧1,𝑧2,𝑧3) ∈ 𝐂3
+such that
+𝑇(𝑧1,𝑧2,𝑧3) = (6 + 8𝑧1,7 + 8𝑧2,13 + 8𝑧3).
+## 13 Suppose 𝐴 is a diagonal matrix with distinct entries on the diagonal and 𝐵
+is a matrix of the same size as 𝐴. Show that 𝐴𝐵 = 𝐵𝐴 if and only if 𝐵 is a
+diagonal matrix.
+14 (a) Give an example of a finite-dimensional complex vector space and an
+operator 𝑇 on that vector space such that 𝑇2
+is diagonalizable but 𝑇 is
+not diagonalizable.
+(b) Suppose 𝐅 = 𝐂, 𝑘 is a positive integer, and 𝑇 ∈ ℒ(𝑉) is invertible.
+Prove that 𝑇 is diagonalizable if and only if 𝑇𝑘
+is diagonalizable.
+## 15 Suppose 𝑉 is a finite-dimensional complex vector space, 𝑇 ∈ ℒ(𝑉), and 𝑝
+is the minimal polynomial of 𝑇. Prove that the following are equivalent.
+(a) 𝑇 is diagonalizable.
+(b) There does not exist 𝜆 ∈ 𝐂 such that 𝑝 is a polynomial multiple of
+(𝑧 − 𝜆)2
+.
+(c) 𝑝 and its derivative 𝑝′
+have no zeros in common.
+(d) The greatest common divisor of 𝑝 and 𝑝′
+is the constant polynomial 1.
+The greatest common divisor of 𝑝 and 𝑝′
+is the monic polynomial 𝑞 of
+largest degree such that 𝑝 and 𝑝′
+are both polynomial multiples of 𝑞. The
+Euclidean algorithm for polynomials (look it up) can quickly determine
+the greatest common divisor of two polynomials, without requiring any
+information about the zeros of the polynomials. Thus the equivalence of (a)
+and (d) above shows that we can determine whether 𝑇 is diagonalizable
+without knowing anything about the zeros of 𝑝.
+16 Suppose that 𝑇 ∈ ℒ(𝑉) is diagonalizable. Let 𝜆1,…, 𝜆𝑚 denote the distinct
+eigenvalues of 𝑇. Prove that a subspace 𝑈 of 𝑉 is invariant under 𝑇 if and
+only if there exist subspaces 𝑈1,…,𝑈𝑚 of 𝑉 such that 𝑈𝑘 ⊆ 𝐸(𝜆𝑘,𝑇) for
+each 𝑘 and 𝑈 = 𝑈1 ⊕ ⋯ ⊕ 𝑈𝑚.
+## 17 Suppose 𝑉 is finite-dimensional. Prove that ℒ(𝑉) has a basis consisting of
+diagonalizable operators.
+## 18 Suppose that 𝑇 ∈ ℒ(𝑉) is diagonalizable and 𝑈 is a subspace of 𝑉 that is
+invariant under 𝑇. Prove that the quotient operator 𝑇/𝑈 is a diagonalizable
+operator on 𝑉/𝑈.
+The quotient operator 𝑇/𝑈 was defined in Exercise 38 in Section 5A.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler174 Chapter 5 Eigenvalues and Eigenvectors
+## 19 Prove or give a counterexample: If 𝑇 ∈ ℒ(𝑉) and there exists a subspace 𝑈
+of 𝑉 that is invariant under 𝑇 such that 𝑇|𝑈 and 𝑇/𝑈 are both diagonalizable,
+then 𝑇 is diagonalizable.
+See Exercise 13 in Section 5C for an analogous statement about upper-
+triangular matrices.
+## 20 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is diagonaliz-
+able if and only if the dual operator 𝑇′
+is diagonalizable.
+21 The Fibonacci sequence 𝐹0,𝐹1,𝐹2,… is defined by
+𝐹0 = 0, 𝐹1 = 1, and 𝐹𝑛 = 𝐹𝑛−2 + 𝐹𝑛−1 for 𝑛 ≥ 2.
+Define 𝑇 ∈ ℒ(𝐑2
+) by 𝑇(𝑥,𝑦) = (𝑦,𝑥 + 𝑦).
+(a) Show that 𝑇𝑛
+(0,1) = (𝐹𝑛,𝐹𝑛+1) for each nonnegative integer 𝑛.
+(b) Find the eigenvalues of 𝑇.
+(c) Find a basis of 𝐑2
+consisting of eigenvectors of 𝑇.
+(d) Use the solution to (c) to compute 𝑇𝑛
+(0,1). Conclude that
+𝐹𝑛 =
+1
+√5
+[(
+1 + √5
+2
+)
+𝑛
+− (
+1 − √5
+2
+)
+𝑛
+]
+for each nonnegative integer 𝑛.
+(e) Use (d) to conclude that if 𝑛 is a nonnegative integer, then the Fibonacci
+number 𝐹𝑛 is the integer that is closest to
+1
+√5
+(
+1 + √5
+2
+)
+𝑛
+.
+Each 𝐹𝑛 is a nonnegative integer, even though the right side of the formula
+in (d) does not look like an integer. The number
+1 + √5
+2
+is called the golden ratio.
+## 22 Suppose 𝑇 ∈ ℒ(𝑉) and 𝐴 is an 𝑛-by-𝑛 matrix that is the matrix of 𝑇 with
+respect to some basis of 𝑉. Prove that if
+|𝐴𝑗,𝑗| >
+𝑛
+∑
+𝑘=1
+𝑘≠𝑗
+|𝐴𝑗,𝑘|
+for each 𝑗 ∈ {1,…,𝑛}, then 𝑇 is invertible.
+This exercise states that if the diagonal entries of the matrix of 𝑇 are large
+compared to the nondiagonal entries, then 𝑇 is invertible.
+23 SupposethedefinitionoftheGershgorindisksischangedsothattheradiusof
+the 𝑘th
+disk is the sum of the absolute values of the entries in column (instead
+of row) 𝑘 of 𝐴, excluding the diagonal entry. Show that the Gershgorin disk
+theorem (5.67) still holds with this changed definition.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5E Commuting Operators 175
+5E Commuting Operators
+5.71 definition: commute
+• Two operators 𝑆 and 𝑇 on the same vector space commute if 𝑆𝑇 = 𝑇𝑆.
+• Two square matrices 𝐴 and 𝐵 of the same size commute if 𝐴𝐵 = 𝐵𝐴.
+For example, if 𝐼 is the identity operator on 𝑉 and 𝜆 ∈ 𝐅, then 𝜆𝐼 commutes
+with every operator on 𝑉.
+As another example, if 𝑇 is an operator then 𝑇2
+and 𝑇3
+commute. More
+generally, if 𝑝,𝑞 ∈ 𝒫(𝐅), then 𝑝(𝑇) and 𝑞(𝑇) commute [see 5.17(b)].
+5.72 example: partial differentiation operators commute
+Suppose 𝑚 is a nonnegative integer. Let 𝒫𝑚(𝐂2
+,𝐂) denote the complex vector
+space of polynomials (with coefficients in 𝐂) in two variables and of degree at
+most 𝑚, with the usual operations of addition and scalar multiplication of 𝐂-
+valued functions. Thus the elements of 𝒫𝑚(𝐂2
+,𝐂) are functions 𝑝 from 𝐂2
+to 𝐂
+of the form
+5.73 𝑝(𝑤,𝑧) = ∑
+𝑗+𝑘≤𝑚
+𝑎𝑗,𝑘𝑤𝑗
+𝑧𝑘
+,
+where the indices 𝑗 and 𝑘 take on all nonnegative integer values such that 𝑗+𝑘 ≤ 𝑚,
+each 𝑎𝑗,𝑘 is in 𝐂, and 𝑤𝑗
+𝑧𝑘
+denotes the function on 𝐂2
+defined by (𝑤,𝑧) ↦ 𝑤𝑗
+𝑧𝑘
+.
+Define operators 𝐷𝑤,𝐷𝑧 ∈ ℒ(𝒫𝑚(𝐂2
+,𝐂)) by
+𝐷𝑤𝑝 =
+𝜕𝑝
+𝜕𝑤
+= ∑
+𝑗+𝑘≤𝑚
+𝑗𝑎𝑗,𝑘𝑤𝑗−1
+𝑧𝑘
+and 𝐷𝑧𝑝 =
+𝜕𝑝
+𝜕𝑧
+= ∑
+𝑗+𝑘≤𝑚
+𝑘𝑎𝑗,𝑘𝑤𝑗
+𝑧𝑘−1
+,
+where 𝑝 is as in 5.73. The operators 𝐷𝑤 and 𝐷𝑧 are called partial differentiation
+operators because each of these operators differentiates with respect to one of the
+variables while pretending that the other variable is a constant.
+The operators 𝐷𝑤 and 𝐷𝑧 commute because if 𝑝 is as in 5.73, then
+(𝐷𝑤𝐷𝑧)𝑝 = ∑
+𝑗+𝑘≤𝑚
+𝑗𝑘𝑎𝑗,𝑘𝑤𝑗−1
+𝑧𝑘−1
+= (𝐷𝑧𝐷𝑤)𝑝.
+The equation 𝐷𝑤𝐷𝑧 = 𝐷𝑧𝐷𝑤 on 𝒫𝑚(𝐂2
+,𝐂) illustrates a more general result
+that the order of partial differentiation does not matter for nice functions.
+All214,358,881 (whichequals118
+) or-
+dered pairs of the 2-by-2 matrices un-
+der consideration were checked by a
+computertodiscoverthatonly674,609
+of these ordered pairs of matrices
+commute.
+Commuting matrices are unusual.
+For example, there are 214,358,881 or-
+dered pairs of 2-by-2 matrices all of
+whose entries are integers in the inter-
+val [−5,5]. Only about 0.3% of these
+ordered pairs of matrices commute.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler176 Chapter 5 Eigenvalues and Eigenvectors
+The next result shows that two operators commute if and only if their matrices
+(with respect to the same basis) commute.
+5.74 commuting operators correspond to commuting matrices
+Suppose 𝑆,𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Then 𝑆 and 𝑇 commute
+if and only if ℳ(𝑆,(𝑣1,…,𝑣𝑛)) and ℳ(𝑇,(𝑣1,…,𝑣𝑛)) commute.
+Proof We have
+𝑆 and 𝑇 commute ⟺ 𝑆𝑇 = 𝑇𝑆
+⟺ ℳ(𝑆𝑇) = ℳ(𝑇𝑆)
+⟺ ℳ(𝑆)ℳ(𝑇) = ℳ(𝑇)ℳ(𝑆)
+⟺ ℳ(𝑆) and ℳ(𝑇) commute,
+as desired.
+The next result shows that if two operators commute, then every eigenspace
+for one operator is invariant under the other operator. This result, which we will
+use several times, is one of the main reasons why a pair of commuting operators
+behaves better than a pair of operators that does not commute.
+5.75 eigenspace is invariant under commuting operator
+Suppose 𝑆,𝑇 ∈ ℒ(𝑉) commute and 𝜆 ∈ 𝐅. Then 𝐸(𝜆,𝑆) is invariant under 𝑇.
+Proof Suppose 𝑣 ∈ 𝐸(𝜆,𝑆). Then
+𝑆(𝑇𝑣) = (𝑆𝑇)𝑣 = (𝑇𝑆)𝑣 = 𝑇(𝑆𝑣) = 𝑇(𝜆𝑣) = 𝜆𝑇𝑣.
+The equation above shows that 𝑇𝑣 ∈ 𝐸(𝜆,𝑆). Thus 𝐸(𝜆,𝑆) is invariant under 𝑇.
+Suppose we have two operators, each of which is diagonalizable. If we want
+to do computations involving both operators (for example, involving their sum),
+then we want the two operators to be diagonalizable by the same basis, which
+according to the next result is possible when the two operators commute.
+5.76 simultaneous diagonalizability ⟺ commutativity
+Two diagonalizable operators on the same vector space have diagonal matrices
+with respect to the same basis if and only if the two operators commute.
+Proof First suppose 𝑆,𝑇 ∈ ℒ(𝑉) have diagonal matrices with respect to the
+same basis. The product of two diagonal matrices of the same size is the diagonal
+matrix obtained by multiplying the corresponding elements of the two diagonals.
+Thusanytwodiagonalmatricesofthesamesizecommute. Thus𝑆and𝑇 commute,
+by 5.74.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5E Commuting Operators 177
+To prove the implication in the other direction, now suppose that 𝑆,𝑇 ∈ ℒ(𝑉)
+are diagonalizable operators that commute. Let 𝜆1,…, 𝜆𝑚 denote the distinct
+eigenvalues of 𝑆. Because 𝑆 is diagonalizable, 5.55(c) shows that
+5.77 𝑉 = 𝐸(𝜆1,𝑆) ⊕ ⋯ ⊕ 𝐸(𝜆𝑚,𝑆).
+For each 𝑘 = 1,…,𝑚, the subspace 𝐸(𝜆𝑘,𝑆) is invariant under 𝑇 (by 5.75).
+Because 𝑇 is diagonalizable, 5.65 implies that 𝑇|𝐸(𝜆𝑘,𝑆) is diagonalizable for
+each 𝑘. Hence for each 𝑘 = 1,…,𝑚, there is a basis of 𝐸(𝜆𝑘,𝑆) consisting of
+eigenvectors of 𝑇. Putting these bases together gives a basis of 𝑉 (because of
+5.77), with each vector in this basis being an eigenvector of both 𝑆 and 𝑇. Thus 𝑆
+and 𝑇 both have diagonal matrices with respect to this basis, as desired.
+See Exercise 2 for an extension of the result above to more than two operators.
+Suppose 𝑉 is a finite-dimensional nonzero complex vector space. Then every
+operator on 𝑉 has an eigenvector (see 5.19). The next result shows that if two
+operators on 𝑉 commute, then there is a vector in 𝑉 that is an eigenvector for both
+operators(butthetwocommutingoperatorsmightnothaveacommoneigenvalue).
+For an extension of the next result to more than two operators, see Exercise 9(a).
+5.78 common eigenvector for commuting operators
+Every pair of commuting operators on a finite-dimensional nonzero complex
+vector space has a common eigenvector.
+Proof Suppose 𝑉 is a finite-dimensional nonzero complex vector space and
+𝑆,𝑇 ∈ ℒ(𝑉) commute. Let 𝜆 be an eigenvalue of 𝑆 (5.19 tells us that 𝑆 does
+indeed have an eigenvalue). Thus 𝐸(𝜆,𝑆) ≠ {0}. Also, 𝐸(𝜆,𝑆) is invariant
+under 𝑇 (by 5.75).
+Thus 𝑇|𝐸(𝜆,𝑆) has an eigenvector (again using 5.19), which is an eigenvector
+for both 𝑆 and 𝑇, completing the proof.
+5.79 example: common eigenvector for partial differentiation operators
+Let 𝒫𝑚(𝐂2
+,𝐂) be as in Example 5.72 and let 𝐷𝑤,𝐷𝑧 ∈ ℒ(𝒫𝑚(𝐂2
+,𝐂)) be the
+commuting partial differentiation operators in that example. As you can verify, 0
+is the only eigenvalue of each of these operators. Also
+𝐸(0,𝐷𝑤) = {
+𝑚
+∑
+𝑘=0
+𝑎𝑘𝑧𝑘
+∶ 𝑎0,…,𝑎𝑚 ∈ 𝐂},
+𝐸(0,𝐷𝑧) = {
+𝑚
+∑
+𝑗=0
+𝑐𝑗𝑤𝑗
+∶ 𝑐0,…,𝑐𝑚 ∈ 𝐂}.
+The intersection of these two eigenspaces is the set of common eigenvectors of
+the two operators. Because 𝐸(0,𝐷𝑤) ∩ 𝐸(0,𝐷𝑧) is the set of constant functions,
+we see that 𝐷𝑤 and 𝐷𝑧 indeed have a common eigenvector, as promised by 5.78.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler178 Chapter 5 Eigenvalues and Eigenvectors
+The next result extends 5.47 (the existence of a basis that gives an upper-
+triangular matrix) to two commuting operators.
+5.80 commuting operators are simultaneously upper triangularizable
+Suppose 𝑉 is a finite-dimensional complex vector space and 𝑆,𝑇 are
+commuting operators on 𝑉. Then there is a basis of 𝑉 with respect to which
+both 𝑆 and 𝑇 have upper-triangular matrices.
+Proof Let 𝑛 = dim𝑉. We will use induction on 𝑛. The desired result holds if
+𝑛 = 1 because all 1-by-1 matrices are upper triangular. Now suppose 𝑛 > 1 and
+the desired result holds for all complex vector spaces whose dimension is 𝑛 − 1.
+Let 𝑣1 be any common eigenvector of 𝑆 and 𝑇 (using 5.78). Hence 𝑆𝑣1 ∈
+span(𝑣1) and 𝑇𝑣1 ∈ span(𝑣1). Let 𝑊 be a subspace of 𝑉 such that
+𝑉 = span(𝑣1) ⊕ 𝑊;
+see 2.33 for the existence of 𝑊. Define a linear map 𝑃∶ 𝑉 → 𝑊 by
+𝑃(𝑎𝑣1 + 𝑤) = 𝑤
+for each 𝑎 ∈ 𝐂 and each 𝑤 ∈ 𝑊. Define ̂ 𝑆,̂ 𝑇 ∈ ℒ(𝑊) by
+̂ 𝑆𝑤 = 𝑃(𝑆𝑤) and ̂ 𝑇𝑤 = 𝑃(𝑇𝑤)
+for each 𝑤 ∈ 𝑊. To apply our induction hypothesis to ̂ 𝑆 and ̂ 𝑇, we must first
+show that these two operators on 𝑊 commute. To do this, suppose 𝑤 ∈ 𝑊. Then
+there exists 𝑎 ∈ 𝐂 such that
+( ̂ 𝑆̂ 𝑇)𝑤 = ̂ 𝑆(𝑃(𝑇𝑤)) = ̂ 𝑆(𝑇𝑤 − 𝑎𝑣1) = 𝑃(𝑆(𝑇𝑤 − 𝑎𝑣1)) = 𝑃((𝑆𝑇)𝑤),
+where the last equality holds because 𝑣1 is an eigenvector of 𝑆 and 𝑃𝑣1 = 0.
+Similarly,
+(̂ 𝑇 ̂ 𝑆)𝑤 = 𝑃((𝑇𝑆)𝑤).
+Because the operators 𝑆 and 𝑇 commute, the last two displayed equations show
+that ( ̂ 𝑆̂ 𝑇)𝑤 = (̂ 𝑇 ̂ 𝑆)𝑤. Hence ̂ 𝑆 and ̂ 𝑇 commute.
+Thus we can use our induction hypothesis to state that there exists a basis
+𝑣2,…,𝑣𝑛 of 𝑊 such that ̂ 𝑆 and ̂ 𝑇 both have upper-triangular matrices with respect
+to this basis. The list 𝑣1,…,𝑣𝑛 is a basis of 𝑉.
+If 𝑘 ∈ {2,…,𝑛}, then there exist 𝑎𝑘,𝑏𝑘 ∈ 𝐂 such that
+𝑆𝑣𝑘 = 𝑎𝑘𝑣1 + ̂ 𝑆𝑣𝑘 and 𝑇𝑣𝑘 = 𝑏𝑘𝑣1 + ̂ 𝑇𝑣𝑘.
+Because ̂ 𝑆and ̂ 𝑇 haveupper-triangularmatriceswithrespectto𝑣2,…,𝑣𝑛,weknow
+that ̂ 𝑆𝑣𝑘 ∈ span(𝑣2,…,𝑣𝑘) and ̂ 𝑇𝑣𝑘 ∈ span(𝑣2,…,𝑣𝑘). Hence the equations
+above imply that
+𝑆𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘) and 𝑇𝑣𝑘 ∈ span(𝑣1,…,𝑣𝑘).
+Thus𝑆and𝑇 haveupper-triangularmatriceswithrespectto𝑣1,…,𝑣𝑛,asdesired.
+Exercise 9(b) extends the result above to more than two operators.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 5E Commuting Operators 179
+In general, it is not possible to determine the eigenvalues of the sum or product
+of two operators from the eigenvalues of the two operators. However, the next
+result shows that something nice happens when the two operators commute.
+5.81 eigenvalues of sum and product of commuting operators
+Suppose 𝑉 is a finite-dimensional complex vector space and 𝑆,𝑇 are commut-
+ing operators on 𝑉. Then
+• every eigenvalue of 𝑆 + 𝑇 is an eigenvalue of 𝑆 plus an eigenvalue of 𝑇,
+• every eigenvalue of 𝑆𝑇 is an eigenvalue of 𝑆 times an eigenvalue of 𝑇.
+Proof There is a basis of 𝑉 with respect to which both 𝑆 and 𝑇 have upper-
+triangular matrices (by 5.80). With respect to that basis,
+ℳ(𝑆 + 𝑇) = ℳ(𝑆) + ℳ(𝑇) and ℳ(𝑆𝑇) = ℳ(𝑆)ℳ(𝑇),
+as stated in 3.35 and 3.43.
+The definition of matrix addition shows that each entry on the diagonal of
+ℳ(𝑆 + 𝑇) equals the sum of the corresponding entries on the diagonals of ℳ(𝑆)
+and ℳ(𝑇). Similarly, because ℳ(𝑆) and ℳ(𝑇) are upper-triangular matrices,
+the definition of matrix multiplication shows that each entry on the diagonal of
+ℳ(𝑆𝑇) equals the product of the corresponding entries on the diagonals of ℳ(𝑆)
+and ℳ(𝑇). Furthermore, ℳ(𝑆 + 𝑇) and ℳ(𝑆𝑇) are upper-triangular matrices
+(see Exercise 2 in Section 5C).
+Every entry on the diagonal of ℳ(𝑆) is an eigenvalue of 𝑆, and every entry
+on the diagonal of ℳ(𝑇) is an eigenvalue of 𝑇 (by 5.41). Every eigenvalue
+of 𝑆 + 𝑇 is on the diagonal of ℳ(𝑆 + 𝑇), and every eigenvalue of 𝑆𝑇 is on
+the diagonal of ℳ(𝑆𝑇) (these assertions follow from 5.41). Putting all this
+together, we conclude that every eigenvalue of 𝑆 + 𝑇 is an eigenvalue of 𝑆 plus
+an eigenvalue of 𝑇, and every eigenvalue of 𝑆𝑇 is an eigenvalue of 𝑆 times an
+eigenvalue of 𝑇.
+Exercises 5E
+1 Give an example of two commuting operators 𝑆,𝑇 on 𝐅4
+such that there
+is a subspace of 𝐅4
+that is invariant under 𝑆 but not under 𝑇 and there is a
+subspace of 𝐅4
+that is invariant under 𝑇 but not under 𝑆.
+## 2 Suppose ℰ is a subset of ℒ(𝑉) and every element of ℰ is diagonalizable.
+Prove that there exists a basis of 𝑉 with respect to which every element of ℰ
+has a diagonal matrix if and only if every pair of elements of ℰ commutes.
+This exercise extends 5.76, which considers the case in which ℰ contains
+only two elements. For this exercise, ℰ may contain any number of elements,
+and ℰ may even be an infinite set.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler180 Chapter 5 Eigenvalues and Eigenvectors
+3 Suppose 𝑆,𝑇 ∈ ℒ(𝑉) are such that 𝑆𝑇 = 𝑇𝑆. Suppose 𝑝 ∈ 𝒫(𝐅).
+(a) Prove that null𝑝(𝑆) is invariant under 𝑇.
+(b) Prove that range𝑝(𝑆) is invariant under 𝑇.
+See 5.18 for the special case 𝑆 = 𝑇.
+## 4 Prove or give a counterexample: If 𝐴 is a diagonal matrix and 𝐵 is an
+upper-triangular matrix of the same size as 𝐴, then 𝐴 and 𝐵 commute.
+## 5 Prove that a pair of operators on a finite-dimensional vector space commute
+if and only if their dual operators commute.
+See 3.118 for the definition of the dual of an operator.
+## 6 Suppose that 𝑉 is a nonzero finite-dimensional complex vector space and
+𝑆,𝑇 ∈ ℒ(𝑉) commute. Prove that there exist 𝛼, 𝜆 ∈ 𝐂 such that
+range(𝑆 − 𝛼𝐼) + range(𝑇 − 𝜆𝐼) ≠ 𝑉.
+## 7 Suppose 𝑉 is a complex vector space, 𝑆 ∈ ℒ(𝑉) is diagonalizable, and
+𝑇 ∈ ℒ(𝑉) commutes with 𝑆. Prove that there is a basis of 𝑉 such that 𝑆 has
+a diagonal matrix with respect to this basis and 𝑇 has an upper-triangular
+matrix with respect to this basis.
+8 Suppose 𝑚 = 3 in Example 5.72 and 𝐷𝑥,𝐷𝑦 are the commuting partial
+differentiation operators on 𝒫3(𝐑2
+) from that example. Find a basis of
+𝒫3(𝐑2
+) with respect to which 𝐷𝑥 and 𝐷𝑦 each have an upper-triangular
+matrix.
+## 9 Suppose 𝑉 is a finite-dimensional nonzero complex vector space. Suppose
+that ℰ ⊆ ℒ(𝑉) is such that 𝑆 and 𝑇 commute for all 𝑆,𝑇 ∈ ℰ.
+(a) Prove that there is a vector in 𝑉 that is an eigenvector for every element
+of ℰ.
+(b) Prove that there is a basis of 𝑉 with respect to which every element of
+ℰ has an upper-triangular matrix.
+This exercise extends 5.78 and 5.80, which consider the case in which ℰ
+contains only two elements. For this exercise, ℰ may contain any number of
+elements, and ℰ may even be an infinite set.
+10 Give an example of two commuting operators 𝑆,𝑇 on a finite-dimensional
+real vector space such that 𝑆 + 𝑇 has an eigenvalue that does not equal an
+eigenvalue of 𝑆 plus an eigenvalue of 𝑇 and 𝑆𝑇 has an eigenvalue that does
+not equal an eigenvalue of 𝑆 times an eigenvalue of 𝑇.
+This exercise shows that 5.81 does not hold on real vector spaces.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 6
+Inner Product Spaces
+In making the definition of a vector space, we generalized the linear structure
+(addition and scalar multiplication) of 𝐑2
+and 𝐑3
+. We ignored geometric features
+such as the notions of length and angle. These ideas are embedded in the concept
+of inner products, which we will investigate in this chapter.
+Every inner product induces a norm, which you can think of as a length.
+This norm satisfies key properties such as the Pythagorean theorem, the triangle
+inequality, the parallelogram equality, and the Cauchy–Schwarz inequality.
+The notion of perpendicular vectors in Euclidean geometry gets renamed to
+orthogonal vectors in the context of an inner product space. We will see that
+orthonormal bases are tremendously useful in inner product spaces. The Gram–
+Schmidt procedure constructs such bases. This chapter will conclude by putting
+together these tools to solve minimization problems.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑉 and 𝑊 denote vector spaces over 𝐅.
+Matthew Petroff CC BY-SA
+The George Peabody Library, now part of Johns Hopkins University, opened while
+James Sylvester (1814–1897) was the university’s first mathematics professor. Sylvester’s
+publications include the first use of the word matrix in mathematics.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+181182 Chapter 6 Inner Product Spaces
+6A Inner Products and Norms
+Inner Products
+This vector 𝑣 has norm √𝑎2 + 𝑏2.
+To motivate the concept of inner product,
+think of vectors in 𝐑2
+and 𝐑3
+as arrows
+with initial point at the origin. The length
+of a vector 𝑣 in 𝐑2
+or 𝐑3
+is called the
+norm of 𝑣 and is denoted by ‖𝑣‖. Thus
+for 𝑣 = (𝑎,𝑏) ∈ 𝐑2
+, we have
+‖𝑣‖ = √𝑎2 + 𝑏2.
+Similarly, if 𝑣 = (𝑎,𝑏,𝑐) ∈ 𝐑3
+, then ‖𝑣‖ = √𝑎2 + 𝑏2 + 𝑐2.
+Even though we cannot draw pictures in higher dimensions, the generalization
+to 𝐑𝑛
+is easy: we define the norm of 𝑥 = (𝑥1,…,𝑥𝑛) ∈ 𝐑𝑛
+by
+‖𝑥‖ = √𝑥1
+2 + ⋯ + 𝑥𝑛
+2.
+The norm is not linear on 𝐑𝑛
+. To inject linearity into the discussion, we
+introduce the dot product.
+6.1 definition: dot product
+For 𝑥,𝑦 ∈ 𝐑𝑛
+, the dot product of 𝑥 and 𝑦, denoted by 𝑥 ⋅ 𝑦, is defined by
+𝑥 ⋅ 𝑦 = 𝑥1𝑦1 + ⋯ + 𝑥𝑛𝑦𝑛,
+where 𝑥 = (𝑥1,…,𝑥𝑛) and 𝑦 = (𝑦1,…,𝑦𝑛).
+Ifwethinkofavectorasapointinstead
+of as an arrow, then ‖𝑥‖ should be
+interpreted to mean the distance from
+the origin to the point 𝑥.
+The dot product of two vectors in 𝐑𝑛
+is a number, not a vector. Notice that
+𝑥 ⋅ 𝑥 = ‖𝑥‖2
+for all 𝑥 ∈ 𝐑𝑛
+. Furthermore,
+the dot product on 𝐑𝑛
+has the following
+properties.
+• 𝑥 ⋅ 𝑥 ≥ 0 for all 𝑥 ∈ 𝐑𝑛
+.
+• 𝑥 ⋅ 𝑥 = 0 if and only if 𝑥 = 0.
+• For 𝑦 ∈ 𝐑𝑛
+fixed, the map from 𝐑𝑛
+to 𝐑 that sends 𝑥 ∈ 𝐑𝑛
+to 𝑥 ⋅ 𝑦 is linear.
+• 𝑥 ⋅ 𝑦 = 𝑦 ⋅ 𝑥 for all 𝑥,𝑦 ∈ 𝐑𝑛
+.
+An inner product is a generalization of the dot product. At this point you may
+be tempted to guess that an inner product is defined by abstracting the properties
+of the dot product discussed in the last paragraph. For real vector spaces, that
+guess is correct. However, so that we can make a definition that will be useful
+for both real and complex vector spaces, we need to examine the complex case
+before making the definition.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 183
+Recall that if 𝜆 = 𝑎 + 𝑏𝑖, where 𝑎,𝑏 ∈ 𝐑, then
+• the absolute value of 𝜆, denoted by |𝜆|, is defined by |𝜆| = √𝑎2 + 𝑏2;
+• the complex conjugate of 𝜆, denoted by 𝜆, is defined by 𝜆 = 𝑎 − 𝑏𝑖;
+• |𝜆|2
+= 𝜆𝜆.
+See Chapter 4 for the definitions and the basic properties of the absolute value
+and complex conjugate.
+For 𝑧 = (𝑧1,…,𝑧𝑛) ∈ 𝐂𝑛
+, we define the norm of 𝑧 by
+‖𝑧‖ = √|𝑧1|2 + ⋯ + |𝑧𝑛|2.
+The absolute values are needed because we want ‖𝑧‖ to be a nonnegative number.
+Note that
+‖𝑧‖2
+= 𝑧1𝑧1 + ⋯ + 𝑧𝑛𝑧𝑛.
+We want to think of ‖𝑧‖2
+as the inner product of 𝑧 with itself, as we did
+in 𝐑𝑛
+. The equation above thus suggests that the inner product of the vector
+𝑤 = (𝑤1,…,𝑤𝑛) ∈ 𝐂𝑛
+with 𝑧 should equal
+𝑤1𝑧1 + ⋯ + 𝑤𝑛𝑧𝑛.
+If the roles of the 𝑤 and 𝑧 were interchanged, the expression above would be
+replaced with its complex conjugate. Thus we should expect that the inner product
+of 𝑤 with 𝑧 equals the complex conjugate of the inner product of 𝑧 with 𝑤. With
+that motivation, we are now ready to define an inner product on 𝑉, which may be
+a real or a complex vector space.
+One comment about the notation used in the next definition:
+• For 𝜆 ∈ 𝐂, the notation 𝜆 ≥ 0 means 𝜆 is real and nonnegative.
+6.2 definition: inner product
+An inner product on 𝑉 is a function that takes each ordered pair (𝑢,𝑣) of
+elements of 𝑉 to a number ⟨𝑢,𝑣⟩ ∈ 𝐅 and has the following properties.
+positivity
+⟨𝑣,𝑣⟩ ≥ 0 for all 𝑣 ∈ 𝑉.
+definiteness
+⟨𝑣,𝑣⟩ = 0 if and only if 𝑣 = 0.
+additivity in first slot
+⟨𝑢 + 𝑣,𝑤⟩ = ⟨𝑢,𝑤⟩ + ⟨𝑣,𝑤⟩ for all 𝑢,𝑣,𝑤 ∈ 𝑉.
+homogeneity in first slot
+⟨𝜆𝑢,𝑣⟩ = 𝜆⟨𝑢,𝑣⟩ for all 𝜆 ∈ 𝐅 and all 𝑢,𝑣 ∈ 𝑉.
+conjugate symmetry
+⟨𝑢,𝑣⟩ = ⟨𝑣,𝑢⟩ for all 𝑢,𝑣 ∈ 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler184 Chapter 6 Inner Product Spaces
+Most mathematicians define inner
+products as above, but many physicists
+use a definition that requires homo-
+geneity in the second slot instead of
+the first slot.
+Every real number equals its complex
+conjugate. Thus if we are dealing with
+a real vector space, then in the last con-
+dition above we can dispense with the
+complex conjugate and simply state that
+⟨𝑢,𝑣⟩ = ⟨𝑣,𝑢⟩ for all 𝑢,𝑣 ∈ 𝑉.
+6.3 example: inner products
+(a) The Euclidean inner product on 𝐅𝑛
+is defined by
+⟨(𝑤1,…,𝑤𝑛),(𝑧1,…,𝑧𝑛)⟩ = 𝑤1𝑧1 + ⋯ + 𝑤𝑛𝑧𝑛
+for all (𝑤1,…,𝑤𝑛),(𝑧1,…,𝑧𝑛) ∈ 𝐅𝑛
+.
+(b) If 𝑐1,…,𝑐𝑛 are positive numbers, then an inner product can be defined on 𝐅𝑛
+by
+⟨(𝑤1,…,𝑤𝑛),(𝑧1,…,𝑧𝑛)⟩ = 𝑐1𝑤1𝑧1 + ⋯ + 𝑐𝑛𝑤𝑛𝑧𝑛
+for all (𝑤1,…,𝑤𝑛),(𝑧1,…,𝑧𝑛) ∈ 𝐅𝑛
+.
+(c) An inner product can be defined on the vector space of continuous real-valued
+functions on the interval [−1,1] by
+⟨𝑓,𝑔⟩ = ∫
+1
+−1
+𝑓𝑔
+for all 𝑓,𝑔 continuous real-valued functions on [−1,1].
+(d) An inner product can be defined on 𝒫(𝐑) by
+⟨𝑝,𝑞⟩ = 𝑝(0)𝑞(0) + ∫
+1
+−1
+𝑝′
+𝑞′
+for all 𝑝,𝑞 ∈ 𝒫(𝐑).
+(e) An inner product can be defined on 𝒫(𝐑) by
+⟨𝑝,𝑞⟩ = ∫
+∞
+0
+𝑝(𝑥)𝑞(𝑥)𝑒−𝑥
+𝑑𝑥
+for all 𝑝,𝑞 ∈ 𝒫(𝐑).
+6.4 definition: inner product space
+An inner product space is a vector space 𝑉 along with an inner product on 𝑉.
+Themostimportantexampleofaninnerproductspaceis𝐅𝑛
+withtheEuclidean
+inner product given by (a) in the example above. When 𝐅𝑛
+is referred to as an
+inner product space, you should assume that the inner product is the Euclidean
+inner product unless explicitly told otherwise.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 185
+So that we do not have to keep repeating the hypothesis that 𝑉 and 𝑊 are
+inner product spaces, we make the following assumption.
+6.5 notation: 𝑉, 𝑊
+For the rest of this chapter and the next chapter, 𝑉 and 𝑊 denote inner product
+spaces over 𝐅.
+Note the slight abuse of language here. An inner product space is a vector
+space along with an inner product on that vector space. When we say that a vector
+space 𝑉 is an inner product space, we are also thinking that an inner product on
+𝑉 is lurking nearby or is clear from the context (or is the Euclidean inner product
+if the vector space is 𝐅𝑛
+).
+6.6 basic properties of an inner product
+(a) For each fixed 𝑣 ∈ 𝑉, the function that takes 𝑢 ∈ 𝑉 to ⟨𝑢,𝑣⟩ is a linear
+map from 𝑉 to 𝐅.
+(b) ⟨0,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉.
+(c) ⟨𝑣,0⟩ = 0 for every 𝑣 ∈ 𝑉.
+(d) ⟨𝑢,𝑣 + 𝑤⟩ = ⟨𝑢,𝑣⟩ + ⟨𝑢,𝑤⟩ for all 𝑢,𝑣,𝑤 ∈ 𝑉.
+(e) ⟨𝑢, 𝜆𝑣⟩ = 𝜆⟨𝑢,𝑣⟩ for all 𝜆 ∈ 𝐅 and all 𝑢,𝑣 ∈ 𝑉.
+Proof
+(a) For𝑣 ∈ 𝑉, thelinearityof𝑢 ↦ ⟨𝑢,𝑣⟩ followsfromtheconditionsofadditivity
+and homogeneity in the first slot in the definition of an inner product.
+(b) Every linear map takes 0 to 0. Thus (b) follows from (a).
+(c) If 𝑣 ∈ 𝑉, then the conjugate symmetry property in the definition of an inner
+product and (b) show that ⟨𝑣,0⟩ = ⟨0,𝑣⟩ = 0 = 0.
+(d) Suppose 𝑢,𝑣,𝑤 ∈ 𝑉. Then
+⟨𝑢,𝑣 + 𝑤⟩ = ⟨𝑣 + 𝑤,𝑢⟩
+= ⟨𝑣,𝑢⟩ + ⟨𝑤,𝑢⟩
+= ⟨𝑣,𝑢⟩ + ⟨𝑤,𝑢⟩
+= ⟨𝑢,𝑣⟩ + ⟨𝑢,𝑤⟩.
+(e) Suppose 𝜆 ∈ 𝐅 and 𝑢,𝑣 ∈ 𝑉. Then
+⟨𝑢, 𝜆𝑣⟩ = ⟨𝜆𝑣,𝑢⟩
+= 𝜆⟨𝑣,𝑢⟩
+= 𝜆 ⟨𝑣,𝑢⟩
+= 𝜆⟨𝑢,𝑣⟩.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler186 Chapter 6 Inner Product Spaces
+Norms
+Our motivation for defining inner products came initially from the norms of
+vectors on 𝐑2
+and 𝐑3
+. Now we see that each inner product determines a norm.
+6.7 definition: norm, ‖𝑣‖
+For 𝑣 ∈ 𝑉, the norm of 𝑣, denoted by ‖𝑣‖, is defined by
+‖𝑣‖ = √⟨𝑣,𝑣⟩.
+6.8 example: norms
+(a) If (𝑧1,…,𝑧𝑛) ∈ 𝐅𝑛
+(with the Euclidean inner product), then
+‖(𝑧1,…,𝑧𝑛)‖ = √|𝑧1|2 + ⋯ + |𝑧𝑛|2.
+(b) For 𝑓 in the vector space of continuous real-valued functions on [−1,1] and
+with inner product given as in 6.3(c), we have
+‖𝑓‖ = √∫
+1
+−1
+𝑓2.
+6.9 basic properties of the norm
+Suppose 𝑣 ∈ 𝑉.
+(a) ‖𝑣‖ = 0 if and only if 𝑣 = 0.
+(b) ‖𝜆𝑣‖ = |𝜆|‖𝑣‖ for all 𝜆 ∈ 𝐅.
+Proof
+(a) The desired result holds because ⟨𝑣,𝑣⟩ = 0 if and only if 𝑣 = 0.
+(b) Suppose 𝜆 ∈ 𝐅. Then
+‖𝜆𝑣‖2
+= ⟨𝜆𝑣, 𝜆𝑣⟩
+= 𝜆⟨𝑣, 𝜆𝑣⟩
+= 𝜆𝜆⟨𝑣,𝑣⟩
+= |𝜆|2
+‖𝑣‖2
+.
+Taking square roots now gives the desired equality.
+The proof of (b) in the result above illustrates a general principle: working
+with norms squared is usually easier than working directly with norms.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 187
+Now we come to a crucial definition.
+6.10 definition: orthogonal
+Two vectors 𝑢,𝑣 ∈ 𝑉 are called orthogonal if ⟨𝑢,𝑣⟩ = 0.
+The word orthogonal comes from the
+Greek word orthogonios, which means
+right-angled.
+In the definition above, the order of
+the two vectors does not matter, because
+⟨𝑢,𝑣⟩ = 0 if and only if ⟨𝑣,𝑢⟩ = 0. In-
+stead of saying 𝑢 and 𝑣 are orthogonal,
+sometimes we say 𝑢 is orthogonal to 𝑣.
+Exercise 15 asks you to prove that if 𝑢,𝑣 are nonzero vectors in 𝐑2
+, then
+⟨𝑢,𝑣⟩ = ‖𝑢‖‖𝑣‖cos𝜃,
+where 𝜃 is the angle between 𝑢 and 𝑣 (thinking of 𝑢 and 𝑣 as arrows with initial
+point at the origin). Thus two nonzero vectors in 𝐑2
+are orthogonal (with respect
+to the Euclidean inner product) if and only if the cosine of the angle between
+them is 0, which happens if and only if the vectors are perpendicular in the usual
+sense of plane geometry. Thus you can think of the word orthogonal as a fancy
+word meaning perpendicular.
+We begin our study of orthogonality with an easy result.
+6.11 orthogonality and 0
+(a) 0 is orthogonal to every vector in 𝑉.
+(b) 0 is the only vector in 𝑉 that is orthogonal to itself.
+Proof
+(a) Recall that 6.6(b) states that ⟨0,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉.
+(b) If 𝑣 ∈ 𝑉 and ⟨𝑣,𝑣⟩ = 0, then 𝑣 = 0 (by definition of inner product).
+For the special case 𝑉 = 𝐑2
+, the next theorem was known over 3,500 years ago
+in Babylonia and then rediscovered and proved over 2,500 years ago in Greece.
+Of course, the proof below is not the original proof.
+## 6.12 Pythagorean theorem
+Suppose 𝑢,𝑣 ∈ 𝑉. If 𝑢 and 𝑣 are orthogonal, then
+‖𝑢 + 𝑣‖2
+= ‖𝑢‖2
++ ‖𝑣‖2
+.
+Proof Suppose ⟨𝑢,𝑣⟩ = 0. Then
+‖𝑢 + 𝑣‖2
+= ⟨𝑢 + 𝑣,𝑢 + 𝑣⟩
+= ⟨𝑢,𝑢⟩ + ⟨𝑢,𝑣⟩ + ⟨𝑣,𝑢⟩ + ⟨𝑣,𝑣⟩
+= ‖𝑢‖2
++ ‖𝑣‖2
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler188 Chapter 6 Inner Product Spaces
+Suppose 𝑢,𝑣 ∈ 𝑉, with 𝑣 ≠ 0. We would like to write 𝑢 as a scalar multiple
+of 𝑣 plus a vector 𝑤 orthogonal to 𝑣, as suggested in the picture here.
+An orthogonal decomposition:
+𝑢 expressed as a scalar multiple of 𝑣 plus a vector orthogonal to 𝑣.
+To discover how to write 𝑢 as a scalar multiple of 𝑣 plus a vector orthogonal
+to 𝑣, let 𝑐 ∈ 𝐅 denote a scalar. Then
+𝑢 = 𝑐𝑣 + (𝑢 − 𝑐𝑣).
+Thus we need to choose 𝑐 so that 𝑣 is orthogonal to (𝑢 − 𝑐𝑣). Hence we want
+0 = ⟨𝑢 − 𝑐𝑣,𝑣⟩ = ⟨𝑢,𝑣⟩ − 𝑐‖𝑣‖2
+.
+The equation above shows that we should choose 𝑐 to be ⟨𝑢,𝑣⟩/‖𝑣‖2
+. Making this
+choice of 𝑐, we can write
+𝑢 =
+⟨𝑢,𝑣⟩
+‖𝑣‖2
+𝑣 + (𝑢 −
+⟨𝑢,𝑣⟩
+‖𝑣‖2
+𝑣).
+As you should verify, the equation displayed above explicitly writes 𝑢 as a scalar
+multiple of 𝑣 plus a vector orthogonal to 𝑣. Thus we have proved the following
+key result.
+6.13 an orthogonal decomposition
+Suppose 𝑢,𝑣 ∈ 𝑉, with 𝑣 ≠ 0. Set 𝑐 =
+⟨𝑢,𝑣⟩
+‖𝑣‖2
+and 𝑤 = 𝑢 −
+⟨𝑢,𝑣⟩
+‖𝑣‖2
+𝑣. Then
+𝑢 = 𝑐𝑣 + 𝑤 and ⟨𝑤,𝑣⟩ = 0.
+The orthogonal decomposition 6.13 will be used in the proof of the Cauchy–
+Schwarz inequality, which is our next result and is one of the most important
+inequalities in mathematics.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 189
+## 6.14 Cauchy–Schwarz inequality
+Suppose 𝑢,𝑣 ∈ 𝑉. Then
+|⟨𝑢,𝑣⟩| ≤ ‖𝑢‖‖𝑣‖.
+This inequality is an equality if and only if one of 𝑢,𝑣 is a scalar multiple of
+the other.
+Proof If 𝑣 = 0, then both sides of the desired inequality equal 0. Thus we can
+assume that 𝑣 ≠ 0. Consider the orthogonal decomposition
+𝑢 =
+⟨𝑢,𝑣⟩
+‖𝑣‖2
+𝑣 + 𝑤
+given by 6.13, where 𝑤 is orthogonal to 𝑣. By the Pythagorean theorem,
+‖𝑢‖2
+= ∥
+⟨𝑢,𝑣⟩
+‖𝑣‖2
+𝑣∥
+2
++ ‖𝑤‖2
+=
+∣⟨𝑢,𝑣⟩∣
+2
+‖𝑣‖2
++ ‖𝑤‖2
+≥
+∣⟨𝑢,𝑣⟩∣
+2
+‖𝑣‖2
+. 6.15
+Multiplying both sides of this inequality by ‖𝑣‖2
+and then taking square roots
+gives the desired inequality.
+Augustin-Louis Cauchy (1789–1857)
+proved 6.16(a) in 1821. In 1859,
+Cauchy’s student Viktor Bunyakovsky
+(1804–1889) proved integral inequal-
+ities like the one in 6.16(b). A few
+decades later, similar discoveries by
+Hermann Schwarz (1843–1921) at-
+tracted more attention and led to the
+name of this inequality.
+The proof in the paragraph above
+shows that the Cauchy–Schwarz inequal-
+ity is an equality if and only if 6.15 is
+an equality. This happens if and only
+if 𝑤 = 0. But 𝑤 = 0 if and only if 𝑢
+is a multiple of 𝑣 (see 6.13). Thus the
+Cauchy–Schwarz inequality is an equal-
+ityifandonlyif𝑢 isascalarmultipleof𝑣
+or 𝑣 is a scalar multiple of 𝑢 (or both; the
+phrasing has been chosen to cover cases
+in which either 𝑢 or 𝑣 equals 0).
+6.16 example: Cauchy–Schwarz inequality
+(a) If 𝑥1,…,𝑥𝑛,𝑦1,…,𝑦𝑛 ∈ 𝐑, then
+(𝑥1𝑦1 + ⋯ + 𝑥𝑛𝑦𝑛)2
+≤ (𝑥1
+2
++ ⋯ + 𝑥𝑛
+2
+)(𝑦1
+2
++ ⋯ + 𝑦𝑛
+2
+),
+as follows from applying the Cauchy–Schwarz inequality to the vectors
+(𝑥1,…,𝑥𝑛),(𝑦1,…,𝑦𝑛) ∈ 𝐑𝑛
+, using the usual Euclidean inner product.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler190 Chapter 6 Inner Product Spaces
+(b) If 𝑓,𝑔 are continuous real-valued functions on [−1,1], then
+∣∫
+1
+−1
+𝑓𝑔 ∣
+2
+≤ (∫
+1
+−1
+𝑓2
+)(∫
+1
+−1
+𝑔2
+),
+as follows from applying the Cauchy–Schwarz inequality to Example 6.3(c).
+In this triangle, the length of
+𝑢 + 𝑣 is less than the length
+of 𝑢 plus the length of 𝑣.
+The next result, called the triangle inequality,
+has the geometric interpretation that the length
+of each side of a triangle is less than the sum of
+the lengths of the other two sides.
+Note that the triangle inequality implies that
+the shortest polygonal path between two points is
+a single line segment (a polygonal path consists
+of line segments).
+6.17 triangle inequality
+Suppose 𝑢,𝑣 ∈ 𝑉. Then
+‖𝑢 + 𝑣‖ ≤ ‖𝑢‖ + ‖𝑣‖.
+This inequality is an equality if and only if one of 𝑢,𝑣 is a nonnegative real
+multiple of the other.
+Proof We have
+‖𝑢 + 𝑣‖2
+= ⟨𝑢 + 𝑣,𝑢 + 𝑣⟩
+= ⟨𝑢,𝑢⟩ + ⟨𝑣,𝑣⟩ + ⟨𝑢,𝑣⟩ + ⟨𝑣,𝑢⟩
+= ⟨𝑢,𝑢⟩ + ⟨𝑣,𝑣⟩ + ⟨𝑢,𝑣⟩ + ⟨𝑢,𝑣⟩
+= ‖𝑢‖2
++ ‖𝑣‖2
++ 2Re⟨𝑢,𝑣⟩
+≤ ‖𝑢‖2
++ ‖𝑣‖2
++ 2∣⟨𝑢,𝑣⟩∣ 6.18
+≤ ‖𝑢‖2
++ ‖𝑣‖2
++ 2‖𝑢‖‖𝑣‖ 6.19
+= (‖𝑢‖ + ‖𝑣‖)
+2
+,
+where 6.19 follows from the Cauchy–Schwarz inequality (6.14). Taking square
+roots of both sides of the inequality above gives the desired inequality.
+The proof above shows that the triangle inequality is an equality if and only if
+we have equality in 6.18 and 6.19. Thus we have equality in the triangle inequality
+if and only if
+6.20 ⟨𝑢,𝑣⟩ = ‖𝑢‖‖𝑣‖.
+If one of 𝑢,𝑣 is a nonnegative real multiple of the other, then 6.20 holds. Con-
+versely, suppose 6.20 holds. Then the condition for equality in the Cauchy–
+Schwarz inequality (6.14) implies that one of 𝑢,𝑣 is a scalar multiple of the other.
+This scalar must be a nonnegative real number, by 6.20, completing the proof.
+For the reverse triangle inequality, see Exercise 20.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 191
+The diagonals of this parallelogram
+are 𝑢 + 𝑣 and 𝑢 − 𝑣.
+The next result is called the parallel-
+ogram equality because of its geometric
+interpretation: in every parallelogram, the
+sum of the squares of the lengths of the
+diagonals equals the sum of the squares of
+the lengths of the four sides. Note that the
+proof here is more straightforward than
+the usual proof in Euclidean geometry.
+6.21 parallelogram equality
+Suppose 𝑢,𝑣 ∈ 𝑉. Then
+‖𝑢 + 𝑣‖2
++ ‖𝑢 − 𝑣‖2
+= 2(‖𝑢‖2
++ ‖𝑣‖2
+).
+Proof We have
+‖𝑢 + 𝑣‖2
++ ‖𝑢 − 𝑣‖2
+= ⟨𝑢 + 𝑣,𝑢 + 𝑣⟩ + ⟨𝑢 − 𝑣,𝑢 − 𝑣⟩
+= ‖𝑢‖2
++ ‖𝑣‖2
++ ⟨𝑢,𝑣⟩ + ⟨𝑣,𝑢⟩
++ ‖𝑢‖2
++ ‖𝑣‖2
+− ⟨𝑢,𝑣⟩ − ⟨𝑣,𝑢⟩
+= 2(‖𝑢‖2
++ ‖𝑣‖2
+),
+as desired.
+Exercises 6A
+1 Prove or give a counterexample: If 𝑣1,…,𝑣𝑚 ∈ 𝑉, then
+𝑚
+∑
+𝑗 = 1
+𝑚
+∑
+𝑘=1
+⟨𝑣𝑗,𝑣𝑘⟩ ≥ 0.
+2 Suppose 𝑆 ∈ ℒ(𝑉). Define ⟨⋅,⋅⟩1 by
+⟨𝑢,𝑣⟩1 = ⟨𝑆𝑢,𝑆𝑣⟩
+for all 𝑢,𝑣 ∈ 𝑉. Show that ⟨⋅,⋅⟩1 is an inner product on 𝑉 if and only if 𝑆 is
+injective.
+3 (a) Show that the function taking an ordered pair ((𝑥1,𝑥2),(𝑦1,𝑦2)) of
+elements of 𝐑2
+to |𝑥1𝑦1| + |𝑥2𝑦2| is not an inner product on 𝐑2
+.
+(b) Show that the function taking an ordered pair ((𝑥1,𝑥2,𝑥3),(𝑦1,𝑦2,𝑦3))
+of elements of 𝐑3
+to 𝑥1𝑦1 + 𝑥3𝑦3 is not an inner product on 𝐑3
+.
+## 4 Suppose 𝑇 ∈ ℒ(𝑉) is such that ‖𝑇𝑣‖ ≤ ‖𝑣‖ for every 𝑣 ∈ 𝑉. Prove that
+𝑇 − √2𝐼 is injective.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler192 Chapter 6 Inner Product Spaces
+## 5 Suppose 𝑉 is a real inner product space.
+(a) Show that ⟨𝑢 + 𝑣,𝑢 − 𝑣⟩ = ‖𝑢‖2
+− ‖𝑣‖2
+for every 𝑢,𝑣 ∈ 𝑉.
+(b) Show that if 𝑢,𝑣 ∈ 𝑉 have the same norm, then 𝑢 + 𝑣 is orthogonal to
+𝑢 − 𝑣.
+(c) Use (b) to show that the diagonals of a rhombus are perpendicular to
+each other.
+6 Suppose 𝑢,𝑣 ∈ 𝑉. Prove that ⟨𝑢,𝑣⟩ = 0 ⟺ ‖𝑢‖ ≤ ‖𝑢 + 𝑎𝑣‖ for all 𝑎 ∈ 𝐅.
+7 Suppose 𝑢,𝑣 ∈ 𝑉. Prove that ‖𝑎𝑢 + 𝑏𝑣‖ = ‖𝑏𝑢 + 𝑎𝑣‖ for all 𝑎,𝑏 ∈ 𝐑 if and
+only if ‖𝑢‖ = ‖𝑣‖.
+8 Suppose 𝑎,𝑏,𝑐,𝑥,𝑦 ∈ 𝐑 and 𝑎2
++ 𝑏2
++ 𝑐2
++ 𝑥2
++ 𝑦2
+≤ 1. Prove that
+𝑎 + 𝑏 + 𝑐 + 4𝑥 + 9𝑦 ≤ 10.
+9 Suppose 𝑢,𝑣 ∈ 𝑉 and ‖𝑢‖ = ‖𝑣‖ = 1 and ⟨𝑢,𝑣⟩ = 1. Prove that 𝑢 = 𝑣.
+10 Suppose 𝑢,𝑣 ∈ 𝑉 and ‖𝑢‖ ≤ 1 and ‖𝑣‖ ≤ 1. Prove that
+√1 − ‖𝑢‖2√1 − ‖𝑣‖2 ≤ 1 − ∣⟨𝑢,𝑣⟩∣.
+11 Find vectors 𝑢,𝑣 ∈ 𝐑2
+such that 𝑢 is a scalar multiple of (1,3), 𝑣 is orthog-
+onal to (1,3), and (1,2) = 𝑢 + 𝑣.
+12 Suppose 𝑎,𝑏,𝑐,𝑑 are positive numbers.
+(a) Prove that (𝑎 + 𝑏 + 𝑐 + 𝑑)(
+1
+𝑎
++
+1
+𝑏
++
+1
+𝑐
++
+1
+𝑑
+) ≥ 16.
+(b) For which positive numbers 𝑎,𝑏,𝑐,𝑑 is the inequality above an equality?
+## 13 Show that the square of an average is less than or equal to the average of the
+squares. More precisely, show that if 𝑎1,…,𝑎𝑛 ∈ 𝐑, then the square of the
+average of 𝑎1,…,𝑎𝑛 is less than or equal to the average of 𝑎1
+2
+,…,𝑎𝑛
+2
+.
+## 14 Suppose 𝑣 ∈ 𝑉 and 𝑣 ≠ 0. Prove that 𝑣/‖𝑣‖ is the unique closest element on
+the unit sphere of 𝑉 to 𝑣. More precisely, prove that if 𝑢 ∈ 𝑉 and ‖𝑢‖ = 1,
+then
+∥𝑣 −
+𝑣
+‖𝑣‖
+∥ ≤ ‖𝑣 − 𝑢‖,
+with equality only if 𝑢 = 𝑣/‖𝑣‖.
+15 Suppose 𝑢,𝑣 are nonzero vectors in 𝐑2
+. Prove that
+⟨𝑢,𝑣⟩ = ‖𝑢‖‖𝑣‖cos𝜃,
+where 𝜃 is the angle between 𝑢 and 𝑣 (thinking of 𝑢 and 𝑣 as arrows with
+initial point at the origin).
+Hint: Use the law of cosines on the triangle formed by 𝑢, 𝑣, and 𝑢 − 𝑣.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 193
+## 16 The angle between two vectors (thought of as arrows with initial point at
+the origin) in 𝐑2
+or 𝐑3
+can be defined geometrically. However, geometry is
+not as clear in 𝐑𝑛
+for 𝑛 > 3. Thus the angle between two nonzero vectors
+𝑥,𝑦 ∈ 𝐑𝑛
+is defined to be
+arccos
+⟨𝑥,𝑦⟩
+‖𝑥‖‖𝑦‖
+,
+where the motivation for this definition comes from Exercise 15. Explain
+why the Cauchy–Schwarz inequality is needed to show that this definition
+makes sense.
+## 17 Prove that
+(
+𝑛
+∑
+𝑘=1
+𝑎𝑘𝑏𝑘)
+2
+≤ (
+𝑛
+∑
+𝑘=1
+𝑘𝑎𝑘
+2
+)(
+𝑛
+∑
+𝑘=1
+𝑏𝑘
+2
+𝑘
+)
+for all real numbers 𝑎1,…,𝑎𝑛 and 𝑏1,…,𝑏𝑛.
+18 (a) Suppose 𝑓 ∶ [1,∞) → [0,∞) is continuous. Show that
+(∫
+∞
+1
+𝑓 )
+2
+≤ ∫
+∞
+1
+𝑥2
+(𝑓(𝑥))
+2
+𝑑𝑥.
+(b) For which continuous functions 𝑓 ∶ [1,∞) → [0,∞) is the inequality
+in (a) an equality with both sides finite?
+19 Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 and 𝑇 ∈ ℒ(𝑉). Prove that if 𝜆 is an
+eigenvalue of 𝑇, then
+|𝜆|2
+≤
+𝑛
+∑
+𝑗 = 1
+𝑛
+∑
+𝑘=1
+|ℳ(𝑇)𝑗,𝑘|2
+,
+where ℳ(𝑇)𝑗,𝑘 denotes the entry in row 𝑗, column 𝑘 of the matrix of 𝑇 with
+respect to the basis 𝑣1,…,𝑣𝑛.
+20 Prove that if 𝑢,𝑣 ∈ 𝑉, then ∣‖𝑢‖ − ‖𝑣‖∣ ≤ ‖𝑢 − 𝑣‖.
+The inequality above is called the reverse triangle inequality. For the
+reverse triangle inequality when 𝑉 = 𝐂, see Exercise 2 in Chapter 4.
+21 Suppose 𝑢,𝑣 ∈ 𝑉 are such that
+‖𝑢‖ = 3, ‖𝑢 + 𝑣‖ = 4, ‖𝑢 − 𝑣‖ = 6.
+What number does ‖𝑣‖ equal?
+22 Show that if 𝑢,𝑣 ∈ 𝑉, then
+‖𝑢 + 𝑣‖‖𝑢 − 𝑣‖ ≤ ‖𝑢‖2
++ ‖𝑣‖2
+.
+23 Suppose 𝑣1,…,𝑣𝑚 ∈ 𝑉 are such that ‖𝑣𝑘‖ ≤ 1 for each 𝑘 = 1,…,𝑚. Show
+that there exist 𝑎1,…,𝑎𝑚 ∈ {1,−1} such that
+‖𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚‖ ≤
+√
+𝑚.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler194 Chapter 6 Inner Product Spaces
+24 Prove or give a counterexample: If ‖⋅‖ is the norm associated with an inner
+product on 𝐑2
+, then there exists (𝑥,𝑦) ∈ 𝐑2
+such that ‖(𝑥,𝑦)‖ ≠ max{|𝑥|,|𝑦|}.
+25 Suppose 𝑝 > 0. Prove that there is an inner product on 𝐑2
+such that the
+associated norm is given by
+‖(𝑥,𝑦)‖ = (|𝑥|𝑝
++ |𝑦|𝑝
+)
+1/𝑝
+for all (𝑥,𝑦) ∈ 𝐑2
+if and only if 𝑝 = 2.
+## 26 Suppose 𝑉 is a real inner product space. Prove that
+⟨𝑢,𝑣⟩ =
+‖𝑢 + 𝑣‖2
+− ‖𝑢 − 𝑣‖2
+4
+for all 𝑢,𝑣 ∈ 𝑉.
+## 27 Suppose 𝑉 is a complex inner product space. Prove that
+⟨𝑢,𝑣⟩ =
+‖𝑢 + 𝑣‖2
+− ‖𝑢 − 𝑣‖2
++ ‖𝑢 + 𝑖𝑣‖2
+𝑖 − ‖𝑢 − 𝑖𝑣‖2
+𝑖
+4
+for all 𝑢,𝑣 ∈ 𝑉.
+28 A norm on a vector space 𝑈 is a function
+‖⋅‖∶ 𝑈 → [0,∞)
+such that ‖𝑢‖ = 0 if and only if 𝑢 = 0, ‖𝛼𝑢‖ = |𝛼|‖𝑢‖ for all 𝛼 ∈ 𝐅 and all
+𝑢 ∈ 𝑈, and ‖𝑢+𝑣‖ ≤ ‖𝑢‖+‖𝑣‖ for all 𝑢,𝑣 ∈ 𝑈. Prove that a norm satisfying
+the parallelogram equality comes from an inner product (in other words,
+show that if ‖⋅‖ is a norm on 𝑈 satisfying the parallelogram equality, then
+there is an inner product ⟨⋅,⋅⟩ on 𝑈 such that ‖𝑢‖ = ⟨𝑢,𝑢⟩1/2
+for all 𝑢 ∈ 𝑈).
+29 Suppose 𝑉1,…,𝑉𝑚 are inner product spaces. Show that the equation
+⟨(𝑢1,…,𝑢𝑚),(𝑣1,…,𝑣𝑚)⟩ = ⟨𝑢1,𝑣1⟩ + ⋯ + ⟨𝑢𝑚,𝑣𝑚⟩
+defines an inner product on 𝑉1 × ⋯ × 𝑉𝑚.
+In the expression above on the right, for each 𝑘 = 1,…,𝑚, the inner product
+⟨𝑢𝑘,𝑣𝑘⟩ denotes the inner product on 𝑉𝑘. Each of the spaces 𝑉1,…,𝑉𝑚 may
+have a different inner product, even though the same notation is used here.
+30 Suppose 𝑉 is a real inner product space. For 𝑢,𝑣,𝑤,𝑥 ∈ 𝑉, define
+⟨𝑢 + 𝑖𝑣,𝑤 + 𝑖𝑥⟩𝐂 = ⟨𝑢,𝑤⟩ + ⟨𝑣,𝑥⟩ + (⟨𝑣,𝑤⟩ − ⟨𝑢,𝑥⟩)𝑖.
+(a) Show that ⟨⋅,⋅⟩𝐂 makes 𝑉𝐂 into a complex inner product space.
+(b) Show that if 𝑢,𝑣 ∈ 𝑉, then
+⟨𝑢,𝑣⟩𝐂 = ⟨𝑢,𝑣⟩ and ‖𝑢 + 𝑖𝑣‖𝐂
+2
+= ‖𝑢‖2
++ ‖𝑣‖2
+.
+See Exercise 8 in Section 1B for the definition of the complexification 𝑉𝐂.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6A Inner Products and Norms 195
+31 Suppose 𝑢,𝑣,𝑤 ∈ 𝑉. Prove that
+∥𝑤 − 1
+2
+(𝑢 + 𝑣)∥
+2
+=
+‖𝑤 − 𝑢‖2
++ ‖𝑤 − 𝑣‖2
+2
+−
+‖𝑢 − 𝑣‖2
+4
+.
+32 Suppose that 𝐸 is a subset of 𝑉 with the property that 𝑢,𝑣 ∈ 𝐸 implies
+1
+2
+(𝑢 + 𝑣) ∈ 𝐸. Let 𝑤 ∈ 𝑉. Show that there is at most one point in 𝐸 that is
+closest to 𝑤. In other words, show that there is at most one 𝑢 ∈ 𝐸 such that
+‖𝑤 − 𝑢‖ ≤ ‖𝑤 − 𝑥‖
+for all 𝑥 ∈ 𝐸.
+33 Suppose 𝑓,𝑔 are differentiable functions from 𝐑 to 𝐑𝑛
+.
+(a) Show that
+⟨𝑓(𝑡),𝑔(𝑡)⟩
+′
+= ⟨𝑓′
+(𝑡),𝑔(𝑡)⟩ + ⟨𝑓(𝑡),𝑔′
+(𝑡)⟩.
+(b) Suppose 𝑐 is a positive number and ∥𝑓(𝑡)∥ = 𝑐 for every 𝑡 ∈ 𝐑. Show
+that ⟨𝑓′
+(𝑡), 𝑓(𝑡)⟩ = 0 for every 𝑡 ∈ 𝐑.
+(c) Interpret the result in (b) geometrically in terms of the tangent vector to
+a curve lying on a sphere in 𝐑𝑛
+centered at the origin.
+A function 𝑓 ∶ 𝐑 → 𝐑𝑛
+is called differentiable if there exist differentiable
+functions 𝑓1,…, 𝑓𝑛 from 𝐑 to 𝐑 such that 𝑓(𝑡) = (𝑓1(𝑡),…, 𝑓𝑛(𝑡)) for each
+𝑡 ∈ 𝐑. Furthermore, for each 𝑡 ∈ 𝐑, the derivative 𝑓′
+(𝑡) ∈ 𝐑𝑛
+is defined by
+𝑓′
+(𝑡) = (𝑓1
+′
+(𝑡),…, 𝑓𝑛
+′
+(𝑡)).
+## 34 Use inner products to prove Apollonius’s identity: In a triangle with sides of
+length 𝑎, 𝑏, and 𝑐, let 𝑑 be the length of the line segment from the midpoint
+of the side of length 𝑐 to the opposite vertex. Then
+𝑎2
++ 𝑏2
+= 1
+2
+𝑐2
++ 2𝑑2
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler196 Chapter 6 Inner Product Spaces
+## 35 Fix a positive integer 𝑛. The Laplacian Δ𝑝 of a twice differentiable real-
+valued function 𝑝 on 𝐑𝑛
+is the function on 𝐑𝑛
+defined by
+Δ𝑝 =
+𝜕2
+𝑝
+𝜕𝑥1
+2
++ ⋯ +
+𝜕2
+𝑝
+𝜕𝑥𝑛
+2
+.
+The function 𝑝 is called harmonic if Δ𝑝 = 0.
+A polynomial on 𝐑𝑛
+is a linear combination (with coefficients in 𝐑) of
+functions of the form 𝑥1
+𝑚1 ⋯𝑥𝑛
+𝑚𝑛, where 𝑚1,…,𝑚𝑛 are nonnegative integers.
+Suppose 𝑞 is a polynomial on 𝐑𝑛
+. Prove that there exists a harmonic
+polynomial 𝑝 on 𝐑𝑛
+such that 𝑝(𝑥) = 𝑞(𝑥) for every 𝑥 ∈ 𝐑𝑛
+with ‖𝑥‖ = 1.
+The only fact about harmonic functions that you need for this exercise is
+that if 𝑝 is a harmonic function on 𝐑𝑛
+and 𝑝(𝑥) = 0 for all 𝑥 ∈ 𝐑𝑛
+with
+‖𝑥‖ = 1, then 𝑝 = 0.
+Hint: A reasonable guess is that the desired harmonic polynomial 𝑝 is of the
+form 𝑞+(1−‖𝑥‖2
+)𝑟 for some polynomial 𝑟. Prove that there is a polynomial
+𝑟 on 𝐑𝑛
+such that 𝑞 + (1 − ‖𝑥‖2
+)𝑟 is harmonic by defining an operator 𝑇 on
+a suitable vector space by
+𝑇𝑟 = Δ((1 − ‖𝑥‖2
+)𝑟)
+and then showing that 𝑇 is injective and hence surjective.
+In realms of numbers, where the secrets lie,
+A noble truth emerges from the deep,
+Cauchy and Schwarz, their wisdom they apply,
+An inequality for all to keep.
+Two vectors, by this bond, are intertwined,
+As inner products weave a gilded thread,
+Their magnitude, by providence, confined,
+A bound to which their destiny is wed.
+Though shadows fall, and twilight dims the day,
+This inequality will stand the test,
+To guide us in our quest, to light the way,
+And in its truth, our understanding rest.
+So sing, ye muses, of this noble feat,
+Cauchy–Schwarz, the bound that none can beat.
+—written by ChatGPT with input Shakespearean sonnet on Cauchy–Schwarz inequality
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 197
+6B Orthonormal Bases
+Orthonormal Lists and the Gram–Schmidt Procedure
+6.22 definition: orthonormal
+• A list of vectors is called orthonormal if each vector in the list has norm 1
+and is orthogonal to all the other vectors in the list.
+• In other words, a list 𝑒1,…,𝑒𝑚 of vectors in 𝑉 is orthonormal if
+⟨𝑒𝑗,𝑒𝑘⟩ =
+⎧ {
+⎨ { ⎩
+1 if 𝑗 = 𝑘,
+0 if 𝑗 ≠ 𝑘
+for all 𝑗,𝑘 ∈ {1,…,𝑚}.
+6.23 example: orthonormal lists
+(a) The standard basis of 𝐅𝑛
+is an orthonormal list.
+(b) ( 1
+√3
+, 1
+√3
+, 1
+√3
+),(− 1
+√2
+, 1
+√2
+,0) is an orthonormal list in 𝐅3
+.
+(c) ( 1
+√3
+, 1
+√3
+, 1
+√3
+),(− 1
+√2
+, 1
+√2
+,0),( 1
+√6
+, 1
+√6
+,− 2
+√6
+) is an orthonormal list in 𝐅3
+.
+(d) Suppose 𝑛 is a positive integer. Then, as Exercise 4 asks you to verify,
+1
+√2𝜋
+,
+cos𝑥
+√
+𝜋
+,
+cos2𝑥
+√
+𝜋
+,…,
+cos𝑛𝑥
+√
+𝜋
+,
+sin𝑥
+√
+𝜋
+,
+sin2𝑥
+√
+𝜋
+,…,
+sin𝑛𝑥
+√
+𝜋
+is an orthonormal list of vectors in 𝐶[−𝜋,𝜋], the vector space of continuous
+real-valued functions on [−𝜋,𝜋] with inner product
+⟨𝑓,𝑔⟩ = ∫
+𝜋
+−𝜋
+𝑓𝑔.
+The orthonormal list above is often used for modeling periodic phenomena,
+such as tides.
+(e) Suppose we make 𝒫2(𝐑) into an inner product space using the inner product
+given by
+⟨𝑝,𝑞⟩ = ∫
+1
+−1
+𝑝𝑞
+for all 𝑝,𝑞 ∈ 𝒫2(𝐑). The standard basis 1,𝑥,𝑥2
+of 𝒫2(𝐑) is not an orthonor-
+mal list because the vectors in that list do not have norm 1. Dividing each
+vector by its norm gives the list 1/√2,√3/2𝑥,√5/2𝑥2
+, in which each vector
+has norm 1, and the second vector is orthogonal to the first and third vectors.
+However, the first and third vectors are not orthogonal. Thus this is not an
+orthonormal list. Soon we will see how to construct an orthonormal list from
+the standard basis 1,𝑥,𝑥2
+(see Example 6.34).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler198 Chapter 6 Inner Product Spaces
+Orthonormal lists are particularly easy to work with, as illustrated by the next
+result.
+6.24 norm of an orthonormal linear combination
+Suppose 𝑒1,…,𝑒𝑚 is an orthonormal list of vectors in 𝑉. Then
+‖𝑎1𝑒1 + ⋯ + 𝑎𝑚𝑒𝑚‖2
+= |𝑎1|2
++ ⋯ + |𝑎𝑚|2
+for all 𝑎1,…,𝑎𝑚 ∈ 𝐅.
+Proof Because each 𝑒𝑘 has norm 1, this follows from repeated applications of
+the Pythagorean theorem (6.12).
+The result above has the following important corollary.
+6.25 orthonormal lists are linearly independent
+Every orthonormal list of vectors is linearly independent.
+Proof Suppose𝑒1,…,𝑒𝑚 isanorthonormallistofvectorsin𝑉 and𝑎1,…,𝑎𝑚 ∈ 𝐅
+are such that
+𝑎1𝑒1 + ⋯ + 𝑎𝑚𝑒𝑚 = 0.
+Then |𝑎1|2
++ ⋯ + |𝑎𝑚|2
+= 0 (by 6.24), which means that all the 𝑎𝑘’s are 0. Thus
+𝑒1,…,𝑒𝑚 is linearly independent.
+Now we come to an important inequality.
+## 6.26 Bessel’s inequality
+Suppose 𝑒1,…,𝑒𝑚 is an orthonormal list of vectors in 𝑉. If 𝑣 ∈ 𝑉 then
+∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑚⟩∣
+2
+≤ ‖𝑣‖2
+.
+Proof Suppose 𝑣 ∈ 𝑉. Then
+𝑣 = ⟨𝑣,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣,𝑒𝑚⟩𝑒𝑚 ⏟⏟⏟⏟⏟⏟⏟⏟⏟
+𝑢
++𝑣 − ⟨𝑣,𝑒1⟩𝑒1 − ⋯ − ⟨𝑣,𝑒𝑚⟩𝑒𝑚 ⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟
+𝑤
+.
+Let 𝑢 and 𝑤 be defined as in the equation above. If 𝑘 ∈ {1,…,𝑚}, then
+⟨𝑤,𝑒𝑘⟩ = ⟨𝑣,𝑒𝑘⟩ − ⟨𝑣,𝑒𝑘⟩⟨𝑒𝑘,𝑒𝑘⟩ = 0. This implies that ⟨𝑤,𝑢⟩ = 0. The
+Pythagorean theorem now implies that
+‖𝑣‖2
+= ‖𝑢‖2
++ ‖𝑤‖2
+≥ ‖𝑢‖2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑚⟩∣
+2
+,
+where the last line comes from 6.24.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 199
+The next definition introduces one of the most useful concepts in the study of
+inner product spaces.
+6.27 definition: orthonormal basis
+An orthonormal basis of 𝑉 is an orthonormal list of vectors in 𝑉 that is also a
+basis of 𝑉.
+For example, the standard basis is an orthonormal basis of 𝐅𝑛
+.
+6.28 orthonormal lists of the right length are orthonormal bases
+Suppose 𝑉 is finite-dimensional. Then every orthonormal list of vectors in 𝑉
+of length dim𝑉 is an orthonormal basis of 𝑉.
+Proof By 6.25, every orthonormal list of vectors in 𝑉 is linearly independent.
+Thus every such list of the right length is a basis—see 2.38.
+6.29 example: an orthonormal basis of 𝐅4
+As mentioned above, the standard basis is an orthonormal basis of 𝐅4
+. We now
+show that
+(1
+2
+, 1
+2
+, 1
+2
+, 1
+2
+),(1
+2
+, 1
+2
+,−1
+2
+,−1
+2
+),(1
+2
+,−1
+2
+,−1
+2
+, 1
+2
+),(−1
+2
+, 1
+2
+,−1
+2
+, 1
+2
+)
+is also an orthonormal basis of 𝐅4
+.
+We have
+∥(1
+2
+, 1
+2
+, 1
+2
+, 1
+2
+)∥ = √ 1
+22 + 1
+22 + 1
+22 + 1
+22 = 1.
+Similarly, the other three vectors in the list above also have norm 1.
+Note that
+⟨(1
+2
+, 1
+2
+, 1
+2
+, 1
+2
+),(1
+2
+, 1
+2
+,−1
+2
+,−1
+2
+)⟩ = 1
+2
+⋅ 1
+2
++ 1
+2
+⋅ 1
+2
++ 1
+2
+⋅ (−1
+2
+) + 1
+2
+⋅ (−1
+2
+) = 0.
+Similarly, the inner product of any two distinct vectors in the list above also
+equals 0.
+Thus the list above is orthonormal. Because we have an orthonormal list of
+length four in the four-dimensional vector space 𝐅4
+, this list is an orthonormal
+basis of 𝐅4
+(by 6.28).
+In general, given a basis 𝑒1,…,𝑒𝑛 of 𝑉 and a vector 𝑣 ∈ 𝑉, we know that there
+is some choice of scalars 𝑎1,…,𝑎𝑛 ∈ 𝐅 such that
+𝑣 = 𝑎1𝑒1 + ⋯ + 𝑎𝑛𝑒𝑛.
+Computing the numbers 𝑎1,…,𝑎𝑛 that satisfy the equation above can be a long
+computation for an arbitrary basis of 𝑉. The next result shows, however, that this
+is easy for an orthonormal basis—just take 𝑎𝑘 = ⟨𝑣,𝑒𝑘⟩.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler200 Chapter 6 Inner Product Spaces
+The formula below for ‖𝑣‖ is called
+Parseval’s identity. It was published in
+1799 in the context of Fourier series.
+Notice how the next result makes
+each inner product space of dimension
+𝑛 behave like 𝐅𝑛
+, with the role of the
+coordinates of a vector in 𝐅𝑛
+played by
+⟨𝑣,𝑒1⟩,…,⟨𝑣,𝑒𝑛⟩.
+6.30 writing a vector as a linear combination of an orthonormal basis
+Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and 𝑢,𝑣 ∈ 𝑉. Then
+(a) 𝑣 = ⟨𝑣,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑒𝑛;
+(b) ‖𝑣‖2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑛⟩∣
+2
+;
+(c) ⟨𝑢,𝑣⟩ = ⟨𝑢,𝑒1⟩⟨𝑣,𝑒1⟩ + ⋯ + ⟨𝑢,𝑒𝑛⟩⟨𝑣,𝑒𝑛⟩.
+Proof Because 𝑒1,…,𝑒𝑛 is a basis of 𝑉, there exist scalars 𝑎1,…,𝑎𝑛 such that
+𝑣 = 𝑎1𝑒1 + ⋯ + 𝑎𝑛𝑒𝑛.
+Because 𝑒1,…,𝑒𝑛 is orthonormal, taking the inner product of both sides of this
+equation with 𝑒𝑘 gives ⟨𝑣,𝑒𝑘⟩ = 𝑎𝑘. Thus (a) holds.
+Now (b) follows immediately from (a) and 6.24.
+Take the inner product of 𝑢 with each side of (a) and then get (c) by using
+conjugate linearity [6.6(d) and 6.6(e)] in the second slot of the inner product.
+6.31 example: finding coefficients for a linear combination
+Suppose we want to write the vector (1,2,4,7) ∈ 𝐅4
+as a linear combination
+of the orthonormal basis
+(1
+2
+, 1
+2
+, 1
+2
+, 1
+2
+),(1
+2
+, 1
+2
+,−1
+2
+,−1
+2
+),(1
+2
+,−1
+2
+,−1
+2
+, 1
+2
+),(−1
+2
+, 1
+2
+,−1
+2
+, 1
+2
+)
+of 𝐅4
+from Example 6.29. Instead of solving a system of four linear equations
+in four unknowns, as typically would be required if we were working with a
+nonorthonormal basis, we simply evaluate four inner products and use 6.30(a),
+getting that (1,2,4,7) equals
+7(1
+2
+, 1
+2
+, 1
+2
+, 1
+2
+) − 4(1
+2
+, 1
+2
+,−1
+2
+,−1
+2
+) + (1
+2
+,−1
+2
+,−1
+2
+, 1
+2
+) + 2(−1
+2
+, 1
+2
+,−1
+2
+, 1
+2
+).
+Now that we understand the usefulness of orthonormal bases, how do we go
+about finding them? For example, does 𝒫𝑚(𝐑) with inner product as in 6.3(c)
+have an orthonormal basis? The next result will lead to answers to these questions.
+JørgenGram(1850–1916)andErhard
+Schmidt (1876–1959) popularized this
+algorithm that constructs orthonormal
+lists.
+The algorithm used in the next proof
+is called the Gram–Schmidt procedure.
+It gives a method for turning a linearly
+independent list into an orthonormal list
+with the same span as the original list.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 201
+## 6.32 Gram–Schmidt procedure
+Suppose 𝑣1,…,𝑣𝑚 is a linearly independent list of vectors in 𝑉. Let 𝑓1 = 𝑣1.
+For 𝑘 = 2,…,𝑚, define 𝑓𝑘 inductively by
+𝑓𝑘 = 𝑣𝑘 −
+⟨𝑣𝑘, 𝑓1⟩
+‖𝑓1‖2
+𝑓1 − ⋯ −
+⟨𝑣𝑘, 𝑓𝑘−1⟩
+‖𝑓𝑘−1‖2
+𝑓𝑘−1.
+For each 𝑘 = 1,…,𝑚, let 𝑒𝑘 =
+𝑓𝑘
+‖𝑓𝑘‖
+. Then 𝑒1,…,𝑒𝑚 is an orthonormal list of
+vectors in 𝑉 such that
+span(𝑣1,…,𝑣𝑘) = span(𝑒1,…,𝑒𝑘)
+for each 𝑘 = 1,…,𝑚.
+Proof We will show by induction on 𝑘 that the desired conclusion holds. To
+get started with 𝑘 = 1, note that because 𝑒1 = 𝑓1/‖𝑓1‖, we have ‖𝑒1‖ = 1; also,
+span(𝑣1) = span(𝑒1) because 𝑒1 is a nonzero multiple of 𝑣1.
+Suppose1 < 𝑘 ≤ 𝑚andthelist𝑒1,…,𝑒𝑘−1 generatedby6.32isanorthonormal
+list such that
+6.33 span(𝑣1,…,𝑣𝑘−1) = span(𝑒1,…,𝑒𝑘−1).
+Because 𝑣1,…,𝑣𝑚 is linearly independent, we have 𝑣𝑘 ∉ span(𝑣1,…,𝑣𝑘−1). Thus
+𝑣𝑘 ∉ span(𝑒1,…,𝑒𝑘−1) = span(𝑓1,…, 𝑓𝑘−1), which implies that 𝑓𝑘 ≠ 0. Hence
+we are not dividing by 0 in the definition of 𝑒𝑘 given in 6.32. Dividing a vector by
+its norm produces a new vector with norm 1; thus ‖𝑒𝑘‖ = 1.
+Let 𝑗 ∈ {1,…,𝑘 − 1}. Then
+⟨𝑒𝑘,𝑒𝑗⟩ =
+1
+‖𝑓𝑘‖‖𝑓𝑗‖
+⟨𝑓𝑘, 𝑓𝑗⟩
+=
+1
+‖𝑓𝑘‖‖𝑓𝑗‖
+⟨𝑣𝑘 −
+⟨𝑣𝑘, 𝑓1⟩
+‖𝑓1‖2
+𝑓1 − ⋯ −
+⟨𝑣𝑘, 𝑓𝑘−1⟩
+‖𝑓𝑘−1‖2
+𝑓𝑘−1, 𝑓𝑗⟩
+=
+1
+‖𝑓𝑘‖‖𝑓𝑗‖
+(⟨𝑣𝑘, 𝑓𝑗⟩ − ⟨𝑣𝑘, 𝑓𝑗⟩)
+= 0.
+Thus 𝑒1,…,𝑒𝑘 is an orthonormal list.
+From the definition of 𝑒𝑘 given in 6.32, we see that 𝑣𝑘 ∈ span(𝑒1,…,𝑒𝑘).
+Combining this information with 6.33 shows that
+span(𝑣1,…,𝑣𝑘) ⊆ span(𝑒1,…,𝑒𝑘).
+Both lists above are linearly independent (the 𝑣’s by hypothesis, and the 𝑒’s by
+orthonormality and 6.25). Thus both subspaces above have dimension 𝑘, and
+hence they are equal, completing the induction step and thus completing the
+proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler202 Chapter 6 Inner Product Spaces
+6.34 example: an orthonormal basis of 𝒫2(𝐑)
+Suppose we make 𝒫2(𝐑) into an inner product space using the inner product
+given by
+⟨𝑝,𝑞⟩ = ∫
+1
+−1
+𝑝𝑞
+for all 𝑝,𝑞 ∈ 𝒫2(𝐑). We know that 1,𝑥,𝑥2
+is a basis of 𝒫2(𝐑), but it is not an
+orthonormal basis. We will find an orthonormal basis of 𝒫2(𝐑) by applying the
+Gram–Schmidt procedure with 𝑣1 = 1, 𝑣2 = 𝑥, and 𝑣3 = 𝑥2
+.
+To get started, take 𝑓1 = 𝑣1 = 1. Thus ‖𝑓1‖2
+= ∫
+1
+−1 1 = 2. Hence the formula
+in 6.32 tells us that
+𝑓2 = 𝑣2 −
+⟨𝑣2, 𝑓1⟩
+‖𝑓1‖2
+𝑓1 = 𝑥 −
+⟨𝑥,1⟩
+‖𝑓1‖2
+= 𝑥,
+where the last equality holds because ⟨𝑥,1⟩ = ∫
+1
+−1 𝑡𝑑𝑡 = 0.
+The formula above for 𝑓2 implies that ‖𝑓2‖2
+= ∫
+1
+−1 𝑡2
+𝑑𝑡 = 2
+3
+. Now the formula
+in 6.32 tells us that
+𝑓3 = 𝑣3 −
+⟨𝑣3, 𝑓1⟩
+‖𝑓1‖2
+𝑓1 −
+⟨𝑣3, 𝑓2⟩
+‖𝑓2‖2
+𝑓2 = 𝑥2
+− 1
+2
+⟨𝑥2
+,1⟩ − 3
+2
+⟨𝑥2
+,𝑥⟩𝑥 = 𝑥2
+− 1
+3
+.
+The formula above for 𝑓3 implies that
+‖𝑓3‖2
+= ∫
+1
+−1
+(𝑡2
+− 1
+3
+)
+2
+𝑑𝑡 = ∫
+1
+−1
+(𝑡4
+− 2
+3
+𝑡2
++ 1
+9
+)𝑑𝑡 = 8
+45
+.
+Now dividing each of 𝑓1, 𝑓2, 𝑓3 by its norm gives us the orthonormal list
+√1
+2
+,√3
+2
+𝑥,√45
+8
+(𝑥2
+− 1
+3
+).
+The orthonormal list above has length three, which is the dimension of 𝒫2(𝐑).
+Hence this orthonormal list is an orthonormal basis of 𝒫2(𝐑) [by 6.28].
+Now we can answer the question about the existence of orthonormal bases.
+6.35 existence of orthonormal basis
+Every finite-dimensional inner product space has an orthonormal basis.
+Proof Suppose 𝑉 is finite-dimensional. Choose a basis of 𝑉. Apply the Gram–
+Schmidt procedure (6.32) to it, producing an orthonormal list of length dim𝑉.
+By 6.28, this orthonormal list is an orthonormal basis of 𝑉.
+Sometimes we need to know not only that an orthonormal basis exists, but also
+that every orthonormal list can be extended to an orthonormal basis. In the next
+corollary, the Gram–Schmidt procedure shows that such an extension is always
+possible.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 203
+6.36 every orthonormal list extends to an orthonormal basis
+Suppose 𝑉 is finite-dimensional. Then every orthonormal list of vectors in 𝑉
+can be extended to an orthonormal basis of 𝑉.
+Proof Suppose 𝑒1,…,𝑒𝑚 is an orthonormal list of vectors in 𝑉. Then 𝑒1,…,𝑒𝑚
+is linearly independent (by 6.25). Hence this list can be extended to a basis
+𝑒1,…,𝑒𝑚,𝑣1,…,𝑣𝑛 of 𝑉 (see 2.32). Now apply the Gram–Schmidt procedure
+(6.32) to 𝑒1,…,𝑒𝑚,𝑣1,…,𝑣𝑛, producing an orthonormal list
+𝑒1,…,𝑒𝑚, 𝑓1,…, 𝑓𝑛;
+here the formula given by the Gram–Schmidt procedure leaves the first 𝑚 vectors
+unchangedbecausetheyarealreadyorthonormal. Thelistaboveisanorthonormal
+basis of 𝑉 by 6.28.
+Recall that a matrix is called upper triangular if it looks like this:
+⎛ ⎜ ⎜ ⎜
+⎝
+∗ ∗
+⋱
+0 ∗
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where the 0 in the matrix above indicates that all entries below the diagonal
+equal 0, and asterisks are used to denote entries on and above the diagonal.
+In the last chapter, we gave a necessary and sufficient condition for an operator
+to have an upper-triangular matrix with respect to some basis (see 5.44). Now that
+we are dealing with inner product spaces, we would like to know whether there
+exists an orthonormal basis with respect to which we have an upper-triangular
+matrix. The next result shows that the condition for an operator to have an upper-
+triangular matrix with respect to some orthonormal basis is the same as the
+condition to have an upper-triangular matrix with respect to an arbitrary basis.
+6.37 upper-triangular matrix with respect to some orthonormal basis
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉). Then 𝑇 has an upper-
+triangularmatrixwithrespecttosomeorthonormalbasisof𝑉 ifandonlyifthe
+minimal polynomial of 𝑇 equals (𝑧− 𝜆1)⋯(𝑧− 𝜆𝑚) for some 𝜆1,…, 𝜆𝑚 ∈ 𝐅.
+Proof Suppose 𝑇 has an upper-triangular matrix with respect to some basis
+𝑣1,…,𝑣𝑛 of 𝑉. Thus span(𝑣1,…,𝑣𝑘) is invariant under 𝑇 for each 𝑘 = 1,…,𝑛
+(see 5.39).
+Apply the Gram–Schmidt procedure to 𝑣1,…,𝑣𝑛, producing an orthonormal
+basis 𝑒1,…,𝑒𝑛 of 𝑉. Because
+span(𝑒1,…,𝑒𝑘) = span(𝑣1,…,𝑣𝑘)
+for each 𝑘 (see 6.32), we conclude that span(𝑒1,…,𝑒𝑘) is invariant under 𝑇 for
+each 𝑘 = 1,…,𝑛. Thus, by 5.39, 𝑇 has an upper-triangular matrix with respect to
+the orthonormal basis 𝑒1,…,𝑒𝑛. Now use 5.44 to complete the proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler204 Chapter 6 Inner Product Spaces
+Issai Schur (1875–1941) published a
+proof of the next result in 1909.
+For complex vector spaces, the next
+result is an important application of the
+result above. See Exercise 20 for a ver-
+sion of Schur’s theorem that applies simultaneously to more than one operator.
+## 6.38 Schur’s theorem
+Every operator on a finite-dimensional complex inner product space has an
+upper-triangular matrix with respect to some orthonormal basis.
+Proof The desired result follows from the second version of the fundamental
+theorem of algebra (4.13) and 6.37.
+Linear Functionals on Inner Product Spaces
+Because linear maps into the scalar field 𝐅 play a special role, we defined a special
+name for them and their vector space in Section 3F. Those definitions are repeated
+below in case you skipped Section 3F.
+6.39 definition: linear functional, dual space, 𝑉′
+• A linear functional on 𝑉 is a linear map from 𝑉 to 𝐅.
+• The dual space of 𝑉, denoted by 𝑉′
+, is the vector space of all linear
+functionals on 𝑉. In other words, 𝑉′
+= ℒ(𝑉,𝐅).
+6.40 example: linear functional on 𝐅3
+The function 𝜑∶ 𝐅3
+→ 𝐅 defined by
+𝜑(𝑧1,𝑧2,𝑧3) = 2𝑧1 − 5𝑧2 + 𝑧3
+is a linear functional on 𝐅3
+. We could write this linear functional in the form
+𝜑(𝑧) = ⟨𝑧,𝑤⟩
+for every 𝑧 ∈ 𝐅3
+, where 𝑤 = (2,−5,1).
+6.41 example: linear functional on 𝒫5(𝐑)
+The function 𝜑∶ 𝒫5(𝐑) → 𝐑 defined by
+𝜑(𝑝) = ∫
+1
+−1
+𝑝(𝑡)(cos(𝜋𝑡))𝑑𝑡
+is a linear functional on 𝒫5(𝐑).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 205
+The next result is named in honor
+of Frigyes Riesz (1880–1956), who
+proved several theorems early in the
+twentieth century that look very much
+like the result below.
+If 𝑣 ∈ 𝑉, then the map that sends 𝑢
+to ⟨𝑢,𝑣⟩ is a linear functional on 𝑉. The
+next result states that every linear func-
+tional on 𝑉 is of this form. For example,
+we can take 𝑣 = (2,−5,1) in Example
+6.40.
+Suppose we make the vector space 𝒫5(𝐑) into an inner product space by
+defining ⟨𝑝,𝑞⟩ = ∫
+1
+−1 𝑝𝑞. Let 𝜑 be as in Example 6.41. It is not obvious that there
+exists 𝑞 ∈ 𝒫5(𝐑) such that
+∫
+1
+−1
+𝑝(𝑡)(cos(𝜋𝑡))𝑑𝑡 = ⟨𝑝,𝑞⟩
+for every 𝑝 ∈ 𝒫5(𝐑) [we cannot take 𝑞(𝑡) = cos(𝜋𝑡) because that choice of 𝑞 is
+not an element of 𝒫5(𝐑)]. The next result tells us the somewhat surprising result
+that there indeed exists a polynomial 𝑞 ∈ 𝒫5(𝐑) such that the equation above
+holds for all 𝑝 ∈ 𝒫5(𝐑).
+## 6.42 Riesz representation theorem
+Suppose 𝑉 is finite-dimensional and 𝜑 is a linear functional on 𝑉. Then there
+is a unique vector 𝑣 ∈ 𝑉 such that
+𝜑(𝑢) = ⟨𝑢,𝑣⟩
+for every 𝑢 ∈ 𝑉.
+Proof First we show that there exists a vector 𝑣 ∈ 𝑉 such that 𝜑(𝑢) = ⟨𝑢,𝑣⟩ for
+every 𝑢 ∈ 𝑉. Let 𝑒1,…,𝑒𝑛 be an orthonormal basis of 𝑉. Then
+𝜑(𝑢) = 𝜑(⟨𝑢,𝑒1⟩𝑒1 + ⋯ + ⟨𝑢,𝑒𝑛⟩𝑒𝑛)
+= ⟨𝑢,𝑒1⟩𝜑(𝑒1) + ⋯ + ⟨𝑢,𝑒𝑛⟩𝜑(𝑒𝑛)
+= ⟨𝑢,𝜑(𝑒1)𝑒1 + ⋯ + 𝜑(𝑒𝑛)𝑒𝑛⟩
+for every 𝑢 ∈ 𝑉, where the first equality comes from 6.30(a). Thus setting
+6.43 𝑣 = 𝜑(𝑒1)𝑒1 + ⋯ + 𝜑(𝑒𝑛)𝑒𝑛,
+we have 𝜑(𝑢) = ⟨𝑢,𝑣⟩ for every 𝑢 ∈ 𝑉, as desired.
+Now we prove that only one vector 𝑣 ∈ 𝑉 has the desired behavior. Suppose
+𝑣1,𝑣2 ∈ 𝑉 are such that
+𝜑(𝑢) = ⟨𝑢,𝑣1⟩ = ⟨𝑢,𝑣2⟩
+for every 𝑢 ∈ 𝑉. Then
+0 = ⟨𝑢,𝑣1⟩ − ⟨𝑢,𝑣2⟩ = ⟨𝑢,𝑣1 − 𝑣2⟩
+for every 𝑢 ∈ 𝑉. Taking 𝑢 = 𝑣1 − 𝑣2 shows that 𝑣1 − 𝑣2 = 0. Thus 𝑣1 = 𝑣2,
+completing the proof of the uniqueness part of the result.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler206 Chapter 6 Inner Product Spaces
+6.44 example: computation illustrating Riesz representation theorem
+Suppose we want to find a polynomial 𝑞 ∈ 𝒫2(𝐑) such that
+6.45 ∫
+1
+−1
+𝑝(𝑡)(cos(𝜋𝑡))𝑑𝑡 = ∫
+1
+−1
+𝑝𝑞
+foreverypolynomial𝑝 ∈ 𝒫2(𝐑). Todothis, wemake𝒫2(𝐑) intoaninnerproduct
+space by defining ⟨𝑝,𝑞⟩ to be the right side of the equation above for 𝑝,𝑞 ∈ 𝒫2(𝐑).
+Note that the left side of the equation above does not equal the inner product
+in 𝒫2(𝐑) of 𝑝 and the function 𝑡 ↦ cos(𝜋𝑡) because this last function is not a
+polynomial.
+Define a linear functional 𝜑 on 𝒫2(𝐑) by letting
+𝜑(𝑝) = ∫
+1
+−1
+𝑝(𝑡)(cos(𝜋𝑡))𝑑𝑡
+for each 𝑝 ∈ 𝒫2(𝐑). Now use the orthonormal basis from Example 6.34 and
+apply formula 6.43 from the proof of the Riesz representation theorem to see that
+if 𝑝 ∈ 𝒫2(𝐑), then 𝜑(𝑝) = ⟨𝑝,𝑞⟩, where
+𝑞(𝑥) = (∫
+1
+−1
+√1
+2
+cos(𝜋𝑡)𝑑𝑡)√1
+2
++ (∫
+1
+−1
+√3
+2
+𝑡cos(𝜋𝑡)𝑑𝑡)√3
+2
+𝑥
++ (∫
+1
+−1
+√45
+8
+(𝑡2
+− 1
+3
+)cos(𝜋𝑡)𝑑𝑡)√45
+8
+(𝑥2
+− 1
+3
+).
+A bit of calculus applied to the equation above shows that
+𝑞(𝑥) = 15
+2𝜋2 (1 − 3𝑥2
+).
+The same procedure shows that if we want to find 𝑞 ∈ 𝒫5(𝐑) such that 6.45
+holds for all 𝑝 ∈ 𝒫5(𝐑), then we should take
+𝑞(𝑥) = 105
+8𝜋4 ((27 − 2𝜋2
+) + (24𝜋2
+− 270)𝑥2
++ (315 − 30𝜋2
+)𝑥4
+).
+Suppose 𝑉 is finite-dimensional and 𝜑 a linear functional on 𝑉. Then 6.43
+gives a formula for the vector 𝑣 that satisfies
+𝜑(𝑢) = ⟨𝑢,𝑣⟩
+for all 𝑢 ∈ 𝑉. Specifically, we have
+𝑣 = 𝜑(𝑒1)𝑒1 + ⋯ + 𝜑(𝑒𝑛)𝑒𝑛.
+The right side of the equation above seems to depend on the orthonormal basis
+𝑒1,…,𝑒𝑛 as well as on 𝜑. However, 6.42 tells us that 𝑣 is uniquely determined
+by 𝜑. Thus the right side of the equation above is the same regardless of which
+orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉 is chosen.
+For two additional different proofs of the Riesz representation theorem, see
+6.58 and also Exercise 13 in Section 6C.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 207
+Exercises 6B
+1 Suppose 𝑒1,…,𝑒𝑚 is a list of vectors in 𝑉 such that
+‖𝑎1𝑒1 + ⋯ + 𝑎𝑚𝑒𝑚‖2
+= |𝑎1|2
++ ⋯ + |𝑎𝑚|2
+for all 𝑎1,…,𝑎𝑚 ∈ 𝐅. Show that 𝑒1,…,𝑒𝑚 is an orthonormal list.
+This exercise provides a converse to 6.24.
+2 (a) Suppose 𝜃 ∈ 𝐑. Show that both
+(cos𝜃,sin𝜃),(−sin𝜃,cos𝜃) and (cos𝜃,sin𝜃),(sin𝜃,−cos𝜃)
+are orthonormal bases of 𝐑2
+.
+(b) Show that each orthonormal basis of 𝐑2
+is of the form given by one of
+the two possibilities in (a).
+3 Suppose 𝑒1,…,𝑒𝑚 is an orthonormal list in 𝑉 and 𝑣 ∈ 𝑉. Prove that
+‖𝑣‖2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑚⟩∣
+2
+⟺ 𝑣 ∈ span(𝑒1,…,𝑒𝑚).
+## 4 Suppose 𝑛 is a positive integer. Prove that
+1
+√2𝜋
+,
+cos𝑥
+√
+𝜋
+,
+cos2𝑥
+√
+𝜋
+,…,
+cos𝑛𝑥
+√
+𝜋
+,
+sin𝑥
+√
+𝜋
+,
+sin2𝑥
+√
+𝜋
+,…,
+sin𝑛𝑥
+√
+𝜋
+is an orthonormal list of vectors in 𝐶[−𝜋,𝜋], the vector space of continuous
+real-valued functions on [−𝜋,𝜋] with inner product
+⟨𝑓,𝑔⟩ = ∫
+𝜋
+−𝜋
+𝑓𝑔.
+Hint: The following formulas should help.
+(sin𝑥)(cos𝑦) =
+sin(𝑥 − 𝑦) + sin(𝑥 + 𝑦)
+2
+(sin𝑥)(sin𝑦) =
+cos(𝑥 − 𝑦) − cos(𝑥 + 𝑦)
+2
+(cos𝑥)(cos𝑦) =
+cos(𝑥 − 𝑦) + cos(𝑥 + 𝑦)
+2
+5 Suppose 𝑓 ∶ [−𝜋,𝜋] → 𝐑 is continuous. For each nonnegative integer 𝑘,
+define
+𝑎𝑘 = 1
+√
+𝜋
+∫
+𝜋
+−𝜋
+𝑓(𝑥)cos(𝑘𝑥)𝑑𝑥 and 𝑏𝑘 = 1
+√
+𝜋
+∫
+𝜋
+−𝜋
+𝑓(𝑥)sin(𝑘𝑥)𝑑𝑥.
+Prove that
+𝑎0
+2
+2
++
+∞
+∑
+𝑘=1
+(𝑎𝑘
+2
++ 𝑏𝑘
+2
+) ≤ ∫
+𝜋
+−𝜋
+𝑓2
+.
+The inequality above is actually an equality for all continuous functions
+𝑓 ∶ [−𝜋,𝜋] → 𝐑. However, proving that this inequality is an equality
+involves Fourier series techniques beyond the scope of this book.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler208 Chapter 6 Inner Product Spaces
+6 Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉.
+(a) Prove that if 𝑣1,…,𝑣𝑛 are vectors in 𝑉 such that
+‖𝑒𝑘 − 𝑣𝑘‖ <
+1
+√
+𝑛
+for each 𝑘, then 𝑣1,…,𝑣𝑛 is a basis of 𝑉.
+(b) Show that there exist 𝑣1,…,𝑣𝑛 ∈ 𝑉 such that
+‖𝑒𝑘 − 𝑣𝑘‖ ≤
+1
+√
+𝑛
+for each 𝑘, but 𝑣1,…,𝑣𝑛 is not linearly independent.
+This exercise states in (a) that an appropriately small perturbation of an
+orthonormal basis is a basis. Then (b) shows that the number 1/
+√
+𝑛 on the
+right side of the inequality in (a) cannot be higher.
+7 Suppose 𝑇 ∈ ℒ(𝐑3
+) has an upper-triangular matrix with respect to the basis
+(1,0,0), (1, 1, 1), (1,1,2). Find an orthonormal basis of 𝐑3
+with respect to
+which 𝑇 has an upper-triangular matrix.
+8 Make 𝒫2(𝐑) into an inner product space by defining ⟨𝑝,𝑞⟩ = ∫
+1
+0 𝑝𝑞 for all
+𝑝,𝑞 ∈ 𝒫2(𝐑).
+(a) Apply the Gram–Schmidt procedure to the basis 1,𝑥,𝑥2
+to produce an
+orthonormal basis of 𝒫2(𝐑).
+(b) The differentiation operator (the operator that takes 𝑝 to 𝑝′
+) on 𝒫2(𝐑)
+has an upper-triangular matrix with respect to the basis 1,𝑥,𝑥2
+, which is
+not an orthonormal basis. Find the matrix of the differentiation operator
+on 𝒫2(𝐑) with respect to the orthonormal basis produced in (a) and
+verify that this matrix is upper triangular, as expected from the proof of
+6.37.
+9 Suppose 𝑒1,…,𝑒𝑚 is the result of applying the Gram–Schmidt procedure to
+a linearly independent list 𝑣1,…,𝑣𝑚 in 𝑉. Prove that ⟨𝑣𝑘,𝑒𝑘⟩ > 0 for each
+𝑘 = 1,…,𝑚.
+10 Suppose 𝑣1,…,𝑣𝑚 is a linearly independent list in 𝑉. Explain why the
+orthonormal list produced by the formulas of the Gram–Schmidt procedure
+(6.32) is the only orthonormal list 𝑒1,…,𝑒𝑚 in 𝑉 such that ⟨𝑣𝑘,𝑒𝑘⟩ > 0 and
+span(𝑣1,…,𝑣𝑘) = span(𝑒1,…,𝑒𝑘) for each 𝑘 = 1,…,𝑚.
+The result in this exercise is used in the proof of 7.58.
+11 Find a polynomial 𝑞 ∈ 𝒫2(𝐑) such that 𝑝(1
+2
+) = ∫
+1
+0 𝑝𝑞 for every 𝑝 ∈ 𝒫2(𝐑).
+12 Find a polynomial 𝑞 ∈ 𝒫2(𝐑) such that
+∫
+1
+0
+𝑝(𝑥)cos(𝜋𝑥)𝑑𝑥 = ∫
+1
+0
+𝑝𝑞
+for every 𝑝 ∈ 𝒫2(𝐑).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6B Orthonormal Bases 209
+13 Show that a list 𝑣1,…,𝑣𝑚 of vectors in 𝑉 is linearly dependent if and only if
+the Gram–Schmidt formula in 6.32 produces 𝑓𝑘 = 0 for some 𝑘 ∈ {1,…,𝑚}.
+This exercise gives an alternative to Gaussian elimination techniques for
+determining whether a list of vectors in an inner product space is linearly
+dependent.
+14 Suppose 𝑉 is a real inner product space and 𝑣1,…,𝑣𝑚 is a linearly indepen-
+dent list of vectors in 𝑉. Prove that there exist exactly 2𝑚
+orthonormal lists
+𝑒1,…,𝑒𝑚 of vectors in 𝑉 such that
+span(𝑣1,…,𝑣𝑘) = span(𝑒1,…,𝑒𝑘)
+for all 𝑘 ∈ {1,…,𝑚}.
+15 Suppose ⟨⋅,⋅⟩1 and ⟨⋅,⋅⟩2 are inner products on 𝑉 such that ⟨𝑢,𝑣⟩1 = 0 if
+and only if ⟨𝑢,𝑣⟩2 = 0. Prove that there is a positive number 𝑐 such that
+⟨𝑢,𝑣⟩1 = 𝑐⟨𝑢,𝑣⟩2 for every 𝑢,𝑣 ∈ 𝑉.
+This exercise shows that if two inner products have the same pairs of
+orthogonal vectors, then each of the inner products is a scalar multiple
+of the other inner product.
+16 Suppose 𝑉 is finite-dimensional. Suppose ⟨⋅,⋅⟩1, ⟨⋅,⋅⟩2 are inner products on
+𝑉 with corresponding norms ‖⋅‖1 and ‖⋅‖2. Prove that there exists a positive
+number 𝑐 such that ‖𝑣‖1 ≤ 𝑐‖𝑣‖2 for every 𝑣 ∈ 𝑉.
+## 17 Suppose 𝐅 = 𝐂 and 𝑉 is finite-dimensional. Prove that if 𝑇 is an operator
+on 𝑉 such that 1 is the only eigenvalue of 𝑇 and ‖𝑇𝑣‖ ≤ ‖𝑣‖ for all 𝑣 ∈ 𝑉,
+then 𝑇 is the identity operator.
+18 Suppose 𝑢1,…,𝑢𝑚 is a linearly independent list in 𝑉. Show that there exists
+𝑣 ∈ 𝑉 such that ⟨𝑢𝑘,𝑣⟩ = 1 for all 𝑘 ∈ {1,…,𝑚}.
+19 Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Prove that there exists a basis 𝑢1,…,𝑢𝑛
+of 𝑉 such that
+⟨𝑣𝑗,𝑢𝑘⟩ =
+⎧ {
+⎨ { ⎩
+0 if 𝑗 ≠ 𝑘,
+1 if 𝑗 = 𝑘.
+20 Suppose 𝐅 = 𝐂, 𝑉 is finite-dimensional, and ℰ ⊆ ℒ(𝑉) is such that
+𝑆𝑇 = 𝑇𝑆
+for all 𝑆,𝑇 ∈ ℰ. Prove that there is an orthonormal basis of 𝑉 with respect
+to which every element of ℰ has an upper-triangular matrix.
+This exercise strengthens Exercise 9(b) in Section 5E (in the context of inner
+product spaces) by asserting that the basis in that exercise can be chosen to
+be orthonormal.
+21 Suppose 𝐅 = 𝐂, 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and all eigenvalues
+of 𝑇 have absolute value less than 1. Let 𝜖 > 0. Prove that there exists a
+positive integer 𝑚 such that ∥𝑇𝑚
+𝑣∥ ≤ 𝜖‖𝑣‖ for every 𝑣 ∈ 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler210 Chapter 6 Inner Product Spaces
+22 Suppose 𝐶[−1,1] is the vector space of continuous real-valued functions
+on the interval [−1,1] with inner product given by
+⟨𝑓,𝑔⟩ = ∫
+1
+−1
+𝑓𝑔
+for all 𝑓,𝑔 ∈ 𝐶[−1,1]. Let 𝜑 be the linear functional on 𝐶[−1,1] defined
+by 𝜑(𝑓) = 𝑓(0). Show that there does not exist 𝑔 ∈ 𝐶[−1,1] such that
+𝜑(𝑓) = ⟨𝑓,𝑔⟩
+for every 𝑓 ∈ 𝐶[−1,1].
+This exercise shows that the Riesz representation theorem (6.42) does not
+hold on infinite-dimensional vector spaces without additional hypotheses
+on 𝑉 and 𝜑.
+23 For all 𝑢,𝑣 ∈ 𝑉, define 𝑑(𝑢,𝑣) = ‖𝑢 − 𝑣‖.
+(a) Show that 𝑑 is a metric on 𝑉.
+(b) Show that if 𝑉 is finite-dimensional, then 𝑑 is a complete metric on 𝑉
+(meaning that every Cauchy sequence converges).
+(c) Show that every finite-dimensional subspace of 𝑉 is a closed subset
+of 𝑉 (with respect to the metric 𝑑).
+This exercise requires familiarity with metric spaces.
+orthogonality at the Supreme Court
+Law professor Richard Friedman presenting a case before the U.S. Supreme
+Court in 2010:
+Mr. Friedman: I think that issue is entirely orthogonal to the issue here
+because the Commonwealth is acknowledging—
+Chief Justice Roberts: I’m sorry. Entirely what?
+Mr. Friedman: Orthogonal. Right angle. Unrelated. Irrelevant.
+Chief Justice Roberts: Oh.
+Justice Scalia: What was that adjective? I liked that.
+Mr. Friedman: Orthogonal.
+Chief Justice Roberts: Orthogonal.
+Mr. Friedman: Right, right.
+Justice Scalia: Orthogonal, ooh. (Laughter.)
+Justice Kennedy: I knew this case presented us a problem. (Laughter.)
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 211
+6C Orthogonal Complements and Minimization Problems
+Orthogonal Complements
+6.46 definition: orthogonal complement, 𝑈⟂
+If 𝑈 is a subset of 𝑉, then the orthogonal complement of 𝑈, denoted by 𝑈⟂
+,
+is the set of all vectors in 𝑉 that are orthogonal to every vector in 𝑈:
+𝑈⟂
+= {𝑣 ∈ 𝑉 ∶ ⟨𝑢,𝑣⟩ = 0 for every 𝑢 ∈ 𝑈}.
+The orthogonal complement 𝑈⟂
+depends on 𝑉 as well as on 𝑈. However, the
+inner product space 𝑉 should always be clear from the context and thus it can be
+omitted from the notation.
+6.47 example: orthogonal complements
+• If 𝑉 = 𝐑3
+and 𝑈 is the subset of 𝑉 consisting of the single point (2,3,5), then
+𝑈⟂
+is the plane {(𝑥,𝑦,𝑧) ∈ 𝐑3
+∶ 2𝑥 + 3𝑦 + 5𝑧 = 0}.
+• If 𝑉 = 𝐑3
+and 𝑈 is the plane {(𝑥,𝑦,𝑧) ∈ 𝐑3
+∶ 2𝑥 + 3𝑦 + 5𝑧 = 0}, then 𝑈⟂
+is
+the line {(2𝑡,3𝑡,5𝑡) ∶ 𝑡 ∈ 𝐑}.
+• More generally, if 𝑈 is a plane in 𝐑3
+containing the origin, then 𝑈⟂
+is the line
+containing the origin that is perpendicular to 𝑈.
+• If 𝑈 is a line in 𝐑3
+containing the origin, then 𝑈⟂
+is the plane containing the
+origin that is perpendicular to 𝑈.
+• If 𝑉 = 𝐅5
+and 𝑈 = {(𝑎,𝑏,0,0,0) ∈ 𝐅5
+∶ 𝑎,𝑏 ∈ 𝐅}, then
+𝑈⟂
+= {(0,0,𝑥,𝑦,𝑧) ∈ 𝐅5
+∶ 𝑥,𝑦,𝑧 ∈ 𝐅}.
+• If 𝑒1,…,𝑒𝑚, 𝑓1,…, 𝑓𝑛 is an orthonormal basis of 𝑉, then
+(span(𝑒1,…,𝑒𝑚))
+⟂
+= span(𝑓1,…, 𝑓𝑛).
+We begin with some straightforward consequences of the definition.
+6.48 properties of orthogonal complement
+(a) If 𝑈 is a subset of 𝑉, then 𝑈⟂
+is a subspace of 𝑉.
+(b) {0}⟂
+= 𝑉.
+(c) 𝑉⟂
+= {0}.
+(d) If 𝑈 is a subset of 𝑉, then 𝑈 ∩ 𝑈⟂
+⊆ {0}.
+(e) If 𝐺 and 𝐻 are subsets of 𝑉 and 𝐺 ⊆ 𝐻, then 𝐻⟂
+⊆ 𝐺⟂
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler212 Chapter 6 Inner Product Spaces
+Proof
+(a) Suppose 𝑈 is a subset of 𝑉. Then ⟨𝑢,0⟩ = 0 for every 𝑢 ∈ 𝑈; thus 0 ∈ 𝑈⟂
+.
+Suppose 𝑣,𝑤 ∈ 𝑈⟂
+. If 𝑢 ∈ 𝑈, then
+⟨𝑢,𝑣 + 𝑤⟩ = ⟨𝑢,𝑣⟩ + ⟨𝑢,𝑤⟩ = 0 + 0 = 0.
+Thus 𝑣 + 𝑤 ∈ 𝑈⟂
+, which shows that 𝑈⟂
+is closed under addition.
+Similarly, suppose 𝜆 ∈ 𝐅 and 𝑣 ∈ 𝑈⟂
+. If 𝑢 ∈ 𝑈, then
+⟨𝑢, 𝜆𝑣⟩ = 𝜆⟨𝑢,𝑣⟩ = 𝜆 ⋅ 0 = 0.
+Thus 𝜆𝑣 ∈ 𝑈⟂
+, which shows that 𝑈⟂
+is closed under scalar multiplication.
+Thus 𝑈⟂
+is a subspace of 𝑉.
+(b) Suppose that 𝑣 ∈ 𝑉. Then ⟨0,𝑣⟩ = 0, which implies that 𝑣 ∈ {0}⟂
+. Thus
+{0}⟂
+= 𝑉.
+(c) Suppose that 𝑣 ∈ 𝑉⟂
+. Then ⟨𝑣,𝑣⟩ = 0, which implies that 𝑣 = 0. Thus
+𝑉⟂
+= {0}.
+(d) Suppose 𝑈 is a subset of 𝑉 and 𝑢 ∈ 𝑈 ∩𝑈⟂
+. Then ⟨𝑢,𝑢⟩ = 0, which implies
+that 𝑢 = 0. Thus 𝑈 ∩ 𝑈⟂
+⊆ {0}.
+(e) Suppose 𝐺 and 𝐻 are subsets of 𝑉 and 𝐺 ⊆ 𝐻. Suppose 𝑣 ∈ 𝐻⟂
+. Then
+⟨𝑢,𝑣⟩ = 0 for every 𝑢 ∈ 𝐻, which implies that ⟨𝑢,𝑣⟩ = 0 for every 𝑢 ∈ 𝐺.
+Hence 𝑣 ∈ 𝐺⟂
+. Thus 𝐻⟂
+⊆ 𝐺⟂
+.
+Recall that if 𝑈 and 𝑊 are subspaces of 𝑉, then 𝑉 is the direct sum of 𝑈 and
+𝑊 (written 𝑉 = 𝑈 ⊕ 𝑊) if each element of 𝑉 can be written in exactly one way
+as a vector in 𝑈 plus a vector in 𝑊 (see 1.41). Furthermore, this happens if and
+only if 𝑉 = 𝑈 + 𝑊 and 𝑈 ∩ 𝑊 = {0} (see 1.46).
+The next result shows that every finite-dimensional subspace of 𝑉 leads to a
+natural direct sum decomposition of 𝑉. See Exercise 16 for an example showing
+that the result below can fail without the hypothesis that the subspace 𝑈 is finite-
+dimensional.
+6.49 direct sum of a subspace and its orthogonal complement
+Suppose 𝑈 is a finite-dimensional subspace of 𝑉. Then
+𝑉 = 𝑈 ⊕ 𝑈⟂
+.
+Proof First we will show that
+𝑉 = 𝑈 + 𝑈⟂
+.
+To do this, suppose that 𝑣 ∈ 𝑉. Let 𝑒1,…,𝑒𝑚 be an orthonormal basis of 𝑈. We
+want to write 𝑣 as the sum of a vector in 𝑈 and a vector orthogonal to 𝑈.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 213
+We have
+6.50 𝑣 = ⟨𝑣,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣,𝑒𝑚⟩𝑒𝑚 ⏟⏟⏟⏟⏟⏟⏟⏟⏟
+𝑢
++𝑣 − ⟨𝑣,𝑒1⟩𝑒1 − ⋯ − ⟨𝑣,𝑒𝑚⟩𝑒𝑚 ⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟
+𝑤
+.
+Let 𝑢 and 𝑤 be defined as in the equation above (as was done in the proof of 6.26).
+Because each 𝑒𝑘 ∈ 𝑈, we see that 𝑢 ∈ 𝑈. Because 𝑒1,…,𝑒𝑚 is an orthonormal
+list, for each 𝑘 = 1,…,𝑚 we have
+⟨𝑤,𝑒𝑘⟩ = ⟨𝑣,𝑒𝑘⟩ − ⟨𝑣,𝑒𝑘⟩
+= 0.
+Thus𝑤isorthogonaltoeveryvectorinspan(𝑒1,…,𝑒𝑚),whichshowsthat𝑤 ∈ 𝑈⟂
+.
+Hence we have written 𝑣 = 𝑢 + 𝑤, where 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+, completing the
+proof that 𝑉 = 𝑈 + 𝑈⟂
+.
+From 6.48(d), we know that 𝑈 ∩ 𝑈⟂
+= {0}. Now equation 𝑉 = 𝑈 + 𝑈⟂
+implies that 𝑉 = 𝑈 ⊕ 𝑈⟂
+(see 1.46).
+Now we can see how to compute dim𝑈⟂
+from dim𝑈.
+6.51 dimension of orthogonal complement
+Suppose 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Then
+dim𝑈⟂
+= dim𝑉 − dim𝑈.
+Proof The formula for dim𝑈⟂
+follows immediately from 6.49 and 3.94.
+The next result is an important consequence of 6.49.
+6.52 orthogonal complement of the orthogonal complement
+Suppose 𝑈 is a finite-dimensional subspace of 𝑉. Then
+𝑈 = (𝑈⟂
+)
+⟂
+.
+Proof First we will show that
+6.53 𝑈 ⊆ (𝑈⟂
+)
+⟂
+.
+To do this, suppose 𝑢 ∈ 𝑈. Then ⟨𝑢,𝑤⟩ = 0 for every 𝑤 ∈ 𝑈⟂
+(by the definition
+of 𝑈⟂
+). Because 𝑢 is orthogonal to every vector in 𝑈⟂
+, we have 𝑢 ∈ (𝑈⟂
+)
+⟂
+,
+completing the proof of 6.53.
+To prove the inclusion in the other direction, suppose 𝑣 ∈ (𝑈⟂
+)
+⟂
+. By 6.49,
+we can write 𝑣 = 𝑢 + 𝑤, where 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+. We have 𝑣 − 𝑢 = 𝑤 ∈ 𝑈⟂
+.
+Because 𝑣 ∈ (𝑈⟂
+)
+⟂
+and 𝑢 ∈ (𝑈⟂
+)
+⟂
+(from 6.53), we have 𝑣 − 𝑢 ∈ (𝑈⟂
+)
+⟂
+. Thus
+𝑣 − 𝑢 ∈ 𝑈⟂
+∩ (𝑈⟂
+)
+⟂
+, which implies that 𝑣 − 𝑢 = 0 [by 6.48(d)], which implies
+that 𝑣 = 𝑢, which implies that 𝑣 ∈ 𝑈. Thus (𝑈⟂
+)
+⟂
+⊆ 𝑈, which along with 6.53
+completes the proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler214 Chapter 6 Inner Product Spaces
+Exercise 16(a) shows that the result
+belowisnottruewithoutthehypothesis
+that 𝑈 is finite-dimensional.
+Suppose 𝑈 is a subspace of 𝑉 and
+we want to show that 𝑈 = 𝑉. In some
+situations, the easiest way to do this is to
+show that the only vector orthogonal to
+𝑈 is 0, and then use the result below. For example, the result below is useful for
+Exercise 4.
+6.54 𝑈⟂
+= {0} ⟺ 𝑈 = 𝑉 (for 𝑈 a finite-dimensional subspace of 𝑉)
+Suppose 𝑈 is a finite-dimensional subspace of 𝑉. Then
+𝑈⟂
+= {0} ⟺ 𝑈 = 𝑉.
+Proof First suppose 𝑈⟂
+= {0}. Then by 6.52, 𝑈 = (𝑈⟂
+)
+⟂
+= {0}⟂
+= 𝑉, as
+desired.
+Conversely, if 𝑈 = 𝑉, then 𝑈⟂
+= 𝑉⟂
+= {0} by 6.48(c).
+We now define an operator 𝑃𝑈 for each finite-dimensional subspace 𝑈 of 𝑉.
+6.55 definition: orthogonal projection, 𝑃𝑈
+Suppose 𝑈 is a finite-dimensional subspace of 𝑉. The orthogonal projection
+of 𝑉 onto 𝑈 is the operator 𝑃𝑈 ∈ ℒ(𝑉) defined as follows: For each 𝑣 ∈ 𝑉,
+write 𝑣 = 𝑢 + 𝑤, where 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+. Then let 𝑃𝑈𝑣 = 𝑢.
+The direct sum decomposition 𝑉 = 𝑈 ⊕ 𝑈⟂
+given by 6.49 shows that each
+𝑣 ∈ 𝑉 can be uniquely written in the form 𝑣 = 𝑢 + 𝑤 with 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+.
+Thus 𝑃𝑈𝑣 is well defined. See the figure that accompanies the proof of 6.61 for
+the picture describing 𝑃𝑈𝑣 that you should keep in mind.
+6.56 example: orthogonal projection onto one-dimensional subspace
+Suppose 𝑢 ∈ 𝑉 with 𝑢 ≠ 0 and 𝑈 is the one-dimensional subspace of 𝑉
+defined by 𝑈 = span(𝑢).
+If 𝑣 ∈ 𝑉, then
+𝑣 =
+⟨𝑣,𝑢⟩
+‖𝑢‖2
+𝑢 + (𝑣 −
+⟨𝑣,𝑢⟩
+‖𝑢‖2
+𝑢),
+where the first term on the right is in span(𝑢) (and thus is in 𝑈) and the second
+term on the right is orthogonal to 𝑢 (and thus is in 𝑈⟂
+). Thus 𝑃𝑈𝑣 equals the first
+term on the right. In other words, we have the formula
+𝑃𝑈𝑣 =
+⟨𝑣,𝑢⟩
+‖𝑢‖2
+𝑢
+for every 𝑣 ∈ 𝑉.
+The formula above becomes 𝑃𝑈𝑢 = 𝑢 if 𝑣 = 𝑢 and becomes 𝑃𝑈𝑣 = 0 if
+𝑣 ∈ {𝑢}⟂
+. These equations are special cases of (b) and (c) in the next result.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 215
+6.57 properties of orthogonal projection 𝑃𝑈
+Suppose 𝑈 is a finite-dimensional subspace of 𝑉. Then
+(a) 𝑃𝑈 ∈ ℒ(𝑉);
+(b) 𝑃𝑈𝑢 = 𝑢 for every 𝑢 ∈ 𝑈;
+(c) 𝑃𝑈𝑤 = 0 for every 𝑤 ∈ 𝑈⟂
+;
+(d) range𝑃𝑈 = 𝑈;
+(e) null𝑃𝑈 = 𝑈⟂
+;
+(f) 𝑣 − 𝑃𝑈𝑣 ∈ 𝑈⟂
+for every 𝑣 ∈ 𝑉;
+(g) 𝑃𝑈
+2
+= 𝑃𝑈;
+(h) ‖𝑃𝑈𝑣‖ ≤ ‖𝑣‖ for every 𝑣 ∈ 𝑉;
+(i) if 𝑒1,…,𝑒𝑚 is an orthonormal basis of 𝑈 and 𝑣 ∈ 𝑉, then
+𝑃𝑈𝑣 = ⟨𝑣,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣,𝑒𝑚⟩𝑒𝑚.
+Proof
+(a) To show that 𝑃𝑈 is a linear map on 𝑉, suppose 𝑣1,𝑣2 ∈ 𝑉. Write
+𝑣1 = 𝑢1 + 𝑤1 and 𝑣2 = 𝑢2 + 𝑤2
+with 𝑢1,𝑢2 ∈ 𝑈 and 𝑤1,𝑤2 ∈ 𝑈⟂
+. Thus 𝑃𝑈𝑣1 = 𝑢1 and 𝑃𝑈𝑣2 = 𝑢2. Now
+𝑣1 + 𝑣2 = (𝑢1 + 𝑢2) + (𝑤1 + 𝑤2),
+where 𝑢1 + 𝑢2 ∈ 𝑈 and 𝑤1 + 𝑤2 ∈ 𝑈⟂
+. Thus
+𝑃𝑈(𝑣1 + 𝑣2) = 𝑢1 + 𝑢2 = 𝑃𝑈𝑣1 + 𝑃𝑈𝑣2.
+Similarly, suppose 𝜆 ∈ 𝐅 and 𝑣 ∈ 𝑉. Write 𝑣 = 𝑢 + 𝑤, where 𝑢 ∈ 𝑈
+and 𝑤 ∈ 𝑈⟂
+. Then 𝜆𝑣 = 𝜆𝑢 + 𝜆𝑤 with 𝜆𝑢 ∈ 𝑈 and 𝜆𝑤 ∈ 𝑈⟂
+. Thus
+𝑃𝑈(𝜆𝑣) = 𝜆𝑢 = 𝜆𝑃𝑈𝑣.
+Hence 𝑃𝑈 is a linear map from 𝑉 to 𝑉.
+(b) Suppose 𝑢 ∈ 𝑈. We can write 𝑢 = 𝑢 + 0, where 𝑢 ∈ 𝑈 and 0 ∈ 𝑈⟂
+. Thus
+𝑃𝑈𝑢 = 𝑢.
+(c) Suppose 𝑤 ∈ 𝑈⟂
+. We can write 𝑤 = 0+𝑤, where 0 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+. Thus
+𝑃𝑈𝑤 = 0.
+(d) The definition of 𝑃𝑈 implies that range𝑃𝑈 ⊆ 𝑈. Furthermore, (b) implies
+that 𝑈 ⊆ range𝑃𝑈. Thus range𝑃𝑈 = 𝑈.
+(e) The inclusion 𝑈⟂
+⊆ null𝑃𝑈 follows from (c). To prove the inclusion in the
+other direction, note that if 𝑣 ∈ null𝑃𝑈 then the decomposition given by 6.49
+must be 𝑣 = 0 + 𝑣, where 0 ∈ 𝑈 and 𝑣 ∈ 𝑈⟂
+. Thus null𝑃𝑈 ⊆ 𝑈⟂
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler216 Chapter 6 Inner Product Spaces
+(f) If 𝑣 ∈ 𝑉 and 𝑣 = 𝑢 + 𝑤 with 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+, then
+𝑣 − 𝑃𝑈𝑣 = 𝑣 − 𝑢 = 𝑤 ∈ 𝑈⟂
+.
+(g) If 𝑣 ∈ 𝑉 and 𝑣 = 𝑢 + 𝑤 with 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+, then
+(𝑃𝑈
+2
+)𝑣 = 𝑃𝑈(𝑃𝑈𝑣) = 𝑃𝑈𝑢 = 𝑢 = 𝑃𝑈𝑣.
+(h) If 𝑣 ∈ 𝑉 and 𝑣 = 𝑢 + 𝑤 with 𝑢 ∈ 𝑈 and 𝑤 ∈ 𝑈⟂
+, then
+‖𝑃𝑈𝑣‖2
+= ‖𝑢‖2
+≤ ‖𝑢‖2
++ ‖𝑤‖2
+= ‖𝑣‖2
+,
+where the last equality comes from the Pythagorean theorem.
+(i) The formula for 𝑃𝑈𝑣 follows from equation 6.50 in the proof of 6.49.
+In the previous section we proved the Riesz representation theorem (6.42),
+whose key part states that every linear functional on a finite-dimensional inner
+product space is given by taking the inner product with some fixed vector. Seeing
+a different proof often provides new insight. Thus we now give a new proof of
+the key part of the Riesz representation theorem using orthogonal complements
+instead of orthonormal bases as in our previous proof.
+The restatement below of the Riesz representation theorem provides an iden-
+tification of 𝑉 with 𝑉′
+. We will prove only the “onto” part of the result below
+because the more routine “one-to-one” part of the result can be proved as in 6.42.
+Intuition behind this new proof: If 𝜑 ∈ 𝑉′
+, 𝑣 ∈ 𝑉, and 𝜑(𝑢) = ⟨𝑢,𝑣⟩ for all
+𝑢 ∈ 𝑉, then 𝑣 ∈ (null𝜑)⟂
+. However, (null𝜑)⟂
+is a one-dimensional subspace
+of 𝑉 (except for the trivial case in which 𝜑 = 0), as follows from 6.51 and 3.21.
+Thus we can obtain 𝑣 by choosing any nonzero element of (null𝜑)⟂
+and then
+multiplying by an appropriate scalar, as is done in the proof below.
+## 6.58 Riesz representation theorem, revisited
+Suppose 𝑉 is finite-dimensional. For each 𝑣 ∈ 𝑉, define 𝜑𝑣 ∈ 𝑉′
+by
+𝜑𝑣(𝑢) = ⟨𝑢,𝑣⟩
+for each 𝑢 ∈ 𝑉. Then 𝑣 ↦ 𝜑𝑣 is a one-to-one function from 𝑉 onto 𝑉′
+.
+Caution: The function 𝑣 ↦ 𝜑𝑣 is a
+linear mapping from 𝑉 to 𝑉′
+if 𝐅 = 𝐑.
+However, this function is not linear if
+𝐅 = 𝐂 because 𝜑𝜆𝑣 = 𝜆𝜑𝑣 if 𝜆 ∈ 𝐂.
+Proof Toshowthat𝑣 ↦ 𝜑𝑣 issurjective,
+suppose 𝜑 ∈ 𝑉′
+. If 𝜑 = 0, then 𝜑 = 𝜑0.
+Thus assume 𝜑 ≠ 0. Hence null𝜑 ≠ 𝑉,
+which implies that (null𝜑)⟂
+≠ {0} (by
+6.49 with 𝑈 = null𝜑).
+Let 𝑤 ∈ (null𝜑)⟂
+be such that 𝑤 ≠ 0. Let
+6.59 𝑣 =
+𝜑(𝑤)
+‖𝑤‖2
+𝑤.
+Then 𝑣 ∈ (null𝜑)⟂
+. Also, 𝑣 ≠ 0 (because 𝑤 ∉ null𝜑).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 217
+Taking the norm of both sides of 6.59 gives
+6.60 ‖𝑣‖ =
+|𝜑(𝑤)|
+‖𝑤‖
+.
+Applying 𝜑 to both sides of 6.59 and then using 6.60, we have
+𝜑(𝑣) =
+|𝜑(𝑤)|2
+‖𝑤‖2
+= ‖𝑣‖2
+.
+Now suppose 𝑢 ∈ 𝑉. Using the equation above, we have
+𝑢 = (𝑢 −
+𝜑(𝑢)
+𝜑(𝑣)
+𝑣) +
+𝜑(𝑢)
+‖𝑣‖2
+𝑣.
+The first term in parentheses above is in null𝜑 and hence is orthogonal to 𝑣. Thus
+taking the inner product of both sides of the equation above with 𝑣 shows that
+⟨𝑢,𝑣⟩ =
+𝜑(𝑢)
+‖𝑣‖2
+⟨𝑣,𝑣⟩ = 𝜑(𝑢).
+Thus 𝜑 = 𝜑𝑣, showing that 𝑣 ↦ 𝜑𝑣 is surjective, as desired.
+See Exercise 13 for yet another proof of the Riesz representation theorem.
+Minimization Problems
+The remarkable simplicity of the solu-
+tion to this minimization problem has
+led to many important applications of
+inner product spaces outside of pure
+mathematics.
+The following problem often arises:
+Given a subspace 𝑈 of 𝑉 and a point
+𝑣 ∈ 𝑉, find a point 𝑢 ∈ 𝑈 such that
+‖𝑣 − 𝑢‖ is as small as possible. The next
+result shows that 𝑢 = 𝑃𝑈𝑣 is the unique
+solution of this minimization problem.
+6.61 minimizing distance to a subspace
+Suppose 𝑈 is a finite-dimensional subspace of 𝑉, 𝑣 ∈ 𝑉, and 𝑢 ∈ 𝑈. Then
+‖𝑣 − 𝑃𝑈𝑣‖ ≤ ‖𝑣 − 𝑢‖.
+Furthermore, the inequality above is an equality if and only if 𝑢 = 𝑃𝑈𝑣.
+Proof We have
+‖𝑣 − 𝑃𝑈𝑣‖2
+≤ ‖𝑣 − 𝑃𝑈𝑣‖2
++ ‖𝑃𝑈𝑣 − 𝑢‖2
+6.62
+= ∥(𝑣 − 𝑃𝑈𝑣) + (𝑃𝑈𝑣 − 𝑢)∥
+2
+= ‖𝑣 − 𝑢‖2
+,
+Linear Algebra Done Right, fourth edition, by Sheldon Axler218 Chapter 6 Inner Product Spaces
+𝑃𝑈𝑣 is the closest
+point in 𝑈 to 𝑣.
+where the first line above holds because 0 ≤ ‖𝑃𝑈𝑣 − 𝑢‖2
+,
+the second line above comes from the Pythagorean the-
+orem [which applies because 𝑣 − 𝑃𝑈𝑣 ∈ 𝑈⟂
+by 6.57(f),
+and 𝑃𝑈𝑣 − 𝑢 ∈ 𝑈], and the third line above holds by
+simple algebra. Taking square roots gives the desired
+inequality.
+The inequality proved above is an equality if and
+only if 6.62 is an equality, which happens if and only if
+‖𝑃𝑈𝑣 − 𝑢‖ = 0, which happens if and only if 𝑢 = 𝑃𝑈𝑣.
+The last result is often combined with the formula
+6.57(i) to compute explicit solutions to minimization
+problems, as in the following example.
+6.63 example: using linear algebra to approximate the sine function
+Suppose we want to find a polynomial 𝑢 with real coefficients and of degree
+at most 5 that approximates the sine function as well as possible on the interval
+[−𝜋,𝜋], in the sense that
+∫
+𝜋
+−𝜋
+∣sin𝑥 − 𝑢(𝑥)∣
+2
+𝑑𝑥
+is as small as possible.
+Let 𝐶[−𝜋,𝜋] denote the real inner product space of continuous real-valued
+functions on [−𝜋,𝜋] with inner product
+6.64 ⟨𝑓,𝑔⟩ = ∫
+𝜋
+−𝜋
+𝑓𝑔.
+Let 𝑣 ∈ 𝐶[−𝜋,𝜋] be the function defined by 𝑣(𝑥) = sin𝑥. Let 𝑈 denote the
+subspace of 𝐶[−𝜋,𝜋] consisting of the polynomials with real coefficients and of
+degree at most 5. Our problem can now be reformulated as follows:
+Find 𝑢 ∈ 𝑈 such that ‖𝑣 − 𝑢‖ is as small as possible.
+A computer that can integrate is useful
+here.
+To compute the solution to our ap-
+proximation problem, first apply the
+Gram–Schmidt procedure (using the in-
+ner product given by 6.64) to the basis 1,𝑥,𝑥2
+,𝑥3
+,𝑥4
+,𝑥5
+of 𝑈, producing an ortho-
+normal basis 𝑒1,𝑒2,𝑒3,𝑒4,𝑒5,𝑒6 of 𝑈. Then, again using the inner product given
+by 6.64, compute 𝑃𝑈𝑣 using 6.57(i) (with 𝑚 = 6). Doing this computation shows
+that 𝑃𝑈𝑣 is the function 𝑢 defined by
+6.65 𝑢(𝑥) = 0.987862𝑥 − 0.155271𝑥3
++ 0.00564312𝑥5
+,
+where the 𝜋’s that appear in the exact answer have been replaced with a good
+decimalapproximation. By6.61,thepolynomial𝑢aboveisthebestapproximation
+to the sine function on [−𝜋,𝜋] using polynomials of degree at most 5 (here “best
+approximation” means in the sense of minimizing ∫
+𝜋
+−𝜋 |sin𝑥 − 𝑢(𝑥)|2
+𝑑𝑥).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 219
+To see how good this approximation is, the next figure shows the graphs of
+both the sine function and our approximation 𝑢 given by 6.65 over the interval
+[−𝜋,𝜋].
+Graphs on [−𝜋,𝜋] of the sine function (red) and its best
+fifth degree polynomial approximation 𝑢 (blue) from 6.65.
+Ourapproximation6.65issoaccuratethatthetwographsarealmostidentical—
+our eyes may see only one graph! Here the red graph is placed almost exactly
+over the blue graph. If you are viewing this on an electronic device, enlarge the
+picture above by 400% near 𝜋 or −𝜋 to see a small gap between the two graphs.
+Another well-known approximation to the sine function by a polynomial of
+degree 5 is given by the Taylor polynomial 𝑝 defined by
+6.66 𝑝(𝑥) = 𝑥 −
+𝑥3
+3!
++
+𝑥5
+5!
+.
+To see how good this approximation is, the next picture shows the graphs of both
+the sine function and the Taylor polynomial 𝑝 over the interval [−𝜋,𝜋].
+Graphs on [−𝜋,𝜋] of the sine function (red)
+and the Taylor polynomial (blue) from 6.66.
+The Taylor polynomial of degree 5 is an excellent approximation to sin𝑥 for
+𝑥 near 0. But the picture above shows that for |𝑥| > 2, the Taylor polynomial is
+not so accurate, especially compared to 6.65. For example, taking 𝑥 = 3, our
+approximation 6.65 estimates sin3 with an error of approximately 0.001, but the
+Taylor polynomial 6.66 estimates sin3 with an error of approximately 0.4. Thus
+at 𝑥 = 3, the error in the Taylor polynomial is hundreds of times larger than the
+error given by 6.65. Linear algebra has helped us discover an approximation to
+the sine function that improves upon what we learned in calculus!
+Linear Algebra Done Right, fourth edition, by Sheldon Axler220 Chapter 6 Inner Product Spaces
+Pseudoinverse
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑤 ∈ 𝑊. Consider the problem of finding 𝑣 ∈ 𝑉 such
+that
+𝑇𝑣 = 𝑤.
+For example, if 𝑉 = 𝐅𝑛
+and 𝑊 = 𝐅𝑚
+, then the equation above could represent a
+system of 𝑚 linear equations in 𝑛 unknowns 𝑣1,…,𝑣𝑛, where 𝑣 = (𝑣1,…,𝑣𝑛).
+If 𝑇 is invertible, then the unique solution to the equation above is 𝑣 = 𝑇−1
+𝑤.
+However, if 𝑇 is not invertible, then for some 𝑤 ∈ 𝑊 there may not exist any
+solutions of the equation above, and for some 𝑤 ∈ 𝑊 there may exist infinitely
+many solutions of the equation above.
+If 𝑇 is not invertible, then we can still try to do as well as possible with the
+equation above. For example, if the equation above has no solutions, then instead
+of solving the equation 𝑇𝑣 − 𝑤 = 0, we can try to find 𝑣 ∈ 𝑉 such that ‖𝑇𝑣 − 𝑤‖
+is as small as possible. As another example, if the equation above has infinitely
+many solutions 𝑣 ∈ 𝑉, then among all those solutions we can try to find one such
+that ‖𝑣‖ is as small as possible.
+The pseudoinverse will provide the tool to solve the equation above as well
+as possible, even when 𝑇 is not invertible. We need the next result to define the
+pseudoinverse.
+In the next two proofs, we will use without further comment the result that if
+𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊), then null𝑇, (null𝑇)⟂
+, and range𝑇 are
+all finite-dimensional.
+6.67 restriction of a linear map to obtain a one-to-one and onto map
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Then 𝑇|(null𝑇)⟂ is an
+injective map of (null𝑇)⟂
+onto range𝑇.
+Proof Suppose that 𝑣 ∈ (null𝑇)⟂
+and 𝑇|(null𝑇)⟂𝑣 = 0. Hence 𝑇𝑣 = 0 and
+thus 𝑣 ∈ (null𝑇) ∩ (null𝑇)⟂
+, which implies that 𝑣 = 0 [by 6.48(d)]. Hence
+null(𝑇|(null𝑇)⟂) = {0}, which implies that 𝑇|(null𝑇)⟂ is injective, as desired.
+Clearly range(𝑇|(null𝑇)⟂) ⊆ range𝑇. To prove the inclusion in the other direc-
+tion, suppose 𝑤 ∈ range𝑇. Hence there exists 𝑣 ∈ 𝑉 such that 𝑤 = 𝑇𝑣. There
+exist 𝑢 ∈ null𝑇 and 𝑥 ∈ (null𝑇)⟂
+such that 𝑣 = 𝑢 + 𝑥 (by 6.49). Now
+𝑇|(null𝑇)⟂𝑥 = 𝑇𝑥 = 𝑇𝑣 − 𝑇𝑢 = 𝑤 − 0 = 𝑤,
+which shows that 𝑤 ∈ range𝑇|(null𝑇)⟂. Hence range𝑇 ⊆ range𝑇|(null𝑇)⟂, com-
+pleting the proof that range𝑇|(null𝑇)⟂ = range𝑇.
+To produce the pseudoinverse notation
+𝑇† in TEX, type T ̂\dagger.
+Now we can define the pseudoinverse
+𝑇† (pronounced “𝑇 dagger”) of a linear
+map 𝑇. In the next definition (and from
+nowon),thinkof𝑇|(null𝑇)⟂ asaninvertiblelinearmapfrom(null𝑇)⟂
+ontorange𝑇,
+as is justified by the result above.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 221
+6.68 definition: pseudoinverse, 𝑇†
+Suppose that 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). The pseudoinverse
+𝑇† ∈ ℒ(𝑊,𝑉) of 𝑇 is the linear map from 𝑊 to 𝑉 defined by
+𝑇†𝑤 = (𝑇|(null𝑇)⟂)−1
+𝑃range𝑇 𝑤
+for each 𝑤 ∈ 𝑊.
+Recall that 𝑃range𝑇 𝑤 = 0 if 𝑤 ∈ (range𝑇)⟂
+and 𝑃range𝑇 𝑤 = 𝑤 if 𝑤 ∈ range𝑇.
+Thus if 𝑤 ∈ (range𝑇)⟂
+, then 𝑇†𝑤 = 0, and if 𝑤 ∈ range𝑇, then 𝑇†𝑤 is the
+unique element of (null𝑇)⟂
+such that 𝑇(𝑇†𝑤) = 𝑤.
+The pseudoinverse behaves much like an inverse, as we will see.
+6.69 algebraic properties of the pseudoinverse
+Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊).
+(a) If 𝑇 is invertible, then 𝑇† = 𝑇−1
+.
+(b) 𝑇𝑇† = 𝑃range𝑇 = the orthogonal projection of 𝑊 onto range𝑇.
+(c) 𝑇†𝑇 = 𝑃(null𝑇)⟂ = the orthogonal projection of 𝑉 onto (null𝑇)⟂
+.
+Proof
+(a) Suppose 𝑇 is invertible. Then (null𝑇)⟂
+= 𝑉 and range𝑇 = 𝑊. Thus
+𝑇|(null𝑇)⟂ = 𝑇 and 𝑃range𝑇 is the identity operator on 𝑊. Hence 𝑇† = 𝑇−1
+.
+(b) Suppose 𝑤 ∈ range𝑇. Thus
+𝑇𝑇†𝑤 = 𝑇(𝑇|(null𝑇)⟂)−1
+𝑤 = 𝑤 = 𝑃range𝑇 𝑤.
+If 𝑤 ∈ (range𝑇)⟂
+, then 𝑇†𝑤 = 0. Hence 𝑇𝑇†𝑤 = 0 = 𝑃range𝑇 𝑤. Thus 𝑇𝑇†
+and 𝑃range𝑇 agree on range𝑇 and on (range𝑇)⟂
+. Hence these two linear maps
+are equal (by 6.49).
+(c) Suppose 𝑣 ∈ (null𝑇)⟂
+. Because 𝑇𝑣 ∈ range𝑇, the definition of 𝑇† shows
+that
+𝑇†(𝑇𝑣) = (𝑇|(null𝑇)⟂)−1
+(𝑇𝑣) = 𝑣 = 𝑃(null𝑇)⟂𝑣.
+If 𝑣 ∈ null𝑇, then 𝑇†𝑇𝑣 = 0 = 𝑃(null𝑇)⟂𝑣. Thus 𝑇†𝑇 and 𝑃(null𝑇)⟂ agree on
+(null𝑇)⟂
+and on null𝑇. Hence these two linear maps are equal (by 6.49).
+The pseudoinverse is also called the
+Moore–Penrose inverse.
+Suppose that 𝑇 ∈ ℒ(𝑉,𝑊). If 𝑇 is
+surjective, then 𝑇𝑇† is the identity opera-
+tor on 𝑊, as follows from (b) in the result
+above. If 𝑇 is injective, then 𝑇†𝑇 is the identity operator on 𝑉, as follows from
+(c) in the result above. For additional algebraic properties of the pseudoinverse,
+see Exercises 19–23.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler222 Chapter 6 Inner Product Spaces
+For 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑤 ∈ 𝑊, we now return to the problem of finding 𝑣 ∈ 𝑉
+that solves the equation
+𝑇𝑣 = 𝑤.
+As we noted earlier, if 𝑇 is invertible, then 𝑣 = 𝑇−1
+𝑤 is the unique solution, but
+if 𝑇 is not invertible, then 𝑇−1
+is not defined. However, the pseudoinverse 𝑇† is
+defined. Taking 𝑣 = 𝑇†𝑤 makes 𝑇𝑣 as close to 𝑤 as possible, as shown by (a) of
+the next result. Thus the pseudoinverse provides what is called a best fit to the
+equation above.
+Among all vectors 𝑣 ∈ 𝑉 that make 𝑇𝑣 as close as possible to 𝑤, the vector
+𝑇†𝑤 has the smallest norm, as shown by combining (b) in the next result with the
+condition for equality in (a).
+6.70 pseudoinverse provides best approximate solution or best solution
+Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉,𝑊), and 𝑤 ∈ 𝑊.
+(a) If 𝑣 ∈ 𝑉, then
+∥𝑇(𝑇†𝑤) − 𝑤∥ ≤ ‖𝑇𝑣 − 𝑤‖,
+with equality if and only if 𝑣 ∈ 𝑇†𝑤 + null𝑇.
+(b) If 𝑣 ∈ 𝑇†𝑤 + null𝑇, then
+∥𝑇†𝑤∥ ≤ ‖𝑣‖,
+with equality if and only if 𝑣 = 𝑇†𝑤.
+Proof
+(a) Suppose 𝑣 ∈ 𝑉. Then
+𝑇𝑣 − 𝑤 = (𝑇𝑣 − 𝑇𝑇†𝑤) + (𝑇𝑇†𝑤 − 𝑤).
+The first term in parentheses above is in range𝑇. Because the operator 𝑇𝑇†
+is the orthogonal projection of 𝑊 onto range𝑇 [by 6.69(b)], the second term
+in parentheses above is in (range𝑇)⟂
+[see 6.57(f)].
+Thus the Pythagorean theorem implies the desired inequality that the norm of
+the second term in parentheses above is less than or equal to ‖𝑇𝑣 − 𝑤‖, with
+equality if and only if the first term in parentheses above equals 0. Hence
+we have equality if and only if 𝑣 − 𝑇†𝑤 ∈ null𝑇, which is equivalent to the
+statement that 𝑣 ∈ 𝑇†𝑤 + null𝑇, completing the proof of (a).
+(b) Suppose 𝑣 ∈ 𝑇†𝑤 + null𝑇. Hence 𝑣 − 𝑇†𝑤 ∈ null𝑇. Now
+𝑣 = (𝑣 − 𝑇†𝑤) + 𝑇†𝑤.
+The definition of 𝑇† implies that 𝑇†𝑤 ∈ (null𝑇)⟂
+. Thus the Pythagorean
+theorem implies that ∥𝑇†𝑤∥ ≤ ‖𝑣‖, with equality if and only if 𝑣 = 𝑇†𝑤.
+A formula for 𝑇† will be given in the next chapter (see 7.78).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 223
+6.71 example: pseudoinverse of a linear map from 𝐅4
+to 𝐅3
+Suppose 𝑇 ∈ ℒ(𝐅4
+,𝐅3
+) is defined by
+𝑇(𝑎,𝑏,𝑐,𝑑) = (𝑎 + 𝑏 + 𝑐,2𝑐 + 𝑑,0).
+This linear map is neither injective nor surjective, but we can compute its pseudo-
+inverse. To do this, first note that range𝑇 = {(𝑥,𝑦,0) ∶ 𝑥,𝑦 ∈ 𝐅}. Thus
+𝑃range𝑇(𝑥,𝑦,𝑧) = (𝑥,𝑦,0)
+for each (𝑥,𝑦,𝑧) ∈ 𝐅3
+. Also,
+null𝑇 = {(𝑎,𝑏,𝑐,𝑑) ∈ 𝐅4
+∶ 𝑎 + 𝑏 + 𝑐 = 0 and 2𝑐 + 𝑑 = 0}.
+The list (−1,1,0,0),(−1,0,1,−2) of two vectors in null𝑇 spans null𝑇 because
+if (𝑎,𝑏,𝑐,𝑑) ∈ null𝑇 then
+(𝑎,𝑏,𝑐,𝑑) = 𝑏(−1,1,0,0) + 𝑐(−1,0,1,−2).
+Because the list (−1,1,0,0),(−1,0,1,−2) is linearly independent, this list is a
+basis of null𝑇.
+Now suppose (𝑥,𝑦,𝑧) ∈ 𝐅3
+. Then
+6.72 𝑇†(𝑥,𝑦,𝑧) = (𝑇|(null𝑇)⟂)−1
+𝑃range𝑇(𝑥,𝑦,𝑧) = (𝑇|(null𝑇)⟂)−1
+(𝑥,𝑦,0).
+The right side of the equation above is the vector (𝑎,𝑏,𝑐,𝑑) ∈ 𝐅4
+such that
+𝑇(𝑎,𝑏,𝑐,𝑑) = (𝑥,𝑦,0) and (𝑎,𝑏,𝑐,𝑑) ∈ (null𝑇)⟂
+. In other words, 𝑎, 𝑏, 𝑐, 𝑑 must
+satisfy the following equations:
+𝑎 + 𝑏 + 𝑐 = 𝑥
+2𝑐 + 𝑑 = 𝑦
+−𝑎 + 𝑏 = 0
+−𝑎 + 𝑐 − 2𝑑 = 0,
+where the first two equations are equivalent to the equation 𝑇(𝑎,𝑏,𝑐,𝑑) = (𝑥,𝑦,0)
+and the last two equations come from the condition for (𝑎,𝑏,𝑐,𝑑) to be orthogonal
+to each of the basis vectors (−1,1,0,0),(−1,0,1,−2) in this basis of null𝑇.
+Thinking of 𝑥 and 𝑦 as constants and 𝑎, 𝑏, 𝑐, 𝑑 as unknowns, we can solve the
+system above of four equations in four unknowns, getting
+𝑎 = 1
+11
+(5𝑥 − 2𝑦), 𝑏 = 1
+11
+(5𝑥 − 2𝑦), 𝑐 = 1
+11
+(𝑥 + 4𝑦), 𝑑 = 1
+11
+(−2𝑥 + 3𝑦).
+Hence 6.72 tells us that
+𝑇†(𝑥,𝑦,𝑧) = 1
+11
+(5𝑥 − 2𝑦,5𝑥 − 2𝑦,𝑥 + 4𝑦,−2𝑥 + 3𝑦).
+The formula above for 𝑇† shows that 𝑇𝑇†(𝑥,𝑦,𝑧) = (𝑥,𝑦,0) for all (𝑥,𝑦,𝑧) ∈ 𝐅3
+,
+which illustrates the equation 𝑇𝑇† = 𝑃range𝑇 from 6.69(b).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler224 Chapter 6 Inner Product Spaces
+Exercises 6C
+1 Suppose 𝑣1,…,𝑣𝑚 ∈ 𝑉. Prove that
+{𝑣1,…,𝑣𝑚}⟂
+= (span(𝑣1,…,𝑣𝑚))
+⟂
+.
+2 Suppose 𝑈 is a subspace of 𝑉 with basis 𝑢1,…,𝑢𝑚 and
+𝑢1,…,𝑢𝑚,𝑣1,…,𝑣𝑛
+is a basis of 𝑉. Prove that if the Gram–Schmidt procedure is applied to the
+basis of 𝑉 above, producing a list 𝑒1,…,𝑒𝑚, 𝑓1,…, 𝑓𝑛, then 𝑒1,…,𝑒𝑚 is an
+orthonormal basis of 𝑈 and 𝑓1,…, 𝑓𝑛 is an orthonormal basis of 𝑈⟂
+.
+3 Suppose 𝑈 is the subspace of 𝐑4
+defined by
+𝑈 = span((1,2,3,−4),(−5,4,3,2)).
+Find an orthonormal basis of 𝑈 and an orthonormal basis of 𝑈⟂
+.
+4 Suppose 𝑒1,…,𝑒𝑛 is a list of vectors in 𝑉 with ‖𝑒𝑘‖ = 1 for each 𝑘 = 1,…,𝑛
+and
+‖𝑣‖2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑛⟩∣
+2
+for all 𝑣 ∈ 𝑉. Prove that 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉.
+This exercise provides a converse to 6.30(b).
+## 5 Suppose that 𝑉 is finite-dimensional and 𝑈 is a subspace of 𝑉. Show that
+𝑃𝑈⟂ = 𝐼 − 𝑃𝑈, where 𝐼 is the identity operator on 𝑉.
+6 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Show that
+𝑇 = 𝑇𝑃(null𝑇)⟂ = 𝑃range𝑇𝑇.
+## 7 Suppose that 𝑋 and 𝑌 are finite-dimensional subspaces of 𝑉. Prove that
+𝑃𝑋𝑃𝑌 = 0 if and only if ⟨𝑥,𝑦⟩ = 0 for all 𝑥 ∈ 𝑋 and all 𝑦 ∈ 𝑌.
+## 8 Suppose 𝑈 is a finite-dimensional subspace of 𝑉 and 𝑣 ∈ 𝑉. Define a linear
+functional 𝜑∶ 𝑈 → 𝐅 by
+𝜑(𝑢) = ⟨𝑢,𝑣⟩
+for all 𝑢 ∈ 𝑈. By the Riesz representation theorem (6.42) as applied to the
+inner product space 𝑈, there exists a unique vector 𝑤 ∈ 𝑈 such that
+𝜑(𝑢) = ⟨𝑢,𝑤⟩
+for all 𝑢 ∈ 𝑈. Show that 𝑤 = 𝑃𝑈𝑣.
+9 Suppose 𝑉 is finite-dimensional. Suppose 𝑃 ∈ ℒ(𝑉) is such that 𝑃2
+= 𝑃
+and every vector in null𝑃 is orthogonal to every vector in range𝑃. Prove
+that there exists a subspace 𝑈 of 𝑉 such that 𝑃 = 𝑃𝑈.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 6C Orthogonal Complements and Minimization Problems 225
+10 Suppose 𝑉 is finite-dimensional and 𝑃 ∈ ℒ(𝑉) is such that 𝑃2
+= 𝑃 and
+‖𝑃𝑣‖ ≤ ‖𝑣‖
+for every 𝑣 ∈ 𝑉. Prove that there exists a subspace 𝑈 of 𝑉 such that 𝑃 = 𝑃𝑈.
+## 11 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑈 is a finite-dimensional subspace of 𝑉. Prove that
+𝑈 is invariant under 𝑇 ⟺ 𝑃𝑈𝑇𝑃𝑈 = 𝑇𝑃𝑈.
+## 12 Suppose 𝑉 is finite-dimensional, 𝑇 ∈ ℒ(𝑉), and 𝑈 is a subspace of 𝑉.
+Prove that
+𝑈 and 𝑈⟂
+are both invariant under 𝑇 ⟺ 𝑃𝑈𝑇 = 𝑇𝑃𝑈.
+## 13 Suppose 𝐅 = 𝐑 and 𝑉 is finite-dimensional. For each 𝑣 ∈ 𝑉, let 𝜑𝑣 denote
+the linear functional on 𝑉 defined by
+𝜑𝑣(𝑢) = ⟨𝑢,𝑣⟩
+for all 𝑢 ∈ 𝑉.
+(a) Show that 𝑣 ↦ 𝜑𝑣 is an injective linear map from 𝑉 to 𝑉′
+.
+(b) Use (a) and a dimension-counting argument to show that 𝑣 ↦ 𝜑𝑣 is an
+isomorphism from 𝑉 onto 𝑉′
+.
+The purpose of this exercise is to give an alternative proof of the Riesz
+representation theorem (6.42 and 6.58) when 𝐅 = 𝐑. Thus you should not
+use the Riesz representation theorem as a tool in your solution.
+14 Suppose that 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉. Explain why the dual
+basis (see 3.112) of 𝑒1,…,𝑒𝑛 is 𝑒1,…,𝑒𝑛 under the identification of 𝑉′
+with
+𝑉 provided by the Riesz representation theorem (6.58).
+15 In 𝐑4
+, let
+𝑈 = span((1,1,0,0),(1,1,1,2)).
+Find 𝑢 ∈ 𝑈 such that ‖𝑢 − (1,2,3,4)‖ is as small as possible.
+16 Suppose 𝐶[−1,1] is the vector space of continuous real-valued functions
+on the interval [−1,1] with inner product given by
+⟨𝑓,𝑔⟩ = ∫
+1
+−1
+𝑓𝑔
+for all 𝑓,𝑔 ∈ 𝐶[−1,1]. Let 𝑈 be the subspace of 𝐶[−1,1] defined by
+𝑈 = {𝑓 ∈ 𝐶[−1,1] ∶ 𝑓(0) = 0}.
+(a) Show that 𝑈⟂
+= {0}.
+(b) Show that 6.49 and 6.52 do not hold without the finite-dimensional
+hypothesis.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler226 Chapter 6 Inner Product Spaces
+17 Find 𝑝 ∈ 𝒫3(𝐑) such that 𝑝(0) = 0, 𝑝′
+(0) = 0, and ∫
+1
+0
+∣2 + 3𝑥 − 𝑝(𝑥)∣
+2
+𝑑𝑥 is
+as small as possible.
+18 Find 𝑝 ∈ 𝒫5(𝐑) that makes ∫
+𝜋
+−𝜋
+∣sin𝑥 − 𝑝(𝑥)∣
+2
+𝑑𝑥 as small as possible.
+The polynomial 6.65 is an excellent approximation to the answer to this
+exercise, but here you are asked to find the exact solution, which involves
+powers of 𝜋. A computer that can perform symbolic integration should
+help.
+## 19 Suppose 𝑉 is finite-dimensional and 𝑃 ∈ ℒ(𝑉) is an orthogonal projection
+of 𝑉 onto some subspace of 𝑉. Prove that 𝑃† = 𝑃.
+20 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Show that
+null𝑇† = (range𝑇)⟂
+and range𝑇† = (null𝑇)⟂
+.
+21 Suppose 𝑇 ∈ ℒ(𝐅3
+,𝐅2
+) is defined by
+𝑇(𝑎,𝑏,𝑐) = (𝑎 + 𝑏 + 𝑐,2𝑏 + 3𝑐).
+(a) For (𝑥,𝑦) ∈ 𝐅2
+, find a formula for 𝑇†(𝑥,𝑦).
+(b) Verify that the equation 𝑇𝑇† = 𝑃range𝑇 from 6.69(b) holds with the
+formula for 𝑇† obtained in (a).
+(c) Verify that the equation 𝑇†𝑇 = 𝑃(null𝑇)⟂ from 6.69(c) holds with the
+formula for 𝑇† obtained in (a).
+22 Suppose 𝑉 is finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+𝑇𝑇†𝑇 = 𝑇 and 𝑇†𝑇𝑇† = 𝑇†.
+Both formulas above clearly hold if 𝑇 is invertible because in that case we
+can replace 𝑇† with 𝑇−1
+.
+23 Suppose 𝑉 and 𝑊 are finite-dimensional and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+(𝑇†)
+†
+= 𝑇.
+The equation above is analogous to the equation (𝑇−1
+)
+−1
+= 𝑇 that holds if
+𝑇 is invertible.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 7
+Operators on Inner Product Spaces
+The deepest results related to inner product spaces deal with the subject to which
+we now turn—linear maps and operators on inner product spaces. As we will see,
+good theorems can be proved by exploiting properties of the adjoint.
+The hugely important spectral theorem will provide a complete description
+of self-adjoint operators on real inner product spaces and of normal operators
+on complex inner product spaces. We will then use the spectral theorem to help
+understand positive operators and unitary operators, which will lead to unitary
+matrices and matrix factorizations. The spectral theorem will also lead to the
+popular singular value decomposition, which will lead to the polar decomposition.
+The most important results in the rest of this book are valid only in finite
+dimensions. Thus from now on we assume that 𝑉 and 𝑊 are finite-dimensional.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑉 and 𝑊 are nonzero finite-dimensional inner product spaces over 𝐅.
+Petar Milošević CC BY-SA
+Market square in Lviv, a city that has had several names and has been in several
+countries because of changing international borders. From 1772 until 1918, the city was
+in Austria and was called Lemberg. Between World War I and World War II, the city was
+in Poland and was called Lwów. During this time, mathematicians in Lwów, particularly
+Stefan Banach (1892–1945) and his colleagues, developed the basic results of modern
+functional analysis, using tools of analysis to study infinite-dimensional vector spaces.
+Since the end of World War II, Lviv has been in Ukraine, which was part of the
+Soviet Union until Ukraine became an independent country in 1991.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+227228 Chapter 7 Operators on Inner Product Spaces
+7A Self-Adjoint and Normal Operators
+Adjoints
+7.1 definition: adjoint, 𝑇∗
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). The adjoint of 𝑇 is the function 𝑇∗∶ 𝑊 → 𝑉 such
+that
+⟨𝑇𝑣,𝑤⟩ = ⟨𝑣,𝑇∗𝑤⟩
+for every 𝑣 ∈ 𝑉 and every 𝑤 ∈ 𝑊.
+Theword adjointhasanothermeaning
+in linear algebra. In case you en-
+counter the second meaning elsewhere,
+be warned that the two meanings for
+adjoint are unrelated to each other.
+To see why the definition above
+makes sense, suppose 𝑇 ∈ ℒ(𝑉,𝑊). Fix
+𝑤 ∈ 𝑊. Consider the linear functional
+𝑣 ↦ ⟨𝑇𝑣,𝑤⟩
+on 𝑉 that maps 𝑣 ∈ 𝑉 to ⟨𝑇𝑣,𝑤⟩; this
+linear functional depends on 𝑇 and 𝑤. By the Riesz representation theorem (6.42),
+there exists a unique vector in 𝑉 such that this linear functional is given by taking
+the inner product with it. We call this unique vector 𝑇∗𝑤. In other words, 𝑇∗𝑤 is
+the unique vector in 𝑉 such that
+⟨𝑇𝑣,𝑤⟩ = ⟨𝑣,𝑇∗𝑤⟩
+for every 𝑣 ∈ 𝑉.
+In the equation above, the inner product on the left takes place in 𝑊 and the
+inner product on the right takes place in 𝑉. However, we use the same notation
+⟨⋅,⋅⟩ for both inner products.
+7.2 example: adjoint of a linear map from 𝐑3
+to 𝐑2
+Define 𝑇∶ 𝐑3
+→ 𝐑2
+by
+𝑇(𝑥1,𝑥2,𝑥3) = (𝑥2 + 3𝑥3,2𝑥1).
+To compute 𝑇∗, suppose (𝑥1,𝑥2,𝑥3) ∈ 𝐑3
+and (𝑦1,𝑦2) ∈ 𝐑2
+. Then
+⟨𝑇(𝑥1,𝑥2,𝑥3),(𝑦1,𝑦2)⟩ = ⟨(𝑥2 + 3𝑥3,2𝑥1),(𝑦1,𝑦2)⟩
+= 𝑥2𝑦1 + 3𝑥3𝑦1 + 2𝑥1𝑦2
+= ⟨(𝑥1,𝑥2,𝑥3),(2𝑦2,𝑦1,3𝑦1)⟩.
+The equation above and the definition of the adjoint imply that
+𝑇∗(𝑦1,𝑦2) = (2𝑦2,𝑦1,3𝑦1).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 229
+7.3 example: adjoint of a linear map with range of dimension at most 1
+Fix 𝑢 ∈ 𝑉 and 𝑥 ∈ 𝑊. Define 𝑇 ∈ ℒ(𝑉,𝑊) by
+𝑇𝑣 = ⟨𝑣,𝑢⟩𝑥
+for each 𝑣 ∈ 𝑉. To compute 𝑇∗, suppose 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊. Then
+⟨𝑇𝑣,𝑤⟩ = ⟨⟨𝑣,𝑢⟩𝑥,𝑤⟩
+= ⟨𝑣,𝑢⟩⟨𝑥,𝑤⟩
+= ⟨𝑣,⟨𝑤,𝑥⟩𝑢⟩.
+Thus
+𝑇∗𝑤 = ⟨𝑤,𝑥⟩𝑢.
+The two examples above and the proof
+below use a common technique for
+computing 𝑇∗: start with a formula
+for ⟨𝑇𝑣,𝑤⟩ then manipulate it to get
+just 𝑣 in the first slot; the entry in the
+second slot will then be 𝑇∗𝑤.
+In the two examples above, 𝑇∗ turned
+out to be not just a function from 𝑊 to
+𝑉 but a linear map from 𝑊 to 𝑉. This
+behavior is true in general, as shown by
+the next result.
+7.4 adjoint of a linear map is a linear map
+If 𝑇 ∈ ℒ(𝑉,𝑊), then 𝑇∗ ∈ ℒ(𝑊,𝑉).
+Proof Suppose 𝑇 ∈ ℒ(𝑉,𝑊). If 𝑣 ∈ 𝑉 and 𝑤1,𝑤2 ∈ 𝑊, then
+⟨𝑇𝑣,𝑤1 + 𝑤2⟩ = ⟨𝑇𝑣,𝑤1⟩ + ⟨𝑇𝑣,𝑤2⟩
+= ⟨𝑣,𝑇∗𝑤1⟩ + ⟨𝑣,𝑇∗𝑤2⟩
+= ⟨𝑣,𝑇∗𝑤1 + 𝑇∗𝑤2⟩.
+The equation above shows that
+𝑇∗(𝑤1 + 𝑤2) = 𝑇∗𝑤1 + 𝑇∗𝑤2.
+If 𝑣 ∈ 𝑉, 𝜆 ∈ 𝐅, and 𝑤 ∈ 𝑊, then
+⟨𝑇𝑣, 𝜆𝑤⟩ = 𝜆⟨𝑇𝑣,𝑤⟩
+= 𝜆⟨𝑣,𝑇∗𝑤⟩
+= ⟨𝑣, 𝜆𝑇∗𝑤⟩.
+The equation above shows that
+𝑇∗(𝜆𝑤) = 𝜆𝑇∗𝑤.
+Thus 𝑇∗ is a linear map, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler230 Chapter 7 Operators on Inner Product Spaces
+7.5 properties of the adjoint
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) (𝑆 + 𝑇)∗ = 𝑆∗ + 𝑇∗ for all 𝑆 ∈ ℒ(𝑉,𝑊);
+(b) (𝜆𝑇)∗ = 𝜆𝑇∗ for all 𝜆 ∈ 𝐅;
+(c) (𝑇∗)
+∗
+= 𝑇;
+(d) (𝑆𝑇)∗ = 𝑇∗𝑆∗ for all 𝑆 ∈ ℒ(𝑊,𝑈) (here 𝑈 is a finite-dimensional inner
+product space over 𝐅);
+(e) 𝐼∗ = 𝐼, where 𝐼 is the identity operator on 𝑉;
+(f) if 𝑇 is invertible, then 𝑇∗ is invertible and (𝑇∗)
+−1
+= (𝑇−1
+)
+∗
+.
+Proof Suppose 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊.
+(a) If 𝑆 ∈ ℒ(𝑉,𝑊), then
+⟨(𝑆 + 𝑇)𝑣,𝑤⟩ = ⟨𝑆𝑣,𝑤⟩ + ⟨𝑇𝑣,𝑤⟩
+= ⟨𝑣,𝑆∗𝑤⟩ + ⟨𝑣,𝑇∗𝑤⟩
+= ⟨𝑣,𝑆∗𝑤 + 𝑇∗𝑤⟩.
+Thus (𝑆 + 𝑇)∗𝑤 = 𝑆∗𝑤 + 𝑇∗𝑤, as desired.
+(b) If 𝜆 ∈ 𝐅, then
+⟨(𝜆𝑇)𝑣,𝑤⟩ = 𝜆⟨𝑇𝑣,𝑤⟩ = 𝜆⟨𝑣,𝑇∗𝑤⟩ = ⟨𝑣, 𝜆𝑇∗𝑤⟩.
+Thus (𝜆𝑇)∗𝑤 = 𝜆𝑇∗𝑤, as desired.
+(c) We have
+⟨𝑇∗𝑤,𝑣⟩ = ⟨𝑣,𝑇∗𝑤⟩ = ⟨𝑇𝑣,𝑤⟩ = ⟨𝑤,𝑇𝑣⟩.
+Thus (𝑇∗)
+∗
+𝑣 = 𝑇𝑣, as desired.
+(d) Suppose 𝑆 ∈ ℒ(𝑊,𝑈) and 𝑢 ∈ 𝑈. Then
+⟨(𝑆𝑇)𝑣,𝑢⟩ = ⟨𝑆(𝑇𝑣),𝑢⟩ = ⟨𝑇𝑣,𝑆∗𝑢⟩ = ⟨𝑣,𝑇∗(𝑆∗𝑢)⟩.
+Thus (𝑆𝑇)∗𝑢 = 𝑇∗(𝑆∗𝑢), as desired.
+(e) Suppose 𝑢 ∈ 𝑉. Then
+⟨𝐼𝑢,𝑣⟩ = ⟨𝑢,𝑣⟩.
+Thus 𝐼∗𝑣 = 𝑣, as desired.
+(f) Suppose 𝑇 is invertible. Take adjoints of both sides of the equation 𝑇−1
+𝑇 = 𝐼,
+then use (d) and (e) to show that 𝑇∗(𝑇−1
+)
+∗
+= 𝐼. Similarly, the equation
+𝑇𝑇−1
+= 𝐼 implies (𝑇−1
+)
+∗
+𝑇∗ = 𝐼. Thus (𝑇−1
+)
+∗
+is the inverse of 𝑇∗, as
+desired.
+If 𝐅 = 𝐑, then the map 𝑇 ↦ 𝑇∗ is a linear map from ℒ(𝑉,𝑊) to ℒ(𝑊,𝑉),
+as follows from (a) and (b) of the result above. However, if 𝐅 = 𝐂, then this map
+is not linear because of the complex conjugate that appears in (b).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 231
+The next result shows the relationship between the null space and the range of
+a linear map and its adjoint.
+7.6 null space and range of 𝑇∗
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) null𝑇∗ = (range𝑇)⟂
+;
+(b) range𝑇∗ = (null𝑇)⟂
+;
+(c) null𝑇 = (range𝑇∗)
+⟂
+;
+(d) range𝑇 = (null𝑇∗)
+⟂
+.
+Proof We begin by proving (a). Let 𝑤 ∈ 𝑊. Then
+𝑤 ∈ null𝑇∗ ⟺ 𝑇∗𝑤 = 0
+⟺ ⟨𝑣,𝑇∗𝑤⟩ = 0 for all 𝑣 ∈ 𝑉
+⟺ ⟨𝑇𝑣,𝑤⟩ = 0 for all 𝑣 ∈ 𝑉
+⟺ 𝑤 ∈ (range𝑇)⟂
+.
+Thus null𝑇∗ = (range𝑇)⟂
+, proving (a).
+If we take the orthogonal complement of both sides of (a), we get (d), where
+we have used 6.52. Replacing 𝑇 with 𝑇∗ in (a) gives (c), where we have used
+7.5(c). Finally, replacing 𝑇 with 𝑇∗ in (d) gives (b).
+As we will soon see, the next definition is intimately connected to the matrix
+of the adjoint of a linear map.
+7.7 definition: conjugate transpose, 𝐴∗
+The conjugate transpose of an 𝑚-by-𝑛 matrix 𝐴 is the 𝑛-by-𝑚 matrix 𝐴∗
+obtained by interchanging the rows and columns and then taking the complex
+conjugate of each entry. In other words, if 𝑗 ∈ {1,…,𝑛} and 𝑘 ∈ {1,…,𝑚},
+then
+(𝐴∗)𝑗,𝑘 = 𝐴𝑘,𝑗.
+7.8 example: conjugate transpose of a 2-by-3 matrix
+If a matrix 𝐴 has only real entries,
+then 𝐴∗ = 𝐴t
+, where 𝐴t
+denotes the
+transpose of 𝐴 (the matrix obtained
+by interchanging the rows and the
+columns).
+The conjugate transpose of the 2-by-3
+matrix (
+2 3 + 4𝑖 7
+6 5 8𝑖
+) is the 3-by-2
+matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+2 6
+3 − 4𝑖 5
+7 −8𝑖
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler232 Chapter 7 Operators on Inner Product Spaces
+The adjoint of a linear map does not
+depend on a choice of basis. Thus
+we frequently emphasize adjoints of
+linear maps instead of transposes or
+conjugate transposes of matrices.
+Thenextresultshowshowtocompute
+the matrix of 𝑇∗ from the matrix of 𝑇.
+Caution: With respect to nonorthonor-
+mal bases, the matrix of 𝑇∗ does not nec-
+essarily equal the conjugate transpose of
+the matrix of 𝑇.
+7.9 matrix of 𝑇∗ equals conjugate transpose of matrix of 𝑇
+Let 𝑇 ∈ ℒ(𝑉,𝑊). Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and
+𝑓1,…, 𝑓𝑚 is an orthonormal basis of 𝑊. Then ℳ(𝑇∗,(𝑓1,…, 𝑓𝑚),(𝑒1,…,𝑒𝑛))
+is the conjugate transpose of ℳ(𝑇,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑚)). In other words,
+ℳ(𝑇∗) = (ℳ(𝑇))
+∗
+.
+Proof In this proof, we will write ℳ(𝑇) and ℳ(𝑇∗) instead of the longer
+expressions ℳ(𝑇,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑚)) and ℳ(𝑇∗,(𝑓1,…, 𝑓𝑚),(𝑒1,…,𝑒𝑛)).
+Recall that we obtain the 𝑘th
+column of ℳ(𝑇) by writing 𝑇𝑒𝑘 as a linear
+combination of the 𝑓𝑗’s; the scalars used in this linear combination then become
+the 𝑘th
+column of ℳ(𝑇). Because 𝑓1,…, 𝑓𝑚 is an orthonormal basis of 𝑊, we
+know how to write 𝑇𝑒𝑘 as a linear combination of the 𝑓𝑗’s [see 6.30(a)]:
+𝑇𝑒𝑘 = ⟨𝑇𝑒𝑘, 𝑓1⟩𝑓1 + ⋯ + ⟨𝑇𝑒𝑘, 𝑓𝑚⟩𝑓𝑚.
+Thus
+the entry in row 𝑗, column 𝑘, of ℳ(𝑇) is ⟨𝑇𝑒𝑘, 𝑓𝑗⟩.
+In the statement above, replace 𝑇 with 𝑇∗ and interchange 𝑒1,…,𝑒𝑛 and
+𝑓1,…, 𝑓𝑚. This shows that the entry in row 𝑗, column 𝑘, of ℳ(𝑇∗) is ⟨𝑇∗𝑓𝑘,𝑒𝑗⟩,
+whichequals⟨𝑓𝑘,𝑇𝑒𝑗⟩, whichequals⟨𝑇𝑒𝑗, 𝑓𝑘⟩, whichequalsthecomplexconjugate
+of the entry in row 𝑘, column 𝑗, of ℳ(𝑇). Thus ℳ(𝑇∗) = (ℳ(𝑇))
+∗
+.
+TheRieszrepresentationtheoremasstatedin6.58providesanidentificationof
+𝑉 withitsdualspace𝑉′
+definedin3.110. Underthisidentification, theorthogonal
+complement 𝑈⟂
+of a subset 𝑈 ⊆ 𝑉 corresponds to the annihilator 𝑈0
+of 𝑈. If 𝑈
+is a subspace of 𝑉, then the formulas for the dimensions of 𝑈⟂
+and 𝑈0
+become
+identical under this identification—see 3.125 and 6.51.
+Because orthogonal complements and
+adjoints are easier to deal with than
+annihilators and dual maps, there is
+no need to work with annihilators
+and dual maps in the context of inner
+product spaces.
+Suppose 𝑇∶ 𝑉 → 𝑊 is a linear map.
+Under the identification of 𝑉 with 𝑉′
+and
+the identification of 𝑊 with 𝑊′
+, the ad-
+joint map 𝑇∗∶ 𝑊 → 𝑉 corresponds to
+the dual map 𝑇′
+∶ 𝑊′
+→ 𝑉′
+defined in
+3.118, as Exercise 32 asks you to verify.
+Underthisidentification, theformulasfor
+null𝑇∗ and range𝑇∗ [7.6(a) and (b)] then become identical to the formulas for
+null𝑇′
+and range𝑇′
+[3.128(a) and 3.130(b)]. Furthermore, the theorem about the
+matrix of 𝑇∗ (7.9) is analogous to the theorem about the matrix of 𝑇′
+(3.132).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 233
+Self-Adjoint Operators
+Now we switch our attention to operators on inner product spaces. Instead of
+considering linear maps from 𝑉 to 𝑊, we will focus on linear maps from 𝑉 to 𝑉;
+recall that such linear maps are called operators.
+7.10 definition: self-adjoint
+An operator 𝑇 ∈ ℒ(𝑉) is called self-adjoint if 𝑇 = 𝑇∗.
+If 𝑇 ∈ ℒ(𝑉) and 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉, then 𝑇 is self-adjoint
+if and only if ℳ(𝑇,(𝑒1,…,𝑒𝑛)) = ℳ(𝑇,(𝑒1,…,𝑒𝑛))
+∗
+, as follows from 7.9.
+7.11 example: determining whether 𝑇 is self-adjoint from its matrix
+Suppose 𝑐 ∈ 𝐅 and 𝑇 is the operator on 𝐅2
+whose matrix (with respect to the
+standard basis) is
+ℳ(𝑇) = (
+2 𝑐
+3 7
+).
+The matrix of 𝑇∗ (with respect to the standard basis) is
+ℳ(𝑇∗) = (
+2 3
+𝑐 7
+).
+Thus ℳ(𝑇) = ℳ(𝑇∗) if and only if 𝑐 = 3. Hence the operator 𝑇 is self-adjoint
+if and only if 𝑐 = 3.
+A good analogy to keep in mind is that the adjoint on ℒ(𝑉) plays a role similar
+to that of the complex conjugate on 𝐂. A complex number 𝑧 is real if and only if
+𝑧 = 𝑧; thus a self-adjoint operator (𝑇 = 𝑇∗) is analogous to a real number.
+An operator 𝑇 ∈ ℒ(𝑉) is self-adjoint
+if and only if
+⟨𝑇𝑣,𝑤⟩ = ⟨𝑣,𝑇𝑤⟩
+for all 𝑣,𝑤 ∈ 𝑉.
+Wewillseethattheanalogydiscussed
+aboveisreflectedinsomeimportantprop-
+ertiesofself-adjointoperators,beginning
+with eigenvalues in the next result.
+If 𝐅 = 𝐑, then by definition every
+eigenvalue is real, so the next result is
+interesting only when 𝐅 = 𝐂.
+7.12 eigenvalues of self-adjoint operators
+Every eigenvalue of a self-adjoint operator is real.
+Proof Suppose 𝑇 is a self-adjoint operator on 𝑉. Let 𝜆 be an eigenvalue of 𝑇,
+and let 𝑣 be a nonzero vector in 𝑉 such that 𝑇𝑣 = 𝜆𝑣. Then
+𝜆‖𝑣‖2
+= ⟨𝜆𝑣,𝑣⟩ = ⟨𝑇𝑣,𝑣⟩ = ⟨𝑣,𝑇𝑣⟩ = ⟨𝑣, 𝜆𝑣⟩ = 𝜆‖𝑣‖2
+.
+Thus 𝜆 = 𝜆, which means that 𝜆 is real, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler234 Chapter 7 Operators on Inner Product Spaces
+The next result is false for real inner product spaces. As an example, consider
+the operator 𝑇 ∈ ℒ(𝐑2
+) that is a counterclockwise rotation of 90∘
+around the
+origin; thus 𝑇(𝑥,𝑦) = (−𝑦,𝑥). Notice that 𝑇𝑣 is orthogonal to 𝑣 for every 𝑣 ∈ 𝐑2
+,
+even though 𝑇 ≠ 0.
+7.13 𝑇𝑣 is orthogonal to 𝑣 for all 𝑣 ⟺ 𝑇 = 0 (assuming 𝐅 = 𝐂)
+Suppose 𝑉 is a complex inner product space and 𝑇 ∈ ℒ(𝑉). Then
+⟨𝑇𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉 ⟺ 𝑇 = 0.
+Proof If 𝑢,𝑤 ∈ 𝑉, then
+⟨𝑇𝑢,𝑤⟩ =
+⟨𝑇(𝑢 + 𝑤),𝑢 + 𝑤⟩ − ⟨𝑇(𝑢 − 𝑤),𝑢 − 𝑤⟩
+4
++
+⟨𝑇(𝑢 + 𝑖𝑤),𝑢 + 𝑖𝑤⟩ − ⟨𝑇(𝑢 − 𝑖𝑤),𝑢 − 𝑖𝑤⟩
+4
+𝑖,
+as can be verified by computing the right side. Note that each term on the right
+side is of the form ⟨𝑇𝑣,𝑣⟩ for appropriate 𝑣 ∈ 𝑉.
+Now suppose ⟨𝑇𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉. Then the equation above implies
+that ⟨𝑇𝑢,𝑤⟩ = 0 for all 𝑢,𝑤 ∈ 𝑉, which then implies that 𝑇𝑢 = 0 for every 𝑢 ∈ 𝑉
+(take 𝑤 = 𝑇𝑢). Hence 𝑇 = 0, as desired.
+The next result provides another good
+example of how self-adjoint operators
+behave like real numbers.
+The next result is false for real inner
+product spaces, as shown by considering
+anyoperatoronarealinnerproductspace
+that is not self-adjoint.
+7.14 ⟨𝑇𝑣,𝑣⟩ is real for all 𝑣 ⟺ 𝑇 is self-adjoint (assuming 𝐅 = 𝐂)
+Suppose 𝑉 is a complex inner product space and 𝑇 ∈ ℒ(𝑉). Then
+𝑇 is self-adjoint ⟺ ⟨𝑇𝑣,𝑣⟩ ∈ 𝐑 for every 𝑣 ∈ 𝑉.
+Proof If 𝑣 ∈ 𝑉, then
+7.15 ⟨𝑇∗𝑣,𝑣⟩ = ⟨𝑣,𝑇∗𝑣⟩ = ⟨𝑇𝑣,𝑣⟩.
+Now
+𝑇 is self-adjoint ⟺ 𝑇 − 𝑇∗ = 0
+⟺ ⟨(𝑇 − 𝑇∗)𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉
+⟺ ⟨𝑇𝑣,𝑣⟩ − ⟨𝑇𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉
+⟺ ⟨𝑇𝑣,𝑣⟩ ∈ 𝐑 for every 𝑣 ∈ 𝑉,
+where the second equivalence follows from 7.13 as applied to 𝑇 − 𝑇∗ and the
+third equivalence follows from 7.15.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 235
+Onarealinnerproductspace𝑉,anonzerooperator𝑇 mightsatisfy⟨𝑇𝑣,𝑣⟩ = 0
+for all 𝑣 ∈ 𝑉. However, the next result shows that this cannot happen for a self-
+adjoint operator.
+7.16 𝑇 self-adjoint and ⟨𝑇𝑣,𝑣⟩ = 0 for all 𝑣 ⟺ 𝑇 = 0
+Suppose 𝑇 is a self-adjoint operator on 𝑉. Then
+⟨𝑇𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉 ⟺ 𝑇 = 0.
+Proof We have already proved this (without the hypothesis that 𝑇 is self-adjoint)
+when 𝑉 is a complex inner product space (see 7.13). Thus we can assume that 𝑉
+is a real inner product space. If 𝑢,𝑤 ∈ 𝑉, then
+7.17 ⟨𝑇𝑢,𝑤⟩ =
+⟨𝑇(𝑢 + 𝑤),𝑢 + 𝑤⟩ − ⟨𝑇(𝑢 − 𝑤),𝑢 − 𝑤⟩
+4
+,
+as can be proved by computing the right side using the equation
+⟨𝑇𝑤,𝑢⟩ = ⟨𝑤,𝑇𝑢⟩ = ⟨𝑇𝑢,𝑤⟩,
+where the first equality holds because 𝑇 is self-adjoint and the second equality
+holds because we are working in a real inner product space.
+Now suppose ⟨𝑇𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉. Because each term on the right
+side of 7.17 is of the form ⟨𝑇𝑣,𝑣⟩ for appropriate 𝑣, this implies that ⟨𝑇𝑢,𝑤⟩ = 0
+for all 𝑢,𝑤 ∈ 𝑉. This implies that 𝑇𝑢 = 0 for every 𝑢 ∈ 𝑉 (take 𝑤 = 𝑇𝑢). Hence
+𝑇 = 0, as desired.
+Normal Operators
+7.18 definition: normal
+• An operator on an inner product space is called normal if it commutes with
+its adjoint.
+• In other words, 𝑇 ∈ ℒ(𝑉) is normal if 𝑇𝑇∗ = 𝑇∗𝑇.
+Every self-adjoint operator is normal, because if 𝑇 is self-adjoint then 𝑇∗ = 𝑇
+and hence 𝑇 commutes with 𝑇∗.
+7.19 example: an operator that is normal but not self-adjoint
+Let 𝑇 be the operator on 𝐅2
+whose matrix (with respect to the standard basis)
+is
+(
+2 −3
+3 2
+).
+Thus 𝑇(𝑤,𝑧) = (2𝑤 − 3𝑧,3𝑤 + 2𝑧).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler236 Chapter 7 Operators on Inner Product Spaces
+This operator 𝑇 is not self-adjoint because the entry in row 2, column 1 (which
+equals 3) does not equal the complex conjugate of the entry in row 1, column 2
+(which equals −3).
+The matrix of 𝑇𝑇∗ equals
+(
+2 −3
+3 2
+)(
+2 3
+−3 2
+), which equals (
+13 0
+0 13
+).
+Similarly, the matrix of 𝑇∗𝑇 equals
+(
+2 3
+−3 2
+)(
+2 −3
+3 2
+), which equals (
+13 0
+0 13
+).
+Because 𝑇𝑇∗ and 𝑇∗𝑇 have the same matrix, we see that 𝑇𝑇∗ = 𝑇∗𝑇. Thus 𝑇 is
+normal.
+In the next section we will see why normal operators are worthy of special
+attention. The next result provides a useful characterization of normal operators.
+7.20 𝑇 is normal if and only if 𝑇𝑣 and 𝑇∗𝑣 have the same norm
+Suppose 𝑇 ∈ ℒ(𝑉). Then
+𝑇 is normal ⟺ ‖𝑇𝑣‖ = ‖𝑇∗𝑣‖ for every 𝑣 ∈ 𝑉.
+Proof We have
+𝑇 is normal ⟺ 𝑇∗𝑇 − 𝑇𝑇∗ = 0
+⟺ ⟨(𝑇∗𝑇 − 𝑇𝑇∗)𝑣,𝑣⟩ = 0 for every 𝑣 ∈ 𝑉
+⟺ ⟨𝑇∗𝑇𝑣,𝑣⟩ = ⟨𝑇𝑇∗𝑣,𝑣⟩ for every 𝑣 ∈ 𝑉
+⟺ ⟨𝑇𝑣,𝑇𝑣⟩ = ⟨𝑇∗𝑣,𝑇∗𝑣⟩ for every 𝑣 ∈ 𝑉
+⟺ ‖𝑇𝑣‖2
+= ∥𝑇∗𝑣∥
+2
+for every 𝑣 ∈ 𝑉
+⟺ ‖𝑇𝑣‖ = ∥𝑇∗𝑣∥ for every 𝑣 ∈ 𝑉,
+where we used 7.16 to establish the second equivalence (note that the operator
+𝑇∗𝑇 − 𝑇𝑇∗ is self-adjoint).
+The next result presents several consequences of the result above. Compare
+(e) of the next result to Exercise 3. That exercise states that the eigenvalues of
+the adjoint of each operator are equal (as a set) to the complex conjugates of
+the eigenvalues of the operator. The exercise says nothing about eigenvectors,
+because an operator and its adjoint may have different eigenvectors. However,
+(e) of the next result implies that a normal operator and its adjoint have the same
+eigenvectors.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 237
+7.21 range, null space, and eigenvectors of a normal operator
+Suppose 𝑇 ∈ ℒ(𝑉) is normal. Then
+(a) null𝑇 = null𝑇∗;
+(b) range𝑇 = range𝑇∗;
+(c) 𝑉 = null𝑇 ⊕ range𝑇;
+(d) 𝑇 − 𝜆𝐼 is normal for every 𝜆 ∈ 𝐅;
+(e) if 𝑣 ∈ 𝑉 and 𝜆 ∈ 𝐅, then 𝑇𝑣 = 𝜆𝑣 if and only if 𝑇∗𝑣 = 𝜆𝑣.
+Proof
+(a) Suppose 𝑣 ∈ 𝑉. Then
+𝑣 ∈ null𝑇 ⟺ ‖𝑇𝑣‖ = 0 ⟺ ∥𝑇∗𝑣∥ = 0 ⟺ 𝑣 ∈ null𝑇∗,
+wherethemiddleequivalenceabovefollowsfrom7.20. Thusnull𝑇 = null𝑇∗.
+(b) We have
+range𝑇 = (null𝑇∗)
+⟂
+= (null𝑇)⟂
+= range𝑇∗,
+where the first equality comes from 7.6(d), the second equality comes from
+(a) in this result, and the third equality comes from 7.6(b).
+(c) We have
+𝑉 = (null𝑇) ⊕ (null𝑇)⟂
+= null𝑇 ⊕ range𝑇∗ = null𝑇 ⊕ range𝑇,
+where the first equality comes from 6.49, the second equality comes from
+7.6(b), and the third equality comes from (b) in this result.
+(d) Suppose 𝜆 ∈ 𝐅. Then
+(𝑇 − 𝜆𝐼)(𝑇 − 𝜆𝐼)∗ = (𝑇 − 𝜆𝐼)(𝑇∗ − 𝜆𝐼)
+= 𝑇𝑇∗ − 𝜆𝑇 − 𝜆𝑇∗ + |𝜆|2
+𝐼
+= 𝑇∗𝑇 − 𝜆𝑇 − 𝜆𝑇∗ + |𝜆|2
+𝐼
+= (𝑇∗ − 𝜆𝐼)(𝑇 − 𝜆𝐼)
+= (𝑇 − 𝜆𝐼)∗(𝑇 − 𝜆𝐼).
+Thus 𝑇 − 𝜆𝐼 commutes with its adjoint. Hence 𝑇 − 𝜆𝐼 is normal.
+(e) Suppose 𝑣 ∈ 𝑉 and 𝜆 ∈ 𝐅. Then (d) and 7.20 imply that
+‖(𝑇 − 𝜆𝐼)𝑣‖ = ∥(𝑇 − 𝜆𝐼)∗𝑣∥ = ∥(𝑇∗ − 𝜆𝐼)𝑣∥.
+Thus ‖(𝑇 − 𝜆𝐼)𝑣‖ = 0 if and only if ∥(𝑇∗ − 𝜆𝐼)𝑣∥ = 0. Hence 𝑇𝑣 = 𝜆𝑣 if
+and only if 𝑇∗𝑣 = 𝜆𝑣.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler238 Chapter 7 Operators on Inner Product Spaces
+Because every self-adjoint operator is normal, the next result applies in partic-
+ular to self-adjoint operators.
+7.22 orthogonal eigenvectors for normal operators
+Suppose 𝑇 ∈ ℒ(𝑉) is normal. Then eigenvectors of 𝑇 corresponding to
+distinct eigenvalues are orthogonal.
+Proof Suppose 𝛼,𝛽 are distinct eigenvalues of 𝑇, with corresponding eigen-
+vectors 𝑢,𝑣. Thus 𝑇𝑢 = 𝛼𝑢 and 𝑇𝑣 = 𝛽𝑣. From 7.21(e) we have 𝑇∗𝑣 = 𝛽𝑣.
+Thus
+(𝛼 − 𝛽)⟨𝑢,𝑣⟩ = ⟨𝛼𝑢,𝑣⟩ − ⟨𝑢,𝛽𝑣⟩
+= ⟨𝑇𝑢,𝑣⟩ − ⟨𝑢,𝑇∗𝑣⟩
+= 0.
+Because 𝛼 ≠ 𝛽, the equation above implies that ⟨𝑢,𝑣⟩ = 0. Thus 𝑢 and 𝑣 are
+orthogonal, as desired.
+As stated here, the next result makes sense only when 𝐅 = 𝐂. However, see
+Exercise 12 for a version that makes sense when 𝐅 = 𝐂 and when 𝐅 = 𝐑.
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Under the analogy between ℒ(𝑉) and 𝐂,
+withtheadjointonℒ(𝑉) playingasimilarroletothatofthecomplexconjugateon
+𝐂, the operators 𝐴 and 𝐵 as defined by 7.24 correspond to the real and imaginary
+parts of 𝑇. Thus the informal title of the result below should make sense.
+7.23 𝑇 is normal ⟺ the real and imaginary parts of 𝑇 commute
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then 𝑇 is normal if and only if there exist
+commuting self-adjoint operators 𝐴 and 𝐵 such that 𝑇 = 𝐴 + 𝑖𝐵.
+Proof First suppose 𝑇 is normal. Let
+7.24 𝐴 =
+𝑇 + 𝑇∗
+2
+and 𝐵 =
+𝑇 − 𝑇∗
+2𝑖
+.
+Then 𝐴 and 𝐵 are self-adjoint and 𝑇 = 𝐴 + 𝑖𝐵. A quick computation shows that
+7.25 𝐴𝐵 − 𝐵𝐴 =
+𝑇∗𝑇 − 𝑇𝑇∗
+2𝑖
+.
+Because 𝑇 is normal, the right side of the equation above equals 0. Thus the
+operators 𝐴 and 𝐵 commute, as desired.
+To prove the implication in the other direction, now suppose there exist com-
+muting self-adjoint operators 𝐴 and 𝐵 such that 𝑇 = 𝐴 + 𝑖𝐵. Then 𝑇∗ = 𝐴 − 𝑖𝐵.
+Adding the last two equations and then dividing by 2 produces the equation for 𝐴
+in 7.24. Subtracting the last two equations and then dividing by 2𝑖 produces the
+equation for 𝐵 in 7.24. Now 7.24 implies 7.25. Because 𝐵 and 𝐴 commute, 7.25
+implies that 𝑇 is normal, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 239
+Exercises 7A
+1 Suppose 𝑛 is a positive integer. Define 𝑇 ∈ ℒ(𝐅𝑛
+) by
+𝑇(𝑧1,…,𝑧𝑛) = (0,𝑧1,…,𝑧𝑛−1).
+Find a formula for 𝑇∗(𝑧1,…,𝑧𝑛).
+2 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+𝑇 = 0 ⟺ 𝑇∗ = 0 ⟺ 𝑇∗𝑇 = 0 ⟺ 𝑇𝑇∗ = 0.
+## 3 Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅. Prove that
+𝜆 is an eigenvalue of 𝑇 ⟺ 𝜆 is an eigenvalue of 𝑇∗.
+## 4 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑈 is a subspace of 𝑉. Prove that
+𝑈 is invariant under 𝑇 ⟺ 𝑈⟂
+is invariant under 𝑇∗.
+5 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and
+𝑓1,…, 𝑓𝑚 is an orthonormal basis of 𝑊. Prove that
+‖𝑇𝑒1‖2
++ ⋯ + ‖𝑇𝑒𝑛‖2
+= ∥𝑇∗𝑓1∥
+2
++ ⋯ + ∥𝑇∗𝑓𝑚∥
+2
+.
+The numbers ‖𝑇𝑒1‖2
+,…,‖𝑇𝑒𝑛‖2
+in the equation above depend on the ortho-
+normal basis 𝑒1,…,𝑒𝑛, but the right side of the equation does not depend
+on 𝑒1,…,𝑒𝑛. Thus the equation above shows that the sum on the left side
+does not depend on which orthonormal basis 𝑒1,…,𝑒𝑛 is used.
+6 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Prove that
+(a) 𝑇 is injective ⟺ 𝑇∗ is surjective;
+(b) 𝑇 is surjective ⟺ 𝑇∗ is injective.
+7 Prove that if 𝑇 ∈ ℒ(𝑉,𝑊), then
+(a) dimnull𝑇∗ = dimnull𝑇 + dim𝑊 − dim𝑉;
+(b) dimrange𝑇∗ = dimrange𝑇.
+## 8 Suppose 𝐴 is an 𝑚-by-𝑛 matrix with entries in 𝐅. Use (b) in Exercise 7 to
+prove that the row rank of 𝐴 equals the column rank of 𝐴.
+This exercise asks for yet another alternative proof of a result that was
+previously proved in 3.57 and 3.133.
+## 9 Prove that the product of two self-adjoint operators on 𝑉 is self-adjoint if
+and only if the two operators commute.
+## 10 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is self-adjoint if and only if
+⟨𝑇𝑣,𝑣⟩ = ⟨𝑇∗𝑣,𝑣⟩
+for all 𝑣 ∈ 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler240 Chapter 7 Operators on Inner Product Spaces
+11 Define an operator 𝑆∶ 𝐅2
+→ 𝐅2
+by 𝑆(𝑤,𝑧) = (−𝑧,𝑤).
+(a) Find a formula for 𝑆∗.
+(b) Show that 𝑆 is normal but not self-adjoint.
+(c) Find all eigenvalues of 𝑆.
+If 𝐅 = 𝐑, then 𝑆 is the operator on 𝐑2
+of counterclockwise rotation by 90∘
+.
+## 12 An operator 𝐵 ∈ ℒ(𝑉) is called skew if
+𝐵∗ = −𝐵.
+Suppose that 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is normal if and only if there exist
+commutingoperators𝐴and𝐵suchthat𝐴isself-adjoint, 𝐵isaskewoperator,
+and 𝑇 = 𝐴 + 𝐵.
+13 Suppose 𝐅 = 𝐑. Define 𝒜 ∈ ℒ(ℒ(𝑉)) by 𝒜𝑇 = 𝑇∗ for all 𝑇 ∈ ℒ(𝑉).
+(a) Find all eigenvalues of 𝒜.
+(b) Find the minimal polynomial of 𝒜.
+14 Define an inner product on 𝒫2(𝐑) by ⟨𝑝,𝑞⟩ = ∫
+1
+0 𝑝𝑞. Define an operator
+𝑇 ∈ ℒ(𝒫2(𝐑)) by
+𝑇(𝑎𝑥2
++ 𝑏𝑥 + 𝑐) = 𝑏𝑥.
+(a) Show that with this inner product, the operator 𝑇 is not self-adjoint.
+(b) The matrix of 𝑇 with respect to the basis 1,𝑥,𝑥2
+is
+⎛ ⎜ ⎜ ⎜
+⎝
+0 0 0
+0 1 0
+0 0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+This matrix equals its conjugate transpose, even though 𝑇 is not self-
+adjoint. Explain why this is not a contradiction.
+## 15 Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Prove that
+(a) 𝑇 is self-adjoint ⟺ 𝑇−1
+is self-adjoint;
+(b) 𝑇 is normal ⟺ 𝑇−1
+is normal.
+16 Suppose 𝐅 = 𝐑.
+(a) Show that the set of self-adjoint operators on 𝑉 is a subspace of ℒ(𝑉).
+(b) What is the dimension of the subspace of ℒ(𝑉) in (a) [in terms of
+dim𝑉]?
+17 Suppose 𝐅 = 𝐂. Show that the set of self-adjoint operators on 𝑉 is not a
+subspace of ℒ(𝑉).
+18 Suppose dim𝑉 ≥ 2. Show that the set of normal operators on 𝑉 is not a
+subspace of ℒ(𝑉).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7A Self-Adjoint and Normal Operators 241
+19 Suppose 𝑇 ∈ ℒ(𝑉) and ∥𝑇∗𝑣∥ ≤ ‖𝑇𝑣‖ for every 𝑣 ∈ 𝑉. Prove that 𝑇 is
+normal.
+This exercise fails on infinite-dimensional inner product spaces, leading to
+what are called hyponormal operators, which have a well-developed theory.
+20 Suppose 𝑃 ∈ ℒ(𝑉) is such that 𝑃2
+= 𝑃. Prove that the following are
+equivalent.
+(a) 𝑃 is self-adjoint.
+(b) 𝑃 is normal.
+(c) There is a subspace 𝑈 of 𝑉 such that 𝑃 = 𝑃𝑈.
+21 Suppose 𝐷∶ 𝒫8(𝐑) → 𝒫8(𝐑) is the differentiation operator defined by
+𝐷𝑝 = 𝑝′
+. Prove that there does not exist an inner product on 𝒫8(𝐑) that
+makes 𝐷 a normal operator.
+22 Give an example of an operator 𝑇 ∈ ℒ(𝐑3
+) such that 𝑇 is normal but not
+self-adjoint.
+23 Suppose 𝑇 is a normal operator on 𝑉. Suppose also that 𝑣,𝑤 ∈ 𝑉 satisfy the
+equations
+‖𝑣‖ = ‖𝑤‖ = 2, 𝑇𝑣 = 3𝑣, 𝑇𝑤 = 4𝑤.
+Show that ‖𝑇(𝑣 + 𝑤)‖ = 10.
+## 24 Suppose 𝑇 ∈ ℒ(𝑉) and
+𝑎0 + 𝑎1𝑧 + 𝑎2𝑧2
++ ⋯ + 𝑎𝑚−1𝑧𝑚−1
++ 𝑧𝑚
+is the minimal polynomial of 𝑇. Prove that the minimal polynomial of 𝑇∗ is
+𝑎0 + 𝑎1 𝑧 + 𝑎2 𝑧2
++ ⋯ + 𝑎𝑚−1 𝑧𝑚−1
++ 𝑧𝑚
+.
+This exercise shows that the minimal polynomial of 𝑇∗ equals the minimal
+polynomial of 𝑇 if 𝐅 = 𝐑.
+25 Suppose 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is diagonalizable if and only if 𝑇∗ is
+diagonalizable.
+26 Fix 𝑢,𝑥 ∈ 𝑉. Define 𝑇 ∈ ℒ(𝑉) by 𝑇𝑣 = ⟨𝑣,𝑢⟩𝑥 for every 𝑣 ∈ 𝑉.
+(a) Prove that if 𝑉 is a real vector space, then 𝑇 is self-adjoint if and only if
+the list 𝑢,𝑥 is linearly dependent.
+(b) Prove that 𝑇 is normal if and only if the list 𝑢,𝑥 is linearly dependent.
+## 27 Suppose 𝑇 ∈ ℒ(𝑉) is normal. Prove that
+null𝑇𝑘
+= null𝑇 and range𝑇𝑘
+= range𝑇
+for every positive integer 𝑘.
+## 28 Suppose 𝑇 ∈ ℒ(𝑉) is normal. Prove that if 𝜆 ∈ 𝐅, then the minimal
+polynomial of 𝑇 is not a polynomial multiple of (𝑥 − 𝜆)2
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler242 Chapter 7 Operators on Inner Product Spaces
+## 29 Prove or give a counterexample: If 𝑇 ∈ ℒ(𝑉) and there is an orthonormal
+basis 𝑒1,…,𝑒𝑛 of 𝑉 such that ‖𝑇𝑒𝑘‖ = ∥𝑇∗𝑒𝑘∥ for each 𝑘 = 1,…,𝑛, then 𝑇 is
+normal.
+30 Suppose that 𝑇 ∈ ℒ(𝐅3
+) is normal and 𝑇(1,1,1) = (2,2,2). Suppose
+(𝑧1,𝑧2,𝑧3) ∈ null𝑇. Prove that 𝑧1 + 𝑧2 + 𝑧3 = 0.
+## 31 Fix a positive integer 𝑛. In the inner product space of continuous real-valued
+functions on [−𝜋,𝜋] with inner product ⟨𝑓,𝑔⟩ = ∫
+𝜋
+−𝜋 𝑓𝑔, let
+𝑉 = span(1,cos𝑥,cos2𝑥,…,cos𝑛𝑥,sin𝑥,sin2𝑥,…,sin𝑛𝑥).
+(a) Define 𝐷 ∈ ℒ(𝑉) by 𝐷𝑓 = 𝑓′
+. Show that 𝐷∗ = −𝐷. Conclude that 𝐷
+is normal but not self-adjoint.
+(b) Define 𝑇 ∈ ℒ(𝑉) by 𝑇 𝑓 = 𝑓″
+. Show that 𝑇 is self-adjoint.
+32 Suppose 𝑇∶ 𝑉 → 𝑊 is a linear map. Show that under the standard identifica-
+tion of 𝑉 with 𝑉′
+(see 6.58) and the corresponding identification of 𝑊 with
+𝑊′
+, the adjoint map 𝑇∗∶ 𝑊 → 𝑉 corresponds to the dual map 𝑇′
+∶ 𝑊′
+→ 𝑉′
+.
+More precisely, show that
+𝑇′
+(𝜑𝑤) = 𝜑𝑇∗𝑤
+for all 𝑤 ∈ 𝑊, where 𝜑𝑤 and 𝜑𝑇∗𝑤 are defined as in 6.58.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7B Spectral Theorem 243
+7B Spectral Theorem
+Recall that a diagonal matrix is a square matrix that is 0 everywhere except
+possibly on the diagonal. Recall that an operator on 𝑉 is called diagonalizable if
+the operator has a diagonal matrix with respect to some basis of 𝑉. Recall also
+that this happens if and only if there is a basis of 𝑉 consisting of eigenvectors of
+the operator (see 5.55).
+The nicest operators on 𝑉 are those for which there is an orthonormal basis
+of 𝑉 with respect to which the operator has a diagonal matrix. These are precisely
+the operators 𝑇 ∈ ℒ(𝑉) such that there is an orthonormal basis of 𝑉 consisting
+of eigenvectors of 𝑇. Our goal in this section is to prove the spectral theorem,
+which characterizes these operators as the self-adjoint operators when 𝐅 = 𝐑 and
+as the normal operators when 𝐅 = 𝐂.
+The spectral theorem is probably the most useful tool in the study of operators
+oninnerproductspaces. Itsextensiontocertaininfinite-dimensionalinnerproduct
+spaces (see, for example, Section 10D of the author’s book Measure, Integration
+& Real Analysis) plays a key role in functional analysis.
+Because the conclusion of the spectral theorem depends on 𝐅, we will break
+the spectral theorem into two pieces, called the real spectral theorem and the
+complex spectral theorem.
+Real Spectral Theorem
+To prove the real spectral theorem, we will need two preliminary results. These
+preliminary results hold on both real and complex inner product spaces, but they
+are not needed for the proof of the complex spectral theorem.
+This completing-the-square technique
+can be used to derive the quadratic
+formula.
+You could guess that the next result is
+true and even discover its proof by think-
+ing about quadratic polynomials with
+real coefficients. Specifically, suppose
+𝑏,𝑐 ∈ 𝐑 and 𝑏2
+< 4𝑐. Let 𝑥 be a real number. Then
+𝑥2
++ 𝑏𝑥 + 𝑐 = (𝑥 +
+𝑏
+2
+)
+2
++ (𝑐 −
+𝑏2
+4
+) > 0.
+In particular, 𝑥2
++ 𝑏𝑥 + 𝑐 is an invertible real number (a convoluted way of saying
+that it is not 0). Replacing the real number 𝑥 with a self-adjoint operator (recall the
+analogy between real numbers and self-adjoint operators) leads to the next result.
+7.26 invertible quadratic expressions
+Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint and 𝑏,𝑐 ∈ 𝐑 are such that 𝑏2
+< 4𝑐. Then
+𝑇2
++ 𝑏𝑇 + 𝑐𝐼
+is an invertible operator.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler244 Chapter 7 Operators on Inner Product Spaces
+Proof Let 𝑣 be a nonzero vector in 𝑉. Then
+⟨(𝑇2
++ 𝑏𝑇 + 𝑐𝐼)𝑣,𝑣⟩ = ⟨𝑇2
+𝑣,𝑣⟩ + 𝑏⟨𝑇𝑣,𝑣⟩ + 𝑐⟨𝑣,𝑣⟩
+= ⟨𝑇𝑣,𝑇𝑣⟩ + 𝑏⟨𝑇𝑣,𝑣⟩ + 𝑐‖𝑣‖2
+≥ ‖𝑇𝑣‖2
+− |𝑏|‖𝑇𝑣‖‖𝑣‖ + 𝑐‖𝑣‖2
+= (‖𝑇𝑣‖ −
+|𝑏|‖𝑣‖
+2
+)
+2
++ (𝑐 −
+𝑏2
+4
+)‖𝑣‖2
+> 0,
+where the third line above holds by the Cauchy–Schwarz inequality (6.14). The
+last inequality implies that (𝑇2
++ 𝑏𝑇 + 𝑐𝐼)𝑣 ≠ 0. Thus 𝑇2
++ 𝑏𝑇 + 𝑐𝐼 is injective,
+which implies that it is invertible (see 3.65).
+The next result will be a key tool in our proof of the real spectral theorem.
+7.27 minimal polynomial of self-adjoint operator
+Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint. Then the minimal polynomial of 𝑇 equals
+(𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some 𝜆1,…, 𝜆𝑚 ∈ 𝐑.
+Proof First suppose 𝐅 = 𝐂. The zeros of the minimal polynomial of 𝑇 are the
+eigenvalues of 𝑇 [by 5.27(a)]. All eigenvalues of 𝑇 are real (by 7.12). Thus the
+second version of the fundamental theorem of algebra (see 4.13) tells us that the
+minimal polynomial of 𝑇 has the desired form.
+Now suppose 𝐅 = 𝐑. By the factorization of a polynomial over 𝐑 (see 4.16)
+there exist 𝜆1,…, 𝜆𝑚 ∈ 𝐑 and 𝑏1,…,𝑏𝑁,𝑐1,…,𝑐𝑁 ∈ 𝐑 with 𝑏𝑘
+2
+< 4𝑐𝑘 for each
+𝑘 such that the minimal polynomial of 𝑇 equals
+7.28 (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚)(𝑧2
++ 𝑏1𝑧 + 𝑐1)⋯(𝑧2
++ 𝑏𝑁𝑧 + 𝑐𝑁);
+here either 𝑚 or 𝑁 might equal 0, meaning that there are no terms of the corre-
+sponding form. Now
+(𝑇 − 𝜆1𝐼)⋯(𝑇 − 𝜆𝑚𝐼)(𝑇2
++ 𝑏1𝑇 + 𝑐1𝐼)⋯(𝑇2
++ 𝑏𝑁𝑇 + 𝑐𝑁𝐼) = 0.
+If 𝑁 > 0, then we could multiply both sides of the equation above on the right
+by the inverse of 𝑇2
++ 𝑏𝑁𝑇 + 𝑐𝑁𝐼 (which is an invertible operator by 7.26) to
+obtain a polynomial expression of 𝑇 that equals 0. The corresponding polynomial
+would have degree two less than the degree of 7.28, violating the minimality of
+the degree of the polynomial with this property. Thus we must have 𝑁 = 0, which
+means that the minimal polynomial in 7.28 has the form (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚), as
+desired.
+The result above along with 5.27(a) implies that every self-adjoint operator
+has an eigenvalue. In fact, as we will see in the next result, self-adjoint operators
+have enough eigenvectors to form a basis.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7B Spectral Theorem 245
+Thenextresult,whichgivesacompletedescriptionoftheself-adjointoperators
+on a real inner product space, is one of the major theorems in linear algebra.
+7.29 real spectral theorem
+Suppose 𝐅 = 𝐑 and 𝑇 ∈ ℒ(𝑉). Then the following are equivalent.
+(a) 𝑇 is self-adjoint.
+(b) 𝑇 has a diagonal matrix with respect to some orthonormal basis of 𝑉.
+(c) 𝑉 has an orthonormal basis consisting of eigenvectors of 𝑇.
+Proof First suppose (a) holds, so 𝑇 is self-adjoint. Our results on minimal poly-
+nomials, specifically 6.37 and 7.27, imply that 𝑇 has an upper-triangular matrix
+with respect to some orthonormal basis of 𝑉. With respect to this orthonormal
+basis, the matrix of 𝑇∗ is the transpose of the matrix of 𝑇. However, 𝑇∗ = 𝑇.
+Thus the transpose of the matrix of 𝑇 equals the matrix of 𝑇. Because the matrix
+of 𝑇 is upper-triangular, this means that all entries of the matrix above and below
+the diagonal are 0. Hence the matrix of 𝑇 is a diagonal matrix with respect to the
+orthonormal basis. Thus (a) implies (b).
+Conversely, now suppose (b) holds, so 𝑇 has a diagonal matrix with respect to
+some orthonormal basis of 𝑉. That diagonal matrix equals its transpose. Thus
+with respect to that basis, the matrix of 𝑇∗ equals the matrix of 𝑇. Hence 𝑇∗ = 𝑇,
+proving that (b) implies (a).
+The equivalence of (b) and (c) follows from the definitions [or see the proof
+that (a) and (b) are equivalent in 5.55].
+7.30 example: an orthonormal basis of eigenvectors for an operator
+Consider the operator 𝑇 on 𝐑3
+whose matrix (with respect to the standard
+basis) is
+⎛ ⎜ ⎜ ⎜
+⎝
+14 −13 8
+−13 14 8
+8 8 −7
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+This matrix with real entries equals its transpose; thus 𝑇 is self-adjoint. As you
+can verify,
+(1,−1,0)
+√2
+,
+(1,1,1)
+√3
+,
+(1,1,−2)
+√6
+is an orthonormal basis of 𝐑3
+consisting of eigenvectors of 𝑇. With respect to
+this basis, the matrix of 𝑇 is the diagonal matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+27 0 0
+0 9 0
+0 0 −15
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+See Exercise 17 for a version of the real spectral theorem that applies simulta-
+neously to more than one operator.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler246 Chapter 7 Operators on Inner Product Spaces
+Complex Spectral Theorem
+The next result gives a complete description of the normal operators on a complex
+inner product space.
+7.31 complex spectral theorem
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then the following are equivalent.
+(a) 𝑇 is normal.
+(b) 𝑇 has a diagonal matrix with respect to some orthonormal basis of 𝑉.
+(c) 𝑉 has an orthonormal basis consisting of eigenvectors of 𝑇.
+Proof First suppose (a) holds, so 𝑇 is normal. By Schur’s theorem (6.38), there
+is an orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉 with respect to which 𝑇 has an upper-
+triangular matrix. Thus we can write
+7.32 ℳ(𝑇,(𝑒1,…,𝑒𝑛)) =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝑎1,1 ⋯ 𝑎1,𝑛
+⋱ ⋮
+0 𝑎𝑛,𝑛
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+We will show that this matrix is actually a diagonal matrix.
+We see from the matrix above that
+‖𝑇𝑒1‖2
+= |𝑎1,1|2
+,
+∥𝑇∗𝑒1∥
+2
+= |𝑎1,1|2
++ |𝑎1,2|2
++ ⋯ + |𝑎1,𝑛|2
+.
+Because 𝑇 is normal, ‖𝑇𝑒1‖ = ∥𝑇∗𝑒1∥ (see 7.20). Thus the two equations above
+imply that all entries in the first row of the matrix in 7.32, except possibly the first
+entry 𝑎1,1, equal 0.
+Now 7.32 implies
+‖𝑇𝑒2‖2
+= |𝑎2,2|2
+(because 𝑎1,2 = 0, as we showed in the paragraph above) and
+∥𝑇∗𝑒2∥
+2
+= |𝑎2,2|2
++ |𝑎2,3|2
++ ⋯ + |𝑎2,𝑛|2
+.
+Because 𝑇 is normal, ‖𝑇𝑒2‖ = ∥𝑇∗𝑒2∥. Thus the two equations above imply that
+all entries in the second row of the matrix in 7.32, except possibly the diagonal
+entry 𝑎2,2, equal 0.
+Continuing in this fashion, we see that all nondiagonal entries in the matrix
+7.32 equal 0. Thus (b) holds, completing the proof that (a) implies (b).
+Now suppose (b) holds, so 𝑇 has a diagonal matrix with respect to some
+orthonormal basis of 𝑉. The matrix of 𝑇∗ (with respect to the same basis) is
+obtained by taking the conjugate transpose of the matrix of 𝑇; hence 𝑇∗ also has a
+diagonal matrix. Any two diagonal matrices commute; thus 𝑇 commutes with 𝑇∗,
+which means that 𝑇 is normal. In other words, (a) holds, completing the proof
+that (b) implies (a).
+The equivalence of (b) and (c) follows from the definitions (also see 5.55).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7B Spectral Theorem 247
+See Exercises 13 and 20 for alternative proofs that (a) implies (b) in the
+previous result.
+Exercises 14 and 15 interpret the real spectral theorem and the complex
+spectral theorem by expressing the domain space as an orthogonal direct sum of
+eigenspaces.
+See Exercise 16 for a version of the complex spectral theorem that applies
+simultaneously to more than one operator.
+The main conclusion of the complex spectral theorem is that every normal
+operator on a complex finite-dimensional inner product space is diagonalizable
+by an orthonormal basis, as illustrated by the next example.
+7.33 example: an orthonormal basis of eigenvectors for an operator
+Consider the operator 𝑇 ∈ ℒ(𝐂2
+) defined by 𝑇(𝑤,𝑧) = (2𝑤 − 3𝑧,3𝑤 + 2𝑧).
+The matrix of 𝑇 (with respect to the standard basis) is
+(
+2 −3
+3 2
+).
+As we saw in Example 7.19, 𝑇 is a normal operator.
+As you can verify,
+1
+√2
+(𝑖,1), 1
+√2
+(−𝑖,1)
+is an orthonormal basis of 𝐂2
+consisting of eigenvectors of 𝑇, and with respect to
+this basis the matrix of 𝑇 is the diagonal matrix
+(
+2 + 3𝑖 0
+0 2 − 3𝑖
+).
+Exercises 7B
+## 1 Prove that a normal operator on a complex inner product space is self-adjoint
+if and only if all its eigenvalues are real.
+This exercise strengthens the analogy (for normal operators) between self-
+adjoint operators and real numbers.
+2 Suppose 𝐅 = 𝐂. Suppose 𝑇 ∈ ℒ(𝑉) is normal and has only one eigenvalue.
+Prove that 𝑇 is a scalar multiple of the identity operator.
+## 3 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉) is normal. Prove that the set of eigenvalues
+of 𝑇 is contained in {0,1} if and only if there is a subspace 𝑈 of 𝑉 such that
+𝑇 = 𝑃𝑈.
+## 4 Prove that a normal operator on a complex inner product space is skew
+(meaning it equals the negative of its adjoint) if and only if all its eigenvalues
+are purely imaginary (meaning that they have real part equal to 0).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler248 Chapter 7 Operators on Inner Product Spaces
+5 Prove or give a counterexample: If 𝑇 ∈ ℒ(𝐂3
+) is a diagonalizable operator,
+then 𝑇 is normal (with respect to the usual inner product).
+## 6 Suppose 𝑉 is a complex inner product space and 𝑇 ∈ ℒ(𝑉) is a normal
+operator such that 𝑇9
+= 𝑇8
+. Prove that 𝑇 is self-adjoint and 𝑇2
+= 𝑇.
+## 7 Give an example of an operator 𝑇 on a complex vector space such that
+𝑇9
+= 𝑇8
+but 𝑇2
+≠ 𝑇.
+## 8 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is normal if and only if every
+eigenvector of 𝑇 is also an eigenvector of 𝑇∗.
+## 9 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is normal if and only if there
+exists a polynomial 𝑝 ∈ 𝒫(𝐂) such that 𝑇∗ = 𝑝(𝑇).
+## 10 Suppose 𝑉 is a complex inner product space. Prove that every normal
+operator on 𝑉 has a square root.
+An operator 𝑆 ∈ ℒ(𝑉) is called a square root of 𝑇 ∈ ℒ(𝑉) if 𝑆2
+= 𝑇. We
+will discuss more about square roots of operators in Sections 7C and 8C.
+## 11 Prove that every self-adjoint operator on 𝑉 has a cube root.
+An operator 𝑆 ∈ ℒ(𝑉) is called a cube root of 𝑇 ∈ ℒ(𝑉) if 𝑆3
+= 𝑇.
+## 12 Suppose 𝑉 is a complex vector space and 𝑇 ∈ ℒ(𝑉) is normal. Prove that
+if 𝑆 is an operator on 𝑉 that commutes with 𝑇, then 𝑆 commutes with 𝑇∗.
+The result in this exercise is called Fuglede’s theorem.
+## 13 Without using the complex spectral theorem, use the version of Schur’s
+theorem that applies to two commuting operators (take ℰ = {𝑇,𝑇∗} in
+Exercise 20 in Section 6B) to give a different proof that if 𝐅 = 𝐂 and
+𝑇 ∈ ℒ(𝑉) is normal, then 𝑇 has a diagonal matrix with respect to some
+orthonormal basis of 𝑉.
+## 14 Suppose 𝐅 = 𝐑 and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is self-adjoint if and only
+if all pairs of eigenvectors corresponding to distinct eigenvalues of 𝑇 are
+orthogonal and 𝑉 = 𝐸(𝜆1,𝑇)⊕⋯⊕𝐸(𝜆𝑚,𝑇), where 𝜆1,…, 𝜆𝑚 denote the
+distinct eigenvalues of 𝑇.
+## 15 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is normal if and only if all pairs
+of eigenvectors corresponding to distinct eigenvalues of 𝑇 are orthogonal
+and 𝑉 = 𝐸(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐸(𝜆𝑚,𝑇), where 𝜆1,…, 𝜆𝑚 denote the distinct
+eigenvalues of 𝑇.
+## 16 Suppose 𝐅 = 𝐂 and ℰ ⊆ ℒ(𝑉). Prove that there is an orthonormal basis
+of 𝑉 with respect to which every element of ℰ has a diagonal matrix if and
+only if 𝑆 and 𝑇 are commuting normal operators for all 𝑆,𝑇 ∈ ℰ.
+This exercise extends the complex spectral theorem to the context of a
+collection of commuting normal operators.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7B Spectral Theorem 249
+## 17 Suppose 𝐅 = 𝐑 and ℰ ⊆ ℒ(𝑉). Prove that there is an orthonormal basis
+of 𝑉 with respect to which every element of ℰ has a diagonal matrix if and
+only if 𝑆 and 𝑇 are commuting self-adjoint operators for all 𝑆,𝑇 ∈ ℰ.
+This exercise extends the real spectral theorem to the context of a collection
+of commuting self-adjoint operators.
+18 Give an example of a real inner product space 𝑉, an operator 𝑇 ∈ ℒ(𝑉),
+and real numbers 𝑏,𝑐 with 𝑏2
+< 4𝑐 such that
+𝑇2
++ 𝑏𝑇 + 𝑐𝐼
+is not invertible.
+This exercise shows that the hypothesis that 𝑇 is self-adjoint cannot be
+deleted in 7.26, even for real vector spaces.
+## 19 Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint and 𝑈 is a subspace of 𝑉 that is invariant
+under 𝑇.
+(a) Prove that 𝑈⟂
+is invariant under 𝑇.
+(b) Prove that 𝑇|𝑈 ∈ ℒ(𝑈) is self-adjoint.
+(c) Prove that 𝑇|𝑈⟂ ∈ ℒ(𝑈⟂
+) is self-adjoint.
+## 20 Suppose 𝑇 ∈ ℒ(𝑉) is normal and 𝑈 is a subspace of 𝑉 that is invariant
+under 𝑇.
+(a) Prove that 𝑈⟂
+is invariant under 𝑇.
+(b) Prove that 𝑈 is invariant under 𝑇∗.
+(c) Prove that (𝑇|𝑈)∗ = (𝑇∗)|𝑈.
+(d) Prove that 𝑇|𝑈 ∈ ℒ(𝑈) and 𝑇|𝑈⟂ ∈ ℒ(𝑈⟂
+) are normal operators.
+This exercise can be used to give yet another proof of the complex spectral
+theorem (use induction on dim𝑉 and the result that 𝑇 has an eigenvector).
+21 Supposethat𝑇 isaself-adjointoperatoronafinite-dimensionalinnerproduct
+space and that 2 and 3 are the only eigenvalues of 𝑇. Prove that
+𝑇2
+− 5𝑇 + 6𝐼 = 0.
+22 Give an example of an operator 𝑇 ∈ ℒ(𝐂3
+) such that 2 and 3 are the only
+eigenvalues of 𝑇 and 𝑇2
+− 5𝑇 + 6𝐼 ≠ 0.
+## 23 Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint, 𝜆 ∈ 𝐅, and 𝜖 > 0. Suppose there exists
+𝑣 ∈ 𝑉 such that ‖𝑣‖ = 1 and
+‖𝑇𝑣 − 𝜆𝑣‖ < 𝜖.
+Prove that 𝑇 has an eigenvalue 𝜆′
+such that ∣𝜆 − 𝜆′
+∣ < 𝜖.
+This exercise shows that for a self-adjoint operator, a number that is close
+to satisfying an equation that would make it an eigenvalue is close to an
+eigenvalue.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler250 Chapter 7 Operators on Inner Product Spaces
+## 24 Suppose 𝑈 is a finite-dimensional vector space and 𝑇 ∈ ℒ(𝑈).
+(a) Suppose 𝐅 = 𝐑. Prove that 𝑇 is diagonalizable if and only if there is a
+basis of 𝑈 such that the matrix of 𝑇 with respect to this basis equals its
+transpose.
+(b) Suppose 𝐅 = 𝐂. Prove that 𝑇 is diagonalizable if and only if there is a
+basis of 𝑈 such that the matrix of 𝑇 with respect to this basis commutes
+with its conjugate transpose.
+This exercise adds another equivalence to the list of conditions equivalent
+to diagonalizability in 5.55.
+25 Suppose that 𝑇 ∈ ℒ(𝑉) and there is an orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉
+consisting of eigenvectors of 𝑇, with corresponding eigenvalues 𝜆1,…, 𝜆𝑛.
+Show that if 𝑘 ∈ {1,…,𝑛}, then the pseudoinverse 𝑇† satisfies the equation
+𝑇†𝑒𝑘 =
+⎧
+{
+⎨
+{
+⎩
+1
+𝜆𝑘
+𝑒𝑘 if 𝜆𝑘 ≠ 0,
+0 if 𝜆𝑘 = 0.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7C Positive Operators 251
+7C Positive Operators
+7.34 definition: positive operator
+An operator 𝑇 ∈ ℒ(𝑉) is called positive if 𝑇 is self-adjoint and
+⟨𝑇𝑣,𝑣⟩ ≥ 0
+for all 𝑣 ∈ 𝑉.
+If 𝑉 is a complex vector space, then the requirement that 𝑇 be self-adjoint can
+be dropped from the definition above (by 7.14).
+7.35 example: positive operators
+(a) Let 𝑇 ∈ ℒ(𝐅2
+) be the operator whose matrix (using the standard basis) is
+( 2 −1
+−1 1 ). Then𝑇 isself-adjointand⟨𝑇(𝑤,𝑧),(𝑤,𝑧)⟩ = 2|𝑤|2
+−2Re(𝑤𝑧)+|𝑧|2
+= |𝑤 − 𝑧|2
++ |𝑤|2
+≥ 0 for all (𝑤,𝑧) ∈ 𝐅2
+. Thus 𝑇 is a positive operator.
+(b) If 𝑈 is a subspace of 𝑉, then the orthogonal projection 𝑃𝑈 is a positive
+operator, as you should verify.
+(c) If 𝑇 ∈ ℒ(𝑉) is self-adjoint and 𝑏,𝑐 ∈ 𝐑 are such that 𝑏2
+< 4𝑐, then
+𝑇2
++ 𝑏𝑇 + 𝑐𝐼 is a positive operator, as shown by the proof of 7.26.
+7.36 definition: square root
+An operator 𝑅 is called a square root of an operator 𝑇 if 𝑅2
+= 𝑇.
+7.37 example: square root of an operator
+If 𝑇 ∈ ℒ(𝐅3
+) is defined by 𝑇(𝑧1,𝑧2,𝑧3) = (𝑧3,0,0), then the operator
+𝑅 ∈ ℒ(𝐅3
+) defined by 𝑅(𝑧1,𝑧2,𝑧3) = (𝑧2,𝑧3,0) is a square root of 𝑇 because
+𝑅2
+= 𝑇, as you can verify.
+Because positive operators correspond
+to nonnegative numbers, better termi-
+nology would use the term nonnegative
+operators. However,operatortheorists
+consistently call these positive opera-
+tors, so we follow that custom. Some
+mathematicians use the term positive
+semidefinite operator, which means
+the same as positive operator.
+The characterizations of the positive
+operators in the next result correspond
+to characterizations of the nonnegative
+numbers among 𝐂. Specifically, a num-
+ber 𝑧 ∈ 𝐂 is nonnegative if and only
+if it has a nonnegative square root, cor-
+responding to condition (d). Also, 𝑧 is
+nonnegative if and only if it has a real
+square root, corresponding to condition
+(e). Finally, 𝑧 is nonnegative if and only
+if there exists 𝑤 ∈ 𝐂 such that 𝑧 = 𝑤𝑤, corresponding to condition (f). See
+Exercise 20 for another condition that is equivalent to being a positive operator.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler252 Chapter 7 Operators on Inner Product Spaces
+7.38 characterizations of positive operators
+Let 𝑇 ∈ ℒ(𝑉). Then the following are equivalent.
+(a) 𝑇 is a positive operator.
+(b) 𝑇 is self-adjoint and all eigenvalues of 𝑇 are nonnegative.
+(c) With respect to some orthonormal basis of 𝑉, the matrix of 𝑇 is a diagonal
+matrix with only nonnegative numbers on the diagonal.
+(d) 𝑇 has a positive square root.
+(e) 𝑇 has a self-adjoint square root.
+(f) 𝑇 = 𝑅∗𝑅 for some 𝑅 ∈ ℒ(𝑉).
+Proof We will prove that (a) ⇒ (b) ⇒ (c) ⇒ (d) ⇒ (e) ⇒ (f) ⇒ (a).
+Firstsuppose(a)holds, sothat𝑇 ispositive,whichimpliesthat𝑇 isself-adjoint
+(by definition of positive operator). To prove the other condition in (b), suppose
+𝜆 is an eigenvalue of 𝑇. Let 𝑣 be an eigenvector of 𝑇 corresponding to 𝜆. Then
+0 ≤ ⟨𝑇𝑣,𝑣⟩ = ⟨𝜆𝑣,𝑣⟩ = 𝜆⟨𝑣,𝑣⟩.
+Thus 𝜆 is a nonnegative number. Hence (b) holds, showing that (a) implies (b).
+Now suppose (b) holds, so that 𝑇 is self-adjoint and all eigenvalues of 𝑇 are
+nonnegative. By the spectral theorem (7.29 and 7.31), there is an orthonormal
+basis 𝑒1,…,𝑒𝑛 of 𝑉 consisting of eigenvectors of 𝑇. Let 𝜆1,…, 𝜆𝑛 be the eigen-
+values of 𝑇 corresponding to 𝑒1,…,𝑒𝑛; thus each 𝜆𝑘 is a nonnegative number.
+The matrix of 𝑇 with respect to 𝑒1,…,𝑒𝑛 is the diagonal matrix with 𝜆1,…, 𝜆𝑛
+on the diagonal, which shows that (b) implies (c).
+Now suppose (c) holds. Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 such
+thatthematrixof𝑇 withrespecttothisbasisisadiagonalmatrixwithnonnegative
+numbers 𝜆1,…, 𝜆𝑛 on the diagonal. The linear map lemma (3.4) implies that
+there exists 𝑅 ∈ ℒ(𝑉) such that
+𝑅𝑒𝑘 = √𝜆𝑘𝑒𝑘
+for each 𝑘 = 1,…,𝑛. As you should verify, 𝑅 is a positive operator. Furthermore,
+𝑅2
+𝑒𝑘 = 𝜆𝑘𝑒𝑘 = 𝑇𝑒𝑘 for each 𝑘, which implies that 𝑅2
+= 𝑇. Thus 𝑅 is a positive
+square root of 𝑇. Hence (d) holds, which shows that (c) implies (d).
+Every positive operator is self-adjoint (by definition of positive operator).
+Thus (d) implies (e).
+Now suppose (e) holds, meaning that there exists a self-adjoint operator 𝑅 on
+𝑉 such that 𝑇 = 𝑅2
+. Then 𝑇 = 𝑅∗𝑅 (because 𝑅∗ = 𝑅). Hence (e) implies (f).
+Finally, suppose (f) holds. Let 𝑅 ∈ ℒ(𝑉) be such that 𝑇 = 𝑅∗𝑅. Then
+𝑇∗ = (𝑅∗𝑅)
+∗
+= 𝑅∗(𝑅∗)
+∗
+= 𝑅∗𝑅 = 𝑇. Hence 𝑇 is self-adjoint. To complete the
+proof that (a) holds, note that
+⟨𝑇𝑣,𝑣⟩ = ⟨𝑅∗𝑅𝑣,𝑣⟩ = ⟨𝑅𝑣,𝑅𝑣⟩ ≥ 0
+for every 𝑣 ∈ 𝑉. Thus 𝑇 is positive, showing that (f) implies (a).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7C Positive Operators 253
+Every nonnegative number has a unique nonnegative square root. The next
+result shows that positive operators enjoy a similar property.
+7.39 each positive operator has only one positive square root
+Every positive operator on 𝑉 has a unique positive square root.
+A positive operator can have infinitely
+many square roots (although only one
+of them can be positive). For example,
+theidentityoperatoron𝑉 hasinfinitely
+many square roots if dim𝑉 > 1.
+Proof Suppose 𝑇 ∈ ℒ(𝑉) is positive.
+Suppose 𝑣 ∈ 𝑉 is an eigenvector of 𝑇.
+Hence there exists a real number 𝜆 ≥ 0
+such that 𝑇𝑣 = 𝜆𝑣.
+Let 𝑅 be a positive square root of 𝑇.
+We will prove that 𝑅𝑣 = √𝜆𝑣. This will
+imply that the behavior of 𝑅 on the eigenvectors of 𝑇 is uniquely determined.
+Because there is a basis of 𝑉 consisting of eigenvectors of 𝑇 (by the spectral
+theorem), this will imply that 𝑅 is uniquely determined.
+To prove that 𝑅𝑣 = √𝜆𝑣, note that the spectral theorem asserts that there is an
+orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉 consisting of eigenvectors of 𝑅. Because 𝑅 is a
+positive operator, all its eigenvalues are nonnegative. Thus there exist nonnegative
+numbers 𝜆1,…, 𝜆𝑛 such that 𝑅𝑒𝑘 = √𝜆𝑘𝑒𝑘 for each 𝑘 = 1,…,𝑛.
+Because 𝑒1,…,𝑒𝑛 is a basis of 𝑉, we can write
+𝑣 = 𝑎1𝑒1 + ⋯ + 𝑎𝑛𝑒𝑛
+for some numbers 𝑎1,…,𝑎𝑛 ∈ 𝐅. Thus
+𝑅𝑣 = 𝑎1
+√𝜆1𝑒1 + ⋯ + 𝑎𝑛
+√𝜆𝑛𝑒𝑛.
+Hence
+𝜆𝑣 = 𝑇𝑣 = 𝑅2
+𝑣 = 𝑎1𝜆1𝑒1 + ⋯ + 𝑎𝑛𝜆𝑛𝑒𝑛.
+The equation above implies that
+𝑎1𝜆𝑒1 + ⋯ + 𝑎𝑛𝜆𝑒𝑛 = 𝑎1𝜆1𝑒1 + ⋯ + 𝑎𝑛𝜆𝑛𝑒𝑛.
+Thus 𝑎𝑘(𝜆 − 𝜆𝑘) = 0 for each 𝑘 = 1,…,𝑛. Hence
+𝑣 = ∑
+{𝑘∶𝜆𝑘=𝜆}
+𝑎𝑘𝑒𝑘.
+Thus
+𝑅𝑣 = ∑
+{𝑘∶𝜆𝑘=𝜆}
+𝑎𝑘
+√𝜆𝑒𝑘 = √𝜆𝑣,
+as desired.
+The notation defined below makes sense thanks to the result above.
+7.40 notation: √𝑇
+For 𝑇 a positive operator, √𝑇 denotes the unique positive square root of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler254 Chapter 7 Operators on Inner Product Spaces
+7.41 example: square root of positive operators
+Define operators 𝑆,𝑇 on 𝐑2
+(with the usual Euclidean inner product) by
+𝑆(𝑥,𝑦) = (𝑥,2𝑦) and 𝑇(𝑥,𝑦) = (𝑥 + 𝑦,𝑥 + 𝑦).
+Then with respect to the standard basis of 𝐑2
+we have
+7.42 ℳ(𝑆) = (
+1 0
+0 2
+) and ℳ(𝑇) = (
+1 1
+1 1
+).
+Each of these matrices equals its transpose; thus 𝑆 and 𝑇 are self-adjoint.
+If (𝑥,𝑦) ∈ 𝐑2
+, then
+⟨𝑆(𝑥,𝑦),(𝑥,𝑦)⟩ = 𝑥2
++ 2𝑦2
+≥ 0
+and
+⟨𝑇(𝑥,𝑦),(𝑥,𝑦)⟩ = 𝑥2
++ 2𝑥𝑦 + 𝑦2
+= (𝑥 + 𝑦)2
+≥ 0.
+Thus 𝑆 and 𝑇 are positive operators.
+The standard basis of 𝐑2
+is an orthonormal basis consisting of eigenvectors of
+𝑆. Note that
+( 1
+√2
+, 1
+√2
+),( 1
+√2
+,− 1
+√2
+)
+is an orthonormal basis of eigenvectors of 𝑇, with eigenvalue 2 for the first
+eigenvector and eigenvalue 0 for the second eigenvector. Thus √𝑇 has the same
+eigenvectors, with eigenvalues √2 and 0.
+You can verify that
+ℳ(√𝑆) = ⎛ ⎜
+⎝
+1 0
+0 √2
+⎞ ⎟
+⎠
+and ℳ(√𝑇 ) =
+⎛ ⎜ ⎜ ⎜ ⎜
+⎝
+1
+√2
+1
+√2
+1
+√2
+1
+√2
+⎞ ⎟ ⎟ ⎟ ⎟
+⎠
+with respect to the standard basis by showing that the squares of the matrices
+abovearethematricesin7.42andthateachmatrixaboveisthematrixofapositive
+operator.
+The statement of the next result does not involve a square root, but the clean
+proof makes nice use of the square root of a positive operator.
+7.43 𝑇 positive and ⟨𝑇𝑣,𝑣⟩ = 0 ⟹ 𝑇𝑣 = 0
+Suppose 𝑇 is a positive operator on 𝑉 and 𝑣 ∈ 𝑉 is such that ⟨𝑇𝑣,𝑣⟩ = 0.
+Then 𝑇𝑣 = 0.
+Proof We have
+0 = ⟨𝑇𝑣,𝑣⟩ = ⟨√𝑇√𝑇𝑣,𝑣⟩ = ⟨√𝑇𝑣,√𝑇𝑣⟩ = ∥√𝑇𝑣∥
+2
+.
+Hence √𝑇𝑣 = 0. Thus 𝑇𝑣 = √𝑇(√𝑇𝑣) = 0, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7C Positive Operators 255
+Exercises 7C
+## 1 Suppose 𝑇 ∈ ℒ(𝑉). Prove that if both 𝑇 and −𝑇 are positive operators,
+then 𝑇 = 0.
+2 Suppose 𝑇 ∈ ℒ(𝐅4
+) is the operator whose matrix (with respect to the
+standard basis) is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+2 −1 0 0
+−1 2 −1 0
+0 −1 2 −1
+0 0 −1 2
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Show that 𝑇 is an invertible positive operator.
+3 Suppose 𝑛 is a positive integer and 𝑇 ∈ ℒ(𝐅𝑛
+) is the operator whose matrix
+(with respect to the standard basis) consists of all 1’s. Show that 𝑇 is a
+positive operator.
+## 4 Suppose 𝑛 is an integer with 𝑛 > 1. Show that there exists an 𝑛-by-𝑛 matrix
+𝐴 such that all of the entries of 𝐴 are positive numbers and 𝐴 = 𝐴∗, but the
+operator on 𝐅𝑛
+whose matrix (with respect to the standard basis) equals 𝐴 is
+not a positive operator.
+## 5 Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint. Prove that 𝑇 is a positive operator if and
+only if for every orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉, all entries on the diagonal
+of ℳ(𝑇,(𝑒1,…,𝑒𝑛)) are nonnegative numbers.
+## 6 Prove that the sum of two positive operators on 𝑉 is a positive operator.
+## 7 Suppose 𝑆 ∈ ℒ(𝑉) is an invertible positive operator and 𝑇 ∈ ℒ(𝑉) is a
+positive operator. Prove that 𝑆 + 𝑇 is invertible.
+## 8 Suppose 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is a positive operator if and only if the
+pseudoinverse 𝑇† is a positive operator.
+9 Suppose 𝑇 ∈ ℒ(𝑉) is a positive operator and 𝑆 ∈ ℒ(𝑊,𝑉). Prove that
+𝑆∗𝑇𝑆 is a positive operator on 𝑊.
+10 Suppose 𝑇 is a positive operator on 𝑉. Suppose 𝑣,𝑤 ∈ 𝑉 are such that
+𝑇𝑣 = 𝑤 and 𝑇𝑤 = 𝑣.
+Prove that 𝑣 = 𝑤.
+## 11 Suppose 𝑇 is a positive operator on 𝑉 and 𝑈 is a subspace of 𝑉 invariant
+under 𝑇. Prove that 𝑇|𝑈 ∈ ℒ(𝑈) is a positive operator on 𝑈.
+12 Suppose𝑇 ∈ ℒ(𝑉) isapositiveoperator. Provethat𝑇𝑘
+isapositiveoperator
+for every positive integer 𝑘.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler256 Chapter 7 Operators on Inner Product Spaces
+13 Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint and 𝛼 ∈ 𝐑.
+(a) Prove that 𝑇 − 𝛼𝐼 is a positive operator if and only if 𝛼 is less than or
+equal to every eigenvalue of 𝑇.
+(b) Prove that 𝛼𝐼 − 𝑇 is a positive operator if and only if 𝛼 is greater than or
+equal to every eigenvalue of 𝑇.
+14 Suppose 𝑇 is a positive operator on 𝑉 and 𝑣1,…,𝑣𝑚 ∈ 𝑉. Prove that
+𝑚
+∑
+𝑗 = 1
+𝑚
+∑
+𝑘=1
+⟨𝑇𝑣𝑘,𝑣𝑗⟩ ≥ 0.
+## 15 Suppose 𝑇 ∈ ℒ(𝑉) is self-adjoint. Prove that there exist positive operators
+𝐴,𝐵 ∈ ℒ(𝑉) such that
+𝑇 = 𝐴 − 𝐵 and √𝑇∗𝑇 = 𝐴 + 𝐵 and 𝐴𝐵 = 𝐵𝐴 = 0.
+## 16 Suppose 𝑇 is a positive operator on 𝑉. Prove that
+null√𝑇 = null𝑇 and range√𝑇 = range𝑇.
+## 17 Suppose that 𝑇 ∈ ℒ(𝑉) is a positive operator. Prove that there exists a
+polynomial 𝑝 with real coefficients such that √𝑇 = 𝑝(𝑇).
+## 18 Suppose 𝑆 and 𝑇 are positive operators on 𝑉. Prove that 𝑆𝑇 is a positive
+operator if and only if 𝑆 and 𝑇 commute.
+19 Show that the identity operator on 𝐅2
+has infinitely many self-adjoint square
+roots.
+20 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉. Prove that
+𝑇 is a positive operator if and only if there exist 𝑣1,…,𝑣𝑛 ∈ 𝑉 such that
+⟨𝑇𝑒𝑘,𝑒𝑗⟩ = ⟨𝑣𝑘,𝑣𝑗⟩
+for all 𝑗,𝑘 = 1,…,𝑛.
+The numbers {⟨𝑇𝑒𝑘,𝑒𝑗⟩}𝑗,𝑘=1,…,𝑛
+are the entries in the matrix of 𝑇 with
+respect to the orthonormal basis 𝑒1,…,𝑒𝑛.
+## 21 Suppose 𝑛 is a positive integer. The 𝑛-by-𝑛 Hilbert matrix is the 𝑛-by-𝑛
+matrix whose entry in row 𝑗, column 𝑘 is 1
+𝑗+𝑘−1
+. Suppose 𝑇 ∈ ℒ(𝑉) is an
+operator whose matrix with respect to some orthonormal basis of 𝑉 is the
+𝑛-by-𝑛 Hilbert matrix. Prove that 𝑇 is a positive invertible operator.
+Example: The 4-by-4 Hilbert matrix is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 1
+2
+1
+3
+1
+4
+1
+2
+1
+3
+1
+4
+1
+5
+1
+3
+1
+4
+1
+5
+1
+6
+1
+4
+1
+5
+1
+6
+1
+7
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7C Positive Operators 257
+## 22 Suppose 𝑇 ∈ ℒ(𝑉) is a positive operator and 𝑢 ∈ 𝑉 is such that ‖𝑢‖ = 1
+and ‖𝑇𝑢‖ ≥ ‖𝑇𝑣‖ for all 𝑣 ∈ 𝑉 with ‖𝑣‖ = 1. Show that 𝑢 is an eigenvector
+of 𝑇 corresponding to the largest eigenvalue of 𝑇.
+23 For 𝑇 ∈ ℒ(𝑉) and 𝑢,𝑣 ∈ 𝑉, define ⟨𝑢,𝑣⟩𝑇 by ⟨𝑢,𝑣⟩𝑇 = ⟨𝑇𝑢,𝑣⟩.
+(a) Suppose 𝑇 ∈ ℒ(𝑉). Prove that ⟨⋅,⋅⟩𝑇 is an inner product on 𝑉 if and
+only if 𝑇 is an invertible positive operator (with respect to the original
+inner product ⟨⋅,⋅⟩).
+(b) Prove that every inner product on 𝑉 is of the form ⟨⋅,⋅⟩𝑇 for some
+positive invertible operator 𝑇 ∈ ℒ(𝑉).
+## 24 Suppose 𝑆 and 𝑇 are positive operators on 𝑉. Prove that
+null(𝑆 + 𝑇) = null𝑆 ∩ null𝑇.
+## 25 Let 𝑇 be the second derivative operator in Exercise 31(b) in Section 7A.
+Show that −𝑇 is a positive operator.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler258 Chapter 7 Operators on Inner Product Spaces
+7D Isometries, Unitary Operators, and Matrix Factorization
+Isometries
+Linear maps that preserve norms are sufficiently important to deserve a name.
+7.44 definition: isometry
+A linear map 𝑆 ∈ ℒ(𝑉,𝑊) is called an isometry if
+‖𝑆𝑣‖ = ‖𝑣‖
+for every 𝑣 ∈ 𝑉. In other words, a linear map is an isometry if it preserves
+norms.
+The Greek word isos means equal; the
+Greek word metron means measure.
+Thus isometry literally means equal
+measure.
+If 𝑆 ∈ ℒ(𝑉,𝑊) is an isometry and
+𝑣 ∈ 𝑉 is such that 𝑆𝑣 = 0, then
+‖𝑣‖ = ‖𝑆𝑣‖ = ‖0‖ = 0,
+which implies that 𝑣 = 0. Thus every
+isometry is injective.
+7.45 example: orthonormal basis maps to orthonormal list ⟹ isometry
+Suppose𝑒1,…,𝑒𝑛 isanorthonormalbasisof𝑉 and𝑔1,…,𝑔𝑛 isanorthonormal
+list in 𝑊. Let 𝑆 ∈ ℒ(𝑉,𝑊) be the linear map such that 𝑆𝑒𝑘 = 𝑔𝑘 for each
+𝑘 = 1,…,𝑛. To show that 𝑆 is an isometry, suppose 𝑣 ∈ 𝑉. Then
+7.46 𝑣 = ⟨𝑣,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑒𝑛
+and
+7.47 ‖𝑣‖2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑛⟩∣
+2
+,
+where we have used 6.30(b). Applying 𝑆 to both sides of 7.46 gives
+𝑆𝑣 = ⟨𝑣,𝑒1⟩𝑆𝑒1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑆𝑒𝑛 = ⟨𝑣,𝑒1⟩𝑔1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑔𝑛.
+Thus
+7.48 ‖𝑆𝑣‖2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + |⟨𝑣,𝑒𝑛⟩|2
+.
+Comparing 7.47 and 7.48 shows that ‖𝑣‖ = ‖𝑆𝑣‖. Thus 𝑆 is an isometry.
+The next result gives conditions equivalent to being an isometry. The equiv-
+alence of (a) and (c) shows that a linear map is an isometry if and only if it
+preserves inner products. The equivalence of (a) and (d) shows that a linear map
+is an isometry if and only if it maps some orthonormal basis to an orthonormal list.
+Thus the isometries given by Example 7.45 include all isometries. Furthermore,
+a linear map is an isometry if and only if it maps every orthonormal basis to an
+orthonormal list [because whether or not (a) holds does not depend on the basis
+𝑒1,…,𝑒𝑛].
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7D Isometries, Unitary Operators, and Matrix Factorization 259
+The equivalence of (a) and (e) in the next result shows that a linear map is an
+isometry if and only if the columns of its matrix (with respect to any orthonormal
+bases)formanorthonormallist. Hereweareidentifyingthecolumnsofan𝑚-by-𝑛
+matrix with elements of 𝐅𝑚
+and then using the Euclidean inner product on 𝐅𝑚
+.
+7.49 characterizations of isometries
+Suppose 𝑆 ∈ ℒ(𝑉,𝑊). Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and
+𝑓1,…, 𝑓𝑚 is an orthonormal basis of 𝑊. Then the following are equivalent.
+(a) 𝑆 is an isometry.
+(b) 𝑆∗𝑆 = 𝐼.
+(c) ⟨𝑆𝑢,𝑆𝑣⟩ = ⟨𝑢,𝑣⟩ for all 𝑢,𝑣 ∈ 𝑉.
+(d) 𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal list in 𝑊.
+(e) The columns of ℳ(𝑆,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑚)) form an orthonormal list
+in 𝐅𝑚
+with respect to the Euclidean inner product.
+Proof First suppose (a) holds, so 𝑆 is an isometry. If 𝑣 ∈ 𝑉 then
+⟨(𝐼 − 𝑆∗𝑆)𝑣,𝑣⟩ = ⟨𝑣,𝑣⟩ − ⟨𝑆∗𝑆𝑣,𝑣⟩ = ‖𝑣‖2
+− ⟨𝑆𝑣,𝑆𝑣⟩ = ‖𝑣‖2
+− ‖𝑆𝑣‖2
+= 0.
+Hence the self-adjoint operator 𝐼 −𝑆∗𝑆 equals 0 (by 7.16). Thus 𝑆∗𝑆 = 𝐼, proving
+that (a) implies (b).
+Now suppose (b) holds, so 𝑆∗𝑆 = 𝐼. If 𝑢,𝑣 ∈ 𝑉 then
+⟨𝑆𝑢,𝑆𝑣⟩ = ⟨𝑆∗𝑆𝑢,𝑣⟩ = ⟨𝐼𝑢,𝑣⟩ = ⟨𝑢,𝑣⟩,
+proving that (b) implies (c).
+Now suppose that (c) holds, so ⟨𝑆𝑢,𝑆𝑣⟩ = ⟨𝑢,𝑣⟩ for all 𝑢,𝑣 ∈ 𝑉. Thus if
+𝑗,𝑘 ∈ {1,…,𝑛}, then
+⟨𝑆𝑒𝑗,𝑆𝑒𝑘⟩ = ⟨𝑒𝑗,𝑒𝑘⟩.
+Hence 𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal list in 𝑊, proving that (c) implies (d).
+Now suppose that (d) holds, so 𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal list in 𝑊. Let
+𝐴 = ℳ(𝑆,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑚)). If 𝑘,𝑟 ∈ {1,…,𝑛}, then
+7.50
+𝑚
+∑
+𝑗=1
+𝐴𝑗,𝑘𝐴𝑗,𝑟 = ⟨
+𝑚
+∑
+𝑗=1
+𝐴𝑗,𝑘 𝑓𝑗,
+𝑚
+∑
+𝑗=1
+𝐴𝑗,𝑟 𝑓𝑗⟩ = ⟨𝑆𝑒𝑘,𝑆𝑒𝑟⟩ =
+⎧ {
+⎨ { ⎩
+1 if 𝑘 = 𝑟,
+0 if 𝑘 ≠ 𝑟.
+The left side of 7.50 is the inner product in 𝐅𝑚
+of columns 𝑘 and 𝑟 of 𝐴. Thus the
+columns of 𝐴 form an orthonormal list in 𝐅𝑚
+, proving that (d) implies (e).
+Nowsuppose(e)holds,sothecolumnsofthematrix𝐴definedintheparagraph
+above form an orthonormal list in 𝐅𝑚
+. Then 7.50 shows that 𝑆𝑒1,…,𝑆𝑒𝑛 is an
+orthonormal list in 𝑊. Thus Example 7.45, with 𝑆𝑒1,…,𝑆𝑒𝑛 playing the role of
+𝑔1,…,𝑔𝑛, shows that 𝑆 is an isometry, proving that (e) implies (a).
+See Exercises 1 and 11 for additional conditions that are equivalent to being
+an isometry.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler260 Chapter 7 Operators on Inner Product Spaces
+Unitary Operators
+In this subsection, we confine our attention to linear maps from a vector space to
+itself. In other words, we will be working with operators.
+7.51 definition: unitary operator
+An operator 𝑆 ∈ ℒ(𝑉) is called unitary if 𝑆 is an invertible isometry.
+Although the words “unitary” and
+“isometry” mean the same thing for
+operators on finite-dimensional inner
+product spaces, remember that a uni-
+tary operator maps a vector space to
+itself, while an isometry maps a vector
+space to another (possibly different)
+vector space.
+As previously noted, every isometry
+is injective. Every injective operator on
+a finite-dimensional vector space is in-
+vertible (see 3.65). A standing assump-
+tion for this chapter is that 𝑉 is a finite-
+dimensional inner product space. Thus
+we could delete the word “invertible”
+from the definition above without chang-
+ing the meaning. The unnecessary word
+“invertible” has been retained in the definition above for consistency with the
+definition readers may encounter when learning about inner product spaces that
+are not necessarily finite-dimensional.
+7.52 example: rotation of 𝐑2
+Suppose 𝜃 ∈ 𝐑 and 𝑆 is the operator on 𝐅2
+whose matrix with respect to the
+standard basis of 𝐅2
+is
+(
+cos𝜃 −sin𝜃
+sin𝜃 cos𝜃
+).
+The two columns of this matrix form an orthonormal list in 𝐅2
+; hence 𝑆 is an
+isometry [by the equivalence of (a) and (e) in 7.49]. Thus 𝑆 is a unitary operator.
+If 𝐅 = 𝐑, then 𝑆 is the operator of counterclockwise rotation by 𝜃 radians
+around the origin of 𝐑2
+. This observation gives us another way to think about why
+𝑆 is an isometry, because each rotation around the origin of 𝐑2
+preserves norms.
+The next result (7.53) lists several conditions that are equivalent to being a
+unitary operator. All the conditions equivalent to being an isometry in 7.49 should
+be added to this list. The extra conditions in 7.53 arise because of limiting the
+context to linear maps from a vector space to itself. For example, 7.49 shows that
+a linear map 𝑆 ∈ ℒ(𝑉,𝑊) is an isometry if and only if 𝑆∗𝑆 = 𝐼, while 7.53 shows
+that an operator 𝑆 ∈ ℒ(𝑉) is a unitary operator if and only if 𝑆∗𝑆 = 𝑆𝑆∗ = 𝐼.
+Another difference is that 7.49(d) mentions an orthonormal list, while 7.53(d)
+mentions an orthonormal basis. Also, 7.49(e) mentions the columns of ℳ(𝑇),
+while 7.53(e) mentions the rows of ℳ(𝑇). Furthermore, ℳ(𝑇) in 7.49(e) is with
+respect to an orthonormal basis of 𝑉 and an orthonormal basis of 𝑊, while ℳ(𝑇)
+in 7.53(e) is with respect to a single basis of 𝑉 doing double duty.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7D Isometries, Unitary Operators, and Matrix Factorization 261
+7.53 characterizations of unitary operators
+Suppose 𝑆 ∈ ℒ(𝑉). Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉. Then
+the following are equivalent.
+(a) 𝑆 is a unitary operator.
+(b) 𝑆∗𝑆 = 𝑆𝑆∗ = 𝐼.
+(c) 𝑆 is invertible and 𝑆−1
+= 𝑆∗.
+(d) 𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal basis of 𝑉.
+(e) The rows of ℳ(𝑆,(𝑒1,…,𝑒𝑛)) form an orthonormal basis of 𝐅𝑛
+with
+respect to the Euclidean inner product.
+(f) 𝑆∗ is a unitary operator.
+Proof First suppose (a) holds, so 𝑆 is a unitary operator. Hence
+𝑆∗𝑆 = 𝐼
+by the equivalence of (a) and (b) in 7.49. Multiply both sides of this equation by
+𝑆−1
+on the right, getting 𝑆∗ = 𝑆−1
+. Thus 𝑆𝑆∗ = 𝑆𝑆−1
+= 𝐼, as desired, proving
+that (a) implies (b).
+The definitions of invertible and inverse show that (b) implies (c).
+Now suppose (c) holds, so 𝑆 is invertible and 𝑆−1
+= 𝑆∗. Thus 𝑆∗𝑆 = 𝐼. Hence
+𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal list in 𝑉, by the equivalence of (b) and (d) in 7.49.
+The length of this list equals dim𝑉. Thus 𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal basis
+of 𝑉, proving that (c) implies (d).
+Now suppose (d) holds, so 𝑆𝑒1,…,𝑆𝑒𝑛 is an orthonormal basis of 𝑉. The
+equivalence of (a) and (d) in 7.49 shows that 𝑆 is a unitary operator. Thus
+(𝑆∗)
+∗
+𝑆∗ = 𝑆𝑆∗ = 𝐼,
+wherethelastequationholdsbecausewealreadyshowedthat(a)implies(b)inthis
+result. The equation above and the equivalence of (a) and (b) in 7.49 show that 𝑆∗
+isanisometry. Thusthecolumnsofℳ(𝑆∗,(𝑒1,…,𝑒𝑛))formanorthonormalbasis
+of 𝐅𝑛
+[by the equivalence of (a) and (e) of 7.49]. The rows of ℳ(𝑆,(𝑒1,…,𝑒𝑛))
+are the complex conjugates of the columns of ℳ(𝑆∗,(𝑒1,…,𝑒𝑛)). Thus the rows
+of ℳ(𝑆,(𝑒1,…,𝑒𝑛)) form an orthonormal basis of 𝐅𝑛
+, proving that (d) implies (e).
+Now suppose (e) holds. Thus the columns of ℳ(𝑆∗,(𝑒1,…,𝑒𝑛)) form an
+orthonormal basis of 𝐅𝑛
+. The equivalence of (a) and (e) in 7.49 shows that 𝑆∗ is
+an isometry, proving that (e) implies (f).
+Now suppose (f) holds, so 𝑆∗ is a unitary operator. The chain of implications
+we have already proved in this result shows that (a) implies (f). Applying this
+result to 𝑆∗ shows that (𝑆∗)
+∗
+is a unitary operator, proving that (f) implies (a).
+We have shown that (a) ⇒ (b) ⇒ (c) ⇒ (d) ⇒ (e) ⇒ (f) ⇒ (a), completing the
+proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler262 Chapter 7 Operators on Inner Product Spaces
+Recall our analogy between 𝐂 and ℒ(𝑉). Under this analogy, a complex
+number 𝑧 corresponds to an operator 𝑆 ∈ ℒ(𝑉), and 𝑧 corresponds to 𝑆∗. The
+real numbers (𝑧 = 𝑧) correspond to the self-adjoint operators (𝑆 = 𝑆∗), and the
+nonnegative numbers correspond to the (badly named) positive operators.
+Another distinguished subset of 𝐂 is the unit circle, which consists of the
+complex numbers 𝑧 such that |𝑧| = 1. The condition |𝑧| = 1 is equivalent to the
+condition 𝑧𝑧 = 1. Under our analogy, this corresponds to the condition 𝑆∗𝑆 = 𝐼,
+which is equivalent to 𝑆 being a unitary operator. Hence the analogy shows that
+the unit circle in 𝐂 corresponds to the set of unitary operators. In the next two
+results, this analogy appears in the eigenvalues of unitary operators. Also see
+Exercise 15 for another example of this analogy.
+7.54 eigenvalues of unitary operators have absolute value 1
+Suppose 𝜆 is an eigenvalue of a unitary operator. Then |𝜆| = 1.
+Proof Suppose 𝑆 ∈ ℒ(𝑉) is a unitary operator and 𝜆 is an eigenvalue of 𝑆. Let
+𝑣 ∈ 𝑉 be such that 𝑣 ≠ 0 and 𝑆𝑣 = 𝜆𝑣. Then
+|𝜆|‖𝑣‖ = ‖𝜆𝑣‖ = ‖𝑆𝑣‖ = ‖𝑣‖.
+Thus |𝜆| = 1, as desired.
+The next result characterizes unitary operators on finite-dimensional complex
+inner product spaces, using the complex spectral theorem as the main tool.
+7.55 description of unitary operators on complex inner product spaces
+Suppose 𝐅 = 𝐂 and 𝑆 ∈ ℒ(𝑉). Then the following are equivalent.
+(a) 𝑆 is a unitary operator.
+(b) There is an orthonormal basis of 𝑉 consisting of eigenvectors of 𝑆 whose
+corresponding eigenvalues all have absolute value 1.
+Proof Suppose (a) holds, so 𝑆 is a unitary operator. The equivalence of (a) and
+(b) in 7.53 shows that 𝑆 is normal. Thus the complex spectral theorem (7.31)
+shows that there is an orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉 consisting of eigenvectors
+of 𝑆. Every eigenvalue of 𝑆 has absolute value 1 (by 7.54), completing the proof
+that (a) implies (b).
+Now suppose (b) holds. Let 𝑒1,…,𝑒𝑛 be an orthonormal basis of 𝑉 consisting
+of eigenvectors of 𝑆 whose corresponding eigenvalues 𝜆1,…, 𝜆𝑛 all have absolute
+value 1. Then 𝑆𝑒1,…,𝑆𝑒𝑛 is also an orthonormal basis of 𝑉 because
+⟨𝑆𝑒𝑗,𝑆𝑒𝑘⟩ = ⟨𝜆𝑗𝑒𝑗, 𝜆𝑘𝑒𝑘⟩ = 𝜆𝑗𝜆𝑘⟨𝑒𝑗,𝑒𝑘⟩ =
+⎧ {
+⎨ { ⎩
+0 if 𝑗 ≠ 𝑘,
+1 if 𝑗 = 𝑘
+for all 𝑗,𝑘 = 1,…,𝑛. Thus the equivalence of (a) and (d) in 7.53 shows that 𝑆 is
+unitary, proving that (b) implies (a).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7D Isometries, Unitary Operators, and Matrix Factorization 263
+QR Factorization
+In this subsection, we shift our attention from operators to matrices. This switch
+should give you good practice in identifying an operator with a square matrix
+(after picking a basis of the vector space on which the operator is defined). You
+should also become more comfortable with translating concepts and results back
+and forth between the context of operators and the context of square matrices.
+When starting with 𝑛-by-𝑛 matrices instead of operators, unless otherwise
+specified assume that the associated operators live on 𝐅𝑛
+(with the Euclidean inner
+product) and that their matrices are computed with respect to the standard basis
+of 𝐅𝑛
+.
+We begin by making the following definition, transferring the notion of a
+unitary operator to a unitary matrix.
+7.56 definition: unitary matrix
+An 𝑛-by-𝑛 matrix is called unitary if its columns form an orthonormal list
+in 𝐅𝑛
+.
+In the definition above, we could have replaced “orthonormal list in 𝐅𝑛
+” with
+“orthonormal basis of 𝐅𝑛
+” because every orthonormal list of length 𝑛 in an 𝑛-
+dimensional inner product space is an orthonormal basis. If 𝑆 ∈ ℒ(𝑉) and
+𝑒1,…,𝑒𝑛 and 𝑓1,…, 𝑓𝑛 are orthonormal bases of 𝑉, then 𝑆 is a unitary operator
+if and only if ℳ(𝑆,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑛)) is a unitary matrix, as shown by the
+equivalence of (a) and (e) in 7.49. Also note that we could also have replaced
+“columns” in the definition above with “rows” by using the equivalence between
+conditions (a) and (e) in 7.53.
+The next result, whose proof will be left as an exercise for the reader, gives
+some equivalent conditions for a square matrix to be unitary. In (c), 𝑄𝑣 denotes
+the matrix product of 𝑄 and 𝑣, identifying elements of 𝐅𝑛
+with 𝑛-by-1 matrices
+(sometimes called column vectors). The norm in (c) below is the usual Euclidean
+norm on 𝐅𝑛
+that comes from the Euclidean inner product. In (d), 𝑄∗ denotes
+the conjugate transpose of the matrix 𝑄, which corresponds to the adjoint of the
+associated operator.
+7.57 characterizations of unitary matrices
+Suppose 𝑄 is an 𝑛-by-𝑛 matrix. Then the following are equivalent.
+(a) 𝑄 is a unitary matrix.
+(b) The rows of 𝑄 form an orthonormal list in 𝐅𝑛
+.
+(c) ‖𝑄𝑣‖ = ‖𝑣‖ for every 𝑣 ∈ 𝐅𝑛
+.
+(d) 𝑄∗𝑄 = 𝑄𝑄∗ = 𝐼, the 𝑛-by-𝑛 matrix with 1’s on the diagonal and 0’s
+elsewhere.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler264 Chapter 7 Operators on Inner Product Spaces
+The QR factorization stated and proved below is the main tool in the widely
+used QR algorithm (not discussed here) for finding good approximations to
+eigenvalues and eigenvectors of square matrices. In the result below, if the matrix
+𝐴 is in 𝐅𝑛,𝑛
+, then the matrices 𝑄 and 𝑅 are also in 𝐅𝑛,𝑛
+.
+7.58 QR factorization
+Suppose 𝐴 is a square matrix with linearly independent columns. Then there
+exist unique matrices 𝑄 and 𝑅 such that 𝑄 is unitary, 𝑅 is upper triangular
+with only positive numbers on its diagonal, and
+𝐴 = 𝑄𝑅.
+Proof Let𝑣1,…,𝑣𝑛 denotethecolumnsof𝐴,thoughtofaselementsof𝐅𝑛
+. Apply
+the Gram–Schmidt procedure (6.32) to the list 𝑣1,…,𝑣𝑛, getting an orthonormal
+basis 𝑒1,…,𝑒𝑛 of 𝐅𝑛
+such that
+7.59 span(𝑣1,…,𝑣𝑘) = span(𝑒1,…,𝑒𝑘)
+for each 𝑘 = 1,…,𝑛. Let 𝑅 be the 𝑛-by-𝑛 matrix defined by
+𝑅𝑗,𝑘 = ⟨𝑣𝑘,𝑒𝑗⟩,
+where 𝑅𝑗,𝑘 denotes the entry in row 𝑗, column 𝑘 of 𝑅. If 𝑗 > 𝑘, then 𝑒𝑗 is orthogonal
+to span(𝑒1,…,𝑒𝑘) and hence 𝑒𝑗 is orthogonal to 𝑣𝑘 (by 7.59). In other words, if
+𝑗 > 𝑘 then ⟨𝑣𝑘,𝑒𝑗⟩ = 0. Thus 𝑅 is an upper-triangular matrix.
+Let 𝑄 be the unitary matrix whose columns are 𝑒1,…,𝑒𝑛. If 𝑘 ∈ {1,…,𝑛},
+then the 𝑘th
+column of 𝑄𝑅 equals a linear combination of the columns of 𝑄, with
+the coefficients for the linear combination coming from the 𝑘th
+column of 𝑅—see
+3.51(a). Hence the 𝑘th
+column of 𝑄𝑅 equals
+⟨𝑣𝑘,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣𝑘,𝑒𝑘⟩𝑒𝑘,
+which equals 𝑣𝑘 [by 6.30(a)], the 𝑘th
+column of 𝐴. Thus 𝐴 = 𝑄𝑅, as desired.
+The equations defining the Gram–Schmidt procedure (see 6.32) show that
+each 𝑣𝑘 equals a positive multiple of 𝑒𝑘 plus a linear combination of 𝑒1,…,𝑒𝑘−1.
+Thus each ⟨𝑣𝑘,𝑒𝑘⟩ is a positive number. Hence all entries on the diagonal of 𝑅 are
+positive numbers, as desired.
+Finally,toshowthat𝑄and𝑅areunique,supposewealsohave𝐴 = ̂ 𝑄 ̂ 𝑅,where
+̂ 𝑄 is unitary and ̂ 𝑅 is upper triangular with only positive numbers on its diagonal.
+Let𝑞1,…,𝑞𝑛 denotethecolumnsof ̂ 𝑄. Thinkingofmatrixmultiplicationasabove,
+we see that each 𝑣𝑘 is a linear combination of 𝑞1,…,𝑞𝑘, with the coefficients com-
+ing from the 𝑘th
+column of ̂ 𝑅. This implies that span(𝑣1,…,𝑣𝑘) = span(𝑞1,…,𝑞𝑘)
+and ⟨𝑣𝑘,𝑞𝑘⟩ > 0. The uniqueness of the orthonormal lists satisfying these condi-
+tions (see Exercise 10 in Section 6B) now shows that 𝑞𝑘 = 𝑒𝑘 for each 𝑘 = 1,…,𝑛.
+Hence ̂ 𝑄 = 𝑄, which then implies that ̂ 𝑅 = 𝑅, completing the proof of unique-
+ness.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7D Isometries, Unitary Operators, and Matrix Factorization 265
+The proof of the QR factorization shows that the columns of the unitary matrix
+can be computed by applying the Gram–Schmidt procedure to the columns of the
+matrix to be factored. The next example illustrates the computation of the QR
+factorization based on the proof that we just completed.
+7.60 example: QR factorization of a 3-by-3 matrix
+To find the QR factorization of the matrix
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+1 2 1
+0 1 −4
+0 3 2
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+follow the proof of 7.58. Thus set 𝑣1, 𝑣2, 𝑣3 equal to the columns of 𝐴:
+𝑣1 = (1,0,0), 𝑣2 = (2,1,3), 𝑣3 = (1,−4,2).
+Apply the Gram–Schmidt procedure to 𝑣1,𝑣2,𝑣3, producing the orthonormal list
+𝑒1 = (1,0,0), 𝑒2 = (0, 1
+√10
+, 3
+√10
+), 𝑒3 = (0,− 3
+√10
+, 1
+√10
+).
+Still following the proof of 7.58, let 𝑄 be the unitary matrix whose columns are
+𝑒1,𝑒2,𝑒3:
+𝑄 =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 0 0
+0 1
+√10
+− 3
+√10
+0 3
+√10
+1
+√10
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+As in the proof of 7.58, let 𝑅 be the 3-by-3 matrix whose entry in row 𝑗, column 𝑘
+is ⟨𝑣𝑘,𝑒𝑗⟩, which gives
+𝑅 =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 2 1
+0 √10
+√10
+5
+0 0 7√10
+5
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Note that 𝑅 is indeed an upper-triangular matrix with only positive numbers on
+the diagonal, as required by the QR factorization.
+Now matrix multiplication can verify that 𝐴 = 𝑄𝑅 is the desired factorization
+of 𝐴:
+𝑄𝑅 =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 0 0
+0 1
+√10
+− 3
+√10
+0 3
+√10
+1
+√10
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 2 1
+0 √10
+√10
+5
+0 0 7√10
+5
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+=
+⎛ ⎜ ⎜ ⎜
+⎝
+1 2 1
+0 1 −4
+0 3 2
+⎞ ⎟ ⎟ ⎟
+⎠
+= 𝐴.
+Thus 𝐴 = 𝑄𝑅, as expected.
+The QR factorization will be the major tool used in the proof of the Cholesky
+factorization (7.63) in the next subsection. For another nice application of the QR
+factorization, see the proof of Hadamard’s inequality (9.66).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler266 Chapter 7 Operators on Inner Product Spaces
+If a QR factorization is available, then it can be used to solve a corresponding
+system of linear equations without using Gaussian elimination. Specifically,
+suppose𝐴 isan𝑛-by-𝑛 squarematrixwithlinearlyindependentcolumns. Suppose
+that 𝑏 ∈ 𝐅𝑛
+and we want to solve the equation 𝐴𝑥 = 𝑏 for 𝑥 = (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+(as usual, we are identifying elements of 𝐅𝑛
+with 𝑛-by-1 column vectors).
+Suppose 𝐴 = 𝑄𝑅, where 𝑄 is unitary and 𝑅 is upper triangular with only
+positive numbers on its diagonal (𝑄 and 𝑅 are computable from 𝐴 using just the
+Gram–Schmidt procedure, as shown in the proof of 7.58). The equation 𝐴𝑥 = 𝑏 is
+equivalent to the equation 𝑄𝑅𝑥 = 𝑏. Multiplying both sides of this last equation
+by 𝑄∗ on the left and using 7.57(d) gives the equation
+𝑅𝑥 = 𝑄∗𝑏.
+The matrix 𝑄∗ is the conjugate transpose of the matrix 𝑄. Thus computing
+𝑄∗𝑏 is straightforward. Because 𝑅 is an upper-triangular matrix with positive
+numbersonitsdiagonal,thesystemoflinearequationsrepresentedbytheequation
+above can quickly be solved by first solving for 𝑥𝑛, then for 𝑥𝑛−1, and so on.
+Cholesky Factorization
+We begin this subsection with a characterization of positive invertible operators
+in terms of inner products.
+7.61 positive invertible operator
+A self-adjoint operator 𝑇 ∈ ℒ(𝑉) is a positive invertible operator if and only
+if ⟨𝑇𝑣,𝑣⟩ > 0 for every nonzero 𝑣 ∈ 𝑉.
+Proof First suppose 𝑇 is a positive invertible operator. If 𝑣 ∈ 𝑉 and 𝑣 ≠ 0, then
+because 𝑇 is invertible we have 𝑇𝑣 ≠ 0. This implies that ⟨𝑇𝑣,𝑣⟩ ≠ 0 (by 7.43).
+Hence ⟨𝑇𝑣,𝑣⟩ > 0.
+To prove the implication in the other direction, suppose now that ⟨𝑇𝑣,𝑣⟩ > 0
+for every nonzero 𝑣 ∈ 𝑉. Thus 𝑇𝑣 ≠ 0 for every nonzero 𝑣 ∈ 𝑉. Hence 𝑇 is
+injective. Thus 𝑇 is invertible, as desired.
+The next definition transfers the result above to the language of matrices. Here
+we are using the usual Euclidean inner product on 𝐅𝑛
+and identifying elements of
+𝐅𝑛
+with 𝑛-by-1 column vectors.
+7.62 definition: positive definite
+A matrix 𝐵 ∈ 𝐅𝑛,𝑛
+is called positive definite if 𝐵∗ = 𝐵 and
+⟨𝐵𝑥,𝑥⟩ > 0
+for every nonzero 𝑥 ∈ 𝐅𝑛
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7D Isometries, Unitary Operators, and Matrix Factorization 267
+A matrix is upper triangular if and only if its conjugate transpose is lower
+triangular (meaning that all entries above the diagonal are 0). The factorization
+below, which has important consequences in computational linear algebra, writes
+a positive definite matrix as the product of a lower triangular matrix and its
+conjugate transpose.
+Our next result is solely about matrices, although the proof makes use of the
+identification of results about operators with results about square matrices. In the
+result below, if the matrix 𝐵 is in 𝐅𝑛,𝑛
+, then the matrix 𝑅 is also in 𝐅𝑛,𝑛
+.
+## 7.63 Cholesky factorization
+Suppose 𝐵 is a positive definite matrix. Then there exists a unique upper-
+triangular matrix 𝑅 with only positive numbers on its diagonal such that
+𝐵 = 𝑅∗𝑅.
+Proof Because 𝐵 is positive definite, there exists an invertible square matrix 𝐴
+of the same size as 𝐵 such that 𝐵 = 𝐴∗𝐴 [by the equivalence of (a) and (f) in
+7.38].
+Let 𝐴 = 𝑄𝑅 be the QR factorization of 𝐴 (see 7.58), where 𝑄 is unitary and 𝑅
+is upper triangular with only positive numbers on its diagonal. Then 𝐴∗ = 𝑅∗𝑄∗.
+André-Louis Cholesky (1875–1918)
+discovered this factorization, which
+was published posthumously in 1924.
+Thus
+𝐵 = 𝐴∗𝐴 = 𝑅∗𝑄∗𝑄𝑅 = 𝑅∗𝑅,
+as desired.
+To prove the uniqueness part of this result, suppose 𝑆 is an upper-triangular
+matrix with only positive numbers on its diagonal and 𝐵 = 𝑆∗𝑆. The matrix 𝑆 is
+invertiblebecause𝐵 isinvertible(seeExercise11inSection3D).Multiplyingboth
+sides of the equation 𝐵 = 𝑆∗𝑆 by 𝑆−1
+on the right gives the equation 𝐵𝑆−1
+= 𝑆∗.
+Let 𝐴 be the matrix from the first paragraph of this proof. Then
+(𝐴𝑆−1
+)
+∗
+(𝐴𝑆−1
+) = (𝑆∗)−1
+𝐴∗𝐴𝑆−1
+= (𝑆∗)−1
+𝐵𝑆−1
+= (𝑆∗)−1
+𝑆∗
+= 𝐼.
+Thus 𝐴𝑆−1
+is unitary.
+Hence 𝐴 = (𝐴𝑆−1
+)𝑆 is a factorization of 𝐴 as the product of a unitary matrix
+and an upper-triangular matrix with only positive numbers on its diagonal. The
+uniqueness of the QR factorization, as stated in 7.58, now implies that 𝑆 = 𝑅.
+In the first paragraph of the proof above, we could have chosen 𝐴 to be the
+unique positive definite matrix that is a square root of 𝐵 (see 7.39). However,
+the proof was presented with the more general choice of 𝐴 because for specific
+positive definite matrices 𝐵, it may be easier to find a different choice of 𝐴.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler268 Chapter 7 Operators on Inner Product Spaces
+Exercises 7D
+1 Suppose dim𝑉 ≥ 2 and 𝑆 ∈ ℒ(𝑉,𝑊). Prove that 𝑆 is an isometry if and
+only if 𝑆𝑒1,𝑆𝑒2 is an orthonormal list in 𝑊 for every orthonormal list 𝑒1,𝑒2
+of length two in 𝑉.
+2 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑇 ≠ 0. Prove that 𝑇 is a scalar multiple of an
+isometry if and only if 𝑇 preserves orthogonality.
+The phrase “𝑇 preserves orthogonality” means that ⟨𝑇𝑢,𝑇𝑣⟩ = 0 for all
+𝑢,𝑣 ∈ 𝑉 such that ⟨𝑢,𝑣⟩ = 0.
+3 (a) Showthattheproductoftwounitaryoperatorson𝑉 isaunitaryoperator.
+(b) Show that the inverse of a unitary operator on 𝑉 is a unitary operator.
+This exercise shows that the set of unitary operators on 𝑉 is a group, where
+the group operation is the usual product of two operators.
+4 Suppose 𝐅 = 𝐂 and 𝐴,𝐵 ∈ ℒ(𝑉) are self-adjoint. Show that 𝐴 + 𝑖𝐵 is
+unitary if and only if 𝐴𝐵 = 𝐵𝐴 and 𝐴2
++ 𝐵2
+= 𝐼.
+## 5 Suppose 𝑆 ∈ ℒ(𝑉). Prove that the following are equivalent.
+(a) 𝑆 is a self-adjoint unitary operator.
+(b) 𝑆 = 2𝑃 − 𝐼 for some orthogonal projection 𝑃 on 𝑉.
+(c) There exists a subspace 𝑈 of 𝑉 such that 𝑆𝑢 = 𝑢 for every 𝑢 ∈ 𝑈 and
+𝑆𝑤 = −𝑤 for every 𝑤 ∈ 𝑈⟂
+.
+6 Suppose 𝑇1,𝑇2 are both normal operators on 𝐅3
+with 2,5,7 as eigenvalues.
+Prove that there exists a unitary operator 𝑆 ∈ ℒ(𝐅3
+) such that 𝑇1 = 𝑆∗𝑇2𝑆.
+7 Give an example of two self-adjoint operators 𝑇1,𝑇2 ∈ ℒ(𝐅4
+) such that the
+eigenvalues of both operators are 2,5,7 but there does not exist a unitary
+operator 𝑆 ∈ ℒ(𝐅4
+) such that 𝑇1 = 𝑆∗𝑇2𝑆. Be sure to explain why there is
+no unitary operator with the required property.
+8 Proveorgiveacounterexample: If𝑆 ∈ ℒ(𝑉)andthereexistsanorthonormal
+basis 𝑒1,…,𝑒𝑛 of 𝑉 such that ‖𝑆𝑒𝑘‖ = 1 for each 𝑒𝑘, then 𝑆 is a unitary
+operator.
+## 9 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Suppose every eigenvalue of 𝑇 has absolute
+value 1 and ‖𝑇𝑣‖ ≤ ‖𝑣‖ for every 𝑣 ∈ 𝑉. Prove that 𝑇 is a unitary operator.
+10 Suppose𝐅 = 𝐂 and𝑇 ∈ ℒ(𝑉)isaself-adjointoperatorsuchthat‖𝑇𝑣‖ ≤ ‖𝑣‖
+for all 𝑣 ∈ 𝑉.
+(a) Show that 𝐼 − 𝑇2
+is a positive operator.
+(b) Show that 𝑇 + 𝑖√𝐼 − 𝑇2 is a unitary operator.
+## 11 Suppose 𝑆 ∈ ℒ(𝑉). Prove that 𝑆 is a unitary operator if and only if
+{𝑆𝑣 ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ ≤ 1} = {𝑣 ∈ 𝑉 ∶ ‖𝑣‖ ≤ 1}.
+12 Proveorgiveacounterexample: If𝑆 ∈ ℒ(𝑉)isinvertibleand∥𝑆−1
+𝑣∥ = ‖𝑆𝑣‖
+for every 𝑣 ∈ 𝑉, then 𝑆 is unitary.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7D Isometries, Unitary Operators, and Matrix Factorization 269
+## 13 Explain why the columns of a square matrix of complex numbers form
+an orthonormal list in 𝐂𝑛
+if and only if the rows of the matrix form an
+orthonormal list in 𝐂𝑛
+.
+14 Suppose 𝑣 ∈ 𝑉 with ‖𝑣‖ = 1 and 𝑏 ∈ 𝐅. Also suppose dim𝑉 ≥ 2. Prove
+that there exists a unitary operator 𝑆 ∈ ℒ(𝑉) such that ⟨𝑆𝑣,𝑣⟩ = 𝑏 if and
+only if |𝑏| ≤ 1.
+## 15 Suppose 𝑇 is a unitary operator on 𝑉 such that 𝑇 − 𝐼 is invertible.
+(a) Prove that (𝑇 + 𝐼)(𝑇 − 𝐼)−1
+is a skew operator (meaning that it equals
+the negative of its adjoint).
+(b) Prove that if 𝐅 = 𝐂, then 𝑖(𝑇 + 𝐼)(𝑇 − 𝐼)−1
+is a self-adjoint operator.
+The function 𝑧 ↦ 𝑖(𝑧 + 1)(𝑧 − 1)−1
+maps the unit circle in 𝐂 (except for the
+point 1) to 𝐑. Thus (b) illustrates the analogy between the unitary operators
+and the unit circle in 𝐂, along with the analogy between the self-adjoint
+operators and 𝐑.
+16 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉) is self-adjoint. Prove that (𝑇 +𝑖𝐼)(𝑇 −𝑖𝐼)−1
+is a unitary operator and 1 is not an eigenvalue of this operator.
+## 17 Explain why the characterizations of unitary matrices given by 7.57 hold.
+18 A square matrix 𝐴 is called symmetric if it equals its transpose. Prove that if
+𝐴 is a symmetric matrix with real entries, then there exists a unitary matrix
+𝑄 with real entries such that 𝑄∗𝐴𝑄 is a diagonal matrix.
+## 19 Suppose 𝑛 is a positive integer. For this exercise, we adopt the notation that
+a typical element 𝑧 of 𝐂𝑛
+is denoted by 𝑧 = (𝑧0,𝑧1,…,𝑧𝑛−1). Define linear
+functionals 𝜔0,𝜔1,…,𝜔𝑛−1 on 𝐂𝑛
+by
+𝜔𝑗(𝑧0,𝑧1,…,𝑧𝑛−1) =
+1
+√
+𝑛
+𝑛−1
+∑
+𝑚=0
+𝑧𝑚 𝑒−2𝜋𝑖𝑗𝑚/𝑛
+.
+The discrete Fourier transform is the operator ℱ∶ 𝐂𝑛
+→ 𝐂𝑛
+defined by
+ℱ𝑧 = (𝜔0(𝑧),𝜔1(𝑧),…,𝜔𝑛−1(𝑧)).
+(a) Show that ℱ is a unitary operator on 𝐂𝑛
+.
+(b) Show that if (𝑧0,…,𝑧𝑛−1) ∈ 𝐂𝑛
+and 𝑧𝑛 is defined to equal 𝑧0, then
+ℱ−1
+(𝑧0,𝑧1,…,𝑧𝑛−1) = ℱ(𝑧𝑛,𝑧𝑛−1,…,𝑧1).
+(c) Show that ℱ4
+= 𝐼.
+The discrete Fourier transform has many important applications in data
+analysis. The usual Fourier transform involves expressions of the form
+∫
+∞
+−∞ 𝑓(𝑥)𝑒−2𝜋𝑖𝑡𝑥
+𝑑𝑥 for complex-valued integrable functions 𝑓 defined on 𝐑.
+## 20 Suppose 𝐴 is a square matrix with linearly independent columns. Prove that
+there exist unique matrices 𝑅 and 𝑄 such that 𝑅 is lower triangular with only
+positive numbers on its diagonal, 𝑄 is unitary, and 𝐴 = 𝑅𝑄.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler270 Chapter 7 Operators on Inner Product Spaces
+7E Singular Value Decomposition
+Singular Values
+We will need the following result in this section.
+7.64 properties of 𝑇∗𝑇
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) 𝑇∗𝑇 is a positive operator on 𝑉;
+(b) null𝑇∗𝑇 = null𝑇;
+(c) range𝑇∗𝑇 = range𝑇∗;
+(d) dimrange𝑇 = dimrange𝑇∗ = dimrange𝑇∗𝑇.
+Proof
+(a) We have
+(𝑇∗𝑇)
+∗
+= 𝑇∗(𝑇∗)
+∗
+= 𝑇∗𝑇.
+Thus 𝑇∗𝑇 is self-adjoint.
+If 𝑣 ∈ 𝑉, then
+⟨(𝑇∗𝑇)𝑣,𝑣⟩ = ⟨𝑇∗(𝑇𝑣),𝑣⟩ = ⟨𝑇𝑣,𝑇𝑣⟩ = ‖𝑇𝑣‖2
+≥ 0.
+Thus 𝑇∗𝑇 is a positive operator.
+(b) First suppose 𝑣 ∈ null𝑇∗𝑇. Then
+‖𝑇𝑣‖2
+= ⟨𝑇𝑣,𝑇𝑣⟩ = ⟨𝑇∗𝑇𝑣,𝑣⟩ = ⟨0,𝑣⟩ = 0.
+Thus 𝑇𝑣 = 0, proving that null𝑇∗𝑇 ⊆ null𝑇.
+The inclusion in the other direction is clear, because if 𝑣 ∈ 𝑉 and 𝑇𝑣 = 0,
+then 𝑇∗𝑇𝑣 = 0.
+Thus null𝑇∗𝑇 = null𝑇, completing the proof of (b).
+(c) We already know from (a) that 𝑇∗𝑇 is self-adjoint. Thus
+range𝑇∗𝑇 = (null𝑇∗𝑇)
+⟂
+= (null𝑇)⟂
+= range𝑇∗,
+where the first and last equalities come from 7.6 and the second equality
+comes from (b).
+(d) To verify the first equation in (d), note that
+dimrange𝑇 = dim(null𝑇∗)
+⟂
+= dim𝑊 − dimnull𝑇∗ = dimrange𝑇∗,
+where the first equality comes from 7.6(d), the second equality comes from
+6.51, and the last equality comes from the fundamental theorem of linear
+maps (3.21).
+The equality dimrange𝑇∗ = dimrange𝑇∗𝑇 follows from (c).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7E Singular Value Decomposition 271
+The eigenvalues of an operator tell us something about the behavior of the
+operator. Another collection of numbers, called the singular values, is also useful.
+Eigenspaces and the notation 𝐸 (used in the examples) were defined in 5.52.
+7.65 definition: singular values
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). The singular values of 𝑇 are the nonnegative square
+roots of the eigenvalues of 𝑇∗𝑇, listed in decreasing order, each included as
+many times as the dimension of the corresponding eigenspace of 𝑇∗𝑇.
+7.66 example: singular values of an operator on 𝐅4
+Define 𝑇 ∈ ℒ(𝐅4
+) by 𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (0,3𝑧1,2𝑧2,−3𝑧4). A calculation
+shows that
+𝑇∗𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (9𝑧1,4𝑧2,0,9𝑧4),
+as you should verify. Thus the standard basis of 𝐅4
+diagonalizes 𝑇∗𝑇, and we
+see that the eigenvalues of 𝑇∗𝑇 are 9, 4, and 0. Also, the dimensions of the
+eigenspaces corresponding to the eigenvalues are
+dim𝐸(9,𝑇∗𝑇) = 2 and dim𝐸(4,𝑇∗𝑇) = 1 and dim𝐸(0,𝑇∗𝑇) = 1.
+Taking nonnegative square roots of these eigenvalues of 𝑇∗𝑇 and using dimension
+information from above, we conclude that the singular values of 𝑇 are 3,3,2,0.
+The only eigenvalues of 𝑇 are −3 and 0. Thus in this case, the collection of
+eigenvalues did not pick up the number 2 that appears in the definition (and hence
+the behavior) of 𝑇, but the list of singular values does include 2.
+7.67 example: singular values of a linear map from 𝐅4
+to 𝐅3
+Suppose 𝑇 ∈ ℒ(𝐅4
+,𝐅3
+) has matrix (with respect to the standard bases)
+⎛ ⎜ ⎜ ⎜
+⎝
+0 0 0 −5
+0 0 0 0
+1 1 0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+You can verify that the matrix of 𝑇∗𝑇 is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 1 0 0
+1 1 0 0
+0 0 0 0
+0 0 0 25
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+andthattheeigenvaluesoftheoperator𝑇∗𝑇 are25, 2, 0, withdim𝐸(25,𝑇∗𝑇) = 1,
+dim𝐸(2,𝑇∗𝑇) = 1, and dim𝐸(0,𝑇∗𝑇) = 2. Thus the singular values of 𝑇 are
+5,√2,0,0.
+See Exercise 2 for a characterization of the positive singular values.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler≈ 100𝑒 Chapter 7 Operators on Inner Product Spaces
+7.68 role of positive singular values
+Suppose that 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) 𝑇 is injective ⟺ 0 is not a singular value of 𝑇;
+(b) the number of positive singular values of 𝑇 equals dimrange𝑇;
+(c) 𝑇 is surjective ⟺ number of positive singular values of 𝑇 equals dim𝑊.
+Proof The linear map 𝑇 is injective if and only if null𝑇 = {0}, which happens
+if and only if null𝑇∗𝑇 = {0} [by 7.64(b)], which happens if and only if 0 is not
+an eigenvalue of 𝑇∗𝑇, which happens if and only if 0 is not a singular value of 𝑇,
+completing the proof of (a).
+Thespectraltheoremappliedto𝑇∗𝑇 showsthatdimrange𝑇∗𝑇 equalsthenum-
+ber of positive eigenvalues of 𝑇∗𝑇 (counting repetitions). Thus 7.64(d) implies
+that dimrange𝑇 equals the number of positive singular values of 𝑇, proving (b).
+Use (b) and 2.39 to show that (c) holds.
+The table below compares eigenvalues with singular values.
+list of eigenvalues list of singular values
+context: vector spaces context: inner product spaces
+definedonlyforlinearmapsfromavector
+space to itself
+defined for linear maps from an inner
+productspacetoapossiblydifferentinner
+product space
+can be arbitrary real numbers (if 𝐅 = 𝐑)
+or complex numbers (if 𝐅 = 𝐂)
+are nonnegative numbers
+can be the empty list if 𝐅 = 𝐑 length of list equals dimension of domain
+includes 0 ⟺ operator is not invertible includes 0 ⟺ linear map is not injective
+no standard order, especially if 𝐅 = 𝐂 always listed in decreasing order
+The next result nicely characterizes isometries in terms of singular values.
+7.69 isometries characterized by having all singular values equal 1
+Suppose that 𝑆 ∈ ℒ(𝑉,𝑊). Then
+𝑆 is an isometry ⟺ all singular values of 𝑆 equal 1.
+Proof We have
+𝑆 is an isometry ⟺ 𝑆∗𝑆 = 𝐼
+⟺ all eigenvalues of 𝑆∗𝑆 equal 1
+⟺ all singular values of 𝑆 equal 1,
+where the first equivalence comes from 7.49 and the second equivalence comes
+from the spectral theorem (7.29 or 7.31) applied to the self-adjoint operator 𝑆∗𝑆.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7E Singular Value Decomposition 273
+SVD for Linear Maps and for Matrices
+The singular value decomposition is
+useful in computational linear alge-
+bra because good techniques exist for
+approximating eigenvalues and eigen-
+vectors of positive operators such as
+𝑇∗𝑇, whose eigenvalues and eigenvec-
+tors lead to the singular value decom-
+position.
+The next result shows that every linear
+map from 𝑉 to 𝑊 has a remarkably clean
+description in terms of its singular val-
+ues and orthonormal lists in 𝑉 and 𝑊.
+In the next section we will see several
+important applications of the singular
+value decomposition (often called the
+SVD).
+7.70 singular value decomposition
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and the positive singular values of 𝑇 are 𝑠1,…,𝑠𝑚.
+Then there exist orthonormal lists 𝑒1,…,𝑒𝑚 in 𝑉 and 𝑓1,…, 𝑓𝑚 in 𝑊 such that
+7.71 𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+for every 𝑣 ∈ 𝑉.
+Proof Let 𝑠1,…,𝑠𝑛 denote the singular values of 𝑇 (thus 𝑛 = dim𝑉). Because
+𝑇∗𝑇 is a positive operator [see 7.64(a)], the spectral theorem implies that there
+exists an orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉 with
+7.72 𝑇∗𝑇𝑒𝑘 = 𝑠𝑘
+2
+𝑒𝑘
+for each 𝑘 = 1,…,𝑛.
+For each 𝑘 = 1,…,𝑚, let
+7.73 𝑓𝑘 =
+𝑇𝑒𝑘
+𝑠𝑘
+.
+If 𝑗,𝑘 ∈ {1,…,𝑚}, then
+⟨𝑓𝑗, 𝑓𝑘⟩ =
+1
+𝑠𝑗𝑠𝑘
+⟨𝑇𝑒𝑗,𝑇𝑒𝑘⟩ =
+1
+𝑠𝑗𝑠𝑘
+⟨𝑒𝑗,𝑇∗𝑇𝑒𝑘⟩ =
+𝑠𝑘
+𝑠𝑗
+⟨𝑒𝑗,𝑒𝑘⟩ =
+⎧ {
+⎨ { ⎩
+0 if 𝑗 ≠ 𝑘,
+1 if 𝑗 = 𝑘.
+Thus 𝑓1,…, 𝑓𝑚 is an orthonormal list in 𝑊.
+If 𝑘 ∈ {1,…,𝑛} and 𝑘 > 𝑚, then 𝑠𝑘 = 0 and hence 𝑇∗𝑇𝑒𝑘 = 0 (by 7.72),
+which implies that 𝑇𝑒𝑘 = 0 [by 7.64(b)].
+Suppose 𝑣 ∈ 𝑉. Then
+𝑇𝑣 = 𝑇(⟨𝑣,𝑒1⟩𝑒1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑒𝑛)
+= ⟨𝑣,𝑒1⟩𝑇𝑒1 + ⋯ + ⟨𝑣,𝑒𝑚⟩𝑇𝑒𝑚
+= 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚,
+where the last index in the first line switched from 𝑛 to 𝑚 in the second line
+because 𝑇𝑒𝑘 = 0 if 𝑘 > 𝑚 (as noted in the paragraph above) and the third line
+follows from 7.73. The equation above is our desired result.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler274 Chapter 7 Operators on Inner Product Spaces
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊), the positive singular values of 𝑇 are 𝑠1,…,𝑠𝑚, and
+𝑒1,…,𝑒𝑚 and 𝑓1,…, 𝑓𝑚 are as in the singular value decomposition 7.70. The
+orthonormal list 𝑒1,…,𝑒𝑚 can be extended to an orthonormal basis 𝑒1,…,𝑒dim𝑉
+of 𝑉 and the orthonormal list 𝑓1,…, 𝑓𝑚 can be extended to an orthonormal basis
+𝑓1,…, 𝑓dim𝑊 of 𝑊. The formula 7.71 shows that
+𝑇𝑒𝑘 =
+⎧ {
+⎨ { ⎩
+𝑠𝑘 𝑓𝑘 if 1 ≤ 𝑘 ≤ 𝑚,
+0 if 𝑚 < 𝑘 ≤ dim𝑉.
+Thus the matrix of 𝑇 with respect to the orthonormal bases (𝑒1,…,𝑒dim𝑉) and
+(𝑓1,…, 𝑓dim𝑊) has the simple form
+ℳ(𝑇,(𝑒1,…,𝑒dim𝑉),(𝑓1,…, 𝑓dim𝑊))𝑗,𝑘
+=
+⎧ {
+⎨ { ⎩
+𝑠𝑘 if 1 ≤ 𝑗 = 𝑘 ≤ 𝑚,
+0 otherwise.
+If dim𝑉 = dim𝑊 (as happens, for example, if 𝑊 = 𝑉), then the matrix
+described in the paragraph above is a diagonal matrix. If we extend the definition
+of diagonal matrix as follows to apply to matrices that are not necessarily square,
+then we have proved the wonderful result that every linear map from 𝑉 to 𝑊 has
+a diagonal matrix with respect to appropriate orthonormal bases.
+7.74 definition: diagonal matrix
+An 𝑀-by-𝑁 matrix 𝐴 is called a diagonal matrix if all entries of the matrix
+are 0 except possibly 𝐴𝑘,𝑘 for 𝑘 = 1,…,min{𝑀,𝑁}.
+The table below compares the spectral theorem (7.29 and 7.31) with the
+singular value decomposition (7.70).
+spectral theorem singular value decomposition
+describes only self-adjoint operators
+(when 𝐅 = 𝐑) or normal operators (when
+𝐅 = 𝐂)
+describes arbitrary linear maps from an
+innerproductspacetoapossiblydifferent
+inner product space
+produces a single orthonormal basis produces two orthonormal lists, one for
+domain space and one for range space,
+that are not necessarily the same even
+when range space equals domain space
+different proofs depending on whether
+𝐅 = 𝐑 or 𝐅 = 𝐂
+same proof works regardless of whether
+𝐅 = 𝐑 or 𝐅 = 𝐂
+The singular value decomposition gives us a new way to understand the adjoint
+and the inverse of a linear map. Specifically, the next result shows that given a
+singular value decomposition of a linear map 𝑇 ∈ ℒ(𝑉,𝑊), we can obtain the
+adjoint of 𝑇 simply by interchanging the roles of the 𝑒’s and the 𝑓 ’s (see 7.77).
+Similarly, we can obtain the pseudoinverse 𝑇† (see 6.68) of 𝑇 by interchanging
+the roles of the 𝑒’s and the 𝑓 ’s and replacing each positive singular value 𝑠𝑘 of 𝑇
+with 1/𝑠𝑘 (see 7.78).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7E Singular Value Decomposition 275
+Recall that the pseudoinverse 𝑇† in 7.78 below equals the inverse 𝑇−1
+if 𝑇 is
+invertible [see 6.69(a)].
+7.75 singular value decomposition of adjoint and pseudoinverse
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and the positive singular values of 𝑇 are 𝑠1,…,𝑠𝑚.
+Suppose 𝑒1,…,𝑒𝑚 and 𝑓1,…, 𝑓𝑚 are orthonormal lists in 𝑉 and 𝑊 such that
+7.76 𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+for every 𝑣 ∈ 𝑉. Then
+7.77 𝑇∗𝑤 = 𝑠1⟨𝑤, 𝑓1⟩𝑒1 + ⋯ + 𝑠𝑚⟨𝑤, 𝑓𝑚⟩𝑒𝑚
+and
+7.78 𝑇†𝑤 =
+⟨𝑤, 𝑓1⟩
+𝑠1
+𝑒1 + ⋯ +
+⟨𝑤, 𝑓𝑚⟩
+𝑠𝑚
+𝑒𝑚
+for every 𝑤 ∈ 𝑊.
+Proof If 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊 then
+⟨𝑇𝑣,𝑤⟩ = ⟨𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚,𝑤⟩
+= 𝑠1⟨𝑣,𝑒1⟩⟨𝑓1,𝑤⟩ + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩⟨𝑓𝑚,𝑤⟩
+= ⟨𝑣,𝑠1⟨𝑤, 𝑓1⟩𝑒1 + ⋯ + 𝑠𝑚⟨𝑤, 𝑓𝑚⟩𝑒𝑚⟩.
+This implies that
+𝑇∗𝑤 = 𝑠1⟨𝑤, 𝑓1⟩𝑒1 + ⋯ + 𝑠𝑚⟨𝑤, 𝑓𝑚⟩𝑒𝑚,
+proving 7.77.
+To prove 7.78, suppose 𝑤 ∈ 𝑊. Let
+𝑣 =
+⟨𝑤, 𝑓1⟩
+𝑠1
+𝑒1 + ⋯ +
+⟨𝑤, 𝑓𝑚⟩
+𝑠𝑚
+𝑒𝑚.
+Apply 𝑇 to both sides of the equation above, getting
+𝑇𝑣 =
+⟨𝑤, 𝑓1⟩
+𝑠1
+𝑇𝑒1 + ⋯ +
+⟨𝑤, 𝑓𝑚⟩
+𝑠𝑚
+𝑇𝑒𝑚
+= ⟨𝑤, 𝑓1⟩𝑓1 + ⋯ + ⟨𝑤, 𝑓𝑚⟩𝑓𝑚
+= 𝑃range𝑇 𝑤,
+where the second line holds because 7.76 implies that 𝑇𝑒𝑘 = 𝑠𝑘 𝑓𝑘 if 𝑘 = 1,…,𝑚,
+and the last line above holds because 7.76 implies that 𝑓1,…, 𝑓𝑚 spans range𝑇
+and thus is an orthonormal basis of range𝑇 [and hence 6.57(i) applies]. The
+equation above, the observation that 𝑣 ∈ (null𝑇)⟂
+[see Exercise 8(b)], and the
+definition of 𝑇†𝑤 (see 6.68) show that 𝑣 = 𝑇†𝑤, proving 7.78.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler276 Chapter 7 Operators on Inner Product Spaces
+7.79 example: finding a singular value decomposition
+Define 𝑇 ∈ ℒ(𝐅4
+,𝐅3
+) by 𝑇(𝑥1,𝑥2,𝑥3,𝑥4) = (−5𝑥4,0,𝑥1 + 𝑥2). We want to
+find a singular value decomposition of 𝑇. The matrix of 𝑇 (with respect to the
+standard bases) is
+⎛ ⎜ ⎜ ⎜
+⎝
+0 0 0 −5
+0 0 0 0
+1 1 0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Thus, as discussed in Example 7.67, the matrix of 𝑇∗𝑇 is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 1 0 0
+1 1 0 0
+0 0 0 0
+0 0 0 25
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+,
+and the positive eigenvalues of 𝑇∗𝑇 are 25, 2, with dim𝐸(25,𝑇∗𝑇) = 1 and
+dim𝐸(2,𝑇∗𝑇) = 1. Hence the positive singular values of 𝑇 are 5,√2.
+Thus to find a singular value decomposition of 𝑇, we must find an orthonormal
+list 𝑒1,𝑒2 in 𝐅4
+and an orthonormal list 𝑓1, 𝑓2 in 𝐅3
+such that
+𝑇𝑣 = 5⟨𝑣,𝑒1⟩𝑓1 + √2⟨𝑣,𝑒2⟩𝑓2
+for all 𝑣 ∈ 𝐅4
+.
+An orthonormal basis of 𝐸(25,𝑇∗𝑇) is the vector (0,0,0,1); an orthonormal
+basis of 𝐸(2,𝑇∗𝑇) is the vector ( 1
+√2
+, 1
+√2
+,0,0). Thus, following the proof of 7.70,
+we take
+𝑒1 = (0,0,0,1) and 𝑒2 = (
+1
+√2
+,
+1
+√2
+,0,0)
+and
+𝑓1 =
+𝑇𝑒1
+5
+= (−1,0,0) and 𝑓2 =
+𝑇𝑒2
+√2
+= (0,0,1).
+Then, as expected, we see that 𝑒1,𝑒2 is an orthonormal list in 𝐅4
+and 𝑓1, 𝑓2 is an
+orthonormal list in 𝐅3
+and
+𝑇𝑣 = 5⟨𝑣,𝑒1⟩𝑓1 + √2⟨𝑣,𝑒2⟩𝑓2
+for all 𝑣 ∈ 𝐅4
+. Thus we have found a singular value decomposition of 𝑇.
+The next result translates the singular value decomposition from the context
+of linear maps to the context of matrices. Specifically, the following result gives
+a factorization of an arbitrary matrix as the product of three nice matrices. The
+proof gives an explicit construction of these three matrices in terms of the singular
+value decomposition.
+In the next result, the phrase “orthonormal columns” should be interpreted to
+mean that the columns are orthonormal with respect to the standard Euclidean
+inner product.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7E Singular Value Decomposition 277
+7.80 matrix version of SVD
+Suppose 𝐴 is a 𝑝-by-𝑛 matrix of rank 𝑚 ≥ 1. Then there exist a 𝑝-by-𝑚 matrix
+𝐵 with orthonormal columns, an 𝑚-by-𝑚 diagonal matrix 𝐷 with positive
+numbers on the diagonal, and an 𝑛-by-𝑚 matrix 𝐶 with orthonormal columns
+such that
+𝐴 = 𝐵𝐷𝐶∗.
+Proof Let 𝑇∶ 𝐅𝑛
+→ 𝐅𝑝
+be the linear map whose matrix with respect to the
+standard bases equals 𝐴. Then dimrange𝑇 = 𝑚 (by 3.78). Let
+7.81 𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+be a singular value decomposition of 𝑇. Let
+𝐵 = the 𝑝-by-𝑚 matrix whose columns are 𝑓1,…, 𝑓𝑚,
+𝐷 = the 𝑚-by-𝑚 diagonal matrix whose diagonal entries are 𝑠1,…,𝑠𝑚,
+𝐶 = the 𝑛-by-𝑚 matrix whose columns are 𝑒1,…,𝑒𝑚.
+Let 𝑢1,…,𝑢𝑚 denote the standard basis of 𝐅𝑚
+. If 𝑘 ∈ {1,…,𝑚} then
+(𝐴𝐶 − 𝐵𝐷)𝑢𝑘 = 𝐴𝑒𝑘 − 𝐵(𝑠𝑘𝑢𝑘) = 𝑠𝑘 𝑓𝑘 − 𝑠𝑘 𝑓𝑘 = 0.
+Thus 𝐴𝐶 = 𝐵𝐷.
+Multiply both sides of this last equation by 𝐶∗ (the conjugate transpose of 𝐶)
+on the right to get
+𝐴𝐶𝐶∗ = 𝐵𝐷𝐶∗.
+Note that the rows of 𝐶∗ are the complex conjugates of 𝑒1,…,𝑒𝑚. Thus if
+𝑘 ∈ {1,…,𝑚}, then the definition of matrix multiplication shows that 𝐶∗𝑒𝑘 = 𝑢𝑘;
+hence 𝐶𝐶∗𝑒𝑘 = 𝑒𝑘. Thus 𝐴𝐶𝐶∗𝑣 = 𝐴𝑣 for all 𝑣 ∈ span(𝑒1,…,𝑒𝑚).
+If 𝑣 ∈ (span(𝑒1,…,𝑒𝑚))
+⟂
+, then 𝐴𝑣 = 0 (as follows from 7.81) and 𝐶∗𝑣 = 0
+(as follows from the definition of matrix multiplication). Hence 𝐴𝐶𝐶∗𝑣 = 𝐴𝑣 for
+all 𝑣 ∈ (span(𝑒1,…,𝑒𝑚))
+⟂
+.
+Because 𝐴𝐶𝐶∗ and 𝐴 agree on span(𝑒1,…,𝑒𝑚) and on (span(𝑒1,…,𝑒𝑚))
+⟂
+,
+we conclude that 𝐴𝐶𝐶∗ = 𝐴. Thus the displayed equation above becomes
+𝐴 = 𝐵𝐷𝐶∗,
+as desired.
+Note that the matrix 𝐴 in the result above has 𝑝𝑛 entries. In comparison, the
+matrices 𝐵, 𝐷, and 𝐶 above have a total of
+𝑚(𝑝 + 𝑚 + 𝑛)
+entries. Thus if 𝑝 and 𝑛 are large numbers and the rank 𝑚 is considerably less
+than 𝑝 and 𝑛, then the number of entries that must be stored on a computer to
+represent 𝐴 is considerably less than 𝑝𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler278 Chapter 7 Operators on Inner Product Spaces
+Exercises 7E
+1 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Show that 𝑇 = 0 if and only if all singular values
+of 𝑇 are 0.
+2 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑠 > 0. Prove that 𝑠 is a singular value of 𝑇 if
+and only if there exist nonzero vectors 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊 such that
+𝑇𝑣 = 𝑠𝑤 and 𝑇∗𝑤 = 𝑠𝑣.
+The vectors 𝑣,𝑤 satisfying both equations above are called a Schmidt pair.
+Erhard Schmidt introduced the concept of singular values in 1907.
+3 Give an example of 𝑇 ∈ ℒ(𝐂2
+) such that 0 is the only eigenvalue of 𝑇 and
+the singular values of 𝑇 are 5,0.
+4 Suppose that 𝑇 ∈ ℒ(𝑉,𝑊), 𝑠1 is the largest singular value of 𝑇, and 𝑠𝑛 is
+the smallest singular value of 𝑇. Prove that
+{‖𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ = 1} = [𝑠𝑛,𝑠1].
+5 Suppose 𝑇 ∈ ℒ(𝐂2
+) is defined by 𝑇(𝑥,𝑦) = (−4𝑦,𝑥). Find the singular
+values of 𝑇.
+6 Find the singular values of the differentiation operator 𝐷 ∈ ℒ(𝒫2(𝐑))
+defined by 𝐷𝑝 = 𝑝′
+, where the inner product on 𝒫2(𝐑) is as in Example 6.34.
+## 7 Suppose that 𝑇 ∈ ℒ(𝑉) is self-adjoint or that 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉) is
+normal. Let 𝜆1,…, 𝜆𝑛 be the eigenvalues of 𝑇, each included in this list
+as many times as the dimension of the corresponding eigenspace. Show
+that the singular values of 𝑇 are |𝜆1|,…,|𝜆𝑛|, after these numbers have been
+sorted into decreasing order.
+8 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Suppose 𝑠1 ≥ 𝑠2 ≥ ⋯ ≥ 𝑠𝑚 > 0 and 𝑒1,…,𝑒𝑚 is an
+orthonormal list in 𝑉 and 𝑓1,…, 𝑓𝑚 is an orthonormal list in 𝑊 such that
+𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+for every 𝑣 ∈ 𝑉.
+(a) Prove that 𝑓1,…, 𝑓𝑚 is an orthonormal basis of range𝑇.
+(b) Prove that 𝑒1,…,𝑒𝑚 is an orthonormal basis of (null𝑇)⟂
+.
+(c) Prove that 𝑠1,…,𝑠𝑚 are the positive singular values of 𝑇.
+(d) Prove that if 𝑘 ∈ {1,…,𝑚}, then 𝑒𝑘 is an eigenvector of 𝑇∗𝑇 with
+corresponding eigenvalue 𝑠𝑘
+2
+.
+(e) Prove that
+𝑇𝑇∗𝑤 = 𝑠1
+2
+⟨𝑤, 𝑓1⟩𝑓1 + ⋯ + 𝑠𝑚
+2
+⟨𝑤, 𝑓𝑚⟩𝑓𝑚
+for all 𝑤 ∈ 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7E Singular Value Decomposition 279
+9 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Show that 𝑇 and 𝑇∗ have the same positive singular
+values.
+10 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) has singular values 𝑠1,…,𝑠𝑛. Prove that if 𝑇 is an
+invertible linear map, then 𝑇−1
+has singular values
+1
+𝑠𝑛
+,…,
+1
+𝑠1
+.
+11 Suppose that 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑣1,…,𝑣𝑛 is an orthonormal basis of 𝑉. Let
+𝑠1,…,𝑠𝑛 denote the singular values of 𝑇.
+(a) Prove that ‖𝑇𝑣1‖2
++ ⋯ + ‖𝑇𝑣𝑛‖2
+= 𝑠1
+2
++ ⋯ + 𝑠𝑛
+2
+.
+(b) Prove that if 𝑊 = 𝑉 and 𝑇 is a positive operator, then
+⟨𝑇𝑣1,𝑣1⟩ + ⋯ + ⟨𝑇𝑣𝑛,𝑣𝑛⟩ = 𝑠1 + ⋯ + 𝑠𝑛.
+See the comment after Exercise 5 in Section 7A.
+12 (a) Give an example of a finite-dimensional vector space and an operator 𝑇
+on it such that the singular values of 𝑇2
+do not equal the squares of the
+singular values of 𝑇.
+(b) Suppose 𝑇 ∈ ℒ(𝑉) is normal. Prove that the singular values of 𝑇2
+equal the squares of the singular values of 𝑇.
+13 Suppose 𝑇1,𝑇2 ∈ ℒ(𝑉). Prove that 𝑇1 and 𝑇2 have the same singular
+values if and only if there exist unitary operators 𝑆1,𝑆2 ∈ ℒ(𝑉) such that
+𝑇1 = 𝑆1𝑇2𝑆2.
+14 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Let 𝑠𝑛 denotethesmallestsingular valueof 𝑇. Prove
+that 𝑠𝑛‖𝑣‖ ≤ ‖𝑇𝑣‖ for every 𝑣 ∈ 𝑉.
+## 15 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑠1 ≥ ⋯ ≥ 𝑠𝑛 are the singular values of 𝑇. Prove
+that if 𝜆 is an eigenvalue of 𝑇, then 𝑠1 ≥ |𝜆| ≥ 𝑠𝑛.
+16 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Prove that (𝑇∗)
+†
+= (𝑇†)
+∗
+.
+Compare the result in this exercise to the analogous result for invertible
+linear maps [see 7.5(f)].
+17 Suppose 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is self-adjoint if and only if 𝑇† is self-
+adjoint.
+Matrices unfold
+Singular values gleam like stars
+Order in chaos shines
+—written by ChatGPT with input haiku about SVD
+Linear Algebra Done Right, fourth edition, by Sheldon Axler280 Chapter 7 Operators on Inner Product Spaces
+7F Consequences of Singular Value Decomposition
+Norms of Linear Maps
+The singular value decomposition leads to the following upper bound for ‖𝑇𝑣‖.
+7.82 upper bound for ‖𝑇𝑣‖
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Let 𝑠1 be the largest singular value of 𝑇. Then
+‖𝑇𝑣‖ ≤ 𝑠1‖𝑣‖
+for all 𝑣 ∈ 𝑉.
+For a lower bound on ‖𝑇𝑣‖, look at
+Exercise 14 in Section 7E.
+Proof Let 𝑠1,…,𝑠𝑚 denote the positive
+singular values of 𝑇, and let 𝑒1,…,𝑒𝑚 be
+an orthonormal list in 𝑉 and 𝑓1,…, 𝑓𝑚 be
+an orthonormal list in 𝑊 that provide a singular value decomposition of 𝑇. Thus
+7.83 𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+for all 𝑣 ∈ 𝑉. Hence if 𝑣 ∈ 𝑉 then
+‖𝑇𝑣‖2
+= 𝑠1
+2
+∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + 𝑠𝑚
+2
+∣⟨𝑣,𝑒𝑚⟩∣
+2
+≤ 𝑠1
+2
+(∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑚⟩∣
+2
+)
+≤ 𝑠1
+2
+‖𝑣‖2
+,
+where the last inequality follows from Bessel’s inequality (6.26). Taking square
+roots of both sides of the inequality above shows that ‖𝑇𝑣‖ ≤ 𝑠1‖𝑣‖, as desired.
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑠1 is the largest singular value of 𝑇. The result
+above shows that
+7.84 ‖𝑇𝑣‖ ≤ 𝑠1 for all 𝑣 ∈ 𝑉 with ‖𝑣‖ ≤ 1.
+Taking 𝑣 = 𝑒1 in 7.83 shows that 𝑇𝑒1 = 𝑠1 𝑓1. Because ‖𝑓1‖ = 1, this implies that
+‖𝑇𝑒1‖ = 𝑠1. Thus because ‖𝑒1‖ = 1, the inequality in 7.84 leads to the equation
+7.85 max{‖𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ ≤ 1} = 𝑠1.
+Theequationaboveisthemotivationforthefollowingdefinition,whichdefines
+the norm of 𝑇 to be the left side of the equation above without needing to refer to
+singular values or the singular value decomposition.
+7.86 definition: norm of a linear map, ‖⋅‖
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then the norm of 𝑇, denoted by ‖𝑇‖, is defined by
+‖𝑇‖ = max{‖𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ ≤ 1}.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 281
+In general, the maximum of an infinite set of nonnegative numbers need
+not exist. However, the discussion before 7.86 shows that the maximum in the
+definition of the norm of a linear map 𝑇 from 𝑉 to 𝑊 does indeed exist (and
+equals the largest singular value of 𝑇).
+We now have two different uses of the word norm and the notation ‖⋅‖. Our
+first use of this notation was in connection with an inner product on 𝑉, when we
+defined ‖𝑣‖ = √⟨𝑣,𝑣⟩ for each 𝑣 ∈ 𝑉. Our second use of the norm notation and
+terminology is with the definition we just made of ‖𝑇‖ for 𝑇 ∈ ℒ(𝑉,𝑊). The
+norm ‖𝑇‖ for 𝑇 ∈ ℒ(𝑉,𝑊) does not usually come from taking an inner product
+of 𝑇 with itself (see Exercise 21). You should be able to tell from the context and
+from the symbols used which meaning of the norm is intended.
+Thepropertiesofthenormonℒ(𝑉,𝑊)listedbelowlookidenticaltoproperties
+of the norm on an inner product space (see 6.9 and 6.17). The inequality in (d) is
+called the triangle inequality, thus using the same terminology that we used for
+the norm on 𝑉. For the reverse triangle inequality, see Exercise 1.
+7.87 basic properties of norms of linear maps
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) ‖𝑇‖ ≥ 0;
+(b) ‖𝑇‖ = 0 ⟺ 𝑇 = 0;
+(c) ‖𝜆𝑇‖ = |𝜆|‖𝑇‖ for all 𝜆 ∈ 𝐅;
+(d) ‖𝑆 + 𝑇‖ ≤ ‖𝑆‖ + ‖𝑇‖ for all 𝑆 ∈ ℒ(𝑉,𝑊).
+Proof
+(a) Because ‖𝑇𝑣‖ ≥ 0 for every 𝑣 ∈ 𝑉, the definition of ‖𝑇‖ implies that ‖𝑇‖ ≥ 0.
+(b) Suppose ‖𝑇‖ = 0. Thus 𝑇𝑣 = 0 for all 𝑣 ∈ 𝑉 with ‖𝑣‖ ≤ 1. If 𝑢 ∈ 𝑉 with
+𝑢 ≠ 0, then
+𝑇𝑢 = ‖𝑢‖𝑇(
+𝑢
+‖𝑢‖
+) = 0,
+where the last equality holds because 𝑢/‖𝑢‖ has norm 1. Because 𝑇𝑢 = 0 for
+all 𝑢 ∈ 𝑉, we have 𝑇 = 0.
+Conversely, if 𝑇 = 0 then 𝑇𝑣 = 0 for all 𝑣 ∈ 𝑉 and hence ‖𝑇‖ = 0.
+(c) Suppose 𝜆 ∈ 𝐅. Then
+‖𝜆𝑇‖ = max{‖𝜆𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ ≤ 1}
+= |𝜆|max{‖𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ ≤ 1}
+= |𝜆|‖𝑇‖.
+(d) Suppose 𝑆 ∈ ℒ(𝑉,𝑊). The definition of ‖𝑆 + 𝑇‖ implies that there exists
+𝑣 ∈ 𝑉 such that ‖𝑣‖ ≤ 1 and ‖𝑆 + 𝑇‖ = ∥(𝑆 + 𝑇)𝑣∥. Now
+‖𝑆 + 𝑇‖ = ∥(𝑆 + 𝑇)𝑣∥ = ‖𝑆𝑣 + 𝑇𝑣‖ ≤ ‖𝑆𝑣‖ + ‖𝑇𝑣‖ ≤ ‖𝑆‖ + ‖𝑇‖,
+completing the proof of (d).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler282 Chapter 7 Operators on Inner Product Spaces
+For 𝑆,𝑇 ∈ ℒ(𝑉,𝑊), the quantity ‖𝑆 − 𝑇‖ is often called the distance between
+𝑆 and 𝑇. Informally, think of the condition that ‖𝑆 − 𝑇‖ is a small number as
+meaning that 𝑆 and 𝑇 are close together. For example, Exercise 9 asserts that for
+every 𝑇 ∈ ℒ(𝑉), there is an invertible operator as close to 𝑇 as we wish.
+7.88 alternative formulas for ‖𝑇‖
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then
+(a) ‖𝑇‖ = the largest singular value of 𝑇;
+(b) ‖𝑇‖ = max{‖𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ = 1};
+(c) ‖𝑇‖ = the smallest number 𝑐 such that ‖𝑇𝑣‖ ≤ 𝑐‖𝑣‖ for all 𝑣 ∈ 𝑉.
+Proof
+(a) See 7.85.
+(b) Let 𝑣 ∈ 𝑉 be such that 0 < ‖𝑣‖ ≤ 1. Let 𝑢 = 𝑣/‖𝑣‖. Then
+‖𝑢‖ = ∥
+𝑣
+‖𝑣‖
+∥ = 1 and ‖𝑇𝑢‖ = ∥𝑇(
+𝑣
+‖𝑣‖
+)∥ =
+‖𝑇𝑣‖
+‖𝑣‖
+≥ ‖𝑇𝑣‖.
+Thus when finding the maximum of ‖𝑇𝑣‖ with ‖𝑣‖ ≤ 1, we can restrict
+attention to vectors in 𝑉 with norm 1, proving (b).
+(c) Suppose 𝑣 ∈ 𝑉 and 𝑣 ≠ 0. Then the definition of ‖𝑇‖ implies that
+∥𝑇(
+𝑣
+‖𝑣‖
+)∥ ≤ ‖𝑇‖,
+which implies that
+7.89 ‖𝑇𝑣‖ ≤ ‖𝑇‖‖𝑣‖.
+Now suppose 𝑐 ≥ 0 and ‖𝑇𝑣‖ ≤ 𝑐‖𝑣‖ for all 𝑣 ∈ 𝑉. This implies that
+‖𝑇𝑣‖ ≤ 𝑐
+for all 𝑣 ∈ 𝑉 with ‖𝑣‖ ≤ 1. Taking the maximum of the left side of the
+inequality above over all 𝑣 ∈ 𝑉 with ‖𝑣‖ ≤ 1 shows that ‖𝑇‖ ≤ 𝑐. Thus ‖𝑇‖ is
+the smallest number 𝑐 such that ‖𝑇𝑣‖ ≤ 𝑐‖𝑣‖ for all 𝑣 ∈ 𝑉.
+When working with norms of linear maps, you will probably frequently use
+the inequality 7.89.
+For computing an approximation of the norm of a linear map 𝑇 given the
+matrix of 𝑇 with respect to some orthonormal bases, 7.88(a) is likely to be most
+useful. The matrix of 𝑇∗𝑇 is quickly computable from matrix multiplication.
+Then a computer can be asked to find an approximation for the largest eigenvalue
+of 𝑇∗𝑇 (excellent numerical algorithms exist for this purpose). Then taking the
+square root and using 7.88(a) gives an approximation for the norm of 𝑇 (which
+usually cannot be computed exactly).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 283
+You should verify all assertions in the example below.
+7.90 example: norms
+• If 𝐼 denotes the usual identity operator on 𝑉, then ‖𝐼‖ = 1.
+• If 𝑇 ∈ ℒ(𝐅𝑛
+) and the matrix of 𝑇 with respect to the standard basis of 𝐅𝑛
+consists of all 1’s, then ‖𝑇‖ = 𝑛.
+• If 𝑇 ∈ ℒ(𝑉) and 𝑉 has an orthonormal basis consisting of eigenvectors of
+𝑇 with corresponding eigenvalues 𝜆1,…, 𝜆𝑛, then ‖𝑇‖ is the maximum of the
+numbers |𝜆1|,…,|𝜆𝑛|.
+• Suppose 𝑇 ∈ ℒ(𝐑5
+) is the operator whose matrix (with respect to the stan-
+dard basis) is the 5-by-5 matrix whose entry in row 𝑗, column 𝑘 is 1/(𝑗2
++ 𝑘).
+Standard mathematical software shows that the largest singular value of 𝑇 is
+approximately 0.8 and the smallest singular value of 𝑇 is approximately 10−6
+.
+Thus ‖𝑇‖ ≈ 0.8 and (using Exercise 10 in Section 7E) ∥𝑇−1
+∥ ≈ 106
+. It is not
+possible to find exact formulas for these norms.
+A linear map and its adjoint have the same norm, as shown by the next result.
+7.91 norm of the adjoint
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Then ∥𝑇∗∥ = ‖𝑇‖.
+Proof Suppose 𝑤 ∈ 𝑊. Then
+∥𝑇∗𝑤∥
+2
+= ⟨𝑇∗𝑤,𝑇∗𝑤⟩ = ⟨𝑇𝑇∗𝑤,𝑤⟩ ≤ ∥𝑇𝑇∗𝑤∥‖𝑤‖ ≤ ‖𝑇‖∥𝑇∗𝑤∥‖𝑤‖.
+The inequality above implies that
+∥𝑇∗𝑤∥ ≤ ‖𝑇‖‖𝑤‖,
+which along with 7.88(c) implies that ∥𝑇∗∥ ≤ ‖𝑇‖.
+Replacing 𝑇 with 𝑇∗ in the inequality ∥𝑇∗∥ ≤ ‖𝑇‖ and then using the equation
+(𝑇∗)
+∗
+= 𝑇 shows that ‖𝑇‖ ≤ ∥𝑇∗∥. Thus ∥𝑇∗∥ = ‖𝑇‖, as desired.
+You may want to construct an alternative proof of the result above using
+Exercise 9 in Section 7E, which asserts that a linear map and its adjoint have the
+same positive singular values.
+Approximation by Linear Maps with Lower-Dimensional Range
+The next result is a spectacular application of the singular value decomposition.
+It says that to best approximate a linear map by a linear map whose range has
+dimension at most 𝑘, chop off the singular value decomposition after the first
+𝑘 terms. Specifically, the linear map 𝑇𝑘 in the next result has the property that
+dimrange𝑇𝑘 = 𝑘 and 𝑇𝑘 minimizes the distance to 𝑇 among all linear maps with
+range of dimension at most 𝑘. This result leads to algorithms for compressing
+huge matrices while preserving their most important information.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler284 Chapter 7 Operators on Inner Product Spaces
+7.92 best approximation by linear map whose range has dimension ≤ 𝑘
+Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑠1 ≥ ⋯ ≥ 𝑠𝑚 are the positive singular values of 𝑇.
+Suppose 1 ≤ 𝑘 < 𝑚. Then
+min{‖𝑇 − 𝑆‖ ∶ 𝑆 ∈ ℒ(𝑉,𝑊) and dimrange𝑆 ≤ 𝑘} = 𝑠𝑘+1.
+Furthermore, if
+𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+is a singular value decomposition of 𝑇 and 𝑇𝑘 ∈ ℒ(𝑉,𝑊) is defined by
+𝑇𝑘𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑘⟨𝑣,𝑒𝑘⟩𝑓𝑘
+for each 𝑣 ∈ 𝑉, then dimrange𝑇𝑘 = 𝑘 and ‖𝑇 − 𝑇𝑘‖ = 𝑠𝑘+1.
+Proof If 𝑣 ∈ 𝑉 then
+∥(𝑇 − 𝑇𝑘)𝑣∥
+2
+= ∥𝑠𝑘+1⟨𝑣,𝑒𝑘+1⟩𝑓𝑘+1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚∥
+2
+= 𝑠𝑘+1
+2
+∣⟨𝑣,𝑒𝑘+1⟩∣
+2
++ ⋯ + 𝑠𝑚
+2
+∣⟨𝑣,𝑒𝑚⟩∣
+2
+≤ 𝑠𝑘+1
+2
+(∣⟨𝑣,𝑒𝑘+1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑚⟩∣
+2
+)
+≤ 𝑠𝑘+1
+2
+‖𝑣‖2
+.
+Thus ‖𝑇 − 𝑇𝑘‖ ≤ 𝑠𝑘+1. The equation (𝑇 − 𝑇𝑘)𝑒𝑘+1 = 𝑠𝑘+1 𝑓𝑘+1 now shows that
+‖𝑇 − 𝑇𝑘‖ = 𝑠𝑘+1.
+Suppose 𝑆 ∈ ℒ(𝑉,𝑊) and dimrange𝑆 ≤ 𝑘. Thus 𝑆𝑒1,…,𝑆𝑒𝑘+1, which is a
+list of length 𝑘 + 1, is linearly dependent. Hence there exist 𝑎1,…,𝑎𝑘+1 ∈ 𝐅, not
+all 0, such that
+𝑎1𝑆𝑒1 + ⋯ + 𝑎𝑘+1𝑆𝑒𝑘+1 = 0.
+Now 𝑎1𝑒1 + ⋯ + 𝑎𝑘+1𝑒𝑘+1 ≠ 0 because 𝑎1,…,𝑎𝑘+1 are not all 0. We have
+∥(𝑇 − 𝑆)(𝑎1𝑒1 + ⋯ + 𝑎𝑘+1𝑒𝑘+1)∥
+2
+= ∥𝑇(𝑎1𝑒1 + ⋯ + 𝑎𝑘+1𝑒𝑘+1)∥
+2
+= ‖𝑠1𝑎1 𝑓1 + ⋯ + 𝑠𝑘+1𝑎𝑘+1 𝑓𝑘+1‖2
+= 𝑠1
+2
+|𝑎1|2
++ ⋯ + 𝑠𝑘+1
+2
+|𝑎𝑘+1|2
+≥ 𝑠𝑘+1
+2
+(|𝑎1|2
++ ⋯ + |𝑎𝑘+1|2
+)
+= 𝑠𝑘+1
+2
+‖𝑎1𝑒1 + ⋯ + 𝑎𝑘+1𝑒𝑘+1‖2
+.
+Because 𝑎1𝑒1 + ⋯ + 𝑎𝑘+1𝑒𝑘+1 ≠ 0, the inequality above implies that
+‖𝑇 − 𝑆‖ ≥ 𝑠𝑘+1.
+Thus 𝑆 = 𝑇𝑘 minimizes ‖𝑇 − 𝑆‖ among 𝑆 ∈ ℒ(𝑉,𝑊) with dimrange𝑆 ≤ 𝑘.
+For other examples of the use of the singular value decomposition in best
+approximation, see Exercise 22, which finds a subspace of given dimension on
+which the restriction of a linear map is as small as possible, and Exercise 27,
+which finds a unitary operator that is as close as possible to a given operator.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 285
+Polar Decomposition
+Recall our discussion before 7.54 of the analogy between complex numbers 𝑧
+with |𝑧| = 1 and unitary operators. Continuing with this analogy, note that every
+complex number 𝑧 except 0 can be written in the form
+𝑧 = (
+𝑧
+|𝑧|
+)|𝑧|
+= (
+𝑧
+|𝑧|
+)√𝑧𝑧,
+where the first factor, namely, 𝑧/|𝑧|, has absolute value 1.
+Our analogy leads us to guess that every operator 𝑇 ∈ ℒ(𝑉) can be written as
+a unitary operator times √𝑇∗𝑇. That guess is indeed correct. The corresponding
+result is called the polar decomposition, which gives a beautiful description of an
+arbitrary operator on 𝑉.
+Note that if 𝑇 ∈ ℒ(𝑉), then 𝑇∗𝑇 is a positive operator [as was shown in
+7.64(a)]. Thus the operator √𝑇∗𝑇 makes sense and is well defined as a positive
+operator on 𝑉.
+The polar decomposition that we are about to state and prove says that every
+operator on 𝑉 is the product of a unitary operator and a positive operator. Thus
+we can write an arbitrary operator on 𝑉 as the product of two nice operators,
+each of which comes from a class that we can completely describe and that we
+understand reasonably well. The unitary operators are described by 7.55 if 𝐅 = 𝐂;
+the positive operators are described by the real and complex spectral theorems
+(7.29 and 7.31).
+Specifically, consider the case 𝐅 = 𝐂, and suppose
+𝑇 = 𝑆√𝑇∗𝑇
+is a polar decomposition of an operator 𝑇 ∈ ℒ(𝑉), where 𝑆 is a unitary operator.
+Then there is an orthonormal basis of 𝑉 with respect to which 𝑆 has a diagonal
+matrix, and there is an orthonormal basis of 𝑉 with respect to which √𝑇∗𝑇 has
+a diagonal matrix. Warning: There may not exist an orthonormal basis that
+simultaneously puts the matrices of both 𝑆 and √𝑇∗𝑇 into these nice diagonal
+forms—𝑆 may require one orthonormal basis and √𝑇∗𝑇 may require a different
+orthonormal basis.
+However (still assuming that 𝐅 = 𝐂), if 𝑇 is normal, then an orthonormal
+basis of 𝑉 can be chosen such that both 𝑆 and √𝑇∗𝑇 have diagonal matrices with
+respect to this basis—see Exercise 31. The converse is also true: If 𝑇 ∈ ℒ(𝑉)
+and 𝑇 = 𝑆√𝑇∗𝑇 for some unitary operator 𝑆 ∈ ℒ(𝑉) such that 𝑆 and √𝑇∗𝑇 both
+have diagonal matrices with respect to the same orthonormal basis of 𝑉, then 𝑇
+is normal. This holds because 𝑇 then has a diagonal matrix with respect to this
+same orthonormal basis, which implies that 𝑇 is normal [by the equivalence of
+(c) and (a) in 7.31].
+Linear Algebra Done Right, fourth edition, by Sheldon Axler286 Chapter 7 Operators on Inner Product Spaces
+Thepolardecompositionbelowisvalidonbothrealandcomplexinnerproduct
+spaces and for all operators on those spaces.
+7.93 polar decomposition
+Suppose 𝑇 ∈ ℒ(𝑉). Then there exists a unitary operator 𝑆 ∈ ℒ(𝑉) such that
+𝑇 = 𝑆√𝑇∗𝑇.
+Proof Let 𝑠1,…,𝑠𝑚 be the positive singular values of 𝑇, and let 𝑒1,…,𝑒𝑚 and
+𝑓1,…, 𝑓𝑚 be orthonormal lists in 𝑉 such that
+7.94 𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+for every 𝑣 ∈ 𝑉. Extend 𝑒1,…,𝑒𝑚 and 𝑓1,…, 𝑓𝑚 to orthonormal bases 𝑒1,…,𝑒𝑛
+and 𝑓1,…, 𝑓𝑛 of 𝑉.
+Define 𝑆 ∈ ℒ(𝑉) by
+𝑆𝑣 = ⟨𝑣,𝑒1⟩𝑓1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑓𝑛
+for each 𝑣 ∈ 𝑉. Then
+‖𝑆𝑣‖2
+= ∥⟨𝑣,𝑒1⟩𝑓1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑓𝑛∥
+2
+= ∣⟨𝑣,𝑒1⟩∣
+2
++ ⋯ + ∣⟨𝑣,𝑒𝑛⟩∣
+2
+= ‖𝑣‖2
+.
+Thus 𝑆 is a unitary operator.
+Applying 𝑇∗ to both sides of 7.94 and then using the formula for 𝑇∗ given by
+7.77 shows that
+𝑇∗𝑇𝑣 = 𝑠1
+2
+⟨𝑣,𝑒1⟩𝑒1 + ⋯ + 𝑠𝑚
+2
+⟨𝑣,𝑒𝑚⟩𝑒𝑚
+for every 𝑣 ∈ 𝑉. Thus if 𝑣 ∈ 𝑉, then
+√𝑇∗𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑒1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑒𝑚
+because the operator that sends 𝑣 to the right side of the equation above is a
+positive operator whose square equals 𝑇∗𝑇. Now
+𝑆√𝑇∗𝑇𝑣 = 𝑆(𝑠1⟨𝑣,𝑒1⟩𝑒1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑒𝑚)
+= 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑚⟨𝑣,𝑒𝑚⟩𝑓𝑚
+= 𝑇𝑣,
+where the last equation follows from 7.94.
+Exercise 27 shows that the unitary operator 𝑆 produced in the proof above is
+as close as a unitary operator can be to 𝑇.
+Alternativeproofsofthepolardecompositiondirectlyusethespectraltheorem,
+avoiding the singular value decomposition. However, the proof above seems
+cleaner than those alternative proofs.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 287
+Operators Applied to Ellipsoids and Parallelepipeds
+7.95 definition: ball, 𝐵
+The ball in 𝑉 of radius 1 centered at 0, denoted by 𝐵, is defined by
+𝐵 = {𝑣 ∈ 𝑉 ∶ ‖𝑣‖ < 1}.
+The ball 𝐵 in 𝐑2
+.
+If dim𝑉 = 2, the word disk is sometimes used instead of
+ball. However, using ball in all dimensions is less confusing.
+Similarly, if dim𝑉 = 2, then the word ellipse is sometimes
+used instead of the word ellipsoid that we are about to define.
+Again, using ellipsoid in all dimensions is less confusing.
+You can think of the ellipsoid defined below as obtained
+by starting with the ball 𝐵 and then stretching by a factor of
+𝑠𝑘 along each 𝑓𝑘-axis.
+7.96 definition: ellipsoid, 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛), principal axes
+Suppose that 𝑓1,…, 𝑓𝑛 is an orthonormal basis of 𝑉 and 𝑠1,…,𝑠𝑛 are positive
+numbers. The ellipsoid 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛) with principal axes 𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛 is
+defined by
+𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛) = {𝑣 ∈ 𝑉 ∶
+|⟨𝑣, 𝑓1⟩|2
+𝑠1
+2
++ ⋯ +
+|⟨𝑣, 𝑓𝑛⟩|2
+𝑠𝑛
+2
+< 1}.
+The ellipsoid notation 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛) does not explicitly include the inner
+product space 𝑉, even though the definition above depends on 𝑉. However,
+the inner product space 𝑉 should be clear from the context and also from the
+requirement that 𝑓1,…, 𝑓𝑛 be an orthonormal basis of 𝑉.
+7.97 example: ellipsoids
+The ellipsoid 𝐸(2𝑓1, 𝑓2) in 𝐑2
+, where
+𝑓1, 𝑓2 is the standard basis of 𝐑2
+.
+The ellipsoid 𝐸(2𝑓1, 𝑓2) in 𝐑2
+, where
+𝑓1 = ( 1
+√2
+, 1
+√2
+) and 𝑓2 = (− 1
+√2
+, 1
+√2
+).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler288 Chapter 7 Operators on Inner Product Spaces
+The ellipsoid
+𝐸(4𝑓1,3𝑓2,2𝑓3) in 𝐑3
+,
+where 𝑓1, 𝑓2, 𝑓3 is the
+standard basis of 𝐑3
+.
+The ellipsoid 𝐸(𝑓1,…, 𝑓𝑛) equals the ball 𝐵 in 𝑉 for every orthonormal basis
+𝑓1,…, 𝑓𝑛 of 𝑉 [by Parseval’s identity 6.30(b)].
+7.98 notation: 𝑇(Ω)
+For 𝑇 a function defined on 𝑉 and Ω ⊆ 𝑉, define 𝑇(Ω) by
+𝑇(Ω) = {𝑇𝑣 ∶ 𝑣 ∈ Ω}.
+Thus if 𝑇 is a function defined on 𝑉, then 𝑇(𝑉) = range𝑇.
+The next result states that every invertible operator 𝑇 ∈ ℒ(𝑉) maps the ball
+𝐵 in 𝑉 onto an ellipsoid in 𝑉. The proof shows that the principal axes of this
+ellipsoid come from the singular value decomposition of 𝑇.
+7.99 invertible operator takes ball to ellipsoid
+Suppose𝑇 ∈ ℒ(𝑉)isinvertible. Then𝑇 mapstheball𝐵in𝑉 ontoanellipsoid
+in 𝑉.
+Proof Suppose 𝑇 has singular value decomposition
+7.100 𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑛⟨𝑣,𝑒𝑛⟩𝑓𝑛
+forall𝑣 ∈ 𝑉; here𝑠1,…,𝑠𝑛 arethesingularvaluesof𝑇 and𝑒1,…,𝑒𝑛 and 𝑓1,…, 𝑓𝑛
+are both orthonormal bases of 𝑉. We will show that 𝑇(𝐵) = 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛).
+First suppose 𝑣 ∈ 𝐵. Because 𝑇 is invertible, none of the singular values
+𝑠1,…,𝑠𝑛 equals 0 (see 7.68). Thus 7.100 implies that
+∣⟨𝑇𝑣, 𝑓1⟩∣
+2
+𝑠1
+2
++ ⋯ +
+∣⟨𝑇𝑣, 𝑓𝑛⟩∣
+2
+𝑠𝑛
+2
+= |⟨𝑣,𝑒1⟩|2
++ ⋯ + |⟨𝑣,𝑒𝑛⟩|2
+< 1.
+Thus 𝑇𝑣 ∈ 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛). Hence 𝑇(𝐵) ⊆ 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛).
+To prove inclusion in the other direction, now suppose 𝑤 ∈ 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛).
+Let
+𝑣 =
+⟨𝑤, 𝑓1⟩
+𝑠1
+𝑒1 + ⋯ +
+⟨𝑤, 𝑓𝑛⟩
+𝑠𝑛
+𝑒𝑛.
+Then ‖𝑣‖ < 1 and 7.100 implies that 𝑇𝑣 = ⟨𝑤, 𝑓1⟩𝑓1 + ⋯ + ⟨𝑤, 𝑓𝑛⟩𝑓𝑛 = 𝑤. Thus
+𝑇(𝐵) ⊇ 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 289
+We now use the previous result to show that invertible operators take all
+ellipsoids, not just the ball of radius 1, to ellipsoids.
+7.101 invertible operator takes ellipsoids to ellipsoids
+Suppose 𝑇 ∈ ℒ(𝑉) is invertible and 𝐸 is an ellipsoid in 𝑉. Then 𝑇(𝐸) is an
+ellipsoid in 𝑉.
+Proof There exist an orthonormal basis 𝑓1,…, 𝑓𝑛 of 𝑉 and positive numbers
+𝑠1,…,𝑠𝑛 such that 𝐸 = 𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛). Define 𝑆 ∈ ℒ(𝑉) by
+𝑆(𝑎1 𝑓1 + ⋯ + 𝑎𝑛 𝑓𝑛) = 𝑎1𝑠1 𝑓1 + ⋯ + 𝑎𝑛𝑠𝑛 𝑓𝑛.
+Then 𝑆 maps the ball 𝐵 of 𝑉 onto 𝐸, as you can verify. Thus
+𝑇(𝐸) = 𝑇(𝑆(𝐵)) = (𝑇𝑆)(𝐵).
+The equation above and 7.99, applied to 𝑇𝑆, show that 𝑇(𝐸) is an ellipsoid in 𝑉.
+Recall (see 3.95) that if 𝑢 ∈ 𝑉 and Ω ⊆ 𝑉 then 𝑢 + Ω is defined by
+𝑢 + Ω = {𝑢 + 𝑤 ∶ 𝑤 ∈ Ω}.
+Geometrically, the sets Ω and 𝑢 + Ω look the same, but they are in different
+locations.
+In the following definition, if dim𝑉 = 2 then the word parallelogram is often
+used instead of parallelepiped.
+7.102 definition: 𝑃(𝑣1,…,𝑣𝑛), parallelepiped
+Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉. Let
+𝑃(𝑣1,…,𝑣𝑛) = {𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛 ∶ 𝑎1,…,𝑎𝑛 ∈ (0,1)}.
+A parallelepiped is a set of the form 𝑢 + 𝑃(𝑣1,…,𝑣𝑛) for some 𝑢 ∈ 𝑉. The
+vectors 𝑣1,…,𝑣𝑛 are called the edges of this parallelepiped.
+7.103 example: parallelepipeds
+The parallelepiped
+(0.3,0.5) + 𝑃((1,0),(1,1)) in 𝐑2
+.
+A parallelepiped in 𝐑3
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler290 Chapter 7 Operators on Inner Product Spaces
+7.104 invertible operator takes parallelepipeds to parallelepipeds
+Suppose 𝑢 ∈ 𝑉, 𝑣1,…,𝑣𝑛 is a basis of 𝑉, and 𝑇 ∈ ℒ(𝑉) is invertible. Then
+𝑇(𝑢 + 𝑃(𝑣1,…,𝑣𝑛)) = 𝑇𝑢 + 𝑃(𝑇𝑣1,…,𝑇𝑣𝑛).
+Proof Because 𝑇 is invertible, the list 𝑇𝑣1,…,𝑇𝑣𝑛 is a basis of 𝑉. The linearity
+of 𝑇 implies that
+𝑇(𝑢 + 𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛) = 𝑇𝑢 + 𝑎1𝑇𝑣1 + ⋯ + 𝑎𝑛𝑇𝑣𝑛
+for all 𝑎1,…,𝑎𝑛 ∈ (0,1). Thus 𝑇(𝑢 + 𝑃(𝑣1,…,𝑣𝑛)) = 𝑇𝑢 + 𝑃(𝑇𝑣1,…,𝑇𝑣𝑛).
+Just as the rectangles are distinguished among the parallelograms in 𝐑2
+, we
+give a special name to the parallelepipeds in 𝑉 whose defining edges are orthogo-
+nal to each other.
+7.105 definition: box
+A box in 𝑉 is a set of the form
+𝑢 + 𝑃(𝑟1𝑒1,…,𝑟𝑛𝑒𝑛),
+where 𝑢 ∈ 𝑉 and 𝑟1,…,𝑟𝑛 are positive numbers and 𝑒1,…,𝑒𝑛 is an ortho-
+normal basis of 𝑉.
+Note that in the special case of 𝐑2
+each box is a rectangle, but the terminology
+box can be used in all dimensions.
+7.106 example: boxes
+The box (1,0) + 𝑃(√2𝑒1,√2𝑒2), where
+𝑒1 = ( 1
+√2
+, 1
+√2
+) and 𝑒2 = (− 1
+√2
+, 1
+√2
+).
+The box 𝑃(𝑒1,2𝑒2,𝑒3), where 𝑒1,𝑒2,𝑒3
+is the standard basis of 𝐑3
+.
+Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Then 𝑇 maps every parallelepiped in 𝑉
+to a parallelepiped in 𝑉 (by 7.104). In particular, 𝑇 maps every box in 𝑉 to a
+parallelepiped in 𝑉. This raises the question of whether 𝑇 maps some boxes in
+𝑉 to boxes in 𝑉. The following result answers this question, with the help of the
+singular value decomposition.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 291
+7.107 every invertible operator takes some boxes to boxes
+Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Suppose 𝑇 has singular value decomposition
+𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑛⟨𝑣,𝑒𝑛⟩𝑓𝑛,
+where 𝑠1,…,𝑠𝑛 are the singular values of 𝑇 and 𝑒1,…,𝑒𝑛 and 𝑓1,…, 𝑓𝑛 are
+orthonormal bases of 𝑉 and the equation above holds for all 𝑣 ∈ 𝑉. Then 𝑇
+maps the box 𝑢+𝑃(𝑟1𝑒1,…,𝑟𝑛𝑒𝑛) onto the box 𝑇𝑢+𝑃(𝑟1𝑠1 𝑓1,…,𝑟𝑛𝑠𝑛 𝑓𝑛) for
+all positive numbers 𝑟1,…,𝑟𝑛 and all 𝑢 ∈ 𝑉.
+Proof If 𝑎1,…,𝑎𝑛 ∈ (0,1) and 𝑟1,…,𝑟𝑛 are positive numbers and 𝑢 ∈ 𝑉, then
+𝑇(𝑢 + 𝑎1𝑟1𝑒1 + ⋯ + 𝑎𝑛𝑟𝑛𝑒𝑛) = 𝑇𝑢 + 𝑎1𝑟1𝑠1 𝑓1 + ⋯ + 𝑎𝑛𝑟𝑛𝑠𝑛 𝑓𝑛.
+Thus 𝑇(𝑢 + 𝑃(𝑟1𝑒1,…,𝑟𝑛𝑒𝑛)) = 𝑇𝑢 + 𝑃(𝑟1𝑠1 𝑓1,…,𝑟𝑛𝑠𝑛 𝑓𝑛).
+Volume via Singular Values
+Our goal in this subsection is to understand how an operator changes the volume
+of subsets of its domain. Because notions of volume belong to analysis rather
+than to linear algebra, we will work only with an intuitive notion of volume. Our
+intuitive approach to volume can be converted into appropriate correct definitions,
+correct statements, and correct proofs using the machinery of analysis.
+Our intuition about volume works best in real inner product spaces. Thus the
+assumption that 𝐅 = 𝐑 will appear frequently in the rest of this subsection.
+If dim𝑉 = 𝑛, then by volume we will mean 𝑛-dimensional volume. You
+should be familiar with this concept in 𝐑3
+. When 𝑛 = 2, this is usually called area
+instead of volume, but for consistency we use the word volume in all dimensions.
+The most fundamental intuition about volume is that the volume of a box (whose
+defining edges are by definition orthogonal to each other) is the product of the
+lengths of the defining edges. Thus we make the following definition.
+7.108 definition: volume of a box
+Suppose 𝐅 = 𝐑. If 𝑢 ∈ 𝑉 and 𝑟1,…,𝑟𝑛 are positive numbers and 𝑒1,…,𝑒𝑛 is
+an orthonormal basis of 𝑉, then
+volume(𝑢 + 𝑃(𝑟1𝑒1,…,𝑟𝑛𝑒𝑛)) = 𝑟1 × ⋯ × 𝑟𝑛.
+The definition above agrees with the familiar formulas for the area (which we
+are calling the volume) of a rectangle in 𝐑2
+and for the volume of a box in 𝐑3
+. For
+example, the first box in Example 7.106 has two-dimensional volume (or area) 2
+because the defining edges of that box have length √2 and √2. The second box
+in Example 7.106 has three-dimensional volume 2 because the defining edges of
+that box have length 1, 2, and 1.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler292 Chapter 7 Operators on Inner Product Spaces
+Volume of this
+ball ≈ sum of the
+volumes of the
+five boxes.
+To define the volume of a subset of 𝑉, approximate the
+subset by a finite collection of disjoint boxes, and then add up
+the volumes of the approximating collection of boxes. As we
+approximate a subset of 𝑉 more accurately by disjoint unions
+of more boxes, we get a better approximation to the volume.
+These ideas should remind you of how the Riemann integral
+is defined by approximating the area under a curve by a disjoint
+collection of rectangles. This discussion leads to the following
+nonrigorous but intuitive definition.
+7.109 definition: volume
+Suppose 𝐅 = 𝐑 and Ω ⊆ 𝑉. Then the volume of Ω, denoted by volumeΩ, is
+approximately the sum of the volumes of a collection of disjoint boxes that
+approximate Ω.
+We are ignoring many reasonable questions by taking an intuitive approach to
+volume. For example, if we approximate Ω by boxes with respect to one basis,
+do we get the same volume if we approximate Ω by boxes with respect to a
+different basis? If Ω1 and Ω2 are disjoint subsets of 𝑉, is volume(Ω1 ∪ Ω2) =
+volumeΩ1 +volumeΩ2? Provided that we consider only reasonably nice subsets
+of 𝑉, techniques of analysis show that both these questions have affirmative
+answers that agree with our intuition about volume.
+7.110 example: volume change by a linear map
+Each box here has twice the width
+and the same height as the boxes in
+the previous figure.
+Suppose that 𝑇 ∈ ℒ(𝐑2
+) is defined by
+𝑇𝑣 = 2⟨𝑣,𝑒1⟩𝑒1 + ⟨𝑣,𝑒2⟩𝑒2, where 𝑒1,𝑒2 is the
+standard basis of 𝐑2
+. This linear map stretches
+vectors along the 𝑒1-axis by a factor of 2 and
+leaves vectors along the 𝑒2-axis unchanged.
+The ball approximated by five boxes above
+gets mapped by 𝑇 to the ellipsoid shown here.
+Each of the five boxes in the original figure
+gets mapped to a box of twice the width and the same height as in the original
+figure. Hence each box gets mapped to a box of twice the volume (area) as in the
+original figure. The sum of the volumes of the five new boxes approximates the
+volume of the ellipsoid. Thus 𝑇 changes the volume of the ball by a factor of 2.
+In the example above, 𝑇 maps boxes with respect to the basis 𝑒1,𝑒2 to boxes
+with respect to the same basis; thus we can see how 𝑇 changes volume. In general,
+an operator maps boxes to parallelepipeds that are not boxes. However, if we
+choose the right basis (coming from the singular value decomposition!), then
+boxes with respect to that basis get mapped to boxes with respect to a possibly
+different basis, as shown in 7.107. This observation leads to a natural proof of
+the following result.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 293
+7.111 volume changes by a factor of the product of the singular values
+Suppose 𝐅 = 𝐑, 𝑇 ∈ ℒ(𝑉) is invertible, and Ω ⊆ 𝑉. Then
+volume𝑇(Ω) = (product of singular values of 𝑇)(volumeΩ).
+Proof Suppose 𝑇 has singular value decomposition
+𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑛⟨𝑣,𝑒𝑛⟩𝑓𝑛
+for all 𝑣 ∈ 𝑉, where 𝑒1,…,𝑒𝑛 and 𝑓1,…, 𝑓𝑛 are orthonormal bases of 𝑉.
+Approximate Ω by boxes of the form 𝑢+𝑃(𝑟1𝑒1,…,𝑟𝑛𝑒𝑛), which have volume
+𝑟1 × ⋯ × 𝑟𝑛. The operator 𝑇 maps each box 𝑢 + 𝑃(𝑟1𝑒1,…,𝑟𝑛𝑒𝑛) onto the box
+𝑇𝑢 + 𝑃(𝑟1𝑠1 𝑓1,…,𝑟𝑛𝑠𝑛 𝑓𝑛), which has volume (𝑠1 × ⋯ × 𝑠𝑛)(𝑟1 × ⋯ × 𝑟𝑛).
+Theoperator𝑇 mapsacollectionofboxesthatapproximateΩontoacollection
+of boxes that approximate 𝑇(Ω). Because 𝑇 changes the volume of each box in a
+collection that approximates Ω by a factor of 𝑠1 ×⋯×𝑠𝑛, the linear map 𝑇 changes
+the volume of Ω by the same factor.
+Suppose 𝑇 ∈ ℒ(𝑉). As we will see when we get to determinants, the product
+of the singular values of 𝑇 equals |det𝑇|; see 9.60 and 9.61.
+Properties of an Operator as Determined by Its Eigenvalues
+We conclude this chapter by presenting the table below. The context of this
+table is a finite-dimensional complex inner product space. The first column of
+the table shows a property that a normal operator on such a space might have.
+The second column of the table shows a subset of 𝐂 such that the operator has
+the corresponding property if and only if all eigenvalues of the operator lie in
+the specified subset. For example, the first row of the table states that a normal
+operator is invertible if and only if all its eigenvalues are nonzero (this first row
+is the only one in the table that does not need the hypothesis that the operator is
+normal).
+Make sure you can explain why all results in the table hold. For example,
+the last row of the table holds because the norm of an operator equals its largest
+singular value (by 7.85) and the singular values of a normal operator, assuming
+𝐅 = 𝐂, equal the absolute values of the eigenvalues (by Exercise 7 in Section 7E).
+properties of a normal operator eigenvalues are contained in
+invertible 𝐂\{0}
+self-adjoint 𝐑
+skew {𝜆 ∈ 𝐂 ∶ Re 𝜆 = 0}
+orthogonal projection {0,1}
+positive [0,∞)
+unitary {𝜆 ∈ 𝐂 ∶ |𝜆| = 1}
+norm is less than 1 {𝜆 ∈ 𝐂 ∶ |𝜆| < 1}
+Linear Algebra Done Right, fourth edition, by Sheldon Axler294 Chapter 7 Operators on Inner Product Spaces
+Exercises 7F
+1 Prove that if 𝑆,𝑇 ∈ ℒ(𝑉,𝑊), then ∣‖𝑆‖ − ‖𝑇‖∣ ≤ ‖𝑆 − 𝑇‖.
+The inequality above is called the reverse triangle inequality.
+## 2 Suppose that 𝑇 ∈ ℒ(𝑉) is self-adjoint or that 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉) is
+normal. Prove that
+‖𝑇‖ = max{|𝜆| ∶ 𝜆 is an eigenvalue of 𝑇}.
+3 Suppose 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑣 ∈ 𝑉. Prove that
+‖𝑇𝑣‖ = ‖𝑇‖‖𝑣‖ ⟺ 𝑇∗𝑇𝑣 = ‖𝑇‖2
+𝑣.
+4 Suppose 𝑇 ∈ ℒ(𝑉,𝑊), 𝑣 ∈ 𝑉, and ‖𝑇𝑣‖ = ‖𝑇‖‖𝑣‖. Prove that if 𝑢 ∈ 𝑉 and
+⟨𝑢,𝑣⟩ = 0, then ⟨𝑇𝑢,𝑇𝑣⟩ = 0.
+5 Suppose 𝑈 is a finite-dimensional inner product space, 𝑇 ∈ ℒ(𝑉,𝑈), and
+𝑆 ∈ ℒ(𝑈,𝑊). Prove that
+‖𝑆𝑇‖ ≤ ‖𝑆‖‖𝑇‖.
+6 Prove or give a counterexample: If 𝑆,𝑇 ∈ ℒ(𝑉), then ‖𝑆𝑇‖ = ‖𝑇𝑆‖.
+7 Show that defining 𝑑(𝑆,𝑇) = ‖𝑆 − 𝑇‖ for 𝑆,𝑇 ∈ ℒ(𝑉,𝑊) makes 𝑑 a metric
+on ℒ(𝑉,𝑊).
+This exercise is intended for readers who are familiar with metric spaces.
+8 (a) Prove that if 𝑇 ∈ ℒ(𝑉) and ‖𝐼 − 𝑇‖ < 1, then 𝑇 is invertible.
+(b) Suppose that 𝑆 ∈ ℒ(𝑉) is invertible. Prove that if 𝑇 ∈ ℒ(𝑉) and
+‖𝑆 − 𝑇‖ < 1/∥𝑆−1
+∥, then 𝑇 is invertible.
+This exercise shows that the set of invertible operators in ℒ(𝑉) is an open
+subset of ℒ(𝑉), using the metric defined in Exercise 7.
+## 9 Suppose 𝑇 ∈ ℒ(𝑉). Prove that for every 𝜖 > 0, there exists an invertible
+operator 𝑆 ∈ ℒ(𝑉) such that 0 < ‖𝑇 − 𝑆‖ < 𝜖.
+10 Suppose dim𝑉 > 1 and 𝑇 ∈ ℒ(𝑉) is not invertible. Prove that for every
+𝜖 > 0, there exists 𝑆 ∈ ℒ(𝑉) such that 0 < ‖𝑇 − 𝑆‖ < 𝜖 and 𝑆 is not
+invertible.
+## 11 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that for every 𝜖 > 0 there exists a
+diagonalizable operator 𝑆 ∈ ℒ(𝑉) such that 0 < ‖𝑇 − 𝑆‖ < 𝜖.
+## 12 Suppose 𝑇 ∈ ℒ(𝑉) is a positive operator. Show that ∥√𝑇 ∥ = √‖𝑇‖.
+13 Suppose 𝑆,𝑇 ∈ ℒ(𝑉) are positive operators. Show that
+‖𝑆 − 𝑇‖ ≤ max{‖𝑆‖,‖𝑇‖} ≤ ‖𝑆 + 𝑇‖.
+14 Suppose 𝑈 and 𝑊 are subspaces of 𝑉 such that ‖𝑃𝑈 − 𝑃𝑊‖ < 1. Prove that
+dim𝑈 = dim𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 7F Consequences of Singular Value Decomposition 295
+15 Define 𝑇 ∈ ℒ(𝐅3
+) by
+𝑇(𝑧1,𝑧2,𝑧3) = (𝑧3,2𝑧1,3𝑧2).
+Find (explicitly) a unitary operator 𝑆 ∈ ℒ(𝐅3
+) such that 𝑇 = 𝑆√𝑇∗𝑇.
+## 16 Suppose 𝑆 ∈ ℒ(𝑉) is a positive invertible operator. Prove that there exists
+𝛿 > 0 such that 𝑇 is a positive operator for every self-adjoint operator
+𝑇 ∈ ℒ(𝑉) with ‖𝑆 − 𝑇‖ < 𝛿.
+## 17 Prove that if 𝑢 ∈ 𝑉 and 𝜑𝑢 is the linear functional on 𝑉 defined by the
+equation 𝜑𝑢(𝑣) = ⟨𝑣,𝑢⟩, then ‖𝜑𝑢‖ = ‖𝑢‖.
+Here we are thinking of the scalar field 𝐅 as an inner product space with
+⟨𝛼,𝛽⟩ = 𝛼𝛽 for all 𝛼,𝛽 ∈ 𝐅. Thus ‖𝜑𝑢‖ means the norm of 𝜑𝑢 as a linear
+map from 𝑉 to 𝐅.
+18 Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and 𝑇 ∈ ℒ(𝑉,𝑊).
+(a) Prove that max{‖𝑇𝑒1‖,…,‖𝑇𝑒𝑛‖} ≤ ‖𝑇‖ ≤ (‖𝑇𝑒1‖2
++ ⋯ + ‖𝑇𝑒𝑛‖2
+)
+1/2
+.
+(b) Provethat‖𝑇‖ = (‖𝑇𝑒1‖2
++⋯+‖𝑇𝑒𝑛‖2
+)
+1/2
+ifandonlyifdimrange𝑇 ≤ 1.
+Here 𝑒1,…,𝑒𝑛 is an arbitrary orthonormal basis of 𝑉, not necessarily
+connected with a singular value decomposition of 𝑇. If 𝑠1,…,𝑠𝑛 is the list
+of singular values of 𝑇, then the right side of the inequality above equals
+(𝑠1
+2
++ ⋯ + 𝑠𝑛
+2
+)
+1/2
+, as was shown in Exercise 11(a) in Section 7E.
+19 Prove that if 𝑇 ∈ ℒ(𝑉,𝑊), then ∥𝑇∗𝑇∥ = ‖𝑇‖2
+.
+This formula for ∥𝑇∗𝑇∥ leads to the important subject of 𝐶∗-algebras.
+20 Suppose 𝑇 ∈ ℒ(𝑉) is normal. Prove that ∥𝑇𝑘
+∥ = ‖𝑇‖𝑘
+for every positive
+integer 𝑘.
+21 Suppose dim𝑉 > 1 and dim𝑊 > 1. Prove that the norm on ℒ(𝑉,𝑊) does
+not come from an inner product. In other words, prove that there does not
+exist an inner product on ℒ(𝑉,𝑊) such that
+max{‖𝑇𝑣‖ ∶ 𝑣 ∈ 𝑉 and ‖𝑣‖ ≤ 1} = √⟨𝑇,𝑇⟩
+for all 𝑇 ∈ ℒ(𝑉,𝑊).
+22 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Let 𝑛 = dim𝑉 and let 𝑠1 ≥ ⋯ ≥ 𝑠𝑛 denote the
+singular values of 𝑇. Prove that if 1 ≤ 𝑘 ≤ 𝑛, then
+min{‖𝑇|𝑈‖ ∶ 𝑈 is a subspace of 𝑉 with dim𝑈 = 𝑘} = 𝑠𝑛−𝑘+1.
+23 Suppose 𝑇 ∈ ℒ(𝑉,𝑊). Show that 𝑇 is uniformly continuous with respect
+to the metrics on 𝑉 and 𝑊 that arise from the norms on those spaces (see
+Exercise 23 in Section 6B).
+## 24 Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Prove that
+∥𝑇−1
+∥ = ‖𝑇‖−1
+⟺
+𝑇
+‖𝑇‖
+is a unitary operator.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler296 Chapter 7 Operators on Inner Product Spaces
+25 Fix 𝑢,𝑥 ∈ 𝑉 with 𝑢 ≠ 0. Define 𝑇 ∈ ℒ(𝑉) by 𝑇𝑣 = ⟨𝑣,𝑢⟩𝑥 for every
+𝑣 ∈ 𝑉. Prove that
+√𝑇∗𝑇𝑣 =
+‖𝑥‖
+‖𝑢‖
+⟨𝑣,𝑢⟩𝑢
+for every 𝑣 ∈ 𝑉.
+## 26 Suppose 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is invertible if and only if there exists a
+unique unitary operator 𝑆 ∈ ℒ(𝑉) such that 𝑇 = 𝑆√𝑇∗𝑇.
+27 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑠1,…,𝑠𝑛 are the singular values of 𝑇. Let 𝑒1,…,𝑒𝑛
+and 𝑓1,…, 𝑓𝑛 be orthonormal bases of 𝑉 such that
+𝑇𝑣 = 𝑠1⟨𝑣,𝑒1⟩𝑓1 + ⋯ + 𝑠𝑛⟨𝑣,𝑒𝑛⟩𝑓𝑛
+for all 𝑣 ∈ 𝑉. Define 𝑆 ∈ ℒ(𝑉) by
+𝑆𝑣 = ⟨𝑣,𝑒1⟩𝑓1 + ⋯ + ⟨𝑣,𝑒𝑛⟩𝑓𝑛.
+(a) Show that 𝑆 is unitary and ‖𝑇 − 𝑆‖ = max{|𝑠1 − 1|,…,|𝑠𝑛 − 1|}.
+(b) Show that if 𝐸 ∈ ℒ(𝑉) is unitary, then ‖𝑇 − 𝐸‖ ≥ ‖𝑇 − 𝑆‖.
+This exercise finds a unitary operator 𝑆 that is as close as possible (among
+the unitary operators) to a given operator 𝑇.
+## 28 Suppose 𝑇 ∈ ℒ(𝑉). Prove that there exists a unitary operator 𝑆 ∈ ℒ(𝑉)
+such that 𝑇 = √𝑇𝑇∗ 𝑆.
+## 29 Suppose 𝑇 ∈ ℒ(𝑉).
+(a) Use the polar decomposition to show that there exists a unitary operator
+𝑆 ∈ ℒ(𝑉) such that 𝑇𝑇∗ = 𝑆𝑇∗𝑇𝑆∗.
+(b) Show how (a) implies that 𝑇 and 𝑇∗ have the same singular values.
+## 30 Suppose 𝑇 ∈ ℒ(𝑉), 𝑆 ∈ ℒ(𝑉) is a unitary operator, and 𝑅 ∈ ℒ(𝑉) is a
+positive operator such that 𝑇 = 𝑆𝑅. Prove that 𝑅 = √𝑇∗𝑇.
+This exercise shows that if we write 𝑇 as the product of a unitary operator
+and a positive operator (as in the polar decomposition 7.93), then the
+positive operator equals √𝑇∗𝑇.
+## 31 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉) is normal. Prove that there exists a unitary
+operator 𝑆 ∈ ℒ(𝑉) such that 𝑇 = 𝑆√𝑇∗𝑇 and such that 𝑆 and √𝑇∗𝑇 both
+have diagonal matrices with respect to the same orthonormal basis of 𝑉.
+32 Suppose that 𝑇 ∈ ℒ(𝑉,𝑊) and 𝑇 ≠ 0. Let 𝑠1,…,𝑠𝑚 denote the positive
+singular values of 𝑇. Show that there exists an orthonormal basis 𝑒1,…,𝑒𝑚
+of (null𝑇)⟂
+such that
+𝑇(𝐸(
+𝑒1
+𝑠1
+,…,
+𝑒𝑚
+𝑠𝑚
+))
+equals the ball in range𝑇 of radius 1 centered at 0.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 8
+Operators on Complex Vector Spaces
+In this chapter we delve deeper into the structure of operators, with most of the
+attention on complex vector spaces. Some of the results in this chapter apply to
+both real and complex vector spaces; thus we do not make a standing assumption
+that 𝐅 = 𝐂. Also, an inner product does not help with this material, so we return
+to the general setting of a finite-dimensional vector space.
+Even on a finite-dimensional complex vector space, an operator may not have
+enough eigenvectors to form a basis of the vector space. Thus we will consider the
+closely related objects called generalized eigenvectors. We will see that for each
+operatoronafinite-dimensionalcomplexvectorspace,thereisabasisofthevector
+space consisting of generalized eigenvectors of the operator. The generalized
+eigenspace decomposition then provides a good description of arbitrary operators
+on a finite-dimensional complex vector space.
+Nilpotent operators, which are operators that when raised to some power
+equal0, haveanimportantroleintheseinvestigations. Nilpotentoperatorsprovide
+a key tool in our proof that every invertible operator on a finite-dimensional
+complex vector space has a square root and in our approach to Jordan form.
+This chapter concludes by defining the trace and proving its key properties.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑉 denotes a finite-dimensional nonzero vector space over 𝐅.
+David Iliff CC BY-SA
+The Long Room of the Old Library at the University of Dublin, where William Hamilton
+(1805–1865) was a student and then a faculty member. Hamilton proved a special case
+of what we now call the Cayley–Hamilton theorem in 1853.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+297298 Chapter 8 Operators on Complex Vector Spaces
+8A Generalized Eigenvectors and Nilpotent Operators
+Null Spaces of Powers of an Operator
+We begin this chapter with a study of null spaces of powers of an operator.
+8.1 sequence of increasing null spaces
+Suppose 𝑇 ∈ ℒ(𝑉). Then
+{0} = null𝑇0
+⊆ null𝑇1
+⊆ ⋯ ⊆ null𝑇𝑘
+⊆ null𝑇𝑘+1
+⊆ ⋯ .
+Proof Suppose 𝑘 is a nonnegative integer and 𝑣 ∈ null𝑇𝑘
+. Then 𝑇𝑘
+𝑣 = 0,
+which implies that 𝑇𝑘+1
+𝑣 = 𝑇(𝑇𝑘
+𝑣) = 𝑇(0) = 0. Thus 𝑣 ∈ null𝑇𝑘+1
+. Hence
+null𝑇𝑘
+⊆ null𝑇𝑘+1
+, as desired.
+For similar results about decreasing
+sequences of ranges, see Exercises 6,
+7, and 8.
+The following result states that if two
+consecutive terms in the sequence of sub-
+spaces above are equal, then all later
+terms in the sequence are equal.
+8.2 equality in the sequence of null spaces
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑚 is a nonnegative integer such that
+null𝑇𝑚
+= null𝑇𝑚+1
+.
+Then
+null𝑇𝑚
+= null𝑇𝑚+1
+= null𝑇𝑚+2
+= null𝑇𝑚+3
+= ⋯ .
+Proof Let 𝑘 be a positive integer. We want to prove that
+null𝑇𝑚+𝑘
+= null𝑇𝑚+𝑘+1
+.
+We already know from 8.1 that null𝑇𝑚+𝑘
+⊆ null𝑇𝑚+𝑘+1
+.
+To prove the inclusion in the other direction, suppose 𝑣 ∈ null𝑇𝑚+𝑘+1
+. Then
+𝑇𝑚+1
+(𝑇𝑘
+𝑣) = 𝑇𝑚+𝑘+1
+𝑣 = 0.
+Hence
+𝑇𝑘
+𝑣 ∈ null𝑇𝑚+1
+= null𝑇𝑚
+.
+Thus 𝑇𝑚+𝑘
+𝑣 = 𝑇𝑚
+(𝑇𝑘
+𝑣) = 0, which means that 𝑣 ∈ null𝑇𝑚+𝑘
+. This implies that
+null𝑇𝑚+𝑘+1
+⊆ null𝑇𝑚+𝑘
+, completing the proof.
+The result above raises the question of whether there exists a nonnegative
+integer 𝑚 such that null𝑇𝑚
+= null𝑇𝑚+1
+. The next result shows that this equality
+holds at least when 𝑚 equals the dimension of the vector space on which 𝑇
+operates.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8A Generalized Eigenvectors and Nilpotent Operators 299
+8.3 null spaces stop growing
+Suppose 𝑇 ∈ ℒ(𝑉). Then
+null𝑇dim𝑉
+= null𝑇dim𝑉+1
+= null𝑇dim𝑉+2
+= ⋯ .
+Proof We only need to prove that null𝑇dim𝑉
+= null𝑇dim𝑉+1
+(by 8.2). Suppose
+this is not true. Then, by 8.1 and 8.2, we have
+{0} = null𝑇0
+⊊ null𝑇1
+⊊ ⋯ ⊊ null𝑇dim𝑉
+⊊ null𝑇dim𝑉+1
+,
+where the symbol ⊊ means “contained in but not equal to”. At each of the
+strict inclusions in the chain above, the dimension increases by at least 1. Thus
+dimnull𝑇dim𝑉+1
+≥ dim𝑉 + 1, a contradiction because a subspace of 𝑉 cannot
+have a larger dimension than dim𝑉.
+It is not true that 𝑉 = null𝑇 ⊕ range𝑇 for every 𝑇 ∈ ℒ(𝑉). However, the
+next result can be a useful substitute.
+8.4 𝑉 is the direct sum of null𝑇dim𝑉
+and range𝑇dim𝑉
+Suppose 𝑇 ∈ ℒ(𝑉). Then
+𝑉 = null𝑇dim𝑉
+⊕ range𝑇dim𝑉
+.
+Proof Let 𝑛 = dim𝑉. First we show that
+8.5 (null𝑇𝑛
+) ∩ (range𝑇𝑛
+) = {0}.
+Suppose 𝑣 ∈ (null𝑇𝑛
+) ∩ (range𝑇𝑛
+). Then 𝑇𝑛
+𝑣 = 0, and there exists 𝑢 ∈ 𝑉
+such that 𝑣 = 𝑇𝑛
+𝑢. Applying 𝑇𝑛
+to both sides of the last equation shows that
+𝑇𝑛
+𝑣 = 𝑇2𝑛
+𝑢. Hence 𝑇2𝑛
+𝑢 = 0, which implies that 𝑇𝑛
+𝑢 = 0 (by 8.3). Thus
+𝑣 = 𝑇𝑛
+𝑢 = 0, completing the proof of 8.5.
+Now 8.5 implies that null𝑇𝑛
++ range𝑇𝑛
+is a direct sum (by 1.46). Also,
+dim(null𝑇𝑛
+⊕ range𝑇𝑛
+) = dimnull𝑇𝑛
++ dimrange𝑇𝑛
+= dim𝑉,
+where the first equality above comes from 3.94 and the second equality comes
+from the fundamental theorem of linear maps (3.21). The equation above implies
+that null𝑇𝑛
+⊕ range𝑇𝑛
+= 𝑉 (see 2.39), as desired.
+For an improvement of the result above, see Exercise 19.
+8.6 example: 𝐅3
+= null𝑇3
+⊕ range𝑇3
+for 𝑇 ∈ ℒ(𝐅3
+)
+Suppose 𝑇 ∈ ℒ(𝐅3
+) is defined by
+𝑇(𝑧1,𝑧2,𝑧3) = (4𝑧2,0,5𝑧3).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler300 Chapter 8 Operators on Complex Vector Spaces
+Then null𝑇 = {(𝑧1,0,0) ∶ 𝑧1 ∈ 𝐅} and range𝑇 = {(𝑧1,0,𝑧3) ∶ 𝑧1,𝑧3 ∈ 𝐅}. Thus
+null𝑇 ∩ range𝑇 ≠ {0}. Hence null𝑇 + range𝑇 is not a direct sum. Also note
+that null𝑇 +range𝑇 ≠ 𝐅3
+. However, we have 𝑇3
+(𝑧1,𝑧2,𝑧3) = (0,0,125𝑧3). Thus
+we see that
+null𝑇3
+= {(𝑧1,𝑧2,0) ∶ 𝑧1,𝑧2 ∈ 𝐅} and range𝑇3
+= {(0,0,𝑧3) ∶ 𝑧3 ∈ 𝐅}.
+Hence 𝐅3
+= null𝑇3
+⊕ range𝑇3
+, as expected by 8.4.
+Generalized Eigenvectors
+Some operators do not have enough eigenvectors to lead to good descriptions of
+their behavior. Thus in this subsection we introduce the concept of generalized
+eigenvectors, which will play a major role in our description of the structure of an
+operator.
+To understand why we need more than eigenvectors, let’s examine the question
+ofdescribinganoperatorbydecomposingitsdomainintoinvariantsubspaces. Fix
+𝑇 ∈ ℒ(𝑉). We seek to describe 𝑇 by finding a “nice” direct sum decomposition
+𝑉 = 𝑉1 ⊕ ⋯ ⊕ 𝑉𝑛,
+whereeach𝑉𝑘 isasubspaceof𝑉 invariantunder𝑇. Thesimplestpossiblenonzero
+invariant subspaces are one-dimensional. A decomposition as above in which
+each 𝑉𝑘 is a one-dimensional subspace of 𝑉 invariant under 𝑇 is possible if and
+only if 𝑉 has a basis consisting of eigenvectors of 𝑇 (see 5.55). This happens if
+and only if 𝑉 has an eigenspace decomposition
+8.7 𝑉 = 𝐸(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐸(𝜆𝑚,𝑇),
+where 𝜆1,…, 𝜆𝑚 are the distinct eigenvalues of 𝑇 (see 5.55).
+Thespectraltheoreminthepreviouschaptershowsthatif𝑉 isaninnerproduct
+space, then a decomposition of the form 8.7 holds for every self-adjoint operator
+if 𝐅 = 𝐑 and for every normal operator if 𝐅 = 𝐂 because operators of those types
+have enough eigenvectors to form a basis of 𝑉 (see 7.29 and 7.31).
+However, a decomposition of the form 8.7 may not hold for more general
+operators, even on a complex vector space. An example was given by the operator
+in 5.57, which does not have enough eigenvectors for 8.7 to hold. Generalized
+eigenvectors and generalized eigenspaces, which we now introduce, will remedy
+this situation.
+8.8 definition: generalized eigenvector
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 is an eigenvalue of 𝑇. A vector 𝑣 ∈ 𝑉 is called a
+generalized eigenvector of 𝑇 corresponding to 𝜆 if 𝑣 ≠ 0 and
+(𝑇 − 𝜆𝐼)𝑘
+𝑣 = 0
+for some positive integer 𝑘.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8A Generalized Eigenvectors and Nilpotent Operators 301
+Generalized eigenvalues are not de-
+fined because doing so would not lead
+to anything new. Reason: if (𝑇 − 𝜆𝐼)𝑘
+is not injective for some positive inte-
+ger 𝑘, then 𝑇 − 𝜆𝐼 is not injective, and
+hence 𝜆 is an eigenvalue of 𝑇.
+A nonzero vector 𝑣 ∈ 𝑉 is a general-
+ized eigenvector of 𝑇 corresponding to 𝜆
+if and only if
+(𝑇 − 𝜆𝐼)dim𝑉
+𝑣 = 0,
+as follows from applying 8.1 and 8.3 to
+the operator 𝑇 − 𝜆𝐼.
+As we know, an operator on a complex vector space may not have enough
+eigenvectors to form a basis of the domain. The next result shows that on a
+complex vector space there are enough generalized eigenvectors to do this.
+8.9 a basis of generalized eigenvectors
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then there is a basis of 𝑉 consisting of
+generalized eigenvectors of 𝑇.
+Proof Let 𝑛 = dim𝑉. We will use induction on 𝑛. To get started, note that
+the desired result holds if 𝑛 = 1 because then every nonzero vector in 𝑉 is an
+eigenvector of 𝑇.
+Thisstepiswhereweusethehypothesis
+that 𝐅 = 𝐂, because if 𝐅 = 𝐑 then 𝑇
+may not have any eigenvalues.
+Now suppose 𝑛 > 1 and the de-
+sired result holds for all smaller values
+of dim𝑉. Let 𝜆 be an eigenvalue of 𝑇.
+Applying 8.4 to 𝑇 − 𝜆𝐼 shows that
+𝑉 = null(𝑇 − 𝜆𝐼)𝑛
+⊕ range(𝑇 − 𝜆𝐼)𝑛
+.
+If null(𝑇 − 𝜆𝐼)𝑛
+= 𝑉, then every nonzero vector in 𝑉 is a generalized eigen-
+vector of 𝑇, and thus in this case there is a basis of 𝑉 consisting of generalized
+eigenvectors of 𝑇. Hence we can assume that null(𝑇 − 𝜆𝐼)𝑛
+≠ 𝑉, which implies
+that range(𝑇 − 𝜆𝐼)𝑛
+≠ {0}.
+Also, null(𝑇 − 𝜆𝐼)𝑛
+≠ {0}, because 𝜆 is an eigenvalue of 𝑇. Thus we have
+0 < dimrange(𝑇 − 𝜆𝐼)𝑛
+< 𝑛.
+Furthermore, range(𝑇 − 𝜆𝐼)𝑛
+is invariant under 𝑇 [by 5.18 with 𝑝(𝑧) = (𝑧− 𝜆)𝑛
+].
+Let 𝑆 ∈ ℒ(range(𝑇 − 𝜆𝐼)𝑛
+) equal 𝑇 restricted to range(𝑇 − 𝜆𝐼)𝑛
+. Our induction
+hypothesis applied to the operator 𝑆 implies that there is a basis of range(𝑇− 𝜆𝐼)𝑛
+consisting of generalized eigenvectors of 𝑆, which of course are generalized
+eigenvectorsof𝑇. Adjoiningthatbasisofrange(𝑇−𝜆𝐼)𝑛
+toabasisofnull(𝑇−𝜆𝐼)𝑛
+gives a basis of 𝑉 consisting of generalized eigenvectors of 𝑇.
+If 𝐅 = 𝐑 and dim𝑉 > 1, then some operators on 𝑉 have the property that
+there exists a basis of 𝑉 consisting of generalized eigenvectors of the operator,
+and (unlike what happens when 𝐅 = 𝐂) other operators do not have this property.
+See Exercise 11 for a necessary and sufficient condition that determines whether
+an operator has this property.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler302 Chapter 8 Operators on Complex Vector Spaces
+8.10 example: generalized eigenvectors of an operator on 𝐂3
+Define 𝑇 ∈ ℒ(𝐂3
+) by
+𝑇(𝑧1,𝑧2,𝑧3) = (4𝑧2,0,5𝑧3)
+for each (𝑧1,𝑧2,𝑧3) ∈ 𝐂3
+. A routine use of the definition of eigenvalue shows that
+the eigenvalues of 𝑇 are 0 and 5. Furthermore, the eigenvectors corresponding to
+theeigenvalue0 arethenonzerovectorsoftheform (𝑧1,0,0), andtheeigenvectors
+corresponding to the eigenvalue 5 are the nonzero vectors of the form (0,0,𝑧3).
+Hence this operator does not have enough eigenvectors to span its domain 𝐂3
+.
+Wecomputethat𝑇3
+(𝑧1,𝑧2,𝑧3) = (0,0,125𝑧3). Thus8.1and8.3implythatthe
+generalized eigenvectors of 𝑇 corresponding to the eigenvalue 0 are the nonzero
+vectors of the form (𝑧1,𝑧2,0).
+We also have (𝑇 − 5𝐼)3
+(𝑧1,𝑧2,𝑧3) = (−125𝑧1 + 300𝑧2,−125𝑧2,0). Thus the
+generalized eigenvectors of 𝑇 corresponding to the eigenvalue 5 are the nonzero
+vectors of the form (0,0,𝑧3).
+The paragraphs above show that each of the standard basis vectors of 𝐂3
+is a
+generalized eigenvector of 𝑇. Thus 𝐂3
+indeed has a basis consisting of generalized
+eigenvectors of 𝑇, as promised by 8.9.
+If 𝑣 is an eigenvector of 𝑇 ∈ ℒ(𝑉), then the corresponding eigenvalue 𝜆 is
+uniquely determined by the equation 𝑇𝑣 = 𝜆𝑣, which can be satisfied by only one
+𝜆 ∈ 𝐅 (because 𝑣 ≠ 0). However, if 𝑣 is a generalized eigenvector of 𝑇, then it
+is not obvious that the equation (𝑇 − 𝜆𝐼)dim𝑉
+𝑣 = 0 can be satisfied by only one
+𝜆 ∈ 𝐅. Fortunately, the next result tells us that all is well on this issue.
+8.11 generalized eigenvector corresponds to a unique eigenvalue
+Suppose 𝑇 ∈ ℒ(𝑉). Then each generalized eigenvector of 𝑇 corresponds to
+only one eigenvalue of 𝑇.
+Proof Suppose 𝑣 ∈ 𝑉 is a generalized eigenvector of 𝑇 corresponding to eigen-
+values𝛼and 𝜆of𝑇. Let𝑚bethesmallestpositiveintegersuchthat(𝑇−𝛼𝐼)𝑚
+𝑣 = 0.
+Let 𝑛 = dim𝑉. Then
+0 = (𝑇 − 𝜆𝐼)𝑛
+𝑣
+= ((𝑇 − 𝛼𝐼) + (𝛼 − 𝜆)𝐼)
+𝑛
+𝑣
+=
+𝑛
+∑
+𝑘=0
+𝑏𝑘(𝛼 − 𝜆)𝑛−𝑘
+(𝑇 − 𝛼𝐼)𝑘
+𝑣,
+where 𝑏0 = 1 and the values of the other binomial coefficients 𝑏𝑘 do not matter.
+Apply the operator (𝑇 − 𝛼𝐼)𝑚−1
+to both sides of the equation above, getting
+0 = (𝛼 − 𝜆)𝑛
+(𝑇 − 𝛼𝐼)𝑚−1
+𝑣.
+Because (𝑇 − 𝛼𝐼)𝑚−1
+𝑣 ≠ 0, the equation above implies that 𝛼 = 𝜆, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8A Generalized Eigenvectors and Nilpotent Operators 303
+We saw earlier (5.11) that eigenvectors corresponding to distinct eigenvalues
+are linearly independent. Now we prove a similar result for generalized eigen-
+vectors, with a proof that roughly follows the pattern of the proof of that earlier
+result.
+8.12 linearly independent generalized eigenvectors
+Suppose that 𝑇 ∈ ℒ(𝑉). Then every list of generalized eigenvectors of 𝑇
+corresponding to distinct eigenvalues of 𝑇 is linearly independent.
+Proof Suppose the desired result is false. Then there exists a smallest positive
+integer 𝑚 such that there exists a linearly dependent list 𝑣1,…,𝑣𝑚 of generalized
+eigenvectors of 𝑇 corresponding to distinct eigenvalues 𝜆1,…, 𝜆𝑚 of 𝑇 (note that
+𝑚 ≥ 2 because a generalized eigenvector is, by definition, nonzero). Thus there
+exist 𝑎1,…,𝑎𝑚 ∈ 𝐅, none of which are 0 (because of the minimality of 𝑚), such
+that
+𝑎1𝑣1 + ⋯ + 𝑎𝑚𝑣𝑚 = 0.
+Let 𝑛 = dim𝑉. Apply (𝑇 − 𝜆𝑚𝐼)𝑛
+to both sides of the equation above, getting
+8.13 𝑎1(𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣1 + ⋯ + 𝑎𝑚−1(𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣𝑚−1 = 0.
+Suppose 𝑘 ∈ {1,…,𝑚 − 1}. Then
+(𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣𝑘 ≠ 0
+because otherwise 𝑣𝑘 would be a generalized eigenvector of 𝑇 corresponding to
+the distinct eigenvalues 𝜆𝑘 and 𝜆𝑚, which would contradict 8.11. However,
+(𝑇 − 𝜆𝑘𝐼)𝑛
+((𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣𝑘) = (𝑇 − 𝜆𝑚𝐼)𝑛
+((𝑇 − 𝜆𝑘𝐼)𝑛
+𝑣𝑘) = 0.
+Thus the last two displayed equations show that (𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣𝑘 is a generalized
+eigenvector of 𝑇 corresponding to the eigenvalue 𝜆𝑘. Hence
+(𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣1,…,(𝑇 − 𝜆𝑚𝐼)𝑛
+𝑣𝑚−1
+is a linearly dependent list (by 8.13) of 𝑚−1 generalized eigenvectors correspond-
+ing to distinct eigenvalues, contradicting the minimality of 𝑚. This contradiction
+completes the proof.
+Nilpotent Operators
+8.14 definition: nilpotent
+An operator is called nilpotent if some power of it equals 0.
+Thus an operator 𝑇 ∈ ℒ(𝑉) is nilpotent if and only if every nonzero vector in
+𝑉 is a generalized eigenvector of 𝑇 corresponding to the eigenvalue 0.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler304 Chapter 8 Operators on Complex Vector Spaces
+8.15 example: nilpotent operators
+(a) The operator 𝑇 ∈ ℒ(𝐅4
+) defined by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (0,0,𝑧1,𝑧2)
+is nilpotent because 𝑇2
+= 0.
+(b) The operator on 𝐅3
+whose matrix (with respect to the standard basis) is
+⎛ ⎜ ⎜ ⎜
+⎝
+−3 9 0
+−7 9 6
+4 0 −6
+⎞ ⎟ ⎟ ⎟
+⎠
+isnilpotent, ascanbeshownbycubingthematrixabovetogetthezeromatrix.
+(c) The operator of differentiation on 𝒫𝑚(𝐑) is nilpotent because the (𝑚 + 1)th
+derivative of every polynomial of degree at most 𝑚 equals 0. Note that on
+this space of dimension 𝑚 + 1, we need to raise the nilpotent operator to the
+power 𝑚 + 1 to get the 0 operator.
+The Latin word nil means nothing or
+zero; the Latin word potens means
+having power. Thus nilpotent literally
+means having a power that is zero.
+The next result shows that when rais-
+ing a nilpotent operator to a power, we
+never need to use a power higher than the
+dimension of the space. For a slightly
+stronger result, see Exercise 18.
+8.16 nilpotent operator raised to dimension of domain is 0
+Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Then 𝑇dim𝑉
+= 0.
+Proof Because 𝑇 is nilpotent, there exists a positive integer 𝑘 such that 𝑇𝑘
+= 0.
+Thusnull𝑇𝑘
+= 𝑉. Now8.1and8.3implythatnull𝑇dim𝑉
+= 𝑉. Thus𝑇dim𝑉
+= 0.
+8.17 eigenvalues of nilpotent operator
+Suppose 𝑇 ∈ ℒ(𝑉).
+(a) If 𝑇 is nilpotent, then 0 is an eigenvalue of 𝑇 and 𝑇 has no other
+eigenvalues.
+(b) If 𝐅 = 𝐂 and 0 is the only eigenvalue of 𝑇, then 𝑇 is nilpotent.
+Proof
+(a) To prove (a), suppose 𝑇 is nilpotent. Hence there is a positive integer 𝑚 such
+that 𝑇𝑚
+= 0. This implies that 𝑇 is not injective. Thus 0 is an eigenvalue
+of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8A Generalized Eigenvectors and Nilpotent Operators 305
+To show that 𝑇 has no other eigenvalues, suppose 𝜆 is an eigenvalue of 𝑇.
+Then there exists a nonzero vector 𝑣 ∈ 𝑉 such that
+𝜆𝑣 = 𝑇𝑣.
+Repeatedly applying 𝑇 to both sides of this equation shows that
+𝜆𝑚
+𝑣 = 𝑇𝑚
+𝑣 = 0.
+Thus 𝜆 = 0, as desired.
+(b) Suppose 𝐅 = 𝐂 and 0 is the only eigenvalue of 𝑇. By 5.27(b), the minimal
+polynomial of 𝑇 equals 𝑧𝑚
+for some positive integer 𝑚. Thus 𝑇𝑚
+= 0. Hence
+𝑇 is nilpotent.
+Exercise 23 shows that the hypothesis that 𝐅 = 𝐂 cannot be deleted in (b) of
+the result above.
+Given an operator on 𝑉, we want to find a basis of 𝑉 such that the matrix of
+the operator with respect to this basis is as simple as possible, meaning that the
+matrix contains many 0’s. The next result shows that if 𝑇 is nilpotent, then we can
+choose a basis of 𝑉 such that the matrix of 𝑇 with respect to this basis has more
+than half of its entries equal to 0. Later in this chapter we will do even better.
+8.18 minimal polynomial and upper-triangular matrix of nilpotent operator
+Suppose 𝑇 ∈ ℒ(𝑉). Then the following are equivalent.
+(a) 𝑇 is nilpotent.
+(b) The minimal polynomial of 𝑇 is 𝑧𝑚
+for some positive integer 𝑚.
+(c) There is a basis of 𝑉 with respect to which the matrix of 𝑇 has the form
+⎛ ⎜ ⎜ ⎜
+⎝
+0 ∗
+⋱
+0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where all entries on and below the diagonal equal 0.
+Proof Suppose (a) holds, so 𝑇 is nilpotent. Thus there exists a positive integer
+𝑛 such that 𝑇𝑛
+= 0. Now 5.29 implies that 𝑧𝑛
+is a polynomial multiple of the
+minimal polynomial of 𝑇. Thus the minimal polynomial of 𝑇 is 𝑧𝑚
+for some
+positive integer 𝑚, proving that (a) implies (b).
+Nowsuppose(b)holds, sotheminimalpolynomialof𝑇 is𝑧𝑚
+forsomepositive
+integer 𝑚. This implies, by 5.27(a), that 0 (which is the only zero of 𝑧𝑚
+) is the
+only eigenvalue of 𝑇. This further implies, by 5.44, that there is a basis of 𝑉 with
+respect to which the matrix of 𝑇 is upper triangular. This also implies, by 5.41,
+that all entries on the diagonal of this matrix are 0, proving that (b) implies (c).
+Nowsuppose(c)holds. Then5.40impliesthat𝑇dim𝑉
+= 0. Thus𝑇 isnilpotent,
+proving that (c) implies (a).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler306 Chapter 8 Operators on Complex Vector Spaces
+Exercises 8A
+1 Suppose 𝑇 ∈ ℒ(𝑉). Prove that if dimnull𝑇4
+= 8 and dimnull𝑇6
+= 9, then
+dimnull𝑇𝑚
+= 9 for all integers 𝑚 ≥ 5.
+2 Suppose 𝑇 ∈ ℒ(𝑉), 𝑚 is a positive integer, 𝑣 ∈ 𝑉, and 𝑇𝑚−1
+𝑣 ≠ 0 but
+𝑇𝑚
+𝑣 = 0. Prove that 𝑣,𝑇𝑣,𝑇2
+𝑣,…,𝑇𝑚−1
+𝑣 is linearly independent.
+The result in this exercise is used in the proof of 8.45.
+## 3 Suppose 𝑇 ∈ ℒ(𝑉). Prove that
+𝑉 = null𝑇 ⊕ range𝑇 ⟺ null𝑇2
+= null𝑇.
+## 4 Suppose 𝑇 ∈ ℒ(𝑉), 𝜆 ∈ 𝐅, and 𝑚 is a positive integer such that the minimal
+polynomial of 𝑇 is a polynomial multiple of (𝑧 − 𝜆)𝑚
+. Prove that
+dimnull(𝑇 − 𝜆𝐼)𝑚
+≥ 𝑚.
+## 5 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑚 is a positive integer. Prove that
+dimnull𝑇𝑚
+≤ 𝑚dimnull𝑇.
+Hint: Exercise 21 in Section 3B may be useful.
+## 6 Suppose 𝑇 ∈ ℒ(𝑉). Show that
+𝑉 = range𝑇0
+⊇ range𝑇1
+⊇ ⋯ ⊇ range𝑇𝑘
+⊇ range𝑇𝑘+1
+⊇ ⋯ .
+## 7 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑚 is a nonnegative integer such that
+range𝑇𝑚
+= range𝑇𝑚+1
+.
+Prove that range𝑇𝑘
+= range𝑇𝑚
+for all 𝑘 > 𝑚.
+## 8 Suppose 𝑇 ∈ ℒ(𝑉). Prove that
+range𝑇dim𝑉
+= range𝑇dim𝑉+1
+= range𝑇dim𝑉+2
+= ⋯ .
+## 9 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑚 is a nonnegative integer. Prove that
+null𝑇𝑚
+= null𝑇𝑚+1
+⟺ range𝑇𝑚
+= range𝑇𝑚+1
+.
+10 Define 𝑇 ∈ ℒ(𝐂2
+) by 𝑇(𝑤,𝑧) = (𝑧,0). Find all generalized eigenvectors
+of 𝑇.
+## 11 Suppose that 𝑇 ∈ ℒ(𝑉). Prove that there is a basis of 𝑉 consisting of
+generalized eigenvectors of 𝑇 if and only if the minimal polynomial of 𝑇
+equals (𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑚) for some 𝜆1,…, 𝜆𝑚 ∈ 𝐅.
+Assume 𝐅 = 𝐑 because the case 𝐅 = 𝐂 follows from 5.27(b) and 8.9.
+This exercise states that the condition for there to be a basis of 𝑉 consisting
+of generalized eigenvectors of 𝑇 is the same as the condition for there to be
+a basis with respect to which 𝑇 has an upper-triangular matrix (see 5.44).
+Caution: If 𝑇 has an upper-triangular matrix with respect to a basis
+𝑣1,…,𝑣𝑛 of 𝑉, then 𝑣1 is an eigenvector of 𝑇 but it is not necessarily
+true that 𝑣2,…,𝑣𝑛 are generalized eigenvectors of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8A Generalized Eigenvectors and Nilpotent Operators 307
+## 12 Suppose 𝑇 ∈ ℒ(𝑉) is such that every nonzero vector in 𝑉 is a generalized
+eigenvector of 𝑇. Prove that there exists 𝜆 ∈ 𝐅 such that 𝑇 − 𝜆𝐼 is nilpotent.
+13 Suppose 𝑆,𝑇 ∈ ℒ(𝑉) and 𝑆𝑇 is nilpotent. Prove that 𝑇𝑆 is nilpotent.
+## 14 Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent and 𝑇 ≠ 0. Prove 𝑇 is not diagonalizable.
+## 15 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that 𝑇 is diagonalizable if and only if
+every generalized eigenvector of 𝑇 is an eigenvector of 𝑇.
+For 𝐅 = 𝐂, this exercise adds another equivalence to the list of conditions
+for diagonalizability in 5.55.
+16 (a) Give an example of nilpotent operators 𝑆,𝑇 on the same vector space
+such that neither 𝑆 + 𝑇 nor 𝑆𝑇 is nilpotent.
+(b) Suppose 𝑆,𝑇 ∈ ℒ(𝑉) are nilpotent and 𝑆𝑇 = 𝑇𝑆. Prove that 𝑆 + 𝑇 and
+𝑆𝑇 are nilpotent.
+17 Suppose𝑇 ∈ ℒ(𝑉)isnilpotentand𝑚isapositiveintegersuchthat𝑇𝑚
+= 0.
+(a) Prove that 𝐼 − 𝑇 is invertible and that (𝐼 − 𝑇)−1
+= 𝐼 + 𝑇 + ⋯ + 𝑇𝑚−1
+.
+(b) Explain how you would guess the formula above.
+18 Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Prove that 𝑇1+dimrange𝑇
+= 0.
+If dimrange𝑇 < dim𝑉 − 1, then this exercise improves 8.16.
+## 19 Suppose 𝑇 ∈ ℒ(𝑉) is not nilpotent. Show that
+𝑉 = null𝑇dim𝑉−1
+⊕ range𝑇dim𝑉−1
+.
+For operators that are not nilpotent, this exercise improves 8.4.
+## 20 Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉) is normal and nilpotent.
+Prove that 𝑇 = 0.
+21 Suppose 𝑇 ∈ ℒ(𝑉) is such that null𝑇dim𝑉−1
+≠ null𝑇dim𝑉
+. Prove that 𝑇 is
+nilpotent and that dimnull𝑇𝑘
+= 𝑘 for every integer 𝑘 with 0 ≤ 𝑘 ≤ dim𝑉.
+22 Suppose 𝑇 ∈ ℒ(𝐂5
+) is such that range𝑇4
+≠ range𝑇5
+. Prove that 𝑇 is
+nilpotent.
+## 23 Give an example of an operator 𝑇 on a finite-dimensional real vector space
+such that 0 is the only eigenvalue of 𝑇 but 𝑇 is not nilpotent.
+This exercise shows that the implication (b) ⟹ (a) in 8.17 does not hold
+without the hypothesis that 𝐅 = 𝐂.
+## 24 For each item in Example 8.15, find a basis of the domain vector space such
+that the matrix of the nilpotent operator with respect to that basis has the
+upper-triangular form promised by 8.18(c).
+## 25 Suppose that 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉) is nilpotent. Show
+that there is an orthonormal basis of 𝑉 with respect to which the matrix of
+𝑇 has the upper-triangular form promised by 8.18(c).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler308 Chapter 8 Operators on Complex Vector Spaces
+8B Generalized Eigenspace Decomposition
+Generalized Eigenspaces
+8.19 definition: generalized eigenspace, 𝐺(𝜆,𝑇)
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅. The generalized eigenspace of 𝑇 correspond-
+ing to 𝜆, denoted by 𝐺(𝜆,𝑇), is defined by
+𝐺(𝜆,𝑇) = {𝑣 ∈ 𝑉 ∶ (𝑇 − 𝜆𝐼)𝑘
+𝑣 = 0 for some positive integer 𝑘}.
+Thus 𝐺(𝜆,𝑇) is the set of generalized eigenvectors of 𝑇 corresponding to 𝜆,
+along with the 0 vector.
+Because every eigenvector of 𝑇 is a generalized eigenvector of 𝑇 (take 𝑘 = 1
+in the definition of generalized eigenvector), each eigenspace is contained in the
+corresponding generalized eigenspace. In other words, if 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅,
+then 𝐸(𝜆,𝑇) ⊆ 𝐺(𝜆,𝑇).
+The next result implies that if 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅, then the generalized
+eigenspace 𝐺(𝜆,𝑇) is a subspace of 𝑉 (because the null space of each linear map
+on 𝑉 is a subspace of 𝑉).
+8.20 description of generalized eigenspaces
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅. Then 𝐺(𝜆,𝑇) = null(𝑇 − 𝜆𝐼)dim𝑉
+.
+Proof Suppose 𝑣 ∈ null(𝑇 − 𝜆𝐼)dim𝑉
+. The definitions imply 𝑣 ∈ 𝐺(𝜆,𝑇). Thus
+𝐺(𝜆,𝑇) ⊇ null(𝑇 − 𝜆𝐼)dim𝑉
+.
+Conversely, suppose 𝑣 ∈ 𝐺(𝜆,𝑇). Thus there is a positive integer 𝑘 such
+that 𝑣 ∈ null(𝑇 − 𝜆𝐼)𝑘
+. From 8.1 and 8.3 (with 𝑇 − 𝜆𝐼 replacing 𝑇), we get
+𝑣 ∈ null(𝑇− 𝜆𝐼)dim𝑉
+. Thus 𝐺(𝜆,𝑇) ⊆ null(𝑇− 𝜆𝐼)dim𝑉
+, completing the proof.
+8.21 example: generalized eigenspaces of an operator on 𝐂3
+Define 𝑇 ∈ ℒ(𝐂3
+) by
+𝑇(𝑧1,𝑧2,𝑧3) = (4𝑧2,0,5𝑧3).
+In Example 8.10, we saw that the eigenvalues of 𝑇 are 0 and 5, and we found
+the corresponding sets of generalized eigenvectors. Taking the union of those sets
+with {0}, we have
+𝐺(0,𝑇) = {(𝑧1,𝑧2,0) ∶ 𝑧1,𝑧2 ∈ 𝐂} and 𝐺(5,𝑇) = {(0,0,𝑧3) ∶ 𝑧3 ∈ 𝐂}.
+Note that 𝐂3
+= 𝐺(0,𝑇) ⊕ 𝐺(5,𝑇).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8B Generalized Eigenspace Decomposition 309
+In Example 8.21, the domain space 𝐂3
+is the direct sum of the generalized
+eigenspaces of the operator 𝑇 in that example. Our next result shows that this
+behavior holds in general. Specifically, the following major result shows that if
+𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉), then 𝑉 is the direct sum of the generalized eigenspaces
+of 𝑇, each of which is invariant under 𝑇 and on which 𝑇 is a nilpotent operator
+plus a scalar multiple of the identity. Thus the next result achieves our goal of
+decomposing 𝑉 into invariant subspaces on which 𝑇 has a known behavior.
+As we will see, the proof follows from putting together what we have learned
+about generalized eigenspaces and then using our result that for each operator
+𝑇 ∈ ℒ(𝑉), there exists a basis of 𝑉 consisting of generalized eigenvectors of 𝑇.
+8.22 generalized eigenspace decomposition
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑚 be the distinct eigenvalues
+of 𝑇. Then
+(a) 𝐺(𝜆𝑘,𝑇) is invariant under 𝑇 for each 𝑘 = 1,…,𝑚;
+(b) (𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) is nilpotent for each 𝑘 = 1,…,𝑚;
+(c) 𝑉 = 𝐺(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐺(𝜆𝑚,𝑇).
+Proof
+(a) Suppose 𝑘 ∈ {1,…,𝑚}. Then 8.20 shows that
+𝐺(𝜆𝑘,𝑇) = null(𝑇 − 𝜆𝑘𝐼)dim𝑉
+.
+Thus 5.18, with 𝑝(𝑧) = (𝑧 − 𝜆𝑘)dim𝑉
+, implies that 𝐺(𝜆𝑘,𝑇) is invariant
+under 𝑇, proving (a).
+(b) Suppose 𝑘 ∈ {1,…,𝑚}. If 𝑣 ∈ 𝐺(𝜆𝑘,𝑇), then (𝑇 − 𝜆𝑘𝐼)dim𝑉
+𝑣 = 0 (by 8.20).
+Thus ((𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇))
+dim𝑉
+= 0. Hence (𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) is nilpotent,
+proving (b).
+(c) To show that 𝐺(𝜆1,𝑇) + ⋯ + 𝐺(𝜆𝑚,𝑇) is a direct sum, suppose
+𝑣1 + ⋯ + 𝑣𝑚 = 0,
+where each 𝑣𝑘 is in 𝐺(𝜆𝑘,𝑇). Because generalized eigenvectors of 𝑇 cor-
+responding to distinct eigenvalues are linearly independent (by 8.12), this
+implies that each 𝑣𝑘 equals 0. Thus 𝐺(𝜆1,𝑇) +⋯ +𝐺(𝜆𝑚,𝑇) is a direct sum
+(by 1.45).
+Finally, each vector in 𝑉 can be written as a finite sum of generalized eigen-
+vectors of 𝑇 (by 8.9). Thus
+𝑉 = 𝐺(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐺(𝜆𝑚,𝑇),
+proving (c).
+For the analogous result when 𝐅 = 𝐑, see Exercise 8.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler310 Chapter 8 Operators on Complex Vector Spaces
+Multiplicity of an Eigenvalue
+If 𝑉 is a complex vector space and 𝑇 ∈ ℒ(𝑉), then the decomposition of 𝑉 pro-
+vided by the generalized eigenspace decomposition (8.22) can be a powerful tool.
+The dimensions of the subspaces involved in this decomposition are sufficiently
+important to get a name, which is given in the next definition.
+8.23 definition: multiplicity
+• Suppose 𝑇 ∈ ℒ(𝑉). The multiplicity of an eigenvalue 𝜆 of 𝑇 is defined to
+be the dimension of the corresponding generalized eigenspace 𝐺(𝜆,𝑇).
+• In other words, the multiplicity of an eigenvalue 𝜆 of 𝑇 equals
+dimnull(𝑇 − 𝜆𝐼)dim𝑉
+.
+The second bullet point above holds because 𝐺(𝜆,𝑇) = null(𝑇 − 𝜆𝐼)dim𝑉
+(see 8.20).
+8.24 example: multiplicity of each eigenvalue of an operator
+Suppose 𝑇 ∈ ℒ(𝐂3
+) is defined by
+𝑇(𝑧1,𝑧2,𝑧3) = (6𝑧1 + 3𝑧2 + 4𝑧3,6𝑧2 + 2𝑧3,7𝑧3).
+The matrix of 𝑇 (with respect to the standard basis) is
+⎛ ⎜ ⎜ ⎜
+⎝
+6 3 4
+0 6 2
+0 0 7
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+The eigenvalues of 𝑇 are the diagonal entries 6 and 7, as follows from 5.41. You
+can verify that the generalized eigenspaces of 𝑇 are as follows:
+𝐺(6,𝑇) = span((1,0,0),(0,1,0)) and 𝐺(7,𝑇) = span((10,2,1)).
+Inthisexample,themultiplicityofeach
+eigenvalue equals the number of times
+that eigenvalue appears on the diago-
+nal of an upper-triangular matrix rep-
+resenting the operator. This behavior
+always happens, as we will see in 8.31.
+Thus the eigenvalue 6 has multiplicity 2
+and the eigenvalue 7 has multiplicity 1.
+The direct sum 𝐂3
+= 𝐺(6,𝑇) ⊕ 𝐺(7,𝑇)
+is the generalized eigenspace decom-
+position promised by 8.22. A basis
+of 𝐂3
+consisting of generalized eigen-
+vectors of 𝑇, as promised by 8.9, is
+(1,0,0),(0,1,0),(10,2,1). There does not exist a basis of 𝐂3
+consisting of eigen-
+vectors of this operator.
+In the example above, the sum of the multiplicities of the eigenvalues of 𝑇
+equals 3, which is the dimension of the domain of 𝑇. The next result shows that
+this holds for all operators on finite-dimensional complex vector spaces.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8B Generalized Eigenspace Decomposition 311
+8.25 sum of the multiplicities equals dim𝑉
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then the sum of the multiplicities of all
+eigenvalues of 𝑇 equals dim𝑉.
+Proof The desired result follows from the generalized eigenspace decomposition
+(8.22) and the formula for the dimension of a direct sum (see 3.94).
+The terms algebraic multiplicity and geometric multiplicity are used in some
+books. In case you encounter this terminology, be aware that the algebraic multi-
+plicity is the same as the multiplicity defined here and the geometric multiplicity
+is the dimension of the corresponding eigenspace. In other words, if 𝑇 ∈ ℒ(𝑉)
+and 𝜆 is an eigenvalue of 𝑇, then
+algebraic multiplicity of 𝜆 = dimnull(𝑇 − 𝜆𝐼)dim𝑉
+= dim𝐺(𝜆,𝑇),
+geometric multiplicity of 𝜆 = dimnull(𝑇 − 𝜆𝐼) = dim𝐸(𝜆,𝑇).
+Notethatasdefinedabove, thealgebraicmultiplicityalsohasageometricmeaning
+as the dimension of a certain null space. The definition of multiplicity given here
+is cleaner than the traditional definition that involves determinants; 9.62 implies
+that these definitions are equivalent.
+If 𝑉 is an inner product space, 𝑇 ∈ ℒ(𝑉) is normal, and 𝜆 is an eigenvalue
+of 𝑇, then the algebraic multiplicity of 𝜆 equals the geometric multiplicity of 𝜆,
+as can be seen from applying Exercise 27 in Section 7A to the normal operator
+𝑇 − 𝜆𝐼. As a special case, the singular values of 𝑆 ∈ ℒ(𝑉,𝑊) (here 𝑉 and 𝑊 are
+both finite-dimensional inner product spaces) depend on the multiplicities (either
+algebraic or geometric) of the eigenvalues of the self-adjoint operator 𝑆∗𝑆.
+The next definition associates a monic polynomial with each operator on a
+finite-dimensional complex vector space.
+8.26 definition: characteristic polynomial
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑚 denote the distinct eigenvalues
+of 𝑇, with multiplicities 𝑑1,…,𝑑𝑚. The polynomial
+(𝑧 − 𝜆1)𝑑1 ⋯(𝑧 − 𝜆𝑚)𝑑𝑚
+is called the characteristic polynomial of 𝑇.
+8.27 example: the characteristic polynomial of an operator
+Suppose𝑇 ∈ ℒ(𝐂3
+)isdefinedasinExample8.24. Becausetheeigenvaluesof
+𝑇 are6,withmultiplicity2,and7,withmultiplicity1,weseethatthecharacteristic
+polynomial of 𝑇 is (𝑧 − 6)2
+(𝑧 − 7).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler312 Chapter 8 Operators on Complex Vector Spaces
+8.28 degree and zeros of characteristic polynomial
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then
+(a) the characteristic polynomial of 𝑇 has degree dim𝑉;
+(b) the zeros of the characteristic polynomial of 𝑇 are the eigenvalues of 𝑇.
+Proof Our result about the sum of the multiplicities (8.25) implies (a). The
+definition of the characteristic polynomial implies (b).
+Most texts define the characteristic polynomial using determinants (the two
+definitionsareequivalentby9.62). Theapproachtakenhere,whichisconsiderably
+simpler, leads to the following nice proof of the Cayley–Hamilton theorem.
+## 8.29 Cayley–Hamilton theorem
+Suppose 𝐅 = 𝐂, 𝑇 ∈ ℒ(𝑉), and 𝑞 is the characteristic polynomial of 𝑇. Then
+𝑞(𝑇) = 0.
+Proof Let 𝜆1,…, 𝜆𝑚 be the distinct eigenvalues of 𝑇, and let 𝑑𝑘 = dim𝐺(𝜆𝑘,𝑇).
+For each 𝑘 ∈ {1,…,𝑚}, we know that (𝑇−𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) is nilpotent. Thus we have
+Arthur Cayley (1821–1895) published
+three mathematics papers before com-
+pleting his undergraduate degree.
+(𝑇 − 𝜆𝑘𝐼)𝑑𝑘|𝐺(𝜆𝑘,𝑇) = 0
+(by 8.16) for each 𝑘 ∈ {1,…,𝑚}.
+The generalized eigenspace decom-
+position (8.22) states that every vector in 𝑉 is a sum of vectors in
+𝐺(𝜆1,𝑇),…,𝐺(𝜆𝑚,𝑇). Thus to prove that 𝑞(𝑇) = 0, we only need to show
+that 𝑞(𝑇)|𝐺(𝜆𝑘,𝑇) = 0 for each 𝑘.
+Fix 𝑘 ∈ {1,…,𝑚}. We have
+𝑞(𝑇) = (𝑇 − 𝜆1𝐼)𝑑1 ⋯(𝑇 − 𝜆𝑚𝐼)𝑑𝑚.
+The operators on the right side of the equation above all commute, so we can
+move the factor (𝑇 − 𝜆𝑘𝐼)𝑑𝑘 to be the last term in the expression on the right.
+Because (𝑇 − 𝜆𝑘𝐼)𝑑𝑘|𝐺(𝜆𝑘,𝑇) = 0, we have 𝑞(𝑇)|𝐺(𝜆𝑘,𝑇) = 0, as desired.
+Thenextresultimpliesthatiftheminimalpolynomialofanoperator𝑇 ∈ ℒ(𝑉)
+has degree dim𝑉 (as happens almost always—see the paragraphs following 5.24),
+then the characteristic polynomial of 𝑇 equals the minimal polynomial of 𝑇.
+8.30 characteristic polynomial is a multiple of minimal polynomial
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then the characteristic polynomial of 𝑇 is a
+polynomial multiple of the minimal polynomial of 𝑇.
+Proof The desired result follows from the Cayley–Hamilton theorem (8.29) and
+5.29.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8B Generalized Eigenspace Decomposition 313
+Now we can prove that the result suggested by Example 8.24 holds for all
+operators on finite-dimensional complex vector spaces.
+8.31 multiplicity of an eigenvalue equals number of times on diagonal
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Suppose 𝑣1,…,𝑣𝑛 is a basis of 𝑉 such that
+ℳ(𝑇,(𝑣1,…,𝑣𝑛)) is upper triangular. Then the number of times that each
+eigenvalue 𝜆 of 𝑇 appears on the diagonal of ℳ(𝑇,(𝑣1,…,𝑣𝑛)) equals the
+multiplicity of 𝜆 as an eigenvalue of 𝑇.
+Proof Let 𝐴 = ℳ(𝑇,(𝑣1,…,𝑣𝑛)). Thus 𝐴 is an upper-triangular matrix. Let
+𝜆1,…, 𝜆𝑛 denote the entries on the diagonal of 𝐴. Thus for each 𝑘 ∈ {1,…,𝑛},
+we have
+𝑇𝑣𝑘 = 𝑢𝑘 + 𝜆𝑘𝑣𝑘
+for some 𝑢𝑘 ∈ span(𝑣1,…,𝑣𝑘−1). Hence if 𝑘 ∈ {1,…,𝑛} and 𝜆𝑘 ≠ 0, then 𝑇𝑣𝑘 is
+not a linear combination of 𝑇𝑣1,…,𝑇𝑣𝑘−1. The linear dependence lemma (2.19)
+now implies that the list of those 𝑇𝑣𝑘 such that 𝜆𝑘 ≠ 0 is linearly independent.
+Let 𝑑 denote the number of indices 𝑘 ∈ {1,…,𝑛} such that 𝜆𝑘 = 0. The
+conclusion of the previous paragraph implies that
+dimrange𝑇 ≥ 𝑛 − 𝑑.
+Because 𝑛 = dim𝑉 = dimnull𝑇+dimrange𝑇, the inequality above implies that
+8.32 dimnull𝑇 ≤ 𝑑.
+The matrix of the operator 𝑇𝑛
+with respect to the basis 𝑣1,…,𝑣𝑛 is the upper-
+triangular matrix 𝐴𝑛
+, which has diagonal entries 𝜆1
+𝑛
+,…, 𝜆𝑛
+𝑛
+[see Exercise 2(b) in
+Section 5C]. Because 𝜆𝑘
+𝑛
+= 0 if and only if 𝜆𝑘 = 0, the number of times that 0
+appears on the diagonal of 𝐴𝑛
+equals 𝑑. Thus applying 8.32 with 𝑇 replaced with
+𝑇𝑛
+, we have
+8.33 dimnull𝑇𝑛
+≤ 𝑑.
+For 𝜆 an eigenvalue of 𝑇, let 𝑚𝜆 denote the multiplicity of 𝜆 as an eigenvalue
+of 𝑇 and let 𝑑𝜆 denote the number of times that 𝜆 appears on the diagonal of 𝐴.
+Replacing 𝑇 in 8.33 with 𝑇 − 𝜆𝐼, we see that
+8.34 𝑚𝜆 ≤ 𝑑𝜆
+for each eigenvalue 𝜆 of 𝑇. The sum of the multiplicities 𝑚𝜆 over all eigenvalues
+𝜆 of 𝑇 equals 𝑛, the dimension of 𝑉 (by 8.25). The sum of the numbers 𝑑𝜆 over
+all eigenvalues 𝜆 of 𝑇 also equals 𝑛, because the diagonal of 𝐴 has length 𝑛.
+Thus summing both sides of 8.34 over all eigenvalues 𝜆 of 𝑇 produces an
+equality. Hence 8.34 must actually be an equality for each eigenvalue 𝜆 of 𝑇.
+Thus the multiplicity of 𝜆 as an eigenvalue of 𝑇 equals the number of times that
+𝜆 appears on the diagonal of 𝐴, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler≈ 100𝜋 Chapter 8 Operators on Complex Vector Spaces
+Block Diagonal Matrices
+Often we can understand a matrix
+better by thinking of it as composed
+of smaller matrices.
+To interpret our results in matrix form,
+we make the following definition, gener-
+alizing the notion of a diagonal matrix.
+If each matrix 𝐴𝑘 in the definition below
+is a 1-by-1 matrix, then we actually have a diagonal matrix.
+8.35 definition: block diagonal matrix
+A block diagonal matrix is a square matrix of the form
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1 0
+⋱
+0 𝐴𝑚
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where 𝐴1,…,𝐴𝑚 are square matrices lying along the diagonal and all other
+entries of the matrix equal 0.
+8.36 example: a block diagonal matrix
+The 5-by-5 matrix
+𝐴 =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+( 4 ) 0 0 0 0
+0
+0
+⎛ ⎜
+⎝
+2 −3
+0 2
+⎞ ⎟
+⎠
+0 0
+0 0
+0
+0
+0 0
+0 0
+⎛ ⎜
+⎝
+1 7
+0 1
+⎞ ⎟
+⎠
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+is a block diagonal matrix with
+𝐴 =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+𝐴1 0
+𝐴2
+0 𝐴3
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+,
+where
+𝐴1 = ( 4 ), 𝐴2 = ⎛ ⎜
+⎝
+2 −3
+0 2
+⎞ ⎟
+⎠
+, 𝐴3 = ⎛ ⎜
+⎝
+1 7
+0 1
+⎞ ⎟
+⎠
+.
+Here the inner matrices in the 5-by-5 matrix above are blocked off to show how
+we can think of it as a block diagonal matrix.
+Note that in the example above, each of 𝐴1, 𝐴2, 𝐴3 is an upper-triangular
+matrix whose diagonal entries are all equal. The next result shows that with
+respect to an appropriate basis, every operator on a finite-dimensional complex
+vector space has a matrix of this form. Note that this result gives us many more
+zeros in the matrix than are needed to make it upper triangular.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8B Generalized Eigenspace Decomposition 315
+8.37 block diagonal matrix with upper-triangular blocks
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑚 be the distinct eigenvalues of
+𝑇, with multiplicities 𝑑1,…,𝑑𝑚. Then there is a basis of 𝑉 with respect to
+which 𝑇 has a block diagonal matrix of the form
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1 0
+⋱
+0 𝐴𝑚
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where each 𝐴𝑘 is a 𝑑𝑘-by-𝑑𝑘 upper-triangular matrix of the form
+𝐴𝑘 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝜆𝑘 ∗
+⋱
+0 𝜆𝑘
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Proof Each (𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) is nilpotent (see 8.22). For each 𝑘, choose a basis
+of 𝐺(𝜆𝑘,𝑇), which is a vector space of dimension 𝑑𝑘, such that the matrix of
+(𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) with respect to this basis is as in 8.18(c). Thus with respect to
+this basis, the matrix of 𝑇|𝐺(𝜆𝑘,𝑇), which equals (𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) + 𝜆𝑘𝐼|𝐺(𝜆𝑘,𝑇),
+looks like the desired form shown above for 𝐴𝑘.
+The generalized eigenspace decomposition (8.22) shows that putting together
+the bases of the 𝐺(𝜆𝑘,𝑇)’s chosen above gives a basis of 𝑉. The matrix of 𝑇 with
+respect to this basis has the desired form.
+8.38 example: block diagonal matrix via generalized eigenvectors
+Let 𝑇 ∈ ℒ(𝐂3
+) be defined by 𝑇(𝑧1,𝑧2,𝑧3) = (6𝑧1 +3𝑧2 +4𝑧3,6𝑧2 +2𝑧3,7𝑧3).
+The matrix of 𝑇 (with respect to the standard basis) is
+⎛ ⎜ ⎜ ⎜
+⎝
+6 3 4
+0 6 2
+0 0 7
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+which is an upper-triangular matrix but is not of the form promised by 8.37.
+As we saw in Example 8.24, the eigenvalues of 𝑇 are 6 and 7; also,
+𝐺(6,𝑇) = span((1,0,0),(0,1,0)) and 𝐺(7,𝑇) = span((10,2,1)).
+We also saw that a basis of 𝐂3
+consisting of generalized eigenvectors of 𝑇 is
+(1,0,0),(0,1,0),(10,2,1).
+The matrix of 𝑇 with respect to this basis is
+⎛ ⎜ ⎜ ⎜
+⎝
+(
+6 3
+0 6
+)
+0
+0
+0 0 ( 7 )
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+which is a matrix of the block diagonal form promised by 8.37.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler316 Chapter 8 Operators on Complex Vector Spaces
+Exercises 8B
+1 Define 𝑇 ∈ ℒ(𝐂2
+) by 𝑇(𝑤,𝑧) = (−𝑧,𝑤). Find the generalized eigenspaces
+corresponding to the distinct eigenvalues of 𝑇.
+2 Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Prove that 𝐺(𝜆,𝑇) = 𝐺(1
+𝜆
+,𝑇−1
+) for every
+𝜆 ∈ 𝐅 with 𝜆 ≠ 0.
+## 3 Suppose 𝑇 ∈ ℒ(𝑉). Suppose 𝑆 ∈ ℒ(𝑉) is invertible. Prove that 𝑇 and
+𝑆−1
+𝑇𝑆 have the same eigenvalues with the same multiplicities.
+4 Suppose dim𝑉 ≥ 2 and 𝑇 ∈ ℒ(𝑉) is such that null𝑇dim𝑉−2
+≠ null𝑇dim𝑉−1
+.
+Prove that 𝑇 has at most two distinct eigenvalues.
+5 Suppose 𝑇 ∈ ℒ(𝑉) and 3 and 8 are eigenvalues of 𝑇. Let 𝑛 = dim𝑉. Prove
+that 𝑉 = (null𝑇𝑛−2
+) ⊕ (range𝑇𝑛−2
+).
+## 6 Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 is an eigenvalue of 𝑇. Explain why the exponent
+of 𝑧 − 𝜆 in the factorization of the minimal polynomial of 𝑇 is the smallest
+positive integer 𝑚 such that (𝑇 − 𝜆𝐼)𝑚
+|𝐺(𝜆,𝑇) = 0.
+## 7 Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 is an eigenvalue of 𝑇 with multiplicity 𝑑. Prove
+that 𝐺(𝜆,𝑇) = null(𝑇 − 𝜆𝐼)𝑑
+.
+If 𝑑 < dim𝑉, then this exercise improves 8.20.
+8 Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆1,…, 𝜆𝑚 are the distinct eigenvalues of 𝑇. Prove
+that
+𝑉 = 𝐺(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐺(𝜆𝑚,𝑇)
+if and only if the minimal polynomial of 𝑇 equals (𝑧 − 𝜆1)𝑘1 ⋯(𝑧 − 𝜆𝑚)𝑘𝑚
+for some positive integers 𝑘1,…,𝑘𝑚.
+The case 𝐅 = 𝐂 follows immediately from 5.27(b) and the generalized
+eigenspace decomposition (8.22); thus this exercise is interesting only when
+𝐅 = 𝐑.
+9 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that there exist 𝐷,𝑁 ∈ ℒ(𝑉)
+such that 𝑇 = 𝐷 + 𝑁, the operator 𝐷 is diagonalizable, 𝑁 is nilpotent, and
+𝐷𝑁 = 𝑁𝐷.
+10 Suppose 𝑉 is a complex inner product space, 𝑒1,…,𝑒𝑛 is an orthonormal
+basis of 𝑉, and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑛 be the eigenvalues of 𝑇, each
+included as many times as its multiplicity. Prove that
+|𝜆1|2
++ ⋯ + |𝜆𝑛|2
+≤ ‖𝑇𝑒1‖2
++ ⋯ + ‖𝑇𝑒𝑛‖2
+.
+See the comment after Exercise 5 in Section 7A.
+11 Give an example of an operator on 𝐂4
+whose characteristic polynomial
+equals (𝑧 − 7)2
+(𝑧 − 8)2
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8B Generalized Eigenspace Decomposition 317
+12 Give an example of an operator on 𝐂4
+whose characteristic polynomial
+equals (𝑧−1)(𝑧−5)3
+and whose minimal polynomial equals (𝑧−1)(𝑧−5)2
+.
+13 Give an example of an operator on 𝐂4
+whose characteristic and minimal
+polynomials both equal 𝑧(𝑧 − 1)2
+(𝑧 − 3).
+14 Giveanexampleofanoperatoron𝐂4
+whosecharacteristicpolynomialequals
+𝑧(𝑧 − 1)2
+(𝑧 − 3) and whose minimal polynomial equals 𝑧(𝑧 − 1)(𝑧 − 3).
+15 Let𝑇 betheoperatoron𝐂4
+definedby𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (0,𝑧1,𝑧2,𝑧3). Find
+the characteristic polynomial and the minimal polynomial of 𝑇.
+16 Let 𝑇 be the operator on 𝐂6
+defined by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4,𝑧5,𝑧6) = (0,𝑧1,𝑧2,0,𝑧4,0).
+Find the characteristic polynomial and the minimal polynomial of 𝑇.
+17 Suppose𝐅 = 𝐂 and𝑃 ∈ ℒ(𝑉)issuchthat𝑃2
+= 𝑃. Provethatthecharacteris-
+ticpolynomialof𝑃 is𝑧𝑚
+(𝑧−1)𝑛
+, where𝑚 = dimnull𝑃 and𝑛 = dimrange𝑃.
+## 18 Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 is an eigenvalue of 𝑇. Explain why the following
+four numbers equal each other.
+(a) The exponent of 𝑧 − 𝜆 in the factorization of the minimal polynomial
+of 𝑇.
+(b) The smallest positive integer 𝑚 such that (𝑇 − 𝜆𝐼)𝑚
+|𝐺(𝜆,𝑇) = 0.
+(c) The smallest positive integer 𝑚 such that
+null(𝑇 − 𝜆𝐼)𝑚
+= null(𝑇 − 𝜆𝐼)𝑚+1
+.
+(d) The smallest positive integer 𝑚 such that
+range(𝑇 − 𝜆𝐼)𝑚
+= range(𝑇 − 𝜆𝐼)𝑚+1
+.
+## 19 Suppose 𝐅 = 𝐂 and 𝑆 ∈ ℒ(𝑉) is a unitary operator. Prove that the constant
+term in the characteristic polynomial of 𝑆 has absolute value 1.
+20 Suppose that 𝐅 = 𝐂 and 𝑉1,…,𝑉𝑚 are nonzero subspaces of 𝑉 such that
+𝑉 = 𝑉1 ⊕ ⋯ ⊕ 𝑉𝑚.
+Suppose 𝑇 ∈ ℒ(𝑉) and each 𝑉𝑘 is invariant under 𝑇. For each 𝑘, let 𝑝𝑘
+denote the characteristic polynomial of 𝑇|𝑉𝑘
+. Prove that the characteristic
+polynomial of 𝑇 equals 𝑝1 ⋯𝑝𝑚.
+21 Suppose 𝑝,𝑞 ∈ 𝒫(𝐂) are monic polynomials with the same zeros and 𝑞 is a
+polynomial multiple of 𝑝. Prove that there exists 𝑇 ∈ ℒ(𝐂deg𝑞
+) such that
+the characteristic polynomial of 𝑇 is 𝑞 and the minimal polynomial of 𝑇 is 𝑝.
+This exercise implies that every monic polynomial is the characteristic
+polynomial of some operator.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler318 Chapter 8 Operators on Complex Vector Spaces
+## 22 Suppose 𝐴 and 𝐵 are block diagonal matrices of the form
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1 0
+⋱
+0 𝐴𝑚
+⎞ ⎟ ⎟ ⎟
+⎠
+, 𝐵 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐵1 0
+⋱
+0 𝐵𝑚
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where 𝐴𝑘 and 𝐵𝑘 are square matrices of the same size for each 𝑘 = 1,…,𝑚.
+Show that 𝐴𝐵 is a block diagonal matrix of the form
+𝐴𝐵 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1𝐵1 0
+⋱
+0 𝐴𝑚𝐵𝑚
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+23 Suppose 𝐅 = 𝐑, 𝑇 ∈ ℒ(𝑉), and 𝜆 ∈ 𝐂.
+(a) Show that 𝑢 + 𝑖𝑣 ∈ 𝐺(𝜆,𝑇𝐂) if and only if 𝑢 − 𝑖𝑣 ∈ 𝐺(𝜆,𝑇𝐂).
+(b) Show that the multiplicity of 𝜆 as an eigenvalue of 𝑇𝐂 equals the
+multiplicity of 𝜆 as an eigenvalue of 𝑇𝐂.
+(c) Use (b) and the result about the sum of the multiplicities (8.25) to show
+that if dim𝑉 is an odd number, then 𝑇𝐂 has a real eigenvalue.
+(d) Use (c) and the result about real eigenvalues of 𝑇𝐂 (Exercise 17 in
+Section 5A) to show that if dim𝑉 is an odd number, then 𝑇 has an
+eigenvalue (thus giving an alternative proof of 5.34).
+See Exercise 33 in Section 3B for the definition of the complexification 𝑇𝐂.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8C Consequences of Generalized Eigenspace Decomposition 319
+8C Consequences of Generalized Eigenspace Decomposition
+Square Roots of Operators
+Recall that a square root of an operator 𝑇 ∈ ℒ(𝑉) is an operator 𝑅 ∈ ℒ(𝑉) such
+that 𝑅2
+= 𝑇 (see 7.36). Every complex number has a square root, but not every
+operator on a complex vector space has a square root. For example, the operator
+on 𝐂3
+defined by 𝑇(𝑧1,𝑧2,𝑧3) = (𝑧2,𝑧3,0) does not have a square root, as you are
+asked to show in Exercise 1. The noninvertibility of that operator is no accident,
+as we will soon see. We begin by showing that the identity plus any nilpotent
+operator has a square root.
+8.39 identity plus nilpotent has a square root
+Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Then 𝐼 + 𝑇 has a square root.
+Proof Consider the Taylor series for the function √1 + 𝑥:
+8.40 √1 + 𝑥 = 1 + 𝑎1𝑥 + 𝑎2𝑥2
++ ⋯ .
+Because 𝑎1 = 1
+2
+, the formula above
+implies that 1 + 𝑥
+2
+is a good estimate
+for √1 + 𝑥 when 𝑥 is small.
+We do not find an explicit formula for
+the coefficients or worry about whether
+the infinite sum converges because we
+use this equation only as motivation.
+Because 𝑇 is nilpotent, 𝑇𝑚
+= 0 for
+some positive integer 𝑚. In 8.40, suppose we replace 𝑥 with 𝑇 and 1 with 𝐼. Then
+the infinite sum on the right side becomes a finite sum (because 𝑇𝑘
+= 0 for all
+𝑘 ≥ 𝑚). Thus we guess that there is a square root of 𝐼 + 𝑇 of the form
+𝐼 + 𝑎1𝑇 + 𝑎2𝑇2
++ ⋯ + 𝑎𝑚−1𝑇𝑚−1
+.
+Havingmadethisguess,wecantrytochoose𝑎1,𝑎2,…,𝑎𝑚−1 suchthattheoperator
+above has its square equal to 𝐼 + 𝑇. Now
+(𝐼+𝑎1𝑇 + 𝑎2𝑇2
++ 𝑎3𝑇3
++ ⋯ + 𝑎𝑚−1𝑇𝑚−1
+)
+2
+= 𝐼 + 2𝑎1𝑇 + (2𝑎2 + 𝑎1
+2
+)𝑇2
++ (2𝑎3 + 2𝑎1𝑎2)𝑇3
++ ⋯
++ (2𝑎𝑚−1 + terms involving 𝑎1,…,𝑎𝑚−2)𝑇𝑚−1
+.
+We want the right side of the equation above to equal 𝐼 + 𝑇. Hence choose 𝑎1
+such that 2𝑎1 = 1 (thus 𝑎1 = 1/2). Next, choose 𝑎2 such that 2𝑎2 + 𝑎1
+2
+= 0 (thus
+𝑎2 = −1/8). Then choose 𝑎3 such that the coefficient of 𝑇3
+on the right side of
+the equation above equals 0 (thus 𝑎3 = 1/16). Continue in this fashion for each
+𝑘 = 4,…,𝑚−1, at each step solving for 𝑎𝑘 so that the coefficient of 𝑇𝑘
+on the right
+side of the equation above equals 0. Actually we do not care about the explicit
+formula for the 𝑎𝑘’s. We only need to know that some choice of the 𝑎𝑘’s gives a
+square root of 𝐼 + 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler320 Chapter 8 Operators on Complex Vector Spaces
+The previous lemma is valid on real and complex vector spaces. However, the
+result below holds only on complex vector spaces. For example, the operator of
+multiplication by −1 on the one-dimensional real vector space 𝐑 has no square
+root.
+Representation
+of a complex
+number with
+polar
+coordinates.
+For the proof below, we need to know that every 𝑧 ∈ 𝐂 has
+a square root in 𝐂. To show this, write
+𝑧 = 𝑟(cos𝜃 + 𝑖sin𝜃),
+where 𝑟 is the length of the line segment in the complex plane
+from the origin to 𝑧 and 𝜃 is the angle of that line segment with
+the positive horizontal axis. Then
+√
+𝑟(cos 𝜃
+2
++ 𝑖sin 𝜃
+2
+)
+is a square root of 𝑧, as you can verify by showing that the square
+of the complex number above equals 𝑧.
+8.41 over 𝐂, invertible operators have square roots
+Suppose 𝑉 is a complex vector space and 𝑇 ∈ ℒ(𝑉) is invertible. Then 𝑇 has
+a square root.
+Proof Let 𝜆1,…, 𝜆𝑚 be the distinct eigenvalues of 𝑇. For each 𝑘, there exists a
+nilpotent operator 𝑇𝑘 ∈ ℒ(𝐺(𝜆𝑘,𝑇)) such that 𝑇|𝐺(𝜆𝑘,𝑇) = 𝜆𝑘𝐼+𝑇𝑘 [see 8.22(b)].
+Because 𝑇 is invertible, none of the 𝜆𝑘’s equals 0, so we can write
+𝑇|𝐺(𝜆𝑘,𝑇) = 𝜆𝑘(𝐼 +
+𝑇𝑘
+𝜆𝑘
+)
+for each 𝑘. Because 𝑇𝑘/𝜆𝑘 is nilpotent, 𝐼 + 𝑇𝑘/𝜆𝑘 has a square root (by 8.39).
+Multiplying a square root of the complex number 𝜆𝑘 by a square root of 𝐼+𝑇𝑘/𝜆𝑘,
+we obtain a square root 𝑅𝑘 of 𝑇|𝐺(𝜆𝑘,𝑇).
+By the generalized eigenspace decomposition (8.22), a typical vector 𝑣 ∈ 𝑉
+can be written uniquely in the form
+𝑣 = 𝑢1 + ⋯ + 𝑢𝑚,
+where each 𝑢𝑘 is in 𝐺(𝜆𝑘,𝑇). Using this decomposition, define an operator
+𝑅 ∈ ℒ(𝑉) by
+𝑅𝑣 = 𝑅1𝑢1 + ⋯ + 𝑅𝑚𝑢𝑚.
+Youshouldverifythatthisoperator𝑅 isasquarerootof𝑇, completingtheproof.
+By imitating the techniques in this subsection, you should be able to prove that
+if 𝑉 is a complex vector space and 𝑇 ∈ ℒ(𝑉) is invertible, then 𝑇 has a 𝑘th
+root
+for every positive integer 𝑘.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8C Consequences of Generalized Eigenspace Decomposition 321
+Jordan Form
+We know that if 𝑉 is a complex vector space, then for every 𝑇 ∈ ℒ(𝑉) there is a
+basis of 𝑉 with respect to which 𝑇 has a nice upper-triangular matrix (see 8.37).
+In this subsection we will see that we can do even better—there is a basis of 𝑉
+with respect to which the matrix of 𝑇 contains 0’s everywhere except possibly on
+the diagonal and the line directly above the diagonal.
+We begin by looking at two examples of nilpotent operators.
+8.42 example: nilpotent operator with nice matrix
+Let 𝑇 be the operator on 𝐂4
+defined by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4) = (0,𝑧1,𝑧2,𝑧3).
+Then 𝑇4
+= 0; thus 𝑇 is nilpotent. If 𝑣 = (1,0,0,0), then 𝑇3
+𝑣,𝑇2
+𝑣,𝑇𝑣,𝑣 is a basis
+of 𝐂4
+. The matrix of 𝑇 with respect to this basis is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+0 1 0 0
+0 0 1 0
+0 0 0 1
+0 0 0 0
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+The next example of a nilpotent operator has more complicated behavior than
+the example above.
+8.43 example: nilpotent operator with slightly more complicated matrix
+Let 𝑇 be the operator on 𝐂6
+defined by
+𝑇(𝑧1,𝑧2,𝑧3,𝑧4,𝑧5,𝑧6) = (0,𝑧1,𝑧2,0,𝑧4,0).
+Then 𝑇3
+= 0; thus 𝑇 is nilpotent. In contrast to the nice behavior of the nilpotent
+operator of the previous example, for this nilpotent operator there does not exist
+a vector 𝑣 ∈ 𝐂6
+such that 𝑇5
+𝑣,𝑇4
+𝑣,𝑇3
+𝑣,𝑇2
+𝑣,𝑇𝑣,𝑣 is a basis of 𝐂6
+. However, if
+we take 𝑣1 = (1,0,0,0,0,0), 𝑣2 = (0,0,0,1,0,0), and 𝑣3 = (0,0,0,0,0,1), then
+𝑇2
+𝑣1,𝑇𝑣1,𝑣1,𝑇𝑣2,𝑣2,𝑣3 is a basis of 𝐂6
+. The matrix of 𝑇 with respect to this
+basis is
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+⎛ ⎜ ⎜ ⎜
+⎝
+0 1 0
+0 0 1
+0 0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+0 0
+0 0
+0 0
+0
+0
+0
+0 0 0
+0 0 0
+(
+0 1
+0 0
+)
+0
+0
+0 0 0 0 0 ( 0 )
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Here the inner matrices are blocked off to show that we can think of the 6-by-6
+matrix above as a block diagonal matrix consisting of a 3-by-3 block with 1’s on
+the line above the diagonal and 0’s elsewhere, a 2-by-2 block with 1 above the
+diagonal and 0’s elsewhere, and a 1-by-1 block containing 0.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler322 Chapter 8 Operators on Complex Vector Spaces
+Our next goal is to show that every nilpotent operator 𝑇 ∈ ℒ(𝑉) behaves
+similarly to the operator in the previous example. Specifically, there is a finite
+collection of vectors 𝑣1,…,𝑣𝑛 ∈ 𝑉 such that there is a basis of 𝑉 consisting of
+the vectors of the form 𝑇𝑗
+𝑣𝑘, as 𝑘 varies from 1 to 𝑛 and 𝑗 varies (in reverse order)
+from 0 to the largest nonnegative integer 𝑚𝑘 such that 𝑇𝑚𝑘𝑣𝑘 ≠ 0. With respect to
+this basis, the matrix of 𝑇 looks like the matrix in the previous example. More
+specifically, 𝑇 has a block diagonal matrix with respect to this basis, with each
+block a square matrix that is 0 everywhere except on the line above the diagonal.
+In the next definition, the diagonal of each 𝐴𝑘 is filled with some eigenvalue
+𝜆𝑘 of 𝑇, the line directly above the diagonal of 𝐴𝑘 is filled with 1’s, and all other
+entries in 𝐴𝑘 are 0 (to understand why each 𝜆𝑘 is an eigenvalue of 𝑇, see 5.41).
+The 𝜆𝑘’s need not be distinct. Also, 𝐴𝑘 may be a 1-by-1 matrix (𝜆𝑘) containing
+just an eigenvalue of 𝑇. If each 𝜆𝑘 is 0, then the next definition captures the
+behavior described in the paragraph above (recall that if 𝑇 is nilpotent, then 0 is
+the only eigenvalue of 𝑇).
+8.44 definition: Jordan basis
+Suppose 𝑇 ∈ ℒ(𝑉). A basis of 𝑉 is called a Jordan basis for 𝑇 if with respect
+to this basis 𝑇 has a block diagonal matrix
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1 0
+⋱
+0 𝐴𝑝
+⎞ ⎟ ⎟ ⎟
+⎠
+in which each 𝐴𝑘 is an upper-triangular matrix of the form
+𝐴𝑘 =
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+𝜆𝑘 1 0
+⋱ ⋱
+⋱ 1
+0 𝜆𝑘
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Most of the work in proving that every operator on a finite-dimensional com-
+plex vector space has a Jordan basis occurs in proving the special case below
+of nilpotent operators. This special case holds on real vector spaces as well as
+complex vector spaces.
+8.45 every nilpotent operator has a Jordan basis
+Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Then there is a basis of 𝑉 that is a Jordan
+basis for 𝑇.
+Proof We will prove this result by induction on dim𝑉. To get started, note that
+the desired result holds if dim𝑉 = 1 (because in that case, the only nilpotent
+operator is the 0 operator). Now assume that dim𝑉 > 1 and that the desired result
+holds on all vector spaces of smaller dimension.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8C Consequences of Generalized Eigenspace Decomposition 323
+Let 𝑚 be the smallest positive integer such that 𝑇𝑚
+= 0. Thus there exists
+𝑢 ∈ 𝑉 such that 𝑇𝑚−1
+𝑢 ≠ 0. Let
+𝑈 = span(𝑢,𝑇𝑢,…,𝑇𝑚−1
+𝑢).
+The list 𝑢,𝑇𝑢,…,𝑇𝑚−1
+𝑢 is linearly independent (see Exercise 2 in Section 8A).
+If 𝑈 = 𝑉, then writing this list in reverse order gives a Jordan basis for 𝑇 and we
+are done. Thus we can assume that 𝑈 ≠ 𝑉.
+Note that 𝑈 is invariant under 𝑇. By our induction hypothesis, there is a basis
+of 𝑈 that is a Jordan basis for 𝑇|𝑈. The strategy of our proof is that we will find a
+subspace 𝑊 of 𝑉 such that 𝑊 is also invariant under 𝑇 and 𝑉 = 𝑈 ⊕ 𝑊. Again
+by our induction hypothesis, there will be a basis of 𝑊 that is a Jordan basis for
+𝑇|𝑊. Putting together the Jordan bases for 𝑇|𝑈 and 𝑇|𝑊, we will have a Jordan
+basis for 𝑇.
+Let 𝜑 ∈ 𝑉′
+be such that 𝜑(𝑇𝑚−1
+𝑢) ≠ 0. Let
+𝑊 = {𝑣 ∈ 𝑉 ∶ 𝜑(𝑇𝑘
+𝑣) = 0 for each 𝑘 = 0,…,𝑚 − 1}.
+Then 𝑊 is a subspace of 𝑉 that is invariant under 𝑇 (the invariance holds because
+if 𝑣 ∈ 𝑊 then 𝜑(𝑇𝑘
+(𝑇𝑣)) = 0 for 𝑘 = 0,…,𝑚 − 1, where the case 𝑘 = 𝑚 − 1
+holds because 𝑇𝑚
+= 0). We will show that 𝑉 = 𝑈 ⊕ 𝑊, which by the previous
+paragraph will complete the proof.
+To show that 𝑈 +𝑊 is a direct sum, suppose 𝑣 ∈ 𝑈 ∩𝑊 with 𝑣 ≠ 0. Because
+𝑣 ∈ 𝑈, there exist 𝑐0,…,𝑐𝑚−1 ∈ 𝐅 such that
+𝑣 = 𝑐0𝑢 + 𝑐1𝑇𝑢 + ⋯ + 𝑐𝑚−1𝑇𝑚−1
+𝑢.
+Let 𝑗 be the smallest index such that 𝑐𝑗 ≠ 0. Apply 𝑇𝑚−𝑗−1
+to both sides of the
+equation above, getting
+𝑇𝑚−𝑗−1
+𝑣 = 𝑐𝑗𝑇𝑚−1
+𝑢,
+where we have used the equation 𝑇𝑚
+= 0. Now apply 𝜑 to both sides of the
+equation above, getting
+𝜑(𝑇𝑚−𝑗−1
+𝑣) = 𝑐𝑗𝜑(𝑇𝑚−1
+𝑢) ≠ 0.
+The equation above shows that 𝑣 ∉ 𝑊. Hence we have proved that 𝑈 ∩ 𝑊 = {0},
+which implies that 𝑈 + 𝑊 is a direct sum (see 1.46).
+To show that 𝑈 ⊕ 𝑊 = 𝑉, define 𝑆∶ 𝑉 → 𝐅𝑚
+by
+𝑆𝑣 = (𝜑(𝑣),𝜑(𝑇𝑣),…,𝜑(𝑇𝑚−1
+𝑣)).
+Thus null𝑆 = 𝑊. Hence
+dim𝑊 = dimnull𝑆 = dim𝑉 − dimrange𝑆 ≥ dim𝑉 − 𝑚,
+where the second equality comes from the fundamental theorem of linear maps
+(3.21). Using the inequality above, we have
+dim(𝑈 ⊕ 𝑊) = dim𝑈 + dim𝑊 ≥ 𝑚 + (dim𝑉 − 𝑚) = dim𝑉.
+Thus 𝑈 ⊕ 𝑊 = 𝑉 (by 2.39), completing the proof.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler324 Chapter 8 Operators on Complex Vector Spaces
+Camille Jordan (1838–1922) pub-
+lished a proof of 8.46 in 1870.
+Now the generalized eigenspace de-
+composition allows us to extend the pre-
+vious result to operators that may not be
+nilpotent. Doing this requires that we deal with complex vector spaces.
+## 8.46 Jordan form
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then there is a basis of 𝑉 that is a Jordan
+basis for 𝑇.
+Proof Let 𝜆1,…, 𝜆𝑚 bethedistincteigenvaluesof𝑇. Thegeneralizedeigenspace
+decomposition states that
+𝑉 = 𝐺(𝜆1,𝑇) ⊕ ⋯ ⊕ 𝐺(𝜆𝑚,𝑇),
+where each (𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇) is nilpotent (see 8.22). Thus 8.45 implies that some
+basis of each 𝐺(𝜆𝑘,𝑇) is a Jordan basis for (𝑇 − 𝜆𝑘𝐼)|𝐺(𝜆𝑘,𝑇). Put these bases
+together to get a basis of 𝑉 that is a Jordan basis for 𝑇.
+Exercises 8C
+1 Suppose 𝑇 ∈ ℒ(𝐂3
+) is the operator defined by 𝑇(𝑧1,𝑧2,𝑧3) = (𝑧2,𝑧3,0).
+Prove that 𝑇 does not have a square root.
+2 Define 𝑇 ∈ ℒ(𝐅5
+) by 𝑇(𝑥1,𝑥2,𝑥3,𝑥4,𝑥5) = (2𝑥2,3𝑥3,−𝑥4,4𝑥5,0).
+(a) Show that 𝑇 is nilpotent.
+(b) Find a square root of 𝐼 + 𝑇.
+## 3 Suppose 𝑉 is a complex vector space. Prove that every invertible operator
+on 𝑉 has a cube root.
+## 4 Suppose 𝑉 is a real vector space. Prove that the operator −𝐼 on 𝑉 has a
+square root if and only if dim𝑉 is an even number.
+5 Suppose 𝑇 ∈ ℒ(𝐂2
+) is the operator defined by 𝑇(𝑤,𝑧) = (−𝑤−𝑧,9𝑤+5𝑧).
+Find a Jordan basis for 𝑇.
+6 Find a basis of 𝒫4(𝐑) that is a Jordan basis for the differentiation operator
+𝐷 on 𝒫4(𝐑) defined by 𝐷𝑝 = 𝑝′
+.
+7 Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent and 𝑣1,…,𝑣𝑛 is a Jordan basis for 𝑇. Prove
+thattheminimalpolynomialof𝑇 is𝑧𝑚+1
+, where𝑚 isthelengthofthelongest
+consecutive string of 1’s that appears on the line directly above the diagonal
+in the matrix of 𝑇 with respect to 𝑣1,…,𝑣𝑛.
+8 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉 that is a Jordan basis for 𝑇.
+Describe the matrix of 𝑇2
+with respect to this basis.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8C Consequences of Generalized Eigenspace Decomposition 325
+9 Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Explain why there exist 𝑣1,…,𝑣𝑛 ∈ 𝑉
+and nonnegative integers 𝑚1,…,𝑚𝑛 such that (a) and (b) below both hold.
+(a) 𝑇𝑚1𝑣1,…,𝑇𝑣1,𝑣1,…,𝑇𝑚𝑛𝑣𝑛,…,𝑇𝑣𝑛,𝑣𝑛 is a basis of 𝑉.
+(b) 𝑇𝑚1+1
+𝑣1 = ⋯ = 𝑇𝑚𝑛+1
+𝑣𝑛 = 0.
+10 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑣1,…,𝑣𝑛 is a basis of 𝑉 that is a Jordan basis for 𝑇.
+Describe the matrix of 𝑇 with respect to the basis 𝑣𝑛,…,𝑣1 obtained by
+reversing the order of the 𝑣’s.
+## 11 Suppose 𝑇 ∈ ℒ(𝑉). Explain why every vector in each Jordan basis for 𝑇 is
+a generalized eigenvector of 𝑇.
+## 12 Suppose 𝑇 ∈ ℒ(𝑉) is diagonalizable. Show that ℳ(𝑇) is a diagonal matrix
+with respect to every Jordan basis for 𝑇.
+13 Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Prove that if 𝑣1,…,𝑣𝑛 are vectors in 𝑉 and
+𝑚1,…,𝑚𝑛 are nonnegative integers such that
+𝑇𝑚1𝑣1,…,𝑇𝑣1,𝑣1,…,𝑇𝑚𝑛𝑣𝑛,…,𝑇𝑣𝑛,𝑣𝑛 is a basis of 𝑉
+and
+𝑇𝑚1+1
+𝑣1 = ⋯ = 𝑇𝑚𝑛+1
+𝑣𝑛 = 0,
+then 𝑇𝑚1𝑣1,…,𝑇𝑚𝑛𝑣𝑛 is a basis of null𝑇.
+This exercise shows that 𝑛 = dimnull𝑇. Thus the positive integer 𝑛 that
+appears above depends only on 𝑇 and not on the specific Jordan basis
+chosen for 𝑇.
+## 14 Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Prove that there does not exist a direct sum
+decomposition of 𝑉 into two nonzero subspaces invariant under 𝑇 if and
+only if the minimal polynomial of 𝑇 is of the form (𝑧 − 𝜆)dim𝑉
+for some
+𝜆 ∈ 𝐂.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler326 Chapter 8 Operators on Complex Vector Spaces
+8D Trace: A Connection Between Matrices and Operators
+We begin this section by defining the trace of a square matrix. After developing
+some properties of the trace of a square matrix, we will use this concept to define
+the trace of an operator.
+8.47 definition: trace of a matrix
+Suppose 𝐴 is a square matrix with entries in 𝐅. The trace of 𝐴, denoted tr𝐴,
+is defined to be the sum of the diagonal entries of 𝐴.
+8.48 example: trace of a 3-by-3 matrix
+Suppose
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+3 −1 −2
+5 2 −3
+1 6 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+The diagonal entries of 𝐴, which are shown in red above, are 3, 2, and 0. Thus
+tr𝐴 = 3 + 2 + 0 = 5.
+Matrix multiplication is not commutative, but the next result shows that the
+order of matrix multiplication does not matter to the trace.
+8.49 trace of 𝐴𝐵 equals trace of 𝐵𝐴
+Suppose 𝐴 is an 𝑚-by-𝑛 matrix and 𝐵 is an 𝑛-by-𝑚 matrix. Then
+tr(𝐴𝐵) = tr(𝐵𝐴).
+Proof Suppose
+𝐴 =
+⎛ ⎜ ⎜ ⎜ ⎜
+⎝
+𝐴1,1 ⋯ 𝐴1,𝑛
+⋮ ⋮
+𝐴𝑚,1 ⋯ 𝐴𝑚,𝑛
+⎞ ⎟ ⎟ ⎟ ⎟
+⎠
+, 𝐵 =
+⎛ ⎜ ⎜ ⎜ ⎜
+⎝
+𝐵1,1 ⋯ 𝐵1,𝑚
+⋮ ⋮
+𝐵𝑛,1 ⋯ 𝐵𝑛,𝑚
+⎞ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+The 𝑗th
+term on the diagonal of the 𝑚-by-𝑚 matrix 𝐴𝐵 equals ∑𝑛
+𝑘=1 𝐴𝑗,𝑘𝐵𝑘,𝑗. Thus
+tr(𝐴𝐵) =
+𝑚
+∑
+𝑗 = 1
+𝑛
+∑
+𝑘=1
+𝐴𝑗,𝑘𝐵𝑘,𝑗
+=
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝐵𝑘,𝑗𝐴𝑗,𝑘
+=
+𝑛
+∑
+𝑘=1
+(𝑘th
+term on diagonal of the 𝑛-by-𝑛 matrix 𝐵𝐴)
+= tr(𝐵𝐴),
+as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8D Trace: A Connection Between Matrices and Operators 327
+We want to define the trace of an operator 𝑇 ∈ ℒ(𝑉) to be the trace of the
+matrix of 𝑇 with respect to some basis of 𝑉. However, this definition should not
+depend on the choice of basis. The following result will make this possible.
+8.50 trace of matrix of operator does not depend on basis
+Suppose 𝑇 ∈ ℒ(𝑉). Suppose 𝑢1,…,𝑢𝑛 and 𝑣1,…,𝑣𝑛 are bases of 𝑉. Then
+trℳ(𝑇,(𝑢1,…,𝑢𝑛)) = trℳ(𝑇,(𝑣1,…,𝑣𝑛)).
+Proof Let 𝐴 = ℳ(𝑇,(𝑢1,…,𝑢𝑛)) and 𝐵 = ℳ(𝑇,(𝑣1,…,𝑣𝑛)). The change-
+of-basis formula tells us that there exists an invertible 𝑛-by-𝑛 matrix 𝐶 such that
+𝐴 = 𝐶−1
+𝐵𝐶 (see 3.84). Thus
+tr𝐴 = tr((𝐶−1
+𝐵)𝐶)
+= tr(𝐶(𝐶−1
+𝐵))
+= tr((𝐶𝐶−1
+)𝐵)
+= tr𝐵,
+where the second line comes from 8.49.
+Because of 8.50, the following definition now makes sense.
+8.51 definition: trace of an operator
+Suppose 𝑇 ∈ ℒ(𝑉). The trace of 𝑇, denoted tr𝑇, is defined by
+tr𝑇 = trℳ(𝑇,(𝑣1,…,𝑣𝑛)),
+where 𝑣1,…,𝑣𝑛 is any basis of 𝑉.
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 is an eigenvalue of 𝑇. Recall that we defined the
+multiplicity of 𝜆 to be the dimension of the generalized eigenspace 𝐺(𝜆,𝑇) (see
+8.23); we proved that this multiplicity equals dimnull(𝑇 − 𝜆𝐼)dim𝑉
+(see 8.20).
+Recall also that if 𝑉 is a complex vector space, then the sum of the multiplicities
+of all eigenvalues of 𝑇 equals dim𝑉 (see 8.25).
+In the following result, the sum of the eigenvalues “with each eigenvalue
+included as many times as its multiplicity” means that if 𝜆1,…, 𝜆𝑚 are the distinct
+eigenvalues of 𝑇 with multiplicities 𝑑1,…,𝑑𝑚, then the sum is
+𝑑1𝜆1 + ⋯ + 𝑑𝑚𝜆𝑚.
+Or if you prefer to work with a list of not-necessarily-distinct eigenvalues, with
+each eigenvalue included as many times as its multiplicity, then the eigenvalues
+could be denoted by 𝜆1,…, 𝜆𝑛 (where 𝑛 equals dim𝑉) and the sum is
+𝜆1 + ⋯ + 𝜆𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler328 Chapter 8 Operators on Complex Vector Spaces
+8.52 on complex vector spaces, trace equals sum of eigenvalues
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then tr𝑇 equals the sum of the eigenvalues
+of 𝑇, with each eigenvalue included as many times as its multiplicity.
+Proof There is a basis of 𝑉 with respect to which 𝑇 has an upper-triangular
+matrix with the diagonal entries of the matrix consisting of the eigenvalues of 𝑇,
+with each eigenvalue included as many times as its multiplicity—see 8.37. Thus
+the definition of the trace of an operator along with 8.50, which allows us to use a
+basis of our choice, implies that tr𝑇 equals the sum of the eigenvalues of 𝑇, with
+each eigenvalue included as many times as its multiplicity.
+8.53 example: trace of an operator on 𝐂3
+Suppose 𝑇 ∈ ℒ(𝐂3
+) is defined by
+𝑇(𝑧1,𝑧2,𝑧3) = (3𝑧1 − 𝑧2 − 2𝑧3,3𝑧1 + 2𝑧2 − 3𝑧3,𝑧1 + 2𝑧2).
+Then the matrix of 𝑇 with respect to the standard basis of 𝐂3
+is
+⎛ ⎜ ⎜ ⎜
+⎝
+3 −1 −2
+3 2 −3
+1 2 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Adding up the diagonal entries of this matrix, we see that tr𝑇 = 5.
+The eigenvalues of 𝑇 are 1, 2 + 3𝑖, and 2 − 3𝑖, each with multiplicity 1, as
+you can verify. The sum of these eigenvalues, each included as many times as its
+multiplicity, is 1 + (2 + 3𝑖) + (2 − 3𝑖), which equals 5, as expected by 8.52.
+The trace has a close connection with the characteristic polynomial. Suppose
+𝐅 = 𝐂, 𝑇 ∈ ℒ(𝑉), and 𝜆1,…, 𝜆𝑛 are the eigenvalues of 𝑇, with each eigenvalue
+included as many times as its multiplicity. Then by definition (see 8.26), the
+characteristic polynomial of 𝑇 equals
+(𝑧 − 𝜆1)⋯(𝑧 − 𝜆𝑛).
+Expanding the polynomial above, we can write the characteristic polynomial of 𝑇
+in the form
+𝑧𝑛
+− (𝜆1 + ⋯ + 𝜆𝑛)𝑧𝑛−1
++ ⋯ + (−1)𝑛
+(𝜆1 ⋯ 𝜆𝑛).
+The expression above immediately leads to the next result. Also see 9.65,
+which does not require the hypothesis that 𝐅 = 𝐂.
+8.54 trace and characteristic polynomial
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Let 𝑛 = dim𝑉. Then tr𝑇 equals the negative
+of the coefficient of 𝑧𝑛−1
+in the characteristic polynomial of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8D Trace: A Connection Between Matrices and Operators 329
+The next result gives a nice formula for the trace of an operator on an inner
+product space.
+8.55 trace on an inner product space
+Suppose 𝑉 is an inner product space, 𝑇 ∈ ℒ(𝑉), and 𝑒1,…,𝑒𝑛 is an orthonor-
+mal basis of 𝑉. Then
+tr𝑇 = ⟨𝑇𝑒1,𝑒1⟩ + ⋯ + ⟨𝑇𝑒𝑛,𝑒𝑛⟩.
+Proof The desired formula follows from the observation that the entry in row 𝑘,
+column 𝑘 of ℳ(𝑇,(𝑒1,…,𝑒𝑛)) equals ⟨𝑇𝑒𝑘,𝑒𝑘⟩ [use 6.30(a) with 𝑣 = 𝑇𝑒𝑘].
+The algebraic properties of the trace as defined on square matrices translate
+to algebraic properties of the trace as defined on operators, as shown in the next
+result.
+8.56 trace is linear
+The function tr∶ ℒ(𝑉) → 𝐅 is a linear functional on ℒ(𝑉) such that
+tr(𝑆𝑇) = tr(𝑇𝑆)
+for all 𝑆,𝑇 ∈ ℒ(𝑉).
+Proof Choose a basis of 𝑉. All matrices of operators in this proof will be with
+respect to that basis. Suppose 𝑆,𝑇 ∈ ℒ(𝑉).
+If 𝜆 ∈ 𝐅, then
+tr(𝜆𝑇) = trℳ(𝜆𝑇) = tr(𝜆ℳ(𝑇)) = 𝜆trℳ(𝑇) = 𝜆tr𝑇,
+where the first and last equalities come from the definition of the trace of an
+operator, the second equality comes from 3.38, and the third equality follows
+from the definition of the trace of a square matrix.
+Also,
+tr(𝑆+𝑇) = trℳ(𝑆+𝑇) = tr(ℳ(𝑆)+ℳ(𝑇)) = trℳ(𝑆)+trℳ(𝑇) = tr𝑆+tr𝑇,
+where the first and last equalities come from the definition of the trace of an
+operator, the second equality comes from 3.35, and the third equality follows
+from the definition of the trace of a square matrix. The two paragraphs above
+show that tr∶ ℒ(𝑉) → 𝐅 is a linear functional on ℒ(𝑉).
+Furthermore,
+tr(𝑆𝑇)=trℳ(𝑆𝑇)=tr(ℳ(𝑆)ℳ(𝑇))=tr(ℳ(𝑇)ℳ(𝑆))=trℳ(𝑇𝑆)=tr(𝑇𝑆),
+where the second and fourth equalities come from 3.43 and the crucial third
+equality comes from 8.49.
+The equations tr(𝑆𝑇) = tr(𝑇𝑆) and tr𝐼 = dim𝑉 uniquely characterize the
+trace among the linear functionals on ℒ(𝑉)—see Exercise 10.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler330 Chapter 8 Operators on Complex Vector Spaces
+The statement of the next result does
+not involve traces, but the short proof
+uses traces. When something like this
+happens in mathematics, then usually
+a good definition lurks in the back-
+ground.
+The equation tr(𝑆𝑇) = tr(𝑇𝑆) leads
+to our next result, which does not hold on
+infinite-dimensional vector spaces (see
+Exercise 13). However, additional hy-
+potheseson𝑆,𝑇,and𝑉 leadtoaninfinite-
+dimensional generalization of the result
+below, with important applications to
+quantum theory.
+8.57 identity operator is not the difference of 𝑆𝑇 and 𝑇𝑆
+There do not exist operators 𝑆,𝑇 ∈ ℒ(𝑉) such that 𝑆𝑇 − 𝑇𝑆 = 𝐼.
+Proof Suppose 𝑆,𝑇 ∈ ℒ(𝑉). Then
+tr(𝑆𝑇 − 𝑇𝑆) = tr(𝑆𝑇) − tr(𝑇𝑆) = 0,
+where both equalities come from 8.56. The trace of 𝐼 equals dim𝑉, which is not 0.
+Because 𝑆𝑇 − 𝑇𝑆 and 𝐼 have different traces, they cannot be equal.
+Exercises 8D
+1 Suppose 𝑉 is an inner product space and 𝑣,𝑤 ∈ 𝑉. Define an operator
+𝑇 ∈ ℒ(𝑉) by 𝑇𝑢 = ⟨𝑢,𝑣⟩𝑤. Find a formula for tr𝑇.
+2 Suppose 𝑃 ∈ ℒ(𝑉) satisfies 𝑃2
+= 𝑃. Prove that
+tr𝑃 = dimrange𝑃.
+3 Suppose 𝑇 ∈ ℒ(𝑉) and 𝑇5
+= 𝑇. Prove that the real and imaginary parts of
+tr𝑇 are both integers.
+## 4 Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉). Prove that
+tr𝑇∗ = tr𝑇.
+## 5 Suppose 𝑉 is an inner product space. Suppose 𝑇 ∈ ℒ(𝑉) is a positive
+operator and tr𝑇 = 0. Prove that 𝑇 = 0.
+6 Suppose 𝑉 is an inner product space and 𝑃,𝑄 ∈ ℒ(𝑉) are orthogonal
+projections. Prove that tr(𝑃𝑄) ≥ 0.
+7 Suppose 𝑇 ∈ ℒ(𝐂3
+) is the operator whose matrix is
+⎛ ⎜ ⎜ ⎜
+⎝
+51 −12 −21
+60 −40 −28
+57 −68 1
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Someonetellsyou(accurately)that−48and24areeigenvaluesof𝑇. Without
+using a computer or writing anything down, find the third eigenvalue of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 8D Trace: A Connection Between Matrices and Operators 331
+8 Prove or give a counterexample: If 𝑆,𝑇 ∈ ℒ(𝑉), then tr(𝑆𝑇) = (tr𝑆)(tr𝑇).
+## 9 Suppose 𝑇 ∈ ℒ(𝑉) is such that tr(𝑆𝑇) = 0 for all 𝑆 ∈ ℒ(𝑉). Prove that
+𝑇 = 0.
+10 Prove that the trace is the only linear functional 𝜏∶ ℒ(𝑉) → 𝐅 such that
+𝜏(𝑆𝑇) = 𝜏(𝑇𝑆)
+for all 𝑆,𝑇 ∈ ℒ(𝑉) and 𝜏(𝐼) = dim𝑉.
+Hint: Suppose that 𝑣1,…,𝑣𝑛 is a basis of 𝑉. For 𝑗,𝑘 ∈ {1,…,𝑛}, define
+𝑃𝑗,𝑘 ∈ ℒ(𝑉) by 𝑃𝑗,𝑘(𝑎1𝑣1 + ⋯ + 𝑎𝑛𝑣𝑛) = 𝑎𝑘𝑣𝑗. Prove that
+𝜏(𝑃𝑗,𝑘) =
+⎧ {
+⎨ { ⎩
+1 if 𝑗 = 𝑘,
+0 if 𝑗 ≠ 𝑘.
+Then for 𝑇 ∈ ℒ(𝑉), use the equation 𝑇 = ∑𝑛
+𝑘=1 ∑𝑛
+𝑗 = 1
+ℳ(𝑇)𝑗,𝑘𝑃𝑗,𝑘 to show
+that 𝜏(𝑇) = tr𝑇.
+11 Suppose 𝑉 and 𝑊 are inner product spaces and 𝑇 ∈ ℒ(𝑉,𝑊). Prove that if
+𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and 𝑓1,…, 𝑓𝑚 is an orthonormal basis
+of 𝑊, then
+tr(𝑇∗𝑇) =
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+|⟨𝑇𝑒𝑘, 𝑓𝑗⟩|2
+.
+The numbers ⟨𝑇𝑒𝑘, 𝑓𝑗⟩ are the entries of the matrix of 𝑇 with respect to the
+orthonormal bases 𝑒1,…,𝑒𝑛 and 𝑓1,…, 𝑓𝑚. These numbers depend on the
+bases, but tr(𝑇∗𝑇) does not depend on a choice of bases. Thus this exercise
+shows that the sum of the squares of the absolute values of the matrix entries
+does not depend on which orthonormal bases are used.
+## 12 Suppose 𝑉 and 𝑊 are finite-dimensional inner product spaces.
+(a) Prove that ⟨𝑆,𝑇⟩ = tr(𝑇∗𝑆) defines an inner product on ℒ(𝑉,𝑊).
+(b) Suppose 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉 and 𝑓1,…, 𝑓𝑚 is an
+orthonormal basis of 𝑊. Show that the inner product on ℒ(𝑉,𝑊) from
+(a) is the same as the standard inner product on 𝐅𝑚𝑛
+, where we identify
+each element of ℒ(𝑉,𝑊) with its matrix (with respect to the bases just
+mentioned) and then with an element of 𝐅𝑚𝑛
+.
+Caution: The norm of a linear map 𝑇 ∈ ℒ(𝑉,𝑊) as defined by 7.86 is not
+the same as the norm that comes from the inner product in (a) above. Unless
+explicitly stated otherwise, always assume that ‖𝑇‖ refers to the norm as
+defined by 7.86. The norm that comes from the inner product in (a) is called
+the Frobenius norm or the Hilbert–Schmidt norm.
+13 Find 𝑆,𝑇 ∈ ℒ(𝒫(𝐅)) such that 𝑆𝑇 − 𝑇𝑆 = 𝐼.
+Hint: Make an appropriate modification of the operators in Example 3.9.
+This exercise shows that additional hypotheses are needed on 𝑆 and 𝑇 to
+extend 8.57 to the setting of infinite-dimensional vector spaces.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerChapter 9
+Multilinear Algebra and Determinants
+We begin this chapter by investigating bilinear forms and quadratic forms on a
+vector space. Then we will move on to multilinear forms. We will show that the
+vector space of alternating 𝑛-linear forms has dimension one on a vector space of
+dimension 𝑛. This result will allow us to give a clean basis-free definition of the
+determinant of an operator.
+This approach to the determinant via alternating multilinear forms leads to
+straightforward proofs of key properties of determinants. For example, we will see
+that the determinant is multiplicative, meaning that det(𝑆𝑇) = (det𝑆)(det𝑇) for
+alloperators𝑆 and𝑇 onthesamevectorspace. Wewillalsoseethat𝑇 isinvertible
+if and only if det𝑇 ≠ 0. Another important result states that the determinant of
+an operator on a complex vector space equals the product of the eigenvalues of
+the operator, with each eigenvalue included as many times as its multiplicity.
+The chapter concludes with an introduction to tensor products.
+standing assumptions for this chapter
+• 𝐅 denotes 𝐑 or 𝐂.
+• 𝑉 and 𝑊 denote finite-dimensional nonzero vector spaces over 𝐅.
+Daniel Schwen CC BY-SA
+The Mathematical Institute at the University of Göttingen. This building opened in 1930,
+when Emmy Noether (1882–1935) had already been a research mathematician and
+faculty member at the university for 15 years (the first eight years without salary).
+Noether was fired by the Nazi government in 1933. By then Noether and her
+collaborators had created many of the foundations of modern algebra, including an
+abstract algebra viewpoint that contributed to the development of linear algebra.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+332Section 9A Bilinear Forms and Quadratic Forms 333
+9A Bilinear Forms and Quadratic Forms
+Bilinear Forms
+A bilinear form on 𝑉 is a function from 𝑉 × 𝑉 to 𝐅 that is linear in each slot
+separately, meaning that if we hold either slot fixed then we have a linear function
+in the other slot. Here is the formal definition.
+9.1 definition: bilinear form
+A bilinear form on 𝑉 is a function 𝛽∶ 𝑉× 𝑉 → 𝐅 such that
+𝑣 ↦ 𝛽(𝑣,𝑢) and 𝑣 ↦ 𝛽(𝑢,𝑣)
+are both linear functionals on 𝑉 for every 𝑢 ∈ 𝑉.
+Recall that the term linear functional,
+used in the definition above, means
+a linear function that maps into the
+scalar field 𝐅. Thus the term bilinear
+functional would be more consistent
+terminology than bilinear form, which
+unfortunately has become standard.
+For example, if 𝑉 is a real inner prod-
+uct space, then the function that takes an
+ordered pair (𝑢,𝑣) ∈ 𝑉 × 𝑉 to ⟨𝑢,𝑣⟩ is
+a bilinear form on 𝑉. If 𝑉 is a nonzero
+complex inner product space, then this
+function is not a bilinear form because
+the inner product is not linear in the sec-
+ondslot(complexscalarscomeoutofthe
+second slot as their complex conjugates).
+If 𝐅 = 𝐑, then a bilinear form differs from an inner product in that an inner
+product requires symmetry [meaning that 𝛽(𝑣,𝑤) = 𝛽(𝑤,𝑣) for all 𝑣,𝑤 ∈ 𝑉]
+and positive definiteness [meaning that 𝛽(𝑣,𝑣) > 0 for all 𝑣 ∈ 𝑉\{0}], but these
+properties are not required for a bilinear form.
+9.2 example: bilinear forms
+• The function 𝛽∶ 𝐅3
+× 𝐅3
+→ 𝐅 defined by
+𝛽((𝑥1,𝑥2,𝑥3),(𝑦1,𝑦2,𝑦3)) = 𝑥1𝑦2 − 5𝑥2𝑦3 + 2𝑥3𝑦1
+is a bilinear form on 𝐅3
+.
+• Suppose 𝐴 is an 𝑛-by-𝑛 matrix with 𝐴𝑗,𝑘 ∈ 𝐅 in row 𝑗, column 𝑘. Define a
+bilinear form 𝛽𝐴 on 𝐅𝑛
+by
+𝛽𝐴((𝑥1,…,𝑥𝑛),(𝑦1,…,𝑦𝑛)) =
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑥𝑗𝑦𝑘.
+The first bullet point is a special case of this bullet point with 𝑛 = 3 and
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+0 1 0
+0 0 −5
+2 0 0
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler334 Chapter 9 Multilinear Algebra and Determinants
+• Suppose 𝑉 is a real inner product space and 𝑇 ∈ ℒ(𝑉). Then the function
+𝛽∶ 𝑉× 𝑉 → 𝐑 defined by
+𝛽(𝑢,𝑣) = ⟨𝑢,𝑇𝑣⟩
+is a bilinear form on 𝑉.
+• If 𝑛 is a positive integer, then the function 𝛽∶ 𝒫𝑛(𝐑) × 𝒫𝑛(𝐑) → 𝐑 defined by
+𝛽(𝑝,𝑞) = 𝑝(2) ⋅ 𝑞′
+(3)
+is a bilinear form on 𝒫𝑛(𝐑).
+• Suppose 𝜑,𝜏 ∈ 𝑉′
+. Then the function 𝛽∶ 𝑉× 𝑉 → 𝐅 defined by
+𝛽(𝑢,𝑣) = 𝜑(𝑢) ⋅ 𝜏(𝑣)
+is a bilinear form on 𝑉.
+• More generally, suppose that 𝜑1,…,𝜑𝑛,𝜏1,…,𝜏𝑛 ∈ 𝑉′
+. Then the function
+𝛽∶ 𝑉× 𝑉 → 𝐅 defined by
+𝛽(𝑢,𝑣) = 𝜑1(𝑢) ⋅ 𝜏1(𝑣) + ⋯ + 𝜑𝑛(𝑢) ⋅ 𝜏𝑛(𝑣)
+is a bilinear form on 𝑉.
+A bilinear form on 𝑉 is a function from 𝑉× 𝑉 to 𝐅. Because 𝑉× 𝑉 is a vector
+space, this raises the question of whether a bilinear form can also be a linear map
+from 𝑉×𝑉 to 𝐅. Note that none of the bilinear forms in 9.2 are linear maps except
+in some special cases in which the bilinear form is the zero map. Exercise 3 shows
+that a bilinear form 𝛽 on 𝑉 is a linear map on 𝑉× 𝑉 only if 𝛽 = 0.
+9.3 definition: 𝑉(2)
+The set of bilinear forms on 𝑉 is denoted by 𝑉(2)
+.
+With the usual operations of addition and scalar multiplication of functions,
+𝑉(2)
+is a vector space.
+For 𝑇 an operator on an 𝑛-dimensional vector space 𝑉 and a basis 𝑒1,…,𝑒𝑛
+of 𝑉, we used an 𝑛-by-𝑛 matrix to provide information about 𝑇. We now do the
+same thing for bilinear forms on 𝑉.
+9.4 definition: matrix of a bilinear form, ℳ(𝛽)
+Suppose 𝛽 is a bilinear form on 𝑉 and 𝑒1,…,𝑒𝑛 is a basis of 𝑉. The matrix of
+𝛽 with respect to this basis is the 𝑛-by-𝑛 matrix ℳ(𝛽) whose entry ℳ(𝛽)𝑗,𝑘
+in row 𝑗, column 𝑘 is given by
+ℳ(𝛽)𝑗,𝑘 = 𝛽(𝑒𝑗,𝑒𝑘).
+If the basis 𝑒1,…,𝑒𝑛 is not clear from the context, then the notation
+ℳ(𝛽,(𝑒1,…,𝑒𝑛)) is used.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9A Bilinear Forms and Quadratic Forms 335
+Recall that 𝐅𝑛,𝑛
+denotes the vector space of 𝑛-by-𝑛 matrices with entries in 𝐅
+and that dim𝐅𝑛,𝑛
+= 𝑛2
+(see 3.39 and 3.40).
+9.5 dim𝑉(2)
+= (dim𝑉)2
+Suppose 𝑒1,…,𝑒𝑛 is a basis of 𝑉. Then the map 𝛽 ↦ ℳ(𝛽) is an isomorphism
+of 𝑉(2)
+onto 𝐅𝑛,𝑛
+. Furthermore, dim𝑉(2)
+= (dim𝑉)2
+.
+Proof The map 𝛽 ↦ ℳ(𝛽) is clearly a linear map of 𝑉(2)
+into 𝐅𝑛,𝑛
+. For 𝐴 ∈ 𝐅𝑛,𝑛
+,
+define a bilinear form 𝛽𝐴 on 𝑉 by
+𝛽𝐴(𝑥1𝑒1 + ⋯ + 𝑥𝑛𝑒𝑛,𝑦1𝑒1 + ⋯ + 𝑦𝑛𝑒𝑛) =
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑥𝑗𝑦𝑘
+for 𝑥1,…,𝑥𝑛,𝑦1,…,𝑦𝑛 ∈ 𝐅 (if 𝑉 = 𝐅𝑛
+and 𝑒1,…,𝑒𝑛 is the standard basis of 𝐅𝑛
+,
+this 𝛽𝐴 is the same as the bilinear form 𝛽𝐴 in the second bullet point of Example
+9.2).
+The linear map 𝛽 ↦ ℳ(𝛽) from 𝑉(2)
+to 𝐅𝑛,𝑛
+and the linear map 𝐴 ↦ 𝛽𝐴 from
+𝐅𝑛,𝑛
+to 𝑉(2)
+are inverses of each other because 𝛽ℳ(𝛽) = 𝛽 for all 𝛽 ∈ 𝑉(2)
+and
+ℳ(𝛽𝐴) = 𝐴 for all 𝐴 ∈ 𝐅𝑛,𝑛
+, as you should verify.
+Thus both maps are isomorphisms and the two spaces that they connect have
+the same dimension. Hence dim𝑉(2)
+= dim𝐅𝑛,𝑛
+= 𝑛2
+= (dim𝑉)2
+.
+Recall that 𝐶t
+denotes the transpose of a matrix 𝐶. The matrix 𝐶t
+is obtained
+by interchanging the rows and the columns of 𝐶.
+9.6 composition of a bilinear form and an operator
+Suppose 𝛽 is a bilinear form on 𝑉 and 𝑇 ∈ ℒ(𝑉). Define bilinear forms 𝛼
+and 𝜌 on 𝑉 by
+𝛼(𝑢,𝑣) = 𝛽(𝑢,𝑇𝑣) and 𝜌(𝑢,𝑣) = 𝛽(𝑇𝑢,𝑣).
+Let 𝑒1,…,𝑒𝑛 be a basis of 𝑉. Then
+ℳ(𝛼) = ℳ(𝛽)ℳ(𝑇) and ℳ(𝜌) = ℳ(𝑇)t
+ℳ(𝛽).
+Proof If 𝑗,𝑘 ∈ {1,…,𝑛}, then
+ℳ(𝛼)𝑗,𝑘 = 𝛼(𝑒𝑗,𝑒𝑘)
+= 𝛽(𝑒𝑗,𝑇𝑒𝑘)
+= 𝛽(𝑒𝑗,
+𝑛
+∑
+𝑚=1
+ℳ(𝑇)𝑚,𝑘 𝑒𝑚)
+=
+𝑛
+∑
+𝑚=1
+𝛽(𝑒𝑗,𝑒𝑚)ℳ(𝑇)𝑚,𝑘
+= (ℳ(𝛽)ℳ(𝑇))𝑗,𝑘
+.
+Thus ℳ(𝛼) = ℳ(𝛽)ℳ(𝑇). The proof that ℳ(𝜌) = ℳ(𝑇)t
+ℳ(𝛽) is similar.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler336 Chapter 9 Multilinear Algebra and Determinants
+The result below shows how the matrix of a bilinear form changes if we change
+the basis. The formula in the result below should be compared to the change-
+of-basis formula for the matrix of an operator (see 3.84). The two formulas are
+similar, except that the transpose 𝐶t
+appears in the formula below and the inverse
+𝐶−1
+appears in the change-of-basis formula for the matrix of an operator.
+9.7 change-of-basis formula
+Suppose 𝛽 ∈ 𝑉(2)
+. Suppose 𝑒1,…,𝑒𝑛 and 𝑓1,…, 𝑓𝑛 are bases of 𝑉. Let
+𝐴 = ℳ(𝛽,(𝑒1,…,𝑒𝑛)) and 𝐵 = ℳ(𝛽,(𝑓1,…, 𝑓𝑛))
+and 𝐶 = ℳ(𝐼,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑛)). Then
+𝐴 = 𝐶t
+𝐵𝐶.
+Proof Thelinearmaplemma(3.4)tellsusthatthereexistsanoperator𝑇 ∈ ℒ(𝑉)
+suchthat𝑇 𝑓𝑘 = 𝑒𝑘 foreach𝑘 = 1,…,𝑛. Thedefinitionofthematrixofanoperator
+with respect to a basis implies that
+ℳ(𝑇,(𝑓1,…, 𝑓𝑛)) = 𝐶.
+Define bilinear forms 𝛼,𝜌 on 𝑉 by
+𝛼(𝑢,𝑣) = 𝛽(𝑢,𝑇𝑣) and 𝜌(𝑢,𝑣) = 𝛼(𝑇𝑢,𝑣) = 𝛽(𝑇𝑢,𝑇𝑣).
+Then 𝛽(𝑒𝑗,𝑒𝑘) = 𝛽(𝑇 𝑓𝑗,𝑇 𝑓𝑘) = 𝜌(𝑓𝑗, 𝑓𝑘) for all 𝑗,𝑘 ∈ {1,…,𝑛}. Thus
+𝐴 = ℳ(𝜌,(𝑓1,…, 𝑓𝑛))
+= 𝐶t
+ℳ(𝛼,(𝑓1,…, 𝑓𝑛))
+= 𝐶t
+𝐵𝐶,
+where the second and third lines each follow from 9.6.
+9.8 example: the matrix of a bilinear form on 𝒫2(𝐑)
+Define a bilinear form 𝛽 on 𝒫2(𝐑) by 𝛽(𝑝,𝑞) = 𝑝(2) ⋅ 𝑞′
+(3). Let
+𝐴 = ℳ(𝛽,(1,𝑥 − 2,(𝑥 − 3)2
+)) and 𝐵 = ℳ(𝛽,(1,𝑥,𝑥2
+))
+and 𝐶 = ℳ(𝐼,(1,𝑥 − 2,(𝑥 − 3)2
+),(1,𝑥,𝑥2
+)). Then
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+0 1 0
+0 0 0
+0 1 0
+⎞ ⎟ ⎟ ⎟
+⎠
+and 𝐵 =
+⎛ ⎜ ⎜ ⎜
+⎝
+0 1 6
+0 2 12
+0 4 24
+⎞ ⎟ ⎟ ⎟
+⎠
+and 𝐶 =
+⎛ ⎜ ⎜ ⎜
+⎝
+1 −2 9
+0 1 −6
+0 0 1
+⎞ ⎟ ⎟ ⎟
+⎠
+.
+Now the change-of-basis formula 9.7 asserts that 𝐴 = 𝐶t
+𝐵𝐶, which you can verify
+with matrix multiplication using the matrices above.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9A Bilinear Forms and Quadratic Forms 337
+Symmetric Bilinear Forms
+9.9 definition: symmetric bilinear form, 𝑉(2)
+sym
+A bilinear form 𝜌 ∈ 𝑉(2)
+is called symmetric if
+𝜌(𝑢,𝑤) = 𝜌(𝑤,𝑢)
+for all 𝑢,𝑤 ∈ 𝑉. The set of symmetric bilinear forms on 𝑉 is denoted by 𝑉(2)
+sym.
+9.10 example: symmetric bilinear forms
+• If 𝑉 is a real inner product space and 𝜌 ∈ 𝑉(2)
+is defined by
+𝜌(𝑢,𝑤) = ⟨𝑢,𝑤⟩,
+then 𝜌 is a symmetric bilinear form on 𝑉.
+• Suppose 𝑉 is a real inner product space and 𝑇 ∈ ℒ(𝑉). Define 𝜌 ∈ 𝑉(2)
+by
+𝜌(𝑢,𝑤) = ⟨𝑢,𝑇𝑤⟩.
+Then 𝜌 is a symmetric bilinear form on 𝑉 if and only if 𝑇 is a self-adjoint
+operator (the previous bullet point is the special case 𝑇 = 𝐼).
+• Suppose 𝜌∶ ℒ(𝑉) × ℒ(𝑉) → 𝐅 is defined by
+𝜌(𝑆,𝑇) = tr(𝑆𝑇).
+Then𝜌isasymmetricbilinearformonℒ(𝑉)becausetraceisalinearfunctional
+on ℒ(𝑉) and tr(𝑆𝑇) = tr(𝑇𝑆) for all 𝑆,𝑇 ∈ ℒ(𝑉); see 8.56.
+9.11 definition: symmetric matrix
+A square matrix 𝐴 is called symmetric if it equals its transpose.
+Anoperatoron𝑉 mayhaveasymmetricmatrixwithrespecttosomebutnotall
+bases of 𝑉. In contrast, the next result shows that a bilinear form on 𝑉 has a sym-
+metric matrix with respect to either all bases of 𝑉 or with respect to no bases of 𝑉.
+9.12 symmetric bilinear forms are diagonalizable
+Suppose 𝜌 ∈ 𝑉(2)
+. Then the following are equivalent.
+(a) 𝜌 is a symmetric bilinear form on 𝑉.
+(b) ℳ(𝜌,(𝑒1,…,𝑒𝑛)) is a symmetric matrix for every basis 𝑒1,…,𝑒𝑛 of 𝑉.
+(c) ℳ(𝜌,(𝑒1,…,𝑒𝑛)) is a symmetric matrix for some basis 𝑒1,…,𝑒𝑛 of 𝑉.
+(d) ℳ(𝜌,(𝑒1,…,𝑒𝑛)) is a diagonal matrix for some basis 𝑒1,…,𝑒𝑛 of 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler338 Chapter 9 Multilinear Algebra and Determinants
+Proof First suppose (a) holds, so 𝜌 is a symmetric bilinear form. Suppose
+𝑒1,…,𝑒𝑛 is a basis of 𝑉 and 𝑗,𝑘 ∈ {1,…,𝑛}. Then 𝜌(𝑒𝑗,𝑒𝑘) = 𝜌(𝑒𝑘,𝑒𝑗) because
+𝜌 is symmetric. Thus ℳ(𝜌,(𝑒1,…,𝑒𝑛)) is a symmetric matrix, showing that (a)
+implies (b).
+Clearly (b) implies (c).
+Nowsuppose(c)holdsand𝑒1,…,𝑒𝑛 isabasisof𝑉 suchthatℳ(𝜌,(𝑒1,…,𝑒𝑛))
+is a symmetric matrix. Suppose 𝑢,𝑤 ∈ 𝑉. There exist 𝑎1,…,𝑎𝑛,𝑏1,…,𝑏𝑛 ∈ 𝐅
+such that 𝑢 = 𝑎1𝑒1 + ⋯ + 𝑎𝑛𝑒𝑛 and 𝑤 = 𝑏1𝑒1 + ⋯ + 𝑏𝑛𝑒𝑛. Now
+𝜌(𝑢,𝑤) = 𝜌(
+𝑛
+∑
+𝑗 = 1
+𝑎𝑗𝑒𝑗,
+𝑛
+∑
+𝑘=1
+𝑏𝑘𝑒𝑘)
+=
+𝑛
+∑
+𝑗 = 1
+𝑛
+∑
+𝑘=1
+𝑎𝑗𝑏𝑘𝜌(𝑒𝑗,𝑒𝑘)
+=
+𝑛
+∑
+𝑗 = 1
+𝑛
+∑
+𝑘=1
+𝑎𝑗𝑏𝑘𝜌(𝑒𝑘,𝑒𝑗)
+= 𝜌(
+𝑛
+∑
+𝑘=1
+𝑏𝑘𝑒𝑘,
+𝑛
+∑
+𝑗 = 1
+𝑎𝑗𝑒𝑗)
+= 𝜌(𝑤,𝑢),
+where the third line holds because ℳ(𝜌) is a symmetric matrix. The equation
+above shows that 𝜌 is a symmetric bilinear form, proving that (c) implies (a).
+At this point, we have proved that (a), (b), (c) are equivalent. Because every
+diagonal matrix is symmetric, (d) implies (c). To complete the proof, we will
+show that (a) implies (d) by induction on 𝑛 = dim𝑉.
+If 𝑛 = 1, then (a) implies (d) because every 1-by-1 matrix is diagonal. Now
+suppose 𝑛 > 1 and the implication (a) ⟹ (d) holds for one less dimension.
+Suppose (a) holds, so 𝜌 is a symmetric bilinear form. If 𝜌 = 0, then the matrix of
+𝜌 with respect to every basis of 𝑉 is the zero matrix, which is a diagonal matrix.
+Hence we can assume that 𝜌 ≠ 0, which means there exist 𝑢,𝑤 ∈ 𝑉 such that
+𝜌(𝑢,𝑤) ≠ 0. Now
+2𝜌(𝑢,𝑤) = 𝜌(𝑢 + 𝑤,𝑢 + 𝑤) − 𝜌(𝑢,𝑢) − 𝜌(𝑤,𝑤).
+Because the left side of the equation above is nonzero, the three terms on the right
+cannot all equal 0. Hence there exists 𝑣 ∈ 𝑉 such that 𝜌(𝑣,𝑣) ≠ 0.
+Let 𝑈 = {𝑢 ∈ 𝑉 ∶ 𝜌(𝑢,𝑣) = 0}. Thus 𝑈 is the null space of the linear
+functional𝑢 ↦ 𝜌(𝑢,𝑣)on𝑉. Thislinearfunctionalisnotthezerolinearfunctional
+because 𝑣 ∉ 𝑈. Thus dim𝑈 = 𝑛 − 1. By our induction hypothesis, there is a
+basis 𝑒1,…,𝑒𝑛−1 of 𝑈 such that the symmetric bilinear form 𝜌|𝑈×𝑈 has a diagonal
+matrix with respect to this basis.
+Because𝑣 ∉ 𝑈,thelist𝑒1,…,𝑒𝑛−1,𝑣isabasisof𝑉. Suppose𝑘 ∈ {1,…,𝑛−1}.
+Then 𝜌(𝑒𝑘,𝑣) = 0 by the construction of 𝑈. Because 𝜌 is symmetric, we also
+have 𝜌(𝑣,𝑒𝑘) = 0. Thus the matrix of 𝜌 with respect to 𝑒1,…,𝑒𝑛−1,𝑣 is a diagonal
+matrix, completing the proof that (a) implies (d).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9A Bilinear Forms and Quadratic Forms 339
+The previous result states that every symmetric bilinear form has a diagonal
+matrix with respect to some basis. If our vector space happens to be a real inner
+product space, then the next result shows that every symmetric bilinear form has
+a diagonal matrix with respect to some orthonormal basis. Note that the inner
+product here is unrelated to the bilinear form.
+9.13 diagonalization of a symmetric bilinear form by an orthonormal basis
+Suppose 𝑉 is a real inner product space and 𝜌 is a symmetric bilinear form on
+𝑉. Then 𝜌 has a diagonal matrix with respect to some orthonormal basis of 𝑉.
+Proof Let 𝑓1,…, 𝑓𝑛 be an orthonormal basis of 𝑉. Let 𝐵 = ℳ(𝜌,(𝑓1,…, 𝑓𝑛)).
+Then 𝐵 is a symmetric matrix (by 9.12). Let 𝑇 ∈ ℒ(𝑉) be the operator such that
+ℳ(𝑇,(𝑓1,…, 𝑓𝑛)) = 𝐵. Thus 𝑇 is self-adjoint.
+Therealspectraltheorem(7.29)statesthat𝑇 hasadiagonalmatrixwithrespect
+to some orthonormal basis 𝑒1,…,𝑒𝑛 of 𝑉. Let 𝐶 = ℳ(𝐼,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑛)).
+Thus 𝐶−1
+𝐵𝐶 is the matrix of 𝑇 with respect to the basis 𝑒1,…,𝑒𝑛 (by 3.84). Hence
+𝐶−1
+𝐵𝐶 is a diagonal matrix. Now
+𝑀(𝜌,(𝑒1,…,𝑒𝑛)) = 𝐶t
+𝐵𝐶 = 𝐶−1
+𝐵𝐶,
+where the first equality holds by 9.7 and the second equality holds because 𝐶 is a
+unitary matrix with real entries (which implies that 𝐶−1
+= 𝐶t
+; see 7.57).
+Nowweturnourattentiontoalternatingbilinearforms. Alternatingmultilinear
+forms will play a major role in our approach to determinants later in this chapter.
+9.14 definition: alternating bilinear form, 𝑉(2)
+alt
+A bilinear form 𝛼 ∈ 𝑉(2)
+is called alternating if
+𝛼(𝑣,𝑣) = 0
+for all 𝑣 ∈ 𝑉. The set of alternating bilinear forms on 𝑉 is denoted by 𝑉(2)
+alt .
+9.15 example: alternating bilinear forms
+• Suppose 𝑛 ≥ 3 and 𝛼∶ 𝐅𝑛
+× 𝐅𝑛
+→ 𝐅 is defined by
+𝛼((𝑥1,…,𝑥𝑛),(𝑦1,…,𝑦𝑛)) = 𝑥1𝑦2 − 𝑥2𝑦1 + 𝑥1𝑦3 − 𝑥3𝑦1.
+Then 𝛼 is an alternating bilinear form on 𝐅𝑛
+.
+• Suppose 𝜑,𝜏 ∈ 𝑉′
+. Then the bilinear form 𝛼 on 𝑉 defined by
+𝛼(𝑢,𝑤) = 𝜑(𝑢)𝜏(𝑤) − 𝜑(𝑤)𝜏(𝑢)
+is alternating.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler340 Chapter 9 Multilinear Algebra and Determinants
+The next result shows that a bilinear form is alternating if and only if switching
+the order of the two inputs multiplies the output by −1.
+9.16 characterization of alternating bilinear forms
+A bilinear form 𝛼 on 𝑉 is alternating if and only if
+𝛼(𝑢,𝑤) = −𝛼(𝑤,𝑢)
+for all 𝑢,𝑤 ∈ 𝑉.
+Proof First suppose that 𝛼 is alternating. If 𝑢,𝑤 ∈ 𝑉, then
+0 = 𝛼(𝑢 + 𝑤,𝑢 + 𝑤)
+= 𝛼(𝑢,𝑢) + 𝛼(𝑢,𝑤) + 𝛼(𝑤,𝑢) + 𝛼(𝑤,𝑤)
+= 𝛼(𝑢,𝑤) + 𝛼(𝑤,𝑢).
+Thus 𝛼(𝑢,𝑤) = −𝛼(𝑤,𝑢), as desired.
+To prove the implication in the other direction, suppose 𝛼(𝑢,𝑤) = −𝛼(𝑤,𝑢)
+for all 𝑢,𝑤 ∈ 𝑉. Then 𝛼(𝑣,𝑣) = −𝛼(𝑣,𝑣) for all 𝑣 ∈ 𝑉, which implies that
+𝛼(𝑣,𝑣) = 0 for all 𝑣 ∈ 𝑉. Thus 𝛼 is alternating.
+Now we show that the vector space of bilinear forms on 𝑉 is the direct sum of
+the symmetric bilinear forms on 𝑉 and the alternating bilinear forms on 𝑉.
+9.17 𝑉(2)
+= 𝑉(2)
+sym ⊕ 𝑉(2)
+alt
+The sets 𝑉(2)
+sym and 𝑉(2)
+alt are subspaces of 𝑉(2)
+. Furthermore,
+𝑉(2)
+= 𝑉(2)
+sym ⊕ 𝑉(2)
+alt .
+Proof The definition of symmetric bilinear form implies that the sum of any
+two symmetric bilinear forms on 𝑉 is a symmetric bilinear form on 𝑉, and every
+scalar multiple of any symmetric bilinear form on 𝑉 is a symmetric bilinear form
+on 𝑉. Also, the zero bilinear form is in 𝑉(2)
+sym. Thus 𝑉(2)
+sym is a subspace of 𝑉(2)
+.
+Similarly, the verification that 𝑉(2)
+alt is a subspace of 𝑉(2)
+is straightforward.
+Next, we want to show that 𝑉(2)
+= 𝑉(2)
+sym + 𝑉(2)
+alt . To do this, suppose 𝛽 ∈ 𝑉(2)
+.
+Define 𝜌,𝛼 ∈ 𝑉(2)
+by
+𝜌(𝑢,𝑤) =
+𝛽(𝑢,𝑤) + 𝛽(𝑤,𝑢)
+2
+and 𝛼(𝑢,𝑤) =
+𝛽(𝑢,𝑤) − 𝛽(𝑤,𝑢)
+2
+.
+Then 𝜌 ∈ 𝑉(2)
+sym and 𝛼 ∈ 𝑉(2)
+alt , and 𝛽 = 𝜌 + 𝛼. Thus 𝑉(2)
+= 𝑉(2)
+sym + 𝑉(2)
+alt .
+Finally, to show that the intersection of the two subspaces under consideration
+equals {0}, suppose 𝛽 ∈ 𝑉(2)
+sym ∩ 𝑉(2)
+alt . If 𝑢,𝑤 ∈ 𝑉, then 9.16 implies that
+𝛽(𝑢,𝑤) = −𝛽(𝑤,𝑢) = −𝛽(𝑢,𝑤)
+and hence 𝛽(𝑢,𝑤) = 0. Thus 𝛽 = 0. Hence 𝑉(2)
+= 𝑉(2)
+sym ⊕ 𝑉(2)
+alt (by 1.46).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9A Bilinear Forms and Quadratic Forms 341
+Quadratic Forms
+9.18 definition: quadratic form associated with a bilinear form, 𝑞𝛽
+For 𝛽 a bilinear form on 𝑉, define a function 𝑞𝛽 ∶ 𝑉 → 𝐅 by 𝑞𝛽(𝑣) = 𝛽(𝑣,𝑣).
+A function 𝑞∶ 𝑉 → 𝐅 is called a quadratic form on 𝑉 if there exists a bilinear
+form 𝛽 on 𝑉 such that 𝑞 = 𝑞𝛽.
+Note that if 𝛽 is a bilinear form, then 𝑞𝛽 = 0 if and only if 𝛽 is alternating.
+9.19 example: quadratic form
+Suppose 𝛽 is the bilinear form on 𝐑3
+defined by
+𝛽((𝑥1,𝑥2,𝑥3),(𝑦1,𝑦2,𝑦3)) = 𝑥1𝑦1 − 4𝑥1𝑦2 + 8𝑥1𝑦3 − 3𝑥3𝑦3.
+Then 𝑞𝛽 is the quadratic form on 𝐑3
+given by the formula
+𝑞𝛽(𝑥1,𝑥2,𝑥3) = 𝑥1
+2
+− 4𝑥1𝑥2 + 8𝑥1𝑥3 − 3𝑥3
+2
+.
+The quadratic form in the example above is typical of quadratic forms on 𝐅𝑛
+,
+as shown in the next result.
+9.20 quadratic forms on 𝐅𝑛
+Suppose 𝑛 is a positive integer and 𝑞 is a function from 𝐅𝑛
+to 𝐅. Then 𝑞
+is a quadratic form on 𝐅𝑛
+if and only if there exist numbers 𝐴𝑗,𝑘 ∈ 𝐅 for
+𝑗,𝑘 ∈ {1,…,𝑛} such that
+𝑞(𝑥1,…,𝑥𝑛) =
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑥𝑗𝑥𝑘
+for all (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+.
+Proof First suppose 𝑞 is a quadratic form on 𝐅𝑛
+. Thus there exists a bilinear form
+𝛽 on 𝐅𝑛
+such that 𝑞 = 𝑞𝛽. Let 𝐴 be the matrix of 𝛽 with respect to the standard
+basis of 𝐅𝑛
+. Then for all (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+, we have the desired equation
+𝑞(𝑥1,…,𝑥𝑛) = 𝛽((𝑥1,…,𝑥𝑛),(𝑥1,…,𝑥𝑛)) =
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑥𝑗𝑥𝑘.
+Conversely, suppose there existnumbers 𝐴𝑗,𝑘 ∈ 𝐅 for 𝑗,𝑘 ∈ {1,…,𝑛} suchthat
+𝑞(𝑥1,…,𝑥𝑛) =
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑥𝑗𝑥𝑘
+for all (𝑥1,…,𝑥𝑛) ∈ 𝐅𝑛
+. Define a bilinear form 𝛽 on 𝐅𝑛
+by
+𝛽((𝑥1,…,𝑥𝑛),(𝑦1,…,𝑦𝑛)) =
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝐴𝑗,𝑘𝑥𝑗𝑦𝑘.
+Then 𝑞 = 𝑞𝛽, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler342 Chapter 9 Multilinear Algebra and Determinants
+Although quadratic forms are defined in terms of an arbitrary bilinear form,
+the equivalence of (a) and (b) in the result below shows that a symmetric bilinear
+form can always be used.
+9.21 characterizations of quadratic forms
+Suppose 𝑞∶ 𝑉 → 𝐅 is a function. The following are equivalent.
+(a) 𝑞 is a quadratic form.
+(b) There exists a unique symmetric bilinear form 𝜌 on 𝑉 such that 𝑞 = 𝑞𝜌.
+(c) 𝑞(𝜆𝑣) = 𝜆2
+𝑞(𝑣) for all 𝜆 ∈ 𝐅 and all 𝑣 ∈ 𝑉, and the function
+(𝑢,𝑤) ↦ 𝑞(𝑢 + 𝑤) − 𝑞(𝑢) − 𝑞(𝑤)
+is a symmetric bilinear form on 𝑉.
+(d) 𝑞(2𝑣) = 4𝑞(𝑣) for all 𝑣 ∈ 𝑉, and the function
+(𝑢,𝑤) ↦ 𝑞(𝑢 + 𝑤) − 𝑞(𝑢) − 𝑞(𝑤)
+is a symmetric bilinear form on 𝑉.
+Proof First suppose (a) holds, so 𝑞 is a quadratic form. Hence there exists a
+bilinear form 𝛽 such that 𝑞 = 𝑞𝛽. By 9.17, there exist a symmetric bilinear form 𝜌
+on 𝑉 and an alternating bilinear form 𝛼 on 𝑉 such that 𝛽 = 𝜌 + 𝛼. Now
+𝑞 = 𝑞𝛽 = 𝑞𝜌 + 𝑞𝛼 = 𝑞𝜌.
+If 𝜌′
+∈ 𝑉(2)
+sym also satisfies 𝑞𝜌′ = 𝑞, then 𝑞𝜌′−𝜌 = 0; thus 𝜌′
+− 𝜌 ∈ 𝑉(2)
+sym ∩ 𝑉(2)
+alt ,
+which implies that 𝜌′
+= 𝜌 (by 9.17). This completes the proof that (a) implies (b).
+Now suppose (b) holds, so there exists a symmetric bilinear form 𝜌 on 𝑉 such
+that 𝑞 = 𝑞𝜌. If 𝜆 ∈ 𝐅 and 𝑣 ∈ 𝑉 then
+𝑞(𝜆𝑣) = 𝜌(𝜆𝑣, 𝜆𝑣) = 𝜆𝜌(𝑣, 𝜆𝑣) = 𝜆2
+𝜌(𝑣,𝑣) = 𝜆2
+𝑞(𝑣),
+showing that the first part of (c) holds.
+If 𝑢,𝑤 ∈ 𝑉, then
+𝑞(𝑢 + 𝑤) − 𝑞(𝑢) − 𝑞(𝑤) = 𝜌(𝑢 + 𝑤,𝑢 + 𝑤) − 𝜌(𝑢,𝑢) − 𝜌(𝑤,𝑤) = 2𝜌(𝑢,𝑤).
+Thusthefunction(𝑢,𝑤) ↦ 𝑞(𝑢+𝑤)−𝑞(𝑢)−𝑞(𝑤)equals2𝜌,whichisasymmetric
+bilinear form on 𝑉, completing the proof that (b) implies (c).
+Clearly (c) implies (d).
+Now suppose (d) holds. Let 𝜌 be the symmetric bilinear form on 𝑉 defined by
+𝜌(𝑢,𝑤) =
+𝑞(𝑢 + 𝑤) − 𝑞(𝑢) − 𝑞(𝑤)
+2
+.
+If 𝑣 ∈ 𝑉, then
+𝜌(𝑣,𝑣) =
+𝑞(2𝑣) − 𝑞(𝑣) − 𝑞(𝑣)
+2
+=
+4𝑞(𝑣) − 2𝑞(𝑣)
+2
+= 𝑞(𝑣).
+Thus 𝑞 = 𝑞𝜌, completing the proof that (d) implies (a).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9A Bilinear Forms and Quadratic Forms 343
+9.22 example: symmetric bilinear form associated with a quadratic form
+Suppose 𝑞 is the quadratic form on 𝐑3
+given by the formula
+𝑞(𝑥1,𝑥2,𝑥3) = 𝑥1
+2
+− 4𝑥1𝑥2 + 8𝑥1𝑥3 − 3𝑥3
+2
+.
+A bilinear form 𝛽 on 𝐑3
+such that 𝑞 = 𝑞𝛽 is given by Example 9.19, but this
+bilinear form is not symmetric, as promised by 9.21(b). However, the bilinear
+form 𝜌 on 𝐑3
+defined by
+𝜌((𝑥1,𝑥2,𝑥3),(𝑦1,𝑦2,𝑦3)) = 𝑥1𝑦1 − 2𝑥1𝑦2 − 2𝑥2𝑦1 + 4𝑥1𝑦3 + 4𝑥3𝑦1 − 3𝑥3𝑦3
+is symmetric and satisfies 𝑞 = 𝑞𝜌.
+The next result states that for each quadratic form we can choose a basis such
+that the quadratic form looks like a weighted sum of squares of the coordinates,
+meaning that there are no cross terms of the form 𝑥𝑗𝑥𝑘 with 𝑗 ≠ 𝑘.
+9.23 diagonalization of quadratic form
+Suppose 𝑞 is a quadratic form on 𝑉.
+(a) There exist a basis 𝑒1,…,𝑒𝑛 of 𝑉 and 𝜆1,…, 𝜆𝑛 ∈ 𝐅 such that
+𝑞(𝑥1𝑒1 + ⋯ + 𝑥𝑛𝑒𝑛) = 𝜆1𝑥1
+2
++ ⋯ + 𝜆𝑛𝑥𝑛
+2
+for all 𝑥1,…,𝑥𝑛 ∈ 𝐅.
+(b) If 𝐅 = 𝐑 and 𝑉 is an inner product space, then the basis in (a) can be
+chosen to be an orthonormal basis of 𝑉.
+Proof
+(a) Thereexistsasymmetricbilinearform𝜌on𝑉 suchthat𝑞 = 𝑞𝜌 (by9.21). Now
+there exists a basis 𝑒1,…,𝑒𝑛 of 𝑉 such that ℳ(𝜌,(𝑒1,…,𝑒𝑛)) is a diagonal
+matrix (by 9.12). Let 𝜆1,…, 𝜆𝑛 denote the entries on the diagonal of this
+matrix. Thus
+𝜌(𝑒𝑗,𝑒𝑘) =
+⎧ {
+⎨ { ⎩
+𝜆𝑗 if 𝑗 = 𝑘,
+0 if 𝑗 ≠ 𝑘
+for all 𝑗,𝑘 ∈ {1,…,𝑛}. If 𝑥1,…,𝑥𝑛 ∈ 𝐅, then
+𝑞(𝑥1𝑒1 + ⋯ + 𝑥𝑛𝑒𝑛) = 𝜌(𝑥1𝑒1 + ⋯ + 𝑥𝑛𝑒𝑛,𝑥1𝑒1 + ⋯ + 𝑥𝑛𝑒𝑛)
+=
+𝑛
+∑
+𝑘=1
+𝑛
+∑
+𝑗 = 1
+𝑥𝑗𝑥𝑘𝜌(𝑒𝑗,𝑒𝑘)
+= 𝜆1𝑥1
+2
++ ⋯ + 𝜆𝑛𝑥𝑛
+2
+,
+as desired.
+(b) Suppose 𝐅 = 𝐑 and 𝑉 is an inner product space. Then 9.13 tells us that the
+basis in (a) can be chosen to be an orthonormal basis of 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler344 Chapter 9 Multilinear Algebra and Determinants
+Exercises 9A
+## 1 Prove that if 𝛽 is a bilinear form on 𝐅, then there exists 𝑐 ∈ 𝐅 such that
+𝛽(𝑥,𝑦) = 𝑐𝑥𝑦
+for all 𝑥,𝑦 ∈ 𝐅.
+2 Let 𝑛 = dim𝑉. Suppose 𝛽 is a bilinear form on 𝑉. Prove that there exist
+𝜑1,…,𝜑𝑛,𝜏1,…,𝜏𝑛 ∈ 𝑉′
+such that
+𝛽(𝑢,𝑣) = 𝜑1(𝑢) ⋅ 𝜏1(𝑣) + ⋯ + 𝜑𝑛(𝑢) ⋅ 𝜏𝑛(𝑣)
+for all 𝑢,𝑣 ∈ 𝑉.
+This exercise shows that if 𝑛 = dim𝑉, then every bilinear form on 𝑉 is of
+the form given by the last bullet point of Example 9.2.
+3 Suppose 𝛽∶ 𝑉×𝑉 → 𝐅 is a bilinear form on 𝑉 and also is a linear functional
+on 𝑉× 𝑉. Prove that 𝛽 = 0.
+## 4 Suppose 𝑉 is a real inner product space and 𝛽 is a bilinear form on 𝑉. Show
+that there exists a unique operator 𝑇 ∈ ℒ(𝑉) such that
+𝛽(𝑢,𝑣) = ⟨𝑢,𝑇𝑣⟩
+for all 𝑢,𝑣 ∈ 𝑉.
+This exercise states that if 𝑉 is a real inner product space, then every
+bilinear form on 𝑉 is of the form given by the third bullet point in 9.2.
+## 5 Suppose 𝛽 is a bilinear form on a real inner product space 𝑉 and 𝑇 is the
+unique operator on 𝑉 such that 𝛽(𝑢,𝑣) = ⟨𝑢,𝑇𝑣⟩ for all 𝑢,𝑣 ∈ 𝑉 (see
+Exercise 4). Show that 𝛽 is an inner product on 𝑉 if and only if 𝑇 is an
+invertible positive operator on 𝑉.
+## 6 Prove or give a counterexample: If 𝜌 is a symmetric bilinear form on 𝑉, then
+{𝑣 ∈ 𝑉 ∶ 𝜌(𝑣,𝑣) = 0}
+is a subspace of 𝑉.
+## 7 Explain why the proof of 9.13 (diagonalization of a symmetric bilinear form
+by an orthonormal basis on a real inner product space) fails if the hypothesis
+that 𝐅 = 𝐑 is dropped.
+8 Find formulas for dim𝑉(2)
+sym and dim𝑉(2)
+alt in terms of dim𝑉.
+9 Suppose that 𝑛 is a positive integer and 𝑉 = {𝑝 ∈ 𝒫𝑛(𝐑) ∶ 𝑝(0) = 𝑝(1)}.
+Define 𝛼∶ 𝑉× 𝑉 → 𝐑 by
+𝛼(𝑝,𝑞) = ∫
+1
+0
+𝑝𝑞′
+.
+Show that 𝛼 is an alternating bilinear form on 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9A Bilinear Forms and Quadratic Forms 345
+## 10 Suppose that 𝑛 is a positive integer and
+𝑉 = {𝑝 ∈ 𝒫𝑛(𝐑) ∶ 𝑝(0) = 𝑝(1) and 𝑝′
+(0) = 𝑝′
+(1)}.
+Define 𝜌∶ 𝑉× 𝑉 → 𝐑 by
+𝜌(𝑝,𝑞) = ∫
+1
+0
+𝑝𝑞″
+.
+Show that 𝜌 is a symmetric bilinear form on 𝑉.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler346 Chapter 9 Multilinear Algebra and Determinants
+9B Alternating Multilinear Forms
+Multilinear Forms
+9.24 definition: 𝑉𝑚
+For 𝑚 a positive integer, define 𝑉𝑚
+by
+𝑉𝑚
+= 𝑉× ⋯ × 𝑉 ⏟
+𝑚 times
+.
+Now we can define 𝑚-linear forms as a generalization of the bilinear forms
+that we discussed in the previous section.
+9.25 definition: 𝑚-linear form, 𝑉(𝑚)
+, multilinear form
+• For 𝑚 a positive integer, an 𝑚-linear form on 𝑉 is a function 𝛽∶ 𝑉𝑚
+→ 𝐅
+that is linear in each slot when the other slots are held fixed. This means
+that for each 𝑘 ∈ {1,…,𝑚} and all 𝑢1,…,𝑢𝑚 ∈ 𝑉, the function
+𝑣 ↦ 𝛽(𝑢1,…,𝑢𝑘−1,𝑣,𝑢𝑘+1,…,𝑢𝑚)
+is a linear map from 𝑉 to 𝐅.
+• The set of 𝑚-linear forms on 𝑉 is denoted by 𝑉(𝑚)
+.
+• A function 𝛽 is called a multilinear form on 𝑉 if it is an 𝑚-linear form on
+𝑉 for some positive integer 𝑚.
+In the definition above, the expression 𝛽(𝑢1,…,𝑢𝑘−1,𝑣,𝑢𝑘+1,…,𝑢𝑚) means
+𝛽(𝑣,𝑢2,…,𝑢𝑚) if 𝑘 = 1 and means 𝛽(𝑢1,…,𝑢𝑚−1,𝑣) if 𝑘 = 𝑚.
+A 1-linear form on 𝑉 is a linear functional on 𝑉. A 2-linear form on 𝑉 is
+a bilinear form on 𝑉. You can verify that with the usual addition and scalar
+multiplication of functions, 𝑉(𝑚)
+is a vector space.
+9.26 example: 𝑚-linear forms
+• Suppose 𝛼,𝜌 ∈ 𝑉(2)
+. Define a function 𝛽∶ 𝑉4
+→ 𝐅 by
+𝛽(𝑣1,𝑣2,𝑣3,𝑣4) = 𝛼(𝑣1,𝑣2)𝜌(𝑣3,𝑣4).
+Then 𝛽 ∈ 𝑉(4)
+.
+• Define 𝛽∶ (ℒ(𝑉))
+𝑚
+→ 𝐅 by
+𝛽(𝑇1,…,𝑇𝑚) = tr(𝑇1 ⋯𝑇𝑚).
+Then 𝛽 is an 𝑚-linear form on ℒ(𝑉).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9B Alternating Multilinear Forms 347
+Alternating multilinear forms, which we now define, play an important role as
+we head toward defining determinants.
+9.27 definition: alternating forms, 𝑉(𝑚)
+alt
+Suppose 𝑚 is a positive integer.
+• An 𝑚-linear form 𝛼 on 𝑉 is called alternating if 𝛼(𝑣1,…,𝑣𝑚) = 0 whenever
+𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉 with 𝑣𝑗 = 𝑣𝑘 for some two distinct values
+of 𝑗 and 𝑘 in {1,…,𝑚}.
+• 𝑉(𝑚)
+alt = {𝛼 ∈ 𝑉(𝑚)
+∶ 𝛼 is an alternating 𝑚-linear form on 𝑉}.
+You should verify that 𝑉(𝑚)
+alt is a subspace of 𝑉(𝑚)
+. See Example 9.15 for
+examples of alternating 2-linear forms. See Exercise 2 for an example of an
+alternating 3-linear form.
+The next result tells us that if a linearly dependent list is input to an alternating
+multilinear form, then the output equals 0.
+9.28 alternating multilinear forms and linear dependence
+Suppose 𝑚 is a positive integer and 𝛼 is an alternating 𝑚-linear form on 𝑉. If
+𝑣1,…,𝑣𝑚 is a linearly dependent list in 𝑉, then
+𝛼(𝑣1,…,𝑣𝑚) = 0.
+Proof Suppose 𝑣1,…,𝑣𝑚 is a linearly dependent list in 𝑉. By the linear depen-
+dence lemma (2.19), some 𝑣𝑘 is a linear combination of 𝑣1,…,𝑣𝑘−1. Thus there
+exist 𝑏1,…,𝑏𝑘−1 such that 𝑣𝑘 = 𝑏1𝑣1 + ⋯ + 𝑏𝑘−1𝑣𝑘−1. Now
+𝛼(𝑣1,…,𝑣𝑚) = 𝛼(𝑣1,…,𝑣𝑘−1,
+𝑘−1
+∑
+𝑗=1
+𝑏𝑗𝑣𝑗,𝑣𝑘+1,…,𝑣𝑚)
+=
+𝑘−1
+∑
+𝑗=1
+𝑏𝑗 𝛼(𝑣1,…,𝑣𝑘−1,𝑣𝑗,𝑣𝑘+1,…,𝑣𝑚)
+= 0.
+The next result states that if 𝑚 > dim𝑉, then there are no alternating 𝑚-linear
+forms on 𝑉 other than the function on 𝑉𝑚
+that is identically 0.
+9.29 no nonzero alternating 𝑚-linear forms for 𝑚 > dim𝑉
+Suppose 𝑚 > dim𝑉. Then 0 is the only alternating 𝑚-linear form on 𝑉.
+Proof Suppose that 𝛼 is an alternating 𝑚-linear form on 𝑉 and 𝑣1,…,𝑣𝑚 ∈ 𝑉.
+Because 𝑚 > dim𝑉, this list is not linearly independent (by 2.22). Thus 9.28
+implies that 𝛼(𝑣1,…,𝑣𝑚) = 0. Hence 𝛼 is the zero function from 𝑉𝑚
+to 𝐅.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler348 Chapter 9 Multilinear Algebra and Determinants
+Alternating Multilinear Forms and Permutations
+9.30 swapping input vectors in an alternating multilinear form
+Suppose 𝑚 is a positive integer, 𝛼 is an alternating 𝑚-linear form on 𝑉, and
+𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉. Then swapping the vectors in any two slots
+of 𝛼(𝑣1,…,𝑣𝑚) changes the value of 𝛼 by a factor of −1.
+Proof Put 𝑣1 + 𝑣2 in both the first two slots, getting
+0 = 𝛼(𝑣1 + 𝑣2,𝑣1 + 𝑣2,𝑣3,…,𝑣𝑚).
+Use the multilinear properties of 𝛼 to expand the right side of the equation above
+(as in the proof of 9.16) to get
+𝛼(𝑣2,𝑣1,𝑣3,…,𝑣𝑚) = −𝛼(𝑣1,𝑣2,𝑣3,…,𝑣𝑚).
+Similarly, swapping the vectors in any two slots of 𝛼(𝑣1,…,𝑣𝑚) changes the
+value of 𝛼 by a factor of −1.
+To see what can happen with multiple swaps, suppose 𝛼 is an alternating
+3-linear form on 𝑉 and 𝑣1,𝑣2,𝑣3 ∈ 𝑉. To evaluate 𝛼(𝑣3,𝑣1,𝑣2) in terms of
+𝛼(𝑣1,𝑣2,𝑣3), start with 𝛼(𝑣3,𝑣1,𝑣2) and swap the entries in the first and third
+slots, getting 𝛼(𝑣3,𝑣1,𝑣2) = −𝛼(𝑣2,𝑣1,𝑣3). Now in the last expression, swap the
+entries in the first and second slots, getting
+𝛼(𝑣3,𝑣1,𝑣2) = −𝛼(𝑣2,𝑣1,𝑣3) = 𝛼(𝑣1,𝑣2,𝑣3).
+More generally, we see that if we do an odd number of swaps, then the value of 𝛼
+changes by a factor of −1, and if we do an even number of swaps, then the value
+of 𝛼 does not change.
+To deal with arbitrary multiple swaps, we need a bit of information about
+permutations.
+9.31 definition: permutation, perm𝑚
+Suppose 𝑚 is a positive integer.
+• A permutation of (1,…,𝑚) is a list (𝑗1,…,𝑗𝑚) that contains each of the
+numbers 1,…,𝑚 exactly once.
+• The set of all permutations of (1,…,𝑚) is denoted by perm𝑚.
+For example, (2,3,4,5,1) ∈ perm5. You should think of an element of
+perm𝑚 as a rearrangement of the first 𝑚 positive integers.
+The number of swaps used to change a permutation (𝑗1,…,𝑗𝑚) to the stan-
+dard order (1,…,𝑚) can depend on the specific swaps selected. The following
+definition has the advantage of assigning a well-defined sign to every permutation.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9B Alternating Multilinear Forms 349
+9.32 definition: sign of a permutation
+The sign of a permutation (𝑗1,…,𝑗𝑚) is defined by
+sign(𝑗1,…,𝑗𝑚) = (−1)𝑁
+,
+where 𝑁 is the number of pairs of integers (𝑘,ℓ) with 1 ≤ 𝑘 < ℓ ≤ 𝑚 such
+that 𝑘 appears after ℓ in the list (𝑗1,…,𝑗𝑚).
+Hence the sign of a permutation equals 1 if the natural order has been changed
+an even number of times and equals −1 if the natural order has been changed an
+odd number of times.
+9.33 example: signs
+• The permutation (1,…,𝑚) [no changes in the natural order] has sign 1.
+• The only pair of integers (𝑘,ℓ) with 𝑘 < ℓ such that 𝑘 appears after ℓ in the list
+(2,1,3,4) is (1,2). Thus the permutation (2,1,3,4) has sign −1.
+• In the permutation (2,3,…,𝑚,1), the only pairs (𝑘,ℓ) with 𝑘 < ℓ that appear
+with changed order are (1,2),(1,3),…,(1,𝑚). Because we have 𝑚 − 1 such
+pairs, the sign of this permutation equals (−1)𝑚−1
+.
+9.34 swapping two entries in a permutation
+Swapping two entries in a permutation multiplies the sign of the permutation
+by −1.
+Proof Suppose we have two permutations, where the second permutation is
+obtained from the first by swapping two entries. The two swapped entries were
+in their natural order in the first permutation if and only if they are not in their
+natural order in the second permutation. Thus we have a net change (so far) of 1
+or −1 (both odd numbers) in the number of pairs not in their natural order.
+Consider each entry between the two swapped entries. If an intermediate entry
+was originally in the natural order with respect to both swapped entries, then it
+is now in the natural order with respect to neither swapped entry. Similarly, if
+an intermediate entry was originally in the natural order with respect to neither
+of the swapped entries, then it is now in the natural order with respect to both
+swapped entries. If an intermediate entry was originally in the natural order with
+respect to exactly one of the swapped entries, then that is still true. Thus the net
+change (for each pair containing an entry between the two swapped entries) in the
+number of pairs not in their natural order is 2, −2, or 0 (all even numbers).
+For all other pairs of entries, there is no change in whether or not they are in
+their natural order. Thus the total net change in the number of pairs not in their
+natural order is an odd number. Hence the sign of the second permutation equals
+−1 times the sign of the first permutation.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler350 Chapter 9 Multilinear Algebra and Determinants
+9.35 permutations and alternating multilinear forms
+Suppose 𝑚 is a positive integer and 𝛼 ∈ 𝑉(𝑚)
+alt . Then
+𝛼(𝑣𝑗1
+,…,𝑣𝑗𝑚
+) = (sign(𝑗1,…,𝑗𝑚))𝛼(𝑣1,…,𝑣𝑚)
+for every list 𝑣1,…,𝑣𝑚 of vectors in 𝑉 and all (𝑗1,…,𝑗𝑚) ∈ perm𝑚.
+Proof Suppose 𝑣1,…,𝑣𝑚 ∈ 𝑉 and (𝑗1,…,𝑗𝑚) ∈ perm𝑚. We can get from
+(𝑗1,…,𝑗𝑚) to (1,…,𝑚) by a series of swaps of entries in different slots. Each
+such swap changes the value of 𝛼 by a factor of −1 (by 9.30) and also changes the
+signoftheremainingpermutationbyafactorof−1(by9.34). Afteranappropriate
+number of swaps, we reach the permutation 1,…,𝑚, which has sign 1. Thus the
+value of 𝛼 changed signs an even number of times if sign(𝑗1,…,𝑗𝑚) = 1 and an
+odd number of times if sign(𝑗1,…,𝑗𝑚) = −1, which gives the desired result.
+Our use of permutations now leads in a natural way to the following beautiful
+formula for alternating 𝑛-linear forms on an 𝑛-dimensional vector space.
+9.36 formula for (dim𝑉)-linear alternating forms on 𝑉
+Let 𝑛 = dim𝑉. Suppose 𝑒1,…,𝑒𝑛 is a basis of 𝑉 and 𝑣1,…,𝑣𝑛 ∈ 𝑉. For each
+𝑘 ∈ {1,…,𝑛}, let 𝑏1,𝑘,…,𝑏𝑛,𝑘 ∈ 𝐅 be such that
+𝑣𝑘 =
+𝑛
+∑
+𝑗=1
+𝑏𝑗,𝑘𝑒𝑗.
+Then
+𝛼(𝑣1,…,𝑣𝑛) = 𝛼(𝑒1,…,𝑒𝑛) ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+(sign(𝑗1,…,𝑗𝑛))𝑏𝑗1,1 ⋯𝑏𝑗𝑛,𝑛
+for every alternating 𝑛-linear form 𝛼 on 𝑉.
+Proof Suppose 𝛼 is an alternating 𝑛-linear form on 𝑉. Then
+𝛼(𝑣1,…,𝑣𝑛) = 𝛼(
+𝑛
+∑
+𝑗1=1
+𝑏𝑗1,1𝑒𝑗1
+,…,
+𝑛
+∑
+𝑗𝑛=1
+𝑏𝑗𝑛,𝑛𝑒𝑗𝑛
+)
+=
+𝑛
+∑
+𝑗1=1
+⋯
+𝑛
+∑
+𝑗𝑛=1
+𝑏𝑗1,1 ⋯𝑏𝑗𝑛,𝑛 𝛼(𝑒𝑗1
+,…,𝑒𝑗𝑛
+)
+= ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+𝑏𝑗1,1 ⋯𝑏𝑗𝑛,𝑛 𝛼(𝑒𝑗1
+,…,𝑒𝑗𝑛
+)
+= 𝛼(𝑒1,…,𝑒𝑛) ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+(sign(𝑗1,…,𝑗𝑛))𝑏𝑗1,1 ⋯𝑏𝑗𝑛,𝑛,
+where the third line holds because 𝛼(𝑒𝑗1
+,…,𝑒𝑗𝑛
+) = 0 if 𝑗1,…,𝑗𝑛 are not distinct
+integers, and the last line holds by 9.35.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9B Alternating Multilinear Forms 351
+The following result will be the key to our definition of the determinant in the
+next section.
+9.37 dim𝑉(dim𝑉)
+alt = 1
+The vector space 𝑉(dim𝑉)
+alt has dimension one.
+Proof Let 𝑛 = dim𝑉. Suppose 𝛼 and 𝛼′
+are alternating 𝑛-linear forms on 𝑉 with
+𝛼 ≠ 0. Let 𝑒1,…,𝑒𝑛 be such that 𝛼(𝑒1,…,𝑒𝑛) ≠ 0. There exists 𝑐 ∈ 𝐅 such that
+𝛼′
+(𝑒1,…,𝑒𝑛) = 𝑐𝛼(𝑒1,…,𝑒𝑛).
+Furthermore, 9.28 implies that 𝑒1,…,𝑒𝑛 is linearly independent and thus is a basis
+of 𝑉.
+Suppose 𝑣1,…,𝑣𝑛 ∈ 𝑉. Let 𝑏𝑗,𝑘 be as in 9.36 for 𝑗,𝑘 = 1,…,𝑛. Then
+𝛼′
+(𝑣1,…,𝑣𝑛) = 𝛼′
+(𝑒1,…,𝑒𝑛) ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+(sign(𝑗1,…,𝑗𝑛))𝑏𝑗1,1 ⋯𝑏𝑗𝑛,𝑛
+= 𝑐𝛼(𝑒1,…,𝑒𝑛) ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+(sign(𝑗1,…,𝑗𝑛))𝑏𝑗1,1 ⋯𝑏𝑗𝑛,𝑛
+= 𝑐𝛼(𝑣1,…,𝑣𝑛),
+where the first and last lines above come from 9.36. The equation above implies
+that 𝛼′
+= 𝑐𝛼. Thus 𝛼′
+,𝛼 is not a linearly independent list, which implies that
+dim𝑉(𝑛)
+alt ≤ 1.
+To complete the proof, we only need to show that there exists a nonzero
+alternating 𝑛-linear form 𝛼 on 𝑉 (thus eliminating the possibility that dim𝑉(𝑛)
+alt
+equals 0). To do this, let 𝑒1,…,𝑒𝑛 be any basis of 𝑉, and let 𝜑1,…,𝜑𝑛 ∈ 𝑉′
+be
+the linear functionals on 𝑉 that allow us to express each element of 𝑉 as a linear
+combination of 𝑒1,…,𝑒𝑛. In other words,
+𝑣 =
+𝑛
+∑
+𝑗=1
+𝜑𝑗(𝑣)𝑒𝑗
+for every 𝑣 ∈ 𝑉 (see 3.114). Now for 𝑣1,…,𝑣𝑛 ∈ 𝑉, define
+9.38 𝛼(𝑣1,…,𝑣𝑛) = ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+(sign(𝑗1,…,𝑗𝑛))𝜑𝑗1
+(𝑣1)⋯𝜑𝑗𝑛
+(𝑣𝑛).
+The verification that 𝛼 is an 𝑛-linear form on 𝑉 is straightforward.
+To see that 𝛼 is alternating, suppose 𝑣1,…,𝑣𝑛 ∈ 𝑉 with 𝑣1 = 𝑣2. For each
+(𝑗1,…,𝑗𝑛) ∈ perm𝑛, the permutation (𝑗2,𝑗1,𝑗3,…,𝑗𝑛) has the opposite sign. Be-
+cause 𝑣1 = 𝑣2, the contributions from these two permutations to the sum in 9.38
+cancel each other. Hence 𝛼(𝑣1,𝑣1,𝑣3,…,𝑣𝑛) = 0. Similarly, 𝛼(𝑣1,…,𝑣𝑛) = 0 if
+any two vectors in the list 𝑣1,…,𝑣𝑛 are equal. Thus 𝛼 is alternating.
+Finally, consider 9.38 with each 𝑣𝑘 = 𝑒𝑘. Because 𝜑𝑗(𝑒𝑘) equals 0 if 𝑗 ≠ 𝑘 and
+equals 1 if 𝑗 = 𝑘, only the permutation (1,…,𝑛) makes a nonzero contribution to
+the right side of 9.38 in this case, giving the equation 𝛼(𝑒1,…,𝑒𝑛) = 1. Thus we
+have produced a nonzero alternating 𝑛-linear form 𝛼 on 𝑉, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler352 Chapter 9 Multilinear Algebra and Determinants
+The formula 9.38 used in the last proof
+to construct a nonzero alternating 𝑛-
+linear form came from the formula in
+9.36, and that formula arose naturally
+from the properties of an alternating
+multilinear form.
+Earlier we showed that the value of
+an alternating multilinear form applied
+to a linearly dependent list is 0; see 9.28.
+The next result provides a converse of
+9.28 for alternating 𝑛-linear forms when
+𝑛 = dim𝑉. In the following result, the
+statement that 𝛼 is nonzero means (as
+usual for a function) that 𝛼 is not the function on 𝑉𝑛
+that is identically 0.
+9.39 alternating (dim𝑉)-linear forms and linear independence
+Let 𝑛 = dim𝑉. Suppose 𝛼 is a nonzero alternating 𝑛-linear form on 𝑉 and
+𝑒1,…,𝑒𝑛 is a list of vectors in 𝑉. Then
+𝛼(𝑒1,…,𝑒𝑛) ≠ 0
+if and only if 𝑒1,…,𝑒𝑛 is linearly independent.
+Proof First suppose 𝛼(𝑒1,…,𝑒𝑛) ≠ 0. Then 9.28 implies that 𝑒1,…,𝑒𝑛 is linearly
+independent.
+Toprovetheimplicationintheotherdirection,nowsuppose𝑒1,…,𝑒𝑛 islinearly
+independent. Because 𝑛 = dim𝑉, this implies that 𝑒1,…,𝑒𝑛 is a basis of 𝑉 (see
+2.38).
+Because 𝛼 is not the zero 𝑛-linear form, there exist 𝑣1,…,𝑣𝑛 ∈ 𝑉 such that
+𝛼(𝑣1,…,𝑣𝑛) ≠ 0. Now 9.36 implies that 𝛼(𝑒1,…,𝑒𝑛) ≠ 0.
+Exercises 9B
+1 Suppose 𝑚 is a positive integer. Show that dim𝑉(𝑚)
+= (dim𝑉)𝑚
+.
+2 Suppose 𝑛 ≥ 3 and 𝛼∶ 𝐅𝑛
+× 𝐅𝑛
+× 𝐅𝑛
+→ 𝐅 is defined by
+𝛼((𝑥1,…,𝑥𝑛),(𝑦1,…,𝑦𝑛),(𝑧1,…,𝑧𝑛))
+= 𝑥1𝑦2𝑧3 − 𝑥2𝑦1𝑧3 − 𝑥3𝑦2𝑧1 − 𝑥1𝑦3𝑧2 + 𝑥3𝑦1𝑧2 + 𝑥2𝑦3𝑧1.
+Show that 𝛼 is an alternating 3-linear form on 𝐅𝑛
+.
+## 3 Suppose 𝑚 is a positive integer and 𝛼 is an 𝑚-linear form on 𝑉 such that
+𝛼(𝑣1,…,𝑣𝑚) = 0 whenever 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉 with 𝑣𝑗 = 𝑣𝑗+1
+for some 𝑗 ∈ {1,…,𝑚 − 1}. Prove that 𝛼 is an alternating 𝑚-linear form
+on 𝑉.
+4 Prove or give a counterexample: If 𝛼 ∈ 𝑉(4)
+alt , then
+{(𝑣1,𝑣2,𝑣3,𝑣4) ∈ 𝑉4
+∶ 𝛼(𝑣1,𝑣2,𝑣3,𝑣4) = 0}
+is a subspace of 𝑉4
+.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9B Alternating Multilinear Forms 353
+## 5 Suppose 𝑚 is a positive integer and 𝛽 is an 𝑚-linear form on 𝑉. Define an
+𝑚-linear form 𝛼 on 𝑉 by
+𝛼(𝑣1,…,𝑣𝑚) = ∑
+(𝑗1,…,𝑗𝑚)∈perm𝑚
+(sign(𝑗1,…,𝑗𝑚))𝛽(𝑣𝑗1
+,…,𝑣𝑗𝑚
+)
+for 𝑣1,…,𝑣𝑚 ∈ 𝑉. Explain why 𝛼 ∈ 𝑉(𝑚)
+alt .
+## 6 Suppose 𝑚 is a positive integer and 𝛽 is an 𝑚-linear form on 𝑉. Define an
+𝑚-linear form 𝛼 on 𝑉 by
+𝛼(𝑣1,…,𝑣𝑚) = ∑
+(𝑗1,…,𝑗𝑚)∈perm𝑚
+𝛽(𝑣𝑗1
+,…,𝑣𝑗𝑚
+)
+for 𝑣1,…,𝑣𝑚 ∈ 𝑉. Explain why
+𝛼(𝑣𝑘1
+,…,𝑣𝑘𝑚
+) = 𝛼(𝑣1,…,𝑣𝑚)
+for all 𝑣1,…,𝑣𝑚 ∈ 𝑉 and all (𝑘1,…,𝑘𝑚) ∈ perm𝑚.
+7 Giveanexampleofanonzeroalternating2-linearform𝛼 on𝐑3
+andalinearly
+independent list 𝑣1,𝑣2 in 𝐑3
+such that 𝛼(𝑣1,𝑣2) = 0.
+This exercise shows that 9.39 can fail if the hypothesis that 𝑛 = dim𝑉 is
+deleted.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler354 Chapter 9 Multilinear Algebra and Determinants
+9C Determinants
+Defining the Determinant
+The next definition will lead us to a clean, beautiful, basis-free definition of the
+determinant of an operator.
+9.40 definition: 𝛼𝑇
+Suppose that 𝑚 is a positive integer and 𝑇 ∈ ℒ(𝑉). For 𝛼 ∈ 𝑉(𝑚)
+alt , define
+𝛼𝑇 ∈ 𝑉(𝑚)
+alt by
+𝛼𝑇(𝑣1,…,𝑣𝑚) = 𝛼(𝑇𝑣1,…,𝑇𝑣𝑚)
+for each list 𝑣1,…,𝑣𝑚 of vectors in 𝑉.
+Suppose 𝑇 ∈ ℒ(𝑉). If 𝛼 ∈ 𝑉(𝑚)
+alt and 𝑣1,…,𝑣𝑚 is a list of vectors in 𝑉 with
+𝑣𝑗 = 𝑣𝑘 for some 𝑗 ≠ 𝑘, then 𝑇𝑣𝑗 = 𝑇𝑣𝑘, which implies that 𝛼𝑇(𝑣1,…,𝑣𝑚) =
+𝛼(𝑇𝑣1,…,𝑇𝑣𝑚) = 0. Thus the function 𝛼 ↦ 𝛼𝑇 is a linear map of 𝑉(𝑚)
+alt to itself.
+We know that dim𝑉(dim𝑉)
+alt = 1 (see 9.37). Every linear map from a one-
+dimensional vector space to itself is multiplication by some unique scalar. For
+the linear map 𝛼 ↦ 𝛼𝑇, we now define det𝑇 to be that scalar.
+9.41 definition: determinant of an operator, det𝑇
+Suppose 𝑇 ∈ ℒ(𝑉). The determinant of 𝑇, denoted by det𝑇, is defined to be
+the unique number in 𝐅 such that
+𝛼𝑇 = (det𝑇)𝛼
+for all 𝛼 ∈ 𝑉(dim𝑉)
+alt .
+9.42 example: determinants of operators
+Let 𝑛 = dim𝑉.
+• If 𝐼 is the identity operator on 𝑉, then 𝛼𝐼 = 𝛼 for all 𝛼 ∈ 𝑉(𝑛)
+alt . Thus det𝐼 = 1.
+• More generally, if 𝜆 ∈ 𝐅, then 𝛼𝜆𝐼 = 𝜆𝑛
+𝛼 for all 𝛼 ∈ 𝑉(𝑛)
+alt . Thus det(𝜆𝐼) = 𝜆𝑛
+.
+• Still more generally, if 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅, then 𝛼𝜆𝑇 = 𝜆𝑛
+𝛼𝑇 = 𝜆𝑛
+(det𝑇)𝛼
+for all 𝛼 ∈ 𝑉(𝑛)
+alt . Thus det(𝜆𝑇) = 𝜆𝑛
+det𝑇.
+• Suppose𝑇 ∈ ℒ(𝑉)andthereisabasis𝑒1,…,𝑒𝑛 of𝑉 consistingofeigenvectors
+of 𝑇, with corresponding eigenvalues 𝜆1,…, 𝜆𝑛. If 𝛼 ∈ 𝑉(𝑛)
+alt , then
+𝛼𝑇(𝑒1,…,𝑒𝑛) = 𝛼(𝜆1𝑒1,…, 𝜆𝑛𝑒𝑛) = (𝜆1 ⋯ 𝜆𝑛)𝛼(𝑒1,…,𝑒𝑛).
+If 𝛼 ≠ 0, then 9.39 implies 𝛼(𝑒1,…,𝑒𝑛) ≠ 0. Thus the equation above implies
+det𝑇 = 𝜆1 ⋯ 𝜆𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 355
+Our next task is to define and give a formula for the determinant of a square
+matrix. To do this, we associate with each square matrix an operator and then
+define the determinant of the matrix to be the determinant of the associated
+operator.
+9.43 definition: determinant of a matrix, det𝐴
+Suppose that 𝑛 is a positive integer and 𝐴 is an 𝑛-by-𝑛 square matrix with
+entries in 𝐅. Let 𝑇 ∈ ℒ(𝐅𝑛
+) be the operator whose matrix with respect to
+the standard basis of 𝐅𝑛
+equals 𝐴. The determinant of 𝐴, denoted by det𝐴, is
+defined by det𝐴 = det𝑇.
+9.44 example: determinants of matrices
+• If 𝐼 is the 𝑛-by-𝑛 identity matrix, then the corresponding operator on 𝐅𝑛
+is the
+identity operator 𝐼 on 𝐅𝑛
+. Thus the first bullet point of 9.42 implies that the
+determinant of the identity matrix is 1.
+• Suppose 𝐴 is a diagonal matrix with 𝜆1,…, 𝜆𝑛 on the diagonal. Then the
+corresponding operator on 𝐅𝑛
+has the standard basis of 𝐅𝑛
+as eigenvectors,
+with eigenvalues 𝜆1,…, 𝜆𝑛. Thus the last bullet point of 9.42 implies that
+det𝐴 = 𝜆1 ⋯ 𝜆𝑛.
+For the next result, think of each list 𝑣1,…,𝑣𝑛 of 𝑛 vectors in 𝐅𝑛
+as a list of
+𝑛-by-1 column vectors. The notation ( 𝑣1 ⋯ 𝑣𝑛 ) then denotes the 𝑛-by-𝑛
+square matrix whose 𝑘th
+column is 𝑣𝑘 for each 𝑘 = 1,…,𝑛.
+9.45 determinant is an alternating multilinear form
+Suppose that 𝑛 is a positive integer. The map that takes a list 𝑣1,…,𝑣𝑛 of
+vectors in 𝐅𝑛
+to det( 𝑣1 ⋯ 𝑣𝑛 ) is an alternating 𝑛-linear form on 𝐅𝑛
+.
+Proof Let 𝑒1,…,𝑒𝑛 be the standard basis of 𝐅𝑛
+and suppose 𝑣1,…,𝑣𝑛 is a list of
+vectors in 𝐅𝑛
+. Let 𝑇 ∈ ℒ(𝐅𝑛
+) be the operator such that 𝑇𝑒𝑘 = 𝑣𝑘 for 𝑘 = 1,…,𝑛.
+Thus 𝑇 is the operator whose matrix with respect to 𝑒1,…,𝑒𝑛 is ( 𝑣1 ⋯ 𝑣𝑛 ).
+Hence det( 𝑣1 ⋯ 𝑣𝑛 ) = det𝑇, by definition of the determinant of a matrix.
+Let 𝛼 be an alternating 𝑛-linear form on 𝐅𝑛
+such that 𝛼(𝑒1,…,𝑒𝑛) = 1. Then
+det( 𝑣1 ⋯ 𝑣𝑛 ) = det𝑇
+= (det𝑇)𝛼(𝑒1,…,𝑒𝑛)
+= 𝛼(𝑇𝑒1,…,𝑇𝑒𝑛)
+= 𝛼(𝑣1,…,𝑣𝑛),
+where the third line follows from the definition of the determinant of an operator.
+The equation above shows that the map that takes a list of vectors 𝑣1,…,𝑣𝑛 in 𝐅𝑛
+to det( 𝑣1 ⋯ 𝑣𝑛 ) is the alternating 𝑛-linear form 𝛼 on 𝐅𝑛
+.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler356 Chapter 9 Multilinear Algebra and Determinants
+The previous result has several important consequences. For example, it
+immediately implies that a matrix with two identical columns has determinant 0.
+We will come back to other consequences later, but for now we want to give a
+formula for the determinant of a square matrix. Recall that if 𝐴 is a matrix, then
+𝐴𝑗,𝑘 denotes the entry in row 𝑗, column 𝑘 of 𝐴.
+9.46 formula for determinant of a matrix
+Suppose that 𝑛 is a positive integer and 𝐴 is an 𝑛-by-𝑛 square matrix. Then
+det𝐴 = ∑
+(𝑗1,…,𝑗𝑛)∈perm𝑛
+(sign(𝑗1,…,𝑗𝑛))𝐴𝑗1,1 ⋯𝐴𝑗𝑛,𝑛.
+Proof Apply 9.36 with 𝑉 = 𝐅𝑛
+and 𝑒1,…,𝑒𝑛 the standard basis of 𝐅𝑛
+and 𝛼 the
+alternating 𝑛-linear form on 𝐅𝑛
+that takes 𝑣1,…,𝑣𝑛 to det( 𝑣1 ⋯ 𝑣𝑛 ) [see
+9.45]. If each 𝑣𝑘 is the 𝑘th
+column of 𝐴, then each 𝑏𝑗,𝑘 in 9.36 equals 𝐴𝑗,𝑘. Finally,
+𝛼(𝑒1,…,𝑒𝑛) = det( 𝑒1 ⋯ 𝑒𝑛 ) = det𝐼 = 1.
+Thus the formula in 9.36 becomes the formula stated in this result.
+9.47 example: explicit formula for determinant
+• If 𝐴 is a 2-by-2 matrix, then the formula in 9.46 becomes
+det𝐴 = 𝐴1,1𝐴2,2 − 𝐴2,1𝐴1,2.
+• If 𝐴 is a 3-by-3 matrix, then the formula in 9.46 becomes
+det𝐴 =𝐴1,1𝐴2,2𝐴3,3 − 𝐴2,1𝐴1,2𝐴3,3 − 𝐴3,1𝐴2,2𝐴1,3
+− 𝐴1,1𝐴3,2𝐴2,3 + 𝐴3,1𝐴1,2𝐴2,3 + 𝐴2,1𝐴3,2𝐴1,3.
+The sum in the formula in 9.46 contains 𝑛! terms. Because 𝑛! grows rapidly as
+𝑛 increases, the formula in 9.46 is not a viable method to evaluate determinants
+even for moderately sized 𝑛. For example, 10! is over three million, and 100! is
+approximately 10158
+, leading to a sum that the fastest computer cannot evaluate.
+We will soon see some results that lead to faster evaluations of determinants than
+direct use of the sum in 9.46.
+9.48 determinant of upper-triangular matrix
+Suppose that 𝐴 is an upper-triangular matrix with 𝜆1,…, 𝜆𝑛 on the diagonal.
+Then det𝐴 = 𝜆1 ⋯ 𝜆𝑛.
+Proof If (𝑗1,…,𝑗𝑛) ∈ perm𝑛 with (𝑗1,…,𝑗𝑛) ≠ (1,…,𝑛), then 𝑗𝑘 > 𝑘 for some
+𝑘 ∈ {1,…,𝑛}, which implies that 𝐴𝑗𝑘,𝑘 = 0. Thus the only permutation that
+can make a nonzero contribution to the sum in 9.46 is the permutation (1,…,𝑛).
+Because 𝐴𝑘,𝑘 = 𝜆𝑘 for each 𝑘 = 1,…,𝑛, this implies that det𝐴 = 𝜆1 ⋯ 𝜆𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 357
+Properties of Determinants
+Our definition of the determinant leads to the following magical proof that the
+determinant is multiplicative.
+9.49 determinant is multiplicative
+(a) Suppose 𝑆,𝑇 ∈ ℒ(𝑉). Then det(𝑆𝑇) = (det𝑆)(det𝑇).
+(b) Suppose 𝐴 and 𝐵 are square matrices of the same size. Then
+det(𝐴𝐵) = (det𝐴)(det𝐵)
+Proof
+(a) Let 𝑛 = dim𝑉. Suppose 𝛼 ∈ 𝑉(𝑛)
+alt and 𝑣1,…,𝑣𝑛 ∈ 𝑉. Then
+𝛼𝑆𝑇(𝑣1,…,𝑣𝑛) = 𝛼(𝑆𝑇𝑣1,…,𝑆𝑇𝑣𝑛)
+= (det𝑆)𝛼(𝑇𝑣1,…,𝑇𝑣𝑛)
+= (det𝑆)(det𝑇)𝛼(𝑣1,…,𝑣𝑛),
+wherethefirstequationfollowsfromthedefinitionof𝛼𝑆𝑇,thesecondequation
+follows from the definition of det𝑆, and the third equation follows from the
+definition of det𝑇. The equation above implies that det(𝑆𝑇) = (det𝑆)(det𝑇).
+(b) Let𝑆,𝑇 ∈ ℒ(𝐅𝑛
+) besuchthatℳ(𝑆) = 𝐴 andℳ(𝑇) = 𝐵, whereallmatrices
+of operators in this proof are with respect to the standard basis of 𝐅𝑛
+. Then
+ℳ(𝑆𝑇) = ℳ(𝑆)ℳ(𝑇) = 𝐴𝐵 (see 3.43). Thus
+det(𝐴𝐵) = det(𝑆𝑇) = (det𝑆)(det𝑇) = (det𝐴)(det𝐵),
+where the second equality comes from the result in (a).
+The determinant of an operator determines whether the operator is invertible.
+9.50 invertible ⟺ nonzero determinant
+An operator 𝑇 ∈ ℒ(𝑉) is invertible if and only if det𝑇 ≠ 0. Furthermore, if
+𝑇 is invertible, then det(𝑇−1
+) = 1
+det𝑇
+.
+Proof First suppose 𝑇 is invertible. Thus 𝑇𝑇−1
+= 𝐼. Now 9.49 implies that
+1 = det𝐼 = det(𝑇𝑇−1
+) = (det𝑇)(det(𝑇−1
+)).
+Hence det𝑇 ≠ 0 and det(𝑇−1
+) is the multiplicative inverse of det𝑇.
+To prove the other direction, now suppose det𝑇 ≠ 0. Suppose 𝑣 ∈ 𝑉 and
+𝑣 ≠ 0. Let 𝑣,𝑒2,…,𝑒𝑛 be a basis of 𝑉 and let 𝛼 ∈ 𝑉(𝑛)
+alt be such that 𝛼 ≠ 0. Then
+𝛼(𝑣,𝑒2,…,𝑒𝑛) ≠ 0 (by 9.39). Now
+𝛼(𝑇𝑣,𝑇𝑒2,…,𝑇𝑒𝑛) = (det𝑇)𝛼(𝑣,𝑒2,…,𝑒𝑛) ≠ 0.
+Thus 𝑇𝑣 ≠ 0. Hence 𝑇 is invertible.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler358 Chapter 9 Multilinear Algebra and Determinants
+An 𝑛-by-𝑛 matrix 𝐴 is invertible (see 3.80 for the definition of an invertible
+matrix) if and only if the operator on 𝐅𝑛
+associated with 𝐴 (via the standard basis
+of 𝐅𝑛
+) is invertible. Thus the previous result shows that a square matrix 𝐴 is
+invertible if and only if det𝐴 ≠ 0.
+9.51 eigenvalues and determinants
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝜆 ∈ 𝐅. Then 𝜆 is an eigenvalue of 𝑇 if and only if
+det(𝜆𝐼 − 𝑇) = 0.
+Proof The number 𝜆 is an eigenvalue of 𝑇 if and only if 𝑇 − 𝜆𝐼 is not invertible
+(see 5.7), which happens if and only if 𝜆𝐼 − 𝑇 is not invertible, which happens if
+and only if det(𝜆𝐼 − 𝑇) = 0 (by 9.50).
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑆∶ 𝑊 → 𝑉 is an invertible linear map. To prove that
+det(𝑆−1
+𝑇𝑆) = det𝑇, we could try to use 9.49 and 9.50, writing
+det(𝑆−1
+𝑇𝑆) = (det𝑆−1
+)(det𝑇)(det𝑆)
+= det𝑇.
+That proof works if 𝑊 = 𝑉, but if 𝑊 ≠ 𝑉 then it makes no sense because the
+determinant is defined only for linear maps from a vector space to itself, and 𝑆
+maps 𝑊 to 𝑉, making det𝑆 undefined. The proof given below works around this
+issue and is valid when 𝑊 ≠ 𝑉.
+9.52 determinant is a similarity invariant
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑆∶ 𝑊 → 𝑉 is an invertible linear map. Then
+det(𝑆−1
+𝑇𝑆) = det𝑇.
+Proof Let 𝑛 = dim𝑊 = dim𝑉. Suppose 𝜏 ∈ 𝑊(𝑛)
+alt . Define 𝛼 ∈ 𝑉(𝑛)
+alt by
+𝛼(𝑣1,…,𝑣𝑛) = 𝜏(𝑆−1
+𝑣1,…,𝑆−1
+𝑣𝑛)
+for 𝑣1,…,𝑣𝑛 ∈ 𝑉. Suppose 𝑤1,…,𝑤𝑛 ∈ 𝑊. Then
+𝜏𝑆−1𝑇𝑆(𝑤1,…,𝑤𝑛) = 𝜏(𝑆−1
+𝑇𝑆𝑤1,…,𝑆−1
+𝑇𝑆𝑤𝑛)
+= 𝛼(𝑇𝑆𝑤1,…,𝑇𝑆𝑤𝑛)
+= 𝛼𝑇(𝑆𝑤1,…,𝑆𝑤𝑛)
+= (det𝑇)𝛼(𝑆𝑤1,…,𝑆𝑤𝑛)
+= (det𝑇)𝜏(𝑤1,…,𝑤𝑛).
+The equation above and the definition of the determinant of the operator 𝑆−1
+𝑇𝑆
+imply that det(𝑆−1
+𝑇𝑆) = det𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 359
+For the special case in which 𝑉 = 𝐅𝑛
+and 𝑒1,…,𝑒𝑛 is the standard basis of 𝐅𝑛
+,
+the next result is true by the definition of the determinant of a matrix. The left
+side of the equation in the next result does not depend on a choice of basis, which
+means that the right side is independent of the choice of basis.
+9.53 determinant of operator equals determinant of its matrix
+Suppose 𝑇 ∈ ℒ(𝑉) and 𝑒1,…,𝑒𝑛 is a basis of 𝑉. Then
+det𝑇 = detℳ(𝑇,(𝑒1,…,𝑒𝑛)).
+Proof Let 𝑓1,…, 𝑓𝑛 be the standard basis of 𝐅𝑛
+. Let 𝑆∶ 𝐅𝑛
+→ 𝑉 be the linear map
+such that 𝑆𝑓𝑘 = 𝑒𝑘 for each 𝑘 = 1,…,𝑛. Thus ℳ(𝑆,(𝑓1,…, 𝑓𝑛),(𝑒1,…,𝑒𝑛)) and
+ℳ(𝑆−1
+,(𝑒1,…,𝑒𝑛),(𝑓1,…, 𝑓𝑛)) both equal the 𝑛-by-𝑛 identity matrix. Hence
+9.54 ℳ(𝑆−1
+𝑇𝑆,(𝑓1,…, 𝑓𝑛)) = ℳ(𝑇,(𝑒1,…,𝑒𝑛)),
+as follows from two applications of 3.43. Thus
+det𝑇 = det(𝑆−1
+𝑇𝑆)
+= detℳ(𝑆−1
+𝑇𝑆,(𝑓1,…, 𝑓𝑛))
+= detℳ(𝑇,(𝑒1,…,𝑒𝑛)),
+where the first line comes from 9.52, the second line comes from the definition of
+the determinant of a matrix, and the third line follows from 9.54.
+The next result gives a more intuitive way to think about determinants than the
+definition or the formula in 9.46. We could make the characterization in the result
+below the definition of the determinant of an operator on a finite-dimensional
+complex vector space, with the current definition then becoming a consequence
+of that definition.
+9.55 if 𝐅 = 𝐂, then determinant equals product of eigenvalues
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Then det𝑇 equals the product of the eigen-
+values of 𝑇, with each eigenvalue included as many times as its multiplicity.
+Proof There is a basis of 𝑉 with respect to which 𝑇 has an upper-triangular
+matrix with the diagonal entries of the matrix consisting of the eigenvalues of 𝑇,
+with each eigenvalue included as many times as its multiplicity—see 8.37. Thus
+9.53 and 9.48 imply that det𝑇 equals the product of the eigenvalues of 𝑇, with
+each eigenvalue included as many times as its multiplicity.
+As the next result shows, the determinant interacts nicely with the transpose of
+a square matrix, with the dual of an operator, and with the adjoint of an operator
+on an inner product space.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler360 Chapter 9 Multilinear Algebra and Determinants
+9.56 determinant of transpose, dual, or adjoint
+(a) Suppose 𝐴 is a square matrix. Then det𝐴t
+= det𝐴.
+(b) Suppose 𝑇 ∈ ℒ(𝑉). Then det𝑇′
+= det𝑇.
+(c) Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉). Then
+det(𝑇∗) = det𝑇.
+Proof
+(a) Let 𝑛 be a positive integer. Define 𝛼∶ (𝐅𝑛
+)
+𝑛
+→ 𝐅 by
+𝛼(𝑣1,…,𝑣𝑛) = det(( 𝑣1 ⋯ 𝑣𝑛 )
+t
+)
+for all 𝑣1,…,𝑣𝑛 ∈ 𝐅𝑛
+. The formula in 9.46 for the determinant of a matrix
+shows that 𝛼 is an 𝑛-linear form on 𝐅𝑛
+.
+Suppose 𝑣1,…,𝑣𝑛 ∈ 𝐅𝑛
+and 𝑣𝑗 = 𝑣𝑘 for some 𝑗 ≠ 𝑘. If 𝐵 is an 𝑛-by-𝑛 matrix,
+then ( 𝑣1 ⋯ 𝑣𝑛 )
+t
+𝐵 cannot equal the identity matrix because row 𝑗 and
+row𝑘 of( 𝑣1 ⋯ 𝑣𝑛 )
+t
+𝐵 areequal. Thus( 𝑣1 ⋯ 𝑣𝑛 )
+t
+isnotinvertible,
+which implies that 𝛼(𝑣1,…,𝑣𝑛) = 0. Hence 𝛼 is an alternating 𝑛-linear form
+on 𝐅𝑛
+.
+Note that 𝛼 applied to the standard basis of 𝐅𝑛
+equals 1. Because the vector
+space of alternating 𝑛-linear forms on 𝐅𝑛
+has dimension one (by 9.37), this
+implies that 𝛼 is the determinant function. Thus (a) holds.
+(b) The equation det𝑇′
+= det𝑇 follows from (a) and 9.53 and 3.132.
+(c) Pick an orthonormal basis of 𝑉. The matrix of 𝑇∗ with respect to that basis
+is the conjugate transpose of the matrix of 𝑇 with respect to that basis (by
+7.9). Thus 9.53, 9.46, and (a) imply that det(𝑇∗) = det𝑇.
+9.57 helpful results in evaluating determinants
+(a) If either two columns or two rows of a square matrix are equal, then the
+determinant of the matrix equals 0.
+(b) Suppose 𝐴 is a square matrix and 𝐵 is the matrix obtained from 𝐴 by
+swapping either two columns or two rows. Then det𝐴 = −det𝐵.
+(c) If one column or one row of a square matrix is multiplied by a scalar, then
+the value of the determinant is multiplied by the same scalar.
+(d) If a scalar multiple of one column of a square matrix is added to another
+column, then the value of the determinant is unchanged.
+(e) If a scalar multiple of one row of a square matrix is added to another row,
+then the value of the determinant is unchanged.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 361
+Proof All the assertions in this result follow from the result that the maps
+𝑣1,…,𝑣𝑛 ↦ det( 𝑣1 ⋯ 𝑣𝑛 ) and 𝑣1,…,𝑣𝑛 ↦ det( 𝑣1 ⋯ 𝑣𝑛 )
+t
+are both
+alternating 𝑛-linear forms on 𝐅𝑛
+[see 9.45 and 9.56(a)].
+For example, to prove (d) suppose 𝑣1,…,𝑣𝑛 ∈ 𝐅𝑛
+and 𝑐 ∈ 𝐅. Then
+det( 𝑣1 + 𝑐𝑣2 𝑣2 ⋯ 𝑣𝑛 )
+= det( 𝑣1 𝑣2 ⋯ 𝑣𝑛 ) + 𝑐det( 𝑣2 𝑣2 𝑣3 ⋯ 𝑣𝑛 )
+= det( 𝑣1 𝑣2 ⋯ 𝑣𝑛 ),
+where the first equation follows from the multilinearity property and the second
+equation follows from the alternating property. The equation above shows that
+adding a multiple of the second column to the first column does not change the
+value of the determinant. The same conclusion holds for any two columns. Thus
+(d) holds.
+The proof of (e) follows from (d) and from 9.56(a). The proofs of (a), (b), and
+(c) use similar tools and are left to the reader.
+For matrices whose entries are concrete numbers, the result above leads to a
+much faster way to evaluate the determinant than direct application of the formula
+in 9.46. Specifically, apply the Gaussian elimination procedure of swapping
+rows [by 9.57(b), this changes the determinant by a factor of −1], multiplying
+a row by a nonzero constant [by 9.57(c), this changes the determinant by the
+same constant], and adding a multiple of one row to another row [by 9.57(e), this
+does not change the determinant] to produce an upper-triangular matrix, whose
+determinant is the product of the diagonal entries (by 9.48). If your softwarekeeps
+track of the number of row swaps and of the constants used when multiplying a
+row by a constant, then the determinant of the original matrix can be computed.
+Because a number 𝜆 ∈ 𝐅 is an eigenvalue of an operator 𝑇 ∈ ℒ(𝑉) if and
+only if det(𝜆𝐼 − 𝑇) = 0 (by 9.51), you may be tempted to think that one way
+to find eigenvalues quickly is to choose a basis of 𝑉, let 𝐴 = ℳ(𝑇), evaluate
+det(𝜆𝐼 − 𝐴), and then solve the equation det(𝜆𝐼 − 𝐴) = 0 for 𝜆. However, that
+procedure is rarely efficient, except when dim𝑉 = 2 (or when dim𝑉 equals 3 or
+4 if you are willing to use the cubic or quartic formulas). One problem is that the
+procedure described in the paragraph above for evaluating a determinant does not
+work when the matrix includes a symbol (such as the 𝜆 in 𝜆𝐼 − 𝐴). This problem
+arises because decisions need to be made in the Gaussian elimination procedure
+about whether certain quantities equal 0, and those decisions become complicated
+in expressions involving a symbol 𝜆.
+Recall that an operator on a finite-dimensional inner product space is unitary
+if it preserves norms (see 7.51 and the paragraph following it). Every eigenvalue
+of a unitary operator has absolute value 1 (by 7.54). Thus the product of the
+eigenvalues of a unitary operator has absolute value 1. Hence (at least in the case
+𝐅 = 𝐂) the determinant of a unitary operator has absolute value 1 (by 9.55). The
+next result gives a proof that works without the assumption that 𝐅 = 𝐂.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler362 Chapter 9 Multilinear Algebra and Determinants
+9.58 every unitary operator has determinant with absolute value 1
+Suppose 𝑉 is an inner product space and 𝑆 ∈ ℒ(𝑉) is a unitary operator.
+Then |det𝑆| = 1.
+Proof Because 𝑆 is unitary, 𝐼 = 𝑆∗𝑆 (see 7.53). Thus
+1 = det(𝑆∗𝑆) = (det𝑆∗)(det𝑆) = (det𝑆)(det𝑆) = |det𝑆|2
+,
+where the second equality comes from 9.49(a) and the third equality comes from
+9.56(c). The equation above implies that |det𝑆| = 1.
+The determinant of a positive operator on an inner product space meshes well
+with the analogy that such operators correspond to the nonnegative real numbers.
+9.59 every positive operator has nonnegative determinant
+Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉) is a positive operator.
+Then det𝑇 ≥ 0.
+Proof By the spectral theorem (7.29 or 7.31), 𝑉 has an orthonormal basis
+consisting of eigenvectors of 𝑇. Thus by the last bullet point of 9.42, det𝑇 equals
+a product of the eigenvalues of 𝑇, possibly with repetitions. Each eigenvalue of 𝑇
+is a nonnegative number (by 7.38). Thus we conclude that det𝑇 ≥ 0.
+Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉). Recall that the list of
+nonnegative square roots of the eigenvalues of 𝑇∗𝑇 (each included as many times
+as its multiplicity) is called the list of singular values of 𝑇 (see Section 7E).
+9.60 |det𝑇| = product of singular values of 𝑇
+Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉). Then
+|det𝑇| = √det(𝑇∗𝑇) = product of singular values of 𝑇.
+Proof We have
+|det𝑇|2
+= (det𝑇)(det𝑇) = (det(𝑇∗))(det𝑇) = det(𝑇∗𝑇),
+where the middle equality comes from 9.56(c) and the last equality comes from
+9.49(a). Taking square roots of both sides of the equation above shows that
+|det𝑇| = √det(𝑇∗𝑇).
+Let 𝑠1,…,𝑠𝑛 denote the list of singular values of 𝑇. Thus 𝑠1
+2
+,…,𝑠𝑛
+2
+is the
+list of eigenvalues of 𝑇∗𝑇 (with appropriate repetitions), corresponding to an
+orthonormal basis of 𝑉 consisting of eigenvectors of 𝑇∗𝑇. Hence the last bullet
+point of 9.42 implies that
+det(𝑇∗𝑇) = 𝑠1
+2
+⋯𝑠𝑛
+2
+.
+Thus |det𝑇| = 𝑠1 ⋯𝑠𝑛, as desired.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 363
+An operator 𝑇 on a real inner product space changes volume by a factor of the
+productofthesingularvalues(by7.111). Thusthenextresultfollowsimmediately
+from 7.111 and 9.60. This result explains why the absolute value of a determinant
+appears in the change of variables formula in multivariable calculus.
+9.61 𝑇 changes volume by factor of |det𝑇|
+Suppose 𝑇 ∈ ℒ(𝐑𝑛
+) and Ω ⊆ 𝐑𝑛
+. Then
+volume𝑇(Ω) = |det𝑇|(volumeΩ).
+For operators on finite-dimensional complex vector spaces, we now connect
+the determinant to a polynomial that we have previously seen.
+9.62 if 𝐅 = 𝐂, then characteristic polynomial of 𝑇 equals det(𝑧𝐼 − 𝑇)
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). Let 𝜆1,…, 𝜆𝑚 denote the distinct eigenvalues
+of 𝑇, and let 𝑑1,…,𝑑𝑚 denote their multiplicities. Then
+det(𝑧𝐼 − 𝑇) = (𝑧 − 𝜆1)𝑑1 ⋯(𝑧 − 𝜆𝑚)𝑑𝑚 .
+Proof There exists a basis of 𝑉 with respect to which 𝑇 has an upper-triangular
+matrix with each 𝜆𝑘 appearing on the diagonal exactly 𝑑𝑘 times (by 8.37). With
+respect to this basis, 𝑧𝐼 − 𝑇 has an upper-triangular matrix with 𝑧 − 𝜆𝑘 appearing
+onthediagonalexactly𝑑𝑘 timesforeach𝑘. Thus9.48givesthedesiredequation.
+Suppose 𝐅 = 𝐂 and 𝑇 ∈ ℒ(𝑉). The characteristic polynomial of 𝑇 was
+defined in 8.26 as the polynomial on the right side of the equation in 9.62. We
+did not previously define the characteristic polynomial of an operator on a finite-
+dimensional real vector space because such operators may have no eigenvalues,
+making a definition using the right side of the equation in 9.62 inappropriate.
+We now present a new definition of the characteristic polynomial, motivated
+by 9.62. This new definition is valid for both real and complex vector spaces.
+The equation in 9.62 shows that this new definition is equivalent to our previous
+definition when 𝐅 = 𝐂 (8.26).
+9.63 definition: characteristic polynomial
+Suppose 𝑇 ∈ ℒ(𝑉). The polynomial defined by
+𝑧 ↦ det(𝑧𝐼 − 𝑇)
+is called the characteristic polynomial of 𝑇.
+The formula in 9.46 shows that the characteristic polynomial of an opera-
+tor 𝑇 ∈ ℒ(𝑉) is a monic polynomial of degree dim𝑉. The zeros in 𝐅 of the
+characteristic polynomial of 𝑇 are exactly the eigenvalues of 𝑇 (by 9.51).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler364 Chapter 9 Multilinear Algebra and Determinants
+Previously we proved the Cayley–Hamilton theorem (8.29) in the complex
+case. Now we can extend that result to operators on real vector spaces.
+## 9.64 Cayley–Hamilton theorem
+Suppose𝑇 ∈ ℒ(𝑉)and𝑞isthecharacteristicpolynomialof𝑇. Then𝑞(𝑇) = 0.
+Proof If 𝐅 = 𝐂, then the equation 𝑞(𝑇) = 0 follows from 9.62 and 8.29.
+Now suppose 𝐅 = 𝐑. Fix a basis of 𝑉, and let 𝐴 be the matrix of 𝑇 with
+respect to this basis. Let 𝑆 be the operator on 𝐂dim𝑉
+such that the matrix of 𝑆
+(with respect to the standard basis of 𝐂dim𝑉
+) is 𝐴. For all 𝑧 ∈ 𝐑 we have
+𝑞(𝑧) = det(𝑧𝐼 − 𝑇) = det(𝑧𝐼 − 𝐴) = det(𝑧𝐼 − 𝑆).
+Thus 𝑞 is the characteristic polynomial of 𝑆. The case 𝐅 = 𝐂 (first sentence of
+this proof) now implies that 0 = 𝑞(𝑆) = 𝑞(𝐴) = 𝑞(𝑇).
+The Cayley–Hamilton theorem (9.64) implies that the characteristic polyno-
+mialofanoperator𝑇 ∈ ℒ(𝑉) isapolynomialmultipleoftheminimalpolynomial
+of 𝑇 (by 5.29). Thus if the degree of the minimal polynomial of 𝑇 equals dim𝑉,
+then the characteristic polynomial of 𝑇 equals the minimal polynomial of 𝑇. This
+happens for a very large percentage of operators, including over 99.999% of
+4-by-4 matrices with integer entries in [−100,100] (see the paragraph following
+5.25).
+The last sentence in our next result was previously proved in the complex case
+(see 8.54). Now we can give a proof that works on both real and complex vector
+spaces.
+9.65 characteristic polynomial, trace, and determinant
+Suppose 𝑇 ∈ ℒ(𝑉). Let 𝑛 = dim𝑉. Then the characteristic polynomial of 𝑇
+can be written as
+𝑧𝑛
+− (tr𝑇)𝑧𝑛−1
++ ⋯ + (−1)𝑛
+(det𝑇).
+Proof The constant term of a polynomial function of 𝑧 is the value of the poly-
+nomial when 𝑧 = 0. Thus the constant term of the characteristic polynomial of 𝑇
+equals det(−𝑇), which equals (−1)𝑛
+det𝑇 (by the third bullet point of 9.42).
+Fix a basis of 𝑉, and let 𝐴 be the matrix of 𝑇 with respect to this basis. The
+matrix of 𝑧𝐼 − 𝑇 with respect to this basis is 𝑧𝐼 − 𝐴. The term coming from the
+identity permutation {1,…,𝑛} in the formula 9.46 for det(𝑧𝐼 − 𝐴) is
+(𝑧 − 𝐴1,1)⋯(𝑧 − 𝐴𝑛,𝑛).
+Thecoefficientof𝑧𝑛−1
+intheexpressionaboveis−(𝐴1,1+⋯+𝐴𝑛,𝑛), whichequals
+−tr𝑇. The terms in the formula for det(𝑧𝐼 − 𝐴) coming from other elements of
+perm𝑛 contain at most 𝑛−2 factors of the form 𝑧−𝐴𝑘,𝑘 and thus do not contribute
+to the coefficient of 𝑧𝑛−1
+in the characteristic polynomial of 𝑇.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 365
+The next result was proved by Jacques
+Hadamard (1865–1963) in 1893.
+In the result below, think of the
+columns of the 𝑛-by-𝑛 matrix 𝐴 as ele-
+ments of 𝐅𝑛
+. The norms appearing below
+then arise from the standard inner product on 𝐅𝑛
+. Recall that the notation 𝑅⋅,𝑘 in
+the proof below means the 𝑘th
+column of the matrix 𝑅 (as was defined in 3.44).
+## 9.66 Hadamard’s inequality
+Suppose 𝐴 is an 𝑛-by-𝑛 matrix. Let 𝑣1,…,𝑣𝑛 denote the columns of 𝐴. Then
+|det𝐴| ≤
+𝑛
+∏
+𝑘=1
+‖𝑣𝑘‖.
+Proof If 𝐴 is not invertible, then det𝐴 = 0 and hence the desired inequality
+holds in this case.
+Thus assume that 𝐴 is invertible. The QR factorization (7.58) tells us that
+there exist a unitary matrix 𝑄 and an upper-triangular matrix 𝑅 whose diagonal
+contains only positive numbers such that 𝐴 = 𝑄𝑅. We have
+|det𝐴| = |det𝑄||det𝑅|
+= |det𝑅|
+=
+𝑛
+∏
+𝑘=1
+𝑅𝑘,𝑘
+≤
+𝑛
+∏
+𝑘=1
+‖𝑅⋅,𝑘‖
+=
+𝑛
+∏
+𝑘=1
+‖𝑄𝑅⋅,𝑘‖
+=
+𝑛
+∏
+𝑘=1
+‖𝑣𝑘‖,
+where the first line comes from 9.49(b), the second line comes from 9.58, the
+third line comes from 9.48, and the fifth line holds because 𝑄 is an isometry.
+To give a geometric interpretation to Hadamard’s inequality, suppose 𝐅 = 𝐑.
+Let 𝑇 ∈ ℒ(𝐑𝑛
+) be the operator such that 𝑇𝑒𝑘 = 𝑣𝑘 for each 𝑘 = 1,…,𝑛, where
+𝑒1,…,𝑒𝑛 is the standard basis of 𝐑𝑛
+. Then 𝑇 maps the box 𝑃(𝑒1,…,𝑒𝑛) onto the
+parallelepiped 𝑃(𝑣1,…,𝑣𝑛) [see 7.102 and 7.105 for a review of this notation
+and terminology]. Because the box 𝑃(𝑒1,…,𝑒𝑛) has volume 1, this implies (by
+9.61) that the parallelepiped 𝑃(𝑣1,…,𝑣𝑛) has volume |det𝑇|, which equals |det𝐴|.
+Thus Hadamard’s inequality above can be interpreted to say that among all paral-
+lelepipeds whose edges have lengths ‖𝑣1‖,…,‖𝑣𝑛‖, the ones with largest volume
+have orthogonal edges (and thus have volume ∏
+𝑛
+𝑘=1
+‖𝑣𝑘‖).
+For a necessary and sufficient condition for Hadamard’s inequality to be an
+equality, see Exercise 18.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler366 Chapter 9 Multilinear Algebra and Determinants
+The matrix in the next result is called the Vandermonde matrix. Vandermonde
+matrices have important applications in polynomial interpolation, the discrete
+Fourier transform, and other areas of mathematics. The proof of the next result is
+a nice illustration of the power of switching between matrices and linear maps.
+9.67 determinant of Vandermonde matrix
+Suppose 𝑛 > 1 and 𝛽1,…,𝛽𝑛 ∈ 𝐅. Then
+det
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 𝛽1 𝛽1
+2
+⋯ 𝛽1
+𝑛−1
+1 𝛽2 𝛽2
+2
+⋯ 𝛽2
+𝑛−1
+⋱
+1 𝛽𝑛 𝛽𝑛
+2
+⋯ 𝛽𝑛
+𝑛−1
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+= ∏
+1≤𝑗<𝑘≤𝑛
+(𝛽𝑘 − 𝛽𝑗).
+Proof Let 1,𝑧,…,𝑧𝑛−1
+be the standard basis of 𝒫𝑛−1(𝐅) and let 𝑒1,…,𝑒𝑛 denote
+the standard basis of 𝐅𝑛
+. Define a linear map 𝑆∶ 𝒫𝑛−1(𝐅) → 𝐅𝑛
+by
+𝑆𝑝 = (𝑝(𝛽1),…,𝑝(𝛽𝑛)).
+Let 𝐴 denote the Vandermonde matrix shown in the statement of this result.
+Note that
+𝐴 = ℳ(𝑆,(1,𝑧,…,𝑧𝑛−1
+),(𝑒1,…,𝑒𝑛)).
+Let 𝑇∶ 𝒫𝑛−1(𝐅) → 𝒫𝑛−1(𝐅) be the operator on 𝒫𝑛−1(𝐅) such that 𝑇1 = 1 and
+𝑇𝑧𝑘
+= (𝑧 − 𝛽1)(𝑧 − 𝛽2)⋯(𝑧 − 𝛽𝑘)
+for 𝑘 = 1,…,𝑛 − 1. Let 𝐵 = ℳ(𝑇,(1,𝑧,…,𝑧𝑛−1
+),(1,𝑧,…,𝑧𝑛−1
+)). Then 𝐵 is an
+upper-triangular matrix all of whose diagonal entries equal 1. Thus det𝐵 = 1 (by
+9.48).
+Let 𝐶 = ℳ(𝑆𝑇,(1,𝑧,…,𝑧𝑛−1
+),(𝑒1,…,𝑒𝑛)). Thus 𝐶 = 𝐴𝐵 (by 3.81), which
+implies that
+det𝐴 = (det𝐴)(det𝐵) = det𝐶.
+The definitions of 𝐶, 𝑆, and 𝑇 show that 𝐶 equals
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+1 0 0 ⋯ 0
+1 𝛽2 − 𝛽1 0 ⋯ 0
+1 𝛽3 − 𝛽1 (𝛽3 − 𝛽1)(𝛽3 − 𝛽2) ⋯ 0
+⋱
+1 𝛽𝑛 − 𝛽1 (𝛽𝑛 − 𝛽1)(𝛽𝑛 − 𝛽2) ⋯ (𝛽𝑛 − 𝛽1)(𝛽𝑛 − 𝛽2)⋯(𝛽𝑛 − 𝛽𝑛−1)
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+Now det𝐴 = det𝐶 = ∏
+1≤𝑗<𝑘≤𝑛
+(𝛽𝑘 − 𝛽𝑗), where we have used 9.56(a) and 9.48.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 367
+Exercises 9C
+1 Proveorgiveacounterexample: 𝑆,𝑇 ∈ ℒ(𝑉) ⟹ det(𝑆+𝑇) = det𝑆+det𝑇.
+## 2 Suppose the first column of a square matrix 𝐴 consists of all zeros except
+possibly the first entry 𝐴1,1. Let 𝐵 be the matrix obtained from 𝐴 by deleting
+the first row and the first column of 𝐴. Show that det𝐴 = 𝐴1,1 det𝐵.
+## 3 Suppose 𝑇 ∈ ℒ(𝑉) is nilpotent. Prove that det(𝐼 + 𝑇) = 1.
+4 Suppose 𝑆 ∈ ℒ(𝑉). Prove that 𝑆 is unitary if and only if |det𝑆| = ‖𝑆‖ = 1.
+## 5 Suppose 𝐴 is a block upper-triangular matrix
+𝐴 =
+⎛ ⎜ ⎜ ⎜
+⎝
+𝐴1 ∗
+⋱
+0 𝐴𝑚
+⎞ ⎟ ⎟ ⎟
+⎠
+,
+where each 𝐴𝑘 along the diagonal is a square matrix. Prove that
+det𝐴 = (det𝐴1)⋯(det𝐴𝑚).
+6 Suppose 𝐴 = ( 𝑣1 ⋯ 𝑣𝑛 ) is an 𝑛-by-𝑛 matrix, with 𝑣𝑘 denoting the 𝑘th
+column of 𝐴. Show that if (𝑚1,…,𝑚𝑛) ∈ perm𝑛, then
+det( 𝑣𝑚1
+⋯ 𝑣𝑚𝑛
+) = (sign(𝑚1,…,𝑚𝑛))det𝐴.
+## 7 Suppose 𝑇 ∈ ℒ(𝑉) is invertible. Let 𝑝 denote the characteristic polynomial
+of 𝑇 and let 𝑞 denote the characteristic polynomial of 𝑇−1
+. Prove that
+𝑞(𝑧) =
+1
+𝑝(0)
+𝑧dim𝑉
+𝑝(
+1
+𝑧
+)
+for all nonzero 𝑧 ∈ 𝐅.
+## 8 Suppose 𝑇 ∈ ℒ(𝑉) is an operator with no eigenvalues (which implies that
+𝐅 = 𝐑). Prove that det𝑇 > 0.
+## 9 Suppose that 𝑉 is a real vector space of even dimension, 𝑇 ∈ ℒ(𝑉), and
+det𝑇 < 0. Prove that 𝑇 has at least two distinct eigenvalues.
+## 10 Suppose 𝑉 is a real vector space of odd dimension and 𝑇 ∈ ℒ(𝑉). Without
+using the minimal polynomial, prove that 𝑇 has an eigenvalue.
+This result was previously proved without using determinants or the charac-
+teristic polynomial—see 5.34.
+11 Prove or give a counterexample: If 𝐅 = 𝐑, 𝑇 ∈ ℒ(𝑉), and det𝑇 > 0, then
+𝑇 has a square root.
+If 𝐅 = 𝐂, 𝑇 ∈ ℒ(𝑉), and det𝑇 ≠ 0, then 𝑇 has a square root (see 8.41).
+Linear Algebra Done Right, fourth edition, by Sheldon Axler368 Chapter 9 Multilinear Algebra and Determinants
+12 Suppose 𝑆,𝑇 ∈ ℒ(𝑉) and 𝑆 is invertible. Define 𝑝∶ 𝐅 → 𝐅 by
+𝑝(𝑧) = det(𝑧𝑆 − 𝑇).
+Prove that 𝑝 is a polynomial of degree dim𝑉 and that the coefficient of 𝑧dim𝑉
+in this polynomial is det𝑆.
+13 Suppose 𝐅 = 𝐂, 𝑇 ∈ ℒ(𝑉), and 𝑛 = dim𝑉 > 2. Let 𝜆1,…, 𝜆𝑛 denote
+the eigenvalues of 𝑇, with each eigenvalue included as many times as its
+multiplicity.
+(a) Findaformulaforthecoefficientof𝑧𝑛−2
+inthecharacteristicpolynomial
+of 𝑇 in terms of 𝜆1,…, 𝜆𝑛.
+(b) Find a formula for the coefficient of 𝑧 in the characteristic polynomial
+of 𝑇 in terms of 𝜆1,…, 𝜆𝑛.
+## 14 Suppose 𝑉 is an inner product space and 𝑇 is a positive operator on 𝑉. Prove
+that
+det√𝑇 = √det𝑇.
+## 15 Suppose 𝑉 is an inner product space and 𝑇 ∈ ℒ(𝑉). Use the polar decom-
+position to give a proof that
+|det𝑇| = √det(𝑇∗𝑇)
+that is different from the proof given earlier (see 9.60).
+16 Suppose 𝑇 ∈ ℒ(𝑉). Define 𝑔∶ 𝐅 → 𝐅 by 𝑔(𝑥) = det(𝐼 + 𝑥𝑇). Show that
+𝑔’(0) = tr𝑇.
+Look for a clean solution to this exercise, without using the explicit but
+complicated formula for the determinant of a matrix.
+17 Suppose 𝑎,𝑏,𝑐 are positive numbers. Find the volume of the ellipsoid
+{(𝑥,𝑦,𝑧) ∈ 𝐑3
+∶
+𝑥2
+𝑎2
++
+𝑦2
+𝑏2
++
+𝑧2
+𝑐2
+< 1}
+by finding a set Ω ⊆ 𝐑3
+whose volume you know and an operator 𝑇 on 𝐑3
+such that 𝑇(Ω) equals the ellipsoid above.
+## 18 Suppose that 𝐴 is an invertible square matrix. Prove that Hadamard’s
+inequality (9.66) is an equality if and only if each column of 𝐴 is orthogonal
+to the other columns.
+19 Suppose 𝑉 is an inner product space, 𝑒1,…,𝑒𝑛 is an orthonormal basis of 𝑉,
+and 𝑇 ∈ ℒ(𝑉) is a positive operator.
+(a) Prove that det𝑇 ≤ ∏
+𝑛
+𝑘=1
+⟨𝑇𝑒𝑘,𝑒𝑘⟩.
+(b) Prove that if 𝑇 is invertible, then the inequality in (a) is an equality if
+and only if 𝑒𝑘 is an eigenvector of 𝑇 for each 𝑘 = 1,…,𝑛.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9C Determinants 369
+20 Suppose 𝐴 is an 𝑛-by-𝑛 matrix, and suppose 𝑐 is such that |𝐴𝑗,𝑘| ≤ 𝑐 for all
+𝑗,𝑘 ∈ {1,…,𝑛}. Prove that
+|det𝐴| ≤ 𝑐𝑛
+𝑛𝑛/2
+.
+The formula for the determinant of a matrix (9.46) shows that |det𝐴| ≤ 𝑐𝑛
+𝑛!.
+However, the estimate given by this exercise is much better. For example, if
+𝑐 = 1 and 𝑛 = 100, then 𝑐𝑛
+𝑛! ≈ 10158
+, but the estimate given by this exercise
+is the much smaller number 10100
+. If 𝑛 is an integer power of 2, then the
+inequality above is sharp and cannot be improved.
+21 Suppose 𝑛 is a positive integer and 𝛿∶ 𝐂𝑛,𝑛
+→ 𝐂 is a function such that
+𝛿(𝐴𝐵) = 𝛿(𝐴) ⋅ 𝛿(𝐵)
+for all 𝐴,𝐵 ∈ 𝐂𝑛,𝑛
+and 𝛿(𝐴) equals the product of the diagonal entries of 𝐴
+for each diagonal matrix 𝐴 ∈ 𝐂𝑛,𝑛
+. Prove that
+𝛿(𝐴) = det𝐴
+for all 𝐴 ∈ 𝐂𝑛,𝑛
+.
+Recall that 𝐂𝑛,𝑛
+denotes the set of 𝑛-by-𝑛 matrices with entries in 𝐂. This
+exercise shows that the determinant is the unique function defined on square
+matrices that is multiplicative and has the desired behavior on diagonal
+matrices. This result is analogous to Exercise 10 in Section 8D, which
+shows that the trace is uniquely determined by its algebraic properties.
+I find that in my own elementary lectures, I have, for pedagogical reasons, pushed
+determinants more and more into the background. Too often I have had the expe-
+rience that, while the students acquired facility with the formulas, which are so
+useful in abbreviating long expressions, they often failed to gain familiarity with
+their meaning, and skill in manipulation prevented the student from going into all
+the details of the subject and so gaining a mastery.
+—Elementary Mathematics from an Advanced Standpoint: Geometry, Felix Klein
+Linear Algebra Done Right, fourth edition, by Sheldon Axler370 Chapter 9 Multilinear Algebra and Determinants
+9D Tensor Products
+Tensor Product of Two Vector Spaces
+The motivation for our next topic comes from wanting to form the product of
+a vector 𝑣 ∈ 𝑉 and a vector 𝑤 ∈ 𝑊. This product will be denoted by 𝑣 ⊗ 𝑤,
+pronounced “𝑣 tensor 𝑤”, and will be an element of some new vector space called
+𝑉⊗ 𝑊 (also pronounced “𝑉 tensor 𝑊 ”).
+We already have a vector space 𝑉× 𝑊 (see Section 3E), called the product of
+𝑉 and 𝑊. However, 𝑉× 𝑊 will not serve our purposes here because it does not
+provide a natural way to multiply an element of 𝑉 by an element of 𝑊. We would
+like our tensor product to satisfy some of the usual properties of multiplication.
+For example, we would like the distributive property to be satisfied, meaning that
+if 𝑣1,𝑣2,𝑣 ∈ 𝑉 and 𝑤1,𝑤2,𝑤 ∈ 𝑊, then
+(𝑣1 + 𝑣2) ⊗ 𝑤 = 𝑣1 ⊗ 𝑤 + 𝑣2 ⊗ 𝑤 and 𝑣 ⊗ (𝑤1 + 𝑤2) = 𝑣 ⊗ 𝑤1 + 𝑣 ⊗ 𝑤2.
+To produce ⊗ in TEX, type \otimes. We would also like scalar multiplica-
+tion to interact well with this new multi-
+plication, meaning that
+𝜆(𝑣 ⊗ 𝑤) = (𝜆𝑣) ⊗ 𝑤 = 𝑣 ⊗ (𝜆𝑤)
+for all 𝜆 ∈ 𝐅, 𝑣 ∈ 𝑉, and 𝑤 ∈ 𝑊.
+Furthermore, it would be nice if each basis of 𝑉 when combined with each
+basis of 𝑊 produced a basis of 𝑉⊗ 𝑊. Specifically, if 𝑒1,…,𝑒𝑚 is a basis of 𝑉
+and 𝑓1,…, 𝑓𝑛 is a basis of 𝑊, then we would like a list (in any order) consisting
+of 𝑒𝑗 ⊗ 𝑓𝑘, as 𝑗 ranges from 1 to 𝑚 and 𝑘 ranges from 1 to 𝑛, to be a basis of
+𝑉⊗𝑊. This implies that dim(𝑉⊗𝑊) should equal (dim𝑉)(dim𝑊). Recall that
+dim(𝑉× 𝑊) = dim𝑉 + dim𝑊 (see 3.92), which shows that the product 𝑉× 𝑊
+will not serve our purposes here.
+To produce a vector space whose dimension is (dim𝑉)(dim𝑊) in a natural
+fashion from 𝑉 and 𝑊, we look at the vector space of bilinear functionals, as
+defined below.
+9.68 definition: bilinear functional on 𝑉× 𝑊, the vector space ℬ(𝑉,𝑊)
+• A bilinear functional on 𝑉 × 𝑊 is a function 𝛽∶ 𝑉 × 𝑊 → 𝐅 such that
+𝑣 ↦ 𝛽(𝑣,𝑤) is a linear functional on 𝑉 for each 𝑤 ∈ 𝑊 and 𝑤 ↦ 𝛽(𝑣,𝑤)
+is a linear functional on 𝑊 for each 𝑣 ∈ 𝑉.
+• The vector space of bilinear functionals on 𝑉× 𝑊 is denoted by ℬ(𝑉,𝑊).
+If 𝑊 = 𝑉, then a bilinear functional on 𝑉 × 𝑊 is a bilinear form; see 9.1.
+The operations of addition and scalar multiplication on ℬ(𝑉,𝑊) are defined
+to be the usual operations of addition and scalar multiplication of functions. As
+you can verify, these operations make ℬ(𝑉,𝑊) into a vector space whose additive
+identity is the zero function from 𝑉 × 𝑊 to 𝐅.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9D Tensor Products 371
+9.69 example: bilinear functionals
+• Suppose 𝜑 ∈ 𝑉′
+and 𝜏 ∈ 𝑊′
+. Define 𝛽∶ 𝑉× 𝑊 → 𝐅 by 𝛽(𝑣,𝑤) = 𝜑(𝑣)𝜏(𝑤).
+Then 𝛽 is a bilinear functional on 𝑉× 𝑊.
+• Suppose 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊. Define 𝛽∶ 𝑉′
+× 𝑊′
+→ 𝐅 by 𝛽(𝜑,𝜏) = 𝜑(𝑣)𝜏(𝑤).
+Then 𝛽 is a bilinear functional on 𝑉′
+× 𝑊′
+.
+• Define 𝛽∶ 𝑉× 𝑉′
+→ 𝐅 by 𝛽(𝑣,𝜑) = 𝜑(𝑣). Then 𝛽 is a bilinear functional on
+𝑉× 𝑉′
+.
+• Suppose 𝜑 ∈ 𝑉′
+. Define 𝛽∶ 𝑉× ℒ(𝑉) → 𝐅 by 𝛽(𝑣,𝑇) = 𝜑(𝑇𝑣). Then 𝛽 is a
+bilinear functional on 𝑉× ℒ(𝑉).
+• Suppose𝑚and𝑛arepositiveintegers. Define𝛽∶ 𝐅𝑚,𝑛
+×𝐅𝑛,𝑚
+→ 𝐅 by𝛽(𝐴,𝐵) =
+tr(𝐴𝐵). Then 𝛽 is a bilinear functional on 𝐅𝑚,𝑛
+× 𝐅𝑛,𝑚
+.
+9.70 dimension of the vector space of bilinear functionals
+dimℬ(𝑉,𝑊) = (dim𝑉)(dim𝑊).
+Proof Let 𝑒1,…,𝑒𝑚 be a basis of 𝑉 and 𝑓1,…, 𝑓𝑛 be a basis of 𝑊. For a bilinear
+functional 𝛽 ∈ ℬ(𝑉,𝑊), let ℳ(𝛽) be the 𝑚-by-𝑛 matrix whose entry in row 𝑗,
+column 𝑘 is 𝛽(𝑒𝑗, 𝑓𝑘). The map 𝛽 ↦ ℳ(𝛽) is a linear map of ℬ(𝑉,𝑊) into 𝐅𝑚,𝑛
+.
+For a matrix 𝐶 ∈ 𝐅𝑚,𝑛
+, define a bilinear functional 𝛽𝐶 on 𝑉× 𝑊 by
+𝛽𝐶(𝑎1𝑒1 + ⋯ + 𝑎𝑚𝑒𝑚,𝑏1 𝑓1 + ⋯ + 𝑏𝑛 𝑓𝑛) =
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝐶𝑗,𝑘𝑎𝑗𝑏𝑘
+for 𝑎1,…,𝑎𝑚,𝑏1,…,𝑏𝑛 ∈ 𝐅.
+The linear map 𝛽 ↦ ℳ(𝛽) from ℬ(𝑉,𝑊) to 𝐅𝑚,𝑛
+and the linear map 𝐶 ↦ 𝛽𝐶
+from 𝐅𝑚,𝑛
+to ℬ(𝑉,𝑊) are inverses of each other because 𝛽ℳ(𝛽) = 𝛽 for all
+𝛽 ∈ ℬ(𝑉,𝑊) and ℳ(𝛽𝐶) = 𝐶 for all 𝐶 ∈ 𝐅𝑚,𝑛
+, as you should verify.
+Thusbothmapsareisomorphismsandthetwospacesthattheyconnecthavethe
+same dimension. Hence dimℬ(𝑉,𝑊) = dim𝐅𝑚,𝑛
+= 𝑚𝑛 = (dim𝑉)(dim𝑊).
+Several different definitions of 𝑉⊗ 𝑊 appear in the mathematical literature.
+These definitions are equivalent to each other, at least in the finite-dimensional
+context, because any two vector spaces of the same dimension are isomorphic.
+The result above states that ℬ(𝑉,𝑊) has the dimension that we seek, as do
+ℒ(𝑉,𝑊) and 𝐅dim𝑉,dim𝑊
+. Thus it may be tempting to define 𝑉⊗𝑊 to be ℬ(𝑉,𝑊)
+or ℒ(𝑉,𝑊) or 𝐅dim𝑉,dim𝑊
+. However, none of those definitions would lead to a
+basis-free definition of 𝑣 ⊗ 𝑤 for 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊.
+The following definition, while it may seem a bit strange and abstract at first,
+has the huge advantage that it defines 𝑣 ⊗ 𝑤 in a basis-free fashion. We define
+𝑉⊗ 𝑊 to be the vector space of bilinear functionals on 𝑉′
+× 𝑊′
+instead of the
+more tempting choice of the vector space of bilinear functionals on 𝑉× 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler372 Chapter 9 Multilinear Algebra and Determinants
+9.71 definition: tensor product, 𝑉⊗ 𝑊, 𝑣 ⊗ 𝑤
+• The tensor product 𝑉⊗ 𝑊 is defined to be ℬ(𝑉′
+,𝑊′
+).
+• For 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊, the tensor product 𝑣 ⊗ 𝑤 is the element of 𝑉⊗ 𝑊
+defined by
+(𝑣 ⊗ 𝑤)(𝜑,𝜏) = 𝜑(𝑣)𝜏(𝑤)
+for all (𝜑,𝜏) ∈ 𝑉′
+× 𝑊′
+.
+Wecanquicklyprovethatthedefinitionof𝑉⊗𝑊 givesitthedesireddimension.
+9.72 dimension of the tensor product of two vector spaces
+dim(𝑉⊗ 𝑊) = (dim𝑉)(dim𝑊).
+Proof Because a vector space and its dual have the same dimension (by 3.111),
+we have dim𝑉′
+= dim𝑉 and dim𝑊′
+= dim𝑊. Thus 9.70 tells us that the
+dimension of ℬ(𝑉′
+,𝑊′
+) equals (dim𝑉)(dim𝑊).
+To understand the definition of the tensor product 𝑣 ⊗ 𝑤 of two vectors 𝑣 ∈ 𝑉
+and 𝑤 ∈ 𝑊, focus on the kind of object it is. An element of 𝑉⊗ 𝑊 is a bilinear
+functional on 𝑉′
+×𝑊′
+, and in particular it is a function from 𝑉′
+×𝑊′
+to 𝐅. Thus for
+each element of 𝑉′
+× 𝑊′
+, it should produce an element of 𝐅. The definition above
+has this behavior, because 𝑣 ⊗ 𝑤 applied to a typical element (𝜑,𝜏) of 𝑉′
+× 𝑊′
+produces the number 𝜑(𝑣)𝜏(𝑤).
+The somewhat abstract nature of 𝑣⊗𝑤 should not matter. The important point
+is the behavior of these objects. The next result shows that tensor products of
+vectors have the desired bilinearity properties.
+9.73 bilinearity of tensor product
+Suppose 𝑣,𝑣1,𝑣2 ∈ 𝑉 and 𝑤,𝑤1,𝑤2 ∈ 𝑊 and 𝜆 ∈ 𝐅. Then
+(𝑣1 + 𝑣2) ⊗ 𝑤 = 𝑣1 ⊗ 𝑤 + 𝑣2 ⊗ 𝑤 and 𝑣 ⊗ (𝑤1 + 𝑤2) = 𝑣 ⊗ 𝑤1 + 𝑣 ⊗ 𝑤2
+and
+𝜆(𝑣 ⊗ 𝑤) = (𝜆𝑣) ⊗ 𝑤 = 𝑣 ⊗ (𝜆𝑤).
+Proof Suppose (𝜑,𝜏) ∈ 𝑉′
+× 𝑊′
+. Then
+((𝑣1 + 𝑣2) ⊗ 𝑤)(𝜑,𝜏) = 𝜑(𝑣1 + 𝑣2)𝜏(𝑤)
+= 𝜑(𝑣1)𝜏(𝑤) + 𝜑(𝑣2)𝜏(𝑤)
+= (𝑣1 ⊗ 𝑤)(𝜑,𝜏) + (𝑣2 ⊗ 𝑤)(𝜑,𝜏)
+= (𝑣1 ⊗ 𝑤 + 𝑣2 ⊗ 𝑤)(𝜑,𝜏).
+Thus (𝑣1 + 𝑣2) ⊗ 𝑤 = 𝑣1 ⊗ 𝑤 + 𝑣2 ⊗ 𝑤.
+The other two equalities are proved similarly.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9D Tensor Products 373
+Lists are, by definition, ordered. The order matters when, for example, we
+form the matrix of an operator with respect to a basis. For lists in this section
+with two indices, such as {𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 in the next result, the ordering
+does not matter and we do not specify it—just choose any convenient ordering.
+The linear independence of elements of 𝑉 ⊗ 𝑊 in (a) of the result below
+captures the idea that there are no relationships among vectors in 𝑉⊗ 𝑊 other
+than the relationships that come from bilinearity of the tensor product (see 9.73)
+and the relationships that may be present due to linear dependence of a list of
+vectors in 𝑉 or a list of vectors in 𝑊.
+9.74 basis of 𝑉⊗ 𝑊
+Suppose 𝑒1,…,𝑒𝑚 is a list of vectors in 𝑉 and 𝑓1,…, 𝑓𝑛 is a list of vectors
+in 𝑊.
+(a) If 𝑒1,…,𝑒𝑚 and 𝑓1,…, 𝑓𝑛 are both linearly independent lists, then
+{𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛
+is a linearly independent list in 𝑉⊗ 𝑊.
+(b) If 𝑒1,…,𝑒𝑚 is a basis of 𝑉 and 𝑓1,…, 𝑓𝑛 is a basis of 𝑊, then the list
+{𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 is a basis of 𝑉⊗ 𝑊.
+Proof Toprove(a),suppose𝑒1,…,𝑒𝑚 and 𝑓1,…, 𝑓𝑛 arebothlinearlyindependent
+lists. This linear independence and the linear map lemma (3.4) imply that there
+exist 𝜑1,…,𝜑𝑚 ∈ 𝑉′
+and 𝜏1,…,𝜏𝑛 ∈ 𝑊′
+such that
+𝜑𝑗(𝑒𝑘) =
+⎧ {
+⎨ { ⎩
+1 if 𝑗 = 𝑘,
+0 if 𝑗 ≠ 𝑘
+and 𝜏𝑗(𝑓𝑘) =
+⎧ {
+⎨ { ⎩
+1 if 𝑗 = 𝑘,
+0 if 𝑗 ≠ 𝑘,
+where 𝑗,𝑘 ∈ {1,…,𝑚} in the first equation and 𝑗,𝑘 ∈ {1,…,𝑛} in the second
+equation.
+Suppose {𝑎𝑗,𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 is a list of scalars such that
+9.75
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑎𝑗,𝑘(𝑒𝑗 ⊗ 𝑓𝑘) = 0.
+Note that (𝑒𝑗 ⊗ 𝑓𝑘)(𝜑𝑀,𝜏𝑁) equals 1 if 𝑗 = 𝑀 and 𝑘 = 𝑁, and equals 0 otherwise.
+Thus applying both sides of 9.75 to (𝜑𝑀,𝜏𝑁) shows that 𝑎𝑀,𝑁 = 0, proving that
+{𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 is linearly independent.
+Now (b) follows from (a), the equation dim𝑉⊗ 𝑊 = (dim𝑉)(dim𝑊) [see
+9.72], and the result that a linearly independent list of the right length is a basis
+(see 2.38).
+Every element of 𝑉⊗ 𝑊 is a finite sum of elements of the form 𝑣 ⊗ 𝑤, where
+𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊, as implied by (b) in the result above. However, if dim𝑉 > 1
+and dim𝑊 > 1, then Exercise 4 shows that
+{𝑣 ⊗ 𝑤 ∶ (𝑣,𝑤) ∈ 𝑉× 𝑊} ≠ 𝑉⊗ 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler374 Chapter 9 Multilinear Algebra and Determinants
+9.76 example: tensor product of element of 𝐅𝑚
+with element of 𝐅𝑛
+Suppose 𝑚 and 𝑛 are positive integers. Let 𝑒1,…,𝑒𝑚 denote the standard basis
+of 𝐅𝑚
+and let 𝑓1,…, 𝑓𝑛 denote the standard basis of 𝐅𝑛
+. Suppose
+𝑣 = (𝑣1,…,𝑣𝑚) ∈ 𝐅𝑚
+and 𝑤 = (𝑤1,…,𝑤𝑛) ∈ 𝐅𝑛
+.
+Then
+𝑣 ⊗ 𝑤 = (
+𝑚
+∑
+𝑗 = 1
+𝑣𝑗𝑒𝑗) ⊗ (
+𝑛
+∑
+𝑘=1
+𝑤𝑘 𝑓𝑘)
+=
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+(𝑣𝑗𝑤𝑘)(𝑒𝑗 ⊗ 𝑓𝑘).
+Thus with respect to the basis {𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 of 𝐅𝑚
+⊗ 𝐅𝑛
+provided by
+9.74(b), the coefficients of 𝑣⊗𝑤 are the numbers {𝑣𝑗𝑤𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛. If instead
+of writing these numbers in a list, we write them in an 𝑚-by-𝑛 matrix with 𝑣𝑗𝑤𝑘
+in row 𝑗, column 𝑘, then we can identify 𝑣 ⊗ 𝑤 with the 𝑚-by-𝑛 matrix
+⎛ ⎜ ⎜ ⎜ ⎜ ⎜ ⎜
+⎝
+𝑣1𝑤1 ⋯ 𝑣1𝑤𝑛
+⋱
+𝑣𝑚𝑤1 ⋯ 𝑣𝑚𝑤𝑛
+⎞ ⎟ ⎟ ⎟ ⎟ ⎟ ⎟
+⎠
+.
+See Exercises 5 and 6 for practice in using the identification from the example
+above.
+We now define bilinear maps, which differ from bilinear functionals in that
+the target space can be an arbitrary vector space rather than just the scalar field.
+9.77 definition: bilinear map
+A bilinear map from 𝑉× 𝑊 to a vector space 𝑈 is a function Γ∶ 𝑉× 𝑊 → 𝑈
+such that 𝑣 ↦ Γ(𝑣,𝑤) is a linear map from 𝑉 to 𝑈 for each 𝑤 ∈ 𝑊 and
+𝑤 ↦ Γ(𝑣,𝑤) is a linear map from 𝑊 to 𝑈 for each 𝑣 ∈ 𝑉.
+9.78 example: bilinear maps
+• Every bilinear functional on 𝑉× 𝑊 is a bilinear map from 𝑉× 𝑊 to 𝐅.
+• The function Γ∶ 𝑉×𝑊 → 𝑉⊗𝑊 defined by Γ(𝑣,𝑤) = 𝑣⊗𝑤 is a bilinear map
+from 𝑉× 𝑊 to 𝑉⊗ 𝑊 (by 9.73).
+• The function Γ∶ ℒ(𝑉) × ℒ(𝑉) → ℒ(𝑉) defined by Γ(𝑆,𝑇) = 𝑆𝑇 is a bilinear
+map from ℒ(𝑉) × ℒ(𝑉) to ℒ(𝑉).
+• The function Γ∶ 𝑉× ℒ(𝑉,𝑊) → 𝑊 defined by Γ(𝑣,𝑇) = 𝑇𝑣 is a bilinear map
+from 𝑉× ℒ(𝑉,𝑊) to 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9D Tensor Products 375
+Tensorproductsallowustoconvertbilinearmapson𝑉×𝑊 intolinearmapson
+𝑉⊗𝑊 (and vice versa), as shown by the next result. In the mathematical literature,
+(a) of the result below is called the “universal property” of tensor products.
+9.79 converting bilinear maps to linear maps
+Suppose 𝑈 is a vector space.
+(a) Suppose Γ∶ 𝑉 × 𝑊 → 𝑈 is a bilinear map. Then there exists a unique
+linear map ̂ Γ∶ 𝑉⊗ 𝑊 → 𝑈 such that
+̂ Γ(𝑣 ⊗ 𝑤) = Γ(𝑣,𝑤)
+for all (𝑣,𝑤) ∈ 𝑉× 𝑊.
+(b) Conversely, suppose 𝑇∶ 𝑉⊗ 𝑊 → 𝑈 is a linear map. Then there exists a
+unique bilinear map 𝑇#
+∶ 𝑉× 𝑊 → 𝑈 such that
+𝑇#
+(𝑣,𝑤) = 𝑇(𝑣 ⊗ 𝑤)
+for all (𝑣,𝑤) ∈ 𝑉× 𝑊.
+Proof Let𝑒1,…,𝑒𝑚 beabasisof𝑉 andlet 𝑓1,…, 𝑓𝑛 beabasisof𝑊. Bythelinear
+map lemma (3.4) and 9.74(b), there exists a unique linear map ̂ Γ∶ 𝑉⊗ 𝑊 → 𝑈
+such that
+̂ Γ(𝑒𝑗 ⊗ 𝑓𝑘) = Γ(𝑒𝑗, 𝑓𝑘)
+for all 𝑗 ∈ {1,…,𝑚} and 𝑘 ∈ {1,…,𝑛}.
+Now suppose (𝑣,𝑤) ∈ 𝑉× 𝑊. There exist 𝑎1,…,𝑎𝑚,𝑏1,…,𝑏𝑛 ∈ 𝐅 such that
+𝑣 = 𝑎1𝑒1 + ⋯ + 𝑎𝑚𝑒𝑚 and 𝑤 = 𝑏1 𝑓1 + ⋯ + 𝑏𝑛 𝑓𝑛. Thus
+̂ Γ(𝑣 ⊗ 𝑤) = ̂ Γ(
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+(𝑎𝑗𝑏𝑘)(𝑒𝑗 ⊗ 𝑓𝑘))
+=
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑎𝑗𝑏𝑘
+̂ Γ(𝑒𝑗 ⊗ 𝑓𝑘)
+=
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑎𝑗𝑏𝑘Γ(𝑒𝑗, 𝑓𝑘)
+= Γ(𝑣,𝑤),
+as desired, where the second line holds because ̂ Γ is linear, the third line holds by
+the definition of ̂ Γ, and the fourth line holds because Γ is bilinear.
+The uniqueness of the linear map ̂ Γ satisfying ̂ Γ(𝑣 ⊗ 𝑤) = Γ(𝑣,𝑤) follows
+from 9.74(b), completing the proof of (a).
+To prove (b), define a function 𝑇#
+∶ 𝑉 × 𝑊 → 𝑈 by 𝑇#
+(𝑣,𝑤) = 𝑇(𝑣 ⊗ 𝑤)
+for all (𝑣,𝑤) ∈ 𝑉× 𝑊. The bilinearity of the tensor product (see 9.73) and the
+linearity of 𝑇 imply that 𝑇#
+is bilinear.
+Clearly the choice of 𝑇#
+that satisfies the conditions is unique.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler376 Chapter 9 Multilinear Algebra and Determinants
+To prove 9.79(a), we could not just define ̂ Γ(𝑣 ⊗ 𝑤) = Γ(𝑣,𝑤) for all 𝑣 ∈ 𝑉
+and 𝑤 ∈ 𝑊 (and then extend ̂ Γ linearly to all of 𝑉 ⊗ 𝑊) because elements of
+𝑉⊗ 𝑊 do not have unique representations as finite sums of elements of the form
+𝑣 ⊗ 𝑤. Our proof used a basis of 𝑉 and a basis of 𝑊 to get around this problem.
+Although our construction of ̂ Γ in the proof of 9.79(a) depended on a basis
+of 𝑉 and a basis of 𝑊, the equation ̂ Γ(𝑣 ⊗ 𝑤) = Γ(𝑣,𝑤) that holds for all 𝑣 ∈ 𝑉
+and 𝑤 ∈ 𝑊 shows that ̂ Γ does not depend on the choice of bases for 𝑉 and 𝑊.
+Tensor Product of Inner Product Spaces
+The result below features three inner products—one on 𝑉⊗𝑊, one on 𝑉, and one
+on 𝑊, although we use the same symbol ⟨⋅,⋅⟩ for all three inner products.
+9.80 inner product on tensor product of two inner product spaces
+Suppose 𝑉 and 𝑊 are inner product spaces. Then there is a unique inner
+product on 𝑉⊗ 𝑊 such that
+⟨𝑣 ⊗ 𝑤,𝑢 ⊗ 𝑥⟩ = ⟨𝑣,𝑢⟩⟨𝑤,𝑥⟩
+for all 𝑣,𝑢 ∈ 𝑉 and 𝑤,𝑥 ∈ 𝑊.
+Proof Suppose 𝑒1,…,𝑒𝑚 is an orthonormal basis of 𝑉 and 𝑓1,…, 𝑓𝑛 is an ortho-
+normal basis of 𝑊. Define an inner product on 𝑉⊗ 𝑊 by
+9.81 ⟨
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑏𝑗,𝑘 𝑒𝑗 ⊗ 𝑓𝑘,
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑐𝑗,𝑘 𝑒𝑗 ⊗ 𝑓𝑘⟩ =
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑏𝑗,𝑘𝑐𝑗,𝑘.
+The straightforward verification that 9.81 defines an inner product on 𝑉⊗ 𝑊
+is left to the reader [use 9.74(b)].
+Suppose that 𝑣,𝑢 ∈ 𝑉 and 𝑤,𝑥 ∈ 𝑊. Let 𝑣1,…,𝑣𝑚 ∈ 𝐅 be such that
+𝑣 = 𝑣1𝑒1 + ⋯ + 𝑣𝑚𝑒𝑚, with similar expressions for 𝑢, 𝑤, and 𝑥. Then
+⟨𝑣 ⊗ 𝑤,𝑢 ⊗ 𝑥⟩ = ⟨
+𝑚
+∑
+𝑗 = 1
+𝑣𝑗𝑒𝑗 ⊗
+𝑛
+∑
+𝑘=1
+𝑤𝑘 𝑓𝑘,
+𝑚
+∑
+𝑗 = 1
+𝑢𝑗𝑒𝑗 ⊗
+𝑛
+∑
+𝑘=1
+𝑥𝑘 𝑓𝑘⟩
+= ⟨
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑣𝑗𝑤𝑘 𝑒𝑗 ⊗ 𝑓𝑘,
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑢𝑗𝑥𝑘 𝑒𝑗 ⊗ 𝑓𝑘⟩
+=
+𝑛
+∑
+𝑘=1
+𝑚
+∑
+𝑗 = 1
+𝑣𝑗𝑢𝑗𝑤𝑘𝑥𝑘
+= (
+𝑚
+∑
+𝑗 = 1
+𝑣𝑗𝑢𝑗)(
+𝑛
+∑
+𝑘=1
+𝑤𝑘𝑥𝑘)
+= ⟨𝑣,𝑢⟩⟨𝑤,𝑥⟩.
+Thereisonlyoneinnerproducton𝑉⊗𝑊 suchthat⟨𝑣⊗𝑤,𝑢⊗𝑥⟩ = ⟨𝑣,𝑢⟩⟨𝑤,𝑥⟩
+for all 𝑣,𝑢 ∈ 𝑉 and 𝑤,𝑥 ∈ 𝑊 because every element of 𝑉⊗ 𝑊 can be written as
+a linear combination of elements of the form 𝑣 ⊗ 𝑤 [by 9.74(b)].
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9D Tensor Products 377
+The definition below of a natural inner product on 𝑉⊗ 𝑊 is now justified by
+9.80. We could not have simply defined ⟨𝑣⊗𝑤,𝑢⊗𝑥⟩ to be ⟨𝑣,𝑢⟩⟨𝑤,𝑥⟩ (and then
+used additivity in each slot separately to extend the definition to 𝑉⊗ 𝑊) without
+some proof because elements of 𝑉⊗ 𝑊 do not have unique representations as
+finite sums of elements of the form 𝑣 ⊗ 𝑤.
+9.82 definition: inner product on tensor product of two inner product spaces
+Suppose 𝑉 and 𝑊 are inner product spaces. The inner product on 𝑉⊗ 𝑊 is
+the unique function ⟨⋅,⋅⟩ from (𝑉⊗ 𝑊) × (𝑉⊗ 𝑊) to 𝐅 such that
+⟨𝑣 ⊗ 𝑤,𝑢 ⊗ 𝑥⟩ = ⟨𝑣,𝑢⟩⟨𝑤,𝑥⟩
+for all 𝑣,𝑢 ∈ 𝑉 and 𝑤,𝑥 ∈ 𝑊.
+Take 𝑢 = 𝑣 and 𝑥 = 𝑤 in the equation above and then take square roots to
+show that
+‖𝑣 ⊗ 𝑤‖ = ‖𝑣‖‖𝑤‖
+for all 𝑣 ∈ 𝑉 and all 𝑤 ∈ 𝑊.
+The construction of the inner product in the proof of 9.80 depended on an
+orthonormal basis 𝑒1,…,𝑒𝑚 of 𝑉 and an orthonormal basis 𝑓1,…, 𝑓𝑛 of 𝑊. For-
+mula 9.81 implies that {𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 is a doubly indexed orthonormal
+list in 𝑉 ⊗ 𝑊 and hence is an orthonormal basis of 𝑉 ⊗ 𝑊 [by 9.74(b)]. The
+importance of the next result arises because the orthonormal bases used there can
+be different from the orthonormal bases used to define the inner product in 9.80.
+Although the notation for the bases is the same in the proof of 9.80 and in the
+result below, think of them as two different sets of orthonormal bases.
+9.83 orthonormal basis of 𝑉⊗ 𝑊
+Suppose 𝑉 and 𝑊 are inner product spaces, and 𝑒1,…,𝑒𝑚 is an orthonormal
+basis of 𝑉 and 𝑓1,…, 𝑓𝑛 is an orthonormal basis of 𝑊. Then
+{𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛
+is an orthonormal basis of 𝑉⊗ 𝑊.
+Proof We know that {𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 is a basis of 𝑉⊗ 𝑊 [by 9.74(b)].
+Thus we only need to verify orthonormality. To do this, suppose 𝑗,𝑀 ∈ {1,…,𝑚}
+and 𝑘,𝑁 ∈ {1,…,𝑛}. Then
+⟨𝑒𝑗 ⊗ 𝑓𝑘,𝑒𝑀 ⊗ 𝑓𝑁⟩ = ⟨𝑒𝑗,𝑒𝑀⟩⟨𝑓𝑘, 𝑓𝑁⟩ =
+⎧ {
+⎨ { ⎩
+1 if 𝑗 = 𝑀 and 𝑘 = 𝑁,
+0 otherwise.
+Hence the doubly indexed list {𝑒𝑗 ⊗ 𝑓𝑘}𝑗=1,…,𝑚;𝑘=1,…,𝑛 is indeed an orthonormal
+basis of 𝑉⊗ 𝑊.
+See Exercise 11 for an example of how the inner product structure on 𝑉⊗ 𝑊
+interacts with operators on 𝑉 and 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler378 Chapter 9 Multilinear Algebra and Determinants
+Tensor Product of Multiple Vector Spaces
+Wehavebeendiscussingpropertiesofthetensorproductoftwofinite-dimensional
+vector spaces. Now we turn our attention to the tensor product of multiple finite-
+dimensional vector spaces. This generalization requires no new ideas, only some
+slightly more complicated notation. Readers with a good understanding of the
+tensor product of two vector spaces should be able to make the extension to the
+tensor product of more than two vector spaces.
+Thus in this subsection, no proofs will be provided. The definitions and the
+statements of results that will be provided should be enough information to enable
+readers to fill in the details, using what has already been learned about the tensor
+product of two vector spaces.
+We begin with the following notational assumption.
+9.84 notation: 𝑉1,…,𝑉𝑚
+For the rest of this subsection, 𝑚 denotes an integer greater than 1 and
+𝑉1,…,𝑉𝑚 denote finite-dimensional vector spaces.
+The notion of an 𝑚-linear functional, which we are about to define, generalizes
+the notion of a bilinear functional (see 9.68). Recall that the use of the word
+“functional” indicates that we are mapping into the scalar field 𝐅. Recall also that
+the terminology “𝑚-linear form” is used in the special case 𝑉1 = ⋯ = 𝑉𝑚 (see
+9.25). The notation ℬ(𝑉1,…,𝑉𝑚) generalizes our previous notation ℬ(𝑉,𝑊).
+9.85 definition: 𝑚-linear functional, the vector space ℬ(𝑉1,…,𝑉𝑚)
+• An 𝑚-linear functional on 𝑉1 × ⋯ × 𝑉𝑚 is a function 𝛽∶ 𝑉1 × ⋯ × 𝑉𝑚 → 𝐅
+that is a linear functional in each slot when the other slots are held fixed.
+• The vector space of 𝑚-linear functionals on 𝑉1 × ⋯ × 𝑉𝑚 is denoted by
+ℬ(𝑉1,…,𝑉𝑚).
+9.86 example: 𝑚-linear functional
+Suppose 𝜑𝑘 ∈ 𝑉𝑘
+′
+for each 𝑘 ∈ {1,…,𝑚}. Define 𝛽∶ 𝑉1 × ⋯ × 𝑉𝑚 → 𝐅 by
+𝛽(𝑣1,…,𝑣𝑚) = 𝜑1(𝑣1) × ⋯ × 𝜑𝑚(𝑣𝑚).
+Then 𝛽 is an 𝑚-linear functional on 𝑉1 × ⋯ × 𝑉𝑚.
+The next result can be proved by imitating the proof of 9.70.
+9.87 dimension of the vector space of 𝑚-linear functionals
+dimℬ(𝑉1,…,𝑉𝑚) = (dim𝑉1) × ⋯ × (dim𝑉𝑚).
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9D Tensor Products 379
+Now we can define the tensor product of multiple vector spaces and the tensor
+product of elements of those vector spaces. The following definition is completely
+analogous to our previous definition (9.71) in the case 𝑚 = 2.
+9.88 definition: tensor product, 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚, 𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚
+• The tensor product 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚 is defined to be ℬ(𝑉1
+′
+,…,𝑉𝑚
+′
+).
+• For 𝑣1 ∈ 𝑉1,…,𝑣𝑚 ∈ 𝑉𝑚, the tensor product 𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚 is the element
+of 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚 defined by
+(𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚)(𝜑1,…,𝜑𝑚) = 𝜑1(𝑣1)⋯𝜑𝑚(𝑣𝑚)
+for all (𝜑1,…,𝜑𝑚) ∈ 𝑉1
+′
+× ⋯ × 𝑉𝑚
+′
+.
+The next result can be proved by following the pattern of the proof of the
+analogous result when 𝑚 = 2 (see 9.72).
+9.89 dimension of the tensor product
+dim(𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚) = (dim𝑉1)⋯(dim𝑉𝑚).
+Our next result generalizes 9.74.
+9.90 basis of 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚
+Suppose dim𝑉𝑘 = 𝑛𝑘 and 𝑒𝑘
+1 ,…,𝑒𝑘
+𝑛𝑘
+is a basis of 𝑉𝑘 for 𝑘 = 1,…,𝑚. Then
+{𝑒1
+𝑗1
+⊗ ⋯ ⊗ 𝑒𝑚
+𝑗𝑚
+}𝑗1=1,…,𝑛1;⋯;𝑗𝑚=1,…,𝑛𝑚
+is a basis of 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚.
+Suppose 𝑚 = 2 and 𝑒1
+1,…,𝑒1
+𝑛1
+is a basis of 𝑉1 and 𝑒2
+1,…,𝑒2
+𝑛2
+is a basis of 𝑉2.
+Then with respect to the basis {𝑒1
+𝑗1
+⊗ 𝑒2
+𝑗2
+}𝑗1=1,…,𝑛1;𝑗2=1,…,𝑛2
+in the result above, the
+coefficients of an element of 𝑉1 ⊗ 𝑉2 can be represented by an 𝑛1-by-𝑛2 matrix
+thatcontainsthecoefficientof𝑒1
+𝑗1
+⊗𝑒2
+𝑗2
+inrow𝑗1, column𝑗2. Thusweneedamatrix,
+which is an array specified by two indices, to represent an element of 𝑉1 ⊗ 𝑉2.
+If 𝑚 > 2, then the result above shows that we need an array specified by 𝑚
+indices to represent an arbitrary element of 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚. Thus tensor products
+may appear when we deal with objects specified by arrays with multiple indices.
+The next definition generalizes the notion of a bilinear map (see 9.77). As
+with bilinear maps, the target space can be an arbitrary vector space.
+9.91 definition: 𝑚-linear map
+An 𝑚-linear map from 𝑉1 × ⋯ × 𝑉𝑚 to a vector space 𝑈 is a function
+Γ∶ 𝑉1 × ⋯ × 𝑉𝑚 → 𝑈 that is a linear map in each slot when the other slots
+are held fixed.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler380 Chapter 9 Multilinear Algebra and Determinants
+The next result can be proved by following the pattern of the proof of 9.79.
+9.92 converting 𝑚-linear maps to linear maps
+Suppose 𝑈 is a vector space.
+(a) Suppose that Γ∶ 𝑉1 × ⋯ × 𝑉𝑚 → 𝑈 is an 𝑚-linear map. Then there exists
+a unique linear map ̂ Γ∶ 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚 → 𝑈 such that
+̂ Γ(𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚) = Γ(𝑣1,…,𝑣𝑚)
+for all (𝑣1,…,𝑣𝑚) ∈ 𝑉1 × ⋯ × 𝑉𝑚.
+(b) Conversely, suppose 𝑇∶ 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚 → 𝑈 is a linear map. Then there
+exists a unique 𝑚-linear map 𝑇#
+∶ 𝑉1 × ⋯ × 𝑉𝑚 → 𝑈 such that
+𝑇#
+(𝑣1,…,𝑣𝑚) = 𝑇(𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚)
+for all (𝑣1,…,𝑣𝑚) ∈ 𝑉1 × ⋯ × 𝑉𝑚.
+See Exercises 12 and 13 for tensor products of multiple inner product spaces.
+Exercises 9D
+## 1 Suppose 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊. Prove that 𝑣 ⊗ 𝑤 = 0 if and only if 𝑣 = 0 or
+𝑤 = 0.
+2 Give an example of six distinct vectors 𝑣1,𝑣2,𝑣3,𝑤1,𝑤2,𝑤3 in 𝐑3
+such that
+𝑣1 ⊗ 𝑤1 + 𝑣2 ⊗ 𝑤2 + 𝑣3 ⊗ 𝑤3 = 0
+but none of 𝑣1 ⊗𝑤1, 𝑣2 ⊗𝑤2, 𝑣3 ⊗𝑤3 is a scalar multiple of another element
+of this list.
+3 Suppose that 𝑣1,…,𝑣𝑚 is a linearly independent list in 𝑉. Suppose also that
+𝑤1,…,𝑤𝑚 is a list in 𝑊 such that
+𝑣1 ⊗ 𝑤1 + ⋯ + 𝑣𝑚 ⊗ 𝑤𝑚 = 0.
+Prove that 𝑤1 = ⋯ = 𝑤𝑚 = 0.
+4 Suppose dim𝑉 > 1 and dim𝑊 > 1. Prove that
+{𝑣 ⊗ 𝑤 ∶ (𝑣,𝑤) ∈ 𝑉× 𝑊}
+is not a subspace of 𝑉⊗ 𝑊.
+This exercise implies that if dim𝑉 > 1 and dim𝑊 > 1, then
+{𝑣 ⊗ 𝑤 ∶ (𝑣,𝑤) ∈ 𝑉× 𝑊} ≠ 𝑉⊗ 𝑊.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerSection 9D Tensor Products 381
+5 Suppose 𝑚 and 𝑛 are positive integers. For 𝑣 ∈ 𝐅𝑚
+and 𝑤 ∈ 𝐅𝑛
+, identify
+𝑣 ⊗ 𝑤 with an 𝑚-by-𝑛 matrix as in Example 9.76. With that identification,
+show that the set
+{𝑣 ⊗ 𝑤 ∶ 𝑣 ∈ 𝐅𝑚
+and 𝑤 ∈ 𝐅𝑛
+}
+is the set of 𝑚-by-𝑛 matrices (with entries in 𝐅) that have rank at most one.
+## 6 Suppose 𝑚 and 𝑛 are positive integers. Give a description, analogous to
+Exercise 5, of the set of 𝑚-by-𝑛 matrices (with entries in 𝐅) that have rank
+at most two.
+7 Suppose dim𝑉 > 2 and dim𝑊 > 2. Prove that
+{𝑣1 ⊗ 𝑤1 + 𝑣2 ⊗ 𝑤2 ∶ 𝑣1,𝑣2 ∈ 𝑉 and 𝑤1,𝑤2 ∈ 𝑊} ≠ 𝑉⊗ 𝑊.
+8 Suppose 𝑣1,…,𝑣𝑚 ∈ 𝑉 and 𝑤1,…,𝑤𝑚 ∈ 𝑊 are such that
+𝑣1 ⊗ 𝑤1 + ⋯ + 𝑣𝑚 ⊗ 𝑤𝑚 = 0.
+Suppose that 𝑈 is a vector space and Γ∶ 𝑉×𝑊 → 𝑈 is a bilinear map. Show
+that
+Γ(𝑣1,𝑤1) + ⋯ + Γ(𝑣𝑚,𝑤𝑚) = 0.
+9 Suppose𝑆 ∈ ℒ(𝑉) and𝑇 ∈ ℒ(𝑊). Provethatthereexistsauniqueoperator
+on 𝑉⊗ 𝑊 that takes 𝑣 ⊗ 𝑤 to 𝑆𝑣 ⊗ 𝑇𝑤 for all 𝑣 ∈ 𝑉 and 𝑤 ∈ 𝑊.
+In an abuse of notation, the operator on 𝑉 ⊗ 𝑊 given by this exercise is
+often called 𝑆 ⊗ 𝑇.
+10 Suppose𝑆 ∈ ℒ(𝑉)and𝑇 ∈ ℒ(𝑊). Provethat𝑆⊗𝑇 isaninvertibleoperator
+on 𝑉⊗ 𝑊 if and only if both 𝑆 and 𝑇 are invertible operators. Also, prove
+that if both 𝑆 and 𝑇 are invertible operators, then (𝑆 ⊗ 𝑇)−1
+= 𝑆−1
+⊗ 𝑇−1
+,
+where we are using the notation from the comment after Exercise 9.
+## 11 Suppose 𝑉 and 𝑊 are inner product spaces. Prove that if 𝑆 ∈ ℒ(𝑉) and
+𝑇 ∈ ℒ(𝑊), then (𝑆⊗𝑇)∗ = 𝑆∗ ⊗𝑇∗, where we are using the notation from
+the comment after Exercise 9.
+12 Suppose that 𝑉1,…,𝑉𝑚 are finite-dimensional inner product spaces. Prove
+that there is a unique inner product on 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚 such that
+⟨𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚,𝑢1 ⊗ ⋯ ⊗ 𝑢𝑚⟩ = ⟨𝑣1,𝑢1⟩⋯⟨𝑣𝑚,𝑢𝑚⟩
+for all (𝑣1,…,𝑣𝑚) and (𝑢1,…,𝑢𝑚) in 𝑉1 × ⋯ × 𝑉𝑚.
+Note that the equation above implies that
+‖𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚‖ = ‖𝑣1‖ × ⋯ × ‖𝑣𝑚‖
+for all (𝑣1,…,𝑣𝑚) ∈ 𝑉1 × ⋯ × 𝑉𝑚.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler382 Chapter 9 Multilinear Algebra and Determinants
+13 Suppose that 𝑉1,…,𝑉𝑚 are finite-dimensional inner product spaces and
+𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚 is made into an inner product space using the inner product
+from Exercise 12. Suppose 𝑒𝑘
+1 ,…,𝑒𝑘
+𝑛𝑘
+is an orthonormal basis of 𝑉𝑘 for each
+𝑘 = 1,…,𝑚. Show that the list
+{𝑒1
+𝑗1
+⊗ ⋯ ⊗ 𝑒𝑚
+𝑗𝑚
+}𝑗1=1,…,𝑛1;⋯;𝑗𝑚=1,…,𝑛𝑚
+is an orthonormal basis of 𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚.
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerPhoto Credits
+• page v: Photos by Carrie Heeter and Bishnu Sarangi. Public domain image.
+• page 1: Original painting by Pierre Louis Dumesnil; 1884 copy by Nils
+Forsberg. Public domain image downloaded on 29 March 2022 from
+https://commons.wikimedia.org/wiki/File:René_Descartes_i_samtal_med_Sveriges_drottning,_Kristina.jpg.
+• page 27: Public domain image downloaded on 4 February 2022 from
+https://commons.wikimedia.org/wiki/File:IAS_Princeton.jpg.
+• page 51: Photo by Stefan Schäfer; Creative Commons Attribution Share Alike
+license. Downloaded on 28 March 2022 from
+https://commons.wikimedia.org/wiki/File:BurgDankwarderode2016.jpg.
+• page 119: Photo by Alireza Javaheri. Creative Commons Attribution license.
+Downloaded on 12 March 2023 from
+https://commons.wikimedia.org/wiki/File:Hakim_Omar_Khayam_-_panoramio.jpg.
+• page 132: Statue completed by Giovanni Paganucci in 1863. Photo by
+Hans-Peter Postel; Creative Commons Attribution license. Downloaded on 14
+March 2022 from
+https://commons.wikimedia.org/wiki/File:Leonardo_da_Pisa.jpg.
+• page 181: Photo by Matthew Petroff; Creative Commons Attribution Share
+Alike license. Downloaded on 31 March 2022 from
+https://commons.wikimedia.org/wiki/File:George-peabody-library.jpg.
+• page 227: Photo by Petar Milošević; Creative Commons Attribution Share
+Alike license. Downloaded on 30 March 2022 from
+https://en.wikipedia.org/wiki/Lviv.
+• page 297: Photo by David Iliff; Creative Commons Attribution Share Alike
+license. Downloaded on 30 March 2022 from
+https://en.wikipedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg.
+• page 332: Photo by Daniel Schwen; Creative Commons Attribution Share
+Alike license. Downloaded on 9 July 2019 from
+https://commons.wikimedia.org/wiki/File:Mathematik_Göttingen.jpg.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+383Symbol Index
+𝐴−1
+, 91
+𝐴𝑗,⋅ , 74
+𝐴𝑗,𝑘, 69
+𝐴⋅,𝑘, 74
+𝛼𝑇, 354
+𝐴∗, 231
+𝐴t
+, 77
+̂ Γ, 375, 380
+𝐵, 287
+ℬ(𝑉1,…,𝑉𝑚), 378
+ℬ(𝑉,𝑊), 370
+𝐂, 2
+∘, 55
+deg, 31
+Δ, 196
+det𝐴, 355
+det𝑇, 354
+dim, 44
+⊕, 21
+𝐸(𝑠1 𝑓1,…,𝑠𝑛 𝑓𝑛), 287
+𝐸(𝜆,𝑇), 164
+𝐅, 4
+𝐅∞
+, 13
+𝐅𝑚,𝑛
+, 72
+𝐅𝑛
+, 6
+𝐅𝑆
+, 13
+𝐺(𝜆,𝑇), 308
+𝐼, 52, 90
+⟺ , 23
+Im, 120
+−∞, 31
+ℒ(𝑉), 52
+ℒ(𝑉,𝑊), 52
+ℳ(𝛽), 334
+ℳ(𝑇), 69, 154
+ℳ(𝑣), 88
+perm, 348
+𝒫(𝐅), 30
+𝜋, 101
+𝒫𝑚(𝐅), 31
+𝑝(𝑇), 137
+𝑃𝑈, 214
+𝑞𝛽, 341
+, 7
+𝐑, 2
+Re, 120
+𝑆 ⊗ 𝑇, 381
+⊊, 299
+√𝑇, 253
+̃ 𝑇, 102
+𝑇′
+, 107
+𝑇∗, 228
+𝑇−1
+, 82
+𝑇(Ω), 288
+𝑇𝐂, 68
+𝑇†, 221
+𝑇𝑚
+, 137
+‖𝑇‖, 280
+𝑇#
+, 375, 380
+tr𝐴, 326
+tr𝑇, 327
+𝑇|𝑈, 133
+𝑇/𝑈, 142
+𝑈⟂
+, 211
+𝑈0
+, 109
+⟨𝑢,𝑣⟩, 184
+𝑉, 15
+𝑉′
+, 105, 204
+𝑉/𝑈, 99
+−𝑣, 15
+𝑉1 ⊗ ⋯ ⊗ 𝑉𝑚, 379
+𝑣1 ⊗ ⋯ ⊗ 𝑣𝑚, 379
+𝑉(2)
+, 334
+𝑉(2)
+alt , 339
+𝑉(2)
+sym, 337
+𝑉𝐂, 17
+𝑉𝑚
+, 103, 346
+𝑉(𝑚)
+, 346
+𝑉(𝑚)
+alt , 347
+𝑉⊗ 𝑊, 372
+𝑣 ⊗ 𝑤, 372
+𝑣 + 𝑈, 98
+||𝑣||, 186
+𝑧, 120
+|𝑧|, 120
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+384Index
+Abbott, Edwin A., 6
+absolute value, 120
+addition
+in quotient space, 100
+of complex numbers, 2
+of functions, 13
+of linear maps, 55
+of matrices, 71
+of subspaces, 19
+of vectors, 12
+of vectors in 𝐅𝑛
+, 6
+additive inverse
+in 𝐂, 3, 4
+in 𝐅𝑛
+, 9
+in vector space, 12, 15
+additivity, 52
+adjoint of a linear map, 228
+algebraic multiplicity, 311
+alternating bilinear form, 339
+alternating 𝑚-linear form, 347
+annihilator, 109
+Apollonius’s identity, 195
+Artin, Emil, 80
+associativity, 3, 12, 56
+backward shift, 53, 59, 84, 140
+ball, 287
+Banach, Stefan, 227
+basis, 39
+of eigenvectors, 165, 245, 246,
+250
+of generalized eigenvectors, 301
+Bernstein polynomials, 49
+Bessel’s inequality, 198
+bilinear form, 333
+bilinear functional, 370
+bilinear map, 374
+block diagonal matrix, 314
+Bunyakovsky, Viktor, 189
+𝐶∗-algebras, 295
+Carroll, Lewis, 11
+Cauchy, Augustin-Louis, 189
+Cauchy–Schwarz inequality, 189
+Cayley, Arthur, 312
+Cayley–Hamilton theorem, 364
+on complex vector space, 312
+change-of-basis formula
+for bilinear forms, 336
+for operators, 93
+characteristic polynomial, 363
+on complex vector space, 311
+ChatGPT, 196, 279
+Cholesky factorization, 267
+Cholesky, André-Louis, 267
+Christina, Queen of Sweden, 1
+closed under addition, 18
+closed under scalar multiplication, 18
+column rank of a matrix, 77, 114, 239
+column–row factorization, 78
+commutativity, 3, 7, 12, 25, 56, 73, 80
+commuting operators, 138, 175–180,
+209, 235, 248–249, 256
+companion matrix, 152
+complex conjugate, 120
+complex number, 2
+complex spectral theorem, 246
+complex vector space, 13
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+385386 Index
+complexification
+eigenvalues of, 140
+generalized eigenvectors of, 318
+minimal polynomial of, 153
+multiplicity of eigenvalues, 318
+of a linear map, 68
+of a vector space, 17, 43
+of an inner product space, 194
+conjugate symmetry, 183
+conjugate transpose of a matrix, 231
+coordinate, 6
+cube root of an operator, 248
+De Moivre’s theorem, 125
+degree of a polynomial, 31
+Descartes, René, 1
+determinant
+of matrix, 355
+of operator, 354
+of positive operator, 362
+of unitary operator, 362
+diagonal matrix, 163, 274
+diagonal of a square matrix, 155
+diagonalizable, 163, 172, 176, 245,
+246, 294, 307, 316
+differentiation linear map, 53, 56, 59,
+61, 62, 67, 70, 79, 138, 208,
+304
+dimension, 44
+of a sum of subspaces, 47
+direct sum, 21, 42, 98
+of a subspace and its orthogonal
+complement, 212
+of null𝑇dim𝑉
+and range𝑇dim𝑉
+,
+299
+discrete Fourier transform, 269
+distributive property, 3, 12, 15, 56, 80
+division algorithm for polynomials,
+124
+division of complex numbers, 4
+dot product, 182
+double dual space, 118
+dual
+of a basis, 106
+of a linear map, 107, 153, 162,
+174
+of a vector space, 105, 204
+of an operator, 140
+eigenspace, 164
+eigenvalue
+of adjoint, 239
+of dual of an operator, 140
+of operator, 134
+of positive operator, 252
+of self-adjoint operator, 233
+of unitary operator, 262
+on odd-dimensional space, 150,
+318, 367
+eigenvector, 135
+ellipsoid, 287
+Euclidean inner product, 184
+Fibonacci, 132
+Fibonacci sequence, 174
+field, 10
+finite-dimensional vector space, 30
+Flatland, 6
+forward shift, 140
+Frankenstein, 50
+Frobenius norm, 331
+Fuglede’s theorem, 248
+fundamental theorem of algebra, 125
+fundamental theorem of linear maps,
+62
+Gauss, Carl Friedrich, 51
+Gaussian elimination, 51, 65, 361
+generalized eigenspace, 308
+generalized eigenvector, 300
+geometric multiplicity, 311
+Gershgorin disk, 170
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerIndex 387
+Gershgorin disk theorem, 171
+Gershgorin, Semyon Aronovich, 171
+Gram, Jørgen, 200
+Gram–Schmidt procedure, 200
+graph of a linear map, 103
+Hadamard’s inequality, 365
+Halmos, Paul, 27
+Hamilton, William, 297
+harmonic function, 196
+Hilbert matrix, 256
+Hilbert–Schmidt norm, 331
+homogeneity, 52
+homogeneous system of linear
+equations, 65, 95
+hyponormal operator, 241
+identity matrix, 90
+identity operator, 52, 56
+imaginary part, 120
+infinite-dimensional vector space, 31
+injective, 60
+inner product, 183
+inner product space, 184
+Institute for Advanced Study, 27
+invariant subspace, 133
+inverse
+of a linear map, 82
+of a matrix, 91
+invertible linear map, 82
+invertible matrix, 91
+isometry, 258
+isomorphic vector spaces, 86
+isomorphism, 86
+Jordan basis, 322
+Jordan form, 324
+Jordan, Camille, 324
+kernel, 59
+Khayyam, Omar, 119
+Laplacian, 196
+length of list, 5
+Leonardo of Pisa, 132
+linear combination, 28
+linear dependence lemma, 33
+linear equations, 64–65, 95
+linear functional, 105, 204
+linear map, 52
+linear map lemma, 54
+linear span, 29
+linear subspace, 18
+linear transformation, 52
+linearly dependent, 33
+linearly independent, 32
+list, 5
+of vectors, 28
+lower-triangular matrix, 162, 267
+Lviv, 227
+Lwów, 227
+matrix, 69
+multiplication, 73
+of bilinear form, 334
+of linear map, 69
+of nilpotent operator, 305
+of operator, 154
+of product of linear maps, 74, 91
+of 𝑇′
+, 113
+of 𝑇∗, 232
+of vector, 88
+minimal polynomial
+and basis of generalized
+eigenvectors, 306
+and characteristic polynomial, 312
+and diagonalizability, 169
+and generalized eigenspace
+decomposition, 316
+and generalized eigenspaces, 317
+and invertibility, 149
+and upper-triangular matrices,
+159, 203
+Linear Algebra Done Right, fourth edition, by Sheldon Axler388 Index
+computing, 145
+definition of, 145
+gcd with its derivative, 173
+no direct sum decomposition, 325
+of adjoint, 241
+of companion matrix, 152
+of complexification, 153
+of dual map, 153
+of nilpotent operator, 305, 324
+of normal operator, 241
+of quotient operator, 153
+of restriction operator, 148
+of self-adjoint operator, 244
+polynomial multiple of, 148
+zeros of, 146
+minimizing distance, 217
+𝑚-linear form, 346
+𝑚-linear functional, 378
+𝑚-linear map, 379
+monic polynomial, 144
+Moon, v, xvii
+Moore–Penrose inverse, 221
+multilinear form, 346
+multiplication, see product
+multiplicity of an eigenvalue, 310
+nilpotent operator, 303, 322
+Noether, Emmy, 332
+nonsingular matrix, 91
+norm of a linear map, 280
+norm of a vector, 182, 186
+normal operator, 235
+null space, 59
+of powers of an operator, 298
+of 𝑇′
+, 111
+of 𝑇∗, 231
+one-to-one, 60
+onto, 62
+operator, 133
+orthogonal
+complement, 211
+projection, 214
+vectors, 187
+orthonormal
+basis, 199
+list, 197
+parallelogram equality, 191
+Parseval’s identity, 200
+partial differentiation operator, 175
+Peabody Library, 181
+permutation, 348
+photo credits, 383
+point, 12
+polar decomposition, 286
+polynomial, 30
+positive definite, 266
+positive operator, 251
+positive semidefinite operator, 251
+principal axes, 287
+product
+of complex numbers, 2
+of linear maps, 55
+of matrices, 73
+of polynomials, 138
+of scalar and linear map, 55
+of scalar and vector, 12
+of scalar and vector in 𝐅𝑛
+, 9
+of vector spaces, 96
+pseudoinverse, 221, 250, 255, 275, 279
+Pythagorean theorem, 187
+QR factorization, 264, 365
+quadratic form, 341
+quotient
+map, 101
+operator, 142, 153, 162, 173
+space, 99
+range, 61
+of powers of an operator, 306
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerIndex 389
+of 𝑇′
+, 112
+of 𝑇∗, 231
+rank of a matrix, 79, 114, 239
+real part, 120
+real spectral theorem, 245
+real vector space, 13
+reverse triangle inequality, 129, 193,
+294
+Riesz representation theorem, 205, 210,
+216, 224, 225
+Riesz, Frigyes, 205
+row rank of a matrix, 77, 114, 239
+scalar, 4
+scalar multiplication, 9, 12
+in quotient space, 100
+of linear maps, 55
+of matrices, 71
+Schmidt pair, 278
+Schmidt, Erhard, 200, 278
+Schur’s theorem, 204
+Schur, Issai, 204
+Schwarz, Hermann, 189
+self-adjoint operator, 233
+Shelley, Mary Wollstonecraft, 50
+sign of a permutation, 349
+simultaneous diagonalization, 176
+simultaneously upper triangularizable,
+178
+singular matrix, 91
+singular value decomposition
+of adjoint, 275
+of linear map, 273
+of pseudoinverse, 275
+singular values, 271, 362
+skew operator, 240, 247, 269
+span, 29
+spans, 29
+spectral theorem, 245, 246
+square matrix, 91
+square root of an operator, 248, 251,
+253, 320
+standard basis
+of 𝐅𝑛
+, 39
+of 𝒫𝑚(𝐅), 39
+subspace, 18
+subtraction of complex numbers, 4
+sum, see addition
+sum of subspaces, 19
+Supreme Court, 210
+surjective, 62
+SVD, see singular value decomposition
+Sylvester, James, 181
+symmetric bilinear form, 337
+symmetric matrix, 269, 337
+tensor product, 372, 379
+Through the Looking Glass, 11
+trace
+of a matrix, 326
+of an operator, 327
+translate, 99
+transpose of a matrix, 77, 231
+triangle inequality, 121, 190, 281
+tuple, 5
+two-sided ideal, 58
+unit circle in 𝐂, 262, 269
+unitary matrix, 263
+unitary operator, 260
+University of Dublin, 297
+University of Göttingen, 332
+upper-triangular matrix, 155–160, 264,
+267, 314
+Vandermonde matrix, 366
+vector, 8, 12
+vector space, 12
+volume, 292, 363
+of a box, 291
+zero of a polynomial, 122
+Linear Algebra Done Right, fourth edition, by Sheldon AxlerColophon: Notes on Typesetting
+• This book was typeset in LuaL A TEX by the author, who wrote the L A TEX code to
+implement the book’s design.
+• The L A TEX software used for this book was written by Leslie Lamport. The TEX
+software, which forms the base for L A TEX, was written by Donald Knuth.
+• The main text font in this book is the Open Type Format version of TEX Gyre
+Termes, a font based on Times, which was designed by Stanley Morison and
+Victor Lardent for the British newspaper The Times in 1931.
+• The main math font in this book is the Open Type Format version of TEX Gyre
+Pagella Math, a font based on Palatino, which was designed by Hermann Zapf.
+• The sans serif font used for page headings and some other design elements is
+the Open Type Format version of TEX Gyre Heros, a font based on Helvetica,
+which was designed by Max Miedinger and Eduard Hoffmann.
+• The LuaL A TEX packages fontspec and unicode-math, both written by Will
+Robertson, were used to manage fonts.
+• The L A TEX package fontsize, written by Ivan Valbusa, was used to gracefully
+change the main fonts to 10.5 point size.
+• The figures in the book were produced by Mathematica, using Mathematica
+code written by the author. Mathematica was created by Stephen Wolfram.
+The Mathematica package MaTeX, written by Szabolcs Horvát, was used to
+place L A TEX-generated labels in the Mathematica figures.
+• The L A TEX package graphicx, written by David Carlisle and Sebastian Rahtz,
+was used to include photos and figures.
+• The L A TEX package multicol, written by Frank Mittelbach, was used to get
+around L A TEX’s limitation that two-column format must start on a new page
+(needed for the Symbol Index and the Index).
+• The L A TEX packages TikZ, written by Till Tantau, and tcolorbox, written by
+Thomas Sturm, were used to produce the definition boxes and result boxes.
+• TheL A TEXpackagecolor,writtenbyDavidCarlisle,wasusedtoaddappropriate
+color to various design elements.
+• The L A TEX package wrapfig, written by Donald Arseneau, was used to wrap
+text around the comment boxes.
+• The L A TEX package microtype, written by Robert Schlicht, was used to reduce
+hyphenation and produce more pleasing right justification.
+Linear Algebra Done Right, fourth edition, by Sheldon Axler
+390

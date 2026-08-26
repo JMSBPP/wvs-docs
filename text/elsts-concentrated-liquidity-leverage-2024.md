@@ -1,0 +1,789 @@
+---
+sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
+pdftotext_version: 26.06.0
+extractor_version: 1
+body_bytes: 31808
+---
+CONCENTRATED LIQUIDITY WITH LEVERAGE
+Atis Elsts
+atis@vertolabs.xyz
+Krešimir Klas
+kklas@kunalabs.io
+ABSTRACT
+Concentrated liquidity (CL) provisioning is a way how to improve the capital efficiency of
+Automated Market Makers (AMM). Allowing liquidity providers to use leverage is a step
+towards even higher capital efficiency. A number of Decentralized Finance (DeFi) proto-
+cols implement this technique in conjunction with overcollateralized lending. However, the
+properties of leveraged CL positions have not been formalized and are poorly understood
+in practice. This article describes the principles of a leveraged CL provisioning protocol,
+formally models the notions of margin level, assets, and debt, and proves that within this
+model, leveraged LP positions possess several properties that make them safe to use.
+## 1 Introduction
+Concentrated liquidity CL was first implemented by Uniswap v3 [1], and has since been adopted by several
+other AMM protocols. In addition to the capital efficiency provided by liquidity concentration, strategic
+liquidity providers (LP) may seek to take on debt to create their positions with borrowed assets. Leveraged
+liquidity provisioning not only increases the income from fees, but can also protect the LP against price
+changes, particularly when single-sided leverage is used. For instance, the LP may borrow the asset they
+deem less reliable, and in this way be insured against negative price action. Furthermore, the combination of
+CL and leverage enables a separation between passive lenders, who provide single-sided assets to earn yield,
+and active liquidity providers, who create and manage leveraged positions, collect swap fees, and pay the
+costs for borrowing.
+At present, leveraged CL is offered by several DeFi protocols, including Panoptic [2], Revert Lend [3],
+YLDR [4], and others. In particular, Kuna Labs [5] is developing a solution on the Sui blockchain, called Kai
+Leverage protocol. Its goals are to enhance capital efficiency in concentrated liquidity AMMs by utilizing
+leverage, and it is targeting the leading decentralized exchanges on Sui.
+Nevertheless, the properties and risks associated with leveraged CL are poorly formalized and not well un-
+derstood in practice. This article aims to address these shortcomings, by formalizing concepts related to
+leveraged CL, and to answer practitioner questions such as:
+• If the margin level of a position is safe at two given prices, is it also safe everywhere in the range
+between these prices?
+• What kinds of operations are safe to perform with a leveraged position?
+• Can AMM spot price manipulation create undercollateralized positions and in this way create liqui-
+dations or cause the protocol to incur bad debt?
+arXiv:2409.12803v1 [q-fin.TR] 19 Sep 2024CONCENTRATED LIQUIDITY WITH LEVERAGE
+Table 1: Symbols used.
+Symbol Description
+X Base token
+Y Quote token
+x Base token amount
+y Quote token amount
+P Price
+pa Price range lower bound
+pb Price range upper bound
+S Square root of price
+V Value
+L Liquidity
+DL Divergence loss (impermanent loss)
+M Margin level
+β Liquidation bonus
+## 2 Concepts and definitions
+CL pools and positions.
+A concentrated liquidity AMM features liquidity pools and liquidity positions. An active pool contains one
+or more liquidity positions. A position is fully defined by the triple (L,pa,pb). A position of type (L,0,∞)
+is called a full-range position and is defined solely by the liquidity L.
+A constant-product CL AMM follows the swap invariant xvirtual · yvirtual = L2
+. The virtual amounts of
+assets X and Y can be translated into the real amounts xpos and ypos in the position using the price bounds
+and the current price P [6]. If P ≤ pa, the position contains only Y , and if P ≥ pb the position contains only
+X. Such a position is called out of range. A position is in range if pa < P < pb.
+Value of a CL position.
+The value of a CL AMM position (L,pa,pb) at price P is:
+Vpos(P) =
+
+ 
+ 
+L ·
+√
+pb−
+√
+pa
+√
+pa·
+√
+pb
+· P, if P ≤ pa
+L · (2
+√
+P −
+√
+pa − P/
+√
+pb), if pa < P < pb
+L · (
+√
+pb −
+√
+pa), if P ≥ pb
+(1)
+To be clear, this expression does not include any accumulated fees that may also be present.
+Initial value of assets and debts.
+The initial assets of a CL provider consist of two components:
+1. Their own capital (xuser,yuser) with value Vuser.
+2. Borrowed capital (xD,yD) with value VD.
+It follows that the initial value of the assets is:
+A(P0) = (xuser + xD) · P0 + yuser + yD (2)
+It is possible that only some of these assets are put in the CL position, leaving some of the X or Y as extra
+collateral (xC,yC) with value VC.
+xC = xD + xuser − xpos(P0) (3)
+yC = yD + yuser − ypos(P0) (4)
+2CONCENTRATED LIQUIDITY WITH LEVERAGE
+Consequently, the initial value of assets can be rewritten as:
+A(P0) = Vpos(P0) + VC(P0) (5)
+The initial value of the debt (xD,yD) is defined as:
+D(P0) = xD · P0 + yD = (6)
+= max(xpos(P0) − xuser,0) · P0 + max(ypos(P0) − yuser,0) (7)
+For a leveraged position where both assets are borrowed, the initial value of the debt is equal to:
+D(P0) = Vpos(P0) − Vuser(P0) (8)
+Evolution of assets and debt.
+1. The value of the debt evolves as a linear function of the price, similar to the value of a cryptocurrency
+holder’s portfolio:
+D(P) = xD · P + yD (9)
+Moreover, in the special case where only Y is borrowed, the debt is a constant function, unaffected by the
+price:
+Dy only(P) = D(P0) (10)
+In another special case, when both assets are borrowed, the value of the debt is:
+Dboth(P) = Vhold(P) − Vuser(P), (11)
+where Vhold(P) is the value of the buy-and-hold portfolio at price P. The asset composition of this
+buy-and-hold portfolio is the same as the asset composition of the position at P0.
+2. The value of the assets evolves non-linearly. It is equal to the sum of the position’s value (Eq. 1) and the
+extra collateral:
+A(P) = Vpos(P) + VC(P) (12)
+Margin level and leverage.
+Let us define margin level M as the relation between the assets and the debt:
+M(P) =
+A(P)
+D(P)
+= (13)
+=
+Vpos(P) + VC(P)
+VD(P)
+= (14)
+=
+Vpos(P) + xC · P + yC
+xD · P + yD
+(15)
+See Fig. 1 for examples.
+A position’s margin level is related to its leverage factor through the following formula:
+leverage(P) = 1 +
+1
+M(P) − 1
+(16)
+For instance, a margin level of 1.5 corresponds to a leverage of 3x.
+Liquidations.
+If lending protocol is to remain solvent, it must ensure that the value of assets always exceeds the value of
+debt. In practice, protocols do not allow margin levels to fall below predefined safe parameters and will
+initiate liquidations if they do.
+3CONCENTRATED LIQUIDITY WITH LEVERAGE
+0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4
+0
+10000
+20000
+30000
+40000
+50000
+Value, $
+Assets
+Debt
+Equity
+P0
+PL
+PH
+pa, pb
+0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4
+Price
+0.8
+0.9
+1.0
+1.1
+1.2
+1.3
+1.4
+Margin Level
+Margin Level
+Liquidation Level
+P0
+PL
+PH
+pa, pb
+(a) Stable pair, highly concentrated position
+0.75 1.00 1.25 1.50 1.75 2.00 2.25 2.50
+0
+5000
+10000
+15000
+20000
+Value, $
+Assets
+Debt
+Equity
+P0
+PL
+PH
+pa, pb
+0.75 1.00 1.25 1.50 1.75 2.00 2.25 2.50
+Price
+0.8
+0.9
+1.0
+1.1
+1.2
+1.3
+1.4
+Margin Level
+Margin Level
+Liquidation Level
+P0
+PL
+PH
+pa, pb
+(b) Volatile pair, less concentrated position
+Figure 1: Examples of margin level functions for stable and volatile pairs.
+A healthy position is defined as one with M > ML, where ML is the liquidation threshold. A liquidation
+mechanism attempts to repay part or all of position’s debts in order to rise its margin level to another specific
+level MT > ML, while also paying a liquidation bonus proportional to the value repaid. If that is not possible,
+the mechanism attempts to repay as much of the debt as possible, while still paying out the liquidation bonus
+first.
+In practice, ML, MT , and the liquidation bonus proportion are parameters of the protocol and may vary for
+different asset pairs. However, all the thresholds are required to be strictly above 1.0, since margin level of
+1.0 corresponds to an infinite leverage.
+Other operations.
+Before a position can be liquidated, it must be withdrawn from the pool. It is possible that withdrawing the
+assets and repaying that already increases the margin level above ML, thereby avoiding liquidation. This
+operation is called deleveraging. Formally, it decreases the value of both the assets and the debt by the same
+amount, Vrepaid, thereby increasing the margin level:
+M′
+(P) =
+A(P) − Vrepaid
+D(P) − Vrepaid
+(17)
+Only fully deleveraged positions can be liquidated; that is, all assets must be withdrawn from the pool, and
+as much of the debt as possible must be repaid without swapping between X and Y .
+The user also may want to reduce their position, i.e., decrease their exposure or otherwise to withdraw all or
+a portion of their assets while keeping the margin level intact. A reduction mechanism implemented by the
+protocol allows users to perform this operation by reducing both their assets and debt by a factor of k:
+M′
+(P) =
+(1 − k)A(P)
+(1 − k)D(P)
+(18)
+Other remarks.
+Liquidity providers earn swap fees from traders and must pay borrow fees to the liquidity lenders. However,
+we assume that these fees are relatively small and can be ignored in short-term solvency calculations.
+For long-term dynamics, we envision an automated bookkeeping process that collects the swap fees and uses
+them to repay the debt or compound the liquidity positions, effectively changing the structure of the debt.
+Analyzing such a mechanism goes beyond the scope of this article.
+4CONCENTRATED LIQUIDITY WITH LEVERAGE
+## 3 Analysis
+## 3.1 Properties of the system
+This article demonstrates the following properties of a leveraged CL protocol:
+1. In-interval safety: if the margin level function M(P) is not below a threshold ML at both ends
+of a price interval [PL,PH], it is also not below the threshold for every point P in the interval
+PL < p < PH.
+2. Computability of price bounds: for a given threshold ML and liquidity level L, there are two
+functions PL(ML) and PH(ML) that determine the prices PL and PH where the threshold ML is
+reached.
+3. Computability of maximum safe liquidity: the safe liquidity level for a given price interval
+[PL,PH] and threshold ML can be numerically computed using binary search.
+4. Safe reductions: reduction of a healthy position (M > ML) does not change its margin level.
+5. Safe deleverages: deleveraging of a positive-margin position (M > 1.0) increases its margin level.
+6. Safe liquidations: liquidation of a position above a critical margin level (M > MC) both makes its
+remainder healthy and pays out a liquidation bonus in full.
+7. Safety from price manipulation: spot price manipulation in the AMM pool cannot decrease the
+value of a position.
+8. Connection with divergence loss: As leverage increases, the shape of the margin level function
+approaches the shape of the divergence loss function.
+The following subsections analyze each of these properties in turn.
+## 3.2 In-interval safety
+It is convenient to rely on the fact that if the margin level is safe at both ends of a price interval, it is guaranteed
+to remain at a safe level everywhere in the interval (Fig. 2). As long as the price stays within this interval,
+the position cannot be liquidated. More formally, if M(PL) ≥ ML and M(PH) ≥ ML, then it should be the
+case that:
+∀P : PL < P < PH ⇒ M(P) ≥ ML (19)
+This property allows the protocol and the user to check the margin levels only at the interval’s endpoints,
+rather than checking every point within the interval.
+This property is true if the margin function does not have any local minima. Such is the case for Uniswap-
+v3-like CL AMM, where the position’s value function follows Eq. 1. For a proof of see the Appendix.
+## 3.3 Computability of price bounds
+In addition to computing the margin level at a given price, one may wish to solve the inverse problem:
+computing the price targets PL and PH where a predefined margin level ML is reached. Specifically, we
+are interested in this problem when PL < P0 < PH, where P0 is the initial price at which the position is
+deployed.
+A typical margin function is shaped like an inverted parabola in its domain of definition (P > 0). However,
+several special cases exist where M(P) can be monotonically increasing or decreasing. In general, the
+following algorithm can be used:
+1. Check M(P0). If it is below the threshold, terminate early: the position cannot be safely deployed.
+2. Check M(pa):
+(a) If it is above the threshold, then PL ≤ pa due to the in-interval safety property, and PL either
+is zero, or can be found by solving a simple linear equation.
+5CONCENTRATED LIQUIDITY WITH LEVERAGE
+0 5 10 15 20 25 30 35 40
+0
+1000
+2000
+3000
+4000
+5000
+Value, $
+Assets
+Debt
+Equity
+P0
+PH
+pa, pb
+0 5 10 15 20 25 30 35 40
+Price
+1.0
+1.2
+1.4
+1.6
+1.8
+Margin Level
+Margin Level
+Liquidation Level
+P0
+PH
+pa, pb
+Figure 2: Example of in-interval safety: the whole range between two prices such as P0 and PH are guaran-
+teed to be safe from liquidation, because both P0 and PH are safe. Margin levels safe from liquidation shown
+with green background, other levels with red background.
+(b) Otherwise, pa < PL ≤ P, and PL can be found using an expression given in the Appendix.
+3. Check M(pb):
+(a) If it is above the threshold, then PH ≥ pb due to the in-interval safety property, and PH is either
+infinity, or can be found by solving a simple linear equation.
+(b) Otherwise, P ≤ PH < pb, and PH can be found using an expression given in the Appendix.
+The expressions for in-range PL and PH were found using Python’s sympy package.
+## 3.4 Computability of maximum safe liquidity
+The problem here is to compute the maximum liquidity level Lmax that is permissible, i.e., M(P) > ML for
+all prices P in an interval [PL,PH].
+Due to the in-interval safety property, Lmax = min(Lmax(PL),Lmax(PH)), where Lmax(P) is the value of
+L at which M(P) = ML.
+The price levels PL and PH can be user- or protocol-configured parameters, expressed in terms of the initial
+price, for example, using a range factor r:
+PL = P0/r (20)
+PH = P0·r (21)
+Exact solutions of the margin function in terms of the target liquidity level are possible and have been found.
+However, they have a complicated, case-by-case nature depending on whether PL and PH are in range, as
+well as whether both X and Y or just one of those assets has been borrowed. In practice, it may be more
+convenient to use an efficient search algorithm, such as binary search, to compute the solutions numerically.
+The convergence of binary search to the right solution is guaranteed due to the absence of local minima in
+the margin level function; for a proof of the latter, see the Appendix.
+6CONCENTRATED LIQUIDITY WITH LEVERAGE
+## 3.5 Safe reductions
+The protocol allows the users to reduce healthy positions, i.e., when M(P) > ML. By reducing a position,
+the user aims to gain some free assets while keeping the position’s margin level intact. The margin level of a
+position reduced by a factor k does not change, provided 0 < k < 1:
+M′
+(P) =
+(1 − k)A(P)
+(1 − k)D(P)
+= M(P) (22)
+Let’s define:
+Vremoved
+def
+= kA(P) (23)
+Vrepaid
+def
+= kD(P) (24)
+Vfreed
+def
+= Vremoved − Vrepaid (25)
+By assumption, M(P) > ML > 1.0, and follows that kA(P) > kD(P). Hence, Vfreed is strictly positive:
+the user is guaranteed to obtain some free assets after reducing a healthy position.
+## 3.6 Safe deleverages
+Deleveraging removes some assets from a position and uses them to repay the debt:
+M′
+(P) =
+A(P) − Vrepaid
+D(P) − Vrepaid
+, (26)
+where 0 < Vrepaid <= D(P).
+The difference between deleveraging and liquidation is that deleveraging only repays the assets that are
+already in the position, i.e. without swapping them, and as such, it is not subject to price risks to the same
+extent as liquidations.
+Assuming that M(P) > 1.0, then A(P) > D(P). Let us introduce ε
+def
+= A(P) − D(P)
+M(P) =
+A(P)
+D(P)
+= 1 +
+ε
+D(P)
+(27)
+M′
+(P) =
+A(P) − Vrepaid
+D(P) − Vrepaid
+= 1 +
+ε
+D(P) − Vrepaid
+(28)
+Since D(P) > D(P) − Vrepaid, it follows that M′
+(P) > M(P): deleveraging can only increase the margin
+level of a position if the assumption M(P) > 1.0 is met.
+Note that this property is not true for positions with margin level at or below 1.0.
+## 3.7 Safe liquidations
+Liquidations convert some of the user’s assets to fully or partially repay their debt. The margin level after
+a liquidation changes in a similar way as it does after deleveraging, execept that there is an additional term
+representing the liquidatin bonus:
+M′
+(P) =
+A(P) − Vrepaid − Vbonus
+D(P) − Vrepaid
+, (29)
+The liquidation bonus is proportional to the value repaid:
+Vbonus
+def
+= βVrepaid (30)
+The value Vrepaid depends on the initial margin level M(P) of the position, the liquidation threshold ML, the
+target threshold MT , and the liquidation bonus proportion β.
+7CONCENTRATED LIQUIDITY WITH LEVERAGE
+There is a critical margin level threshold MC, below which the debt cannot be fully liquidated. At the
+threshold MC, the value repaid is equal to the value of the debt, and consumes all of the assets:
+
+A(P) = Vrepaid + βVrepaid
+D(P) = Vrepaid
+(31)
+It follows that:
+MC =
+(1 + β)Vrepaid
+Vrepaid
+= 1 + β (32)
+To ensure safe operation of the protocol, the values of ML and MT should be set so that MC < ML < MT .
+If that is done, and we define Vrepaid(P) in term of asssets — as kA(P) — then the coefficient k can be
+computed as:
+k =
+
+ 
+ 
+0, if M ≥ ML
+MT −M
+(MT −(1+β))M , if ML > M > MC
+1
+1+β , if M ≤ MC
+(33)
+Case-by-case:
+1. If the margin level M ≥ ML, the liquidation does not happen.
+2. If the margin level ML > M > MC, the debt is fully liquidated, and the new margin level M′
+after
+the liquidation is:
+M′
+=
+A(P) − kA(P) − kβA(P)
+D(P) − kA(P)
+=
+1 − (1 + β)k
+1
+M − k
+(34)
+3. If the margin level M = MC, the debt is fully liquidated, but so are assets.
+4. If the margin level M < MC, the assets are fully liquidated, but some debt remains. We assume that
+paying out the liquidation bonus in full is a priority. If the protocol sets the priorities differently, the
+formula of k for this case should be changed.
+In the first case, the new margin level M′
+is equal to M, and in the third and fourth cases it does not exist.
+Only the second case need to be analyzed to show that M′
+is larger than M, i.e., the liquidation is safe.
+Algebraically, M′
+can be shown to be equal to MT , which by assumption is more than M.
+Additionally:
+• The value of k sets a lower bound on what is required for safe operation. Protocols may choose to
+opt for more aggressive liquidations, where a higher proportion of the assets are liquidated at higher
+margin levels. For instance, the Kai Leverage protocol (Section 4) fully liquidates a position if its
+margin level falls below (ML + MC)/2.
+• If the margin level is below MC, the debt D(P) cannot be repaid in full while also paying out the
+liquidation bonus. The protocol may prioritize liquidators in this case, and fix the value of the bonus
+equal to βD(P) to ensure sufficient incentives for liquidation. The protocol should strive avoid these
+situations, as they create bad debt for it.
+## 3.8 Safety from price manipulation
+It is considered easy to manipulate the spot price of an AMM for short periods of time. If this could be used
+to reduce the margin level of a position below ML, it could make healthy positions eligible for liquidation.
+Moreover, if the level could be reduced below 1+β, the protocol could be forced to incur bad debt. Therefore,
+it is crucial to demonstrate that the protocol is robust against spot price manipulation, as long as it has access
+to an accurate price from an oracle.
+8CONCENTRATED LIQUIDITY WITH LEVERAGE
+To prove this, first consider that spot price manipulation cannot change the value of an out-of-range position,
+since it does not alter its composition. Without loss of generality, we can assume that (1) the position is in-
+range, and (2) the CL pool has non-zero liquidity (otherwise, all positions are out of range, which contradicts
+the first assumption). Price manipulation in CL pools with non-zero liquidity can be modeled as a series of
+price manipulations in xy = k AMM pools. Therefore it is sufficient to prove this property for xy = k
+AMMs. Additionally, the presence of any swap fees makes the attack more costly for the perpetrator, so we
+will focus on the case without swap fees.
+Consider a swap that exchanges some X and Y tokens. Let us denote the changes in the AMM pool’s balance
+by ∆x and ∆y, where the signs of the deltas depend on the direction of the swap. The value of the position
+after the swap, as computed using the true (oracle) price P, is:
+V ′
+pos = Vpos + ∆V = Vpos + ∆x · P + ∆y (35)
+The deltas can be computed from the liquidity L, the current price P (assumed to match the oracle price) and
+the price after the swap P′
+(see Eqs. 6.14 and 6.16 in [1]):
+∆x =
+L
+√
+P′
+−
+L
+√
+P
+(36)
+∆y = L
+√
+P′ − L
+√
+P (37)
+Let us compute the change in the position’s value:
+∆V = ∆x · P + ∆y = (38)
+= (
+L
+√
+P′
+−
+L
+√
+P
+)P + L
+√
+P′ − L
+√
+P = (39)
+= L
+P − 2
+√
+P′
+√
+P + P′
+√
+P′
+= (40)
+= L
+(
+√
+P −
+√
+P′)2
+√
+P′
+(41)
+The square in the numerator guarantees that ∆V is positive, since L,P,P′
+are all positive. We have thus
+proved that any price-manipulating swap, under the assumptions stated above, always increases the value of
+the assets in a position. Liquidations of healthy positions cannot be forced in this way.
+## 3.9 Connection with divergence loss
+The relative divergence loss (DL, also called “impermanent loss” or “rebalancing loss”) of a position is
+defined as:
+DLrelative(P) =
+Vpos(P) − Vhold(P)
+Vhold(P)
+= (42)
+=
+Vpos(P)
+Vhold(P)
+− 1 (43)
+The margin level function (Eq. 13) when both assets are borrowed (xC = yC = 0) reduces to:
+M(P) =
+Vpos(P)
+Vhold(P) − Vuser(P)
+(44)
+The similarity between Eq. 43 and Eq. 44 shows that as Vuser → 0, the margin level M(P) → DL(P) + 1.
+It follows that the losses of a leveraged concentrated liquidity LP that borrows both assets are the same as the
+DL of the full position (when using buy-and-hold at the initial token proportions as the benchmark).
+Relative to the starting capital of the LP, these losses are the same as the DL multiplied by the position’s
+initial leverage factor.
+9CONCENTRATED LIQUIDITY WITH LEVERAGE
+## 4 Practical Aspects
+This section is specific to the implementation in the Kai Leverage protocol, although many aspects are com-
+mon with other implementations.
+## 4.1 Supply Pools
+Supply pools are single-sided liquidity pools used as a source of liquidity for leveraged positions. Liquidity
+deposited in these pools earns interest as assets are borrowed for leveraged position creation. The interest
+model is based on a piecewise curve that increases the interest rate as pool utilization increases.
+It is worth noting that each supply pool has a separate interest model associated with each DEX pool over
+which the leveraged positions are created. This means that supply pool liquidity providers can earn higher
+interestrateswhentheirassetsareutilizedinleveragedpositionswithhigherrisk, e.g., moreintheSUI/USDC
+pool than in the USDC/USDT pool.
+## 4.2 Position Creation
+For position creation, the following assertions are made:
+1. The current pool price is within the position range.
+• Formally: pa ≤ P0 ≤ pb.
+2. The position’s margin levels at prices min liq start price delta away from the current price
+(in both directions) are above ML (liq margin in the code).
+• Formally: min(M((1 − ∆P)P0),M((1 + ∆P)P0)) > ML.
+3. The position’s initial margin is above min init margin.
+• Formally: M(P0) > M0.
+Assertion (3) is not strictly necessary, as the first two assertions already imply the maximum leverage, but it
+is useful in practice to have this check to limit the potential risk of high leverage.
+There are two other constraints that are not part of the leverage model but are useful for limiting liquidation
+and ecosystem risk — max position l and max global l. The first one limits the maximum liquidity that
+can be used in a single position, and the second one limits the total liquidity that can be used in all positions
+across a single pool. These constraints are checked during position creation.
+## 4.3 Deleveraging
+The system also includes a deleverage mechanism. This mechanism was introduced because liquidations re-
+quiretheentire LP position to be withdrawn from the pool. Since the withdrawn assets can often be used to re-
+payaportionofthedebt, itispossiblethatthemarginlevelofthepositionincreasesenoughtoavoidimminent
+liquidation. Deleveraging is triggered when the position’s margin level goes below deleverage margin,
+which is set to a value higher than liq margin and acts as a safety buffer to help avoid liquidations.
+Deleveraging is a permissioned action, meaning that third parties cannot trigger it. It is handled by the admin
+system. There is no penalty, reward, or fee taken for deleveraging, as no actual liquidation is happening:
+assets are just withdrawn from the pool and used to repay debt. In case the admin system fails, the position
+will be liquidated when the margin level goes below liq margin by the standard (permissionless) liquidation
+mechanism.
+## 4.4 Liquidation
+Liquidation is a permissionless action that can be triggered by anyone. Normally, if the deleveraging system
+is functioning correctly, the position will be fully deleveraged (i.e., all liquidity withdrawn from the pool
+and used to repay debt) before it reaches the liquidation margin level. If that is not the case, deleveraging
+10CONCENTRATED LIQUIDITY WITH LEVERAGE
+is performed by the liquidators after the position falls below the liq margin level. If the position remains
+below the liq margin after that, it can be liquidated.
+It is important to note that once the position is fully deleveraged, all of the collateral will be entirely in one
+of the two pool assets, while the debt will be in the other. This happens because all assets withdrawn from
+the LP position, and any extra collateral, are used to repay as much of the debt as possible, leaving only one
+type of collateral and the debt in the other asset. At this point, liquidation reduces to selling the remaining
+collateral to repay the debt.
+A liq bonus, defined as a percentage of the liquidated debt, is taken from the liquidated position and given
+to the liquidator as an incentive to liquidate the position. Liquidators are always guaranteed to receive this
+bonus, even if the position is below the critical margin level, in order to minimize the amount of bad debt.
+## 5 Conclusion
+This article formalizes and models concepts related to a concentrated liquidity protocol with generalized
+leverage. The leverage is generalized in the sense that the user’s assets may consist of an LP position as well
+as optional free collateral that consists of one or both of the LP pool’s tokens.
+We describe and prove multiple properties of such a system, addressing the questions posed in the introduc-
+tion:
+• The margin level function has a predictable behavior within an arbitrary price range, guaranteed by
+the fact that the function does not have local minima within its domain of definition.
+• Given certain reasonable assumptions, position liquidations, reductions, and deleveraging do not
+decrease the position’s margin level, making them safe to perform.
+• Spot price manipulation cannot force unnecessary liquidations or bad debt, as long as the protocol
+has access to accurate oracle prices (which can be time-weighted prices from the AMM pool itself).
+Additionally, we briefly examined an implementation of such a system in the Kai Leverage protocol and
+touchedonsomepracticalaspects. WehopethisarticlewillbeusefultoDeFipractitioners, includingliquidity
+providers, protocol designers, risk analysts, and security researchers.
+References
+[1] H. Adams, N. Zinsmeister, M. Salem, R. Keefer, and D. Robinson, “Uniswap v3 Core,” Uniswap Labs,
+Tech. Rep., 2021.
+[2] G. Lambert and J. Kristensen, “Panoptic: the perpetual, oracle-free options protocol,” arXiv preprint
+arXiv:2204.14232, 2022.
+[3] M. Romero and B. Kalin, “Revert Lend Protocol,” https://github.com/revert-finance/lend-whitepaper/
+blob/main/Revert Lend-wp.pdf, accessed: 2024-08-19.
+[4] “What is yldr.com,” https://yldr.gitbook.io/yldr, accessed: 2024-08-19.
+[5] “Kuna Labs Website,” https://kunalabs.io/, accessed: 2024-08-19.
+[6] A. Elsts, “Liquidity Math in Uniswap v3,” https://ssrn.com/abstract=4575232, 2021.
+11CONCENTRATED LIQUIDITY WITH LEVERAGE
+Appendix
+Proof: The margin function has no local minima
+To prove that the margin function M(P) has no local minima in its domain of definition (P > 0), we will
+analyze its derivative and check for the absence of negative-to-positive zero crossings within this domain.
+For out-of-range positions, the margin function is monotonic, and this property is trivial. Same goes for the
+case when the user only borrows Y . Let us focus on in-range positions with non-zero liquidity and non-zero
+X borrowed.
+First, let us introduce a new variable S such that S
+def
+=
+√
+P. This substitution simplifies the algebra while
+preserving the locations of critical points. The margin function in terms of S is:
+M(S) =
+Vpos(S) + xCS2
++ yC
+xDS2 + yD
+(45)
+Expanding Vpos(S) for an in-range position with liquidity L, we have:
+M(S) =
+L(2S − Sa − S2
+/Sb) + xCS2
++ yC
+xDS2 + yD
+(46)
+This expression can be rearranged to the standard quadratic form:
+M(S) =
+(xC − L/Sb)S2
++ 2LS + (yC − LSa)
+xDS2 + yD
+(47)
+This is an equation of the form:
+M(S) =
+aS2
++ bS + c
+dS2 + e
+, (48)
+According to our domain-specific assumptions discussed previously, the coefficients b and d are guaranteed
+to be positive, and e non-negative.
+The derivative of M(S) with respect to S is:
+M′
+(S) =
+−bdS2
++ 2(ae − cd)S + be
+(dS2 + e)2
+(49)
+Since the denominator is positive for any non-zero S, the sign of M′
+(S) depends on the sign of the numerator,
+which is a quadratic expression AS2
++ BS + C, where:
+A = −bd, B = 2(ae − cd), C = be (50)
+From Eqs. 48 and 50, A is always negative, while C and therefore also −AC always non-negative. Let us
+analyze the signs of the roots S1,2 = −B±
+√
+D
+2A , where D = B2
+− 4AC:
+−4AC ≥ 0 (51)
+B2
+− 4AC ≥ B2
+(52)
+|
+p
+B2 − 4AC| ≥ |B| (53)
+Eq. 53 shows that |B| is smaller than or equal to |
+√
+D|; it follows that S1 and S2 cannot both be positive.
+Given that A < 0, the quadratic equation is an inverted parabola, where S1 represents a negative-to-positive
+crossing, which corresponds to a local minimum, and S2 represents a positive-to-negative crossing, corre-
+sponding to a local maximum. However, for M(S) defined in S > 0, S1 is guaranteed to lie outside its
+domain, leaving no local minima within the relevant range.
+Uniswap v2 positions are covered by this proof as a special case, with Sa = 0 and S/Sb = 0, so that
+Vv2pos(S) = 2LS.
+12CONCENTRATED LIQUIDITY WITH LEVERAGE
+Inverse margin level functions
+The inverse functions allow to compute the lower price PL and upper price PH where the margin function
+reaches a specific level M for a given position (L,pa,pb), debt (xD,yD), and extra collateral (xC,yC).
+The functions are:
+PL(M,L,pa,pb,xC,yC,xD,yD) =
+N1 − 2L
+√
+N2
+D
+(54)
+PU(M,L,pa,pb,xC,yC,xD,yD) =
+N1 + 2L
+√
+N2
+D
+, (55)
+where
+N1 = − xCyCpb + xCyDMpb + xCL
+√
+papb
++ yCxDMpb + yCL
+√
+pb − xDyDM2
+pb
+− xDLM
+√
+papb − yDLM
+√
+pb − L2√
+pa
+√
+pb
+N2 = − xCyCp2
+b + xCyDMp2
+b + xCL
+√
+pap2
+b
++ yCxDMp2
+b + yCLp
+3/2
+b
+− xDyDM2
+p2
+b − xDLM
+√
+pap2
+b − yDLMp
+3/2
+b
+− L2√
+pap
+3/2
+b + L2
+p2
+b
+D =x2
+Cpb − 2xCxDMpb − 2xCL
+√
+pb + x2
+DM2
+pb + 2xDLM
+√
+pb + L2
+13

@@ -1,0 +1,2470 @@
+schema_version: 1
+sources:
+- authors:
+  - Austin Adams
+  - Ciamac C. Moallemi
+  - Sara Reynolds
+  - Dan Robinson
+  bytes: 235182
+  citekey: adams-am-amm-auction-managed-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2403.03367.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2403.03367-adams-am-amm.pdf
+  provenance:
+    id: '2403.03367'
+    kind: arxiv
+  sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
+  title: 'am-AMM: An Auction-Managed Automated Market Maker'
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Hayden Adams, Noah Zinsmeister, Moody Salem, River Keefer, and Dan Robinson
+  bytes: 1500865
+  citekey: adams-uniswap-v3-core-2021
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/v3core.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/uniswap-v3-core.pdf
+  provenance:
+    kind: unsourced
+  sha256: 1be05d1134f677dfbce9afa7392a2c200c000f3db74fb8d228e3636a2b624494
+  title: Uniswap v3 Core
+  topics:
+  - volatility-swaps
+  year: 2021
+- authors:
+  - Andreas A. Aigner
+  - Gurvinder Dhaliwal
+  bytes: 1195687
+  citekey: aigner-uniswap-impermanent-loss-risk-2021
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2106.14404-aigner-uniswap-il-risk.pdf
+  provenance:
+    id: '2106.14404'
+    kind: arxiv
+  sha256: df08a93eb981ee8200f07e1c3a43b0cb9170e7dbe52e7f8100b8cd0ba521bde8
+  title: 'Uniswap: Impermanent Loss and Risk Profile of a Liquidity Provider'
+  topics:
+  - volatility-swaps
+  year: 2021
+- authors:
+  - Iñaki Aldasoro, Paula Beltran, and Federico Grinberg
+  bytes: 4017644
+  citekey: aldasoro-stablecoin-inflows-spillovers-2026
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/imf-stablecoin-spillovers-fx-2026.pdf
+  provenance:
+    kind: unsourced
+  sha256: edce174878ed7edbab8458d72e87422833d50a6395d8fa71c615f43ea271733b
+  title: Stablecoin Inflows and Spillovers to FX Markets, WP/26/56, March 2026
+  topics:
+  - applications
+  - econometrics
+  year: 2026
+- authors:
+  - Carol Alexander
+  bytes: 2422429
+  citekey: alexander-price-discovery-efficiency-uniswap-pools-2025
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/Journal of Futures Markets
+    - 2025 - Alexander - Price Discovery and Efficiency in Uniswap Liquidity Pools.pdf
+  provenance:
+    kind: unsourced
+  sha256: 2daad76d1b2dd921f4d789244d4cd6776fe345999d19b59650dabbb13dc89856
+  title: Price Discovery and Efficiency in Uniswap Liquidity Pools
+  topics:
+  - applications
+  - econometrics
+  year: 2025
+- authors:
+  - Abe Alexander
+  - Lars Fritz
+  bytes: 992577
+  citekey: alexander-theoretical-framework-fees-amms-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2404.03976.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.03976-alexander-fritz-fee-framework.pdf
+  provenance:
+    id: '2404.03976'
+    kind: arxiv
+  sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
+  title: A theoretical framework for fees in AMMs
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Peter Allen
+  - Stephen Einchcomb
+  - Nicolas Granger
+  bytes: 1897962
+  citekey: allen-variance-swaps-jpmorgan-2006
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/jpm-2006-variance-swaps.pdf
+  provenance:
+    kind: unsourced
+  sha256: 792add2a70763b8e49a256786e23bc63e68751326b83fc1cfffed4cdb6a92b5e
+  title: Variance Swaps (J.P. Morgan European Equity Derivatives Research)
+  topics:
+  - volatility-swaps
+  year: 2006
+- authors:
+  - Guillermo Angeris
+  - Akshay Agrawal
+  - Alex Evans
+  - Tarun Chitra
+  - Stephen Boyd
+  bytes: 574884
+  citekey: angeris-cfmm-multi-asset-convex-optimization-2021
+  origin:
+  - learning/convex-analysis/refs/angeris-cfmm-multi-asset-convex-opt.pdf
+  provenance:
+    kind: unsourced
+  sha256: f5daec834603a1c72fc610355eebabd674fea93b587bd6c11a1a7042db60953f
+  title: 'Constant Function Market Makers: Multi-Asset Trades via Convex Optimization'
+  topics:
+  - convex
+  year: 2021
+- authors:
+  - Guillermo Angeris
+  - Tarun Chitra
+  - Theo Diamandis
+  - Alex Evans
+  - Kshitij Kulkarni
+  bytes: 612220
+  citekey: angeris-geometry-constant-function-market-makers-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2308.08066.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/cfmm/angeris-geometry_of_cfmms-2023.pdf
+  - learning/convex-analysis/refs/angeris-geometry-cfmm-2308.08066.pdf
+  provenance:
+    id: '2308.08066'
+    kind: arxiv
+  sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
+  title: The Geometry of Constant Function Market Makers
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Guillermo Angeris
+  - Tarun Chitra
+  - Alex Evans
+  - Matthew Lorig
+  bytes: 190161
+  citekey: angeris-primer-on-perpetuals-2022
+  origin:
+  - learning/convex-analysis/refs/angeris-primer-perpetuals-2209.03307.pdf
+  provenance:
+    id: '2209.03307'
+    kind: arxiv
+  sha256: fbe2fac9dbc10be1a85bac34df6dbf795b30783e88bc38eeadcb9a667ef500f8
+  title: A Primer on Perpetuals
+  topics:
+  - convex
+  year: 2022
+- authors:
+  - Guillermo Angeris
+  - Alex Evans
+  - Tarun Chitra
+  bytes: 393985
+  citekey: angeris-replicating-market-makers-2021
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2103.14769.pdf
+  - learning/convex-analysis/refs/angeris-replicating-market-makers-2103.14769.pdf
+  provenance:
+    id: '2103.14769'
+    kind: arxiv
+  sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
+  title: Replicating Market Makers
+  topics:
+  - volatility-swaps
+  year: 2021
+- authors:
+  - Guillermo Angeris
+  - Alex Evans
+  - Tarun Chitra
+  bytes: 180300
+  citekey: angeris-replicating-monotonic-payoffs-without-oracles-2021
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/replicating-monotonic-payoffs-without-oracles.pdf
+  provenance:
+    id: '2111.13740'
+    kind: arxiv
+  sha256: 7fdd4f98a3ed4db3442517471424484a3acaca3f0c6483965ce770474a9b2c15
+  title: Replicating Monotonic Payoffs Without Oracles
+  topics:
+  - volatility-swaps
+  year: 2021
+- authors:
+  - Alif Aqsha
+  - Philippe Bergault
+  - Leandro Sánchez-Betancourt
+  bytes: 2998478
+  citekey: aqsha-equilibrium-reward-liquidity-2025
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2503.22502.pdf
+  provenance:
+    id: '2503.22502'
+    kind: arxiv
+  sha256: 7eaf916594ad0069df6952eac345c67b787bf19861c410de2336322dea59e346
+  title: Equilibrium Reward for Liquidity Providers in Automated Market Makers
+  topics:
+  - volatility-swaps
+  year: 2025
+- authors:
+  - Matteo Aquilina, Sean Foley, Leonardo Gambacorta and William Krekel
+  bytes: 3598114
+  citekey: aquilina-decentralised-dealers-examining-2024
+  origin:
+  - cfmm/cfmm-theory/refs/aquilina-decentralised-dealers-bis-wp1227-2024.pdf
+  - learning/structural-econometrics/aquilina-decentralised_dealers-2024.pdf
+  provenance:
+    kind: unsourced
+  sha256: 39c043c7d27362c8e5242408936985c46de73a48e381b17f8b86d545ca3ef4ba
+  title: Decentralised dealers? examining liquidity provision in decentralised exchanges
+  topics:
+  - applications
+  - io
+  year: 2024
+- authors:
+  - Stefano Athanasoulis, Robert Shiller, and Eric van Wincoop
+  bytes: 179118
+  citekey: athanasoulis-macro-markets-financial-1999
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/ssrn-1004360.pdf
+  provenance:
+    kind: unsourced
+  sha256: 04fff506838253bb5e726bf24e8d89ad88d1a1e39ef55dc97ba0eca5c4551086
+  title: Macro Markets and Financial Security
+  topics:
+  - applications
+  - econometrics
+  year: 1999
+- authors:
+  - Raphael Auer, Ulf Lewrick and Jan Paulick
+  bytes: 1183235
+  citekey: auer-defiying-gravity-empirical-2025
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/bis-work1265.pdf
+  provenance:
+    kind: unsourced
+  sha256: 0a3acb9f68654a3b1b4a69ed183e9fff232a7843216becadb807926b5087a570
+  title: DeFiying gravity? An empirical analysis of cross-border Bitcoin, Ether and
+    stablecoin flows
+  topics:
+  - applications
+  - econometrics
+  year: 2025
+- authors:
+  - Sheldon Axler
+  bytes: 2794514
+  citekey: axler-linear-algebra-done-2026
+  origin:
+  - cfmm/cfmm-theory/cfmm-linear-algebra/LADR4e.pdf
+  provenance:
+    kind: unsourced
+  sha256: 6bc491c90dcc8fd5922eb4bc3e18c5b18307f5239c7e9029b9051b9afbc0465d
+  title: Linear Algebra Done Right
+  topics:
+  - linear-algebra
+  year: 2026
+- authors:
+  - Leonardo Baggiani
+  - Martin Herdegen
+  - Leandro Sánchez-Betancourt
+  bytes: 3767408
+  citekey: baggiani-optimal-dynamic-fees-2025
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2506.02869.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2506.02869-baggiani-optimal-dynamic-fees.pdf
+  provenance:
+    id: '2506.02869'
+    kind: arxiv
+  sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
+  title: Optimal Dynamic Fees in Automated Market Makers
+  topics:
+  - volatility-swaps
+  year: 2025
+- authors:
+  - Bassam Bamieh
+  - Fernando Paganini
+  - Munther A. Dahleh
+  bytes: 498047
+  citekey: bamieh-distributed-control-spatially-invariant-2002
+  origin:
+  - cfmms-playground/cfmm-wt/evm-controller/refs/control1.pdf
+  provenance:
+    kind: unsourced
+  sha256: 359009eae2b9341332a919590051576e8d2052038491d6d5c448bb60178cee3c
+  title: Distributed Control of Spatially Invariant Systems
+  topics:
+  - control
+  year: 2002
+- authors:
+  - Vipul K. Bansal
+  - John F. Marshall
+  - Robert P. Yuyuenyongwatana
+  bytes: 787220
+  citekey: bansal-macroeconomic-derivatives-more-viable-1995
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/macroDerivatives002.pdf
+  provenance:
+    kind: unsourced
+  sha256: ce75f1eb8e8ac3afa75bb35f732bc5db96a825b06b4e06b5b27b38c340439703
+  title: 'Macroeconomic Derivatives: More Viable Than First Thought!'
+  topics:
+  - applications
+  - econometrics
+  year: 1995
+- authors:
+  - Niccolo Bardoscia
+  - Alessandro Nodari
+  bytes: 513517
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2302.11942.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2302.11942-bardoscia-lp-greeks.pdf
+  - cfmm/cfmm-theory/lp-derivatives/bardoscia-lp_greeks-2023.pdf
+  provenance:
+    id: '2302.11942'
+    kind: arxiv
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  title: Liquidity Providers Greeks and Impermanent Gain
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Martin Baxter
+  - Andrew Rennie
+  bytes: 9075339
+  citekey: baxter-rennie-financial-calculus-1996
+  origin:
+  - cfmm/cfmm-theory/refs/Baxter_Rennie_Financial_Calculus.pdf
+  provenance:
+    kind: unsourced
+  sha256: a2425c0d1b2bd820c380509dfe7d562212836dfeea00aca0adb517ec2a7bdf5a
+  title: 'Financial Calculus: An Introduction to Derivative Pricing'
+  topics:
+  - dgp
+  - options
+  year: 1996
+- authors:
+  - Alexander Bentkamp
+  - Ramon Fernandez Mir
+  - Jeremy Avigad
+  bytes: 560382
+  citekey: bentkamp-cvxlean-convex-optimization-lean4-2023
+  origin:
+  - learning/convex-analysis/refs/cvxlean-verified-reductions-2301.09347.pdf
+  provenance:
+    id: '2301.09347'
+    kind: arxiv
+  sha256: ef1f10c6902843b3d2f680aa382b8318149daecc1667e11e4283c4d71168e4b9
+  title: 'CvxLean: Convex Optimization Modeling in Lean 4'
+  topics:
+  - convex
+  year: 2023
+- authors:
+  - Philippe Bergault
+  bytes: 753431
+  citekey: bergault-mean-variance-lp-payoffs-amm-design-2022
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/bergault-mean_variance_lp_payoffs_amm_design-2022.pdf
+  provenance:
+    id: '2212.00336'
+    kind: arxiv
+  sha256: 719b1f56d19042facf11a28f26c77eeeeaa0a0c601bfced43b9e8f4433d17864
+  title: Mean-Variance LP Payoffs and AMM Design
+  topics:
+  - volatility-swaps
+  - applications
+  year: 2022
+- authors:
+  - Philippe Bergault
+  - Sébastien Bieber
+  - Leandro Sánchez-Betancourt
+  bytes: 1962195
+  citekey: bergault-optimal-exit-time-2025
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2509.06510.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/derivative_maturity.pdf
+  - cfmm/cfmm-theory/lp-derivatives/bergault_bieber_sanchez-optimal_exit_time_lp_amm.pdf
+  provenance:
+    id: '2509.06510'
+    kind: arxiv
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  title: Optimal Exit Time for Liquidity Providers in Automated Market Makers
+  topics:
+  - volatility-swaps
+  year: 2025
+- authors:
+  - Maxim Bichuch
+  - Zachary Feinstein
+  bytes: 1273922
+  citekey: bichuch-axioms-for-automated-market-makers-2022
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/cfmm/bichuch_feinstein-axioms_for_amms-2022.pdf
+  provenance:
+    id: '2210.01227'
+    kind: arxiv
+  sha256: f5d0f3f06b1d986adfe52b332f2e6de7c1dd2752ea61c61f72937180c776dbe6
+  title: 'Axioms for Automated Market Makers: A Mathematical Framework in FinTech
+    and Decentralized Finance'
+  topics:
+  - applications
+  - convex
+  year: 2022
+- authors:
+  - Maxim Bichuch
+  - Zachary Feinstein
+  bytes: 1155573
+  citekey: bichuch-implied-volatility-amm-fees-2025
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/bichuch_feinstein-implied_volatility_amm_fees-2025.pdf
+  provenance:
+    kind: unsourced
+  sha256: 191e074d41135923971834061d497c01d6b0a6d59fbf1cb5686546ee2e5d0ab6
+  title: Implied Volatility and AMM Fees
+  topics:
+  - volatility-swaps
+  - applications
+  year: 2025
+- authors:
+  - Maxim Bichuch
+  - Zachary Feinstein
+  bytes: 902315
+  citekey: bichuch-price-liquidity-implied-2025
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2509.23222.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2509.23222-bichuch-feinstein-price-of-liquidity.pdf
+  provenance:
+    id: '2509.23222'
+    kind: arxiv
+  sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
+  title: 'The Price of Liquidity: Implied Volatility of Automated Market Maker Fees'
+  topics:
+  - volatility-swaps
+  year: 2025
+- authors:
+  - Sebastien Bossu
+  bytes: 71057
+  citekey: bossu-advanced-equity-derivatives-2014
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/BOOK.pdf
+  provenance:
+    kind: unsourced
+  sha256: 69a4ce8697bec4db7311cab471dad461e39420281d1c948d35a68366f54be922
+  title: 'Advanced Equity Derivatives: Volatility and Correlation'
+  topics:
+  - volatility-swaps
+  year: 2014
+- authors:
+  - S. Bossu, E. Strasser, R. Guichard
+  bytes: 1413582
+  citekey: bossu-just-what-you-2005
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/bossu-variance-swaps.pdf
+  - cfmm/cfmm-theory/refs/BossuetalVarianceSwaps.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/vol_swaps_ui_ref.pdf
+  provenance:
+    kind: unsourced
+  sha256: 34140bc892dd865410e1f9c0646d4216c0e394f11fd9be920e6ccd9eff005599
+  title: Just what you need to know about Variance Swaps
+  topics:
+  - volatility-swaps
+  year: 2005
+- authors:
+  - Stephen Boyd
+  - Lieven Vandenberghe
+  bytes: 6881335
+  citekey: boyd-convex-optimization-2004
+  origin:
+  - learning/convex-analysis/boyd_vandenberghe-convex_optimization-2004.pdf
+  provenance:
+    kind: unsourced
+  sha256: 40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e
+  title: Convex Optimization
+  topics:
+  - convex
+  year: 2004
+- authors:
+  - Edwin Brady
+  bytes: 3725521
+  citekey: brady-type-driven-development-with-2017
+  origin:
+  - learning/formal-methods/refs/type_theory_references.pdf
+  provenance:
+    kind: unsourced
+  sha256: cc863400511063d959a416443d611a639cb9db2bac8ae0909a937cbf1ac45807
+  title: Type-Driven Development with Idris
+  topics:
+  - formal-methods
+  year: 2017
+- authors:
+  - Udo Broll
+  - Gerhard Schweimayer
+  - Peter Welzel
+  bytes: 160146
+  citekey: broll-managing-credit-risk-credit-macro-derivatives-2004
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/macroDerivatives001.pdf
+  provenance:
+    kind: unsourced
+  sha256: 923c098a344e205e383f0457977613c658ac33f93bb4f95944c7c1e742d0d62e
+  title: Managing Credit Risk with Credit and Macro Derivatives
+  topics:
+  - banking
+  - applications
+  year: 2004
+- authors:
+  - John Y. Campbell
+  - Andrew W. Lo
+  - A. Craig MacKinlay
+  bytes: 34732209
+  citekey: campbell-econometrics-financial-markets-1997
+  origin:
+  - learning/structural-econometrics/dokumen.pub_the-econometrics-of-financial-markets-9781400830213.pdf
+  provenance:
+    kind: unsourced
+  sha256: 9a95fd6afa9299ac3437b63a823d02e27d15200f80a5e79ddfb54c26c0f712c4
+  title: The Econometrics of Financial Markets
+  topics:
+  - econometrics
+  year: 1997
+- authors:
+  - Steven Campbell
+  - Philippe Bergault
+  - Jason Milionis
+  - Marcel Nutz
+  bytes: 7251116
+  citekey: campbell-optimal-fees-liquidity-2025
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2508.08152.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.08152-campbell-optimal-fees.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/flair/CampbellBergaultMilionisNutzOptimalFees.pdf
+  provenance:
+    id: '2508.08152'
+    kind: arxiv
+  sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
+  title: Optimal Fees for Liquidity Provision in Automated Market Makers
+  topics:
+  - volatility-swaps
+  year: 2025
+- authors:
+  - John Y. Campbell
+  - Robert J. Shiller
+  bytes: 3552948
+  citekey: campbell-shiller-stock-prices-expected-dividends-1988
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/Campbell_Shiller_RFS_1988.pdf
+  provenance:
+    kind: unsourced
+  sha256: c565e66f9492f850936cccdabedb7848b7bd6c30e6a24a18c10edfac7908b585
+  title: Stock Prices, Earnings, and Expected Dividends
+  topics:
+  - econometrics
+  - dgp
+  year: 1988
+- authors:
+  - Andrea Canidio
+  - Robin Fritsch
+  bytes: 1043814
+  citekey: canidio-arbitrageurs-profits-lvr-sandwich-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2307.02074.pdf
+  provenance:
+    id: '2307.02074'
+    kind: arxiv
+  sha256: fce014e0ff7f12c1e9290bdf922dac6146578ca94b932d1283f87a4908ba0a87
+  title: 'Arbitrageurs'' profits, LVR, and sandwich attacks: batch trading as an AMM
+    design response'
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Cantina
+  bytes: 546547
+  citekey: cantina-angstrom-security-review-2024
+  origin:
+  - learning/formal-methods/angstrom/contracts/security-reviews/cantina-competition.pdf
+  provenance:
+    kind: unsourced
+  sha256: d646aca6e28263600784d9f96188c29fd8e2c367cb815dbd54685216bc28f101
+  title: 'Cantina Competition Security Review: Angstrom'
+  topics:
+  - formal-methods
+  year: 2024
+- authors:
+  - Cao
+  - Falk
+  - Kogan
+  - Tsoukalas
+  bytes: 2085626
+  citekey: cao-structural-model-amm-2025
+  origin:
+  - learning/structural-econometrics/cao_falk_kogan_tsoukalas-structural_model_amm-2025.pdf
+  provenance:
+    kind: unsourced
+  sha256: b358c670e8299db6d6843654a0619be15c88266d3f4d7c64d41f1fd6d1071d36
+  title: A Structural Model of Automated Market Makers
+  topics:
+  - econometrics
+  year: 2025
+- authors:
+  - Agostino Capponi
+  - Brian Zhu
+  bytes: 750093
+  citekey: capponi-auctioning-time-to-2025
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/CapponiZhuTimeboost.pdf
+  provenance:
+    id: '2512.10094'
+    kind: arxiv
+  sha256: e967dad520bcc9bd70a5aa4a457f3b13ca9f8ee7815c2459b01c7e9e5702af8a
+  title: 'Auctioning Time to Mitigate Latency Races: Theory and Evidence from Blockchains'
+  topics:
+  - applications
+  - mechanism-design
+  year: 2025
+- authors:
+  - Agostino Capponi
+  - Ruizhe Jia
+  - Ye Wang
+  bytes: 841102
+  citekey: capponi-evolution-blockchain-lit-to-dark-2022
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/CapponiJiaWangLitToDark.pdf
+  provenance:
+    id: '2202.05779'
+    kind: arxiv
+  sha256: 1719866e596843ee9a498e7b49bf0a68106f3cb0e9bdc869d14c43954cee6cd9
+  title: 'The Evolution of Blockchain: from Lit to Dark'
+  topics:
+  - applications
+  - io
+  year: 2022
+- authors:
+  - Agostino Capponi
+  - Ruizhe Jia
+  bytes: 821107
+  citekey: capponi-jia-adoption-decentralized-exchange-2021
+  origin:
+  - cfmm/cfmm-theory/refs/capponi-jia-adoption-2021.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/mev/CapponiJiaAdoptionDEX.pdf
+  provenance:
+    id: '2103.08842'
+    kind: arxiv
+  sha256: 9ab8aa585696f7a02ae7d94a71d6f2f77bdb13c729e3a845039d33297b99d262
+  title: Adoption of Decentralized Exchanges
+  topics:
+  - applications
+  - io
+  year: 2021
+- authors:
+  - Agostino Capponi
+  - Ruizhe Jia
+  - Brian Zhu
+  bytes: 1424128
+  citekey: capponi-jit-liquidity-paradox-2023
+  origin:
+  - cfmm/cfmm-theory/refs/capponi-jit-paradox-2023.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/mev/CapponiJiaZhuJITLiquidity.pdf
+  provenance:
+    id: '2311.18164'
+    kind: arxiv
+  sha256: f3675ec634f3b3ba8997e03b4da29ce4334130fc3f5f0d294ef1149c156e3bcb
+  title: The Paradox of Just-in-Time Liquidity
+  topics:
+  - applications
+  - io
+  year: 2023
+- authors:
+  - Agostino Capponi
+  bytes: 1116770
+  citekey: capponi-optimal-exit-lp-2025
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/capponi-optimal_exit_lp.pdf
+  provenance:
+    kind: unsourced
+  sha256: adafa768826bcc320896fc577bbcc0120e27a8121ad6979d641d9707c04c30de
+  title: Optimal Exit for Liquidity Providers
+  topics:
+  - applications
+  - control
+  year: 2025
+- authors:
+  - Agostino Capponi
+  - Álvaro Cartea
+  - Fayçal Drissi
+  bytes: 2098911
+  citekey: capponi-viability-blockchain-markets-2026
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/CapponiCarteaDrissiDiscreteClearing.pdf
+  provenance:
+    id: '2605.17425'
+    kind: arxiv
+  sha256: 8ee2a1fe8dfc099ed03eee1fbe21d494cca6096880a61fcf0f2f2840e24aca5a
+  title: The Viability of Blockchain Markets under Discrete Clearing and Paid Priority
+  topics:
+  - applications
+  - mechanism-design
+  year: 2026
+- authors:
+  - Pamela Cardozo, Andrés Fernández, Jerzy Jiang, Felipe Rojas
+  bytes: 3100150
+  citekey: cardozo-cross-border-crypto-flows-2024
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/imf-wpiea2024261.pdf
+  provenance:
+    kind: unsourced
+  sha256: 1734b4c669d6d4a1329f8804948c9ed7a47d1761a642b25b46c11634f1a5a036
+  title: 'On Cross-Border Crypto Flows: Measurement, Drivers, and Policy Implications,
+    WP/24/261, December 2024'
+  topics:
+  - applications
+  - econometrics
+  year: 2024
+- authors:
+  - Alvaro Cartea
+  - Sebastian Jaimungal
+  - Jose Penalva
+  bytes: 32635180
+  citekey: cartea-algorithmic-high-frequency-trading-2015
+  origin:
+  - cfmm/cfmm-theory/refs/Algorithmic_and_High_Frequency_Trading.pdf
+  provenance:
+    kind: unsourced
+  sha256: 3216f3ea2582b88dd5e2b1d813ec2875c6ba252dbe5b51eb85f956c22e2d30aa
+  title: Algorithmic and High-Frequency Trading
+  topics:
+  - dgp
+  - control
+  year: 2015
+- authors:
+  - CertiK
+  bytes: 2211743
+  citekey: certik-numoen-audit-2022
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/power-maker-docs/.gitbook/assets/Numoen_Audit_Certik.pdf
+  provenance:
+    kind: unsourced
+  sha256: 98101a31a264a9c80853c07b8ea1cbd8ee4f62a3668e3ed6e07ccfbd8e6000e0
+  title: Numoen Security Audit Report
+  topics:
+  - applications
+  - formal-methods
+  year: 2022
+- authors:
+  - Raymond H. Chan
+  - Yves ZY. Guo
+  - Spike T. Lee
+  - Xun Li
+  bytes: 5014246
+  citekey: chan-financial-mathematics-derivatives-structured-products-2019
+  origin:
+  - learning/structural-econometrics/dokumen.pub_financial-mathematics-derivatives-and-structured-products-1st-ed-978-981-13-3695-9-978-981-13-3696-6.pdf
+  provenance:
+    kind: unsourced
+  sha256: 636285a2d646750fb7a2d8c3a0556a2d44c541fc5fd9f27231d64cb3ad52df13
+  title: Financial Mathematics, Derivatives and Structured Products
+  topics:
+  - econometrics
+  year: 2019
+- authors:
+  - Yeon-Koo Che
+  - Jinwoo Kim
+  - Fuhito Kojima
+  bytes: 663366
+  citekey: che-monotone-comparative-statics-2019
+  origin:
+  - cfmms-playground/cfmm-wt/evm-controller/refs/monotoneCompStatics.pdf
+  provenance:
+    id: '1911.06442'
+    kind: arxiv
+  sha256: a022d3cbd6a762cdc39653abfb03deb6797d03182de9808447a2fdb7f792dbbe
+  title: Monotone Comparative Statics without Lattices
+  topics:
+  - mechanism-design
+  year: 2019
+- authors:
+  - Shu-Heng Chen
+  - Mak Kaboudan
+  - Ye-Rong Du
+  bytes: 20274010
+  citekey: chen-oxford-handbook-computational-economics-finance-2018
+  origin:
+  - cfmm/cfmm-theory/refs/oxford-handbook-of-computational-economics-and-finance.pdf
+  provenance:
+    kind: unsourced
+  sha256: 703036492b59c0d5d9a1b05eb098aaecde2cbe9102643a75877e194be557aaa6
+  title: The Oxford Handbook of Computational Economics and Finance
+  topics:
+  - econometrics
+  - applications
+  year: 2018
+- authors:
+  - Tarun Chitra
+  bytes: 244120
+  citekey: chitra-theory-maximal-extractable-value-ii-2023
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/ChitraTheoryMEV2Uncertainty.pdf
+  provenance:
+    id: '2309.14201'
+    kind: arxiv
+  sha256: 8c7f201c2d73bfb2c6a7a3d8a7da21f642e7decef158c1f5c42540218a51ae96
+  title: 'Towards a Theory of Maximal Extractable Value II: Uncertainty'
+  topics:
+  - applications
+  year: 2023
+- authors:
+  - Joseph Clark
+  bytes: 408356
+  citekey: clark-replicating-portfolio-bounded-liquidity-2021
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/clark-replicating_portfolio_bounded_liquidity-2021.pdf
+  provenance:
+    kind: unsourced
+  sha256: 5913a5a00be4e167fe569d45a00f462bb7a0477137c4e221df4da5ca1407a108
+  title: Replicating Portfolios with Bounded Liquidity
+  topics:
+  - options
+  - applications
+  year: 2021
+- authors:
+  - Joseph Clark
+  bytes: 335571
+  citekey: clark-replicating-portfolio-constant-product-market-2020
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/clark-replicating_portfolio_constant_product_market-2020.pdf
+  provenance:
+    kind: unsourced
+  sha256: 9df1e64ab64715c3006ee4e448e6045670033aafe2def642e5ca4e9aa1a5dcfe
+  title: Replicating Portfolios in Constant Product Markets
+  topics:
+  - options
+  - applications
+  year: 2020
+- authors:
+  - Joseph Clark
+  bytes: 440468
+  citekey: clark-spanning-power-perpetuals-2023
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/clark-spanning_power_perpetuals-2023.pdf
+  provenance:
+    kind: unsourced
+  sha256: 9558856b4bbaa327a213786c732daecea48fbef74a66a704a43398c9373b09ea
+  title: Spanning with Power Perpetuals
+  topics:
+  - options
+  - applications
+  year: 2023
+- authors:
+  - Christopher Cole
+  bytes: 4024210
+  citekey: cole-volatility-alchemy-risk-2018
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/pensionFunds/03_volatility_4-2-18.pdf
+  provenance:
+    kind: unsourced
+  sha256: e8c4e4fe36a7127cabb325fcbb8c8c3c8035959a804ad0d47443db9ddb9efe9d
+  title: 'Volatility and the Alchemy of Risk: Reflexivity in the Shadows of Black
+    Monday 1987'
+  topics:
+  - volatility-swaps
+  - options
+  year: 2018
+- authors:
+  - Keenan Crane
+  bytes: 3819969
+  citekey: crane-discrete-differential-geometry-2025
+  origin:
+  - learning/discrete/refs/differentila_geometry.pdf
+  provenance:
+    kind: unsourced
+  sha256: f1432b17ef269500a2d69a2c2b93ac644cf7223ca9c736258a3676867fa01f8d
+  title: 'Discrete Differential Geometry: An Applied Introduction'
+  topics:
+  - discrete
+  year: 2025
+- authors:
+  - Christa Cuchiero
+  bytes: 458726
+  citekey: cuchiero-mathematical-finance-discrete-time-2015
+  origin:
+  - learning/discrete/refs/mathematical-finance-discrete-time.pdf
+  provenance:
+    kind: unsourced
+  sha256: 9b496d9068b472e558f1df1ecf06ff8d72aff4554e10f189d36bffb8149bd139
+  title: Lecture Notes for Mathematical Finance in Discrete Time
+  topics:
+  - discrete
+  year: 2015
+- authors:
+  - Philip Daian
+  - Steven Goldfeder
+  - Tyler Kell
+  - Yunqi Li
+  - Xueyuan Zhao
+  - Iddo Bentov
+  - Lorenz Breidenbach
+  - Ari Juels
+  bytes: 1430353
+  citekey: daian-flash-boys-2-2019
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/DaianEtAlFlashBoys2.pdf
+  provenance:
+    id: '1904.05234'
+    kind: arxiv
+  sha256: 4e8fd09b4655205d37f98eefc3cca038fdc8a12b34648ac2a26a2dd1ef63bdcd
+  title: 'Flash Boys 2.0: Frontrunning, Transaction Reordering, and Consensus Instability
+    in Decentralized Exchanges'
+  topics:
+  - applications
+  year: 2019
+- authors:
+  - Davidson, Larsa
+  bytes: 814619
+  citekey: davidson-cboe-putwrite-indices-methodology-2025
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/pensionFunds/Cboe_PutWrite_Indices_Methodology.pdf
+  provenance:
+    kind: unsourced
+  sha256: 3ba819cecfb7d3ed5757e3088c2be8c73c4f986c4b29dfe89302243de15c203d
+  title: ''
+  topics:
+  - options
+  year: 2025
+- authors:
+  - Kresimir Demeterfi
+  - Emanuel Derman
+  - Michael Kamal
+  - Joseph Zou
+  bytes: 523346
+  citekey: demeterfi-more-than-you-ever-wanted-volatility-swaps-1999
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/WVS.pdf
+  provenance:
+    kind: unsourced
+  sha256: 37613cde076bbfe9625d58ce1508ea86ff3c68d9043fdca905057c69c028966a
+  title: More Than You Ever Wanted To Know About Volatility Swaps
+  topics:
+  - volatility-swaps
+  year: 1999
+- authors:
+  - Kresimir Demeterfi
+  - Emanuel Derman
+  - Michael Kamal
+  - Joseph Zou
+  bytes: 485632
+  citekey: demeterfi-more-than-you-ever-wanted-volatility-swaps-1999-v2
+  origin:
+  - cfmm/cfmm-theory/refs/DemeterfietalVarianceSwaps.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/DemeterfietalVarianceSwaps.pdf
+  provenance:
+    kind: unsourced
+  sha256: ad289770b42f89cd0046f1e20ae42e4ecc2f15c419e1cd2705576739f762223e
+  title: More Than You Ever Wanted To Know About Volatility Swaps
+  topics:
+  - volatility-swaps
+  year: 1999
+- authors:
+  - Jun Deng
+  - Hua Zong
+  - Yun Wang
+  bytes: 157010
+  citekey: deng-static-replication-impermanent-2022
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2205.12043.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.12043-deng-static-replication-il.pdf
+  - cfmm/cfmm-theory/lp-derivatives/deng_zong_wang-static_replication_impermanent_loss-2022.pdf
+  - cfmm/cfmm-theory/macro-markets/refs/refs/2205.12043-static-replication-IL.pdf
+  provenance:
+    id: '2205.12043'
+    kind: arxiv
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  title: Static Replication of Impermanent Loss for Concentrated Liquidity Provision
+    in Decentralised Markets
+  topics:
+  - volatility-swaps
+  year: 2022
+- authors:
+  - Emanuel Derman
+  - Michael Kamal
+  - Iraj Kani
+  - John McClure
+  - Cyrus Pirasteh
+  - Joseph Zou
+  bytes: 59876
+  citekey: derman-investing-in-volatility-1999
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/InvestingInVolatilityFOW.pdf
+  provenance:
+    kind: unsourced
+  sha256: cfdcc53159e6adfcbba3a75e4912a76ecb74e6b5db83b962bd3d4cc3679bb1b0
+  title: Investing in Volatility
+  topics:
+  - volatility-swaps
+  year: 1999
+- authors:
+  - Emanuel Derman
+  - Iraj Kani
+  bytes: 718211
+  citekey: derman-stochastic-implied-trees-1998
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/stochastic_implied_tree.pdf
+  provenance:
+    kind: unsourced
+  sha256: 2866c135a246afab6a8502ca7b5e0253a2a11b69cc3c0920861ca8cf8f339dff
+  title: 'Stochastic Implied Trees: Arbitrage Pricing with Stochastic Term and Strike
+    Structure of Volatility'
+  topics:
+  - volatility-swaps
+  - options
+  year: 1998
+- authors:
+  - Mathieu Desbrun
+  - Anil N. Hirani
+  - Melvin Leok
+  - Jerrold E. Marsden
+  bytes: 588828
+  citekey: desbrun-discrete-exterior-calculus-2004
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/DiscreteDifferentialGeometry.pdf
+  provenance:
+    kind: unsourced
+  sha256: 11c0acb3b9194f9906428cd871fec6b24e5a9f8fa5fc1aa590bede36b188e11f
+  title: Discrete Exterior Calculus
+  topics:
+  - options
+  year: 2004
+- authors:
+  - Darrell Duffie
+  bytes: 1673538
+  citekey: duffie-dynamic-asset-pricing-theory-1999
+  origin:
+  - cfmm/cfmm-theory/refs/Dynamic_Asset_Pricing_Theory.pdf
+  provenance:
+    kind: unsourced
+  sha256: 4c9b0e037f243ce2f03616f5789214aace698ad7bf553a7d7888afdd3a8dfde6
+  title: Dynamic Asset Pricing Theory (Provisional Manuscript)
+  topics:
+  - dgp
+  year: 1999
+- authors:
+  - Darrell Duffie
+  bytes: 20069186
+  citekey: duffie-dynamic-asset-pricing-theory-2001
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/duffie-dynamic-asset-pricing-theory-2001.pdf
+  provenance:
+    kind: unsourced
+  sha256: 6e8a6250ce4c118163c68877d45a777a14769f76208e58966f759fd47f45bfb4
+  title: Dynamic Asset Pricing Theory (3rd Edition)
+  topics:
+  - dgp
+  year: 2001
+- authors:
+  - Darrell Duffie
+  bytes: 16639
+  citekey: duffie-dynamic-asset-pricing-theory-revisions-2002
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/duffie-dapt-revisions-2002.pdf
+  provenance:
+    kind: unsourced
+  sha256: 18ff2cc04f83e7bd1253a0c4716ac22cd08f6a1fefabb9f5eb12f977e83cd3d8
+  title: Dynamic Asset Pricing Theory - Revisions
+  topics:
+  - dgp
+  year: 2002
+- authors:
+  - Darrell Duffie
+  bytes: 640480
+  citekey: duffie-intertemporal-asset-pricing-theory-2003
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/duffie-intertemporal_asset_pricing_survey.pdf
+  provenance:
+    kind: unsourced
+  sha256: 0fa17c0944712b4543cb86e5698de76bbf6d88a2b68c1bb6205a82dc25012f8c
+  title: Intertemporal Asset Pricing Theory (Handbook survey)
+  topics:
+  - dgp
+  year: 2003
+- authors:
+  - Mnacho Echenim
+  bytes: 277557
+  citekey: echenim-cox-ross-rubinstein-isabelle-2018
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  provenance:
+    id: '1807.09873'
+    kind: arxiv
+  sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
+  title: A Formalization of the Cox-Ross-Rubinstein Model in Isabelle/HOL
+  topics:
+  - formal-methods
+  - discrete
+  year: 2018
+- authors:
+  - Atis Elsts
+  bytes: 316593
+  citekey: elsts-concentrated-liquidity-leverage-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2409.12803-elsts-concentrated-liquidity-leverage.pdf
+  - cfmm/cfmm-theory/lp-derivatives/elsts-concentrated_liquidity_leverage-2024.pdf
+  - wvs-docs/shelf/test/fixtures/headers.pdf
+  provenance:
+    id: '2409.12803'
+    kind: arxiv
+  sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
+  title: Concentrated Liquidity with Leverage
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Humberto Esqueda
+  - Rafael Herrera
+  - Salvador Botello
+  - Miguel Angel Moreles
+  bytes: 1897895
+  citekey: esqueda-geometric-description-discrete-exterior-calculus-2018
+  origin:
+  - learning/discrete/refs/exterior_calculus.pdf
+  provenance:
+    id: '1802.01158'
+    kind: arxiv
+  sha256: cb685d19b21bef96097a9e7e30450d668b67ea9f0039c479c10580058e103281
+  title: A Geometric Description of Discrete Exterior Calculus for General Triangulations
+  topics:
+  - discrete
+  year: 2018
+- authors:
+  - Alex Evans
+  bytes: 576989
+  citekey: evans-liquidity-provider-returns-geometric-mean-markets-2020
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2006.08806.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2006.08806-evans-lp-returns-g3m.pdf
+  provenance:
+    id: '2006.08806'
+    kind: arxiv
+  sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
+  title: Liquidity Provider Returns in Geometric Mean Markets
+  topics:
+  - volatility-swaps
+  year: 2020
+- authors:
+  - Alex Evans
+  - Guillermo Angeris
+  - Tarun Chitra
+  bytes: 357565
+  citekey: evans-optimal-fees-geometric-mean-market-makers-2021
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2104.00446.pdf
+  provenance:
+    id: '2104.00446'
+    kind: arxiv
+  sha256: db856ead2a02fef96ccbbe06b53e241276f37c865b5d72b390fbf02d731ff1d8
+  title: Optimal Fees for Geometric Mean Market Makers
+  topics:
+  - volatility-swaps
+  year: 2021
+- authors:
+  - Richard Fabian
+  bytes: 810503
+  citekey: fabian-data-oriented-design-2018
+  origin:
+  - learning/formal-methods/refs/Fabian-Data_Oriented_Design.pdf
+  provenance:
+    kind: unsourced
+  sha256: bd48b8dcbf8d1422a168beab994d5a77861f113f7b00989b2dd0641ed7b150bd
+  title: Data-Oriented Design
+  topics:
+  - formal-methods
+  year: 2018
+- authors:
+  - Zhou Fan
+  - Francisco Marmolejo-Cossio
+  - Ben Altschuler
+  - He Sun
+  - Xintong Wang
+  bytes: 6654989
+  citekey: fan-differential-liquidity-provision-uniswap-v3-2022
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/differential-liquidity-provision-uniswap-v3.pdf
+  provenance:
+    id: '2204.00464'
+    kind: arxiv
+  sha256: cb9df0abb035533307da83add1d6aeb7390bb52a2266b775187a0892978e6449
+  title: Differential Liquidity Provision in Uniswap v3 and Implications for Contract
+    Design
+  topics:
+  - applications
+  - io
+  year: 2022
+- authors:
+  - Zhou Fan, Francisco Marmolejo-Cossio, Daniel Moroz, Michael Neuder, Rithvik Rao,
+    David C. Parkes
+  bytes: 1222014
+  citekey: fan-strategic-liquidity-provision-2021
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/strategic-liquidity-provision-uniswap-v3.pdf
+  provenance:
+    id: '2106.12033'
+    kind: arxiv
+  sha256: 4579e21c4e2a20c1dbfa170a8028ba7acf0419be7c2066dd4d969bcfaf91ee47
+  title: Strategic Liquidity Provision in Uniswap v3
+  topics:
+  - applications
+  - io
+  year: 2021
+- authors:
+  - Eric A. Forgy
+  bytes: 165528
+  citekey: forgy-financial-modelling-discrete-stochastic-calculus-2004
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/DiscreteStochasticCalculus.pdf
+  - learning/discrete/refs/discrete-finance-calculus.pdf
+  provenance:
+    kind: unsourced
+  sha256: a6c3d16f81686b480ab38547bc344e9ae7c3f3b5fe8b41631b682bccfb97592d
+  title: Financial Modelling Using Discrete Stochastic Calculus
+  topics:
+  - options
+  year: 2004
+- authors:
+  - Friedman, Daniel P., and David Thrane Christiansen
+  bytes: 46525600
+  citekey: friedman-little-typer-2018
+  origin:
+  - learning/formal-methods/refs/type_theory_102.pdf
+  provenance:
+    kind: unsourced
+  sha256: 04931ea613089675084306d0ee34287c5608600dc6b94e10fc0b120a3e3dea1b
+  title: The Little Typer
+  topics:
+  - formal-methods
+  year: 2018
+- authors:
+  - Robin Fritsch
+  - Andrea Canidio
+  bytes: 986335
+  citekey: fritsch-measuring-arbitrage-losses-profitability-amm-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.05803-fritsch-arbitrage-losses-profitability.pdf
+  provenance:
+    id: '2404.05803'
+    kind: arxiv
+  sha256: 4ea20314e50e7284cd1da94eb00a7bb8de76f8cdc0e8b0199771fba3c2a28997
+  title: Measuring Arbitrage Losses and Profitability of AMM Liquidity
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Masaaki Fukasawa
+  bytes: 451744
+  citekey: fukasawa-volatility-derivatives-model-free-implied-leverage-2014
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/volatility_derivatives.pdf
+  provenance:
+    kind: unsourced
+  sha256: 4bc359c3ec04d439c94d82b9276a76d523ec2fbbb1d8507330c83d7f4b53dfe9
+  title: Volatility Derivatives and Model-free Implied Leverage
+  topics:
+  - volatility-swaps
+  year: 2014
+- authors:
+  - Masaaki Fukasawa
+  - Basile Maire
+  - Marcus Wunsch§
+  bytes: 1039333
+  citekey: fukasawa-weighted-variance-swaps-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/WVS_AMM.pdf
+  - cfmm/cfmm-theory/lp-derivatives/fukasawa_maire_wunsch-weighted_variance_swaps_impermanent_loss.pdf
+  provenance:
+    kind: unsourced
+  sha256: 01aac3aa820ec7f23ed00a24d7046037f26201989322f99bf716ad0ff37f482c
+  title: Weighted variance swaps hedge against impermanent loss
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Jim Gatheral
+  bytes: 1798694
+  citekey: gatheral-volatility-surface-2006
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/The Volatility Surface - A Practitioner's Guide
+    [Jim Gatheral].pdf
+  provenance:
+    kind: unsourced
+  sha256: 37858eb145888ceb077265b1df672bd1087097da2a89b55c8e60919a8d3f5bbd
+  title: 'The Volatility Surface: A Practitioner''s Guide'
+  topics:
+  - options
+  year: 2006
+- authors:
+  - Jim Gatheral
+  bytes: 1466040
+  citekey: gatheral-volatility-surface-2006-v2
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/volatility_surface_gatheral.pdf
+  provenance:
+    kind: unsourced
+  sha256: 574bb5db7ce7a3af0f62dc0f925cf78e080ead89b9922d32488fe5a045b169b7
+  title: 'The Volatility Surface: A Practitioner''s Guide'
+  topics:
+  - volatility-swaps
+  year: 2006
+- authors:
+  - Jacob K. Goeree
+  - Alexey Kushnir
+  bytes: 435036
+  citekey: goeree-kushnir-geometric-approach-mechanism-design-2013
+  origin:
+  - learning/mechanism-design/refs/goeree_kushnir-geometric_approach_mechanism_design-2013.pdf
+  provenance:
+    kind: unsourced
+  sha256: 32447fe50713389498889210d038594dc354fb63ef381643d147f5ec0cd3f66f
+  title: A Geometric Approach to Mechanism Design
+  topics:
+  - mechanism-design
+  year: 2013
+- authors:
+  - Branko Grunbaum
+  bytes: 39889672
+  citekey: grunbaum-convex-polytopes-2003
+  origin:
+  - cfmm/cfmm-theory/cfmm-convex/Kaibel-Klee-Ziegler-Convex-Polytopes-2003.pdf
+  provenance:
+    kind: unsourced
+  sha256: 070befaa8c47f043ef9da1df0705910480eb692f044d1843c9f048f3e61fecac
+  title: Convex Polytopes (2nd ed., prepared by V. Kaibel, V. Klee, G. M. Ziegler)
+  topics:
+  - convex
+  year: 2003
+- authors:
+  - Alan Guo
+  bytes: 315503
+  citekey: guo-invariance-properties-maximal-extractable-value-2023
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/GuoInvarianceMEV.pdf
+  provenance:
+    id: '2304.11010'
+    kind: arxiv
+  sha256: b5e356558e347aae95708e57c224380d91cfe93ae572bed6729ceff67dcdd713
+  title: Invariance Properties of Maximal Extractable Value
+  topics:
+  - applications
+  year: 2023
+- authors:
+  - Joel Hasbrouck
+  - Thomas J. Rivera
+  - Fahad Saleh
+  bytes: 489222
+  citekey: hasbrouck-economic-model-decentralized-exchange-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/options_lps.pdf
+  - cfmm/cfmm-theory/lp-derivatives/hasbrouck_rivera_saleh-economic_model_dex_concentrated_liquidity.pdf
+  provenance:
+    kind: unsourced
+  sha256: 198f9b09ac08ea321b1228d51d5cf1c0eda1abe58b1beacdea7af0e5419af372
+  title: An Economic Model of a Decentralized Exchange with Concentrated Liquidity
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Espen Gaarder Haug
+  bytes: 25336617
+  citekey: haug-complete-guide-option-pricing-formulas-2007
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/Espen_Haug_PRICING_OPTIONS_FORMULAS.pdf
+  provenance:
+    kind: unsourced
+  sha256: 9209c6a749b703bf538a150b83dae5520a4dcaf33157855a6377f6f91157c259
+  title: The Complete Guide to Option Pricing Formulas (2nd Edition)
+  topics:
+  - options
+  year: 2007
+- authors:
+  - John C. Hull
+  bytes: 44639477
+  citekey: hull-options-futures-derivatives-2012
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/hull-options-futures-derivatives.pdf
+  - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/hull-options-futures-derivatives.pdf
+  provenance:
+    kind: unsourced
+  sha256: 76a4d4ed6dce1618c2119f93667a44ccb44b0896aac50f8bbd960d0bff421475
+  title: Options, Futures, and Other Derivatives (8th Edition)
+  topics:
+  - volatility-swaps
+  year: 2012
+- authors:
+  - Chris Kelliher
+  bytes: 978379
+  citekey: kelliher-quantitative-finance-python-supplement-2022
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/qf_python_supplement.pdf
+  provenance:
+    kind: unsourced
+  sha256: db6eb6e536513db8ebdfbf5607f7317935422e247486d2da8b97623b0a94f871
+  title: Quantitative Finance with Python - Python Supplement
+  topics:
+  - volatility-swaps
+  year: 2022
+- authors:
+  - Chris Kelliher
+  bytes: 12310419
+  citekey: kelliher-quantitative-finance-with-2022
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/572359554-Quantitative-Finance-With-Python-a-Practical-Guide-to-Investment-Management-Trading-and-Financial-Engineering-Chris-Kelliher-Taylor-Francis-Group.pdf
+  provenance:
+    kind: unsourced
+  sha256: d32a144c57e25972f23cca85419e9ad3f18157046e482ca861e45ce1260e6f37
+  title: Quantitative Finance with Python; A Practical Guide to Investment Management,
+    Trading, and Financial Engineering
+  topics:
+  - volatility-swaps
+  year: 2022
+- authors:
+  - Adam Khakhar
+  - Xi Chen
+  bytes: 869983
+  citekey: khakhar-delta-hedging-liquidity-positions-2022
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.03318-khakhar-delta-hedging-lp.pdf
+  provenance:
+    id: '2208.03318'
+    kind: arxiv
+  sha256: 13330aa39866325870d45a7cc44239cae3a3c3b8576c01606595798df0b488c0
+  title: Delta Hedging Liquidity Positions on Automated Market Makers
+  topics:
+  - volatility-swaps
+  year: 2022
+- authors:
+  - Kristensen
+  bytes: 18469953
+  citekey: kristensen-perpetual-options-uniswap-v3-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/Kristensen - Perpetual Options
+    with Uniswap V3 (2024).pdf
+  - cfmm/cfmm-theory/lp-derivatives/kristensen-perpetual_options_uniswap_v3-2024.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/lp-derivatives/kristensen-perpetual_options_uniswap_v3-2024.pdf
+  provenance:
+    kind: unsourced
+  sha256: e540d9d24535f7cfc6dc861b7bb977f85f7830ba6714ec4bd15fc13dd9426d5d
+  title: Perpetual Options with Uniswap V3
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Kshitij Kulkarni
+  - Theo Diamandis
+  - Tarun Chitra
+  bytes: 773400
+  citekey: kulkarni-theory-maximal-extractable-value-i-2022
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/KulkarniDiamandisChitraTheoryMEV1.pdf
+  provenance:
+    id: '2207.11835'
+    kind: arxiv
+  sha256: 8ea6f145eb9b4121f86be3d160b95fea50035a57e10ad87f3130f8593c56c7ac
+  title: 'Towards a Theory of Maximal Extractable Value I: Constant Function Market
+    Makers'
+  topics:
+  - applications
+  - convex
+  year: 2022
+- authors:
+  - A. K. Kwasniewski
+  - E. Borak
+  bytes: 252702
+  citekey: kwasniewski-extended-finite-operator-calculus-2004
+  origin:
+  - learning/discrete/refs/calculus_algebraization.pdf
+  provenance:
+    kind: unsourced
+  sha256: 54c8df0965054d2d3d41b8e315297dde4be022f4cb50fde3a806857a5d711e31
+  title: Extended Finite Operator Calculus - An Example of Algebraization of Analysis
+  topics:
+  - discrete
+  year: 2004
+- authors:
+  - Leslie Lamport
+  bytes: 1787256
+  citekey: lamport-specifying-systems-2002
+  origin:
+  - learning/formal-methods/refs/lamport-specifying_systems_tla.pdf
+  provenance:
+    kind: unsourced
+  sha256: d10f6f6a8167ee1464b5c6a5e7abdc0bd065e6bece665a6a3f3c8ee65c234eb6
+  title: 'Specifying Systems: The TLA+ Language and Tools'
+  topics:
+  - formal-methods
+  year: 2002
+- authors:
+  - Alfred Lehar
+  - Christine A. Parlour
+  - Marius Zoican
+  bytes: 1411512
+  citekey: lehar-fragmentation-liquidity-provision-2024
+  origin:
+  - cfmm/cfmm-theory/refs/lehar-parlour-zoican-fragmentation-2024.pdf
+  provenance:
+    id: '2307.13772'
+    kind: arxiv
+  sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
+  title: Fragmentation and Optimal Liquidity Supply on Decentralized Exchanges
+  topics:
+  - applications
+  - io
+  year: 2024
+- authors:
+  - Alex Lipton
+  - Vladimir Lucic
+  - Artur Sepp
+  bytes: 3524342
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2407.05146.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.05146-lipton-hedging-impermanent-loss.pdf
+  - cfmm/cfmm-theory/lp-derivatives/lipton-hedging_impermanent_loss-2024.pdf
+  provenance:
+    id: '2407.05146'
+    kind: arxiv
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  title: Unified Approach for Hedging Impermanent Loss of Liquidity Provision
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Philip Z. Maymin
+  bytes: 1051825
+  citekey: maymin-option-pricing-automated-2026
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/taoDynamics.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/greeks/maymin-option_pricing_amm_tokens-2026.pdf
+  provenance:
+    id: '2603.29763'
+    kind: arxiv
+  sha256: 2d17e064be4679314f81a1e2da1b8711eb1913afb1dc7cb8cd79bf13ae6a8edf
+  title: Option Pricing on Automated Market Maker Tokens
+  topics:
+  - options
+  year: 2026
+- authors:
+  - Philip Z. Maymin
+  bytes: 693128
+  citekey: maymin-pricing-options-amm-native-tokens-2026
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/amm-options-paper.pdf
+  provenance:
+    kind: unsourced
+  sha256: 82b20bb267ec579ec52739fd0f55dbdc63182f8981cf25268a492ede0be7f4ee
+  title: 'The Pricing of Options on AMM-Native Tokens: Theory and Evidence from Bittensor'
+  topics:
+  - options
+  year: 2026
+- authors:
+  - Bruno Mazorra
+  - Nicolas Della Penna
+  bytes: 557021
+  citekey: mazorra-cfmm-social-welfare-mev-2022
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/MazorraDellaPennaCFMMWelfareMEV.pdf
+  provenance:
+    id: '2211.07220'
+    kind: arxiv
+  sha256: abfb9730322e72fabd440647a517d2d366ce904d547eb54975592d0427973442
+  title: Constant Function Market Making, Social Welfare and Maximal Extractable Value
+  topics:
+  - applications
+  - mechanism-design
+  year: 2022
+- authors:
+  - '@mevquant'
+  - '@seecoalba'
+  - '@theblockchainer'
+  bytes: 3093300
+  citekey: mevquant-uniswap-v4-mathematical-primer-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/UniswapV4_Hookathon_IL_Hedging_MathPrimer.pdf
+  - cfmm/cfmm-theory/lp-derivatives/uniswap_v4_hookathon-il_hedging_math_primer.pdf
+  provenance:
+    kind: unsourced
+  sha256: 56e093b05ccb9de3d204b4df11acba17b4531375aa63cbde387f84085a45f2ef
+  title: 'Uniswap v4 - A Mathematical Primer: LVR & IL Hedge Hook for Concentrated
+    Liquidity Providers'
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Bartosz Milewski
+  bytes: 2609521
+  citekey: milewski-category-theory-programmers-2018
+  origin:
+  - learning/formal-methods/refs/milewski-category_theory_for_programmers.pdf
+  provenance:
+    kind: unsourced
+  sha256: 2460a5f105d8145618928e3f98f15cd88e7fcdc5a19c342b1a96cf05b2c52ba4
+  title: Category Theory for Programmers
+  topics:
+  - formal-methods
+  year: 2018
+- authors:
+  - Jason Milionis
+  - Ciamac C. Moallemi
+  - Tim Roughgarden
+  bytes: 859419
+  citekey: milionis-automated-market-making-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2305.14604.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2305.14604-milionis-fees-arbitrage.pdf
+  - cfmm/cfmm-theory/milionis-amm_arbitrage_fees-2024.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/mev/MilionisMoallemiRoughgardenArbProfitsFees.pdf
+  provenance:
+    id: '2305.14604'
+    kind: arxiv
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  title: Automated Market Making and Arbitrage Profits in the Presence of Fees
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Jason Milionis
+  - Ciamac C. Moallemi
+  - Tim Roughgarden
+  - Anthony Lee Zhang
+  bytes: 1135220
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2208.06046.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.06046-milionis-lvr.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/lvr_primer.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/lvr_wvs.pdf
+  - cfmm/cfmm-theory/lp-derivatives/milionis_moallemi-lvr_automated_market_making.pdf
+  provenance:
+    id: '2208.06046'
+    kind: arxiv
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  title: Automated Market Making and Loss-Versus-Rebalancing
+  topics:
+  - volatility-swaps
+  year: 2022
+- authors:
+  - Jason Milionis
+  - Xin Wan
+  - Austin Adams
+  bytes: 508783
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2306.09421.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2306.09421-milionis-flair.pdf
+  - cfmm/cfmm-theory/lp-derivatives/milionis_wan-flair_lp_competitiveness_amm-2023.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/flair/MilionisWanAdamsFLAIR.pdf
+  provenance:
+    id: '2306.09421'
+    kind: arxiv
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  title: 'FLAIR: A Metric for Liquidity Provider Competitiveness in Automated Market
+    Makers'
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Jason Milionis
+  - Ciamac C. Moallemi
+  - Tim Roughgarden
+  bytes: 580462
+  citekey: milionis-myersonian-framework-optimal-liquidity-provision-2023
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2303.00208.pdf
+  provenance:
+    id: '2303.00208'
+    kind: arxiv
+  sha256: 1e222135f5a2fb8f7bc731f9e7550abf2467cecfbafcc4462936440e074cee4c
+  title: A Myersonian Framework for Optimal Liquidity Provision in Automated Market
+    Makers
+  topics:
+  - volatility-swaps
+  year: 2023
+- authors:
+  - Kazuo Murota
+  bytes: 4789421
+  citekey: murota-discrete-convex-analysis-2003
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/DiscreteConvexAnalysisFull.pdf
+  - learning/convex-analysis/refs/dokumen.pub_discrete-convex-analysis-1nbsped-9781611972559-2003042468.pdf
+  provenance:
+    kind: unsourced
+  sha256: 045c6d8b00c3b667e614fb0b536461a1f4d053f49be54a62b75d0c8ca9a2e15d
+  title: Discrete Convex Analysis
+  topics:
+  - options
+  year: 2003
+- authors:
+  - Kazuo Murota
+  bytes: 764162
+  citekey: murota-discrete-convex-analysis-economics-game-theory-2022
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/DiscreteConvexAnalysis.pdf
+  provenance:
+    id: '2212.03598'
+    kind: arxiv
+  sha256: 785705146c280834f458e5dca243eff059c33661be9dc53cb9f74f47d1616e1a
+  title: 'Discrete Convex Analysis: A Tool for Economics and Game Theory'
+  topics:
+  - options
+  year: 2022
+- authors:
+  - Sheldon Natenberg
+  bytes: 37128940
+  citekey: natenberg-option-volatility-pricing-1994
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/natenberg-option-pricing-volatility.pdf
+  - cfmm/cfmm-theory/lp-derivatives/natenberg-option_pricing_volatility-textbook.pdf
+  provenance:
+    kind: unsourced
+  sha256: 4430f67c6597330dc4bb589383f3608e9ff82c137e0299609c5fd8838e5ef0cf
+  title: 'Option Volatility & Pricing: Advanced Trading Strategies and Techniques'
+  topics:
+  - volatility-swaps
+  year: 1994
+- authors:
+  - Rob Nederpelt, Herman Geuvers
+  bytes: 2459786
+  citekey: nederpelt-type-theory-formal-2015
+  origin:
+  - learning/formal-methods/refs/type_theory_101.pdf
+  provenance:
+    kind: unsourced
+  sha256: 75c1cf7dfd25935401a1446b67f4347bc4c9ef153977c8a67658b9154f43d581
+  title: Type Theory and Formal Proof An Introduction
+  topics:
+  - formal-methods
+  year: 2015
+- authors:
+  - Noam Nisan
+  - Tim Roughgarden
+  - Eva Tardos
+  - Vijay V. Vazirani
+  bytes: 5422330
+  citekey: nisan-algorithmic-game-theory-2007
+  origin:
+  - learning/mechanism-design/refs/nisan-algorithmic_game_theory-2007.pdf
+  provenance:
+    kind: unsourced
+  sha256: 83084d9996024ca92f313c5ae55fec7b3b379f06172a4c24b62229da9c558543
+  title: Algorithmic Game Theory
+  topics:
+  - mechanism-design
+  year: 2007
+- authors:
+  - Numoen
+  bytes: 215753
+  citekey: numoen-whitepaper-2022
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/power-maker-docs/.gitbook/assets/numoen_whitepaper
+    (2).pdf
+  provenance:
+    kind: unsourced
+  sha256: 3e5a2b234b3b8fce6b35e583474c9f08645e3a271ccda1e663e2fe9f261e5b7d
+  title: Numoen Whitepaper
+  topics:
+  - applications
+  - options
+  year: 2022
+- authors:
+  - Alexandre Obadia
+  - Alejo Salles
+  - Lakshman Sankar
+  - Tarun Chitra
+  - Vaibhav Chellani
+  bytes: 1527888
+  citekey: obadia-unity-is-strength-cross-domain-mev-2021
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/mev/ObadiaEtAlCrossDomainMEV.pdf
+  provenance:
+    id: '2112.01472'
+    kind: arxiv
+  sha256: de5329e6bcadeec38def141ab2cec5e5755b3c166bc9de7cd398053b9163ef36
+  title: 'Unity is Strength: A Formalization of Cross-Domain Maximal Extractable Value'
+  topics:
+  - applications
+  - mechanism-design
+  year: 2021
+- authors:
+  - Katsuhiko Ogata
+  bytes: 22793854
+  citekey: ogata-sistemas-control-tiempo-discreto-1996
+  origin:
+  - cfmm/cfmm-theory/cfmm-control/Sistemas_de_Control_en_tiempo_Discreto-Katsuhiko_Ogata.pdf
+  provenance:
+    kind: unsourced
+  sha256: c5cd8ace8a38af4d95580dbd870312be6d0be68553d92bbc32732e70bb1667a7
+  title: Sistemas de Control en Tiempo Discreto (2a ed.)
+  topics:
+  - control
+  year: 1996
+- authors:
+  - Kristof Pap
+  bytes: 2550082
+  citekey: pap-pricing-range-accrual-nd
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/pap-pricing_range_accrual-msc_thesis.pdf
+  provenance:
+    kind: unsourced
+  sha256: 1ba68d641d5dda2aea5a8d3c3835464a92352f9470072ee37cc64c03b89af2f4
+  title: Pricing Range Accrual Products (MSc Thesis)
+  topics:
+  - options
+  - dgp
+  year: nd
+- authors:
+  - Simon Peyton Jones
+  - Jean-Marc Eber
+  - Julian Seward
+  bytes: 293744
+  citekey: peytonjones-composing-contracts-2000
+  origin:
+  - cfmm/cfmm-theory/refs/MLFiPaper.pdf
+  provenance:
+    kind: unsourced
+  sha256: c4c39c5ef9b54a6f15d999785298cd75d0570f8474cdd69c62e81491b8edd97c
+  title: 'Composing Contracts: An Adventure in Financial Engineering (Functional Pearl)'
+  topics:
+  - type-driven
+  - formal-methods
+  year: 2000
+- authors:
+  - Benjamin C. Pierce
+  bytes: 1828301
+  citekey: pierce-types-programming-languages-2002
+  origin:
+  - learning/formal-methods/refs/Pierce-Types_and_Programming_Languages-2002.pdf
+  provenance:
+    kind: unsourced
+  sha256: 38ae3c6a2ccac83689d84e83c8f550746957ac1c9047a8584e31e52421106ef0
+  title: Types and Programming Languages
+  topics:
+  - formal-methods
+  year: 2002
+- authors:
+  - Benjamin C. Pierce
+  bytes: 1038299
+  citekey: pierce-types-programming-languages-2002-v2
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/Benjamin_C._Pierce-Types_and_Programming_Languages-The_MIT_Press(2002).pdf
+  provenance:
+    kind: unsourced
+  sha256: e31213ed6e4b55a542820e93c13119820a82af1678969923f6decb6a1e246b97
+  title: Types and Programming Languages
+  topics:
+  - type-driven
+  - formal-methods
+  year: 2002
+- authors:
+  - Daniele Pusceddu, Massimo Bartoletti
+  bytes: 722835
+  citekey: pusceddu-formalizing-automated-market-2024
+  origin:
+  - learning/convex-analysis/cfmm-lean/refs/2402.06064_Formalizing_AMMs_Lean4.pdf
+  provenance:
+    id: '2402.06064'
+    kind: arxiv
+  sha256: bf15d2060e55d9d136f8971970447845066633fe7551891a07277f38eb8a979d
+  title: Formalizing Automated Market Makers in the Lean 4 Theorem Prover
+  topics:
+  - formal-methods
+  year: 2024
+- authors:
+  - QuantAMM Team
+  bytes: 1693254
+  citekey: quantamm-temporal-function-market-making-2023
+  origin:
+  - cfmm/cfmm-theory/quantamm-temporal_function_market_making-2023.pdf
+  provenance:
+    kind: unsourced
+  sha256: 5499cfce41110446688db8f643717ec1995f99c383664f998f6d9761997523bb
+  title: Temporal-Function Market Making Litepaper
+  topics:
+  - applications
+  year: 2023
+- authors:
+  - Yuma Rao
+  bytes: 1249833
+  citekey: rao-bittensor-peer-to-peer-intelligence-market-2021
+  origin:
+  - cfmm/cfmm-theory/cfmm-applications/bittensor.pdf
+  provenance:
+    kind: unsourced
+  sha256: b17bbe84e31b403cdc222c55961e7d559efb67b39f8eb27505c77978f07b28d2
+  title: 'Bittensor: A Peer-to-Peer Intelligence Market'
+  topics:
+  - applications
+  year: 2021
+- authors:
+  - Yuma Rao
+  - Dr. Nick
+  - 0xcacti
+  bytes: 1143391
+  citekey: rao-dynamic-tao-whitepaper-2025
+  origin:
+  - cfmm/cfmm-theory/cfmm-applications/dTao_whitepaper.pdf
+  provenance:
+    kind: unsourced
+  sha256: adb231205605a24aa246b4f72debea54707ba2e745bca650234e90f3246370b2
+  title: Dynamic TAO (DTAO) Whitepaper (BIT001)
+  topics:
+  - applications
+  year: 2025
+- authors:
+  - Peter C. Reiss
+  - Frank A. Wolak
+  bytes: 845467
+  citekey: reiss-wolak-structural-econometric-modeling-io-2007
+  origin:
+  - learning/structural-econometrics/reiss_wolak-structural_econometric_modeling_io.pdf
+  provenance:
+    kind: unsourced
+  sha256: 8aaf3a4bd98b81712886d4d30500bf91fe88e24ae259788301076ed182ef8c02
+  title: 'Structural Econometric Modeling: Rationales and Examples from Industrial
+    Organization'
+  topics:
+  - econometrics
+  year: 2007
+- authors:
+  - Peter C. Reiss
+  - Frank A. Wolak
+  bytes: 696320
+  citekey: reiss-wolak-structural-econometric-modeling-rationales-2007
+  origin:
+  - learning/structural-econometrics/reiss_wolak-structural_econometric_modeling_rationales.pdf
+  provenance:
+    kind: unsourced
+  sha256: 57d2be7783eeeb19c99ab164be76be0e48dd8ae995ff940bd6c58cb917b62757
+  title: 'Structural Econometric Modeling: Rationales and Examples (draft)'
+  topics:
+  - econometrics
+  year: 2007
+- authors:
+  - Marco Reuter
+  bytes: 4540770
+  citekey: reuter-decrypting-crypto-how-2025
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/imf-estimating-stablecoin-flows-2025.pdf
+  provenance:
+    kind: unsourced
+  sha256: c35e106ee133972de3d4aac0c1826773076bce2f21821546ed7973257930b179
+  title: 'Decrypting Crypto: How to Estimate International Stablecoin Flows, WP/25/141,
+    July 2025'
+  topics:
+  - applications
+  - econometrics
+  year: 2025
+- authors:
+  - Mark B. Richardson, Stefan Loesch
+  bytes: 10971658
+  citekey: richardson-defi-s-concentrated-liquidity-2024
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.02496-richardson-concentrated-liquidity-scratch.pdf
+  provenance:
+    id: '2407.02496'
+    kind: arxiv
+  sha256: a5a7b8c77ba6dc7c4fabcbe1d5807ce3129886340d1580bead32283d93f47ccf
+  title: DeFi's Concentrated Liquidity From Scratch
+  topics:
+  - volatility-swaps
+  year: 2024
+- authors:
+  - Jimmy Risk
+  - Shen-Ning Tung
+  - Tai-Ho Wang
+  bytes: 3619379
+  citekey: risk-pricing-hedging-liquidity-2026
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/2603.01344-pricing-hedging-cfmm-liquidity-provision.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/cfmm/risk_tung_wang-pricing_hedging_liquidity_provision-2026.pdf
+  provenance:
+    id: '2603.01344'
+    kind: arxiv
+  sha256: 3f1a91f796060f3b4f24615bacdbde81b5c28b196cf25a192960752112bd5693
+  title: Pricing and hedging for liquidity provision in Constant Function Market Making
+  topics:
+  - volatility-swaps
+  - applications
+  year: 2026
+- authors:
+  - Juan Manuel Serrano
+  bytes: 103378
+  citekey: serrano-abrigo-autonomous-on-chain-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-somnia/.hackathon/slides/encode-deck.pdf
+  provenance:
+    kind: unsourced
+  sha256: 060f4676d3362b8a209669a0f413d3ab8e5ad17a325e6483e5617eca52ad3bae
+  title: 'Abrigo: Autonomous On-Chain Macro Hedging - Consensus-verified AI agents
+    on Somnia'
+  topics:
+  - applications
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 261633
+  citekey: serrano-ai-cost-factor-model-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/writeups/2026-05-18-ai-cost-factor-model-v0.2.10.pdf
+  provenance:
+    kind: unsourced
+  sha256: b66246a0afc4e099aa5bbfa65cf823a570fd2532a5bd308fce3a90a4c19aa7ff
+  title: AI Cost Factor Model v0.2.10
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 356803
+  citekey: serrano-btt-subnet-identification-2026
+  origin:
+  - cfmms-playground/experiments/btt-subnet-calibration/docs/identification/IDENTIFICATION.pdf
+  provenance:
+    kind: unsourced
+  sha256: bbf891cbde2618857596937387d8851a6566b35c9ffd860090d7a83d9acbe37e
+  title: 'BTT Subnet Calibration: Identification'
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 109723
+  citekey: serrano-demand-elasticity-dtao-2026
+  origin:
+  - cfmms-playground/experiments/btt-subnet-calibration/notebooks/real-eta-report.pdf
+  provenance:
+    kind: unsourced
+  sha256: b4fc96b816bed18bcae918814a4029ff978d911cc97794ebf8c0b2c2d4c7cc82
+  title: Demand Elasticity in dTAO Subnet Tokens
+  topics:
+  - econometrics
+  - applications
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 441413
+  citekey: serrano-empirical-record-letter-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/2026-05-06-empirical-record-letter.pdf
+  provenance:
+    kind: unsourced
+  sha256: 7f1c7a6d035e122e1035b53c523b80150e6b6f7df8baa70d8084916bf7261da3
+  title: Empirical Record Letter (supervisor review)
+  topics:
+  - econometrics
+  - applications
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 117801
+  citekey: serrano-eta-arm-master-identification-2026
+  origin:
+  - cfmms-playground/experiments/btt-subnet-calibration/notebooks/eta-arm-master.pdf
+  provenance:
+    kind: unsourced
+  sha256: 688b908febf4532be4565177c37cb5fa86934d5375c722a3259fd529977fb694
+  title: 'eta-arm-master: eta_D Identification Arc'
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 381948
+  citekey: serrano-gsps-methods-paper-section5-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/writeups/e10_gsps_methods_paper_section_5.pdf
+  provenance:
+    kind: unsourced
+  sha256: 6e31b8fcea6b73e88af71dde9541da60a4f49455c8d17e4a2113ca5a991ce9f6
+  title: GSPS Methods Paper, Section 5
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Manuel Serrano
+  bytes: 114237
+  citekey: serrano-macro-gamma-backstop-uniswap-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-somnia/.hackathon/slides/hookathon-deck.pdf
+  provenance:
+    kind: unsourced
+  sha256: d516448e359d7f271472ee6046e9b5dfe8ce5c48d99c025dab32d45632f18595
+  title: Macro-Gamma Backstop - A Uniswap v4 hook that hedges LPs from an on-chain
+    macro signal
+  topics:
+  - applications
+  - volatility-swaps
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 300546
+  citekey: serrano-regal-cost-system-section-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/writeups/_drafts/regal_cost_system_section.pdf
+  provenance:
+    kind: unsourced
+  sha256: 83a245479f2309e583fa1fbf9403fbefc11a9788ac4e87f67e72a677c405ac48
+  title: Regal Cost System Section (draft)
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 557758
+  citekey: serrano-stochastic-fx-variance-proxy-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/papers/2026-05-16-stochastic-fx-variance-proxy-paper.pdf
+  provenance:
+    kind: unsourced
+  sha256: a5533465685bb99c47ed47d6c09093e35d96217ca7a138426aa4949b21716fde
+  title: Stochastic FX Variance Proxy (working paper)
+  topics:
+  - volatility-swaps
+  - dgp
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 245627
+  citekey: serrano-supervisor-letter-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/2026-05-06-supervisor-letter.pdf
+  - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/letter.pdf
+  provenance:
+    kind: unsourced
+  sha256: d7cfc0985bf629ec6f7792d1a9b1dcaf009cff628b3854068342380d3b7ff3f0
+  title: Supervisor Letter
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 256832
+  citekey: serrano-supervisor-letter-es-2026
+  origin:
+  - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/2026-05-06-supervisor-letter-es.pdf
+  - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/letter-es.pdf
+  provenance:
+    kind: unsourced
+  sha256: f1f51f08e23bf213c7bc10a4b88afff5616f2da042ff73578b980193c1be21e2
+  title: Carta al supervisor (ES)
+  topics:
+  - econometrics
+  year: 2026
+- authors:
+  - Juan Serrano
+  bytes: 818043
+  citekey: serrano-volatility-instruments-mev-2026
+  origin:
+  - cfmms-playground/cfmm-wt/plank/notes/VOLATILITY_INSTRUMENTS_MEV.pdf
+  provenance:
+    kind: unsourced
+  sha256: 6792f1554cf4d2a896b5f71126133a19d201df161dd5dd0cd8c10f13aa626109
+  title: VOLATILITY_INSTRUMENTS - MEV cut
+  topics:
+  - volatility-swaps
+  - applications
+  year: 2026
+- authors:
+  - Robert J. Shiller
+  bytes: 708631
+  citekey: shiller-aggregate-income-risks-hedging-1993
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/shiller-aggregate-income-risks-hedging-1993.pdf
+  provenance:
+    kind: unsourced
+  sha256: 280a816513ed78a7d212c33066a6d2bc5c49dc95f92f36643263f7e0713a1dc0
+  title: Aggregate Income Risks and Hedging Mechanisms (1993 working paper)
+  topics:
+  - applications
+  - econometrics
+  year: 1993
+- authors:
+  - Robert J. Shiller
+  bytes: 2770318
+  citekey: shiller-aggregate-income-risks-hedging-1995
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/Shiller_Aggregate_Income_Risks_and_Hedging_Mechanisms.pdf
+  provenance:
+    kind: unsourced
+  sha256: 802c73891c0959f42956592110f919910d533c810bf057ffd6aefd733db1adf9
+  title: Aggregate Income Risks and Hedging Mechanisms
+  topics:
+  - applications
+  - econometrics
+  year: 1995
+- authors:
+  - Euan Sinclair
+  bytes: 2680676
+  citekey: sinclair-volatility-trading-2008
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/Volatility+Trading+-+Euan+Sinclair.pdf
+  provenance:
+    kind: unsourced
+  sha256: f06f4f2440ff07c975a315d4b6486cc7a11fbf34eb76fe9bca876557fbfe5b9f
+  title: Volatility Trading
+  topics:
+  - options
+  year: 2008
+- authors:
+  - Srisht Fateh Singh
+  - Reina Ke Xin Li
+  - Samuel Gaskin
+  - Yuntao Wu
+  - Jeffrey Klinck
+  - Panagiotis Michalopoulos
+  - Zissis Poulos
+  - Andreas Veneris
+  bytes: 749035
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/2508.02971.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.02971-singh-lvr-continuous-installment-options.pdf
+  - .local/share/wvs-shelf/legacy-refs/refs/lvr-american_options.pdf
+  - cfmm/cfmm-theory/lp-derivatives/fateh_singh_et_al-lvr_via_continuous_installment_options.pdf
+  provenance:
+    id: '2508.02971'
+    kind: arxiv
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  title: Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment
+    Options
+  topics:
+  - volatility-swaps
+  year: 2025
+- authors:
+  - Spearbit
+  bytes: 191314
+  citekey: spearbit-angstrom-security-review-2024
+  origin:
+  - learning/formal-methods/angstrom/contracts/security-reviews/spearbit-1.pdf
+  provenance:
+    kind: unsourced
+  sha256: c9c707937cbdfee004d0376c2a11cbe076e5c30805be75feeb160386042926e4
+  title: 'Spearbit Security Review: Angstrom'
+  topics:
+  - formal-methods
+  year: 2024
+- authors:
+  - Estelle Sterrett
+  - Waylon Jepsen
+  - Evan Kim
+  bytes: 652107
+  citekey: sterrett-replicating-portfolios-permissionless-derivatives-2022
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.09890-sterrett-replicating-portfolios.pdf
+  provenance:
+    id: '2205.09890'
+    kind: arxiv
+  sha256: 40575ef528807bd1dbaf544c3e58932d7e21f2ec8a1b643a9d5de4c2475e3be8
+  title: 'Replicating Portfolios: Constructing Permissionless Derivatives'
+  topics:
+  - volatility-swaps
+  year: 2022
+- authors:
+  - Bruno H. Strulovici
+  - Thomas A. Weber
+  bytes: 4453689
+  citekey: strulovici-monotone-comparative-statics-geometric-2004
+  origin:
+  - cfmms-playground/cfmm-wt/evm-controller/refs/monotoneCompStaticsTwo.pdf
+  provenance:
+    kind: unsourced
+  sha256: 23a4575b6c116f6774bdae5d66b0c6e68f5f6cc3265bb0a89cb4ed2a6144ae9b
+  title: 'Monotone Comparative Statics: A Geometric Approach'
+  topics:
+  - mechanism-design
+  year: 2004
+- authors:
+  - Nassim Nicholas Taleb
+  bytes: 22155194
+  citekey: taleb-dynamic-hedging-1997
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/dynamic_hedging_taleb.pdf
+  provenance:
+    kind: unsourced
+  sha256: 710f2c089d82d177f73428203b4b1f830c42f78a44f78577800a454b0e398f24
+  title: 'Dynamic Hedging: Managing Vanilla and Exotic Options'
+  topics:
+  - volatility-swaps
+  year: 1997
+- authors:
+  - Jeff Vogels & Mark Thunderberg
+  bytes: 564099
+  citekey: thunderberg-trading-systems-developer-2026
+  origin:
+  - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/trading-systems-developer-interview-guide.pdf
+  provenance:
+    kind: unsourced
+  sha256: ac96261dd4a7dad6e9b41a3ca7b360bd161fdc02ff60ce2e219d1f792902c8d3
+  title: 'Trading Systems Developer Interview Guide (C++ Edition): Insider''s Guide
+    to Top Tech Jobs in Finance'
+  topics:
+  - volatility-swaps
+  year: 2026
+- authors:
+  - Julius Tranquilli
+  - Naman Gupta
+  bytes: 447254
+  citekey: tranquilli-formal-state-machine-models-2025
+  origin:
+  - cfmm/cfmm-theory/refs/cfmmStateMachine.pdf
+  - cfmms-playground/experiments/cfmm-automaton/refs/Tranquilli-Gupta-2512.06203-Formal-StateMachine-Models-UniswapV3-CLAMM.pdf
+  provenance:
+    id: '2512.06203'
+    kind: arxiv
+  sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
+  title: 'Formal State-Machine Models for Uniswap v3 Concentrated-Liquidity AMMs:
+    Priced Timed Automata, Finite-State Transducers, and Provable Rounding Bounds'
+  topics:
+  - formal-methods
+  - applications
+  year: 2025
+- authors:
+  - Shen-Ning Tung
+  - Tai-Ho Wang
+  bytes: 2152516
+  citekey: tung-clmm-dynamics-continuous-time-2024
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/cfmm/tung_wang-clmm_dynamics_continuous_time-2024.pdf
+  provenance:
+    id: '2412.18580'
+    kind: arxiv
+  sha256: 1f21b17a66e870dff68de62f4c9ba94dc71548b5baacdc5b4ea45b243b600879
+  title: A Mathematical Framework for Modelling CLMM Dynamics in Continuous Time
+  topics:
+  - applications
+  - dgp
+  year: 2024
+- authors: []
+  bytes: 1598416
+  citekey: unknown-consumption-income-capital-nd
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/consumpINcomeCap.pdf
+  provenance:
+    kind: unsourced
+  sha256: fe362d4433b398846dd23cb8e7f59eff5f086d8d33abbe7362e56d0046d5b3bb
+  title: 9781455298860.pdf
+  topics:
+  - econometrics
+  year: nd
+- authors:
+  - Vladislav Volosnikov
+  - Ilya Azhel
+  - Vladimir Tikhomirov
+  - Ilya Chizh
+  bytes: 1339566
+  citekey: volosnikov-algebra-ecosystem-dex-nd
+  origin:
+  - cfmm/cfmm-theory/lp-derivatives/Algerbra Tech Paper-15411d15f8653a81d5f7f574bfe655ad.pdf
+  - cfmm/cfmm-theory/lp-derivatives/agarwal_gobet-optimal_exit_uniswap_v3_best_return-2025.pdf
+  provenance:
+    kind: unsourced
+  sha256: 1cf75fd8c5d11258b9fc29afe0b268aea695c71c9457420e2dc69f7056ab5ca3
+  title: 'ALGEBRA Ecosystem: Decentralized exchange (Tech Paper 1.1)'
+  topics:
+  - applications
+  year: nd
+- authors:
+  - Vladislav Volosnikov
+  - Ilya Azhel
+  - Vladimir Tikhomirov
+  - Ilya Chizh
+  bytes: 1307323
+  citekey: volosnikov-algebra-ecosystem-dex-nd-v2
+  origin:
+  - cfmms-playground/cfmm-wt/plank/refs/algebra-tech-paper.pdf
+  provenance:
+    kind: unsourced
+  sha256: 198cdb05938811b6dadf3eede288d4eb4aff7ab331d96261494889824fec26cf
+  title: 'ALGEBRA Ecosystem: Decentralized exchange (Tech Paper)'
+  topics:
+  - applications
+  year: nd
+- authors:
+  - Michael Wickens
+  bytes: 2898467
+  citekey: wickens-macroeconomic-theory-dge-2011
+  origin:
+  - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/dokumen.pub_macroeconomic-theory-a-dynamic-general-equilibrium-approach-second-edition.pdf
+  provenance:
+    kind: unsourced
+  sha256: 27223646dabe0e7da030bb1d6b1dc5642bf9668e3b321ae6177cd1c398a0a505
+  title: 'Macroeconomic Theory: A Dynamic General Equilibrium Approach (2nd Edition)'
+  topics:
+  - dgp
+  - econometrics
+  year: 2011
+- authors:
+  - Herbert S. Wilf
+  bytes: 1613715
+  citekey: wilf-generatingfunctionology-1994
+  origin:
+  - learning/discrete/refs/generating_functions.pdf
+  provenance:
+    kind: unsourced
+  sha256: fa522a14f9b1631232ff6b34bc092686803b71cc8154cbf31c7ac523a75108dc
+  title: generatingfunctionology (2nd Edition, web edition)
+  topics:
+  - discrete
+  year: 1994
+- authors:
+  - Yuri Yegorov
+  bytes: 176717
+  citekey: yegorov-elements-structural-economics-2011
+  origin:
+  - learning/structural-econometrics/yegorov-elements_structural_economics-2011.pdf
+  provenance:
+    kind: unsourced
+  sha256: 1f558ecfd36f6810e259c47c2299e89d38cdf608323019b1b1c423ef9dceef9d
+  title: Elements of Structural Economics
+  topics:
+  - econometrics
+  year: 2011
+- authors:
+  - Ralph S. J. Koijen and Motohiro Yogo
+  bytes: 692877
+  citekey: yogo-demand-system-approach-2019
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/jpe.pdf
+  provenance:
+    kind: unsourced
+  sha256: 125d4ef5f1ceb853bb78d14486eaae18dedc6056d4cc31293558401a1fd4c103
+  title: A Demand System Approach to Asset Pricing
+  topics:
+  - options
+  year: 2019
+- authors:
+  - Shiyong Yoo
+  bytes: 697333
+  citekey: yoo-discrete-time-financial-engineering-2017
+  origin:
+  - cfmm/cfmm-theory/refs/Discrete_Time_Financial_Engineering.pdf
+  provenance:
+    kind: unsourced
+  sha256: 5e66ff0e64cd931346061f6eae88b09e9c8522720687d67b62153b90838ea711
+  title: Discrete-Time Financial Engineering
+  topics:
+  - discrete
+  - options
+  year: 2017
+- authors:
+  - zefram.eth
+  bytes: 428696
+  citekey: zefram-bunni-v2-shapeshifting-amm-2024
+  origin:
+  - cfmm/cfmm-theory/cfmm-options/bunni-v2.pdf
+  - cfmm/cfmm-theory/macro-markets/refs/refs/bunni-v2-whitepaper.pdf
+  - cfmms-playground/cfmm-wt/plank/refs/bunni-v2.pdf
+  provenance:
+    kind: unsourced
+  sha256: 8ce9bcc71dbe17dc49d143d4f82f24a5382f603a76fa04f491bc0c9c3058106b
+  title: 'Bunni v2: Shapeshifting AMM'
+  topics:
+  - options
+  year: 2024
