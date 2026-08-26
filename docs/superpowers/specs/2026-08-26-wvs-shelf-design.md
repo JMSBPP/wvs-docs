@@ -1,7 +1,7 @@
 # wvs-docs → CFMM research shelf + DeepSeek plugin — design
 
 Date: 2026-08-26. Status: approved in conversation; revised after two-reviewer
-pass (Reality Checker + Backend Architect). Open decisions for the user are in §11.
+pass (Reality Checker + Backend Architect). Open decisions in §11 were resolved 2026-08-26: O1 = (a) history rewrite; O2 = account created, credentials live in `~/.config/hippius/env` (never in git).
 
 ## 1. Goal
 
@@ -248,15 +248,15 @@ The repo must remain fully usable with Hippius down.
 - **Phase 4 (open)**: embeddings if needed; "exercise-from-paper" subagent;
   arXiv-watch auto-ingest.
 
-## 11. Open decisions for the user
+## 11. Decisions resolved 2026-08-26
 
-- **O1 — wvs-docs history.** `.git` is 212 MB because 116 PDFs and `lib/` are
+- **O1 — wvs-docs history → (a) chosen.** `.git` is 212 MB because 116 PDFs and `lib/` are
   in history; `git rm` at HEAD does not shrink clones (or the cfmm-theory
   submodule). Options: (a) **recommended** — one-time `git filter-repo
   --path-glob '*.pdf' --invert-paths` + drop `lib/` history, force-push `main`
   (26 commits, single-owner public repo, low blast radius); (b) keep history
   and document `git clone --filter=blob:none --recurse-submodules` for consumers.
-- **O2 — Hippius account.** User creates the account (Google/GitHub sign-up)
+- **O2 — Hippius account → done.** Credentials in `~/.config/hippius/env` (S3 key pair still to be created in the console). User created the account (Google/GitHub sign-up)
   and funds credits before Phase 2; not needed for Phase 1.
 
 ## 12. Risks
