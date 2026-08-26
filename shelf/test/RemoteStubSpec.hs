@@ -1,0 +1,182 @@
+-- | 'Shelf.Remote' against the signature-verifying stub in "StubServer":
+-- path-style addressing on a custom endpoint, streaming PUT/GET, the retry
+-- ladder, and 'ensureBucket'. Nothing here reaches the network.
+module RemoteStubSpec (tests) where
+
+import Control.Exception (IOException, throwIO, try)
+import Data.Bits ((.&.))
+import qualified Data.ByteString as BS
+import Data.IORef (IORef, readIORef, writeIORef)
+import qualified Data.Map.Strict as M
+import Data.Text (Text)
+import qualified Data.Text as T
+import Data.Word (Word8)
+import Shelf.Atomic (withAtomicOutput)
+import Shelf.Remote
+import Shelf.Remote.SigV4 (Credentials (..))
+import StubServer (LogEntry, withStub)
+import System.Directory (listDirectory)
+import System.FilePath ((</>))
+import System.IO.Temp (withSystemTempDirectory)
+import System.Posix.Files (fileMode, getFileStatus)
+import Test.Tasty
+import Test.Tasty.HUnit
+
+-- | Not a credential: the stub accepts exactly this pair and nothing else
+-- ever leaves the loopback interface.
+fakeCreds :: Credentials
+fakeCreds = Credentials "hip_stubaccesskeyid" "stub-secret-not-a-real-key-000000"
+
+key :: Text
+key = "topics/options/carr-madan-1998.pdf"
+
+cfgFor :: Int -> Credentials -> [Int] -> IO RemoteConfig
+cfgFor port creds backoff =
+  mkRemoteConfig ("http://127.0.0.1:" <> T.pack (show port)) "cfmm-refs" "decentralized"
+    creds backoff (30 * 1000000) ObjectAcl
+
+-- | A deterministic non-uniform payload, so a truncated or reordered transfer
+-- cannot pass a byte comparison by accident.
+blob :: Int -> BS.ByteString
+blob n = fst (BS.unfoldrN n step (0x5eed :: Int))
+  where
+    step s = let s' = (s * 1103515245 + 12345) `mod` 2147483648
+             in Just (fromIntegral (s' `div` 65536) :: Word8, s')
+
+expectRight :: Show e => Either e a -> IO a
+expectRight = either (assertFailure . show) pure
+
+-- | Requests the stub saw for @key@, oldest first.
+objectRequests :: IORef [LogEntry] -> IO [LogEntry]
+objectRequests ref = reverse . filter forKey <$> readIORef ref
+  where forKey (_, p, _) = p == "/cfmm-refs/topics/options/carr-madan-1998.pdf"
+
+tests :: TestTree
+tests = testGroup "Shelf.Remote (stub)"
+  [ testCase "ensureBucket creates the bucket on 404 and then no-ops" $
+      withStub fakeCreds $ \port objects _ requests -> do
+        cfg <- cfgFor port fakeCreds [0, 0, 0]
+        ensureBucket cfg >>= (@?= Right ())
+        readIORef objects >>= \m -> assertBool "bucket exists" (M.member "" m)
+        ensureBucket cfg >>= (@?= Right ())
+        seen <- reverse <$> readIORef requests
+        [v | (v, _, _) <- seen] @?= ["HEAD", "PUT", "HEAD"]
+
+  , testCase "putObject streams a 3 MB file the stub receives byte-identically" $
+      withStub fakeCreds $ \port objects _ _ -> withSystemTempDirectory "shelf-put" $ \dir -> do
+        cfg <- cfgFor port fakeCreds [0, 0, 0]
+        _ <- expectRight =<< ensureBucket cfg
+        let bytes = blob (3 * 1024 * 1024)
+            src = dir </> "big.pdf"
+        BS.writeFile src bytes
+        sha <- sha256OfFile src
+        etag <- expectRight =<< putObject cfg key src sha
+        assertEqual "ETag is unquoted 32-hex" 32 (T.length etag)
+        readIORef objects >>= \m -> M.lookup key m @?= Just bytes
+
+  , testCase "getObject writes the bytes, returns their digest and mode 0644" $
+      withStub fakeCreds $ \port _ _ _ -> withSystemTempDirectory "shelf-get" $ \dir -> do
+        cfg <- cfgFor port fakeCreds [0, 0, 0]
+        _ <- expectRight =<< ensureBucket cfg
+        let bytes = blob 262144
+            src = dir </> "src.pdf"
+            dest = dir </> "out.pdf"
+        BS.writeFile src bytes
+        sha <- sha256OfFile src
+        _ <- expectRight =<< putObject cfg key src sha
+        got <- expectRight =<< getObject cfg key dest
+        got @?= sha
+        BS.readFile dest >>= (@?= bytes)
+        st <- getFileStatus dest
+        (fileMode st .&. 0o777) @?= 0o644
+
+  , testCase "getObject on a missing key is UnexpectedStatus 404 and writes nothing" $
+      withStub fakeCreds $ \port _ _ _ -> withSystemTempDirectory "shelf-miss" $ \dir -> do
+        cfg <- cfgFor port fakeCreds [0, 0, 0]
+        _ <- expectRight =<< ensureBucket cfg
+        got <- getObject cfg key (dir </> "out.pdf")
+        case got of
+          Left (UnexpectedStatus 404 _) -> pure ()
+          other -> assertFailure ("expected a 404, got " <> show other)
+        listDirectory dir >>= (@?= [])
+
+  , testCase "headObject reports the ETag and the object length" $
+      withStub fakeCreds $ \port _ _ _ -> withSystemTempDirectory "shelf-head" $ \dir -> do
+        cfg <- cfgFor port fakeCreds [0, 0, 0]
+        _ <- expectRight =<< ensureBucket cfg
+        let bytes = blob 4096
+            src = dir </> "src.pdf"
+        BS.writeFile src bytes
+        sha <- sha256OfFile src
+        etag <- expectRight =<< putObject cfg key src sha
+        (headEtag, len) <- expectRight =<< headObject cfg key
+        headEtag @?= etag
+        len @?= 4096
+
+  , testCase "a 503 is retried with a freshly signed request" $
+      withStub fakeCreds $ \port objects failures requests ->
+        withSystemTempDirectory "shelf-retry" $ \dir -> do
+          -- 1.1 s of backoff so the two x-amz-date stamps, which have
+          -- one-second resolution, cannot coincide.
+          cfg <- cfgFor port fakeCreds [1100000, 0, 0]
+          _ <- expectRight =<< ensureBucket cfg
+          let bytes = blob 1024
+              src = dir </> "small.pdf"
+          BS.writeFile src bytes
+          sha <- sha256OfFile src
+          writeIORef failures 1
+          _ <- expectRight =<< putObject cfg key src sha
+          readIORef objects >>= \m -> M.lookup key m @?= Just bytes
+          seen <- objectRequests requests
+          case seen of
+            [(_, _, first), (_, _, second)] ->
+              assertBool "the retry carried a new x-amz-date" (first /= second)
+            other -> assertFailure ("expected two attempts, saw " <> show (length other))
+
+  , testCase "a 503 on a 3 MB body is retried after the stub drains it" $
+      withStub fakeCreds $ \port objects failures requests ->
+        withSystemTempDirectory "shelf-retry-big" $ \dir -> do
+          cfg <- cfgFor port fakeCreds [0, 0, 0]
+          _ <- expectRight =<< ensureBucket cfg
+          let bytes = blob (3 * 1024 * 1024)
+              src = dir </> "big.pdf"
+          BS.writeFile src bytes
+          sha <- sha256OfFile src
+          writeIORef failures 1
+          _ <- expectRight =<< putObject cfg key src sha
+          readIORef objects >>= \m -> M.lookup key m @?= Just bytes
+          objectRequests requests >>= \seen -> length seen @?= 2
+
+  , testCase "a rejected signature is final: one attempt, UnexpectedStatus 403" $
+      withStub fakeCreds $ \port _ _ requests -> do
+        cfg <- cfgFor port fakeCreds { secretKey = "wrong-secret" } [0, 0, 0]
+        got <- ensureBucket cfg
+        case got of
+          Left (UnexpectedStatus 403 _) -> pure ()
+          other -> assertFailure ("expected a 403, got " <> show other)
+        readIORef requests >>= \seen -> length seen @?= 1
+
+  , testCase "a continuation that throws leaves no temp file behind" $
+      withStub fakeCreds $ \port _ _ _ -> withSystemTempDirectory "shelf-abort" $ \dir -> do
+        cfg <- cfgFor port fakeCreds [0, 0, 0]
+        _ <- expectRight =<< ensureBucket cfg
+        let bytes = blob 65536
+            src = dir </> "src.pdf"
+            dest = dir </> "out.pdf"
+        BS.writeFile src bytes
+        sha <- sha256OfFile src
+        _ <- expectRight =<< putObject cfg key src sha
+        got <- try $ sendWith cfg (getRequest cfg key) $ \_ ->
+          withAtomicOutput dest (\_ -> throwIO (userError "boom") :: IO (Either RemoteError ()))
+        case got of
+          Left e -> show (e :: IOException) `seq` pure ()
+          Right r -> assertFailure ("expected the throw to escape, got " <> show r)
+        listDirectory dir >>= (@?= ["src.pdf"])
+
+  , testCase "publicUrl is path-style and presignGet carries the query signature" $ do
+      cfg <- cfgFor 9999 fakeCreds [0, 0, 0]
+      publicUrl cfg key @?= "http://127.0.0.1:9999/cfmm-refs/" <> key
+      url <- presignGet cfg key 86400
+      assertBool "expiry" ("X-Amz-Expires=86400" `T.isInfixOf` url)
+      assertBool "signature" ("X-Amz-Signature=" `T.isInfixOf` url)
+  ]

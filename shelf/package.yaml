@@ -21,6 +21,7 @@ dependencies:
   - yaml
 library:
   source-dirs: src
+  dependencies: [http-client, http-client-tls, http-types]
 executables:
   shelf:
     main: Main.hs
@@ -30,4 +31,15 @@ tests:
   shelf-test:
     main: Main.hs
     source-dirs: test
-    dependencies: [shelf, case-insensitive, hedgehog, tasty, tasty-hedgehog, tasty-hunit, tasty-golden, temporary]
+    dependencies:
+      - shelf
+      - case-insensitive
+      - hedgehog
+      - http-types
+      - tasty
+      - tasty-hedgehog
+      - tasty-hunit
+      - tasty-golden
+      - temporary
+      - wai
+      - warp
