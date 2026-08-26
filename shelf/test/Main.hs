@@ -3,5 +3,6 @@ import qualified TypesSpec
 import qualified ManifestSpec
 import qualified ExtractSpec
 import qualified ScanSpec
+import qualified IndexSpec
 main :: IO ()
-main = defaultMain (testGroup "shelf" [TypesSpec.tests, ManifestSpec.tests, ExtractSpec.tests, ScanSpec.tests])
+main = defaultMain (testGroup "shelf" [TypesSpec.tests, ManifestSpec.tests, ExtractSpec.tests, ScanSpec.tests, IndexSpec.tests])
