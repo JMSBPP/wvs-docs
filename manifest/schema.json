@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wvs-docs/manifest/schema.json",
+  "title": "wvs-docs manifest",
+  "description": "Documentation only — the validator is `shelf manifest check`",
+  "type": "object",
+  "required": ["schema_version", "sources"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Manifest schema version. Currently only 1 is accepted; other values are flagged by `shelf manifest check` as BadSchemaVersion."
+    },
+    "sources": {
+      "type": "array",
+      "description": "Rows sorted by citekey by `saveManifest`.",
+      "items": { "$ref": "#/definitions/source" }
+    }
+  },
+  "definitions": {
+    "citekey": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*-(\\d{4}|nd)(-v\\d+)?$",
+      "description": "Must be unique across the manifest; duplicates are flagged as DupCitekey."
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Lowercase hex digest of the source PDF. Must be unique across the manifest; duplicates are flagged as DupSha."
+    },
+    "year": {
+      "description": "Publication year, or the literal string \"nd\" when genuinely unknown.",
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string", "const": "nd" }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["arxiv", "doi", "isbn", "unsourced"] },
+        "id": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "unsourced" } } },
+          "then": { "not": { "required": ["id"] } },
+          "else": { "required": ["id"] }
+        }
+      ]
+    },
+    "hippius": {
+      "type": "object",
+      "description": "Absent until the source's PDF has been verified in remote (Hippius) storage. A row is remote-backed iff hippius.verified_sha256 == sha256.",
+      "required": ["key", "verified_sha256", "etag", "verified_at"],
+      "properties": {
+        "key": { "type": "string" },
+        "verified_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "etag": { "type": "string" },
+        "verified_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["citekey", "sha256", "bytes", "title", "year", "provenance", "topics"],
+      "properties": {
+        "citekey": { "$ref": "#/definitions/citekey" },
+        "sha256": { "$ref": "#/definitions/sha256" },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "title": { "type": "string" },
+        "authors": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "year": { "$ref": "#/definitions/year" },
+        "provenance": { "$ref": "#/definitions/provenance" },
+        "topics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Each names an existing topics/<t>/ directory. Should be non-empty — enforced as EmptyTopics by `shelf manifest check`, not by this schema."
+        },
+        "origin": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Informational, home-prefix stripped."
+        },
+        "hippius": { "$ref": "#/definitions/hippius" }
+      }
+    }
+  }
+}
