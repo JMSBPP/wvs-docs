@@ -7,6 +7,7 @@ year: 2022
 provenance: {kind: arxiv, id: '2210.01227'}
 sha256: f5d0f3f06b1d986adfe52b332f2e6de7c1dd2752ea61c61f72937180c776dbe6
 topics: [applications, convex]
+pdf: https://s3.hippius.com/cfmm-refs/topics/convex/bichuch-axioms-for-automated-market-makers-2022.pdf
 ---
 
 ## Notes

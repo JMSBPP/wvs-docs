@@ -6,6 +6,7 @@ year: 2023
 provenance: {kind: arxiv, id: '2308.08066'}
 sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
 topics: [volatility-swaps]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
 ---
 
 ## Notes

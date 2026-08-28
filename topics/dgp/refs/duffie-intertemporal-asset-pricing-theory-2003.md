@@ -6,6 +6,7 @@ year: 2003
 provenance: {kind: unsourced}
 sha256: 0fa17c0944712b4543cb86e5698de76bbf6d88a2b68c1bb6205a82dc25012f8c
 topics: [dgp]
+pdf: https://s3.hippius.com/cfmm-refs/topics/dgp/duffie-intertemporal-asset-pricing-theory-2003.pdf
 ---
 
 ## Notes

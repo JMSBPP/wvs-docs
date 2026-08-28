@@ -20,7 +20,7 @@ import qualified Data.Text as T
 import System.Directory (doesFileExist)
 import Shelf.Atomic (writeAtomic)
 import Shelf.Scan.Slug (slug)
-import Shelf.Types (Citekey, Source (..), Topic (..), Year (..), citekeyText)
+import Shelf.Types (Citekey, RemoteObject (..), Source (..), Topic (..), Year (..), citekeyText, verifiedObject)
 
 data Doc = Doc { docId :: Citekey, docTitle :: Text, docBody :: Text }
   deriving stock (Eq, Show)
@@ -105,14 +105,19 @@ loadIndex p = do
 indexFresh :: Text -> Maybe Index -> Bool
 indexFresh h = maybe False ((== h) . ixManifestHash)
 
+-- | The per-topic INDEX.md. The @pdf@ column links the object uploaded for
+-- /this/ topic, so a source carried by two topics can be backed in one and not
+-- yet in the other.
 renderTopicIndex :: Topic -> [Source] -> [FilePath] -> [FilePath] -> Text
-renderTopicIndex (Topic t) srcs notes exercises = T.unlines $
-  [ "# " <> t, "", "## Sources", "| citekey | title | year |", "|---|---|---|" ]
+renderTopicIndex tp@(Topic t) srcs notes exercises = T.unlines $
+  [ "# " <> t, "", "## Sources", "| citekey | title | year | pdf |", "|---|---|---|---|" ]
   ++ map sourceRow (sortOn srcCitekey srcs)
   ++ [ "", "## Notes" ] ++ listOrNone notes
   ++ [ "", "## Exercises" ] ++ listOrNone exercises
   where
-    sourceRow s = "| [@" <> citekeyText (srcCitekey s) <> "] | " <> cell (srcTitle s) <> " | " <> yearText (srcYear s) <> " |"
+    sourceRow s = "| [@" <> citekeyText (srcCitekey s) <> "] | " <> cell (srcTitle s)
+                    <> " | " <> yearText (srcYear s) <> " | " <> pdfCell s <> " |"
+    pdfCell s = maybe "—" (\o -> "[pdf](" <> cell (roUrl o) <> ")") (verifiedObject tp s)
     -- A GFM table cell is one line and cannot hold a raw @|@: an unescaped
     -- pipe or newline in a title would split it across columns or rows.
     cell = T.unwords . T.lines . T.replace "\r" "\n" . T.replace "|" "\\|"

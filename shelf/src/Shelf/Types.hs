@@ -1,24 +1,39 @@
+-- | The manifest's value types. Every identifier that becomes part of a path,
+-- a URL or a citation is a validated newtype, so an invalid one cannot be
+-- constructed by parsing: 'Citekey' names files, 'Topic' names both a
+-- directory and a remote key segment, and 'Sha256' is the identity of a PDF.
+--
+-- The @remote@ block records, per (source, topic), the object that was
+-- verified by downloading it back. It carries its own endpoint and bucket so
+-- that rendering a URL — on a card, in an index, inside 'Shelf.Manifest.check'
+-- — never depends on the environment the tool happens to run in.
 module Shelf.Types
   ( Citekey, mkCitekey, citekeyText, Sha256, mkSha256, sha256Text
-  , Topic (..), Provenance (..), Year (..), HippiusRecord (..), Source (..), isRemoteBacked
+  , Topic (..), mkTopic, topicText, Provenance (..), Year (..)
+  , RemoteObject (..), Remote (..), Source (..)
+  , objectKey, objectUrl, upsertObject
+  , verifiedObject, isRemoteBacked, missingTopics, staleObjects
   ) where
 
 import Data.Aeson
 import Data.Aeson.Types (Parser)
 import Data.Binary (Binary (..))
 import Data.Char (isAsciiLower, isDigit, isHexDigit, isUpper)
+import Data.List (sortOn)
 import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Time (UTCTime)
 
 newtype Citekey = Citekey Text deriving stock (Eq, Ord, Show)
 newtype Sha256  = Sha256 Text  deriving stock (Eq, Ord, Show)
-newtype Topic   = Topic Text   deriving stock (Eq, Ord, Show) deriving newtype (FromJSON, ToJSON)
+newtype Topic   = Topic Text   deriving stock (Eq, Ord, Show)
 
 citekeyText :: Citekey -> Text
 citekeyText (Citekey t) = t
 sha256Text :: Sha256 -> Text
 sha256Text (Sha256 t) = t
+topicText :: Topic -> Text
+topicText (Topic t) = t
 
 -- ^[a-z0-9]+(-[a-z0-9]+)*-(\d{4}|nd)(-v\d+)?$
 mkCitekey :: Text -> Either Text Citekey
@@ -32,6 +47,14 @@ mkCitekey t = if ok (stripVersion (T.splitOn "-" t)) then Right (Citekey t) else
       _ -> False
     seg p = not (T.null p) && T.all (\c -> isAsciiLower c || isDigit c) p
 
+-- | @^[a-z0-9]+(-[a-z0-9]+)*$@. A topic is a directory name and a remote key
+-- segment, so anything that would need escaping in either is refused here.
+mkTopic :: Text -> Either Text Topic
+mkTopic t
+  | all seg (T.splitOn "-" t) = Right (Topic t)
+  | otherwise = Left ("invalid topic: " <> t)
+  where seg p = not (T.null p) && T.all (\c -> isAsciiLower c || isDigit c) p
+
 mkSha256 :: Text -> Either Text Sha256
 mkSha256 t
   | T.length t == 64 && T.all (\c -> isHexDigit c && not (isUpper c)) t = Right (Sha256 t)
@@ -44,6 +67,8 @@ instance Binary Citekey where
   get = get >>= either (fail . T.unpack) pure . mkCitekey
 instance FromJSON Sha256 where parseJSON = withText "sha256" (either (fail . T.unpack) pure . mkSha256)
 instance ToJSON Sha256 where toJSON = toJSON . sha256Text
+instance FromJSON Topic where parseJSON = withText "topic" (either (fail . T.unpack) pure . mkTopic)
+instance ToJSON Topic where toJSON = toJSON . topicText
 
 data Provenance = ArXiv Text | Doi Text | Isbn Text | Unsourced deriving stock (Eq, Show)
 instance ToJSON Provenance where
@@ -68,29 +93,97 @@ instance FromJSON Year where
   parseJSON (String "nd") = pure NoDate
   parseJSON v = Year <$> parseJSON v
 
-data HippiusRecord = HippiusRecord
-  { hrKey :: Text, hrVerifiedSha256 :: Text, hrEtag :: Text, hrVerifiedAt :: UTCTime }
+-- | One uploaded copy of a source's PDF, under one of its topics, as verified
+-- by downloading it back: 'roVerifiedSha256' is the digest of what came back,
+-- not of what was sent.
+data RemoteObject = RemoteObject
+  { roTopic :: Topic, roKey :: Text, roUrl :: Text, roEtag :: Text
+  , roVerifiedSha256 :: Sha256, roVerifiedAt :: UTCTime }
   deriving stock (Eq, Show)
-instance ToJSON HippiusRecord where
-  toJSON h = object ["key" .= hrKey h, "verified_sha256" .= hrVerifiedSha256 h, "etag" .= hrEtag h, "verified_at" .= hrVerifiedAt h]
-instance FromJSON HippiusRecord where
-  parseJSON = withObject "hippius" $ \o ->
-    HippiusRecord <$> o .: "key" <*> o .: "verified_sha256" <*> o .: "etag" <*> o .: "verified_at"
+instance ToJSON RemoteObject where
+  toJSON o = object
+    [ "topic" .= roTopic o, "key" .= roKey o, "url" .= roUrl o, "etag" .= roEtag o
+    , "verified_sha256" .= roVerifiedSha256 o, "verified_at" .= roVerifiedAt o ]
+instance FromJSON RemoteObject where
+  parseJSON = withObject "remote object" $ \o -> RemoteObject
+    <$> o .: "topic" <*> o .: "key" <*> o .: "url" <*> o .: "etag"
+    <*> o .: "verified_sha256" <*> o .: "verified_at"
+
+data Remote = Remote { rmEndpoint :: Text, rmBucket :: Text, rmObjects :: [RemoteObject] }
+  deriving stock (Eq, Show)
+instance ToJSON Remote where
+  toJSON r = object ["endpoint" .= rmEndpoint r, "bucket" .= rmBucket r, "objects" .= rmObjects r]
+instance FromJSON Remote where
+  parseJSON = withObject "remote" $ \o -> Remote
+    <$> o .: "endpoint" <*> o .: "bucket" <*> o .:? "objects" .!= []
 
 data Source = Source
   { srcCitekey :: Citekey, srcSha256 :: Sha256, srcBytes :: Int, srcTitle :: Text, srcAuthors :: [Text]
   , srcYear :: Year, srcProvenance :: Provenance, srcTopics :: [Topic], srcOrigin :: [FilePath]
-  , srcHippius :: Maybe HippiusRecord }
+  , srcRemote :: Maybe Remote }
   deriving stock (Eq, Show)
 instance ToJSON Source where
   toJSON s = object $
     [ "citekey" .= srcCitekey s, "sha256" .= srcSha256 s, "bytes" .= srcBytes s, "title" .= srcTitle s
     , "authors" .= srcAuthors s, "year" .= srcYear s, "provenance" .= srcProvenance s
-    , "topics" .= srcTopics s, "origin" .= srcOrigin s ] <> maybe [] (\h -> ["hippius" .= h]) (srcHippius s)
+    , "topics" .= srcTopics s, "origin" .= srcOrigin s ] <> maybe [] (\r -> ["remote" .= r]) (srcRemote s)
 instance FromJSON Source where
   parseJSON = withObject "source" $ \o -> Source
     <$> o .: "citekey" <*> o .: "sha256" <*> o .: "bytes" <*> o .: "title" <*> o .:? "authors" .!= []
-    <*> o .: "year" <*> o .: "provenance" <*> o .: "topics" <*> o .:? "origin" .!= [] <*> o .:? "hippius"
+    <*> o .: "year" <*> o .: "provenance" <*> o .: "topics" <*> o .:? "origin" .!= [] <*> o .:? "remote"
 
+-- | @topics/\<topic\>/\<citekey\>.pdf@ — one object per (source, topic), so a
+-- topic prefix on the bucket lists exactly that topic's shelf.
+objectKey :: Topic -> Citekey -> Text
+objectKey (Topic t) ck = "topics/" <> t <> "/" <> citekeyText ck <> ".pdf"
+
+-- | Path-style S3: @\<endpoint\>/\<bucket\>/\<key\>@. A trailing slash on the
+-- endpoint is dropped so the two spellings agree.
+objectUrl :: Text -> Text -> Text -> Text
+objectUrl endpoint bucket key = T.dropWhileEnd (== '/') endpoint <> "/" <> bucket <> "/" <> key
+
+-- | Record @o@ against its topic, replacing any object already held for that
+-- topic and keeping the list sorted by topic. The remote block is created when
+-- the source has none; @endpoint@ and @bucket@ are the caller's, so a source
+-- cannot end up half-described by an old endpoint.
+upsertObject :: Text -> Text -> RemoteObject -> Source -> Source
+upsertObject endpoint bucket o s = s { srcRemote = Just (Remote endpoint bucket objects) }
+  where
+    old = maybe [] rmObjects (srcRemote s)
+    objects = sortOn roTopic (o : filter ((/= roTopic o) . roTopic) old)
+
+-- | The object recorded for @t@, provided it is verified: its key is the one
+-- this source's topic implies, its digest is the source's own, and its url is
+-- that key under this source's own endpoint and bucket.
+--
+-- The url conjunct is not redundant with the key one. @roUrl@ is what a card
+-- renders and what a reader clicks, and it is stored rather than derived, so
+-- without this an object whose url was corrupted — by a hand edit, by a
+-- half-finished endpoint change — would still count as verified and the link
+-- would be published. It is the same test 'Shelf.Manifest.check' applies as
+-- @RemoteBadKey@, so the two agree on every object.
+verifiedObject :: Topic -> Source -> Maybe RemoteObject
+verifiedObject t s = case srcRemote s of
+  Nothing -> Nothing
+  Just r -> case [o | o <- rmObjects r, roTopic o == t, verified r o] of
+    (o : _) -> Just o
+    [] -> Nothing
+  where
+    verified r o =
+      roVerifiedSha256 o == srcSha256 s
+        && roKey o == objectKey (roTopic o) (srcCitekey s)
+        && roUrl o == objectUrl (rmEndpoint r) (rmBucket r) (roKey o)
+
+-- | Carried topics with no verified object. A source with no @remote@ block at
+-- all is simply missing all of them.
+missingTopics :: Source -> [Topic]
+missingTopics s = [t | t <- srcTopics s, Nothing <- [verifiedObject t s]]
+
+-- | Objects left behind for topics the source no longer carries.
+staleObjects :: Source -> [RemoteObject]
+staleObjects s = [o | o <- maybe [] rmObjects (srcRemote s), roTopic o `notElem` srcTopics s]
+
+-- | Every carried topic has a verified object. Never true without a @remote@
+-- block, so an untouched source is not mistaken for a backed one.
 isRemoteBacked :: Source -> Bool
-isRemoteBacked s = maybe False ((== sha256Text (srcSha256 s)) . hrVerifiedSha256) (srcHippius s)
+isRemoteBacked s = maybe False (const (null (missingTopics s))) (srcRemote s)

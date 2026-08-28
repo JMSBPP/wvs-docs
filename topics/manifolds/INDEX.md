@@ -1,11 +1,11 @@
 # manifolds
 
 ## Sources
-| citekey | title | year |
-|---|---|---|
+| citekey | title | year | pdf |
+|---|---|---|---|
 
 ## Notes
-- _none_
+- notes/VECTOR_FIELD.md
 
 ## Exercises
-- _none_
+- exercises/VECTOR_FIELD.md

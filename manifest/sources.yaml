@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 sources:
 - authors:
   - Austin Adams
@@ -13,6 +13,16 @@ sources:
   provenance:
     id: '2403.03367'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: c5ef73aa42c4ca59b361186c4f433f9b
+      key: topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
+      verified_at: 2026-08-26T21:23:30.259541556Z
+      verified_sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
   sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
   title: 'am-AMM: An Auction-Managed Automated Market Maker'
   topics:
@@ -27,6 +37,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/uniswap-v3-core.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 2fae15b9757a3936752dc0cbc3db08af
+      key: topics/volatility-swaps/adams-uniswap-v3-core-2021.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/adams-uniswap-v3-core-2021.pdf
+      verified_at: 2026-08-26T21:23:29.63500074Z
+      verified_sha256: 1be05d1134f677dfbce9afa7392a2c200c000f3db74fb8d228e3636a2b624494
   sha256: 1be05d1134f677dfbce9afa7392a2c200c000f3db74fb8d228e3636a2b624494
   title: Uniswap v3 Core
   topics:
@@ -42,6 +62,16 @@ sources:
   provenance:
     id: '2106.14404'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 76fe9ba88f9519d3683554070773428a
+      key: topics/volatility-swaps/aigner-uniswap-impermanent-loss-risk-2021.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/aigner-uniswap-impermanent-loss-risk-2021.pdf
+      verified_at: 2026-08-26T21:23:31.956237773Z
+      verified_sha256: df08a93eb981ee8200f07e1c3a43b0cb9170e7dbe52e7f8100b8cd0ba521bde8
   sha256: df08a93eb981ee8200f07e1c3a43b0cb9170e7dbe52e7f8100b8cd0ba521bde8
   title: 'Uniswap: Impermanent Loss and Risk Profile of a Liquidity Provider'
   topics:
@@ -55,6 +85,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/imf-stablecoin-spillovers-fx-2026.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 7254ed9a9644490e3649e2fcc0181ff8
+      key: topics/applications/aldasoro-stablecoin-inflows-spillovers-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/aldasoro-stablecoin-inflows-spillovers-2026.pdf
+      verified_at: 2026-08-26T21:23:35.702420381Z
+      verified_sha256: edce174878ed7edbab8458d72e87422833d50a6395d8fa71c615f43ea271733b
+    - etag: 7254ed9a9644490e3649e2fcc0181ff8
+      key: topics/econometrics/aldasoro-stablecoin-inflows-spillovers-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/aldasoro-stablecoin-inflows-spillovers-2026.pdf
+      verified_at: 2026-08-26T21:23:36.032430526Z
+      verified_sha256: edce174878ed7edbab8458d72e87422833d50a6395d8fa71c615f43ea271733b
   sha256: edce174878ed7edbab8458d72e87422833d50a6395d8fa71c615f43ea271733b
   title: Stablecoin Inflows and Spillovers to FX Markets, WP/26/56, March 2026
   topics:
@@ -70,6 +116,22 @@ sources:
     - 2025 - Alexander - Price Discovery and Efficiency in Uniswap Liquidity Pools.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f18f2f054037c4a82cd575f8faee6dca
+      key: topics/applications/alexander-price-discovery-efficiency-uniswap-pools-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/alexander-price-discovery-efficiency-uniswap-pools-2025.pdf
+      verified_at: 2026-08-26T21:23:38.780295939Z
+      verified_sha256: 2daad76d1b2dd921f4d789244d4cd6776fe345999d19b59650dabbb13dc89856
+    - etag: f18f2f054037c4a82cd575f8faee6dca
+      key: topics/econometrics/alexander-price-discovery-efficiency-uniswap-pools-2025.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/alexander-price-discovery-efficiency-uniswap-pools-2025.pdf
+      verified_at: 2026-08-26T21:23:39.851481926Z
+      verified_sha256: 2daad76d1b2dd921f4d789244d4cd6776fe345999d19b59650dabbb13dc89856
   sha256: 2daad76d1b2dd921f4d789244d4cd6776fe345999d19b59650dabbb13dc89856
   title: Price Discovery and Efficiency in Uniswap Liquidity Pools
   topics:
@@ -87,6 +149,16 @@ sources:
   provenance:
     id: '2404.03976'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5644d2b73dc8ae83307fa3294f32b9e8
+      key: topics/volatility-swaps/alexander-theoretical-framework-fees-amms-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/alexander-theoretical-framework-fees-amms-2024.pdf
+      verified_at: 2026-08-26T21:23:40.911547363Z
+      verified_sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
   sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
   title: A theoretical framework for fees in AMMs
   topics:
@@ -102,6 +174,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/jpm-2006-variance-swaps.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: fe4eeb64b49455c5e55f1072af1e616c
+      key: topics/volatility-swaps/allen-variance-swaps-jpmorgan-2006.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/allen-variance-swaps-jpmorgan-2006.pdf
+      verified_at: 2026-08-26T21:23:42.350264438Z
+      verified_sha256: 792add2a70763b8e49a256786e23bc63e68751326b83fc1cfffed4cdb6a92b5e
   sha256: 792add2a70763b8e49a256786e23bc63e68751326b83fc1cfffed4cdb6a92b5e
   title: Variance Swaps (J.P. Morgan European Equity Derivatives Research)
   topics:
@@ -119,6 +201,16 @@ sources:
   - learning/convex-analysis/refs/angeris-cfmm-multi-asset-convex-opt.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 2d985d29904c128a06866b60d584cc6a
+      key: topics/convex/angeris-cfmm-multi-asset-convex-optimization-2021.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/angeris-cfmm-multi-asset-convex-optimization-2021.pdf
+      verified_at: 2026-08-26T21:23:44.069071176Z
+      verified_sha256: f5daec834603a1c72fc610355eebabd674fea93b587bd6c11a1a7042db60953f
   sha256: f5daec834603a1c72fc610355eebabd674fea93b587bd6c11a1a7042db60953f
   title: 'Constant Function Market Makers: Multi-Asset Trades via Convex Optimization'
   topics:
@@ -139,6 +231,16 @@ sources:
   provenance:
     id: '2308.08066'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: dba8ee913e909392bd0a77fd64a57e96
+      key: topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
+      verified_at: 2026-08-26T21:23:45.291127914Z
+      verified_sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
   sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
   title: The Geometry of Constant Function Market Makers
   topics:
@@ -156,6 +258,16 @@ sources:
   provenance:
     id: '2209.03307'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: d2d8bd0006c00d968112ee50b2492030
+      key: topics/convex/angeris-primer-on-perpetuals-2022.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/angeris-primer-on-perpetuals-2022.pdf
+      verified_at: 2026-08-26T21:23:45.89928421Z
+      verified_sha256: fbe2fac9dbc10be1a85bac34df6dbf795b30783e88bc38eeadcb9a667ef500f8
   sha256: fbe2fac9dbc10be1a85bac34df6dbf795b30783e88bc38eeadcb9a667ef500f8
   title: A Primer on Perpetuals
   topics:
@@ -173,6 +285,16 @@ sources:
   provenance:
     id: '2103.14769'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 9ee87dc4cf1fc3a620d80ac576411528
+      key: topics/volatility-swaps/angeris-replicating-market-makers-2021.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/angeris-replicating-market-makers-2021.pdf
+      verified_at: 2026-08-26T21:23:49.191964755Z
+      verified_sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
   sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
   title: Replicating Market Makers
   topics:
@@ -189,6 +311,16 @@ sources:
   provenance:
     id: '2111.13740'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a5068a2b3b6363626f4a1737474a5091
+      key: topics/volatility-swaps/angeris-replicating-monotonic-payoffs-without-oracles-2021.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/angeris-replicating-monotonic-payoffs-without-oracles-2021.pdf
+      verified_at: 2026-08-26T21:23:47.447417599Z
+      verified_sha256: 7fdd4f98a3ed4db3442517471424484a3acaca3f0c6483965ce770474a9b2c15
   sha256: 7fdd4f98a3ed4db3442517471424484a3acaca3f0c6483965ce770474a9b2c15
   title: Replicating Monotonic Payoffs Without Oracles
   topics:
@@ -205,6 +337,16 @@ sources:
   provenance:
     id: '2503.22502'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5c10c5a3811f1c9400c91ea5b2f679e6
+      key: topics/volatility-swaps/aqsha-equilibrium-reward-liquidity-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/aqsha-equilibrium-reward-liquidity-2025.pdf
+      verified_at: 2026-08-26T21:23:50.337982095Z
+      verified_sha256: 7eaf916594ad0069df6952eac345c67b787bf19861c410de2336322dea59e346
   sha256: 7eaf916594ad0069df6952eac345c67b787bf19861c410de2336322dea59e346
   title: Equilibrium Reward for Liquidity Providers in Automated Market Makers
   topics:
@@ -219,6 +361,22 @@ sources:
   - learning/structural-econometrics/aquilina-decentralised_dealers-2024.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0bb9caa81dd64726985ee366568e8eab
+      key: topics/applications/aquilina-decentralised-dealers-examining-2024.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/aquilina-decentralised-dealers-examining-2024.pdf
+      verified_at: 2026-08-26T21:23:53.292052097Z
+      verified_sha256: 39c043c7d27362c8e5242408936985c46de73a48e381b17f8b86d545ca3ef4ba
+    - etag: 0bb9caa81dd64726985ee366568e8eab
+      key: topics/io/aquilina-decentralised-dealers-examining-2024.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/aquilina-decentralised-dealers-examining-2024.pdf
+      verified_at: 2026-08-26T21:23:53.273516924Z
+      verified_sha256: 39c043c7d27362c8e5242408936985c46de73a48e381b17f8b86d545ca3ef4ba
   sha256: 39c043c7d27362c8e5242408936985c46de73a48e381b17f8b86d545ca3ef4ba
   title: Decentralised dealers? examining liquidity provision in decentralised exchanges
   topics:
@@ -233,6 +391,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/ssrn-1004360.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5b6f1cf2d0ff82984b69a090fc53ab01
+      key: topics/applications/athanasoulis-macro-markets-financial-1999.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/athanasoulis-macro-markets-financial-1999.pdf
+      verified_at: 2026-08-26T21:23:55.92626937Z
+      verified_sha256: 04fff506838253bb5e726bf24e8d89ad88d1a1e39ef55dc97ba0eca5c4551086
+    - etag: 5b6f1cf2d0ff82984b69a090fc53ab01
+      key: topics/econometrics/athanasoulis-macro-markets-financial-1999.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/athanasoulis-macro-markets-financial-1999.pdf
+      verified_at: 2026-08-26T21:23:56.134393708Z
+      verified_sha256: 04fff506838253bb5e726bf24e8d89ad88d1a1e39ef55dc97ba0eca5c4551086
   sha256: 04fff506838253bb5e726bf24e8d89ad88d1a1e39ef55dc97ba0eca5c4551086
   title: Macro Markets and Financial Security
   topics:
@@ -247,6 +421,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/bis-work1265.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 14cba4477640dc0bf9e77dd8c974654d
+      key: topics/applications/auer-defiying-gravity-empirical-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/auer-defiying-gravity-empirical-2025.pdf
+      verified_at: 2026-08-26T21:23:58.460174499Z
+      verified_sha256: 0a3acb9f68654a3b1b4a69ed183e9fff232a7843216becadb807926b5087a570
+    - etag: 14cba4477640dc0bf9e77dd8c974654d
+      key: topics/econometrics/auer-defiying-gravity-empirical-2025.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/auer-defiying-gravity-empirical-2025.pdf
+      verified_at: 2026-08-26T21:23:59.654917996Z
+      verified_sha256: 0a3acb9f68654a3b1b4a69ed183e9fff232a7843216becadb807926b5087a570
   sha256: 0a3acb9f68654a3b1b4a69ed183e9fff232a7843216becadb807926b5087a570
   title: DeFiying gravity? An empirical analysis of cross-border Bitcoin, Ether and
     stablecoin flows
@@ -262,6 +452,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-linear-algebra/LADR4e.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 69e3bfd7b1e3e98d85537aa1feed38b4
+      key: topics/linear-algebra/axler-linear-algebra-done-2026.pdf
+      topic: linear-algebra
+      url: https://s3.hippius.com/cfmm-refs/topics/linear-algebra/axler-linear-algebra-done-2026.pdf
+      verified_at: 2026-08-26T21:24:02.946144371Z
+      verified_sha256: 6bc491c90dcc8fd5922eb4bc3e18c5b18307f5239c7e9029b9051b9afbc0465d
   sha256: 6bc491c90dcc8fd5922eb4bc3e18c5b18307f5239c7e9029b9051b9afbc0465d
   title: Linear Algebra Done Right
   topics:
@@ -279,6 +479,16 @@ sources:
   provenance:
     id: '2506.02869'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a8a83f58d820edbd680d63e32ac42139
+      key: topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
+      verified_at: 2026-08-26T21:24:03.920385765Z
+      verified_sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
   sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
   title: Optimal Dynamic Fees in Automated Market Makers
   topics:
@@ -294,6 +504,16 @@ sources:
   - cfmms-playground/cfmm-wt/evm-controller/refs/control1.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 03e2af503d9f437fe9bdf7b8fec759ff
+      key: topics/control/bamieh-distributed-control-spatially-invariant-2002.pdf
+      topic: control
+      url: https://s3.hippius.com/cfmm-refs/topics/control/bamieh-distributed-control-spatially-invariant-2002.pdf
+      verified_at: 2026-08-26T21:24:07.221185049Z
+      verified_sha256: 359009eae2b9341332a919590051576e8d2052038491d6d5c448bb60178cee3c
   sha256: 359009eae2b9341332a919590051576e8d2052038491d6d5c448bb60178cee3c
   title: Distributed Control of Spatially Invariant Systems
   topics:
@@ -309,6 +529,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/macroDerivatives002.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f6dcf254e5cea54b482378a767f4565e
+      key: topics/applications/bansal-macroeconomic-derivatives-more-viable-1995.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/bansal-macroeconomic-derivatives-more-viable-1995.pdf
+      verified_at: 2026-08-26T21:24:08.049072956Z
+      verified_sha256: ce75f1eb8e8ac3afa75bb35f732bc5db96a825b06b4e06b5b27b38c340439703
+    - etag: f6dcf254e5cea54b482378a767f4565e
+      key: topics/econometrics/bansal-macroeconomic-derivatives-more-viable-1995.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/bansal-macroeconomic-derivatives-more-viable-1995.pdf
+      verified_at: 2026-08-26T21:24:11.185562954Z
+      verified_sha256: ce75f1eb8e8ac3afa75bb35f732bc5db96a825b06b4e06b5b27b38c340439703
   sha256: ce75f1eb8e8ac3afa75bb35f732bc5db96a825b06b4e06b5b27b38c340439703
   title: 'Macroeconomic Derivatives: More Viable Than First Thought!'
   topics:
@@ -327,6 +563,16 @@ sources:
   provenance:
     id: '2302.11942'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 9427c262f073870c4bc0fec19496d1d4
+      key: topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+      verified_at: 2026-08-26T21:24:12.184946299Z
+      verified_sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
   sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
   title: Liquidity Providers Greeks and Impermanent Gain
   topics:
@@ -341,6 +587,22 @@ sources:
   - cfmm/cfmm-theory/refs/Baxter_Rennie_Financial_Calculus.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 03c606b1f87cbbb44ee081d576e4d2e5
+      key: topics/dgp/baxter-rennie-financial-calculus-1996.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/baxter-rennie-financial-calculus-1996.pdf
+      verified_at: 2026-08-26T21:24:15.915243518Z
+      verified_sha256: a2425c0d1b2bd820c380509dfe7d562212836dfeea00aca0adb517ec2a7bdf5a
+    - etag: 03c606b1f87cbbb44ee081d576e4d2e5
+      key: topics/options/baxter-rennie-financial-calculus-1996.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/baxter-rennie-financial-calculus-1996.pdf
+      verified_at: 2026-08-26T21:24:18.166768787Z
+      verified_sha256: a2425c0d1b2bd820c380509dfe7d562212836dfeea00aca0adb517ec2a7bdf5a
   sha256: a2425c0d1b2bd820c380509dfe7d562212836dfeea00aca0adb517ec2a7bdf5a
   title: 'Financial Calculus: An Introduction to Derivative Pricing'
   topics:
@@ -358,6 +620,16 @@ sources:
   provenance:
     id: '2301.09347'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 46724652cdd98612649549273b102919
+      key: topics/convex/bentkamp-cvxlean-convex-optimization-lean4-2023.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/bentkamp-cvxlean-convex-optimization-lean4-2023.pdf
+      verified_at: 2026-08-26T21:24:18.055771285Z
+      verified_sha256: ef1f10c6902843b3d2f680aa382b8318149daecc1667e11e4283c4d71168e4b9
   sha256: ef1f10c6902843b3d2f680aa382b8318149daecc1667e11e4283c4d71168e4b9
   title: 'CvxLean: Convex Optimization Modeling in Lean 4'
   topics:
@@ -372,6 +644,22 @@ sources:
   provenance:
     id: '2212.00336'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: e35bfb70e123935c006545a8e44e9b38
+      key: topics/applications/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+      verified_at: 2026-08-26T21:24:20.927997031Z
+      verified_sha256: 719b1f56d19042facf11a28f26c77eeeeaa0a0c601bfced43b9e8f4433d17864
+    - etag: e35bfb70e123935c006545a8e44e9b38
+      key: topics/volatility-swaps/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+      verified_at: 2026-08-26T21:24:20.107261723Z
+      verified_sha256: 719b1f56d19042facf11a28f26c77eeeeaa0a0c601bfced43b9e8f4433d17864
   sha256: 719b1f56d19042facf11a28f26c77eeeeaa0a0c601bfced43b9e8f4433d17864
   title: Mean-Variance LP Payoffs and AMM Design
   topics:
@@ -391,6 +679,16 @@ sources:
   provenance:
     id: '2509.06510'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 565fe22b74fa2bcce8e6d4bc3e359c69
+      key: topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+      verified_at: 2026-08-26T21:24:24.72545134Z
+      verified_sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
   sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
   title: Optimal Exit Time for Liquidity Providers in Automated Market Makers
   topics:
@@ -406,6 +704,22 @@ sources:
   provenance:
     id: '2210.01227'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 869a643f00c2f62942ea1cede025fe90
+      key: topics/applications/bichuch-axioms-for-automated-market-makers-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/bichuch-axioms-for-automated-market-makers-2022.pdf
+      verified_at: 2026-08-26T21:24:23.103954602Z
+      verified_sha256: f5d0f3f06b1d986adfe52b332f2e6de7c1dd2752ea61c61f72937180c776dbe6
+    - etag: 869a643f00c2f62942ea1cede025fe90
+      key: topics/convex/bichuch-axioms-for-automated-market-makers-2022.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/bichuch-axioms-for-automated-market-makers-2022.pdf
+      verified_at: 2026-08-26T21:24:25.13145807Z
+      verified_sha256: f5d0f3f06b1d986adfe52b332f2e6de7c1dd2752ea61c61f72937180c776dbe6
   sha256: f5d0f3f06b1d986adfe52b332f2e6de7c1dd2752ea61c61f72937180c776dbe6
   title: 'Axioms for Automated Market Makers: A Mathematical Framework in FinTech
     and Decentralized Finance'
@@ -422,6 +736,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/bichuch_feinstein-implied_volatility_amm_fees-2025.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a9956b98b27fa6c8a152f4d0dbc23ab2
+      key: topics/applications/bichuch-implied-volatility-amm-fees-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/bichuch-implied-volatility-amm-fees-2025.pdf
+      verified_at: 2026-08-26T21:24:29.14953382Z
+      verified_sha256: 191e074d41135923971834061d497c01d6b0a6d59fbf1cb5686546ee2e5d0ab6
+    - etag: a9956b98b27fa6c8a152f4d0dbc23ab2
+      key: topics/volatility-swaps/bichuch-implied-volatility-amm-fees-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bichuch-implied-volatility-amm-fees-2025.pdf
+      verified_at: 2026-08-26T21:24:29.142218287Z
+      verified_sha256: 191e074d41135923971834061d497c01d6b0a6d59fbf1cb5686546ee2e5d0ab6
   sha256: 191e074d41135923971834061d497c01d6b0a6d59fbf1cb5686546ee2e5d0ab6
   title: Implied Volatility and AMM Fees
   topics:
@@ -439,6 +769,16 @@ sources:
   provenance:
     id: '2509.23222'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 14acecb7312ea9280467133b26b24115
+      key: topics/volatility-swaps/bichuch-price-liquidity-implied-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bichuch-price-liquidity-implied-2025.pdf
+      verified_at: 2026-08-26T21:24:50.011661982Z
+      verified_sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
   sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
   title: 'The Price of Liquidity: Implied Volatility of Automated Market Maker Fees'
   topics:
@@ -452,6 +792,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/BOOK.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 55917bf8821efba852271cd01e8133a9
+      key: topics/volatility-swaps/bossu-advanced-equity-derivatives-2014.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bossu-advanced-equity-derivatives-2014.pdf
+      verified_at: 2026-08-26T21:24:45.035384642Z
+      verified_sha256: 69a4ce8697bec4db7311cab471dad461e39420281d1c948d35a68366f54be922
   sha256: 69a4ce8697bec4db7311cab471dad461e39420281d1c948d35a68366f54be922
   title: 'Advanced Equity Derivatives: Volatility and Correlation'
   topics:
@@ -467,6 +817,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/vol_swaps_ui_ref.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 22c2c9f76c95fd4964ba08ca60f08931
+      key: topics/volatility-swaps/bossu-just-what-you-2005.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bossu-just-what-you-2005.pdf
+      verified_at: 2026-08-26T21:25:09.943490642Z
+      verified_sha256: 34140bc892dd865410e1f9c0646d4216c0e394f11fd9be920e6ccd9eff005599
   sha256: 34140bc892dd865410e1f9c0646d4216c0e394f11fd9be920e6ccd9eff005599
   title: Just what you need to know about Variance Swaps
   topics:
@@ -481,6 +841,16 @@ sources:
   - learning/convex-analysis/boyd_vandenberghe-convex_optimization-2004.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8ec4447b7935ee42e078f4848be4c705
+      key: topics/convex/boyd-convex-optimization-2004.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/boyd-convex-optimization-2004.pdf
+      verified_at: 2026-08-26T21:25:41.008572762Z
+      verified_sha256: 40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e
   sha256: 40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e
   title: Convex Optimization
   topics:
@@ -494,6 +864,16 @@ sources:
   - learning/formal-methods/refs/type_theory_references.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 298d08296e6862b5f137b4a7021636ee
+      key: topics/formal-methods/brady-type-driven-development-with-2017.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/brady-type-driven-development-with-2017.pdf
+      verified_at: 2026-08-26T21:25:37.191709314Z
+      verified_sha256: cc863400511063d959a416443d611a639cb9db2bac8ae0909a937cbf1ac45807
   sha256: cc863400511063d959a416443d611a639cb9db2bac8ae0909a937cbf1ac45807
   title: Type-Driven Development with Idris
   topics:
@@ -509,6 +889,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/macroDerivatives001.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: ce35b818c3625959a8e65baef454e259
+      key: topics/applications/broll-managing-credit-risk-credit-macro-derivatives-2004.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/broll-managing-credit-risk-credit-macro-derivatives-2004.pdf
+      verified_at: 2026-08-26T21:25:52.410193285Z
+      verified_sha256: 923c098a344e205e383f0457977613c658ac33f93bb4f95944c7c1e742d0d62e
+    - etag: ce35b818c3625959a8e65baef454e259
+      key: topics/banking/broll-managing-credit-risk-credit-macro-derivatives-2004.pdf
+      topic: banking
+      url: https://s3.hippius.com/cfmm-refs/topics/banking/broll-managing-credit-risk-credit-macro-derivatives-2004.pdf
+      verified_at: 2026-08-26T21:25:46.23646655Z
+      verified_sha256: 923c098a344e205e383f0457977613c658ac33f93bb4f95944c7c1e742d0d62e
   sha256: 923c098a344e205e383f0457977613c658ac33f93bb4f95944c7c1e742d0d62e
   title: Managing Credit Risk with Credit and Macro Derivatives
   topics:
@@ -525,6 +921,16 @@ sources:
   - learning/structural-econometrics/dokumen.pub_the-econometrics-of-financial-markets-9781400830213.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0df73dbbbb1dbd632d3930f76002b0cd
+      key: topics/econometrics/campbell-econometrics-financial-markets-1997.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/campbell-econometrics-financial-markets-1997.pdf
+      verified_at: 2026-08-26T21:29:09.425358327Z
+      verified_sha256: 9a95fd6afa9299ac3437b63a823d02e27d15200f80a5e79ddfb54c26c0f712c4
   sha256: 9a95fd6afa9299ac3437b63a823d02e27d15200f80a5e79ddfb54c26c0f712c4
   title: The Econometrics of Financial Markets
   topics:
@@ -544,6 +950,16 @@ sources:
   provenance:
     id: '2508.08152'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0623e6ae9ffdb5e68c08b3726e1211f1
+      key: topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
+      verified_at: 2026-08-26T21:26:44.034712318Z
+      verified_sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
   sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
   title: Optimal Fees for Liquidity Provision in Automated Market Makers
   topics:
@@ -558,6 +974,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/Campbell_Shiller_RFS_1988.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: b655ae4f887b9e1f2ac0a3f020bc8587
+      key: topics/dgp/campbell-shiller-stock-prices-expected-dividends-1988.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/campbell-shiller-stock-prices-expected-dividends-1988.pdf
+      verified_at: 2026-08-26T21:28:12.629279369Z
+      verified_sha256: c565e66f9492f850936cccdabedb7848b7bd6c30e6a24a18c10edfac7908b585
+    - etag: b655ae4f887b9e1f2ac0a3f020bc8587
+      key: topics/econometrics/campbell-shiller-stock-prices-expected-dividends-1988.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/campbell-shiller-stock-prices-expected-dividends-1988.pdf
+      verified_at: 2026-08-26T21:28:44.353666083Z
+      verified_sha256: c565e66f9492f850936cccdabedb7848b7bd6c30e6a24a18c10edfac7908b585
   sha256: c565e66f9492f850936cccdabedb7848b7bd6c30e6a24a18c10edfac7908b585
   title: Stock Prices, Earnings, and Expected Dividends
   topics:
@@ -574,6 +1006,16 @@ sources:
   provenance:
     id: '2307.02074'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: b49cda900295bbb3e071acc263efb222
+      key: topics/volatility-swaps/canidio-arbitrageurs-profits-lvr-sandwich-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/canidio-arbitrageurs-profits-lvr-sandwich-2023.pdf
+      verified_at: 2026-08-26T21:29:00.721737707Z
+      verified_sha256: fce014e0ff7f12c1e9290bdf922dac6146578ca94b932d1283f87a4908ba0a87
   sha256: fce014e0ff7f12c1e9290bdf922dac6146578ca94b932d1283f87a4908ba0a87
   title: 'Arbitrageurs'' profits, LVR, and sandwich attacks: batch trading as an AMM
     design response'
@@ -588,6 +1030,16 @@ sources:
   - learning/formal-methods/angstrom/contracts/security-reviews/cantina-competition.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f1ad750754695c1d7dc1d71bbac9f5e1
+      key: topics/formal-methods/cantina-angstrom-security-review-2024.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/cantina-angstrom-security-review-2024.pdf
+      verified_at: 2026-08-26T21:29:03.587838824Z
+      verified_sha256: d646aca6e28263600784d9f96188c29fd8e2c367cb815dbd54685216bc28f101
   sha256: d646aca6e28263600784d9f96188c29fd8e2c367cb815dbd54685216bc28f101
   title: 'Cantina Competition Security Review: Angstrom'
   topics:
@@ -604,6 +1056,16 @@ sources:
   - learning/structural-econometrics/cao_falk_kogan_tsoukalas-structural_model_amm-2025.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 805ef0c7660fdd35960a98e1a149e702
+      key: topics/econometrics/cao-structural-model-amm-2025.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/cao-structural-model-amm-2025.pdf
+      verified_at: 2026-08-26T21:29:12.075395624Z
+      verified_sha256: b358c670e8299db6d6843654a0619be15c88266d3f4d7c64d41f1fd6d1071d36
   sha256: b358c670e8299db6d6843654a0619be15c88266d3f4d7c64d41f1fd6d1071d36
   title: A Structural Model of Automated Market Makers
   topics:
@@ -619,6 +1081,22 @@ sources:
   provenance:
     id: '2512.10094'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f2a558acb4ba077b76bdb57132dbc6f6
+      key: topics/applications/capponi-auctioning-time-to-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/capponi-auctioning-time-to-2025.pdf
+      verified_at: 2026-08-26T21:29:16.060266925Z
+      verified_sha256: e967dad520bcc9bd70a5aa4a457f3b13ca9f8ee7815c2459b01c7e9e5702af8a
+    - etag: f2a558acb4ba077b76bdb57132dbc6f6
+      key: topics/mechanism-design/capponi-auctioning-time-to-2025.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/capponi-auctioning-time-to-2025.pdf
+      verified_at: 2026-08-26T21:29:18.631830697Z
+      verified_sha256: e967dad520bcc9bd70a5aa4a457f3b13ca9f8ee7815c2459b01c7e9e5702af8a
   sha256: e967dad520bcc9bd70a5aa4a457f3b13ca9f8ee7815c2459b01c7e9e5702af8a
   title: 'Auctioning Time to Mitigate Latency Races: Theory and Evidence from Blockchains'
   topics:
@@ -636,6 +1114,22 @@ sources:
   provenance:
     id: '2202.05779'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 9be42baab9721e9fed4740c7de3c085b
+      key: topics/applications/capponi-evolution-blockchain-lit-to-dark-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/capponi-evolution-blockchain-lit-to-dark-2022.pdf
+      verified_at: 2026-08-26T21:29:28.503841717Z
+      verified_sha256: 1719866e596843ee9a498e7b49bf0a68106f3cb0e9bdc869d14c43954cee6cd9
+    - etag: 9be42baab9721e9fed4740c7de3c085b
+      key: topics/io/capponi-evolution-blockchain-lit-to-dark-2022.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/capponi-evolution-blockchain-lit-to-dark-2022.pdf
+      verified_at: 2026-08-26T21:29:25.856019663Z
+      verified_sha256: 1719866e596843ee9a498e7b49bf0a68106f3cb0e9bdc869d14c43954cee6cd9
   sha256: 1719866e596843ee9a498e7b49bf0a68106f3cb0e9bdc869d14c43954cee6cd9
   title: 'The Evolution of Blockchain: from Lit to Dark'
   topics:
@@ -653,6 +1147,22 @@ sources:
   provenance:
     id: '2103.08842'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 1dd494230a81185ae4e3619fa9b56d34
+      key: topics/applications/capponi-jia-adoption-decentralized-exchange-2021.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/capponi-jia-adoption-decentralized-exchange-2021.pdf
+      verified_at: 2026-08-26T21:29:31.537406333Z
+      verified_sha256: 9ab8aa585696f7a02ae7d94a71d6f2f77bdb13c729e3a845039d33297b99d262
+    - etag: 1dd494230a81185ae4e3619fa9b56d34
+      key: topics/io/capponi-jia-adoption-decentralized-exchange-2021.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/capponi-jia-adoption-decentralized-exchange-2021.pdf
+      verified_at: 2026-08-26T21:29:31.95678434Z
+      verified_sha256: 9ab8aa585696f7a02ae7d94a71d6f2f77bdb13c729e3a845039d33297b99d262
   sha256: 9ab8aa585696f7a02ae7d94a71d6f2f77bdb13c729e3a845039d33297b99d262
   title: Adoption of Decentralized Exchanges
   topics:
@@ -671,6 +1181,22 @@ sources:
   provenance:
     id: '2311.18164'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 9a493994d482372cc0b419397bea5cb9
+      key: topics/applications/capponi-jit-liquidity-paradox-2023.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/capponi-jit-liquidity-paradox-2023.pdf
+      verified_at: 2026-08-26T21:29:33.993973329Z
+      verified_sha256: f3675ec634f3b3ba8997e03b4da29ce4334130fc3f5f0d294ef1149c156e3bcb
+    - etag: 9a493994d482372cc0b419397bea5cb9
+      key: topics/io/capponi-jit-liquidity-paradox-2023.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/capponi-jit-liquidity-paradox-2023.pdf
+      verified_at: 2026-08-26T21:29:35.508951968Z
+      verified_sha256: f3675ec634f3b3ba8997e03b4da29ce4334130fc3f5f0d294ef1149c156e3bcb
   sha256: f3675ec634f3b3ba8997e03b4da29ce4334130fc3f5f0d294ef1149c156e3bcb
   title: The Paradox of Just-in-Time Liquidity
   topics:
@@ -685,6 +1211,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/capponi-optimal_exit_lp.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8af858ee66fb0201c6d6e6473c9fb962
+      key: topics/applications/capponi-optimal-exit-lp-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/capponi-optimal-exit-lp-2025.pdf
+      verified_at: 2026-08-26T21:29:38.165929651Z
+      verified_sha256: adafa768826bcc320896fc577bbcc0120e27a8121ad6979d641d9707c04c30de
+    - etag: 8af858ee66fb0201c6d6e6473c9fb962
+      key: topics/control/capponi-optimal-exit-lp-2025.pdf
+      topic: control
+      url: https://s3.hippius.com/cfmm-refs/topics/control/capponi-optimal-exit-lp-2025.pdf
+      verified_at: 2026-08-26T21:29:37.599575916Z
+      verified_sha256: adafa768826bcc320896fc577bbcc0120e27a8121ad6979d641d9707c04c30de
   sha256: adafa768826bcc320896fc577bbcc0120e27a8121ad6979d641d9707c04c30de
   title: Optimal Exit for Liquidity Providers
   topics:
@@ -702,6 +1244,22 @@ sources:
   provenance:
     id: '2605.17425'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 9479f0ca8c3271d4fb4be4e2aa2cec10
+      key: topics/applications/capponi-viability-blockchain-markets-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/capponi-viability-blockchain-markets-2026.pdf
+      verified_at: 2026-08-26T21:29:42.122728779Z
+      verified_sha256: 8ee2a1fe8dfc099ed03eee1fbe21d494cca6096880a61fcf0f2f2840e24aca5a
+    - etag: 9479f0ca8c3271d4fb4be4e2aa2cec10
+      key: topics/mechanism-design/capponi-viability-blockchain-markets-2026.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/capponi-viability-blockchain-markets-2026.pdf
+      verified_at: 2026-08-26T21:29:41.924878562Z
+      verified_sha256: 8ee2a1fe8dfc099ed03eee1fbe21d494cca6096880a61fcf0f2f2840e24aca5a
   sha256: 8ee2a1fe8dfc099ed03eee1fbe21d494cca6096880a61fcf0f2f2840e24aca5a
   title: The Viability of Blockchain Markets under Discrete Clearing and Paid Priority
   topics:
@@ -716,6 +1274,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/imf-wpiea2024261.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 677c9c7f2a0aff06c5a727b7b014ca52
+      key: topics/applications/cardozo-cross-border-crypto-flows-2024.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/cardozo-cross-border-crypto-flows-2024.pdf
+      verified_at: 2026-08-26T21:29:45.85747086Z
+      verified_sha256: 1734b4c669d6d4a1329f8804948c9ed7a47d1761a642b25b46c11634f1a5a036
+    - etag: 677c9c7f2a0aff06c5a727b7b014ca52
+      key: topics/econometrics/cardozo-cross-border-crypto-flows-2024.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/cardozo-cross-border-crypto-flows-2024.pdf
+      verified_at: 2026-08-26T21:29:46.125457132Z
+      verified_sha256: 1734b4c669d6d4a1329f8804948c9ed7a47d1761a642b25b46c11634f1a5a036
   sha256: 1734b4c669d6d4a1329f8804948c9ed7a47d1761a642b25b46c11634f1a5a036
   title: 'On Cross-Border Crypto Flows: Measurement, Drivers, and Policy Implications,
     WP/24/261, December 2024'
@@ -733,6 +1307,22 @@ sources:
   - cfmm/cfmm-theory/refs/Algorithmic_and_High_Frequency_Trading.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: bf6533f04730d5406b33b203ce5bb4a2
+      key: topics/control/cartea-algorithmic-high-frequency-trading-2015.pdf
+      topic: control
+      url: https://s3.hippius.com/cfmm-refs/topics/control/cartea-algorithmic-high-frequency-trading-2015.pdf
+      verified_at: 2026-08-26T21:29:59.668236329Z
+      verified_sha256: 3216f3ea2582b88dd5e2b1d813ec2875c6ba252dbe5b51eb85f956c22e2d30aa
+    - etag: bf6533f04730d5406b33b203ce5bb4a2
+      key: topics/dgp/cartea-algorithmic-high-frequency-trading-2015.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/cartea-algorithmic-high-frequency-trading-2015.pdf
+      verified_at: 2026-08-26T21:30:01.432425091Z
+      verified_sha256: 3216f3ea2582b88dd5e2b1d813ec2875c6ba252dbe5b51eb85f956c22e2d30aa
   sha256: 3216f3ea2582b88dd5e2b1d813ec2875c6ba252dbe5b51eb85f956c22e2d30aa
   title: Algorithmic and High-Frequency Trading
   topics:
@@ -747,6 +1337,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/power-maker-docs/.gitbook/assets/Numoen_Audit_Certik.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 05a4ccd81be274acd480c822d9812eb0
+      key: topics/applications/certik-numoen-audit-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/certik-numoen-audit-2022.pdf
+      verified_at: 2026-08-26T21:30:03.166223642Z
+      verified_sha256: 98101a31a264a9c80853c07b8ea1cbd8ee4f62a3668e3ed6e07ccfbd8e6000e0
+    - etag: 05a4ccd81be274acd480c822d9812eb0
+      key: topics/formal-methods/certik-numoen-audit-2022.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/certik-numoen-audit-2022.pdf
+      verified_at: 2026-08-26T21:30:05.336415782Z
+      verified_sha256: 98101a31a264a9c80853c07b8ea1cbd8ee4f62a3668e3ed6e07ccfbd8e6000e0
   sha256: 98101a31a264a9c80853c07b8ea1cbd8ee4f62a3668e3ed6e07ccfbd8e6000e0
   title: Numoen Security Audit Report
   topics:
@@ -764,6 +1370,16 @@ sources:
   - learning/structural-econometrics/dokumen.pub_financial-mathematics-derivatives-and-structured-products-1st-ed-978-981-13-3695-9-978-981-13-3696-6.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8296ca6033acc025bd070189b688d9f6
+      key: topics/econometrics/chan-financial-mathematics-derivatives-structured-products-2019.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/chan-financial-mathematics-derivatives-structured-products-2019.pdf
+      verified_at: 2026-08-26T21:30:08.096599487Z
+      verified_sha256: 636285a2d646750fb7a2d8c3a0556a2d44c541fc5fd9f27231d64cb3ad52df13
   sha256: 636285a2d646750fb7a2d8c3a0556a2d44c541fc5fd9f27231d64cb3ad52df13
   title: Financial Mathematics, Derivatives and Structured Products
   topics:
@@ -780,6 +1396,16 @@ sources:
   provenance:
     id: '1911.06442'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 056cf59ec47068507f4942dbf1a2c852
+      key: topics/mechanism-design/che-monotone-comparative-statics-2019.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/che-monotone-comparative-statics-2019.pdf
+      verified_at: 2026-08-26T21:30:07.309266361Z
+      verified_sha256: a022d3cbd6a762cdc39653abfb03deb6797d03182de9808447a2fdb7f792dbbe
   sha256: a022d3cbd6a762cdc39653abfb03deb6797d03182de9808447a2fdb7f792dbbe
   title: Monotone Comparative Statics without Lattices
   topics:
@@ -795,6 +1421,22 @@ sources:
   - cfmm/cfmm-theory/refs/oxford-handbook-of-computational-economics-and-finance.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5ee6f94a1218b52429a1d836f79aa1eb
+      key: topics/applications/chen-oxford-handbook-computational-economics-finance-2018.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/chen-oxford-handbook-computational-economics-finance-2018.pdf
+      verified_at: 2026-08-26T21:30:16.290363212Z
+      verified_sha256: 703036492b59c0d5d9a1b05eb098aaecde2cbe9102643a75877e194be557aaa6
+    - etag: 5ee6f94a1218b52429a1d836f79aa1eb
+      key: topics/econometrics/chen-oxford-handbook-computational-economics-finance-2018.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/chen-oxford-handbook-computational-economics-finance-2018.pdf
+      verified_at: 2026-08-26T21:30:19.967853865Z
+      verified_sha256: 703036492b59c0d5d9a1b05eb098aaecde2cbe9102643a75877e194be557aaa6
   sha256: 703036492b59c0d5d9a1b05eb098aaecde2cbe9102643a75877e194be557aaa6
   title: The Oxford Handbook of Computational Economics and Finance
   topics:
@@ -810,6 +1452,16 @@ sources:
   provenance:
     id: '2309.14201'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 7195f1e56e6d5689ed456a090f6ded57
+      key: topics/applications/chitra-theory-maximal-extractable-value-ii-2023.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/chitra-theory-maximal-extractable-value-ii-2023.pdf
+      verified_at: 2026-08-26T21:30:19.336567152Z
+      verified_sha256: 8c7f201c2d73bfb2c6a7a3d8a7da21f642e7decef158c1f5c42540218a51ae96
   sha256: 8c7f201c2d73bfb2c6a7a3d8a7da21f642e7decef158c1f5c42540218a51ae96
   title: 'Towards a Theory of Maximal Extractable Value II: Uncertainty'
   topics:
@@ -823,6 +1475,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/clark-replicating_portfolio_bounded_liquidity-2021.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 09cb7202afe18ce1e86e70979fc3305f
+      key: topics/applications/clark-replicating-portfolio-bounded-liquidity-2021.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/clark-replicating-portfolio-bounded-liquidity-2021.pdf
+      verified_at: 2026-08-26T21:30:22.534298541Z
+      verified_sha256: 5913a5a00be4e167fe569d45a00f462bb7a0477137c4e221df4da5ca1407a108
+    - etag: 09cb7202afe18ce1e86e70979fc3305f
+      key: topics/options/clark-replicating-portfolio-bounded-liquidity-2021.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/clark-replicating-portfolio-bounded-liquidity-2021.pdf
+      verified_at: 2026-08-26T21:30:22.717441451Z
+      verified_sha256: 5913a5a00be4e167fe569d45a00f462bb7a0477137c4e221df4da5ca1407a108
   sha256: 5913a5a00be4e167fe569d45a00f462bb7a0477137c4e221df4da5ca1407a108
   title: Replicating Portfolios with Bounded Liquidity
   topics:
@@ -837,6 +1505,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/clark-replicating_portfolio_constant_product_market-2020.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 2cb7b009d46dee8bca31b48ca701321f
+      key: topics/applications/clark-replicating-portfolio-constant-product-market-2020.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/clark-replicating-portfolio-constant-product-market-2020.pdf
+      verified_at: 2026-08-26T21:30:25.364603472Z
+      verified_sha256: 9df1e64ab64715c3006ee4e448e6045670033aafe2def642e5ca4e9aa1a5dcfe
+    - etag: 2cb7b009d46dee8bca31b48ca701321f
+      key: topics/options/clark-replicating-portfolio-constant-product-market-2020.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/clark-replicating-portfolio-constant-product-market-2020.pdf
+      verified_at: 2026-08-26T21:30:26.638366571Z
+      verified_sha256: 9df1e64ab64715c3006ee4e448e6045670033aafe2def642e5ca4e9aa1a5dcfe
   sha256: 9df1e64ab64715c3006ee4e448e6045670033aafe2def642e5ca4e9aa1a5dcfe
   title: Replicating Portfolios in Constant Product Markets
   topics:
@@ -851,6 +1535,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/clark-spanning_power_perpetuals-2023.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f4e73863e7ffddace00d08680de71c5f
+      key: topics/applications/clark-spanning-power-perpetuals-2023.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/clark-spanning-power-perpetuals-2023.pdf
+      verified_at: 2026-08-26T21:30:29.663360439Z
+      verified_sha256: 9558856b4bbaa327a213786c732daecea48fbef74a66a704a43398c9373b09ea
+    - etag: f4e73863e7ffddace00d08680de71c5f
+      key: topics/options/clark-spanning-power-perpetuals-2023.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/clark-spanning-power-perpetuals-2023.pdf
+      verified_at: 2026-08-26T21:30:29.70131797Z
+      verified_sha256: 9558856b4bbaa327a213786c732daecea48fbef74a66a704a43398c9373b09ea
   sha256: 9558856b4bbaa327a213786c732daecea48fbef74a66a704a43398c9373b09ea
   title: Spanning with Power Perpetuals
   topics:
@@ -865,6 +1565,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/pensionFunds/03_volatility_4-2-18.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 1b0db1035932ec0e4fa7cca663b436e4
+      key: topics/options/cole-volatility-alchemy-risk-2018.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/cole-volatility-alchemy-risk-2018.pdf
+      verified_at: 2026-08-26T21:30:33.353077163Z
+      verified_sha256: e8c4e4fe36a7127cabb325fcbb8c8c3c8035959a804ad0d47443db9ddb9efe9d
+    - etag: 1b0db1035932ec0e4fa7cca663b436e4
+      key: topics/volatility-swaps/cole-volatility-alchemy-risk-2018.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/cole-volatility-alchemy-risk-2018.pdf
+      verified_at: 2026-08-26T21:30:33.370195569Z
+      verified_sha256: e8c4e4fe36a7127cabb325fcbb8c8c3c8035959a804ad0d47443db9ddb9efe9d
   sha256: e8c4e4fe36a7127cabb325fcbb8c8c3c8035959a804ad0d47443db9ddb9efe9d
   title: 'Volatility and the Alchemy of Risk: Reflexivity in the Shadows of Black
     Monday 1987'
@@ -880,6 +1596,16 @@ sources:
   - learning/discrete/refs/differentila_geometry.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: e3aeafd68912aee763657a22a0dca16a
+      key: topics/discrete/crane-discrete-differential-geometry-2025.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/crane-discrete-differential-geometry-2025.pdf
+      verified_at: 2026-08-26T21:30:37.941156622Z
+      verified_sha256: f1432b17ef269500a2d69a2c2b93ac644cf7223ca9c736258a3676867fa01f8d
   sha256: f1432b17ef269500a2d69a2c2b93ac644cf7223ca9c736258a3676867fa01f8d
   title: 'Discrete Differential Geometry: An Applied Introduction'
   topics:
@@ -893,6 +1619,16 @@ sources:
   - learning/discrete/refs/mathematical-finance-discrete-time.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8e9061bd83bf90f4d2a19c53345cbed5
+      key: topics/discrete/cuchiero-mathematical-finance-discrete-time-2015.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/cuchiero-mathematical-finance-discrete-time-2015.pdf
+      verified_at: 2026-08-26T21:30:35.453480508Z
+      verified_sha256: 9b496d9068b472e558f1df1ecf06ff8d72aff4554e10f189d36bffb8149bd139
   sha256: 9b496d9068b472e558f1df1ecf06ff8d72aff4554e10f189d36bffb8149bd139
   title: Lecture Notes for Mathematical Finance in Discrete Time
   topics:
@@ -914,6 +1650,16 @@ sources:
   provenance:
     id: '1904.05234'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8538ea527ba2843cb4a4576f7e4fb549
+      key: topics/applications/daian-flash-boys-2-2019.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/daian-flash-boys-2-2019.pdf
+      verified_at: 2026-08-26T21:30:39.541743457Z
+      verified_sha256: 4e8fd09b4655205d37f98eefc3cca038fdc8a12b34648ac2a26a2dd1ef63bdcd
   sha256: 4e8fd09b4655205d37f98eefc3cca038fdc8a12b34648ac2a26a2dd1ef63bdcd
   title: 'Flash Boys 2.0: Frontrunning, Transaction Reordering, and Consensus Instability
     in Decentralized Exchanges'
@@ -928,6 +1674,16 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/pensionFunds/Cboe_PutWrite_Indices_Methodology.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: e44608f043060e42097d89f31668b50a
+      key: topics/options/davidson-cboe-putwrite-indices-methodology-2025.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/davidson-cboe-putwrite-indices-methodology-2025.pdf
+      verified_at: 2026-08-26T21:30:41.473749714Z
+      verified_sha256: 3ba819cecfb7d3ed5757e3088c2be8c73c4f986c4b29dfe89302243de15c203d
   sha256: 3ba819cecfb7d3ed5757e3088c2be8c73c4f986c4b29dfe89302243de15c203d
   title: ''
   topics:
@@ -944,6 +1700,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/WVS.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: b5b5cd58db2307e26e29bcd36138bfd3
+      key: topics/volatility-swaps/demeterfi-more-than-you-ever-wanted-volatility-swaps-1999.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/demeterfi-more-than-you-ever-wanted-volatility-swaps-1999.pdf
+      verified_at: 2026-08-26T21:30:41.601550614Z
+      verified_sha256: 37613cde076bbfe9625d58ce1508ea86ff3c68d9043fdca905057c69c028966a
   sha256: 37613cde076bbfe9625d58ce1508ea86ff3c68d9043fdca905057c69c028966a
   title: More Than You Ever Wanted To Know About Volatility Swaps
   topics:
@@ -961,6 +1727,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/DemeterfietalVarianceSwaps.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 49ee098968d45feac431fb3a14269a16
+      key: topics/volatility-swaps/demeterfi-more-than-you-ever-wanted-volatility-swaps-1999-v2.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/demeterfi-more-than-you-ever-wanted-volatility-swaps-1999-v2.pdf
+      verified_at: 2026-08-26T21:30:43.701160049Z
+      verified_sha256: ad289770b42f89cd0046f1e20ae42e4ecc2f15c419e1cd2705576739f762223e
   sha256: ad289770b42f89cd0046f1e20ae42e4ecc2f15c419e1cd2705576739f762223e
   title: More Than You Ever Wanted To Know About Volatility Swaps
   topics:
@@ -980,6 +1756,16 @@ sources:
   provenance:
     id: '2205.12043'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8fd0a370e37041d2a05d452d9611c553
+      key: topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+      verified_at: 2026-08-26T21:30:44.17858238Z
+      verified_sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
   sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
   title: Static Replication of Impermanent Loss for Concentrated Liquidity Provision
     in Decentralised Markets
@@ -999,6 +1785,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/InvestingInVolatilityFOW.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: be581993e8082c4619b31b46ab90f241
+      key: topics/volatility-swaps/derman-investing-in-volatility-1999.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/derman-investing-in-volatility-1999.pdf
+      verified_at: 2026-08-26T21:30:46.242630062Z
+      verified_sha256: cfdcc53159e6adfcbba3a75e4912a76ecb74e6b5db83b962bd3d4cc3679bb1b0
   sha256: cfdcc53159e6adfcbba3a75e4912a76ecb74e6b5db83b962bd3d4cc3679bb1b0
   title: Investing in Volatility
   topics:
@@ -1013,6 +1809,22 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/stochastic_implied_tree.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 2be031e8ba6062384ba46f638d334bc4
+      key: topics/options/derman-stochastic-implied-trees-1998.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/derman-stochastic-implied-trees-1998.pdf
+      verified_at: 2026-08-26T21:30:46.131673897Z
+      verified_sha256: 2866c135a246afab6a8502ca7b5e0253a2a11b69cc3c0920861ca8cf8f339dff
+    - etag: 2be031e8ba6062384ba46f638d334bc4
+      key: topics/volatility-swaps/derman-stochastic-implied-trees-1998.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/derman-stochastic-implied-trees-1998.pdf
+      verified_at: 2026-08-26T21:30:49.250779226Z
+      verified_sha256: 2866c135a246afab6a8502ca7b5e0253a2a11b69cc3c0920861ca8cf8f339dff
   sha256: 2866c135a246afab6a8502ca7b5e0253a2a11b69cc3c0920861ca8cf8f339dff
   title: 'Stochastic Implied Trees: Arbitrage Pricing with Stochastic Term and Strike
     Structure of Volatility'
@@ -1031,6 +1843,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-options/DiscreteDifferentialGeometry.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 8366a1366a4d9d3b777c3bd08662594f
+      key: topics/options/desbrun-discrete-exterior-calculus-2004.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/desbrun-discrete-exterior-calculus-2004.pdf
+      verified_at: 2026-08-26T21:30:50.603440888Z
+      verified_sha256: 11c0acb3b9194f9906428cd871fec6b24e5a9f8fa5fc1aa590bede36b188e11f
   sha256: 11c0acb3b9194f9906428cd871fec6b24e5a9f8fa5fc1aa590bede36b188e11f
   title: Discrete Exterior Calculus
   topics:
@@ -1044,6 +1866,16 @@ sources:
   - cfmm/cfmm-theory/refs/Dynamic_Asset_Pricing_Theory.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: ad7666b436bcb7dd5597bfd543114375
+      key: topics/dgp/duffie-dynamic-asset-pricing-theory-1999.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/duffie-dynamic-asset-pricing-theory-1999.pdf
+      verified_at: 2026-08-26T21:30:53.849792767Z
+      verified_sha256: 4c9b0e037f243ce2f03616f5789214aace698ad7bf553a7d7888afdd3a8dfde6
   sha256: 4c9b0e037f243ce2f03616f5789214aace698ad7bf553a7d7888afdd3a8dfde6
   title: Dynamic Asset Pricing Theory (Provisional Manuscript)
   topics:
@@ -1057,6 +1889,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/duffie-dynamic-asset-pricing-theory-2001.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 6d9488b516a6456fbb2e69a000af851f
+      key: topics/dgp/duffie-dynamic-asset-pricing-theory-2001.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/duffie-dynamic-asset-pricing-theory-2001.pdf
+      verified_at: 2026-08-26T21:31:01.303940254Z
+      verified_sha256: 6e8a6250ce4c118163c68877d45a777a14769f76208e58966f759fd47f45bfb4
   sha256: 6e8a6250ce4c118163c68877d45a777a14769f76208e58966f759fd47f45bfb4
   title: Dynamic Asset Pricing Theory (3rd Edition)
   topics:
@@ -1070,6 +1912,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/duffie-dapt-revisions-2002.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5107b10b585e2e825be6ddea70fdf5ef
+      key: topics/dgp/duffie-dynamic-asset-pricing-theory-revisions-2002.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/duffie-dynamic-asset-pricing-theory-revisions-2002.pdf
+      verified_at: 2026-08-26T21:30:55.95203725Z
+      verified_sha256: 18ff2cc04f83e7bd1253a0c4716ac22cd08f6a1fefabb9f5eb12f977e83cd3d8
   sha256: 18ff2cc04f83e7bd1253a0c4716ac22cd08f6a1fefabb9f5eb12f977e83cd3d8
   title: Dynamic Asset Pricing Theory - Revisions
   topics:
@@ -1083,6 +1935,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/duffie-intertemporal_asset_pricing_survey.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 4ed6fec2559ffc8123bd4af07ca11ee9
+      key: topics/dgp/duffie-intertemporal-asset-pricing-theory-2003.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/duffie-intertemporal-asset-pricing-theory-2003.pdf
+      verified_at: 2026-08-26T21:30:59.617391176Z
+      verified_sha256: 0fa17c0944712b4543cb86e5698de76bbf6d88a2b68c1bb6205a82dc25012f8c
   sha256: 0fa17c0944712b4543cb86e5698de76bbf6d88a2b68c1bb6205a82dc25012f8c
   title: Intertemporal Asset Pricing Theory (Handbook survey)
   topics:
@@ -1097,6 +1959,22 @@ sources:
   provenance:
     id: '1807.09873'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 39bfc41d739880725b99f983e94a63aa
+      key: topics/discrete/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+      verified_at: 2026-08-26T21:31:03.387596258Z
+      verified_sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
+    - etag: 39bfc41d739880725b99f983e94a63aa
+      key: topics/formal-methods/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+      verified_at: 2026-08-26T21:31:04.416646587Z
+      verified_sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
   sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
   title: A Formalization of the Cox-Ross-Rubinstein Model in Isabelle/HOL
   topics:
@@ -1114,6 +1992,16 @@ sources:
   provenance:
     id: '2409.12803'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5069698506d1251cc69e44ae08fdeca8
+      key: topics/volatility-swaps/elsts-concentrated-liquidity-leverage-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/elsts-concentrated-liquidity-leverage-2024.pdf
+      verified_at: 2026-08-26T21:31:07.153792134Z
+      verified_sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
   sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
   title: Concentrated Liquidity with Leverage
   topics:
@@ -1131,6 +2019,16 @@ sources:
   provenance:
     id: '1802.01158'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: fae26f6a6fbff23b1eb851264ef42885
+      key: topics/discrete/esqueda-geometric-description-discrete-exterior-calculus-2018.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/esqueda-geometric-description-discrete-exterior-calculus-2018.pdf
+      verified_at: 2026-08-26T21:31:08.751058925Z
+      verified_sha256: cb685d19b21bef96097a9e7e30450d668b67ea9f0039c479c10580058e103281
   sha256: cb685d19b21bef96097a9e7e30450d668b67ea9f0039c479c10580058e103281
   title: A Geometric Description of Discrete Exterior Calculus for General Triangulations
   topics:
@@ -1146,6 +2044,16 @@ sources:
   provenance:
     id: '2006.08806'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f67de28b514c77b87bc8ab0956c66736
+      key: topics/volatility-swaps/evans-liquidity-provider-returns-geometric-mean-markets-2020.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/evans-liquidity-provider-returns-geometric-mean-markets-2020.pdf
+      verified_at: 2026-08-26T21:31:09.161897393Z
+      verified_sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
   sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
   title: Liquidity Provider Returns in Geometric Mean Markets
   topics:
@@ -1162,6 +2070,16 @@ sources:
   provenance:
     id: '2104.00446'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 797f75db932e87685e76620fc76eae30
+      key: topics/volatility-swaps/evans-optimal-fees-geometric-mean-market-makers-2021.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/evans-optimal-fees-geometric-mean-market-makers-2021.pdf
+      verified_at: 2026-08-26T21:31:11.890320516Z
+      verified_sha256: db856ead2a02fef96ccbbe06b53e241276f37c865b5d72b390fbf02d731ff1d8
   sha256: db856ead2a02fef96ccbbe06b53e241276f37c865b5d72b390fbf02d731ff1d8
   title: Optimal Fees for Geometric Mean Market Makers
   topics:
@@ -1175,6 +2093,16 @@ sources:
   - learning/formal-methods/refs/Fabian-Data_Oriented_Design.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 3a64857d9437083167a3ca750fbb76af
+      key: topics/formal-methods/fabian-data-oriented-design-2018.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/fabian-data-oriented-design-2018.pdf
+      verified_at: 2026-08-26T21:31:11.135106211Z
+      verified_sha256: bd48b8dcbf8d1422a168beab994d5a77861f113f7b00989b2dd0641ed7b150bd
   sha256: bd48b8dcbf8d1422a168beab994d5a77861f113f7b00989b2dd0641ed7b150bd
   title: Data-Oriented Design
   topics:
@@ -1193,6 +2121,22 @@ sources:
   provenance:
     id: '2204.00464'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 440e424971550b39cd395bb9bfb10002
+      key: topics/applications/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+      verified_at: 2026-08-26T21:31:15.275617137Z
+      verified_sha256: cb9df0abb035533307da83add1d6aeb7390bb52a2266b775187a0892978e6449
+    - etag: 440e424971550b39cd395bb9bfb10002
+      key: topics/io/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+      verified_at: 2026-08-26T21:31:17.195269511Z
+      verified_sha256: cb9df0abb035533307da83add1d6aeb7390bb52a2266b775187a0892978e6449
   sha256: cb9df0abb035533307da83add1d6aeb7390bb52a2266b775187a0892978e6449
   title: Differential Liquidity Provision in Uniswap v3 and Implications for Contract
     Design
@@ -1210,6 +2154,22 @@ sources:
   provenance:
     id: '2106.12033'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: b7ed318c84c9d4588c00f9c30c433164
+      key: topics/applications/fan-strategic-liquidity-provision-2021.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/fan-strategic-liquidity-provision-2021.pdf
+      verified_at: 2026-08-26T21:31:18.791804423Z
+      verified_sha256: 4579e21c4e2a20c1dbfa170a8028ba7acf0419be7c2066dd4d969bcfaf91ee47
+    - etag: b7ed318c84c9d4588c00f9c30c433164
+      key: topics/io/fan-strategic-liquidity-provision-2021.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/fan-strategic-liquidity-provision-2021.pdf
+      verified_at: 2026-08-26T21:31:19.628570498Z
+      verified_sha256: 4579e21c4e2a20c1dbfa170a8028ba7acf0419be7c2066dd4d969bcfaf91ee47
   sha256: 4579e21c4e2a20c1dbfa170a8028ba7acf0419be7c2066dd4d969bcfaf91ee47
   title: Strategic Liquidity Provision in Uniswap v3
   topics:
@@ -1225,6 +2185,16 @@ sources:
   - learning/discrete/refs/discrete-finance-calculus.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 7d59e62399bc9757b03b0f00f6ccbb41
+      key: topics/options/forgy-financial-modelling-discrete-stochastic-calculus-2004.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/forgy-financial-modelling-discrete-stochastic-calculus-2004.pdf
+      verified_at: 2026-08-26T21:31:21.318799527Z
+      verified_sha256: a6c3d16f81686b480ab38547bc344e9ae7c3f3b5fe8b41631b682bccfb97592d
   sha256: a6c3d16f81686b480ab38547bc344e9ae7c3f3b5fe8b41631b682bccfb97592d
   title: Financial Modelling Using Discrete Stochastic Calculus
   topics:
@@ -1238,6 +2208,16 @@ sources:
   - learning/formal-methods/refs/type_theory_102.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 22ee88a8c954525d5e62af0faee4db3e
+      key: topics/formal-methods/friedman-little-typer-2018.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/friedman-little-typer-2018.pdf
+      verified_at: 2026-08-26T21:31:35.409753814Z
+      verified_sha256: 04931ea613089675084306d0ee34287c5608600dc6b94e10fc0b120a3e3dea1b
   sha256: 04931ea613089675084306d0ee34287c5608600dc6b94e10fc0b120a3e3dea1b
   title: The Little Typer
   topics:
@@ -1253,6 +2233,16 @@ sources:
   provenance:
     id: '2404.05803'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0e6c2a25d7b92c505394b83c7253f3ab
+      key: topics/volatility-swaps/fritsch-measuring-arbitrage-losses-profitability-amm-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/fritsch-measuring-arbitrage-losses-profitability-amm-2024.pdf
+      verified_at: 2026-08-26T21:31:24.851600285Z
+      verified_sha256: 4ea20314e50e7284cd1da94eb00a7bb8de76f8cdc0e8b0199771fba3c2a28997
   sha256: 4ea20314e50e7284cd1da94eb00a7bb8de76f8cdc0e8b0199771fba3c2a28997
   title: Measuring Arbitrage Losses and Profitability of AMM Liquidity
   topics:
@@ -1266,6 +2256,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/volatility_derivatives.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 222d53402a00f7c3643a77847322b13b
+      key: topics/volatility-swaps/fukasawa-volatility-derivatives-model-free-implied-leverage-2014.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/fukasawa-volatility-derivatives-model-free-implied-leverage-2014.pdf
+      verified_at: 2026-08-26T21:31:28.118957766Z
+      verified_sha256: 4bc359c3ec04d439c94d82b9276a76d523ec2fbbb1d8507330c83d7f4b53dfe9
   sha256: 4bc359c3ec04d439c94d82b9276a76d523ec2fbbb1d8507330c83d7f4b53dfe9
   title: Volatility Derivatives and Model-free Implied Leverage
   topics:
@@ -1282,6 +2282,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/fukasawa_maire_wunsch-weighted_variance_swaps_impermanent_loss.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 00373418bb13b78aecc61ef37940166f
+      key: topics/volatility-swaps/fukasawa-weighted-variance-swaps-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/fukasawa-weighted-variance-swaps-2023.pdf
+      verified_at: 2026-08-26T21:31:31.954346447Z
+      verified_sha256: 01aac3aa820ec7f23ed00a24d7046037f26201989322f99bf716ad0ff37f482c
   sha256: 01aac3aa820ec7f23ed00a24d7046037f26201989322f99bf716ad0ff37f482c
   title: Weighted variance swaps hedge against impermanent loss
   topics:
@@ -1296,6 +2306,16 @@ sources:
     [Jim Gatheral].pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 320552a02025710001f6d895518d969c
+      key: topics/options/gatheral-volatility-surface-2006.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/gatheral-volatility-surface-2006.pdf
+      verified_at: 2026-08-26T21:31:35.327790502Z
+      verified_sha256: 37858eb145888ceb077265b1df672bd1087097da2a89b55c8e60919a8d3f5bbd
   sha256: 37858eb145888ceb077265b1df672bd1087097da2a89b55c8e60919a8d3f5bbd
   title: 'The Volatility Surface: A Practitioner''s Guide'
   topics:
@@ -1309,6 +2329,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/volatility_surface_gatheral.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 25d64498b09ee5d2d50b05c152e2537c
+      key: topics/volatility-swaps/gatheral-volatility-surface-2006-v2.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/gatheral-volatility-surface-2006-v2.pdf
+      verified_at: 2026-08-26T21:31:42.289213934Z
+      verified_sha256: 574bb5db7ce7a3af0f62dc0f925cf78e080ead89b9922d32488fe5a045b169b7
   sha256: 574bb5db7ce7a3af0f62dc0f925cf78e080ead89b9922d32488fe5a045b169b7
   title: 'The Volatility Surface: A Practitioner''s Guide'
   topics:
@@ -1323,6 +2353,16 @@ sources:
   - learning/mechanism-design/refs/goeree_kushnir-geometric_approach_mechanism_design-2013.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a6f58308f2891f36b015304025e58143
+      key: topics/mechanism-design/goeree-kushnir-geometric-approach-mechanism-design-2013.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/goeree-kushnir-geometric-approach-mechanism-design-2013.pdf
+      verified_at: 2026-08-26T21:31:38.252128999Z
+      verified_sha256: 32447fe50713389498889210d038594dc354fb63ef381643d147f5ec0cd3f66f
   sha256: 32447fe50713389498889210d038594dc354fb63ef381643d147f5ec0cd3f66f
   title: A Geometric Approach to Mechanism Design
   topics:
@@ -1336,6 +2376,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-convex/Kaibel-Klee-Ziegler-Convex-Polytopes-2003.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 1dcb01d73e38a646345f839e6e4b39c7
+      key: topics/convex/grunbaum-convex-polytopes-2003.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/grunbaum-convex-polytopes-2003.pdf
+      verified_at: 2026-08-26T21:31:50.43562598Z
+      verified_sha256: 070befaa8c47f043ef9da1df0705910480eb692f044d1843c9f048f3e61fecac
   sha256: 070befaa8c47f043ef9da1df0705910480eb692f044d1843c9f048f3e61fecac
   title: Convex Polytopes (2nd ed., prepared by V. Kaibel, V. Klee, G. M. Ziegler)
   topics:
@@ -1350,6 +2400,16 @@ sources:
   provenance:
     id: '2304.11010'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: ee7d0a200095fce6021fea625c4eb673
+      key: topics/applications/guo-invariance-properties-maximal-extractable-value-2023.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/guo-invariance-properties-maximal-extractable-value-2023.pdf
+      verified_at: 2026-08-26T21:31:45.653361996Z
+      verified_sha256: b5e356558e347aae95708e57c224380d91cfe93ae572bed6729ceff67dcdd713
   sha256: b5e356558e347aae95708e57c224380d91cfe93ae572bed6729ceff67dcdd713
   title: Invariance Properties of Maximal Extractable Value
   topics:
@@ -1366,6 +2426,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/hasbrouck_rivera_saleh-economic_model_dex_concentrated_liquidity.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f2ac8f9f0550da78ae895a803838f20a
+      key: topics/volatility-swaps/hasbrouck-economic-model-decentralized-exchange-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/hasbrouck-economic-model-decentralized-exchange-2024.pdf
+      verified_at: 2026-08-26T21:31:48.670760573Z
+      verified_sha256: 198f9b09ac08ea321b1228d51d5cf1c0eda1abe58b1beacdea7af0e5419af372
   sha256: 198f9b09ac08ea321b1228d51d5cf1c0eda1abe58b1beacdea7af0e5419af372
   title: An Economic Model of a Decentralized Exchange with Concentrated Liquidity
   topics:
@@ -1379,6 +2449,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/Espen_Haug_PRICING_OPTIONS_FORMULAS.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 1c3a7f76f95a8a601ed704c4224dfa38
+      key: topics/options/haug-complete-guide-option-pricing-formulas-2007.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/haug-complete-guide-option-pricing-formulas-2007.pdf
+      verified_at: 2026-08-26T21:32:01.408484859Z
+      verified_sha256: 9209c6a749b703bf538a150b83dae5520a4dcaf33157855a6377f6f91157c259
   sha256: 9209c6a749b703bf538a150b83dae5520a4dcaf33157855a6377f6f91157c259
   title: The Complete Guide to Option Pricing Formulas (2nd Edition)
   topics:
@@ -1393,6 +2473,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/hull-options-futures-derivatives.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0479757cec54243bf2cf193f62c93e98
+      key: topics/volatility-swaps/hull-options-futures-derivatives-2012.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/hull-options-futures-derivatives-2012.pdf
+      verified_at: 2026-08-26T21:32:03.719315672Z
+      verified_sha256: 76a4d4ed6dce1618c2119f93667a44ccb44b0896aac50f8bbd960d0bff421475
   sha256: 76a4d4ed6dce1618c2119f93667a44ccb44b0896aac50f8bbd960d0bff421475
   title: Options, Futures, and Other Derivatives (8th Edition)
   topics:
@@ -1406,6 +2496,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/qf_python_supplement.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5db4918cf4eb62cc9064182e04435564
+      key: topics/volatility-swaps/kelliher-quantitative-finance-python-supplement-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/kelliher-quantitative-finance-python-supplement-2022.pdf
+      verified_at: 2026-08-26T21:32:05.005921751Z
+      verified_sha256: db6eb6e536513db8ebdfbf5607f7317935422e247486d2da8b97623b0a94f871
   sha256: db6eb6e536513db8ebdfbf5607f7317935422e247486d2da8b97623b0a94f871
   title: Quantitative Finance with Python - Python Supplement
   topics:
@@ -1419,6 +2519,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/572359554-Quantitative-Finance-With-Python-a-Practical-Guide-to-Investment-Management-Trading-and-Financial-Engineering-Chris-Kelliher-Taylor-Francis-Group.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 3bd3529abcc2f7c95dfd3bd7a0c3df05
+      key: topics/volatility-swaps/kelliher-quantitative-finance-with-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/kelliher-quantitative-finance-with-2022.pdf
+      verified_at: 2026-08-26T21:32:10.998531709Z
+      verified_sha256: d32a144c57e25972f23cca85419e9ad3f18157046e482ca861e45ce1260e6f37
   sha256: d32a144c57e25972f23cca85419e9ad3f18157046e482ca861e45ce1260e6f37
   title: Quantitative Finance with Python; A Practical Guide to Investment Management,
     Trading, and Financial Engineering
@@ -1435,6 +2545,16 @@ sources:
   provenance:
     id: '2208.03318'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 4f346f8de21f3dc055a9d3938d08e6de
+      key: topics/volatility-swaps/khakhar-delta-hedging-liquidity-positions-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/khakhar-delta-hedging-liquidity-positions-2022.pdf
+      verified_at: 2026-08-26T21:32:08.78474955Z
+      verified_sha256: 13330aa39866325870d45a7cc44239cae3a3c3b8576c01606595798df0b488c0
   sha256: 13330aa39866325870d45a7cc44239cae3a3c3b8576c01606595798df0b488c0
   title: Delta Hedging Liquidity Positions on Automated Market Makers
   topics:
@@ -1451,6 +2571,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/lp-derivatives/kristensen-perpetual_options_uniswap_v3-2024.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f757817cd6d3b36a18beef7c5f7656c1
+      key: topics/volatility-swaps/kristensen-perpetual-options-uniswap-v3-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/kristensen-perpetual-options-uniswap-v3-2024.pdf
+      verified_at: 2026-08-26T21:32:18.810047988Z
+      verified_sha256: e540d9d24535f7cfc6dc861b7bb977f85f7830ba6714ec4bd15fc13dd9426d5d
   sha256: e540d9d24535f7cfc6dc861b7bb977f85f7830ba6714ec4bd15fc13dd9426d5d
   title: Perpetual Options with Uniswap V3
   topics:
@@ -1467,6 +2597,22 @@ sources:
   provenance:
     id: '2207.11835'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: cab109424b658040f7b2d5f4f1a0a2b9
+      key: topics/applications/kulkarni-theory-maximal-extractable-value-i-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/kulkarni-theory-maximal-extractable-value-i-2022.pdf
+      verified_at: 2026-08-26T21:32:14.122481313Z
+      verified_sha256: 8ea6f145eb9b4121f86be3d160b95fea50035a57e10ad87f3130f8593c56c7ac
+    - etag: cab109424b658040f7b2d5f4f1a0a2b9
+      key: topics/convex/kulkarni-theory-maximal-extractable-value-i-2022.pdf
+      topic: convex
+      url: https://s3.hippius.com/cfmm-refs/topics/convex/kulkarni-theory-maximal-extractable-value-i-2022.pdf
+      verified_at: 2026-08-26T21:32:18.13188467Z
+      verified_sha256: 8ea6f145eb9b4121f86be3d160b95fea50035a57e10ad87f3130f8593c56c7ac
   sha256: 8ea6f145eb9b4121f86be3d160b95fea50035a57e10ad87f3130f8593c56c7ac
   title: 'Towards a Theory of Maximal Extractable Value I: Constant Function Market
     Makers'
@@ -1483,6 +2629,16 @@ sources:
   - learning/discrete/refs/calculus_algebraization.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 389f6d70f3092662548578f7fd0f5c3f
+      key: topics/discrete/kwasniewski-extended-finite-operator-calculus-2004.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/kwasniewski-extended-finite-operator-calculus-2004.pdf
+      verified_at: 2026-08-26T21:32:21.13191706Z
+      verified_sha256: 54c8df0965054d2d3d41b8e315297dde4be022f4cb50fde3a806857a5d711e31
   sha256: 54c8df0965054d2d3d41b8e315297dde4be022f4cb50fde3a806857a5d711e31
   title: Extended Finite Operator Calculus - An Example of Algebraization of Analysis
   topics:
@@ -1496,6 +2652,16 @@ sources:
   - learning/formal-methods/refs/lamport-specifying_systems_tla.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: af220ec77e604b6ce0ab194b3e45ad67
+      key: topics/formal-methods/lamport-specifying-systems-2002.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/lamport-specifying-systems-2002.pdf
+      verified_at: 2026-08-26T21:32:22.133763922Z
+      verified_sha256: d10f6f6a8167ee1464b5c6a5e7abdc0bd065e6bece665a6a3f3c8ee65c234eb6
   sha256: d10f6f6a8167ee1464b5c6a5e7abdc0bd065e6bece665a6a3f3c8ee65c234eb6
   title: 'Specifying Systems: The TLA+ Language and Tools'
   topics:
@@ -1512,6 +2678,22 @@ sources:
   provenance:
     id: '2307.13772'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5270c2bbb8604455011014fb7699d908
+      key: topics/applications/lehar-fragmentation-liquidity-provision-2024.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/lehar-fragmentation-liquidity-provision-2024.pdf
+      verified_at: 2026-08-26T21:32:25.359506156Z
+      verified_sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
+    - etag: 5270c2bbb8604455011014fb7699d908
+      key: topics/io/lehar-fragmentation-liquidity-provision-2024.pdf
+      topic: io
+      url: https://s3.hippius.com/cfmm-refs/topics/io/lehar-fragmentation-liquidity-provision-2024.pdf
+      verified_at: 2026-08-26T21:32:24.645535373Z
+      verified_sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
   sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
   title: Fragmentation and Optimal Liquidity Supply on Decentralized Exchanges
   topics:
@@ -1531,6 +2713,16 @@ sources:
   provenance:
     id: '2407.05146'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: d1d3dc48ac762c5f809bbb165d7b6101
+      key: topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+      verified_at: 2026-08-26T21:32:29.039832554Z
+      verified_sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
   sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
   title: Unified Approach for Hedging Impermanent Loss of Liquidity Provision
   topics:
@@ -1546,6 +2738,16 @@ sources:
   provenance:
     id: '2603.29763'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 98a468b97bb3e7d93e5ee340159a8332
+      key: topics/options/maymin-option-pricing-automated-2026.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/maymin-option-pricing-automated-2026.pdf
+      verified_at: 2026-08-26T21:32:28.951799996Z
+      verified_sha256: 2d17e064be4679314f81a1e2da1b8711eb1913afb1dc7cb8cd79bf13ae6a8edf
   sha256: 2d17e064be4679314f81a1e2da1b8711eb1913afb1dc7cb8cd79bf13ae6a8edf
   title: Option Pricing on Automated Market Maker Tokens
   topics:
@@ -1559,6 +2761,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-options/amm-options-paper.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 751f22244014295789d32463f89b4b3f
+      key: topics/options/maymin-pricing-options-amm-native-tokens-2026.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/maymin-pricing-options-amm-native-tokens-2026.pdf
+      verified_at: 2026-08-26T21:32:33.246119166Z
+      verified_sha256: 82b20bb267ec579ec52739fd0f55dbdc63182f8981cf25268a492ede0be7f4ee
   sha256: 82b20bb267ec579ec52739fd0f55dbdc63182f8981cf25268a492ede0be7f4ee
   title: 'The Pricing of Options on AMM-Native Tokens: Theory and Evidence from Bittensor'
   topics:
@@ -1574,6 +2786,22 @@ sources:
   provenance:
     id: '2211.07220'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f5aab27d53f74f18ad2f0d4812c40881
+      key: topics/applications/mazorra-cfmm-social-welfare-mev-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/mazorra-cfmm-social-welfare-mev-2022.pdf
+      verified_at: 2026-08-26T21:32:32.262624072Z
+      verified_sha256: abfb9730322e72fabd440647a517d2d366ce904d547eb54975592d0427973442
+    - etag: f5aab27d53f74f18ad2f0d4812c40881
+      key: topics/mechanism-design/mazorra-cfmm-social-welfare-mev-2022.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/mazorra-cfmm-social-welfare-mev-2022.pdf
+      verified_at: 2026-08-26T21:32:35.612596354Z
+      verified_sha256: abfb9730322e72fabd440647a517d2d366ce904d547eb54975592d0427973442
   sha256: abfb9730322e72fabd440647a517d2d366ce904d547eb54975592d0427973442
   title: Constant Function Market Making, Social Welfare and Maximal Extractable Value
   topics:
@@ -1591,6 +2819,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/uniswap_v4_hookathon-il_hedging_math_primer.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0a5a762ce4c8d26bae9b041ac79dece2
+      key: topics/volatility-swaps/mevquant-uniswap-v4-mathematical-primer-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/mevquant-uniswap-v4-mathematical-primer-2024.pdf
+      verified_at: 2026-08-26T21:32:37.006682963Z
+      verified_sha256: 56e093b05ccb9de3d204b4df11acba17b4531375aa63cbde387f84085a45f2ef
   sha256: 56e093b05ccb9de3d204b4df11acba17b4531375aa63cbde387f84085a45f2ef
   title: 'Uniswap v4 - A Mathematical Primer: LVR & IL Hedge Hook for Concentrated
     Liquidity Providers'
@@ -1605,6 +2843,16 @@ sources:
   - learning/formal-methods/refs/milewski-category_theory_for_programmers.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 81d631c49d5c2fdfbad86c7d62a391d2
+      key: topics/formal-methods/milewski-category-theory-programmers-2018.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/milewski-category-theory-programmers-2018.pdf
+      verified_at: 2026-08-26T21:32:38.981080543Z
+      verified_sha256: 2460a5f105d8145618928e3f98f15cd88e7fcdc5a19c342b1a96cf05b2c52ba4
   sha256: 2460a5f105d8145618928e3f98f15cd88e7fcdc5a19c342b1a96cf05b2c52ba4
   title: Category Theory for Programmers
   topics:
@@ -1624,6 +2872,16 @@ sources:
   provenance:
     id: '2305.14604'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5d05e89ac4ee5e2d312fe391e43ceea4
+      key: topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+      verified_at: 2026-08-26T21:32:40.173340111Z
+      verified_sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
   sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
   title: Automated Market Making and Arbitrage Profits in the Presence of Fees
   topics:
@@ -1645,6 +2903,16 @@ sources:
   provenance:
     id: '2208.06046'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 897cba53280cf2284251dda542a4345b
+      key: topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+      verified_at: 2026-08-26T21:32:44.149972861Z
+      verified_sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
   sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
   title: Automated Market Making and Loss-Versus-Rebalancing
   topics:
@@ -1664,6 +2932,16 @@ sources:
   provenance:
     id: '2306.09421'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 6f3648ce113348c69057b5b39f5230bc
+      key: topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+      verified_at: 2026-08-26T21:32:43.510419828Z
+      verified_sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
   sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
   title: 'FLAIR: A Metric for Liquidity Provider Competitiveness in Automated Market
     Makers'
@@ -1681,6 +2959,16 @@ sources:
   provenance:
     id: '2303.00208'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 987c35bb127f58764365118c7f5f6e10
+      key: topics/volatility-swaps/milionis-myersonian-framework-optimal-liquidity-provision-2023.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/milionis-myersonian-framework-optimal-liquidity-provision-2023.pdf
+      verified_at: 2026-08-26T21:32:46.671958737Z
+      verified_sha256: 1e222135f5a2fb8f7bc731f9e7550abf2467cecfbafcc4462936440e074cee4c
   sha256: 1e222135f5a2fb8f7bc731f9e7550abf2467cecfbafcc4462936440e074cee4c
   title: A Myersonian Framework for Optimal Liquidity Provision in Automated Market
     Makers
@@ -1696,6 +2984,16 @@ sources:
   - learning/convex-analysis/refs/dokumen.pub_discrete-convex-analysis-1nbsped-9781611972559-2003042468.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 65a1d074dfa66d19d8eb7538f78ca899
+      key: topics/options/murota-discrete-convex-analysis-2003.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/murota-discrete-convex-analysis-2003.pdf
+      verified_at: 2026-08-26T21:32:49.441543246Z
+      verified_sha256: 045c6d8b00c3b667e614fb0b536461a1f4d053f49be54a62b75d0c8ca9a2e15d
   sha256: 045c6d8b00c3b667e614fb0b536461a1f4d053f49be54a62b75d0c8ca9a2e15d
   title: Discrete Convex Analysis
   topics:
@@ -1710,6 +3008,16 @@ sources:
   provenance:
     id: '2212.03598'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: e49dd536424c2b64bf4e56c081174480
+      key: topics/options/murota-discrete-convex-analysis-economics-game-theory-2022.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/murota-discrete-convex-analysis-economics-game-theory-2022.pdf
+      verified_at: 2026-08-26T21:32:50.39644471Z
+      verified_sha256: 785705146c280834f458e5dca243eff059c33661be9dc53cb9f74f47d1616e1a
   sha256: 785705146c280834f458e5dca243eff059c33661be9dc53cb9f74f47d1616e1a
   title: 'Discrete Convex Analysis: A Tool for Economics and Game Theory'
   topics:
@@ -1724,6 +3032,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/natenberg-option_pricing_volatility-textbook.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 4e3663768896f8eea556d5d928bd1103
+      key: topics/volatility-swaps/natenberg-option-volatility-pricing-1994.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/natenberg-option-volatility-pricing-1994.pdf
+      verified_at: 2026-08-26T21:33:06.774641646Z
+      verified_sha256: 4430f67c6597330dc4bb589383f3608e9ff82c137e0299609c5fd8838e5ef0cf
   sha256: 4430f67c6597330dc4bb589383f3608e9ff82c137e0299609c5fd8838e5ef0cf
   title: 'Option Volatility & Pricing: Advanced Trading Strategies and Techniques'
   topics:
@@ -1737,6 +3055,16 @@ sources:
   - learning/formal-methods/refs/type_theory_101.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 7399076645a545881d6c2dc106a26a6a
+      key: topics/formal-methods/nederpelt-type-theory-formal-2015.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/nederpelt-type-theory-formal-2015.pdf
+      verified_at: 2026-08-26T21:32:54.413041134Z
+      verified_sha256: 75c1cf7dfd25935401a1446b67f4347bc4c9ef153977c8a67658b9154f43d581
   sha256: 75c1cf7dfd25935401a1446b67f4347bc4c9ef153977c8a67658b9154f43d581
   title: Type Theory and Formal Proof An Introduction
   topics:
@@ -1753,6 +3081,16 @@ sources:
   - learning/mechanism-design/refs/nisan-algorithmic_game_theory-2007.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 275e0e04279dec782eff33aa874412e0
+      key: topics/mechanism-design/nisan-algorithmic-game-theory-2007.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/nisan-algorithmic-game-theory-2007.pdf
+      verified_at: 2026-08-26T21:33:00.533916647Z
+      verified_sha256: 83084d9996024ca92f313c5ae55fec7b3b379f06172a4c24b62229da9c558543
   sha256: 83084d9996024ca92f313c5ae55fec7b3b379f06172a4c24b62229da9c558543
   title: Algorithmic Game Theory
   topics:
@@ -1767,6 +3105,22 @@ sources:
     (2).pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: fc35c86a9ea405b2b26acf62b719fb4a
+      key: topics/applications/numoen-whitepaper-2022.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/numoen-whitepaper-2022.pdf
+      verified_at: 2026-08-26T21:33:02.185909415Z
+      verified_sha256: 3e5a2b234b3b8fce6b35e583474c9f08645e3a271ccda1e663e2fe9f261e5b7d
+    - etag: fc35c86a9ea405b2b26acf62b719fb4a
+      key: topics/options/numoen-whitepaper-2022.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/numoen-whitepaper-2022.pdf
+      verified_at: 2026-08-26T21:33:03.961024352Z
+      verified_sha256: 3e5a2b234b3b8fce6b35e583474c9f08645e3a271ccda1e663e2fe9f261e5b7d
   sha256: 3e5a2b234b3b8fce6b35e583474c9f08645e3a271ccda1e663e2fe9f261e5b7d
   title: Numoen Whitepaper
   topics:
@@ -1786,6 +3140,22 @@ sources:
   provenance:
     id: '2112.01472'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a8cdac190ab7ff9c314428585ae4052f
+      key: topics/applications/obadia-unity-is-strength-cross-domain-mev-2021.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/obadia-unity-is-strength-cross-domain-mev-2021.pdf
+      verified_at: 2026-08-26T21:33:08.14311179Z
+      verified_sha256: de5329e6bcadeec38def141ab2cec5e5755b3c166bc9de7cd398053b9163ef36
+    - etag: a8cdac190ab7ff9c314428585ae4052f
+      key: topics/mechanism-design/obadia-unity-is-strength-cross-domain-mev-2021.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/obadia-unity-is-strength-cross-domain-mev-2021.pdf
+      verified_at: 2026-08-26T21:33:11.597756931Z
+      verified_sha256: de5329e6bcadeec38def141ab2cec5e5755b3c166bc9de7cd398053b9163ef36
   sha256: de5329e6bcadeec38def141ab2cec5e5755b3c166bc9de7cd398053b9163ef36
   title: 'Unity is Strength: A Formalization of Cross-Domain Maximal Extractable Value'
   topics:
@@ -1800,6 +3170,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-control/Sistemas_de_Control_en_tiempo_Discreto-Katsuhiko_Ogata.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: bb35723e588e36814341a59b909ebec2
+      key: topics/control/ogata-sistemas-control-tiempo-discreto-1996.pdf
+      topic: control
+      url: https://s3.hippius.com/cfmm-refs/topics/control/ogata-sistemas-control-tiempo-discreto-1996.pdf
+      verified_at: 2026-08-26T21:33:16.573630724Z
+      verified_sha256: c5cd8ace8a38af4d95580dbd870312be6d0be68553d92bbc32732e70bb1667a7
   sha256: c5cd8ace8a38af4d95580dbd870312be6d0be68553d92bbc32732e70bb1667a7
   title: Sistemas de Control en Tiempo Discreto (2a ed.)
   topics:
@@ -1813,6 +3193,22 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/pap-pricing_range_accrual-msc_thesis.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: fbd6a7340927279a44bf98fec30a224a
+      key: topics/dgp/pap-pricing-range-accrual-nd.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/pap-pricing-range-accrual-nd.pdf
+      verified_at: 2026-08-26T21:33:15.534790587Z
+      verified_sha256: 1ba68d641d5dda2aea5a8d3c3835464a92352f9470072ee37cc64c03b89af2f4
+    - etag: fbd6a7340927279a44bf98fec30a224a
+      key: topics/options/pap-pricing-range-accrual-nd.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/pap-pricing-range-accrual-nd.pdf
+      verified_at: 2026-08-26T21:33:19.748116177Z
+      verified_sha256: 1ba68d641d5dda2aea5a8d3c3835464a92352f9470072ee37cc64c03b89af2f4
   sha256: 1ba68d641d5dda2aea5a8d3c3835464a92352f9470072ee37cc64c03b89af2f4
   title: Pricing Range Accrual Products (MSc Thesis)
   topics:
@@ -1829,6 +3225,22 @@ sources:
   - cfmm/cfmm-theory/refs/MLFiPaper.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 7dfee207bb3158dbd88cec921c243764
+      key: topics/formal-methods/peytonjones-composing-contracts-2000.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/peytonjones-composing-contracts-2000.pdf
+      verified_at: 2026-08-26T21:33:19.397840503Z
+      verified_sha256: c4c39c5ef9b54a6f15d999785298cd75d0570f8474cdd69c62e81491b8edd97c
+    - etag: 7dfee207bb3158dbd88cec921c243764
+      key: topics/type-driven/peytonjones-composing-contracts-2000.pdf
+      topic: type-driven
+      url: https://s3.hippius.com/cfmm-refs/topics/type-driven/peytonjones-composing-contracts-2000.pdf
+      verified_at: 2026-08-26T21:33:22.276352801Z
+      verified_sha256: c4c39c5ef9b54a6f15d999785298cd75d0570f8474cdd69c62e81491b8edd97c
   sha256: c4c39c5ef9b54a6f15d999785298cd75d0570f8474cdd69c62e81491b8edd97c
   title: 'Composing Contracts: An Adventure in Financial Engineering (Functional Pearl)'
   topics:
@@ -1843,6 +3255,16 @@ sources:
   - learning/formal-methods/refs/Pierce-Types_and_Programming_Languages-2002.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 7e27955461f0e9a011cc746412acc4ec
+      key: topics/formal-methods/pierce-types-programming-languages-2002.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/pierce-types-programming-languages-2002.pdf
+      verified_at: 2026-08-26T21:33:23.513471721Z
+      verified_sha256: 38ae3c6a2ccac83689d84e83c8f550746957ac1c9047a8584e31e52421106ef0
   sha256: 38ae3c6a2ccac83689d84e83c8f550746957ac1c9047a8584e31e52421106ef0
   title: Types and Programming Languages
   topics:
@@ -1856,6 +3278,22 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/Benjamin_C._Pierce-Types_and_Programming_Languages-The_MIT_Press(2002).pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 4082474962efc766d51a43ea6e798625
+      key: topics/formal-methods/pierce-types-programming-languages-2002-v2.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/pierce-types-programming-languages-2002-v2.pdf
+      verified_at: 2026-08-26T21:34:07.803436663Z
+      verified_sha256: e31213ed6e4b55a542820e93c13119820a82af1678969923f6decb6a1e246b97
+    - etag: 4082474962efc766d51a43ea6e798625
+      key: topics/type-driven/pierce-types-programming-languages-2002-v2.pdf
+      topic: type-driven
+      url: https://s3.hippius.com/cfmm-refs/topics/type-driven/pierce-types-programming-languages-2002-v2.pdf
+      verified_at: 2026-08-26T21:34:08.803444797Z
+      verified_sha256: e31213ed6e4b55a542820e93c13119820a82af1678969923f6decb6a1e246b97
   sha256: e31213ed6e4b55a542820e93c13119820a82af1678969923f6decb6a1e246b97
   title: Types and Programming Languages
   topics:
@@ -1871,6 +3309,16 @@ sources:
   provenance:
     id: '2402.06064'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: ea62116b7597c09be37864b4a4df88ac
+      key: topics/formal-methods/pusceddu-formalizing-automated-market-2024.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/pusceddu-formalizing-automated-market-2024.pdf
+      verified_at: 2026-08-26T21:34:10.96560022Z
+      verified_sha256: bf15d2060e55d9d136f8971970447845066633fe7551891a07277f38eb8a979d
   sha256: bf15d2060e55d9d136f8971970447845066633fe7551891a07277f38eb8a979d
   title: Formalizing Automated Market Makers in the Lean 4 Theorem Prover
   topics:
@@ -1884,6 +3332,16 @@ sources:
   - cfmm/cfmm-theory/quantamm-temporal_function_market_making-2023.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f3edf6e4e01250f5aefba4af8e6d8c08
+      key: topics/applications/quantamm-temporal-function-market-making-2023.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/quantamm-temporal-function-market-making-2023.pdf
+      verified_at: 2026-08-26T21:34:12.015454346Z
+      verified_sha256: 5499cfce41110446688db8f643717ec1995f99c383664f998f6d9761997523bb
   sha256: 5499cfce41110446688db8f643717ec1995f99c383664f998f6d9761997523bb
   title: Temporal-Function Market Making Litepaper
   topics:
@@ -1897,6 +3355,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-applications/bittensor.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: db9d5baa8ba8a79efb5a476c842942e0
+      key: topics/applications/rao-bittensor-peer-to-peer-intelligence-market-2021.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/rao-bittensor-peer-to-peer-intelligence-market-2021.pdf
+      verified_at: 2026-08-26T21:34:14.465028669Z
+      verified_sha256: b17bbe84e31b403cdc222c55961e7d559efb67b39f8eb27505c77978f07b28d2
   sha256: b17bbe84e31b403cdc222c55961e7d559efb67b39f8eb27505c77978f07b28d2
   title: 'Bittensor: A Peer-to-Peer Intelligence Market'
   topics:
@@ -1912,6 +3380,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-applications/dTao_whitepaper.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 2c029ed1d4fabfc9482dc44498bb4585
+      key: topics/applications/rao-dynamic-tao-whitepaper-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/rao-dynamic-tao-whitepaper-2025.pdf
+      verified_at: 2026-08-26T21:34:16.354471446Z
+      verified_sha256: adb231205605a24aa246b4f72debea54707ba2e745bca650234e90f3246370b2
   sha256: adb231205605a24aa246b4f72debea54707ba2e745bca650234e90f3246370b2
   title: Dynamic TAO (DTAO) Whitepaper (BIT001)
   topics:
@@ -1926,6 +3404,16 @@ sources:
   - learning/structural-econometrics/reiss_wolak-structural_econometric_modeling_io.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: fef6c84583895872ffe8067677e6d5b8
+      key: topics/econometrics/reiss-wolak-structural-econometric-modeling-io-2007.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/reiss-wolak-structural-econometric-modeling-io-2007.pdf
+      verified_at: 2026-08-26T21:34:18.168489769Z
+      verified_sha256: 8aaf3a4bd98b81712886d4d30500bf91fe88e24ae259788301076ed182ef8c02
   sha256: 8aaf3a4bd98b81712886d4d30500bf91fe88e24ae259788301076ed182ef8c02
   title: 'Structural Econometric Modeling: Rationales and Examples from Industrial
     Organization'
@@ -1941,6 +3429,16 @@ sources:
   - learning/structural-econometrics/reiss_wolak-structural_econometric_modeling_rationales.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a9d99b5958f032b79ac3a0e37354df94
+      key: topics/econometrics/reiss-wolak-structural-econometric-modeling-rationales-2007.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/reiss-wolak-structural-econometric-modeling-rationales-2007.pdf
+      verified_at: 2026-08-26T21:34:19.645385749Z
+      verified_sha256: 57d2be7783eeeb19c99ab164be76be0e48dd8ae995ff940bd6c58cb917b62757
   sha256: 57d2be7783eeeb19c99ab164be76be0e48dd8ae995ff940bd6c58cb917b62757
   title: 'Structural Econometric Modeling: Rationales and Examples (draft)'
   topics:
@@ -1954,6 +3452,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/imf-estimating-stablecoin-flows-2025.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a6be9e50dea4b0384ba6ca9d8d71b059
+      key: topics/applications/reuter-decrypting-crypto-how-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/reuter-decrypting-crypto-how-2025.pdf
+      verified_at: 2026-08-26T21:34:25.658218818Z
+      verified_sha256: c35e106ee133972de3d4aac0c1826773076bce2f21821546ed7973257930b179
+    - etag: a6be9e50dea4b0384ba6ca9d8d71b059
+      key: topics/econometrics/reuter-decrypting-crypto-how-2025.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/reuter-decrypting-crypto-how-2025.pdf
+      verified_at: 2026-08-26T21:34:25.313264394Z
+      verified_sha256: c35e106ee133972de3d4aac0c1826773076bce2f21821546ed7973257930b179
   sha256: c35e106ee133972de3d4aac0c1826773076bce2f21821546ed7973257930b179
   title: 'Decrypting Crypto: How to Estimate International Stablecoin Flows, WP/25/141,
     July 2025'
@@ -1970,6 +3484,16 @@ sources:
   provenance:
     id: '2407.02496'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 30074b05dd2333506039def41b23de17
+      key: topics/volatility-swaps/richardson-defi-s-concentrated-liquidity-2024.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/richardson-defi-s-concentrated-liquidity-2024.pdf
+      verified_at: 2026-08-26T21:34:31.595574842Z
+      verified_sha256: a5a7b8c77ba6dc7c4fabcbe1d5807ce3129886340d1580bead32283d93f47ccf
   sha256: a5a7b8c77ba6dc7c4fabcbe1d5807ce3129886340d1580bead32283d93f47ccf
   title: DeFi's Concentrated Liquidity From Scratch
   topics:
@@ -1987,6 +3511,22 @@ sources:
   provenance:
     id: '2603.01344'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 84a7e672a27932f1d41df2621e63e475
+      key: topics/applications/risk-pricing-hedging-liquidity-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/risk-pricing-hedging-liquidity-2026.pdf
+      verified_at: 2026-08-26T21:34:29.964965428Z
+      verified_sha256: 3f1a91f796060f3b4f24615bacdbde81b5c28b196cf25a192960752112bd5693
+    - etag: 84a7e672a27932f1d41df2621e63e475
+      key: topics/volatility-swaps/risk-pricing-hedging-liquidity-2026.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/risk-pricing-hedging-liquidity-2026.pdf
+      verified_at: 2026-08-26T21:34:32.860832851Z
+      verified_sha256: 3f1a91f796060f3b4f24615bacdbde81b5c28b196cf25a192960752112bd5693
   sha256: 3f1a91f796060f3b4f24615bacdbde81b5c28b196cf25a192960752112bd5693
   title: Pricing and hedging for liquidity provision in Constant Function Market Making
   topics:
@@ -2001,6 +3541,16 @@ sources:
   - apps/d2p/abrigo/abrigo-somnia/.hackathon/slides/encode-deck.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: cf9e64517c4a358054755e7370417d3b
+      key: topics/applications/serrano-abrigo-autonomous-on-chain-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/serrano-abrigo-autonomous-on-chain-2026.pdf
+      verified_at: 2026-08-26T21:34:34.050610686Z
+      verified_sha256: 060f4676d3362b8a209669a0f413d3ab8e5ad17a325e6483e5617eca52ad3bae
   sha256: 060f4676d3362b8a209669a0f413d3ab8e5ad17a325e6483e5617eca52ad3bae
   title: 'Abrigo: Autonomous On-Chain Macro Hedging - Consensus-verified AI agents
     on Somnia'
@@ -2015,6 +3565,16 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/writeups/2026-05-18-ai-cost-factor-model-v0.2.10.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 25965fb74fa6f2b7208da9a16b44d585
+      key: topics/econometrics/serrano-ai-cost-factor-model-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-ai-cost-factor-model-2026.pdf
+      verified_at: 2026-08-26T21:34:35.526954319Z
+      verified_sha256: b66246a0afc4e099aa5bbfa65cf823a570fd2532a5bd308fce3a90a4c19aa7ff
   sha256: b66246a0afc4e099aa5bbfa65cf823a570fd2532a5bd308fce3a90a4c19aa7ff
   title: AI Cost Factor Model v0.2.10
   topics:
@@ -2028,6 +3588,16 @@ sources:
   - cfmms-playground/experiments/btt-subnet-calibration/docs/identification/IDENTIFICATION.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 49d0b68e190e736c3122e7ffab66313f
+      key: topics/econometrics/serrano-btt-subnet-identification-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-btt-subnet-identification-2026.pdf
+      verified_at: 2026-08-26T21:34:36.866259364Z
+      verified_sha256: bbf891cbde2618857596937387d8851a6566b35c9ffd860090d7a83d9acbe37e
   sha256: bbf891cbde2618857596937387d8851a6566b35c9ffd860090d7a83d9acbe37e
   title: 'BTT Subnet Calibration: Identification'
   topics:
@@ -2041,6 +3611,22 @@ sources:
   - cfmms-playground/experiments/btt-subnet-calibration/notebooks/real-eta-report.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a26896ed0c4cf43a297ada79476db413
+      key: topics/applications/serrano-demand-elasticity-dtao-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/serrano-demand-elasticity-dtao-2026.pdf
+      verified_at: 2026-08-26T21:34:37.219326959Z
+      verified_sha256: b4fc96b816bed18bcae918814a4029ff978d911cc97794ebf8c0b2c2d4c7cc82
+    - etag: a26896ed0c4cf43a297ada79476db413
+      key: topics/econometrics/serrano-demand-elasticity-dtao-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-demand-elasticity-dtao-2026.pdf
+      verified_at: 2026-08-26T21:34:39.292028253Z
+      verified_sha256: b4fc96b816bed18bcae918814a4029ff978d911cc97794ebf8c0b2c2d4c7cc82
   sha256: b4fc96b816bed18bcae918814a4029ff978d911cc97794ebf8c0b2c2d4c7cc82
   title: Demand Elasticity in dTAO Subnet Tokens
   topics:
@@ -2055,6 +3641,22 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/2026-05-06-empirical-record-letter.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 787fd71cccf5dcc457eae46b7b32bd47
+      key: topics/applications/serrano-empirical-record-letter-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/serrano-empirical-record-letter-2026.pdf
+      verified_at: 2026-08-26T21:34:39.310647748Z
+      verified_sha256: 7f1c7a6d035e122e1035b53c523b80150e6b6f7df8baa70d8084916bf7261da3
+    - etag: 787fd71cccf5dcc457eae46b7b32bd47
+      key: topics/econometrics/serrano-empirical-record-letter-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-empirical-record-letter-2026.pdf
+      verified_at: 2026-08-26T21:34:42.264191185Z
+      verified_sha256: 7f1c7a6d035e122e1035b53c523b80150e6b6f7df8baa70d8084916bf7261da3
   sha256: 7f1c7a6d035e122e1035b53c523b80150e6b6f7df8baa70d8084916bf7261da3
   title: Empirical Record Letter (supervisor review)
   topics:
@@ -2069,6 +3671,16 @@ sources:
   - cfmms-playground/experiments/btt-subnet-calibration/notebooks/eta-arm-master.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 90f9c796d7f62a8983714f70178de9c2
+      key: topics/econometrics/serrano-eta-arm-master-identification-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-eta-arm-master-identification-2026.pdf
+      verified_at: 2026-08-26T21:34:42.163414892Z
+      verified_sha256: 688b908febf4532be4565177c37cb5fa86934d5375c722a3259fd529977fb694
   sha256: 688b908febf4532be4565177c37cb5fa86934d5375c722a3259fd529977fb694
   title: 'eta-arm-master: eta_D Identification Arc'
   topics:
@@ -2082,6 +3694,16 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/writeups/e10_gsps_methods_paper_section_5.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 97e663a5c6e89d444f68748792f5b5f2
+      key: topics/econometrics/serrano-gsps-methods-paper-section5-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-gsps-methods-paper-section5-2026.pdf
+      verified_at: 2026-08-26T21:34:45.026293128Z
+      verified_sha256: 6e31b8fcea6b73e88af71dde9541da60a4f49455c8d17e4a2113ca5a991ce9f6
   sha256: 6e31b8fcea6b73e88af71dde9541da60a4f49455c8d17e4a2113ca5a991ce9f6
   title: GSPS Methods Paper, Section 5
   topics:
@@ -2095,6 +3717,22 @@ sources:
   - apps/d2p/abrigo/abrigo-somnia/.hackathon/slides/hookathon-deck.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: c6a1e87efa3ed72f5925f0e241cf0fce
+      key: topics/applications/serrano-macro-gamma-backstop-uniswap-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/serrano-macro-gamma-backstop-uniswap-2026.pdf
+      verified_at: 2026-08-26T21:34:44.984105217Z
+      verified_sha256: d516448e359d7f271472ee6046e9b5dfe8ce5c48d99c025dab32d45632f18595
+    - etag: c6a1e87efa3ed72f5925f0e241cf0fce
+      key: topics/volatility-swaps/serrano-macro-gamma-backstop-uniswap-2026.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/serrano-macro-gamma-backstop-uniswap-2026.pdf
+      verified_at: 2026-08-26T21:34:46.415849955Z
+      verified_sha256: d516448e359d7f271472ee6046e9b5dfe8ce5c48d99c025dab32d45632f18595
   sha256: d516448e359d7f271472ee6046e9b5dfe8ce5c48d99c025dab32d45632f18595
   title: Macro-Gamma Backstop - A Uniswap v4 hook that hedges LPs from an on-chain
     macro signal
@@ -2110,6 +3748,16 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/writeups/_drafts/regal_cost_system_section.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: ce5a02d9e7cb61d28bd7b920c9478c9e
+      key: topics/econometrics/serrano-regal-cost-system-section-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-regal-cost-system-section-2026.pdf
+      verified_at: 2026-08-26T21:34:46.942210322Z
+      verified_sha256: 83a245479f2309e583fa1fbf9403fbefc11a9788ac4e87f67e72a677c405ac48
   sha256: 83a245479f2309e583fa1fbf9403fbefc11a9788ac4e87f67e72a677c405ac48
   title: Regal Cost System Section (draft)
   topics:
@@ -2123,6 +3771,22 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/papers/2026-05-16-stochastic-fx-variance-proxy-paper.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 66f25ab6f32eae1a771ddbf26882ec7b
+      key: topics/dgp/serrano-stochastic-fx-variance-proxy-2026.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/serrano-stochastic-fx-variance-proxy-2026.pdf
+      verified_at: 2026-08-26T21:34:49.229185832Z
+      verified_sha256: a5533465685bb99c47ed47d6c09093e35d96217ca7a138426aa4949b21716fde
+    - etag: 66f25ab6f32eae1a771ddbf26882ec7b
+      key: topics/volatility-swaps/serrano-stochastic-fx-variance-proxy-2026.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/serrano-stochastic-fx-variance-proxy-2026.pdf
+      verified_at: 2026-08-26T21:34:51.595674279Z
+      verified_sha256: a5533465685bb99c47ed47d6c09093e35d96217ca7a138426aa4949b21716fde
   sha256: a5533465685bb99c47ed47d6c09093e35d96217ca7a138426aa4949b21716fde
   title: Stochastic FX Variance Proxy (working paper)
   topics:
@@ -2138,6 +3802,16 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/letter.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: ebf08dee66db6f3137dbd950acb35272
+      key: topics/econometrics/serrano-supervisor-letter-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-supervisor-letter-2026.pdf
+      verified_at: 2026-08-26T21:34:51.929117889Z
+      verified_sha256: d7cfc0985bf629ec6f7792d1a9b1dcaf009cff628b3854068342380d3b7ff3f0
   sha256: d7cfc0985bf629ec6f7792d1a9b1dcaf009cff628b3854068342380d3b7ff3f0
   title: Supervisor Letter
   topics:
@@ -2152,6 +3826,16 @@ sources:
   - apps/d2p/abrigo/abrigo-analytics/docs/supervisor-review/letter-es.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a09cab9e490f05691ff70a5f2694d70a
+      key: topics/econometrics/serrano-supervisor-letter-es-2026.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/serrano-supervisor-letter-es-2026.pdf
+      verified_at: 2026-08-26T21:34:53.500802319Z
+      verified_sha256: f1f51f08e23bf213c7bc10a4b88afff5616f2da042ff73578b980193c1be21e2
   sha256: f1f51f08e23bf213c7bc10a4b88afff5616f2da042ff73578b980193c1be21e2
   title: Carta al supervisor (ES)
   topics:
@@ -2165,6 +3849,22 @@ sources:
   - cfmms-playground/cfmm-wt/plank/notes/VOLATILITY_INSTRUMENTS_MEV.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: cde9d4f6b6ebe177bd27dd5f02769f88
+      key: topics/applications/serrano-volatility-instruments-mev-2026.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/serrano-volatility-instruments-mev-2026.pdf
+      verified_at: 2026-08-26T21:34:55.023967172Z
+      verified_sha256: 6792f1554cf4d2a896b5f71126133a19d201df161dd5dd0cd8c10f13aa626109
+    - etag: cde9d4f6b6ebe177bd27dd5f02769f88
+      key: topics/volatility-swaps/serrano-volatility-instruments-mev-2026.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/serrano-volatility-instruments-mev-2026.pdf
+      verified_at: 2026-08-26T21:34:56.861213895Z
+      verified_sha256: 6792f1554cf4d2a896b5f71126133a19d201df161dd5dd0cd8c10f13aa626109
   sha256: 6792f1554cf4d2a896b5f71126133a19d201df161dd5dd0cd8c10f13aa626109
   title: VOLATILITY_INSTRUMENTS - MEV cut
   topics:
@@ -2179,6 +3879,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/shiller-aggregate-income-risks-hedging-1993.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: b40f218191406f014eb12157af5979dd
+      key: topics/applications/shiller-aggregate-income-risks-hedging-1993.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/shiller-aggregate-income-risks-hedging-1993.pdf
+      verified_at: 2026-08-26T21:34:57.856503945Z
+      verified_sha256: 280a816513ed78a7d212c33066a6d2bc5c49dc95f92f36643263f7e0713a1dc0
+    - etag: b40f218191406f014eb12157af5979dd
+      key: topics/econometrics/shiller-aggregate-income-risks-hedging-1993.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/shiller-aggregate-income-risks-hedging-1993.pdf
+      verified_at: 2026-08-26T21:35:01.049629209Z
+      verified_sha256: 280a816513ed78a7d212c33066a6d2bc5c49dc95f92f36643263f7e0713a1dc0
   sha256: 280a816513ed78a7d212c33066a6d2bc5c49dc95f92f36643263f7e0713a1dc0
   title: Aggregate Income Risks and Hedging Mechanisms (1993 working paper)
   topics:
@@ -2193,6 +3909,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/Shiller_Aggregate_Income_Risks_and_Hedging_Mechanisms.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: c291276fcda9889d2d5e30ee9c085219
+      key: topics/applications/shiller-aggregate-income-risks-hedging-1995.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/shiller-aggregate-income-risks-hedging-1995.pdf
+      verified_at: 2026-08-26T21:35:01.404621251Z
+      verified_sha256: 802c73891c0959f42956592110f919910d533c810bf057ffd6aefd733db1adf9
+    - etag: c291276fcda9889d2d5e30ee9c085219
+      key: topics/econometrics/shiller-aggregate-income-risks-hedging-1995.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/shiller-aggregate-income-risks-hedging-1995.pdf
+      verified_at: 2026-08-26T21:35:04.849787457Z
+      verified_sha256: 802c73891c0959f42956592110f919910d533c810bf057ffd6aefd733db1adf9
   sha256: 802c73891c0959f42956592110f919910d533c810bf057ffd6aefd733db1adf9
   title: Aggregate Income Risks and Hedging Mechanisms
   topics:
@@ -2207,6 +3939,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-options/Volatility+Trading+-+Euan+Sinclair.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 1c0dfe0f965a18751dd8063b090039a7
+      key: topics/options/sinclair-volatility-trading-2008.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/sinclair-volatility-trading-2008.pdf
+      verified_at: 2026-08-26T21:35:04.721059779Z
+      verified_sha256: f06f4f2440ff07c975a315d4b6486cc7a11fbf34eb76fe9bca876557fbfe5b9f
   sha256: f06f4f2440ff07c975a315d4b6486cc7a11fbf34eb76fe9bca876557fbfe5b9f
   title: Volatility Trading
   topics:
@@ -2231,6 +3973,16 @@ sources:
   provenance:
     id: '2508.02971'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f7f122763db7195f93000bdb82035fa7
+      key: topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+      verified_at: 2026-08-26T21:35:07.685518431Z
+      verified_sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
   sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
   title: Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment
     Options
@@ -2245,6 +3997,16 @@ sources:
   - learning/formal-methods/angstrom/contracts/security-reviews/spearbit-1.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: d62567266a7aaebb19f0bc59d637c01f
+      key: topics/formal-methods/spearbit-angstrom-security-review-2024.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/spearbit-angstrom-security-review-2024.pdf
+      verified_at: 2026-08-26T21:35:08.838343071Z
+      verified_sha256: c9c707937cbdfee004d0376c2a11cbe076e5c30805be75feeb160386042926e4
   sha256: c9c707937cbdfee004d0376c2a11cbe076e5c30805be75feeb160386042926e4
   title: 'Spearbit Security Review: Angstrom'
   topics:
@@ -2261,6 +4023,16 @@ sources:
   provenance:
     id: '2205.09890'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 64f765966d551a835a35a019c8ddf560
+      key: topics/volatility-swaps/sterrett-replicating-portfolios-permissionless-derivatives-2022.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/sterrett-replicating-portfolios-permissionless-derivatives-2022.pdf
+      verified_at: 2026-08-26T21:35:10.741110577Z
+      verified_sha256: 40575ef528807bd1dbaf544c3e58932d7e21f2ec8a1b643a9d5de4c2475e3be8
   sha256: 40575ef528807bd1dbaf544c3e58932d7e21f2ec8a1b643a9d5de4c2475e3be8
   title: 'Replicating Portfolios: Constructing Permissionless Derivatives'
   topics:
@@ -2275,6 +4047,16 @@ sources:
   - cfmms-playground/cfmm-wt/evm-controller/refs/monotoneCompStaticsTwo.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: f6e35e7f7a99c7d5b4a20969ebf9e691
+      key: topics/mechanism-design/strulovici-monotone-comparative-statics-geometric-2004.pdf
+      topic: mechanism-design
+      url: https://s3.hippius.com/cfmm-refs/topics/mechanism-design/strulovici-monotone-comparative-statics-geometric-2004.pdf
+      verified_at: 2026-08-26T21:35:15.437940344Z
+      verified_sha256: 23a4575b6c116f6774bdae5d66b0c6e68f5f6cc3265bb0a89cb4ed2a6144ae9b
   sha256: 23a4575b6c116f6774bdae5d66b0c6e68f5f6cc3265bb0a89cb4ed2a6144ae9b
   title: 'Monotone Comparative Statics: A Geometric Approach'
   topics:
@@ -2288,6 +4070,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/dynamic_hedging_taleb.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: fe08e7cfbf2b28f4d62e9cfa9f9910d5
+      key: topics/volatility-swaps/taleb-dynamic-hedging-1997.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/taleb-dynamic-hedging-1997.pdf
+      verified_at: 2026-08-26T21:35:19.029727303Z
+      verified_sha256: 710f2c089d82d177f73428203b4b1f830c42f78a44f78577800a454b0e398f24
   sha256: 710f2c089d82d177f73428203b4b1f830c42f78a44f78577800a454b0e398f24
   title: 'Dynamic Hedging: Managing Vanilla and Exotic Options'
   topics:
@@ -2301,6 +4093,16 @@ sources:
   - .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/trading-systems-developer-interview-guide.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: faa02ae210a75288933013f87ba1999f
+      key: topics/volatility-swaps/thunderberg-trading-systems-developer-2026.pdf
+      topic: volatility-swaps
+      url: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/thunderberg-trading-systems-developer-2026.pdf
+      verified_at: 2026-08-26T21:35:19.940963819Z
+      verified_sha256: ac96261dd4a7dad6e9b41a3ca7b360bd161fdc02ff60ce2e219d1f792902c8d3
   sha256: ac96261dd4a7dad6e9b41a3ca7b360bd161fdc02ff60ce2e219d1f792902c8d3
   title: 'Trading Systems Developer Interview Guide (C++ Edition): Insider''s Guide
     to Top Tech Jobs in Finance'
@@ -2318,6 +4120,22 @@ sources:
   provenance:
     id: '2512.06203'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: e4180bde37f0d53af137f0be25972924
+      key: topics/applications/tranquilli-formal-state-machine-models-2025.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/tranquilli-formal-state-machine-models-2025.pdf
+      verified_at: 2026-08-26T21:35:21.865882686Z
+      verified_sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
+    - etag: e4180bde37f0d53af137f0be25972924
+      key: topics/formal-methods/tranquilli-formal-state-machine-models-2025.pdf
+      topic: formal-methods
+      url: https://s3.hippius.com/cfmm-refs/topics/formal-methods/tranquilli-formal-state-machine-models-2025.pdf
+      verified_at: 2026-08-26T21:35:22.088689272Z
+      verified_sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
   sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
   title: 'Formal State-Machine Models for Uniswap v3 Concentrated-Liquidity AMMs:
     Priced Timed Automata, Finite-State Transducers, and Provable Rounding Bounds'
@@ -2335,6 +4153,22 @@ sources:
   provenance:
     id: '2412.18580'
     kind: arxiv
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 2fcdb3ec01e12f1f5e9ab9007f87d919
+      key: topics/applications/tung-clmm-dynamics-continuous-time-2024.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/tung-clmm-dynamics-continuous-time-2024.pdf
+      verified_at: 2026-08-26T21:35:25.315457831Z
+      verified_sha256: 1f21b17a66e870dff68de62f4c9ba94dc71548b5baacdc5b4ea45b243b600879
+    - etag: 2fcdb3ec01e12f1f5e9ab9007f87d919
+      key: topics/dgp/tung-clmm-dynamics-continuous-time-2024.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/tung-clmm-dynamics-continuous-time-2024.pdf
+      verified_at: 2026-08-26T21:35:26.480857259Z
+      verified_sha256: 1f21b17a66e870dff68de62f4c9ba94dc71548b5baacdc5b4ea45b243b600879
   sha256: 1f21b17a66e870dff68de62f4c9ba94dc71548b5baacdc5b4ea45b243b600879
   title: A Mathematical Framework for Modelling CLMM Dynamics in Continuous Time
   topics:
@@ -2348,6 +4182,16 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/consumpINcomeCap.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 0b61c3199339da1702ddec258930bff8
+      key: topics/econometrics/unknown-consumption-income-capital-nd.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/unknown-consumption-income-capital-nd.pdf
+      verified_at: 2026-08-26T21:35:28.827308838Z
+      verified_sha256: fe362d4433b398846dd23cb8e7f59eff5f086d8d33abbe7362e56d0046d5b3bb
   sha256: fe362d4433b398846dd23cb8e7f59eff5f086d8d33abbe7362e56d0046d5b3bb
   title: 9781455298860.pdf
   topics:
@@ -2365,6 +4209,16 @@ sources:
   - cfmm/cfmm-theory/lp-derivatives/agarwal_gobet-optimal_exit_uniswap_v3_best_return-2025.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: aec2de226d159add0e1fc56f95735068
+      key: topics/applications/volosnikov-algebra-ecosystem-dex-nd.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/volosnikov-algebra-ecosystem-dex-nd.pdf
+      verified_at: 2026-08-26T21:35:29.443520243Z
+      verified_sha256: 1cf75fd8c5d11258b9fc29afe0b268aea695c71c9457420e2dc69f7056ab5ca3
   sha256: 1cf75fd8c5d11258b9fc29afe0b268aea695c71c9457420e2dc69f7056ab5ca3
   title: 'ALGEBRA Ecosystem: Decentralized exchange (Tech Paper 1.1)'
   topics:
@@ -2381,6 +4235,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/algebra-tech-paper.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 83e984c781bcf86ce58f8617535de48a
+      key: topics/applications/volosnikov-algebra-ecosystem-dex-nd-v2.pdf
+      topic: applications
+      url: https://s3.hippius.com/cfmm-refs/topics/applications/volosnikov-algebra-ecosystem-dex-nd-v2.pdf
+      verified_at: 2026-08-26T21:35:30.995355102Z
+      verified_sha256: 198cdb05938811b6dadf3eede288d4eb4aff7ab331d96261494889824fec26cf
   sha256: 198cdb05938811b6dadf3eede288d4eb4aff7ab331d96261494889824fec26cf
   title: 'ALGEBRA Ecosystem: Decentralized exchange (Tech Paper)'
   topics:
@@ -2394,6 +4258,22 @@ sources:
   - cfmm/cfmm-theory/macro-markets/refs/refs/macro-risk/dokumen.pub_macroeconomic-theory-a-dynamic-general-equilibrium-approach-second-edition.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 93658bb896a0e01df12622d169108c62
+      key: topics/dgp/wickens-macroeconomic-theory-dge-2011.pdf
+      topic: dgp
+      url: https://s3.hippius.com/cfmm-refs/topics/dgp/wickens-macroeconomic-theory-dge-2011.pdf
+      verified_at: 2026-08-26T21:35:33.400948393Z
+      verified_sha256: 27223646dabe0e7da030bb1d6b1dc5642bf9668e3b321ae6177cd1c398a0a505
+    - etag: 93658bb896a0e01df12622d169108c62
+      key: topics/econometrics/wickens-macroeconomic-theory-dge-2011.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/wickens-macroeconomic-theory-dge-2011.pdf
+      verified_at: 2026-08-26T21:35:34.535818407Z
+      verified_sha256: 27223646dabe0e7da030bb1d6b1dc5642bf9668e3b321ae6177cd1c398a0a505
   sha256: 27223646dabe0e7da030bb1d6b1dc5642bf9668e3b321ae6177cd1c398a0a505
   title: 'Macroeconomic Theory: A Dynamic General Equilibrium Approach (2nd Edition)'
   topics:
@@ -2408,6 +4288,16 @@ sources:
   - learning/discrete/refs/generating_functions.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: a35aad3b0f84b7ae696b0e7de558564a
+      key: topics/discrete/wilf-generatingfunctionology-1994.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/wilf-generatingfunctionology-1994.pdf
+      verified_at: 2026-08-26T21:35:37.282889742Z
+      verified_sha256: fa522a14f9b1631232ff6b34bc092686803b71cc8154cbf31c7ac523a75108dc
   sha256: fa522a14f9b1631232ff6b34bc092686803b71cc8154cbf31c7ac523a75108dc
   title: generatingfunctionology (2nd Edition, web edition)
   topics:
@@ -2421,6 +4311,16 @@ sources:
   - learning/structural-econometrics/yegorov-elements_structural_economics-2011.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 5ff45ec86ac5de9b2da381abb7d14f2b
+      key: topics/econometrics/yegorov-elements-structural-economics-2011.pdf
+      topic: econometrics
+      url: https://s3.hippius.com/cfmm-refs/topics/econometrics/yegorov-elements-structural-economics-2011.pdf
+      verified_at: 2026-08-26T21:35:37.180474878Z
+      verified_sha256: 1f558ecfd36f6810e259c47c2299e89d38cdf608323019b1b1c423ef9dceef9d
   sha256: 1f558ecfd36f6810e259c47c2299e89d38cdf608323019b1b1c423ef9dceef9d
   title: Elements of Structural Economics
   topics:
@@ -2434,6 +4334,16 @@ sources:
   - cfmm/cfmm-theory/cfmm-options/jpe.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 080fddec69b2158e004fd593625ff33e
+      key: topics/options/yogo-demand-system-approach-2019.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/yogo-demand-system-approach-2019.pdf
+      verified_at: 2026-08-26T21:35:39.341035638Z
+      verified_sha256: 125d4ef5f1ceb853bb78d14486eaae18dedc6056d4cc31293558401a1fd4c103
   sha256: 125d4ef5f1ceb853bb78d14486eaae18dedc6056d4cc31293558401a1fd4c103
   title: A Demand System Approach to Asset Pricing
   topics:
@@ -2447,6 +4357,22 @@ sources:
   - cfmm/cfmm-theory/refs/Discrete_Time_Financial_Engineering.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: 91462a7783da9af91f52dc1c16a51835
+      key: topics/discrete/yoo-discrete-time-financial-engineering-2017.pdf
+      topic: discrete
+      url: https://s3.hippius.com/cfmm-refs/topics/discrete/yoo-discrete-time-financial-engineering-2017.pdf
+      verified_at: 2026-08-26T21:35:40.942706043Z
+      verified_sha256: 5e66ff0e64cd931346061f6eae88b09e9c8522720687d67b62153b90838ea711
+    - etag: 91462a7783da9af91f52dc1c16a51835
+      key: topics/options/yoo-discrete-time-financial-engineering-2017.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/yoo-discrete-time-financial-engineering-2017.pdf
+      verified_at: 2026-08-26T21:35:42.246138976Z
+      verified_sha256: 5e66ff0e64cd931346061f6eae88b09e9c8522720687d67b62153b90838ea711
   sha256: 5e66ff0e64cd931346061f6eae88b09e9c8522720687d67b62153b90838ea711
   title: Discrete-Time Financial Engineering
   topics:
@@ -2463,6 +4389,16 @@ sources:
   - cfmms-playground/cfmm-wt/plank/refs/bunni-v2.pdf
   provenance:
     kind: unsourced
+  remote:
+    bucket: cfmm-refs
+    endpoint: https://s3.hippius.com
+    objects:
+    - etag: e0c000bfa895e6055e02ae6673af6728
+      key: topics/options/zefram-bunni-v2-shapeshifting-amm-2024.pdf
+      topic: options
+      url: https://s3.hippius.com/cfmm-refs/topics/options/zefram-bunni-v2-shapeshifting-amm-2024.pdf
+      verified_at: 2026-08-26T21:35:44.119852385Z
+      verified_sha256: 8ce9bcc71dbe17dc49d143d4f82f24a5382f603a76fa04f491bc0c9c3058106b
   sha256: 8ce9bcc71dbe17dc49d143d4f82f24a5382f603a76fa04f491bc0c9c3058106b
   title: 'Bunni v2: Shapeshifting AMM'
   topics:

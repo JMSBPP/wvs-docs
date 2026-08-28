@@ -6,6 +6,7 @@ year: 1997
 provenance: {kind: unsourced}
 sha256: 710f2c089d82d177f73428203b4b1f830c42f78a44f78577800a454b0e398f24
 topics: [volatility-swaps]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/taleb-dynamic-hedging-1997.pdf
 ---
 
 ## Notes

@@ -6,6 +6,7 @@ year: 2022
 provenance: {kind: unsourced}
 sha256: 3e5a2b234b3b8fce6b35e583474c9f08645e3a271ccda1e663e2fe9f261e5b7d
 topics: [applications, options]
+pdf: https://s3.hippius.com/cfmm-refs/topics/applications/numoen-whitepaper-2022.pdf
 ---
 
 ## Notes

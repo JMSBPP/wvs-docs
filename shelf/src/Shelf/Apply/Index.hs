@@ -18,6 +18,8 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import System.Directory (createDirectoryIfMissing, doesFileExist)
 import System.FilePath (makeRelative, takeDirectory, takeExtension, (<.>), (</>))
+import System.IO (hPutStrLn, stderr)
+import Shelf.Apply.Cards (refreshCardHeader)
 import Shelf.Apply.Paths
 import Shelf.Atomic (writeAtomic)
 import Shelf.Index
@@ -34,6 +36,17 @@ runIndex rp = do
     createDirectoryIfMissing True (takeDirectory (rpIndex rp))
     saveIndex (rpIndex rp) (buildIndex h docs)
   topics <- existingTopics rp
+  -- Cards are refreshed from the manifest here rather than in the apply pass,
+  -- so a `shelf index` after a push republishes every `pdf:` line without
+  -- touching a single note. Only topics that already exist on disk are
+  -- refreshed: scaffolding a directory for a topic the manifest merely claims
+  -- would make that topic /known/ to the next `manifest check`, silencing the
+  -- 'Shelf.Manifest.UnknownTopic' violation that exists to catch exactly that.
+  forM_ (mfSources mf) $ \s -> forM_ (srcTopics s) $ \tp ->
+    if tp `elem` topics
+      then refreshCardHeader rp s tp
+      else hPutStrLn stderr ("no topics/" <> T.unpack (topicText tp) <> "/ on disk: skipping the card for "
+                               <> T.unpack (citekeyText (srcCitekey s)))
   forM_ topics $ \tp@(Topic t) -> do
     let dir = rpTopics rp </> T.unpack t
         srcs = [s | s <- mfSources mf, tp `elem` srcTopics s]

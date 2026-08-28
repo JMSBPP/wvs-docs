@@ -6,6 +6,7 @@ year: 2005
 provenance: {kind: unsourced}
 sha256: 34140bc892dd865410e1f9c0646d4216c0e394f11fd9be920e6ccd9eff005599
 topics: [volatility-swaps]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bossu-just-what-you-2005.pdf
 ---
 
 ## Notes

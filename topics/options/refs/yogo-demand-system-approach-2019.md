@@ -6,6 +6,7 @@ year: 2019
 provenance: {kind: unsourced}
 sha256: 125d4ef5f1ceb853bb78d14486eaae18dedc6056d4cc31293558401a1fd4c103
 topics: [options]
+pdf: https://s3.hippius.com/cfmm-refs/topics/options/yogo-demand-system-approach-2019.pdf
 ---
 
 ## Notes

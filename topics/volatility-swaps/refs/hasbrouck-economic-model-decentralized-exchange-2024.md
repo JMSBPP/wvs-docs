@@ -6,6 +6,7 @@ year: 2024
 provenance: {kind: unsourced}
 sha256: 198f9b09ac08ea321b1228d51d5cf1c0eda1abe58b1beacdea7af0e5419af372
 topics: [volatility-swaps]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/hasbrouck-economic-model-decentralized-exchange-2024.pdf
 ---
 
 ## Notes

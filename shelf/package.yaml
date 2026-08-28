@@ -8,6 +8,7 @@ dependencies:
   - aeson
   - binary
   - bytestring
+  - case-insensitive
   - containers
   - crypton
   - directory
@@ -20,6 +21,7 @@ dependencies:
   - yaml
 library:
   source-dirs: src
+  dependencies: [http-client, http-client-tls, http-types, optparse-applicative]
 executables:
   shelf:
     main: Main.hs
@@ -29,4 +31,16 @@ tests:
   shelf-test:
     main: Main.hs
     source-dirs: test
-    dependencies: [shelf, hedgehog, tasty, tasty-hedgehog, tasty-hunit, tasty-golden, temporary]
+    dependencies:
+      - shelf
+      - hedgehog
+      - http-client
+      - http-types
+      - optparse-applicative
+      - tasty
+      - tasty-hedgehog
+      - tasty-hunit
+      - tasty-golden
+      - temporary
+      - wai
+      - warp

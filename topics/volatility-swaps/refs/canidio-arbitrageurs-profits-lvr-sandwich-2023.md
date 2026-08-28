@@ -7,6 +7,7 @@ year: 2023
 provenance: {kind: arxiv, id: '2307.02074'}
 sha256: fce014e0ff7f12c1e9290bdf922dac6146578ca94b932d1283f87a4908ba0a87
 topics: [volatility-swaps]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/canidio-arbitrageurs-profits-lvr-sandwich-2023.pdf
 ---
 
 ## Notes

@@ -6,6 +6,7 @@ year: 2024
 provenance: {kind: unsourced}
 sha256: c9c707937cbdfee004d0376c2a11cbe076e5c30805be75feeb160386042926e4
 topics: [formal-methods]
+pdf: https://s3.hippius.com/cfmm-refs/topics/formal-methods/spearbit-angstrom-security-review-2024.pdf
 ---
 
 ## Notes

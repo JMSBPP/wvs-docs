@@ -6,6 +6,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: adb231205605a24aa246b4f72debea54707ba2e745bca650234e90f3246370b2
 topics: [applications]
+pdf: https://s3.hippius.com/cfmm-refs/topics/applications/rao-dynamic-tao-whitepaper-2025.pdf
 ---
 
 ## Notes

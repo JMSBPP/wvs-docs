@@ -13,10 +13,10 @@
 module Shelf.Apply
   ( module Shelf.Apply.Paths
   , runIndex
-  , scaffoldCard, cardText
+  , scaffoldCard, cardText, cardHeader, refreshCardHeader
   , preflight, applyRow, extractStep
   , ApplyReport (..), applyWith
-  , runApply, runScan, runExtract, runManifestCheck, resolveRepo
+  , runApply, runScan, runExtract, runManifestCheck, runMigrate, resolveRepo
   ) where
 
 import Control.Monad (filterM, forM, unless, when)
@@ -30,14 +30,15 @@ import qualified Data.Text.Encoding as TE
 import System.Directory (createDirectoryIfMissing, doesDirectoryExist, doesFileExist, getCurrentDirectory, getHomeDirectory)
 import System.Exit (ExitCode (..), exitWith)
 import System.FilePath (takeDirectory, (<.>), (</>))
-import System.IO (hPrint, hPutStrLn, stderr)
+import System.IO (hPutStrLn, stderr)
 
-import Shelf.Apply.Cards (cardText, scaffoldCard)
+import Shelf.Apply.Cards (cardHeader, cardText, refreshCardHeader, scaffoldCard)
 import Shelf.Apply.Index (runIndex)
 import Shelf.Apply.Paths
 import Shelf.Atomic (writeAtomic)
 import Shelf.Extract
 import Shelf.Manifest
+import Shelf.Migrate (MigrateResult (..), migrateFile)
 import Shelf.Scan
 import Shelf.Types
 
@@ -106,7 +107,7 @@ sourceOf :: Citekey -> ScanRow -> Source
 sourceOf ckey r = Source
   { srcCitekey = ckey, srcSha256 = srSha256 r, srcBytes = srBytes r, srcTitle = srTitle r
   , srcAuthors = srAuthors r, srcYear = srYear r, srcProvenance = srProvenance r
-  , srcTopics = map Topic (srTopics r), srcOrigin = srPaths r, srcHippius = Nothing }
+  , srcTopics = map Topic (srTopics r), srcOrigin = srPaths r, srcRemote = Nothing }
 
 -- | Copy the first origin path that still exists. An existing target with the
 -- expected bytes is left alone; one with different bytes is a hard refusal,
@@ -232,20 +233,34 @@ runExtract sel rp = do
 
 -- | Validate the manifest against the topics on disk. With @require@ the
 -- manifest and @topics/@ must both exist; without it a missing manifest reads
--- as an empty one and passes.
-runManifestCheck :: Bool -> RepoPaths -> IO ()
-runManifestCheck require rp = do
+-- as an empty one and passes. Every violation is printed with its severity,
+-- but only 'Err' fails the run — unless @requireRemote@ is set, which promotes
+-- warnings to errors. That switch belongs to @cleanup@, which must not delete
+-- a local copy of anything not yet backed by a verified object; CI never uses
+-- it, because "nothing uploaded yet" is the normal state of the manifest.
+runManifestCheck :: Bool -> Bool -> RepoPaths -> IO ()
+runManifestCheck require requireRemote rp = do
   when require $ do
     there <- doesDirectoryExist (rpTopics rp)
     unless there (die ("topics/ not found: " <> T.pack (rpTopics rp)))
   mf <- either die pure =<< (if require then loadManifestStrict else loadManifest) (rpManifest rp)
   topics <- existingTopics rp
   let vs = check topics mf
-  mapM_ (hPrint stderr) vs
-  if null vs
+      fatal = [v | (sev, v) <- vs, sev == Err || requireRemote]
+  mapM_ (\(sev, v) -> hPutStrLn stderr (show sev <> " " <> show v)) vs
+  if null fatal
     then putStrLn ("manifest ok: " <> show (length (mfSources mf)) <> " source(s), "
-                     <> show (length topics) <> " topic(s)")
+                     <> show (length topics) <> " topic(s), "
+                     <> show (length vs) <> " warning(s)")
     else exitWith (ExitFailure 1)
+
+-- | Rewrite a schema-1 manifest in place. Idempotent: a v2 file is reported
+-- and left alone.
+runMigrate :: RepoPaths -> IO ()
+runMigrate rp = migrateFile (rpManifest rp) >>= \case
+  Left e -> die e
+  Right Migrated -> putStrLn (rpManifest rp <> ": migrated to schema_version 2")
+  Right AlreadyV2 -> putStrLn (rpManifest rp <> ": already schema_version 2")
 
 -- | Resolve @--repo@: an explicit directory as given, otherwise the nearest
 -- ancestor of the working directory that looks like the shelf.

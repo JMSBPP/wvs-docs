@@ -1,0 +1,1334 @@
+- action: delete
+  at: 2026-08-26T22:10:01.567645016Z
+  citekey: adams-am-amm-auction-managed-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2403.03367.pdf|2026-08-26T22:10:01.567645016Z
+  object_keys:
+  - topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2403.03367.pdf
+  sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:01.571256383Z
+  citekey: adams-am-amm-auction-managed-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2403.03367.pdf|2026-08-26T22:10:01.567645016Z
+  object_keys:
+  - topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2403.03367.pdf
+  sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:01.731574336Z
+  citekey: adams-am-amm-auction-managed-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2403.03367-adams-am-amm.pdf|2026-08-26T22:10:01.731574336Z
+  object_keys:
+  - topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2403.03367-adams-am-amm.pdf
+  sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:01.735013118Z
+  citekey: adams-am-amm-auction-managed-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2403.03367-adams-am-amm.pdf|2026-08-26T22:10:01.731574336Z
+  object_keys:
+  - topics/volatility-swaps/adams-am-amm-auction-managed-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2403.03367-adams-am-amm.pdf
+  sha256: afdb6424f1c9ab270aad438e96e7098c2405c4cba794311796b14b6614e83cfb
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:01.909025807Z
+  citekey: aigner-uniswap-impermanent-loss-risk-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2106.14404-aigner-uniswap-il-risk.pdf|2026-08-26T22:10:01.909025807Z
+  object_keys:
+  - topics/volatility-swaps/aigner-uniswap-impermanent-loss-risk-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2106.14404-aigner-uniswap-il-risk.pdf
+  sha256: df08a93eb981ee8200f07e1c3a43b0cb9170e7dbe52e7f8100b8cd0ba521bde8
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:01.912816363Z
+  citekey: aigner-uniswap-impermanent-loss-risk-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2106.14404-aigner-uniswap-il-risk.pdf|2026-08-26T22:10:01.909025807Z
+  object_keys:
+  - topics/volatility-swaps/aigner-uniswap-impermanent-loss-risk-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2106.14404-aigner-uniswap-il-risk.pdf
+  sha256: df08a93eb981ee8200f07e1c3a43b0cb9170e7dbe52e7f8100b8cd0ba521bde8
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:02.163889869Z
+  citekey: alexander-theoretical-framework-fees-amms-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2404.03976.pdf|2026-08-26T22:10:02.163889869Z
+  object_keys:
+  - topics/volatility-swaps/alexander-theoretical-framework-fees-amms-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2404.03976.pdf
+  sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:02.167140266Z
+  citekey: alexander-theoretical-framework-fees-amms-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2404.03976.pdf|2026-08-26T22:10:02.163889869Z
+  object_keys:
+  - topics/volatility-swaps/alexander-theoretical-framework-fees-amms-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2404.03976.pdf
+  sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:02.319801116Z
+  citekey: alexander-theoretical-framework-fees-amms-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.03976-alexander-fritz-fee-framework.pdf|2026-08-26T22:10:02.319801116Z
+  object_keys:
+  - topics/volatility-swaps/alexander-theoretical-framework-fees-amms-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.03976-alexander-fritz-fee-framework.pdf
+  sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:02.323417243Z
+  citekey: alexander-theoretical-framework-fees-amms-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.03976-alexander-fritz-fee-framework.pdf|2026-08-26T22:10:02.319801116Z
+  object_keys:
+  - topics/volatility-swaps/alexander-theoretical-framework-fees-amms-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.03976-alexander-fritz-fee-framework.pdf
+  sha256: 7c3ce0b2fba618762aafe4475f4fc09d55f37463a7789f216355c9014460668f
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:02.557821367Z
+  citekey: angeris-geometry-constant-function-market-makers-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2308.08066.pdf|2026-08-26T22:10:02.557821367Z
+  object_keys:
+  - topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2308.08066.pdf
+  sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:02.558908662Z
+  citekey: angeris-geometry-constant-function-market-makers-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2308.08066.pdf|2026-08-26T22:10:02.557821367Z
+  object_keys:
+  - topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2308.08066.pdf
+  sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:02.723823772Z
+  citekey: angeris-geometry-constant-function-market-makers-2023
+  key: learning/convex-analysis/refs/angeris-geometry-cfmm-2308.08066.pdf|2026-08-26T22:10:02.723823772Z
+  object_keys:
+  - topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
+  path: learning/convex-analysis/refs/angeris-geometry-cfmm-2308.08066.pdf
+  sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:02.728953076Z
+  citekey: angeris-geometry-constant-function-market-makers-2023
+  key: learning/convex-analysis/refs/angeris-geometry-cfmm-2308.08066.pdf|2026-08-26T22:10:02.723823772Z
+  object_keys:
+  - topics/volatility-swaps/angeris-geometry-constant-function-market-makers-2023.pdf
+  path: learning/convex-analysis/refs/angeris-geometry-cfmm-2308.08066.pdf
+  sha256: 726a5361900fdd9c17144181d89eb6c1d0d8a2e5fb55593d4ccfec6874c374bd
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:02.884270676Z
+  citekey: angeris-primer-on-perpetuals-2022
+  key: learning/convex-analysis/refs/angeris-primer-perpetuals-2209.03307.pdf|2026-08-26T22:10:02.884270676Z
+  object_keys:
+  - topics/convex/angeris-primer-on-perpetuals-2022.pdf
+  path: learning/convex-analysis/refs/angeris-primer-perpetuals-2209.03307.pdf
+  sha256: fbe2fac9dbc10be1a85bac34df6dbf795b30783e88bc38eeadcb9a667ef500f8
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:02.887785783Z
+  citekey: angeris-primer-on-perpetuals-2022
+  key: learning/convex-analysis/refs/angeris-primer-perpetuals-2209.03307.pdf|2026-08-26T22:10:02.884270676Z
+  object_keys:
+  - topics/convex/angeris-primer-on-perpetuals-2022.pdf
+  path: learning/convex-analysis/refs/angeris-primer-perpetuals-2209.03307.pdf
+  sha256: fbe2fac9dbc10be1a85bac34df6dbf795b30783e88bc38eeadcb9a667ef500f8
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:03.05934068Z
+  citekey: angeris-replicating-market-makers-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2103.14769.pdf|2026-08-26T22:10:03.05934068Z
+  object_keys:
+  - topics/volatility-swaps/angeris-replicating-market-makers-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2103.14769.pdf
+  sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:03.062660377Z
+  citekey: angeris-replicating-market-makers-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2103.14769.pdf|2026-08-26T22:10:03.05934068Z
+  object_keys:
+  - topics/volatility-swaps/angeris-replicating-market-makers-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2103.14769.pdf
+  sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:03.232861079Z
+  citekey: angeris-replicating-market-makers-2021
+  key: learning/convex-analysis/refs/angeris-replicating-market-makers-2103.14769.pdf|2026-08-26T22:10:03.232861079Z
+  object_keys:
+  - topics/volatility-swaps/angeris-replicating-market-makers-2021.pdf
+  path: learning/convex-analysis/refs/angeris-replicating-market-makers-2103.14769.pdf
+  sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:03.236325429Z
+  citekey: angeris-replicating-market-makers-2021
+  key: learning/convex-analysis/refs/angeris-replicating-market-makers-2103.14769.pdf|2026-08-26T22:10:03.232861079Z
+  object_keys:
+  - topics/volatility-swaps/angeris-replicating-market-makers-2021.pdf
+  path: learning/convex-analysis/refs/angeris-replicating-market-makers-2103.14769.pdf
+  sha256: d972f2141c55495bc2570e10103fb5850cba004e8d504b4c55b862d75712da90
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:03.395766779Z
+  citekey: angeris-replicating-monotonic-payoffs-without-oracles-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/replicating-monotonic-payoffs-without-oracles.pdf|2026-08-26T22:10:03.395766779Z
+  object_keys:
+  - topics/volatility-swaps/angeris-replicating-monotonic-payoffs-without-oracles-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/replicating-monotonic-payoffs-without-oracles.pdf
+  sha256: 7fdd4f98a3ed4db3442517471424484a3acaca3f0c6483965ce770474a9b2c15
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:03.399324879Z
+  citekey: angeris-replicating-monotonic-payoffs-without-oracles-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/replicating-monotonic-payoffs-without-oracles.pdf|2026-08-26T22:10:03.395766779Z
+  object_keys:
+  - topics/volatility-swaps/angeris-replicating-monotonic-payoffs-without-oracles-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/replicating-monotonic-payoffs-without-oracles.pdf
+  sha256: 7fdd4f98a3ed4db3442517471424484a3acaca3f0c6483965ce770474a9b2c15
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:03.581110089Z
+  citekey: aqsha-equilibrium-reward-liquidity-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2503.22502.pdf|2026-08-26T22:10:03.581110089Z
+  object_keys:
+  - topics/volatility-swaps/aqsha-equilibrium-reward-liquidity-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2503.22502.pdf
+  sha256: 7eaf916594ad0069df6952eac345c67b787bf19861c410de2336322dea59e346
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:03.584388472Z
+  citekey: aqsha-equilibrium-reward-liquidity-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2503.22502.pdf|2026-08-26T22:10:03.581110089Z
+  object_keys:
+  - topics/volatility-swaps/aqsha-equilibrium-reward-liquidity-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2503.22502.pdf
+  sha256: 7eaf916594ad0069df6952eac345c67b787bf19861c410de2336322dea59e346
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:03.772046841Z
+  citekey: baggiani-optimal-dynamic-fees-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2506.02869.pdf|2026-08-26T22:10:03.772046841Z
+  object_keys:
+  - topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2506.02869.pdf
+  sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:03.77528055Z
+  citekey: baggiani-optimal-dynamic-fees-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2506.02869.pdf|2026-08-26T22:10:03.772046841Z
+  object_keys:
+  - topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2506.02869.pdf
+  sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:03.955897853Z
+  citekey: baggiani-optimal-dynamic-fees-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2506.02869-baggiani-optimal-dynamic-fees.pdf|2026-08-26T22:10:03.955897853Z
+  object_keys:
+  - topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2506.02869-baggiani-optimal-dynamic-fees.pdf
+  sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:03.959109767Z
+  citekey: baggiani-optimal-dynamic-fees-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2506.02869-baggiani-optimal-dynamic-fees.pdf|2026-08-26T22:10:03.955897853Z
+  object_keys:
+  - topics/volatility-swaps/baggiani-optimal-dynamic-fees-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2506.02869-baggiani-optimal-dynamic-fees.pdf
+  sha256: cc7cb6c3e263f3ee5d11e6919a1df212fc206ddfa99c778126da677d972f1361
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:04.123542959Z
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2302.11942.pdf|2026-08-26T22:10:04.123542959Z
+  object_keys:
+  - topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2302.11942.pdf
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:04.124401309Z
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2302.11942.pdf|2026-08-26T22:10:04.123542959Z
+  object_keys:
+  - topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2302.11942.pdf
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:04.308393511Z
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2302.11942-bardoscia-lp-greeks.pdf|2026-08-26T22:10:04.308393511Z
+  object_keys:
+  - topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2302.11942-bardoscia-lp-greeks.pdf
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:04.309137307Z
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2302.11942-bardoscia-lp-greeks.pdf|2026-08-26T22:10:04.308393511Z
+  object_keys:
+  - topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2302.11942-bardoscia-lp-greeks.pdf
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:04.447923971Z
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  key: cfmm/cfmm-theory/lp-derivatives/bardoscia-lp_greeks-2023.pdf|2026-08-26T22:10:04.447923971Z
+  object_keys:
+  - topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/bardoscia-lp_greeks-2023.pdf
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:04.450015689Z
+  citekey: bardoscia-liquidity-providers-greeks-impermanent-gain-2023
+  key: cfmm/cfmm-theory/lp-derivatives/bardoscia-lp_greeks-2023.pdf|2026-08-26T22:10:04.447923971Z
+  object_keys:
+  - topics/volatility-swaps/bardoscia-liquidity-providers-greeks-impermanent-gain-2023.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/bardoscia-lp_greeks-2023.pdf
+  sha256: 0c14c0bbf9dd97ec08925aebe7598313cc527ef63285866c9a4ef34c22caf14d
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:04.613837155Z
+  citekey: bentkamp-cvxlean-convex-optimization-lean4-2023
+  key: learning/convex-analysis/refs/cvxlean-verified-reductions-2301.09347.pdf|2026-08-26T22:10:04.613837155Z
+  object_keys:
+  - topics/convex/bentkamp-cvxlean-convex-optimization-lean4-2023.pdf
+  path: learning/convex-analysis/refs/cvxlean-verified-reductions-2301.09347.pdf
+  sha256: ef1f10c6902843b3d2f680aa382b8318149daecc1667e11e4283c4d71168e4b9
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:04.618093383Z
+  citekey: bentkamp-cvxlean-convex-optimization-lean4-2023
+  key: learning/convex-analysis/refs/cvxlean-verified-reductions-2301.09347.pdf|2026-08-26T22:10:04.613837155Z
+  object_keys:
+  - topics/convex/bentkamp-cvxlean-convex-optimization-lean4-2023.pdf
+  path: learning/convex-analysis/refs/cvxlean-verified-reductions-2301.09347.pdf
+  sha256: ef1f10c6902843b3d2f680aa382b8318149daecc1667e11e4283c4d71168e4b9
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:04.86966618Z
+  citekey: bergault-mean-variance-lp-payoffs-amm-design-2022
+  key: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/bergault-mean_variance_lp_payoffs_amm_design-2022.pdf|2026-08-26T22:10:04.86966618Z
+  object_keys:
+  - topics/applications/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+  - topics/volatility-swaps/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/bergault-mean_variance_lp_payoffs_amm_design-2022.pdf
+  sha256: 719b1f56d19042facf11a28f26c77eeeeaa0a0c601bfced43b9e8f4433d17864
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:04.875492606Z
+  citekey: bergault-mean-variance-lp-payoffs-amm-design-2022
+  key: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/bergault-mean_variance_lp_payoffs_amm_design-2022.pdf|2026-08-26T22:10:04.86966618Z
+  object_keys:
+  - topics/applications/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+  - topics/volatility-swaps/bergault-mean-variance-lp-payoffs-amm-design-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/bergault-mean_variance_lp_payoffs_amm_design-2022.pdf
+  sha256: 719b1f56d19042facf11a28f26c77eeeeaa0a0c601bfced43b9e8f4433d17864
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:05.047303742Z
+  citekey: bergault-optimal-exit-time-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.06510.pdf|2026-08-26T22:10:05.047303742Z
+  object_keys:
+  - topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.06510.pdf
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:05.050281791Z
+  citekey: bergault-optimal-exit-time-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.06510.pdf|2026-08-26T22:10:05.047303742Z
+  object_keys:
+  - topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.06510.pdf
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:05.199585284Z
+  citekey: bergault-optimal-exit-time-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/derivative_maturity.pdf|2026-08-26T22:10:05.199585284Z
+  object_keys:
+  - topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/derivative_maturity.pdf
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:05.202926518Z
+  citekey: bergault-optimal-exit-time-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/derivative_maturity.pdf|2026-08-26T22:10:05.199585284Z
+  object_keys:
+  - topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/derivative_maturity.pdf
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:05.351635406Z
+  citekey: bergault-optimal-exit-time-2025
+  key: cfmm/cfmm-theory/lp-derivatives/bergault_bieber_sanchez-optimal_exit_time_lp_amm.pdf|2026-08-26T22:10:05.351635406Z
+  object_keys:
+  - topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/bergault_bieber_sanchez-optimal_exit_time_lp_amm.pdf
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:05.355303724Z
+  citekey: bergault-optimal-exit-time-2025
+  key: cfmm/cfmm-theory/lp-derivatives/bergault_bieber_sanchez-optimal_exit_time_lp_amm.pdf|2026-08-26T22:10:05.351635406Z
+  object_keys:
+  - topics/volatility-swaps/bergault-optimal-exit-time-2025.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/bergault_bieber_sanchez-optimal_exit_time_lp_amm.pdf
+  sha256: bf79c0bc1e9d4243b78fd8ce8f950944d6086b9ed4c206abad7f3280459dca47
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:05.512440732Z
+  citekey: bichuch-price-liquidity-implied-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.23222.pdf|2026-08-26T22:10:05.512440732Z
+  object_keys:
+  - topics/volatility-swaps/bichuch-price-liquidity-implied-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.23222.pdf
+  sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:05.513314051Z
+  citekey: bichuch-price-liquidity-implied-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.23222.pdf|2026-08-26T22:10:05.512440732Z
+  object_keys:
+  - topics/volatility-swaps/bichuch-price-liquidity-implied-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2509.23222.pdf
+  sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:05.718153002Z
+  citekey: bichuch-price-liquidity-implied-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2509.23222-bichuch-feinstein-price-of-liquidity.pdf|2026-08-26T22:10:05.718153002Z
+  object_keys:
+  - topics/volatility-swaps/bichuch-price-liquidity-implied-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2509.23222-bichuch-feinstein-price-of-liquidity.pdf
+  sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:05.719028447Z
+  citekey: bichuch-price-liquidity-implied-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2509.23222-bichuch-feinstein-price-of-liquidity.pdf|2026-08-26T22:10:05.718153002Z
+  object_keys:
+  - topics/volatility-swaps/bichuch-price-liquidity-implied-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2509.23222-bichuch-feinstein-price-of-liquidity.pdf
+  sha256: 9cfed7e2efe643c59d3f73e74cd9b2cc128800da2d333d88974ce3fa38c6167a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:05.939925952Z
+  citekey: campbell-optimal-fees-liquidity-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.08152.pdf|2026-08-26T22:10:05.939925952Z
+  object_keys:
+  - topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.08152.pdf
+  sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:05.943755302Z
+  citekey: campbell-optimal-fees-liquidity-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.08152.pdf|2026-08-26T22:10:05.939925952Z
+  object_keys:
+  - topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.08152.pdf
+  sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:06.165822976Z
+  citekey: campbell-optimal-fees-liquidity-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.08152-campbell-optimal-fees.pdf|2026-08-26T22:10:06.165822976Z
+  object_keys:
+  - topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.08152-campbell-optimal-fees.pdf
+  sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:06.169129955Z
+  citekey: campbell-optimal-fees-liquidity-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.08152-campbell-optimal-fees.pdf|2026-08-26T22:10:06.165822976Z
+  object_keys:
+  - topics/volatility-swaps/campbell-optimal-fees-liquidity-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.08152-campbell-optimal-fees.pdf
+  sha256: 2f51296284443a5c08586e9c3701f788207b232520de28e8061897f07b3289c9
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:06.341917291Z
+  citekey: canidio-arbitrageurs-profits-lvr-sandwich-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2307.02074.pdf|2026-08-26T22:10:06.341917291Z
+  object_keys:
+  - topics/volatility-swaps/canidio-arbitrageurs-profits-lvr-sandwich-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2307.02074.pdf
+  sha256: fce014e0ff7f12c1e9290bdf922dac6146578ca94b932d1283f87a4908ba0a87
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:06.345433262Z
+  citekey: canidio-arbitrageurs-profits-lvr-sandwich-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2307.02074.pdf|2026-08-26T22:10:06.341917291Z
+  object_keys:
+  - topics/volatility-swaps/canidio-arbitrageurs-profits-lvr-sandwich-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2307.02074.pdf
+  sha256: fce014e0ff7f12c1e9290bdf922dac6146578ca94b932d1283f87a4908ba0a87
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:06.84974563Z
+  citekey: capponi-jia-adoption-decentralized-exchange-2021
+  key: cfmm/cfmm-theory/refs/capponi-jia-adoption-2021.pdf|2026-08-26T22:10:06.84974563Z
+  object_keys:
+  - topics/applications/capponi-jia-adoption-decentralized-exchange-2021.pdf
+  - topics/io/capponi-jia-adoption-decentralized-exchange-2021.pdf
+  path: cfmm/cfmm-theory/refs/capponi-jia-adoption-2021.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 9ab8aa585696f7a02ae7d94a71d6f2f77bdb13c729e3a845039d33297b99d262
+  status: pending
+- action: git-rm
+  at: 2026-08-26T22:10:07.383925862Z
+  citekey: capponi-jit-liquidity-paradox-2023
+  key: cfmm/cfmm-theory/refs/capponi-jit-paradox-2023.pdf|2026-08-26T22:10:07.383925862Z
+  object_keys:
+  - topics/applications/capponi-jit-liquidity-paradox-2023.pdf
+  - topics/io/capponi-jit-liquidity-paradox-2023.pdf
+  path: cfmm/cfmm-theory/refs/capponi-jit-paradox-2023.pdf
+  repo: cfmm/cfmm-theory
+  sha256: f3675ec634f3b3ba8997e03b4da29ce4334130fc3f5f0d294ef1149c156e3bcb
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:07.557530197Z
+  citekey: deng-static-replication-impermanent-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2205.12043.pdf|2026-08-26T22:10:07.557530197Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2205.12043.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:07.56104064Z
+  citekey: deng-static-replication-impermanent-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2205.12043.pdf|2026-08-26T22:10:07.557530197Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2205.12043.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:07.709966832Z
+  citekey: deng-static-replication-impermanent-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.12043-deng-static-replication-il.pdf|2026-08-26T22:10:07.709966832Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.12043-deng-static-replication-il.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:07.710513576Z
+  citekey: deng-static-replication-impermanent-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.12043-deng-static-replication-il.pdf|2026-08-26T22:10:07.709966832Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.12043-deng-static-replication-il.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:07.845052364Z
+  citekey: deng-static-replication-impermanent-2022
+  key: cfmm/cfmm-theory/lp-derivatives/deng_zong_wang-static_replication_impermanent_loss-2022.pdf|2026-08-26T22:10:07.845052364Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/deng_zong_wang-static_replication_impermanent_loss-2022.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:07.845511111Z
+  citekey: deng-static-replication-impermanent-2022
+  key: cfmm/cfmm-theory/lp-derivatives/deng_zong_wang-static_replication_impermanent_loss-2022.pdf|2026-08-26T22:10:07.845052364Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/deng_zong_wang-static_replication_impermanent_loss-2022.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:07.96964Z
+  citekey: deng-static-replication-impermanent-2022
+  key: cfmm/cfmm-theory/macro-markets/refs/refs/2205.12043-static-replication-IL.pdf|2026-08-26T22:10:07.96964Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: cfmm/cfmm-theory/macro-markets/refs/refs/2205.12043-static-replication-IL.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:07.973240703Z
+  citekey: deng-static-replication-impermanent-2022
+  key: cfmm/cfmm-theory/macro-markets/refs/refs/2205.12043-static-replication-IL.pdf|2026-08-26T22:10:07.96964Z
+  object_keys:
+  - topics/volatility-swaps/deng-static-replication-impermanent-2022.pdf
+  path: cfmm/cfmm-theory/macro-markets/refs/refs/2205.12043-static-replication-IL.pdf
+  sha256: 979f45f71e0b2f945c578b6364b1aa1ee1ec4a29ac7df203079809956f15796b
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:08.316650861Z
+  citekey: echenim-cox-ross-rubinstein-isabelle-2018
+  key: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/echenim-cox-ross-rubinstein-isabelle-2018.pdf|2026-08-26T22:10:08.316650861Z
+  object_keys:
+  - topics/discrete/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  - topics/formal-methods/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:08.317344862Z
+  citekey: echenim-cox-ross-rubinstein-isabelle-2018
+  key: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/echenim-cox-ross-rubinstein-isabelle-2018.pdf|2026-08-26T22:10:08.316650861Z
+  object_keys:
+  - topics/discrete/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  - topics/formal-methods/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/varianceSwaps/echenim-cox-ross-rubinstein-isabelle-2018.pdf
+  sha256: 4d4afb35a7e5c303a0af628dc5b398225320401a2f79c25c6f8bff09dd006d09
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:08.47797197Z
+  citekey: elsts-concentrated-liquidity-leverage-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2409.12803-elsts-concentrated-liquidity-leverage.pdf|2026-08-26T22:10:08.47797197Z
+  object_keys:
+  - topics/volatility-swaps/elsts-concentrated-liquidity-leverage-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2409.12803-elsts-concentrated-liquidity-leverage.pdf
+  sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:08.481535894Z
+  citekey: elsts-concentrated-liquidity-leverage-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2409.12803-elsts-concentrated-liquidity-leverage.pdf|2026-08-26T22:10:08.47797197Z
+  object_keys:
+  - topics/volatility-swaps/elsts-concentrated-liquidity-leverage-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2409.12803-elsts-concentrated-liquidity-leverage.pdf
+  sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:08.630635942Z
+  citekey: elsts-concentrated-liquidity-leverage-2024
+  key: cfmm/cfmm-theory/lp-derivatives/elsts-concentrated_liquidity_leverage-2024.pdf|2026-08-26T22:10:08.630635942Z
+  object_keys:
+  - topics/volatility-swaps/elsts-concentrated-liquidity-leverage-2024.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/elsts-concentrated_liquidity_leverage-2024.pdf
+  sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:08.634057331Z
+  citekey: elsts-concentrated-liquidity-leverage-2024
+  key: cfmm/cfmm-theory/lp-derivatives/elsts-concentrated_liquidity_leverage-2024.pdf|2026-08-26T22:10:08.630635942Z
+  object_keys:
+  - topics/volatility-swaps/elsts-concentrated-liquidity-leverage-2024.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/elsts-concentrated_liquidity_leverage-2024.pdf
+  sha256: 1904c8c0be92b9d37fdb65e0ca36973e0b6d159f753cefeeeff470142b3dc265
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:08.799803476Z
+  citekey: esqueda-geometric-description-discrete-exterior-calculus-2018
+  key: learning/discrete/refs/exterior_calculus.pdf|2026-08-26T22:10:08.799803476Z
+  object_keys:
+  - topics/discrete/esqueda-geometric-description-discrete-exterior-calculus-2018.pdf
+  path: learning/discrete/refs/exterior_calculus.pdf
+  sha256: cb685d19b21bef96097a9e7e30450d668b67ea9f0039c479c10580058e103281
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:08.804076397Z
+  citekey: esqueda-geometric-description-discrete-exterior-calculus-2018
+  key: learning/discrete/refs/exterior_calculus.pdf|2026-08-26T22:10:08.799803476Z
+  object_keys:
+  - topics/discrete/esqueda-geometric-description-discrete-exterior-calculus-2018.pdf
+  path: learning/discrete/refs/exterior_calculus.pdf
+  sha256: cb685d19b21bef96097a9e7e30450d668b67ea9f0039c479c10580058e103281
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:08.96325159Z
+  citekey: evans-liquidity-provider-returns-geometric-mean-markets-2020
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2006.08806.pdf|2026-08-26T22:10:08.96325159Z
+  object_keys:
+  - topics/volatility-swaps/evans-liquidity-provider-returns-geometric-mean-markets-2020.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2006.08806.pdf
+  sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:08.963464335Z
+  citekey: evans-liquidity-provider-returns-geometric-mean-markets-2020
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2006.08806.pdf|2026-08-26T22:10:08.96325159Z
+  object_keys:
+  - topics/volatility-swaps/evans-liquidity-provider-returns-geometric-mean-markets-2020.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2006.08806.pdf
+  sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:09.107367097Z
+  citekey: evans-liquidity-provider-returns-geometric-mean-markets-2020
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2006.08806-evans-lp-returns-g3m.pdf|2026-08-26T22:10:09.107367097Z
+  object_keys:
+  - topics/volatility-swaps/evans-liquidity-provider-returns-geometric-mean-markets-2020.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2006.08806-evans-lp-returns-g3m.pdf
+  sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:09.107995322Z
+  citekey: evans-liquidity-provider-returns-geometric-mean-markets-2020
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2006.08806-evans-lp-returns-g3m.pdf|2026-08-26T22:10:09.107367097Z
+  object_keys:
+  - topics/volatility-swaps/evans-liquidity-provider-returns-geometric-mean-markets-2020.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2006.08806-evans-lp-returns-g3m.pdf
+  sha256: 32b4ec3c4ba3922162efe09c5d257e69261669a758e6165f25762696595b5be3
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:09.272644177Z
+  citekey: evans-optimal-fees-geometric-mean-market-makers-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2104.00446.pdf|2026-08-26T22:10:09.272644177Z
+  object_keys:
+  - topics/volatility-swaps/evans-optimal-fees-geometric-mean-market-makers-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2104.00446.pdf
+  sha256: db856ead2a02fef96ccbbe06b53e241276f37c865b5d72b390fbf02d731ff1d8
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:09.2734198Z
+  citekey: evans-optimal-fees-geometric-mean-market-makers-2021
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2104.00446.pdf|2026-08-26T22:10:09.272644177Z
+  object_keys:
+  - topics/volatility-swaps/evans-optimal-fees-geometric-mean-market-makers-2021.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2104.00446.pdf
+  sha256: db856ead2a02fef96ccbbe06b53e241276f37c865b5d72b390fbf02d731ff1d8
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:09.573066853Z
+  citekey: fan-differential-liquidity-provision-uniswap-v3-2022
+  key: cfmm/cfmm-theory/lp-derivatives/refs/differential-liquidity-provision-uniswap-v3.pdf|2026-08-26T22:10:09.573066853Z
+  object_keys:
+  - topics/applications/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+  - topics/io/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/differential-liquidity-provision-uniswap-v3.pdf
+  sha256: cb9df0abb035533307da83add1d6aeb7390bb52a2266b775187a0892978e6449
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:09.57762819Z
+  citekey: fan-differential-liquidity-provision-uniswap-v3-2022
+  key: cfmm/cfmm-theory/lp-derivatives/refs/differential-liquidity-provision-uniswap-v3.pdf|2026-08-26T22:10:09.573066853Z
+  object_keys:
+  - topics/applications/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+  - topics/io/fan-differential-liquidity-provision-uniswap-v3-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/differential-liquidity-provision-uniswap-v3.pdf
+  sha256: cb9df0abb035533307da83add1d6aeb7390bb52a2266b775187a0892978e6449
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:09.849134935Z
+  citekey: fan-strategic-liquidity-provision-2021
+  key: cfmm/cfmm-theory/lp-derivatives/refs/strategic-liquidity-provision-uniswap-v3.pdf|2026-08-26T22:10:09.849134935Z
+  object_keys:
+  - topics/applications/fan-strategic-liquidity-provision-2021.pdf
+  - topics/io/fan-strategic-liquidity-provision-2021.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/strategic-liquidity-provision-uniswap-v3.pdf
+  sha256: 4579e21c4e2a20c1dbfa170a8028ba7acf0419be7c2066dd4d969bcfaf91ee47
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:09.852544894Z
+  citekey: fan-strategic-liquidity-provision-2021
+  key: cfmm/cfmm-theory/lp-derivatives/refs/strategic-liquidity-provision-uniswap-v3.pdf|2026-08-26T22:10:09.849134935Z
+  object_keys:
+  - topics/applications/fan-strategic-liquidity-provision-2021.pdf
+  - topics/io/fan-strategic-liquidity-provision-2021.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/refs/strategic-liquidity-provision-uniswap-v3.pdf
+  sha256: 4579e21c4e2a20c1dbfa170a8028ba7acf0419be7c2066dd4d969bcfaf91ee47
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:10.023308081Z
+  citekey: fritsch-measuring-arbitrage-losses-profitability-amm-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.05803-fritsch-arbitrage-losses-profitability.pdf|2026-08-26T22:10:10.023308081Z
+  object_keys:
+  - topics/volatility-swaps/fritsch-measuring-arbitrage-losses-profitability-amm-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.05803-fritsch-arbitrage-losses-profitability.pdf
+  sha256: 4ea20314e50e7284cd1da94eb00a7bb8de76f8cdc0e8b0199771fba3c2a28997
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:10.026758311Z
+  citekey: fritsch-measuring-arbitrage-losses-profitability-amm-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.05803-fritsch-arbitrage-losses-profitability.pdf|2026-08-26T22:10:10.023308081Z
+  object_keys:
+  - topics/volatility-swaps/fritsch-measuring-arbitrage-losses-profitability-amm-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2404.05803-fritsch-arbitrage-losses-profitability.pdf
+  sha256: 4ea20314e50e7284cd1da94eb00a7bb8de76f8cdc0e8b0199771fba3c2a28997
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:10.195653955Z
+  citekey: khakhar-delta-hedging-liquidity-positions-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.03318-khakhar-delta-hedging-lp.pdf|2026-08-26T22:10:10.195653955Z
+  object_keys:
+  - topics/volatility-swaps/khakhar-delta-hedging-liquidity-positions-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.03318-khakhar-delta-hedging-lp.pdf
+  sha256: 13330aa39866325870d45a7cc44239cae3a3c3b8576c01606595798df0b488c0
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:10.196260769Z
+  citekey: khakhar-delta-hedging-liquidity-positions-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.03318-khakhar-delta-hedging-lp.pdf|2026-08-26T22:10:10.195653955Z
+  object_keys:
+  - topics/volatility-swaps/khakhar-delta-hedging-liquidity-positions-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.03318-khakhar-delta-hedging-lp.pdf
+  sha256: 13330aa39866325870d45a7cc44239cae3a3c3b8576c01606595798df0b488c0
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:10.58356564Z
+  citekey: lehar-fragmentation-liquidity-provision-2024
+  key: cfmm/cfmm-theory/refs/lehar-parlour-zoican-fragmentation-2024.pdf|2026-08-26T22:10:10.58356564Z
+  object_keys:
+  - topics/applications/lehar-fragmentation-liquidity-provision-2024.pdf
+  - topics/io/lehar-fragmentation-liquidity-provision-2024.pdf
+  path: cfmm/cfmm-theory/refs/lehar-parlour-zoican-fragmentation-2024.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:10.763998539Z
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2407.05146.pdf|2026-08-26T22:10:10.763998539Z
+  object_keys:
+  - topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2407.05146.pdf
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:10.767474604Z
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2407.05146.pdf|2026-08-26T22:10:10.763998539Z
+  object_keys:
+  - topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2407.05146.pdf
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:10.960406605Z
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.05146-lipton-hedging-impermanent-loss.pdf|2026-08-26T22:10:10.960406605Z
+  object_keys:
+  - topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.05146-lipton-hedging-impermanent-loss.pdf
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:10.964367141Z
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.05146-lipton-hedging-impermanent-loss.pdf|2026-08-26T22:10:10.960406605Z
+  object_keys:
+  - topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.05146-lipton-hedging-impermanent-loss.pdf
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:11.11583531Z
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  key: cfmm/cfmm-theory/lp-derivatives/lipton-hedging_impermanent_loss-2024.pdf|2026-08-26T22:10:11.11583531Z
+  object_keys:
+  - topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/lipton-hedging_impermanent_loss-2024.pdf
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:11.11992192Z
+  citekey: lipton-unified-approach-hedging-impermanent-loss-2024
+  key: cfmm/cfmm-theory/lp-derivatives/lipton-hedging_impermanent_loss-2024.pdf|2026-08-26T22:10:11.11583531Z
+  object_keys:
+  - topics/volatility-swaps/lipton-unified-approach-hedging-impermanent-loss-2024.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/lipton-hedging_impermanent_loss-2024.pdf
+  sha256: 1c85fb79a506490a5688ad39c9a719414ab5077c499bc486c89c6a708f2def5a
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:11.287430064Z
+  citekey: maymin-option-pricing-automated-2026
+  key: cfmm/cfmm-theory/cfmm-options/taoDynamics.pdf|2026-08-26T22:10:11.287430064Z
+  object_keys:
+  - topics/options/maymin-option-pricing-automated-2026.pdf
+  path: cfmm/cfmm-theory/cfmm-options/taoDynamics.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 2d17e064be4679314f81a1e2da1b8711eb1913afb1dc7cb8cd79bf13ae6a8edf
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:11.622235021Z
+  citekey: milionis-automated-market-making-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2305.14604.pdf|2026-08-26T22:10:11.622235021Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2305.14604.pdf
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:11.623087478Z
+  citekey: milionis-automated-market-making-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2305.14604.pdf|2026-08-26T22:10:11.622235021Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2305.14604.pdf
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:11.787427186Z
+  citekey: milionis-automated-market-making-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2305.14604-milionis-fees-arbitrage.pdf|2026-08-26T22:10:11.787427186Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2305.14604-milionis-fees-arbitrage.pdf
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:11.787939758Z
+  citekey: milionis-automated-market-making-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2305.14604-milionis-fees-arbitrage.pdf|2026-08-26T22:10:11.787427186Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2305.14604-milionis-fees-arbitrage.pdf
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:11.955518397Z
+  citekey: milionis-automated-market-making-2023
+  key: cfmm/cfmm-theory/milionis-amm_arbitrage_fees-2024.pdf|2026-08-26T22:10:11.955518397Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+  path: cfmm/cfmm-theory/milionis-amm_arbitrage_fees-2024.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:12.127706548Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2208.06046.pdf|2026-08-26T22:10:12.127706548Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2208.06046.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:12.128450447Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2208.06046.pdf|2026-08-26T22:10:12.127706548Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2208.06046.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:12.41345557Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.06046-milionis-lvr.pdf|2026-08-26T22:10:12.41345557Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.06046-milionis-lvr.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:12.414351021Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.06046-milionis-lvr.pdf|2026-08-26T22:10:12.41345557Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2208.06046-milionis-lvr.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:12.583495206Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/lvr_primer.pdf|2026-08-26T22:10:12.583495206Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/lvr_primer.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:12.584306943Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/lvr_primer.pdf|2026-08-26T22:10:12.583495206Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/lvr_primer.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:12.747317233Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/lvr_wvs.pdf|2026-08-26T22:10:12.747317233Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/lvr_wvs.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:12.748367016Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/lvr_wvs.pdf|2026-08-26T22:10:12.747317233Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/lvr_wvs.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:12.880060067Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: cfmm/cfmm-theory/lp-derivatives/milionis_moallemi-lvr_automated_market_making.pdf|2026-08-26T22:10:12.880060067Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/milionis_moallemi-lvr_automated_market_making.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:12.88399878Z
+  citekey: milionis-automated-market-making-loss-versus-rebalancing-2022
+  key: cfmm/cfmm-theory/lp-derivatives/milionis_moallemi-lvr_automated_market_making.pdf|2026-08-26T22:10:12.880060067Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-loss-versus-rebalancing-2022.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/milionis_moallemi-lvr_automated_market_making.pdf
+  sha256: 90c57c7785b696964ecaff0d0720cea79294713218c13e3f2b2b3cbad5295636
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:13.055559153Z
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2306.09421.pdf|2026-08-26T22:10:13.055559153Z
+  object_keys:
+  - topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2306.09421.pdf
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:13.056709208Z
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2306.09421.pdf|2026-08-26T22:10:13.055559153Z
+  object_keys:
+  - topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2306.09421.pdf
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:13.211736296Z
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2306.09421-milionis-flair.pdf|2026-08-26T22:10:13.211736296Z
+  object_keys:
+  - topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2306.09421-milionis-flair.pdf
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:13.212428825Z
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2306.09421-milionis-flair.pdf|2026-08-26T22:10:13.211736296Z
+  object_keys:
+  - topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2306.09421-milionis-flair.pdf
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:13.437686426Z
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  key: cfmm/cfmm-theory/lp-derivatives/milionis_wan-flair_lp_competitiveness_amm-2023.pdf|2026-08-26T22:10:13.437686426Z
+  object_keys:
+  - topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/milionis_wan-flair_lp_competitiveness_amm-2023.pdf
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:13.438414692Z
+  citekey: milionis-flair-liquidity-provider-competitiveness-2023
+  key: cfmm/cfmm-theory/lp-derivatives/milionis_wan-flair_lp_competitiveness_amm-2023.pdf|2026-08-26T22:10:13.437686426Z
+  object_keys:
+  - topics/volatility-swaps/milionis-flair-liquidity-provider-competitiveness-2023.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/milionis_wan-flair_lp_competitiveness_amm-2023.pdf
+  sha256: c988d59b032986a007b1b58d27289c155b5995fbaf92e785d08a4bdfb26c630e
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:13.599573972Z
+  citekey: milionis-myersonian-framework-optimal-liquidity-provision-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2303.00208.pdf|2026-08-26T22:10:13.599573972Z
+  object_keys:
+  - topics/volatility-swaps/milionis-myersonian-framework-optimal-liquidity-provision-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2303.00208.pdf
+  sha256: 1e222135f5a2fb8f7bc731f9e7550abf2467cecfbafcc4462936440e074cee4c
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:13.60041475Z
+  citekey: milionis-myersonian-framework-optimal-liquidity-provision-2023
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2303.00208.pdf|2026-08-26T22:10:13.599573972Z
+  object_keys:
+  - topics/volatility-swaps/milionis-myersonian-framework-optimal-liquidity-provision-2023.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2303.00208.pdf
+  sha256: 1e222135f5a2fb8f7bc731f9e7550abf2467cecfbafcc4462936440e074cee4c
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:13.798686078Z
+  citekey: murota-discrete-convex-analysis-economics-game-theory-2022
+  key: cfmm/cfmm-theory/cfmm-options/DiscreteConvexAnalysis.pdf|2026-08-26T22:10:13.798686078Z
+  object_keys:
+  - topics/options/murota-discrete-convex-analysis-economics-game-theory-2022.pdf
+  path: cfmm/cfmm-theory/cfmm-options/DiscreteConvexAnalysis.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 785705146c280834f458e5dca243eff059c33661be9dc53cb9f74f47d1616e1a
+  status: pending
+- action: git-rm
+  at: 2026-08-26T22:10:13.937968054Z
+  citekey: pusceddu-formalizing-automated-market-2024
+  key: learning/convex-analysis/cfmm-lean/refs/2402.06064_Formalizing_AMMs_Lean4.pdf|2026-08-26T22:10:13.937968054Z
+  object_keys:
+  - topics/formal-methods/pusceddu-formalizing-automated-market-2024.pdf
+  path: learning/convex-analysis/cfmm-lean/refs/2402.06064_Formalizing_AMMs_Lean4.pdf
+  repo: learning/convex-analysis/cfmm-lean
+  sha256: bf15d2060e55d9d136f8971970447845066633fe7551891a07277f38eb8a979d
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:14.167753967Z
+  citekey: richardson-defi-s-concentrated-liquidity-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.02496-richardson-concentrated-liquidity-scratch.pdf|2026-08-26T22:10:14.167753967Z
+  object_keys:
+  - topics/volatility-swaps/richardson-defi-s-concentrated-liquidity-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.02496-richardson-concentrated-liquidity-scratch.pdf
+  sha256: a5a7b8c77ba6dc7c4fabcbe1d5807ce3129886340d1580bead32283d93f47ccf
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:14.171791689Z
+  citekey: richardson-defi-s-concentrated-liquidity-2024
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.02496-richardson-concentrated-liquidity-scratch.pdf|2026-08-26T22:10:14.167753967Z
+  object_keys:
+  - topics/volatility-swaps/richardson-defi-s-concentrated-liquidity-2024.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2407.02496-richardson-concentrated-liquidity-scratch.pdf
+  sha256: a5a7b8c77ba6dc7c4fabcbe1d5807ce3129886340d1580bead32283d93f47ccf
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:14.47161521Z
+  citekey: risk-pricing-hedging-liquidity-2026
+  key: cfmm/cfmm-theory/macro-markets/refs/refs/2603.01344-pricing-hedging-cfmm-liquidity-provision.pdf|2026-08-26T22:10:14.47161521Z
+  object_keys:
+  - topics/applications/risk-pricing-hedging-liquidity-2026.pdf
+  - topics/volatility-swaps/risk-pricing-hedging-liquidity-2026.pdf
+  path: cfmm/cfmm-theory/macro-markets/refs/refs/2603.01344-pricing-hedging-cfmm-liquidity-provision.pdf
+  sha256: 3f1a91f796060f3b4f24615bacdbde81b5c28b196cf25a192960752112bd5693
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:14.475031711Z
+  citekey: risk-pricing-hedging-liquidity-2026
+  key: cfmm/cfmm-theory/macro-markets/refs/refs/2603.01344-pricing-hedging-cfmm-liquidity-provision.pdf|2026-08-26T22:10:14.47161521Z
+  object_keys:
+  - topics/applications/risk-pricing-hedging-liquidity-2026.pdf
+  - topics/volatility-swaps/risk-pricing-hedging-liquidity-2026.pdf
+  path: cfmm/cfmm-theory/macro-markets/refs/refs/2603.01344-pricing-hedging-cfmm-liquidity-provision.pdf
+  sha256: 3f1a91f796060f3b4f24615bacdbde81b5c28b196cf25a192960752112bd5693
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:14.665573364Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.02971.pdf|2026-08-26T22:10:14.665573364Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.02971.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:14.666440278Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.02971.pdf|2026-08-26T22:10:14.665573364Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/2508.02971.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:14.84549028Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.02971-singh-lvr-continuous-installment-options.pdf|2026-08-26T22:10:14.84549028Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.02971-singh-lvr-continuous-installment-options.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:14.846344905Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.02971-singh-lvr-continuous-installment-options.pdf|2026-08-26T22:10:14.84549028Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2508.02971-singh-lvr-continuous-installment-options.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:15.000117451Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/lvr-american_options.pdf|2026-08-26T22:10:15.000117451Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/lvr-american_options.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:15.001071641Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: .local/share/wvs-shelf/legacy-refs/refs/lvr-american_options.pdf|2026-08-26T22:10:15.000117451Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/lvr-american_options.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:15.139612496Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: cfmm/cfmm-theory/lp-derivatives/fateh_singh_et_al-lvr_via_continuous_installment_options.pdf|2026-08-26T22:10:15.139612496Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/fateh_singh_et_al-lvr_via_continuous_installment_options.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:15.140835253Z
+  citekey: singh-modeling-loss-versus-rebalancing-automated-2025
+  key: cfmm/cfmm-theory/lp-derivatives/fateh_singh_et_al-lvr_via_continuous_installment_options.pdf|2026-08-26T22:10:15.139612496Z
+  object_keys:
+  - topics/volatility-swaps/singh-modeling-loss-versus-rebalancing-automated-2025.pdf
+  path: cfmm/cfmm-theory/lp-derivatives/fateh_singh_et_al-lvr_via_continuous_installment_options.pdf
+  sha256: 72951a682ce5e6471ebbae2c35f7d45f3faabee9f73cbfa707a765becc85b90a
+  status: done
+- action: delete
+  at: 2026-08-26T22:10:15.300095482Z
+  citekey: sterrett-replicating-portfolios-permissionless-derivatives-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.09890-sterrett-replicating-portfolios.pdf|2026-08-26T22:10:15.300095482Z
+  object_keys:
+  - topics/volatility-swaps/sterrett-replicating-portfolios-permissionless-derivatives-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.09890-sterrett-replicating-portfolios.pdf
+  sha256: 40575ef528807bd1dbaf544c3e58932d7e21f2ec8a1b643a9d5de4c2475e3be8
+  status: pending
+- action: delete
+  at: 2026-08-26T22:10:15.300826249Z
+  citekey: sterrett-replicating-portfolios-permissionless-derivatives-2022
+  key: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.09890-sterrett-replicating-portfolios.pdf|2026-08-26T22:10:15.300095482Z
+  object_keys:
+  - topics/volatility-swaps/sterrett-replicating-portfolios-permissionless-derivatives-2022.pdf
+  path: .local/share/wvs-shelf/legacy-refs/refs/agents/pdf/2205.09890-sterrett-replicating-portfolios.pdf
+  sha256: 40575ef528807bd1dbaf544c3e58932d7e21f2ec8a1b643a9d5de4c2475e3be8
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:15.690560005Z
+  citekey: tranquilli-formal-state-machine-models-2025
+  key: cfmm/cfmm-theory/refs/cfmmStateMachine.pdf|2026-08-26T22:10:15.690560005Z
+  object_keys:
+  - topics/applications/tranquilli-formal-state-machine-models-2025.pdf
+  - topics/formal-methods/tranquilli-formal-state-machine-models-2025.pdf
+  path: cfmm/cfmm-theory/refs/cfmmStateMachine.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
+  status: pending
+- action: git-rm
+  at: 2026-08-26T22:10:15.979418547Z
+  citekey: tranquilli-formal-state-machine-models-2025
+  key: cfmms-playground/experiments/cfmm-automaton/refs/Tranquilli-Gupta-2512.06203-Formal-StateMachine-Models-UniswapV3-CLAMM.pdf|2026-08-26T22:10:15.979418547Z
+  object_keys:
+  - topics/applications/tranquilli-formal-state-machine-models-2025.pdf
+  - topics/formal-methods/tranquilli-formal-state-machine-models-2025.pdf
+  path: cfmms-playground/experiments/cfmm-automaton/refs/Tranquilli-Gupta-2512.06203-Formal-StateMachine-Models-UniswapV3-CLAMM.pdf
+  repo: cfmms-playground/experiments/cfmm-automaton
+  sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
+  status: pending
+- action: git-rm
+  at: 2026-08-26T22:10:15.999524299Z
+  citekey: capponi-jia-adoption-decentralized-exchange-2021
+  key: cfmm/cfmm-theory/refs/capponi-jia-adoption-2021.pdf|2026-08-26T22:10:06.84974563Z
+  object_keys:
+  - topics/applications/capponi-jia-adoption-decentralized-exchange-2021.pdf
+  - topics/io/capponi-jia-adoption-decentralized-exchange-2021.pdf
+  path: cfmm/cfmm-theory/refs/capponi-jia-adoption-2021.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 9ab8aa585696f7a02ae7d94a71d6f2f77bdb13c729e3a845039d33297b99d262
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.000011381Z
+  citekey: capponi-jit-liquidity-paradox-2023
+  key: cfmm/cfmm-theory/refs/capponi-jit-paradox-2023.pdf|2026-08-26T22:10:07.383925862Z
+  object_keys:
+  - topics/applications/capponi-jit-liquidity-paradox-2023.pdf
+  - topics/io/capponi-jit-liquidity-paradox-2023.pdf
+  path: cfmm/cfmm-theory/refs/capponi-jit-paradox-2023.pdf
+  repo: cfmm/cfmm-theory
+  sha256: f3675ec634f3b3ba8997e03b4da29ce4334130fc3f5f0d294ef1149c156e3bcb
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.000510907Z
+  citekey: lehar-fragmentation-liquidity-provision-2024
+  key: cfmm/cfmm-theory/refs/lehar-parlour-zoican-fragmentation-2024.pdf|2026-08-26T22:10:10.58356564Z
+  object_keys:
+  - topics/applications/lehar-fragmentation-liquidity-provision-2024.pdf
+  - topics/io/lehar-fragmentation-liquidity-provision-2024.pdf
+  path: cfmm/cfmm-theory/refs/lehar-parlour-zoican-fragmentation-2024.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 6791387ad81ab6a419870566c0a8f3f007d12e5214a63898e5aecccfdbb15991
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.000979917Z
+  citekey: maymin-option-pricing-automated-2026
+  key: cfmm/cfmm-theory/cfmm-options/taoDynamics.pdf|2026-08-26T22:10:11.287430064Z
+  object_keys:
+  - topics/options/maymin-option-pricing-automated-2026.pdf
+  path: cfmm/cfmm-theory/cfmm-options/taoDynamics.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 2d17e064be4679314f81a1e2da1b8711eb1913afb1dc7cb8cd79bf13ae6a8edf
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.001144427Z
+  citekey: milionis-automated-market-making-2023
+  key: cfmm/cfmm-theory/milionis-amm_arbitrage_fees-2024.pdf|2026-08-26T22:10:11.955518397Z
+  object_keys:
+  - topics/volatility-swaps/milionis-automated-market-making-2023.pdf
+  path: cfmm/cfmm-theory/milionis-amm_arbitrage_fees-2024.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 52765e9238cb33fc5926db1da0fb5c3855f303b662137c1f44decd10ef1a5222
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.001322714Z
+  citekey: murota-discrete-convex-analysis-economics-game-theory-2022
+  key: cfmm/cfmm-theory/cfmm-options/DiscreteConvexAnalysis.pdf|2026-08-26T22:10:13.798686078Z
+  object_keys:
+  - topics/options/murota-discrete-convex-analysis-economics-game-theory-2022.pdf
+  path: cfmm/cfmm-theory/cfmm-options/DiscreteConvexAnalysis.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 785705146c280834f458e5dca243eff059c33661be9dc53cb9f74f47d1616e1a
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.001448552Z
+  citekey: tranquilli-formal-state-machine-models-2025
+  key: cfmm/cfmm-theory/refs/cfmmStateMachine.pdf|2026-08-26T22:10:15.690560005Z
+  object_keys:
+  - topics/applications/tranquilli-formal-state-machine-models-2025.pdf
+  - topics/formal-methods/tranquilli-formal-state-machine-models-2025.pdf
+  path: cfmm/cfmm-theory/refs/cfmmStateMachine.pdf
+  repo: cfmm/cfmm-theory
+  sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.012377679Z
+  citekey: tranquilli-formal-state-machine-models-2025
+  key: cfmms-playground/experiments/cfmm-automaton/refs/Tranquilli-Gupta-2512.06203-Formal-StateMachine-Models-UniswapV3-CLAMM.pdf|2026-08-26T22:10:15.979418547Z
+  object_keys:
+  - topics/applications/tranquilli-formal-state-machine-models-2025.pdf
+  - topics/formal-methods/tranquilli-formal-state-machine-models-2025.pdf
+  path: cfmms-playground/experiments/cfmm-automaton/refs/Tranquilli-Gupta-2512.06203-Formal-StateMachine-Models-UniswapV3-CLAMM.pdf
+  repo: cfmms-playground/experiments/cfmm-automaton
+  sha256: 6149c42f24a212a57c2638c76a7cca13846de5c808771ed2eb05e8f935f22643
+  status: done
+- action: git-rm
+  at: 2026-08-26T22:10:16.023293012Z
+  citekey: pusceddu-formalizing-automated-market-2024
+  key: learning/convex-analysis/cfmm-lean/refs/2402.06064_Formalizing_AMMs_Lean4.pdf|2026-08-26T22:10:13.937968054Z
+  object_keys:
+  - topics/formal-methods/pusceddu-formalizing-automated-market-2024.pdf
+  path: learning/convex-analysis/cfmm-lean/refs/2402.06064_Formalizing_AMMs_Lean4.pdf
+  repo: learning/convex-analysis/cfmm-lean
+  sha256: bf15d2060e55d9d136f8971970447845066633fe7551891a07277f38eb8a979d
+  status: done

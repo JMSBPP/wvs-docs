@@ -6,6 +6,7 @@ year: 2018
 provenance: {kind: arxiv, id: '1802.01158'}
 sha256: cb685d19b21bef96097a9e7e30450d668b67ea9f0039c479c10580058e103281
 topics: [discrete]
+pdf: https://s3.hippius.com/cfmm-refs/topics/discrete/esqueda-geometric-description-discrete-exterior-calculus-2018.pdf
 ---
 
 ## Notes

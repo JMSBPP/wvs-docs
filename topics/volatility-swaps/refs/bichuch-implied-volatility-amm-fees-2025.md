@@ -6,6 +6,7 @@ year: 2025
 provenance: {kind: unsourced}
 sha256: 191e074d41135923971834061d497c01d6b0a6d59fbf1cb5686546ee2e5d0ab6
 topics: [volatility-swaps, applications]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/bichuch-implied-volatility-amm-fees-2025.pdf
 ---
 
 ## Notes

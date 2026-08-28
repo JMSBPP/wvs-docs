@@ -6,6 +6,7 @@ year: 2026
 provenance: {kind: unsourced}
 sha256: a5533465685bb99c47ed47d6c09093e35d96217ca7a138426aa4949b21716fde
 topics: [volatility-swaps, dgp]
+pdf: https://s3.hippius.com/cfmm-refs/topics/volatility-swaps/serrano-stochastic-fx-variance-proxy-2026.pdf
 ---
 
 ## Notes

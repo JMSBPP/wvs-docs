@@ -6,6 +6,7 @@ year: 1999
 provenance: {kind: unsourced}
 sha256: 04fff506838253bb5e726bf24e8d89ad88d1a1e39ef55dc97ba0eca5c4551086
 topics: [applications, econometrics]
+pdf: https://s3.hippius.com/cfmm-refs/topics/econometrics/athanasoulis-macro-markets-financial-1999.pdf
 ---
 
 ## Notes

@@ -7,6 +7,7 @@ year: 2024
 provenance: {kind: unsourced}
 sha256: 1734b4c669d6d4a1329f8804948c9ed7a47d1761a642b25b46c11634f1a5a036
 topics: [applications, econometrics]
+pdf: https://s3.hippius.com/cfmm-refs/topics/econometrics/cardozo-cross-border-crypto-flows-2024.pdf
 ---
 
 ## Notes
